@@ -1,0 +1,25 @@
+# Archivos sensibles
+*.pdf
+*.docx
+*.xlsx
+
+# Información personal
+*SSN*
+*birthday*
+*DOB*
+
+# Archivos temporales
+*.tmp
+*.log
+.DS_Store
+Thumbs.db
+
+# Node modules si se agregan
+node_modules/
+package-lock.json
+
+# Entornos virtuales Python
+venv/
+env/
+__pycache__/
+*.pyc

@@ -1,0 +1,31 @@
+DOCUMENTO: References_Alex_Espinosa.docx
+================================================================================
+
+REFERENCES
+Carlos Murias Sandobal  					408-9123006                                                       
+First and Last Name						Telephone No.
+San Jose			 California    			95123
+City				 State				Zip
+Handyman and others             		5
+Occupation				Year
+Home depot
+Revelan Company
+Jhon Martinez   					                            925-2896770                                                       
+First and Last Name						Telephone No.
+Pleasant Hill			 California    			94523
+City				 State				Zip
+Terminal Clean surgery             	 	15
+Occupation				Years
+Children Hospital Oakland
+Revelan Company
+Susana Garces  					                            925-4577810                                                       
+First and Last Name						Telephone No.
+Concord			California    			94520
+City				 State				Zip
+Acountig Asistem             		4
+Occupation				Year
+LG Bokkeeting Tax services
+Revelan Company
+
+================================================================================
+Documento procesado correctamente
