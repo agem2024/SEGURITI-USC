@@ -29,6 +29,41 @@
             overflow-x: hidden;
         }
 
+        /* LANGUAGE SELECTOR */
+        .lang-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 8px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px 15px;
+            border-radius: 30px;
+            border: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: #888;
+            padding: 8px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: 0.3s;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .lang-btn:hover,
+        .lang-btn.active {
+            background: var(--neon-blue);
+            color: #000;
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 15px var(--neon-blue);
+        }
+
         /* HERO VIDEO BACKGROUND */
         .hero {
             height: 100vh;
@@ -84,6 +119,15 @@
             margin-bottom: 40px;
         }
 
+        .tagline {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: #ddd;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         .btn-main {
             padding: 15px 50px;
             font-size: 1.2rem;
@@ -133,8 +177,6 @@
             position: relative;
             transition: 0.4s;
             height: 400px;
-            /* Fixed height for visual consistency */
-            group-hover:
         }
 
         .card:hover {
@@ -210,10 +252,41 @@
             background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(10px);
         }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            p.subtitle {
+                font-size: 0.9rem;
+                letter-spacing: 2px;
+            }
+
+            .lang-selector {
+                top: 10px;
+                right: 10px;
+                padding: 5px 10px;
+            }
+
+            .lang-btn {
+                padding: 5px 8px;
+                font-size: 0.75rem;
+            }
+        }
     </style>
 </head>
 
 <body>
+
+    <!-- LANGUAGE SELECTOR -->
+    <div class="lang-selector">
+        <button class="lang-btn active" onclick="setLang('en')">EN 🇺🇸</button>
+        <button class="lang-btn" onclick="setLang('es')">ES 🇲🇽</button>
+        <button class="lang-btn" onclick="setLang('zh')">中文 🇨🇳</button>
+        <button class="lang-btn" onclick="setLang('tl')">TL 🇵🇭</button>
+        <button class="lang-btn" onclick="setLang('vi')">VI 🇻🇳</button>
+    </div>
 
     <!-- HERO -->
     <div class="hero">
@@ -222,65 +295,64 @@
         </video>
         <div class="overlay">
             <h1>Alex G. Espinosa</h1>
-            <p class="subtitle">INGENIERO AMBIENTAL | EXPERTO EN PLOMERÍA | INNOVADOR TECH</p>
-            <div
-                style="margin-bottom: 20px; font-size: 1.1rem; color: #ddd; max-width: 600px; margin-left:auto; margin-right:auto;">
-                "21+ Años de experiencia multidisciplinaria. Fusionando la ingeniería sostenible, la precisión de la
-                plomería bajo códigos de California y la vanguardia de la IA."
+            <p class="subtitle" data-i18n="subtitle">ENVIRONMENTAL ENGINEER | PLUMBING EXPERT | TECH INNOVATOR</p>
+            <div class="tagline" data-i18n="tagline">
+                "21+ Years of multidisciplinary experience. Fusing sustainable engineering, California-code precision
+                plumbing, and cutting-edge AI."
             </div>
-            <a href="#work" class="btn-main">VER TRAYECTORIA</a>
+            <a href="#work" class="btn-main" data-i18n="cta">VIEW TRAJECTORY</a>
         </div>
     </div>
 
     <!-- SERVICES -->
     <div class="section" id="work">
-        <h2 class="section-title">SYSTEM ARCHITECTURE</h2>
+        <h2 class="section-title" data-i18n="section_title">SYSTEM ARCHITECTURE</h2>
         <div class="grid">
 
-            <!-- Ingeniero Ambiental -->
+            <!-- Environmental Engineer -->
             <div class="card">
                 <video class="card-bg" autoplay muted loop playsinline poster="images/cv_eco_tech_1765352222464.png">
                     <source src="images/cv_eco_tech_1765352222464.mp4" type="video/mp4">
                 </video>
                 <div class="card-content">
-                    <h3>INGENIERO AMBIENTAL</h3>
-                    <p>Graduado (2004). 21+ Años de experiencia en Consultoría, Plantas de Tratamiento, Gestión de
-                        Residuos e Impacto Ambiental. Auditor ISO 14001.</p>
+                    <h3 data-i18n="card1_title">ENVIRONMENTAL ENGINEER</h3>
+                    <p data-i18n="card1_desc">Graduate (2004). 21+ Years experience in Consulting, Treatment Plants,
+                        Waste Management and Environmental Impact. ISO 14001 Auditor.</p>
                 </div>
             </div>
 
-            <!-- Plomero Profesional -->
+            <!-- Plumbing Expert -->
             <div class="card">
                 <video class="card-bg" autoplay muted loop playsinline poster="images/cv_smart_infra_1765352245536.png">
                     <source src="images/cv_intro_eye_1765352245536.mp4" type="video/mp4">
                 </video>
                 <div class="card-content">
-                    <h3>PLOMERÍA EXPERTA</h3>
-                    <p>11+ Años en California. Residencial y Comercial. Dominio de Códigos y Regulaciones. Inspección,
-                        Instalación y Mantenimiento de alto nivel.</p>
+                    <h3 data-i18n="card2_title">EXPERT PLUMBING</h3>
+                    <p data-i18n="card2_desc">11+ Years in California. Residential and Commercial. Mastery of Codes and
+                        Regulations. High-level Inspection, Installation and Maintenance.</p>
                 </div>
             </div>
 
-            <!-- Tecnología & Diseño -->
+            <!-- Engineering & Design -->
             <div class="card">
                 <video class="card-bg" autoplay muted loop playsinline
                     poster="images/cv_architect_holo_1765352204492.png">
                     <source src="images/cv_architect_holo_1765352204492.mp4" type="video/mp4">
                 </video>
                 <div class="card-content">
-                    <h3>INGENIERÍA & DISEÑO</h3>
-                    <p>Experto en AutoCAD, ArcGIS, Epanet y diseño de estructuras hidráulicas. Integración de IA para
-                        diagnósticos precisos.</p>
+                    <h3 data-i18n="card3_title">ENGINEERING & DESIGN</h3>
+                    <p data-i18n="card3_desc">Expert in AutoCAD, ArcGIS, Epanet and hydraulic structure design. AI
+                        integration for precise diagnostics.</p>
                 </div>
             </div>
 
-            <!-- Digital Ops -->
+            <!-- Consulting -->
             <div class="card">
                 <img src="images/cv_digital_ops_1765352273224.png" class="card-bg">
                 <div class="card-content">
-                    <h3>CONSULTORÍA INTEGRAL</h3>
-                    <p>Gestión de proyectos complejos, desde saneamiento básico hasta infraestructura inteligente.
-                        Soluciones técnicas y económicas viables.</p>
+                    <h3 data-i18n="card4_title">INTEGRAL CONSULTING</h3>
+                    <p data-i18n="card4_desc">Complex project management, from basic sanitation to intelligent
+                        infrastructure. Viable technical and economic solutions.</p>
                 </div>
             </div>
 
@@ -293,7 +365,7 @@
             <source src="images/cv_contact_card_1765352290135.mp4" type="video/mp4">
         </video>
         <div class="contact-box">
-            <h2>READY TO DEPLOY?</h2>
+            <h2 data-i18n="contact_title">READY TO DEPLOY?</h2>
             <br>
             <p style="color:white; margin-bottom:10px; font-size:1.2rem;">ALEX G. ESPINOSA</p>
             <a href="tel:6692342444" class="btn-main" style="display:block; margin: 10px auto; max-width: 300px;">(669)
@@ -301,9 +373,114 @@
             <a href="mailto:agem2013@gmail.com" class="btn-main"
                 style="display:block; margin: 10px auto; max-width: 300px; font-size:1rem;">agem2013@gmail.com</a>
             <br>
-            <p style="color:#666; font-size: 0.8rem;">ORION SYSTEM V4.0</p>
+            <p style="color:#666; font-size: 0.8rem;">ORION SYSTEM V5.4</p>
         </div>
     </footer>
+
+    <script>
+        // Multi-language translations for Bay Area top 5 languages
+        const translations = {
+            en: {
+                subtitle: "ENVIRONMENTAL ENGINEER | PLUMBING EXPERT | TECH INNOVATOR",
+                tagline: '"21+ Years of multidisciplinary experience. Fusing sustainable engineering, California-code precision plumbing, and cutting-edge AI."',
+                cta: "VIEW TRAJECTORY",
+                section_title: "SYSTEM ARCHITECTURE",
+                card1_title: "ENVIRONMENTAL ENGINEER",
+                card1_desc: "Graduate (2004). 21+ Years experience in Consulting, Treatment Plants, Waste Management and Environmental Impact. ISO 14001 Auditor.",
+                card2_title: "EXPERT PLUMBING",
+                card2_desc: "11+ Years in California. Residential and Commercial. Mastery of Codes and Regulations. High-level Inspection, Installation and Maintenance.",
+                card3_title: "ENGINEERING & DESIGN",
+                card3_desc: "Expert in AutoCAD, ArcGIS, Epanet and hydraulic structure design. AI integration for precise diagnostics.",
+                card4_title: "INTEGRAL CONSULTING",
+                card4_desc: "Complex project management, from basic sanitation to intelligent infrastructure. Viable technical and economic solutions.",
+                contact_title: "READY TO DEPLOY?"
+            },
+            es: {
+                subtitle: "INGENIERO AMBIENTAL | EXPERTO EN PLOMERÍA | INNOVADOR TECH",
+                tagline: '"21+ Años de experiencia multidisciplinaria. Fusionando ingeniería sostenible, plomería de precisión bajo códigos de California y la vanguardia de la IA."',
+                cta: "VER TRAYECTORIA",
+                section_title: "ARQUITECTURA DEL SISTEMA",
+                card1_title: "INGENIERO AMBIENTAL",
+                card1_desc: "Graduado (2004). 21+ Años de experiencia en Consultoría, Plantas de Tratamiento, Gestión de Residuos e Impacto Ambiental. Auditor ISO 14001.",
+                card2_title: "PLOMERÍA EXPERTA",
+                card2_desc: "11+ Años en California. Residencial y Comercial. Dominio de Códigos y Regulaciones. Inspección, Instalación y Mantenimiento de alto nivel.",
+                card3_title: "INGENIERÍA Y DISEÑO",
+                card3_desc: "Experto en AutoCAD, ArcGIS, Epanet y diseño de estructuras hidráulicas. Integración de IA para diagnósticos precisos.",
+                card4_title: "CONSULTORÍA INTEGRAL",
+                card4_desc: "Gestión de proyectos complejos, desde saneamiento básico hasta infraestructura inteligente. Soluciones técnicas y económicas viables.",
+                contact_title: "¿LISTO PARA CONECTAR?"
+            },
+            zh: {
+                subtitle: "环境工程师 | 管道专家 | 技术创新者",
+                tagline: '"21年以上多学科经验。融合可持续工程、加州标准精密管道和尖端人工智能。"',
+                cta: "查看履历",
+                section_title: "系统架构",
+                card1_title: "环境工程师",
+                card1_desc: "2004年毕业。21年以上咨询、处理厂、废物管理和环境影响评估经验。ISO 14001审核员。",
+                card2_title: "专业管道服务",
+                card2_desc: "在加州11年以上经验。住宅和商业。精通法规和规范。高水平检查、安装和维护。",
+                card3_title: "工程与设计",
+                card3_desc: "AutoCAD、ArcGIS、Epanet和水力结构设计专家。AI集成实现精准诊断。",
+                card4_title: "综合咨询",
+                card4_desc: "复杂项目管理，从基础卫生到智能基础设施。可行的技术和经济解决方案。",
+                contact_title: "准备好合作了吗？"
+            },
+            tl: {
+                subtitle: "ENVIRONMENTAL ENGINEER | EKSPERTO SA PLUMBING | TECH INNOVATOR",
+                tagline: '"21+ Taon ng multidisciplinary na karanasan. Pinagsasama ang sustainable engineering, California-code precision plumbing, at cutting-edge AI."',
+                cta: "TINGNAN ANG TRAJECTORY",
+                section_title: "SYSTEM ARCHITECTURE",
+                card1_title: "ENVIRONMENTAL ENGINEER",
+                card1_desc: "Nagtapos (2004). 21+ Taong karanasan sa Consulting, Treatment Plants, Waste Management at Environmental Impact. ISO 14001 Auditor.",
+                card2_title: "EKSPERTO SA PLUMBING",
+                card2_desc: "11+ Taon sa California. Residential at Commercial. Mastery ng Codes at Regulations. High-level na Inspection, Installation at Maintenance.",
+                card3_title: "ENGINEERING AT DESIGN",
+                card3_desc: "Eksperto sa AutoCAD, ArcGIS, Epanet at hydraulic structure design. AI integration para sa tumpak na diagnostics.",
+                card4_title: "INTEGRAL CONSULTING",
+                card4_desc: "Complex project management, mula basic sanitation hanggang intelligent infrastructure. Viable na technical at economic solutions.",
+                contact_title: "HANDA NA BA KAYONG MAKIPAG-UGNAYAN?"
+            },
+            vi: {
+                subtitle: "KỸ SƯ MÔI TRƯỜNG | CHUYÊN GIA ỐNG NƯỚC | NHÀ SÁNG TẠO CÔNG NGHỆ",
+                tagline: '"21+ Năm kinh nghiệm đa ngành. Kết hợp kỹ thuật bền vững, hệ thống ống nước chính xác theo tiêu chuẩn California và AI tiên tiến."',
+                cta: "XEM QUÁ TRÌNH",
+                section_title: "KIẾN TRÚC HỆ THỐNG",
+                card1_title: "KỸ SƯ MÔI TRƯỜNG",
+                card1_desc: "Tốt nghiệp (2004). 21+ Năm kinh nghiệm trong Tư vấn, Nhà máy Xử lý, Quản lý Chất thải và Đánh giá Tác động Môi trường. Kiểm toán viên ISO 14001.",
+                card2_title: "CHUYÊN GIA ỐNG NƯỚC",
+                card2_desc: "11+ Năm tại California. Dân dụng và Thương mại. Thành thạo Quy tắc và Quy định. Kiểm tra, Lắp đặt và Bảo trì cấp cao.",
+                card3_title: "KỸ THUẬT VÀ THIẾT KẾ",
+                card3_desc: "Chuyên gia về AutoCAD, ArcGIS, Epanet và thiết kế cấu trúc thủy lực. Tích hợp AI để chẩn đoán chính xác.",
+                card4_title: "TƯ VẤN TOÀN DIỆN",
+                card4_desc: "Quản lý dự án phức tạp, từ vệ sinh cơ bản đến cơ sở hạ tầng thông minh. Giải pháp kỹ thuật và kinh tế khả thi.",
+                contact_title: "SẴN SÀNG HỢP TÁC?"
+            }
+        };
+
+        let currentLang = 'en';
+
+        function setLang(lang) {
+            currentLang = lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`[onclick="setLang('${lang}')"]`).classList.add('active');
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+
+            document.documentElement.lang = lang;
+            localStorage.setItem('cv_lang', lang);
+        }
+
+        // Load saved language preference
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('cv_lang') || 'en';
+            setLang(savedLang);
+        });
+    </script>
 
 </body>
 
