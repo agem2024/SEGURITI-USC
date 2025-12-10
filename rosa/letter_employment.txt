@@ -1,0 +1,6 @@
+DOCUMENTO: LetterEmploymentSample.doc
+================================================================================
+
+COMPANY LETTERHEAD					ADDRESS					PHONE #DateRE: xxxxxxxxxxxxxxDear Immigration Officer:This letter serves to verify that Mr./Ms. xxxxxxxxxxxxx is employed with our company as a full-time ??????????????. This employee currently earns $____ per hour, working a minimum of 40 hours a week. He/She has been with our company since xxxxxxxxxxxxx.Mr./Ms. Xxxxxxxxxxxxxxxxx is responsible for xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.If you have any questions, please feel free to contact me.Sincerely,NameTitle
+================================================================================
+Documento procesado correctamente

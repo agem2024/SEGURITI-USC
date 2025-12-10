@@ -1,0 +1,6 @@
+DOCUMENTO: List of Monthly Expenses.doc
+================================================================================
+
+LISTA DE GASTOS AL MESCasa/Renta $			Gas: $			Luz: $			Agua: $		Teléfono de casa: $			Cable/Internet: $__________Celulares $:___________						Comida: $			Gasolina: $			Pago de carro $____________Aseguranza de caro: $			Seguro Médico y Dental $___________Ropa: $			Entretenimiento: $_____________Envíos de Dinero a Familiares al Extranjero $__________Actividades de su Hijo(s) $__________Tarjetas de crédito/Biles:    				$			   				$			   				$			   				$			   				$			   				$			Ingreso de Peticionario: $			Ingreso de Beneficiario: $			
+================================================================================
+Documento procesado correctamente

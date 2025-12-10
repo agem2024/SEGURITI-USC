@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GALAXY EDITOR PRO 2.0 | INTELLIGENT SYSTEM</title>
+    <script src="migra/photo-db.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #0b0e14;
+            --bg-panel: #151a23;
+            --bg-card: #1e2532;
+            --accent: #6366f1;
+            --accent-hover: #4f46e5;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --border: rgba(255, 255, 255, 0.08);
+            --glass: rgba(21, 26, 35, 0.95);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-main);
+            color: var(--text-primary);
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* SIDEBAR (Smart Filters) */
+        .sidebar {
+            width: 260px;
+            background: var(--bg-panel);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem;
+            overflow-y: auto;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .section-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            margin-top: 1.5rem;
+            font-weight: 700;
+        }
+
+        .filter-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.6rem 0.8rem;
+            color: var(--text-secondary);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+            margin-bottom: 2px;
+        }
+
+        .filter-item:hover,
+        .filter-item.active {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--text-primary);
+        }
+
+        .filter-item.active {
+            border-left: 3px solid var(--accent);
+        }
+
+        .count-badge {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+        }
+
+        /* MAIN CONTENT */
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .header {
+            height: 70px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+
+        .search-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            width: 350px;
+            color: white;
+            font-family: inherit;
+        }
+
+        .search-box:focus {
+            outline: 1px solid var(--accent);
+        }
+
+        /* VIRTUAL GRID */
+        .grid-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .grid-sizer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1px;
+            opacity: 0;
+        }
+
+        .grid-visible {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            position: relative;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s;
+            opacity: 0;
+        }
+
+        .card img.loaded {
+            opacity: 1;
+        }
+
+        .card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 1rem;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .card:hover .card-overlay {
+            opacity: 1;
+        }
+
+        .tag-dot {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: none;
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .has-tags .tag-dot {
+            display: block;
+        }
+
+        /* EDITOR PANEL (Right) */
+        .editor-panel {
+            width: 320px;
+            background: var(--bg-panel);
+            border-left: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            transform: translateX(100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            z-index: 50;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .editor-panel.open {
+            transform: translateX(0);
+            width: 320px;
+        }
+
+        .panel-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .panel-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+        }
+
+        .big-preview {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        /* Ensure canvas fits */
+        .big-preview canvas {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .field-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .field-label {
+            display: block;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .person-tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .person-tag {
+            background: rgba(99, 102, 241, 0.2);
+            color: #a5b4fc;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .person-tag:hover {
+            background: rgba(99, 102, 241, 0.4);
+            color: white;
+        }
+
+        .person-tag span {
+            font-weight: bold;
+        }
+
+        .add-person-box {
+            display: flex;
+            gap: 5px;
+        }
+
+        .btn-small {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* TABS for Visual/Data */
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 1rem;
+        }
+
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .tab.active {
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <div class="logo">
+            <span>✨</span> ORION PHOTO
+        </div>
+
+        <div class="filter-item active" onclick="setFilter('all')">
+            <span>📸 Todas las Fotos</span>
+            <span class="count-badge" id="total-count">0</span>
+        </div>
+
+        <div class="section-title">Personas (IA Tags)</div>
+        <div id="people-list">
+            <!-- Populated by JS -->
+            <div style="color: #555; font-style: italic; font-size: 0.8rem; padding: 5px;">No hay personas etiquetadas
+                aún.</div>
+        </div>
+
+        <div class="section-title">Línea de Tiempo</div>
+        <div id="timeline-list">
+            <!-- Populated by JS -->
+        </div>
+
+        <div class="section-title">Carpetas Inteligentes</div>
+        <div id="folder-list">
+            <!-- Populated by JS -->
+        </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+        <div class="header">
+            <h2 id="current-view-title">Todas las Fotos</h2>
+            <input type="text" class="search-box" placeholder="🔎 Buscar personas, lugares..."
+                oninput="handleSearch(this.value)">
+        </div>
+
+        <div class="grid-container" id="virtual-container">
+            <div class="grid-sizer" id="grid-sizer"></div>
+            <div class="grid-visible" id="grid-visible"></div>
+        </div>
+
+        <!-- EDITOR PANEL -->
+        <div class="editor-panel" id="editor-panel">
+            <div class="panel-header">
+                <h3>Detalles</h3>
+                <button class="btn-small" style="background:transparent; border:1px solid #333;"
+                    onclick="closeEditor()">✕</button>
+            </div>
+
+            <div class="panel-content">
+                <div class="big-preview">
+                    <canvas id="preview-canvas"></canvas>
+                </div>
+
+                <div class="tabs">
+                    <div class="tab active" onclick="switchTab('data')">👤 Personas</div>
+                    <div class="tab" onclick="switchTab('visual')">🎨 Edición</div>
+                </div>
+
+                <!-- DATA TAB -->
+                <div id="tab-data" class="tab-content active">
+                    <div class="field-group">
+                        <label class="field-label">Personas en esta foto</label>
+                        <div class="person-tag-list" id="current-tags"></div>
+
+                        <div class="add-person-box" style="flex-direction: column; gap:10px;">
+                            <button id="pin-btn" class="btn-small"
+                                style="background:var(--bg-card); border:1px solid var(--accent); color:var(--accent); width:100%; padding:8px;"
+                                onclick="togglePinMode()">
+                                🎯 Marcar Cara (Click en imagen)
+                            </button>
+
+                            <div style="display:flex; gap:5px; width:100%;">
+                                <input type="text" id="new-tag-input" class="search-box" placeholder="Nombre..."
+                                    style="flex:1; padding:0.5rem; font-size: 0.8rem;">
+                                <button class="btn-small" onclick="addTag()">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label">Información</label>
+                        <div style="font-size: 0.85rem; color: #888; line-height: 1.6;">
+                            <div id="meta-name"></div>
+                            <div id="meta-date"></div>
+                            <div id="meta-path" style="word-break: break-all; font-size: 0.75rem; margin-top: 5px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VISUAL TAB -->
+                <div id="tab-visual" class="tab-content">
+                    <label class="field-label">Brillo</label>
+                    <input type="range" id="brightness" min="0" max="200" value="100"
+                        style="width:100%; margin-bottom: 1rem;" oninput="updateVisuals()">
+
+                    <label class="field-label">Contraste</label>
+                    <input type="range" id="contrast" min="0" max="200" value="100"
+                        style="width:100%; margin-bottom: 1rem;" oninput="updateVisuals()">
+
+                    <button class="btn-small" style="width: 100%; padding: 10px; margin-top: 10px;"
+                        onclick="downloadImage()">💾 Descargar Editada</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- DATA & STATE ---
+        let allPhotos = [];
+        let displayedPhotos = [];
+        let tagDatabase = {}; // Format: { "Path": [ {name:"Juan", x:0.5, y:0.2}, ... ] }
+        let knownPeople = new Set();
+
+        let currentPhotoIndex = null;
+        let isPinningMode = false;
+
+        // --- VIRTUAL SCROLL ---
+        const container = document.getElementById('virtual-container');
+        const gridSizer = document.getElementById('grid-sizer');
+        const gridVisible = document.getElementById('grid-visible');
+        const CARD_Height = 224;
+        let cols = 5;
+
+        // --- INIT ---
+        window.onload = function () {
+            if (window.SYSTEM_PHOTOS) {
+                allPhotos = window.SYSTEM_PHOTOS;
+                displayedPhotos = allPhotos;
+
+                const savedTags = localStorage.getItem('OrionTags');
+                if (savedTags) {
+                    try {
+                        tagDatabase = JSON.parse(savedTags);
+                        Object.values(tagDatabase).forEach(tags => {
+                            tags.forEach(t => {
+                                const name = (typeof t === 'object') ? t.name : t;
+                                knownPeople.add(name);
+                            });
+                        });
+                    } catch (e) { console.error("Error loading tags", e); }
+                }
+
+                analyzeLibrary();
+                renderSidebar();
+
+                window.addEventListener('resize', onResize);
+                container.addEventListener('scroll', onScroll);
+                onResize();
+            } else {
+                alert("Error: photo-db.js not loaded.");
+            }
+        };
+
+        // --- INTELLIGENCE ---
+        let years = {}, folders = {};
+        function analyzeLibrary() {
+            years = {}; folders = {};
+            allPhotos.forEach(p => {
+                if (p.LastWriteTime) {
+                    const match = p.LastWriteTime.match(/\d+/);
+                    if (match) {
+                        const y = new Date(parseInt(match[0])).getFullYear();
+                        if (!years[y]) years[y] = 0;
+                        years[y]++;
+                    }
+                }
+                const parts = p.FullName.split('\\');
+                if (parts.length > 2) {
+                    const parent = parts[parts.length - 2];
+                    if (!folders[parent]) folders[parent] = 0;
+                    folders[parent]++;
+                }
+            });
+        }
+
+        function renderSidebar() {
+            document.getElementById('total-count').innerText = allPhotos.length;
+
+            const peopleHtml = Array.from(knownPeople).sort().map(name => `
+                <div class="filter-item" onclick="filterByPerson('${name}')">
+                    <span>👤 ${name}</span>
+                </div>
+            `).join('');
+            document.getElementById('people-list').innerHTML = peopleHtml || '<div style="padding:10px; font-size:0.8rem; color:#666;">Sin etiquetas</div>';
+
+            const sortedYears = Object.keys(years).sort((a, b) => b - a).slice(0, 10);
+            document.getElementById('timeline-list').innerHTML = sortedYears.map(y => `
+                <div class="filter-item" onclick="filterByYear('${y}')">
+                    <span>📅 ${y}</span> <span class="count-badge">${years[y]}</span>
+                </div>
+            `).join('');
+
+            const sortedFolders = Object.keys(folders).sort((a, b) => folders[b] - folders[a]).slice(0, 20);
+            document.getElementById('folder-list').innerHTML = sortedFolders.map(f => `
+                <div class="filter-item" onclick="filterByFolder('${f}')">
+                    <span>📁 ${f}</span> <span class="count-badge">${folders[f]}</span>
+                </div>
+            `).join('');
+        }
+
+        // --- FILTERING ---
+        window.setFilter = (type) => {
+            if (type === 'all') { displayedPhotos = allPhotos; document.getElementById('current-view-title').innerText = "Todas las Fotos"; }
+            container.scrollTop = 0; renderGrid();
+        };
+
+        window.filterByPerson = (name) => {
+            displayedPhotos = allPhotos.filter(p => {
+                const tags = tagDatabase[p.FullName];
+                if (!tags) return false;
+                return tags.some(t => {
+                    const tName = (typeof t === 'object') ? t.name : t;
+                    return tName === name;
+                });
+            });
+            document.getElementById('current-view-title').innerText = `Persona: ${name}`;
+            container.scrollTop = 0; renderGrid();
+        };
+
+        window.filterByYear = (y) => {
+            displayedPhotos = allPhotos.filter(p => {
+                const match = p.LastWriteTime && p.LastWriteTime.match(/\d+/);
+                return match && new Date(parseInt(match[0])).getFullYear() == y;
+            });
+            document.getElementById('current-view-title').innerText = `Año: ${y}`;
+            container.scrollTop = 0; renderGrid();
+        };
+
+        window.filterByFolder = (f) => {
+            displayedPhotos = allPhotos.filter(p => p.FullName.includes('\\' + f + '\\'));
+            document.getElementById('current-view-title').innerText = `Carpeta: ${f}`;
+            container.scrollTop = 0; renderGrid();
+        };
+
+        window.handleSearch = (q) => {
+            if (!q) return setFilter('all');
+            q = q.toLowerCase();
+            displayedPhotos = allPhotos.filter(p => p.Name.toLowerCase().includes(q) || p.FullName.toLowerCase().includes(q));
+            renderGrid();
+        };
+
+        // --- EDITOR & PINNING ---
+        window.openEditor = function (index) {
+            currentPhotoIndex = index;
+            const photo = displayedPhotos[index];
+            document.getElementById('editor-panel').classList.add('open');
+            togglePinMode(false);
+
+            // Wait for image load to draw properly
+            const img = new Image();
+            img.src = photo.FullName;
+            img.onload = () => {
+                drawEditor(img);
+            };
+
+            // Metadata
+            document.getElementById('meta-name').innerText = photo.Name;
+            document.getElementById('meta-path').innerText = photo.FullName;
+            const match = photo.LastWriteTime.match(/\d+/);
+            const date = match ? new Date(parseInt(match[0])).toLocaleDateString() : 'Unknown';
+            document.getElementById('meta-date').innerText = "📅 " + date;
+
+            renderTags(photo.FullName);
+        };
+
+        window.closeEditor = () => document.getElementById('editor-panel').classList.remove('open');
+
+        // CANVAS DRAWING (Handles Image + Pins)
+        function drawEditor(img) {
+            const cvs = document.getElementById('preview-canvas');
+            const parent = cvs.parentElement;
+
+            // Resize canvas to aspect fit
+            const aspect = img.width / img.height;
+            let w = parent.clientWidth;
+            let h = w / aspect;
+
+            cvs.width = w;
+            cvs.height = h;
+
+            const ctx = cvs.getContext('2d');
+
+            // Draw Image
+            ctx.drawImage(img, 0, 0, w, h);
+
+            // Draw Pins
+            const photo = displayedPhotos[currentPhotoIndex];
+            const tags = tagDatabase[photo.FullName] || [];
+
+            tags.forEach(t => {
+                if (typeof t === 'object' && t.x !== undefined) {
+                    const px = t.x * w;
+                    const py = t.y * h;
+
+                    // Dot
+                    ctx.beginPath();
+                    ctx.arc(px, py, 6, 0, 2 * Math.PI);
+                    ctx.fillStyle = 'rgba(99, 102, 241, 0.8)';
+                    ctx.fill();
+                    ctx.strokeStyle = 'white';
+                    ctx.borderWidth = 2;
+                    ctx.stroke();
+
+                    // Name Label
+                    ctx.fillStyle = 'rgba(0,0,0,0.7)';
+                    ctx.fillRect(px + 8, py - 10, ctx.measureText(t.name).width + 10, 20);
+                    ctx.fillStyle = 'white';
+                    ctx.font = '12px sans-serif';
+                    ctx.fillText(t.name, px + 12, py + 4);
+                }
+            });
+        }
+
+        // Click Handler for Pinning
+        document.getElementById('preview-canvas').addEventListener('click', function (e) {
+            if (!isPinningMode) return;
+
+            const rect = this.getBoundingClientRect();
+            // Coordinates relative to canvas (0-1)
+            const x = (e.clientX - rect.left) / this.width;
+            const y = (e.clientY - rect.top) / this.height;
+
+            const name = prompt("Nombre de la persona:");
+            if (name) {
+                addTagData(name, x, y);
+            }
+            togglePinMode(false);
+        });
+
+        window.togglePinMode = function (force) {
+            isPinningMode = (force !== undefined) ? force : !isPinningMode;
+            const btn = document.getElementById('pin-btn');
+            const cvs = document.getElementById('preview-canvas');
+
+            if (isPinningMode) {
+                btn.style.background = '#be123c';
+                btn.style.color = 'white';
+                btn.innerText = '❌ Click en la cara para cancelar';
+                cvs.style.cursor = 'crosshair';
+            } else {
+                btn.style.background = 'var(--bg-card)';
+                btn.style.color = 'var(--accent)';
+                btn.innerText = '🎯 Marcar Cara (Click en imagen)';
+                cvs.style.cursor = 'default';
+            }
+        };
+
+        function addTagData(name, x, y) {
+            const photo = displayedPhotos[currentPhotoIndex];
+            if (!tagDatabase[photo.FullName]) tagDatabase[photo.FullName] = [];
+
+            // Add smart tag
+            tagDatabase[photo.FullName].push({ name, x, y });
+
+            if (!knownPeople.has(name)) {
+                knownPeople.add(name);
+                renderSidebar();
+            }
+            saveData();
+
+            // Refresh View
+            renderTags(photo.FullName);
+            // Reload image content to redraw pins (Quick hack)
+            const img = new Image();
+            img.src = photo.FullName;
+            img.onload = () => drawEditor(img);
+
+            renderGrid(); // update dots on grid
+        }
+
+        // Basic Tag Add (No Pin)
+        window.addTag = function () {
+            const input = document.getElementById('new-tag-input');
+            const name = input.value.trim();
+            if (!name) return;
+            addTagData(name); // undefined x,y = general tag
+            input.value = '';
+        }
+
+        window.removeTag = function (path, idx) {
+            path = path.replace(/\\\\/g, '\\'); // Unescape js string
+            if (tagDatabase[path]) {
+                tagDatabase[path].splice(idx, 1);
+                saveData();
+                renderTags(path);
+
+                // Redraw canvas to remove pin
+                const img = new Image();
+                img.src = path;
+                img.onload = () => drawEditor(img);
+            }
+        };
+
+        function renderTags(path) {
+            const tags = tagDatabase[path] || [];
+            const container = document.getElementById('current-tags');
+
+            // Get folder name for tooltip
+            const folder = path.substring(0, path.lastIndexOf('\\'));
+            const folderName = folder.substring(folder.lastIndexOf('\\') + 1);
+
+            container.innerHTML = tags.map((t, i) => {
+                const name = (typeof t === 'object') ? t.name : t;
+                const icon = (typeof t === 'object' && t.x) ? '🎯' : '👤';
+                const safePath = path.replace(/\\/g, '\\\\');
+                const safeName = name.replace(/'/g, "\\'");
+                const safeFolder = folder.replace(/\\/g, '\\\\');
+
+                return `
+                <div style="margin-bottom:8px; border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:6px; background:rgba(0,0,0,0.2);">
+                    <div class="person-tag" style="margin-bottom:4px;" onclick="removeTag('${safePath}', ${i})">
+                        ${icon} ${name} <span style="margin-left:auto; opacity:0.5;">×</span>
+                    </div>
+                    <button class="btn-small" style="width:100%; font-size:0.75rem; padding:4px; opacity:0.8; background:rgba(99,102,241,0.2);" onclick="propagateTag('${safeName}', '${safeFolder}')">
+                        ⚡ Etiquetar en "${folderName}"
+                    </button>
+                </div>`;
+            }).join('');
+        }
+
+        window.propagateTag = function (name, folderPath) {
+            if (!confirm(`¿Confirmas etiquetar a "${name}" en TODAS las fotos de esta carpeta?\n\nCarpeta: ${folderPath}`)) return;
+
+            let count = 0;
+            const folderStr = '\\' + folderPath.split('\\').pop() + '\\'; // Simple checks
+
+            allPhotos.forEach(p => {
+                // Check if file is in this folder (simple string exact match on parent dir)
+                const pFolder = p.FullName.substring(0, p.FullName.lastIndexOf('\\'));
+
+                if (pFolder === folderPath) {
+                    if (!tagDatabase[p.FullName]) tagDatabase[p.FullName] = [];
+
+                    // Check duplicate
+                    const existing = tagDatabase[p.FullName].some(t => {
+                        const tName = (typeof t === 'object') ? t.name : t;
+                        return tName === name;
+                    });
+
+                    if (!existing) {
+                        tagDatabase[p.FullName].push(name); // Add simple tag
+                        count++;
+                    }
+                }
+            });
+
+            saveData();
+            renderSidebar(); // Update counts
+            alert(`¡Éxito! Se ha etiquetado a "${name}" en ${count} fotos adicionales.`);
+
+            // Refresh current view if needed
+            const photo = displayedPhotos[currentPhotoIndex];
+            renderTags(photo.FullName);
+        }
+
+        function saveData() { localStorage.setItem('OrionTags', JSON.stringify(tagDatabase)); }
+
+        // --- GRID ---
+        function onResize() {
+            cols = Math.floor(container.clientWidth / 220) || 2;
+            renderGrid();
+        }
+        function onScroll() { requestAnimationFrame(renderGrid); }
+        function renderGrid() {
+            const rowH = CARD_Height;
+            const scroll = container.scrollTop;
+            const count = displayedPhotos.length;
+            const rows = Math.ceil(count / cols);
+            gridSizer.style.height = (rows * rowH) + 'px';
+
+            const startRow = Math.floor(scroll / rowH);
+            const endRow = Math.min(rows, Math.ceil((scroll + container.clientHeight) / rowH) + 1);
+
+            const startI = startRow * cols;
+            const endI = Math.min(count, endRow * cols);
+
+            gridVisible.style.top = (startRow * rowH) + 'px';
+
+            let html = '';
+            for (let i = startI; i < endI; i++) {
+                const p = displayedPhotos[i];
+                const hasTags = tagDatabase[p.FullName] && tagDatabase[p.FullName].length > 0;
+
+                html += `<div class="card ${hasTags ? 'has-tags' : ''}" onclick="openEditor(${i})">
+                    <img src="${p.FullName}" loading="lazy" onload="this.classList.add('loaded')" onerror="this.src='placeholder.png'">
+                    <div class="tag-dot"></div>
+                    <div class="card-overlay">${p.Name}</div>
+                </div>`;
+            }
+            gridVisible.innerHTML = html;
+        }
+
+        // Visual Tab Stub
+        window.updateVisuals = () => alert("La edición visual está desactivada mientras usas el modo inteligente.");
+        window.downloadImage = () => alert("Función de descarga disponible en versión final.");
+    </script>
+</body>
+
+</html>
