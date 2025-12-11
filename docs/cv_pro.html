@@ -27,6 +27,24 @@
             color: var(--text);
             font-family: 'Outfit', sans-serif;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Tech Blueprint Watermark */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            background: url('images/cv_watermark.png') center center no-repeat;
+            background-size: 80%;
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1;
+            filter: invert(1) brightness(2);
         }
 
         /* LANGUAGE SELECTOR */
