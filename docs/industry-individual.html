@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Individual & Freelancer Solutions | ORION Tech</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --neon-green: #25D366;
+            --neon-blue: #00f3ff;
+            --neon-purple: #bc13fe;
+            --dark: #000;
+            --gray: #888;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: #fff;
+            line-height: 1.7;
+        }
+
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            padding: 100px 5%;
+            background: linear-gradient(135deg, rgba(188, 19, 254, 0.1), rgba(0, 0, 0, 0.9));
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .badge {
+            background: rgba(188, 19, 254, 0.2);
+            border: 1px solid var(--neon-purple);
+            padding: 8px 20px;
+            font-size: 0.8rem;
+            color: var(--neon-purple);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--neon-purple), #8b00ff);
+            color: #fff;
+            padding: 15px 40px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+        }
+
+        .section {
+            padding: 80px 5%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--neon-purple);
+        }
+
+        .use-cases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .use-case {
+            background: rgba(188, 19, 254, 0.1);
+            border: 1px solid rgba(188, 19, 254, 0.3);
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .feature {
+            background: rgba(188, 19, 254, 0.05);
+            border: 1px solid rgba(188, 19, 254, 0.2);
+            padding: 25px;
+        }
+
+        .feature h3 {
+            color: var(--neon-green);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .feature p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .pricing {
+            background: rgba(188, 19, 254, 0.05);
+            border: 1px solid var(--neon-purple);
+            padding: 40px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .price {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            color: var(--neon-purple);
+        }
+
+        .price-desc {
+            color: var(--gray);
+            margin: 10px 0 30px;
+        }
+
+        .includes {
+            text-align: left;
+            max-width: 400px;
+            margin: 0 auto 30px;
+        }
+
+        .includes li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            list-style: none;
+        }
+
+        .includes li::before {
+            content: '✓';
+            color: var(--neon-green);
+            margin-right: 10px;
+        }
+
+        .back {
+            display: inline-block;
+            margin: 30px 5%;
+            color: var(--neon-blue);
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="orion-bots.html" class="back">← Back to ORION Tech</a>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="badge">👤 PERSONAL AI ASSISTANT</span>
+            <h1>YOUR 24/7 WHATSAPP ASSISTANT</h1>
+            <p>Perfect for individuals, freelancers, creators, coaches. Your personal bot answers FAQs, shares your
+                links, books calls - while you focus on what matters.</p>
+            <a href="https://wa.me/16692342444?text=I%20want%20personal%20assistant%20bot" class="btn">💬 GET
+                STARTED</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>// PERFECT FOR</h2>
+        <div class="use-cases">
+            <div class="use-case">🎨 Content Creators</div>
+            <div class="use-case">💼 Coaches & Consultants</div>
+            <div class="use-case">🏠 Real Estate Agents</div>
+            <div class="use-case">🛡️ Insurance Agents</div>
+            <div class="use-case">📸 Photographers</div>
+            <div class="use-case">🎵 DJs & Musicians</div>
+            <div class="use-case">💪 Personal Trainers</div>
+            <div class="use-case">✨ Freelancers</div>
+        </div>
+
+        <h2>// WHAT YOUR BOT DOES</h2>
+        <div class="features">
+            <div class="feature">
+                <h3>💬 Auto-Reply FAQs</h3>
+                <p>"What's your rate?" "Where are you located?" Bot answers instantly, 24/7.</p>
+            </div>
+            <div class="feature">
+                <h3>📋 Service Menu</h3>
+                <p>Interactive list of what you offer. Prices, descriptions, booking links.</p>
+            </div>
+            <div class="feature">
+                <h3>📅 Calendar Link</h3>
+                <p>"Want to book a call?" Bot sends your Calendly/Google Calendar link.</p>
+            </div>
+            <div class="feature">
+                <h3>🔗 Link Hub</h3>
+                <p>All your links in one place: portfolio, socials, reviews, PayPal.</p>
+            </div>
+            <div class="feature">
+                <h3>📍 Location & Hours</h3>
+                <p>Where you work, when you're available. Google Maps link included.</p>
+            </div>
+            <div class="feature">
+                <h3>📧 Lead Capture</h3>
+                <p>Bot collects name, email, project details. You follow up when ready.</p>
+            </div>
+        </div>
+
+        <div class="pricing">
+            <div class="price">$297</div>
+            <div class="price-desc">One-time setup + $29/month hosting</div>
+            <ul class="includes">
+                <li>Personal WhatsApp bot</li>
+                <li>Up to 15 auto-reply responses</li>
+                <li>Service/product menu</li>
+                <li>Calendar integration link</li>
+                <li>Link hub (up to 10 links)</li>
+                <li>Lead capture form</li>
+                <li>100 conversations/month</li>
+                <li>Email support</li>
+            </ul>
+            <a href="https://wa.me/16692342444?text=I%20want%20personal%20bot%20$297" class="btn">💬 ORDER NOW</a>
+        </div>
+
+        <h2>// UPGRADE OPTIONS</h2>
+        <div class="features">
+            <div class="feature">
+                <h3>🚀 PRO: $497</h3>
+                <p>Everything above + AI responses (GPT-4), 500 conversations/month, priority support.</p>
+            </div>
+            <div class="feature">
+                <h3>💎 ULTRA: $797</h3>
+                <p>Everything in PRO + custom integrations, analytics dashboard, 1,000 conversations.</p>
+            </div>
+        </div>
+    </section>
+
+    <a href="orion-bots.html" class="back">← Back to ORION Tech</a>
+</body>
+
+</html>

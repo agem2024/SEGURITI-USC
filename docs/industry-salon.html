@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beauty Salon Solutions | ORION Tech</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --neon-green: #25D366;
+            --neon-blue: #00f3ff;
+            --neon-pink: #ff6ec7;
+            --dark: #000;
+            --gray: #888;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: #fff;
+            line-height: 1.7;
+        }
+
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            padding: 100px 5%;
+            background: linear-gradient(135deg, rgba(255, 110, 199, 0.1), rgba(0, 0, 0, 0.9));
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .badge {
+            background: rgba(255, 110, 199, 0.2);
+            border: 1px solid var(--neon-pink);
+            padding: 8px 20px;
+            font-size: 0.8rem;
+            color: var(--neon-pink);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--neon-pink), #ff1493);
+            color: #fff;
+            padding: 15px 40px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+        }
+
+        .section {
+            padding: 80px 5%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--neon-pink);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .feature {
+            background: rgba(255, 110, 199, 0.05);
+            border: 1px solid rgba(255, 110, 199, 0.2);
+            padding: 25px;
+        }
+
+        .feature h3 {
+            color: var(--neon-green);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .feature p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .pricing {
+            background: rgba(255, 110, 199, 0.05);
+            border: 1px solid var(--neon-pink);
+            padding: 40px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .price {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            color: var(--neon-pink);
+        }
+
+        .price-desc {
+            color: var(--gray);
+            margin: 10px 0 30px;
+        }
+
+        .includes {
+            text-align: left;
+            max-width: 400px;
+            margin: 0 auto 30px;
+        }
+
+        .includes li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            list-style: none;
+        }
+
+        .includes li::before {
+            content: '✓';
+            color: var(--neon-green);
+            margin-right: 10px;
+        }
+
+        .back {
+            display: inline-block;
+            margin: 30px 5%;
+            color: var(--neon-blue);
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="orion-bots.html" class="back">← Back to ORION Tech</a>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="badge">💇 INDUSTRY SOLUTION</span>
+            <h1>BEAUTY SALON AUTOMATION</h1>
+            <p>Appointments book themselves. Service catalog, automatic reminders, loyalty points. Never miss a client
+                again.</p>
+            <a href="https://wa.me/16692342444?text=I%20need%20salon%20bot" class="btn">💬 GET STARTED</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>// WHAT'S INCLUDED</h2>
+        <div class="features">
+            <div class="feature">
+                <h3>📅 Smart Booking</h3>
+                <p>Clients pick service, stylist, and time slot. Syncs with your calendar instantly.</p>
+            </div>
+            <div class="feature">
+                <h3>💅 Service Catalog</h3>
+                <p>Full menu: cuts, color, nails, facials. Photos, prices, duration. Easy selection.</p>
+            </div>
+            <div class="feature">
+                <h3>⏰ Auto Reminders</h3>
+                <p>"Your appointment is tomorrow at 2pm!" Reduce no-shows by 80%.</p>
+            </div>
+            <div class="feature">
+                <h3>⭐ Loyalty Points</h3>
+                <p>Track visits, reward regulars. "10th visit = free treatment!"</p>
+            </div>
+            <div class="feature">
+                <h3>💬 Stylist Selection</h3>
+                <p>Clients choose their favorite stylist. See availability in real-time.</p>
+            </div>
+            <div class="feature">
+                <h3>📸 Portfolio</h3>
+                <p>Share before/after photos. "Want this look? Book now!"</p>
+            </div>
+        </div>
+
+        <div class="pricing">
+            <div class="price">$997</div>
+            <div class="price-desc">One-time setup + $59/month hosting</div>
+            <ul class="includes">
+                <li>Full booking bot configuration</li>
+                <li>Service catalog (up to 30 services)</li>
+                <li>Google Calendar integration</li>
+                <li>Automatic reminders (24h before)</li>
+                <li>Basic loyalty system</li>
+                <li>500 conversations/month</li>
+                <li>30 days support</li>
+            </ul>
+            <a href="https://wa.me/16692342444?text=I%20want%20salon%20package%20$997" class="btn">💬 ORDER NOW</a>
+        </div>
+    </section>
+
+    <a href="orion-bots.html" class="back">← Back to ORION Tech</a>
+</body>
+
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contractor Solutions | ORION Tech</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --neon-green: #25D366;
+            --neon-blue: #00f3ff;
+            --neon-orange: #ff6b35;
+            --dark: #000;
+            --gray: #888;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: #fff;
+            line-height: 1.7;
+        }
+
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            padding: 100px 5%;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(0, 0, 0, 0.9));
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .badge {
+            background: rgba(255, 107, 53, 0.2);
+            border: 1px solid var(--neon-orange);
+            padding: 8px 20px;
+            font-size: 0.8rem;
+            color: var(--neon-orange);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--neon-orange), var(--neon-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--neon-orange), #ff4500);
+            color: #fff;
+            padding: 15px 40px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+        }
+
+        .section {
+            padding: 80px 5%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--neon-orange);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .feature {
+            background: rgba(255, 107, 53, 0.05);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            padding: 25px;
+        }
+
+        .feature h3 {
+            color: var(--neon-green);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .feature p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .pricing {
+            background: rgba(255, 107, 53, 0.05);
+            border: 1px solid var(--neon-orange);
+            padding: 40px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .price {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            color: var(--neon-orange);
+        }
+
+        .price-desc {
+            color: var(--gray);
+            margin: 10px 0 30px;
+        }
+
+        .includes {
+            text-align: left;
+            max-width: 400px;
+            margin: 0 auto 30px;
+        }
+
+        .includes li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            list-style: none;
+        }
+
+        .includes li::before {
+            content: '✓';
+            color: var(--neon-green);
+            margin-right: 10px;
+        }
+
+        .back {
+            display: inline-block;
+            margin: 30px 5%;
+            color: var(--neon-blue);
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="orion-bots.html" class="back">← Back to ORION Tech</a>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="badge">🔧 INDUSTRY SOLUTION</span>
+            <h1>CONTRACTOR & PLUMBER AUTOMATION</h1>
+            <p>Photo quotes in seconds. Customer sends photo → AI analyzes → instant estimate. Scheduling, invoicing,
+                follow-ups. Work more, text less.</p>
+            <a href="https://wa.me/16692342444?text=I%20need%20contractor%20bot" class="btn">💬 GET STARTED</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>// WHAT'S INCLUDED</h2>
+        <div class="features">
+            <div class="feature">
+                <h3>📷 Photo Estimates</h3>
+                <p>Customer texts photo of leak/problem. AI analyzes, bot sends price range. Qualify leads instantly.
+                </p>
+            </div>
+            <div class="feature">
+                <h3>📅 Job Scheduling</h3>
+                <p>Bot shows your available slots. Customer picks time. Confirmation sent automatically.</p>
+            </div>
+            <div class="feature">
+                <h3>📍 Service Areas</h3>
+                <p>Auto-check if address is in your zone. "Sorry, we don't serve that area" or proceed to booking.</p>
+            </div>
+            <div class="feature">
+                <h3>💰 Invoicing</h3>
+                <p>Generate invoice, send payment link, track status. Get paid faster.</p>
+            </div>
+            <div class="feature">
+                <h3>⭐ Review Requests</h3>
+                <p>Auto-ask for Google review after job. Build your reputation on autopilot.</p>
+            </div>
+            <div class="feature">
+                <h3>📞 After-Hours</h3>
+                <p>"Emergency leak? Call this number." Smart routing for urgent jobs.</p>
+            </div>
+        </div>
+
+        <div class="pricing">
+            <div class="price">$1,497</div>
+            <div class="price-desc">One-time setup + $79/month hosting</div>
+            <ul class="includes">
+                <li>Full service bot configuration</li>
+                <li>AI photo analysis integration</li>
+                <li>Scheduling system</li>
+                <li>Service area verification</li>
+                <li>Invoice generation</li>
+                <li>Review request automation</li>
+                <li>1,000 conversations/month</li>
+                <li>30 days support</li>
+            </ul>
+            <a href="https://wa.me/16692342444?text=I%20want%20contractor%20package%20$1497" class="btn">💬 ORDER
+                NOW</a>
+        </div>
+    </section>
+
+    <a href="orion-bots.html" class="back">← Back to ORION Tech</a>
+</body>
+
+</html>
