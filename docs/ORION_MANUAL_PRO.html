@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORION Tech - Manual Empresarial PRO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: #00f3ff;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #00f3ff;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            color: #25D366;
+            margin: 35px 0 15px;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            color: #bc13fe;
+            margin: 20px 0 10px;
+        }
+
+        h4 {
+            font-size: 1rem;
+            color: #ffc107;
+            margin: 15px 0 8px;
+        }
+
+        p {
+            margin-bottom: 12px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: rgba(255, 255, 255, 0.02);
+            font-size: 0.9rem;
+        }
+
+        th,
+        td {
+            padding: 10px 12px;
+            text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        th {
+            background: rgba(0, 243, 255, 0.1);
+            color: #00f3ff;
+        }
+
+        ul,
+        ol {
+            margin: 10px 0 10px 20px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        .critical {
+            background: rgba(255, 0, 0, 0.12);
+            padding: 18px;
+            border: 2px solid #ff0000;
+            margin: 18px 0;
+            border-radius: 5px;
+        }
+
+        .critical h4 {
+            color: #ff0000;
+            margin-top: 0;
+        }
+
+        .critical-text {
+            color: #ff6b6b;
+            font-weight: 600;
+        }
+
+        .highlight {
+            background: rgba(37, 211, 102, 0.1);
+            padding: 15px;
+            border-left: 4px solid #25D366;
+            margin: 15px 0;
+        }
+
+        .warning {
+            background: rgba(255, 107, 53, 0.1);
+            padding: 15px;
+            border-left: 4px solid #ff6b35;
+            margin: 15px 0;
+        }
+
+        .guide {
+            background: rgba(0, 243, 255, 0.05);
+            padding: 15px;
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .guide h4 {
+            color: #00f3ff;
+            margin-top: 0;
+        }
+
+        .toc {
+            background: rgba(0, 243, 255, 0.05);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .toc a {
+            color: #00f3ff;
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+            font-size: 0.95rem;
+        }
+
+        .chapter {
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .price-green {
+            color: #25D366;
+            font-weight: 700;
+        }
+
+        .price-red {
+            color: #ff6b53;
+        }
+
+        a {
+            color: #00f3ff;
+        }
+
+        .phase-header {
+            background: linear-gradient(135deg, rgba(0, 243, 255, 0.1), rgba(188, 19, 254, 0.1));
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .phase-header h2 {
+            margin: 0;
+        }
+
+        .metric-box {
+            display: inline-block;
+            background: rgba(37, 211, 102, 0.1);
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 5px;
+        }
+
+        .orion-specific {
+            border-left: 4px solid #bc13fe;
+            padding-left: 15px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <h1>🚀 ORION TECH - MANUAL EMPRESARIAL PRO</h1>
+        <p style="color:#888; margin-bottom:25px;">Roadmap Completo para Negocio de Automatización WhatsApp | San Jose,
+            CA | v3.0 - Dic 2024</p>
+
+        <div class="toc">
+            <h3 style="margin-top:0;">📋 ROADMAP DE 8 FASES</h3>
+            <a href="#fase1">Fase 1: Ideación y Validación (✅ Completada)</a>
+            <a href="#fase2">Fase 2: Investigación de Mercado (✅ Completada)</a>
+            <a href="#fase3">Fase 3: Planificación Estratégica (✅ Completada)</a>
+            <a href="#fase4">Fase 4: Estructura Legal y Operacional</a>
+            <a href="#fase5">Fase 5: Financiamiento y Recursos</a>
+            <a href="#fase6">Fase 6: Desarrollo y Lanzamiento</a>
+            <a href="#fase7">Fase 7: Marketing, Ventas y Crecimiento</a>
+            <a href="#fase8">Fase 8: Escalabilidad y Sostenibilidad</a>
+            <a href="#metricas" style="color:#25D366;">📊 Métricas Clave (CAC, LTV, ROAS)</a>
+            <a href="#contingencia" style="color:#ff6b6b;">⚠️ Plan de Contingencia</a>
+        </div>
+
+        <!-- FASE 1 -->
+        <div class="chapter" id="fase1">
+            <div class="phase-header">
+                <h2>📍 FASE 1: IDEACIÓN Y VALIDACIÓN</h2>
+                <p style="margin:10px 0 0; color:#888;">Estado: ✅ COMPLETADA | Duración: Meses 1-2</p>
+            </div>
+
+            <h3>1.1 Problema Identificado</h3>
+            <div class="orion-specific">
+                <strong>PROBLEMA ORION Tech resuelve:</strong>
+                <ul>
+                    <li>Pequeños negocios pierden clientes por no responder rápido en WhatsApp</li>
+                    <li>44% de mensajes no se responden dentro de 1 hora</li>
+                    <li>No tienen recursos para contratar personal 24/7</li>
+                    <li>Dueños hablan múltiples idiomas pero su staff no</li>
+                </ul>
+            </div>
+
+            <h3>1.2 Validación del MVP</h3>
+            <table>
+                <tr>
+                    <th>Métrica</th>
+                    <th>Resultado</th>
+                    <th>Estado</th>
+                </tr>
+                <tr>
+                    <td>Entrevistas realizadas</td>
+                    <td>25+ negocios locales</td>
+                    <td>✅</td>
+                </tr>
+                <tr>
+                    <td>Disposición a pagar</td>
+                    <td>75% pagarían $50-100/mes</td>
+                    <td>✅</td>
+                </tr>
+                <tr>
+                    <td>Landing page creada</td>
+                    <td>orion-bots.html</td>
+                    <td>✅</td>
+                </tr>
+                <tr>
+                    <td>Demo funcional</td>
+                    <td>Bot ORION operativo</td>
+                    <td>✅</td>
+                </tr>
+            </table>
+
+            <h3>1.3 Presupuesto Fase 1</h3>
+            <table>
+                <tr>
+                    <th>Concepto</th>
+                    <th>Costo ORION</th>
+                </tr>
+                <tr>
+                    <td>Desarrollo MVP (tu tiempo)</td>
+                    <td>$0 (propio)</td>
+                </tr>
+                <tr>
+                    <td>Hosting inicial</td>
+                    <td>$20</td>
+                </tr>
+                <tr>
+                    <td>Facebook Ads testing</td>
+                    <td>$100</td>
+                </tr>
+                <tr>
+                    <th>TOTAL FASE 1</th>
+                    <th class="price-green">$120</th>
+                </tr>
+            </table>
+        </div>
+
+        <!-- FASE 2 -->
+        <div class="chapter" id="fase2">
+            <div class="phase-header">
+                <h2>📊 FASE 2: INVESTIGACIÓN DE MERCADO</h2>
+                <p style="margin:10px 0 0; color:#888;">Estado: ✅ COMPLETADA | Duración: Meses 2-3</p>
+            </div>
+
+            <h3>2.1 Mercado Bay Area - ORION Tech</h3>
+            <table>
+                <tr>
+                    <th>Métrica</th>
+                    <th>Valor</th>
+                </tr>
+                <tr>
+                    <td>TAM (Total Addressable Market)</td>
+                    <td class="price-green">$92.2 Millones</td>
+                </tr>
+                <tr>
+                    <td>SAM (Serviceable)</td>
+                    <td>$23 Millones (pequeños negocios)</td>
+                </tr>
+                <tr>
+                    <td>SOM (Obtainable Año 1)</td>
+                    <td>$350,000 (meta realista)</td>
+                </tr>
+                <tr>
+                    <td>Clientes potenciales</td>
+                    <td>213,000+</td>
+                </tr>
+            </table>
+
+            <h3>2.2 Buyer Personas ORION</h3>
+            <table>
+                <tr>
+                    <th>Persona</th>
+                    <th>Perfil</th>
+                    <th>Paquete Ideal</th>
+                </tr>
+                <tr>
+                    <td>María (Taquería)</td>
+                    <td>42 años, habla español, 15 empleados</td>
+                    <td>Business $1,497</td>
+                </tr>
+                <tr>
+                    <td>Tony (Plomero)</td>
+                    <td>35 años, solo, pierde llamadas</td>
+                    <td>Business $1,497</td>
+                </tr>
+                <tr>
+                    <td>Lisa (Influencer)</td>
+                    <td>28 años, 50K followers, muchos DMs</td>
+                    <td>Individual $297</td>
+                </tr>
+                <tr>
+                    <td>Kevin (Salon)</td>
+                    <td>45 años, 5 estilistas, citas perdidas</td>
+                    <td>Profesional $997</td>
+                </tr>
+            </table>
+
+            <h3>2.3 Análisis Competitivo</h3>
+            <table>
+                <tr>
+                    <th>Competidor</th>
+                    <th>Precio</th>
+                    <th>Debilidad</th>
+                    <th>Ventaja ORION</th>
+                </tr>
+                <tr>
+                    <td>ManyChat</td>
+                    <td>$15-65/mes</td>
+                    <td>Solo Messenger/IG, no WhatsApp real</td>
+                    <td>WhatsApp nativo</td>
+                </tr>
+                <tr>
+                    <td>Respond.io</td>
+                    <td>$99+/mes</td>
+                    <td>Empresarial, complejo</td>
+                    <td>Simple, local</td>
+                </tr>
+                <tr>
+                    <td>Twilio</td>
+                    <td>Por mensaje</td>
+                    <td>Requiere desarrollador</td>
+                    <td>Llave en mano</td>
+                </tr>
+                <tr>
+                    <td>Freelancers</td>
+                    <td>Variable</td>
+                    <td>Sin soporte, inconsistente</td>
+                    <td>Servicio completo</td>
+                </tr>
+            </table>
+
+            <div class="highlight">
+                <strong>Diferenciación ORION:</strong> Único servicio local en Bay Area que ofrece bots WhatsApp en 5
+                idiomas con soporte en español, setup presencial, y precios accesibles para pequeños negocios.
+            </div>
+        </div>
+
+        <!-- FASE 3 -->
+        <div class="chapter" id="fase3">
+            <div class="phase-header">
+                <h2>📝 FASE 3: PLANIFICACIÓN ESTRATÉGICA</h2>
+                <p style="margin:10px 0 0; color:#888;">Estado: ✅ COMPLETADA | Duración: Meses 3-4</p>
+            </div>
+
+            <h3>3.1 Business Model Canvas - ORION Tech</h3>
+            <table>
+                <tr>
+                    <th>Bloque</th>
+                    <th>Detalle ORION</th>
+                </tr>
+                <tr>
+                    <td>Propuesta de Valor</td>
+                    <td>Automatización WhatsApp 24/7 en 5 idiomas para negocios locales</td>
+                </tr>
+                <tr>
+                    <td>Segmentos</td>
+                    <td>Individual ($297) | PYME ($797-1,997) | Enterprise ($4,997+)</td>
+                </tr>
+                <tr>
+                    <td>Canales</td>
+                    <td>Visitas en persona, Facebook Ads, referidos, content marketing</td>
+                </tr>
+                <tr>
+                    <td>Relación Cliente</td>
+                    <td>Setup personalizado + soporte continuo</td>
+                </tr>
+                <tr>
+                    <td>Ingresos</td>
+                    <td>Setup fee (one-time) + Hosting mensual (recurrente)</td>
+                </tr>
+                <tr>
+                    <td>Recursos Clave</td>
+                    <td>Código propio, API WhatsApp, conocimiento local</td>
+                </tr>
+                <tr>
+                    <td>Actividades Clave</td>
+                    <td>Desarrollo, ventas, soporte, marketing contenido</td>
+                </tr>
+                <tr>
+                    <td>Partners</td>
+                    <td>360dialog (API), Meta, Google Cloud</td>
+                </tr>
+                <tr>
+                    <td>Costos</td>
+                    <td>API ~$25/cliente, hosting $5-40, tiempo desarrollo</td>
+                </tr>
+            </table>
+
+            <h3>3.2 Metas SMART Año 1</h3>
+            <table>
+                <tr>
+                    <th>Meta</th>
+                    <th>Específica</th>
+                    <th>Medible</th>
+                    <th>Plazo</th>
+                </tr>
+                <tr>
+                    <td>Clientes</td>
+                    <td>154 clientes activos</td>
+                    <td>Dashboard tracking</td>
+                    <td>Dic 2025</td>
+                </tr>
+                <tr>
+                    <td>Revenue</td>
+                    <td>$284,000 facturados</td>
+                    <td>Contabilidad</td>
+                    <td>Dic 2025</td>
+                </tr>
+                <tr>
+                    <td>MRR</td>
+                    <td>$9,240/mes recurrente</td>
+                    <td>Stripe/PayPal</td>
+                    <td>Dic 2025</td>
+                </tr>
+                <tr>
+                    <td>Conversión</td>
+                    <td>25% de leads a clientes</td>
+                    <td>CRM</td>
+                    <td>Dic 2025</td>
+                </tr>
+            </table>
+
+            <h3>3.3 Estrategia 4P - ORION</h3>
+            <table>
+                <tr>
+                    <th>P</th>
+                    <th>Estrategia ORION</th>
+                </tr>
+                <tr>
+                    <td><strong>Producto</strong></td>
+                    <td>Bots WhatsApp + Apps custom + IA. Paquetes por industria. Multilingüe.</td>
+                </tr>
+                <tr>
+                    <td><strong>Precio</strong></td>
+                    <td>Setup $297-4,997 + Hosting $29-149/mes. Margen 55% promedio.</td>
+                </tr>
+                <tr>
+                    <td><strong>Plaza</strong></td>
+                    <td>Bay Area presencial + remoto nacional. GitHub Pages + WhatsApp directo.</td>
+                </tr>
+                <tr>
+                    <td><strong>Promoción</strong></td>
+                    <td>Visitas en persona, contenido TikTok/YT, referidos $100, FB Ads segmentados.</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- FASE 4: LEGAL -->
+        <div class="chapter" id="fase4">
+            <div class="phase-header">
+                <h2>⚖️ FASE 4: ESTRUCTURA LEGAL - ORION TECH</h2>
+                <p style="margin:10px 0 0; color:#888;">Estado: 🔄 EN PROGRESO | Duración: Meses 4-5</p>
+            </div>
+
+            <div class="critical">
+                <h4>🚨 CRÍTICO: REQUISITOS LEGALES ESPECÍFICOS PARA ORION TECH</h4>
+                <p class="critical-text">Este es un negocio de SERVICIOS DE SOFTWARE/SAAS operando desde San Jose, CA.
+                    Los siguientes requisitos son OBLIGATORIOS.</p>
+            </div>
+
+            <h3>4.1 Estructura Recomendada: LLC</h3>
+            <div class="orion-specific">
+                <strong>¿Por qué LLC para ORION Tech?</strong>
+                <ul>
+                    <li>Protección personal: Si un cliente demanda, tus bienes personales están protegidos</li>
+                    <li>Flexibilidad fiscal: Puedes elegir ser taxado como sole prop o S-Corp</li>
+                    <li>Credibilidad: "ORION Tech LLC" vs solo tu nombre</li>
+                    <li>Separación: Cuenta bancaria comercial obligatoria para PayPal Business</li>
+                </ul>
+            </div>
+
+            <div class="critical">
+                <h4>🔴 CHECKLIST LEGAL ORION TECH</h4>
+                <table>
+                    <tr>
+                        <th>Paso</th>
+                        <th>Acción</th>
+                        <th>Costo</th>
+                        <th>Urgencia</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Formar LLC "ORION Tech LLC" en California</td>
+                        <td>$70</td>
+                        <td class="critical-text">INMEDIATO</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Obtener EIN del IRS</td>
+                        <td>GRATIS</td>
+                        <td class="critical-text">INMEDIATO</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Business Tax Certificate San Jose</td>
+                        <td>~$100</td>
+                        <td class="critical-text">90 DÍAS</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Abrir cuenta bancaria comercial</td>
+                        <td>$0-25</td>
+                        <td class="critical-text">INMEDIATO</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Pagar Franchise Tax California</td>
+                        <td>$800/año</td>
+                        <td>15 Abril</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Crear Terms of Service para clientes</td>
+                        <td>$0-300</td>
+                        <td>Antes de vender</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Crear Privacy Policy (CCPA)</td>
+                        <td>$0-200</td>
+                        <td>Antes de vender</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Contratos de servicio estándar</td>
+                        <td>$0-500</td>
+                        <td>Antes de vender</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>4.2 Contratos ORION Tech</h3>
+            <div class="guide">
+                <h4>📝 Cláusulas Esenciales en Contrato de Servicio:</h4>
+                <ol>
+                    <li><strong>Alcance del servicio:</strong> Qué incluye exactamente el paquete</li>
+                    <li><strong>Propiedad del código:</strong> ORION retiene propiedad, cliente tiene licencia de uso
+                    </li>
+                    <li><strong>Hosting y pagos:</strong> Mensual, qué pasa si no pagan (servicio se suspende)</li>
+                    <li><strong>Limitación de responsabilidad:</strong> No responsable por pérdidas de negocio</li>
+                    <li><strong>Terminación:</strong> 30 días de aviso, qué pasa con datos del cliente</li>
+                    <li><strong>Confidencialidad:</strong> No compartir info del cliente</li>
+                    <li><strong>Soporte:</strong> Qué está incluido, tiempos de respuesta</li>
+                </ol>
+            </div>
+
+            <h3>4.3 Cumplimiento WhatsApp Business API</h3>
+            <div class="critical">
+                <h4>🔴 REGLAS CRÍTICAS PARA NO PERDER ACCESO API</h4>
+                <table>
+                    <tr>
+                        <th>Requisito</th>
+                        <th>Cómo ORION cumple</th>
+                    </tr>
+                    <tr>
+                        <td>Opt-in explícito</td>
+                        <td>Formulario en landing page + confirmación WhatsApp</td>
+                    </tr>
+                    <tr>
+                        <td>Templates aprobados</td>
+                        <td>Crear y aprobar templates antes de usar</td>
+                    </tr>
+                    <tr>
+                        <td>No spam</td>
+                        <td>Solo mensajes transaccionales y solicitados</td>
+                    </tr>
+                    <tr>
+                        <td>Opt-out fácil</td>
+                        <td>Comando "STOP" para cancelar en cualquier momento</td>
+                    </tr>
+                    <tr>
+                        <td>Datos protegidos</td>
+                        <td>No vender/compartir datos de usuarios</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>4.4 Impuestos ORION Tech</h3>
+            <div class="critical">
+                <h4>🔴 RESERVAR 35-40% DE CADA INGRESO PARA IMPUESTOS</h4>
+                <table>
+                    <tr>
+                        <th>Impuesto</th>
+                        <th>Tasa</th>
+                        <th>Cuándo</th>
+                        <th>Estimado Año 1</th>
+                    </tr>
+                    <tr>
+                        <td>Self-Employment (Social Security + Medicare)</td>
+                        <td>15.3%</td>
+                        <td>Trimestral</td>
+                        <td>~$28,000</td>
+                    </tr>
+                    <tr>
+                        <td>Federal Income Tax</td>
+                        <td>22-24%</td>
+                        <td>Trimestral</td>
+                        <td>~$35,000</td>
+                    </tr>
+                    <tr>
+                        <td>California State Tax</td>
+                        <td>9.3%</td>
+                        <td>Trimestral</td>
+                        <td>~$17,000</td>
+                    </tr>
+                    <tr>
+                        <td>LLC Franchise Tax</td>
+                        <td>$800 flat</td>
+                        <td>Anual</td>
+                        <td>$800</td>
+                    </tr>
+                    <tr>
+                        <th>TOTAL ESTIMADO</th>
+                        <th colspan="2">35-40% de profit</th>
+                        <th class="price-red">~$80,000</th>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="highlight">
+                <strong>✅ BUENA NOTICIA:</strong> Servicios de software/SaaS entregados electrónicamente NO pagan Sales
+                Tax en California. ORION califica.
+            </div>
+
+            <h3>4.5 Protección de Propiedad Intelectual</h3>
+            <table>
+                <tr>
+                    <th>Activo</th>
+                    <th>Protección</th>
+                    <th>Costo</th>
+                    <th>Prioridad</th>
+                </tr>
+                <tr>
+                    <td>Código ORION Bot</td>
+                    <td>Copyright (automático)</td>
+                    <td>$0</td>
+                    <td>Ya protegido</td>
+                </tr>
+                <tr>
+                    <td>Registro Copyright</td>
+                    <td>U.S. Copyright Office</td>
+                    <td>$65</td>
+                    <td>Recomendado</td>
+                </tr>
+                <tr>
+                    <td>Marca "ORION Tech"</td>
+                    <td>USPTO Trademark</td>
+                    <td>$350</td>
+                    <td>Cuando haya budget</td>
+                </tr>
+                <tr>
+                    <td>Dominio orion-tech.com</td>
+                    <td>Registrar variantes</td>
+                    <td>$12/año</td>
+                    <td>Pronto</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- FASE 5: FINANCIAMIENTO -->
+        <div class="chapter" id="fase5">
+            <div class="phase-header">
+                <h2>💰 FASE 5: FINANCIAMIENTO Y RECURSOS</h2>
+                <p style="margin:10px 0 0; color:#888;">Estado: 🔄 EN PROGRESO | Duración: Meses 5-6</p>
+            </div>
+
+            <h3>5.1 Capital Necesario ORION Tech</h3>
+            <table>
+                <tr>
+                    <th>Concepto</th>
+                    <th>Costo</th>
+                    <th>Notas</th>
+                </tr>
+                <tr>
+                    <td>LLC + EIN</td>
+                    <td>$70</td>
+                    <td>One-time</td>
+                </tr>
+                <tr>
+                    <td>Business Tax Certificate</td>
+                    <td>$100</td>
+                    <td>Anual</td>
+                </tr>
+                <tr>
+                    <td>Hosting 3 meses</td>
+                    <td>$60</td>
+                    <td>Buffer inicial</td>
+                </tr>
+                <tr>
+                    <td>API WhatsApp setup</td>
+                    <td>$50</td>
+                    <td>360dialog</td>
+                </tr>
+                <tr>
+                    <td>Marketing inicial (FB Ads)</td>
+                    <td>$500</td>
+                    <td>Testing campañas</td>
+                </tr>
+                <tr>
+                    <td>Dominio + herramientas</td>
+                    <td>$50</td>
+                    <td>Año 1</td>
+                </tr>
+                <tr>
+                    <td>Buffer emergencias (20%)</td>
+                    <td>$170</td>
+                    <td>Colchón</td>
+                </tr>
+                <tr>
+                    <th>CAPITAL SEMILLA TOTAL</th>
+                    <th class="price-green">$1,000</th>
+                    <th>Meta mínima</th>
+                </tr>
+            </table>
+
+            <div class="orion-specific">
+                <strong>Estrategia de Bootstrapping ORION:</strong>
+                <ul>
+                    <li>NO buscar inversores inicialmente - mantener 100% propiedad</li>
+                    <li>Reinvertir primeras ganancias en marketing</li>
+                    <li>Usar herramientas gratuitas (GitHub Pages, Canva, Google Sheets)</li>
+                    <li>Tu tiempo es el capital principal - valora a $50/hora</li>
+                </ul>
+            </div>
+
+            <h3>5.2 Punto de Equilibrio (Break-Even)</h3>
+            <div class="highlight">
+                <strong>Break-even ORION:</strong> Con gastos fijos de ~$500/mes, necesitas:
+                <ul>
+                    <li>8 clientes con hosting $49/mes = $392 MRR + 1 setup/mes = Break-even</li>
+                    <li>O solo 2 clientes Business (setup $1,497 cada uno) = Profit inmediato</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- FASE 6: DESARROLLO Y LANZAMIENTO -->
+        <div class="chapter" id="fase6">
+            <div class="phase-header">
+                <h2>🚀 FASE 6: DESARROLLO Y LANZAMIENTO</h2>
+                <p style="margin:10px 0 0; color:#888;">Estado: ⏳ PENDIENTE | Duración: Meses 6-8</p>
+            </div>
+
+            <h3>6.1 Producto Core ORION</h3>
+            <table>
+                <tr>
+                    <th>Componente</th>
+                    <th>Estado</th>
+                    <th>Prioridad</th>
+                </tr>
+                <tr>
+                    <td>Bot WhatsApp base (respuestas automáticas)</td>
+                    <td>✅ Listo</td>
+                    <td>Core</td>
+                </tr>
+                <tr>
+                    <td>Sistema de menús interactivos</td>
+                    <td>✅ Listo</td>
+                    <td>Core</td>
+                </tr>
+                <tr>
+                    <td>Integración calendario (Google/Calendly)</td>
+                    <td>🔄 80%</td>
+                    <td>Alta</td>
+                </tr>
+                <tr>
+                    <td>Sistema de pedidos/órdenes</td>
+                    <td>🔄 60%</td>
+                    <td>Alta</td>
+                </tr>
+                <tr>
+                    <td>Dashboard cliente (analytics)</td>
+                    <td>⏳ 20%</td>
+                    <td>Media</td>
+                </tr>
+                <tr>
+                    <td>IA conversacional GPT</td>
+                    <td>✅ Listo</td>
+                    <td>Premium</td>
+                </tr>
+            </table>
+
+            <h3>6.2 Plan de Lanzamiento</h3>
+            <table>
+                <tr>
+                    <th>Fase</th>
+                    <th>Acción</th>
+                    <th>Duración</th>
+                    <th>Meta</th>
+                </tr>
+                <tr>
+                    <td>Soft Launch</td>
+                    <td>5 clientes piloto (amigos/conocidos)</td>
+                    <td>2 semanas</td>
+                    <td>Feedback</td>
+                </tr>
+                <tr>
+                    <td>Beta Pública</td>
+                    <td>Primeros 10 clientes pagando</td>
+                    <td>1 mes</td>
+                    <td>Validar pricing</td>
+                </tr>
+                <tr>
+                    <td>Launch Oficial</td>
+                    <td>FB Ads + visitas presenciales</td>
+                    <td>En adelante</td>
+                    <td>15 clientes/mes</td>
+                </tr>
+            </table>
+
+            <div class="guide">
+                <h4>📝 Checklist Pre-Lanzamiento:</h4>
+                <ol>
+                    <li>Landing page optimizada con CTAs claros</li>
+                    <li>Demo funcional para mostrar en vivo</li>
+                    <li>Contratos y Terms of Service listos</li>
+                    <li>Proceso de onboarding documentado</li>
+                    <li>Sistema de pagos configurado (Stripe/PayPal)</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- FASE 7: MARKETING Y VENTAS -->
+        <div class="chapter" id="fase7">
+            <div class="phase-header">
+                <h2>📣 FASE 7: MARKETING, VENTAS Y CRECIMIENTO</h2>
+                <p style="margin:10px 0 0; color:#888;">Estado: ⏳ PENDIENTE | Duración: Meses 8+</p>
+            </div>
+
+            <h3>7.1 Funnel de Ventas ORION</h3>
+            <table>
+                <tr>
+                    <th>Etapa</th>
+                    <th>Canal</th>
+                    <th>Acción</th>
+                    <th>Conversión Meta</th>
+                </tr>
+                <tr>
+                    <td>Awareness</td>
+                    <td>FB/IG Ads, TikTok, YouTube</td>
+                    <td>Videos demos, antes/después</td>
+                    <td>1,000 views/mes</td>
+                </tr>
+                <tr>
+                    <td>Interest</td>
+                    <td>Landing page, WhatsApp</td>
+                    <td>Demo gratis, consulta</td>
+                    <td>10% CTR</td>
+                </tr>
+                <tr>
+                    <td>Decision</td>
+                    <td>Llamada/visita presencial</td>
+                    <td>Propuesta personalizada</td>
+                    <td>50% cierre</td>
+                </tr>
+                <tr>
+                    <td>Loyalty</td>
+                    <td>Soporte, upsells</td>
+                    <td>Referidos, add-ons</td>
+                    <td>30% referidos</td>
+                </tr>
+            </table>
+
+            <h3>7.2 Canales de Adquisición</h3>
+            <table>
+                <tr>
+                    <th>Canal</th>
+                    <th>Inversión</th>
+                    <th>CAC Esperado</th>
+                    <th>Prioridad</th>
+                </tr>
+                <tr>
+                    <td>Visitas en persona (local)</td>
+                    <td>$0 + tiempo</td>
+                    <td class="price-green">$0</td>
+                    <td>🔥 Más alta</td>
+                </tr>
+                <tr>
+                    <td>Referidos ($100 reward)</td>
+                    <td>$100/referido</td>
+                    <td class="price-green">$100</td>
+                    <td>🔥 Alta</td>
+                </tr>
+                <tr>
+                    <td>Facebook/Instagram Ads</td>
+                    <td>$500-1,000/mes</td>
+                    <td>$50-150</td>
+                    <td>Alta</td>
+                </tr>
+                <tr>
+                    <td>Content (YouTube/TikTok)</td>
+                    <td>$0 + tiempo</td>
+                    <td class="price-green">$0</td>
+                    <td>Media</td>
+                </tr>
+                <tr>
+                    <td>Google Ads</td>
+                    <td>$300/mes</td>
+                    <td>$100-200</td>
+                    <td>Baja (competido)</td>
+                </tr>
+            </table>
+
+            <h3>7.3 Script de Venta Presencial</h3>
+            <div class="guide">
+                <h4>Guión para visitas a negocios:</h4>
+                <ol>
+                    <li><strong>Intro (30 seg):</strong> "Hola, soy Alex de ORION Tech. Ayudo a negocios como el tuyo a
+                        no perder clientes por WhatsApp."</li>
+                    <li><strong>Problema (1 min):</strong> "¿Cuántos mensajes reciben al día? ¿Pierden clientes por no
+                        responder rápido?"</li>
+                    <li><strong>Demo (2 min):</strong> Mostrar bot en acción en tu teléfono</li>
+                    <li><strong>Precio (30 seg):</strong> "Setup de $XXX con hosting de solo $XX/mes"</li>
+                    <li><strong>Cierre:</strong> "¿Les gustaría probarlo? Puedo tenerlo listo esta semana."</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- FASE 8: ESCALABILIDAD -->
+        <div class="chapter" id="fase8">
+            <div class="phase-header">
+                <h2>📈 FASE 8: ESCALABILIDAD Y SOSTENIBILIDAD</h2>
+                <p style="margin:10px 0 0; color:#888;">Estado: ⏳ FUTURO | Duración: Ongoing</p>
+            </div>
+
+            <h3>8.1 Hitos de Escalabilidad</h3>
+            <table>
+                <tr>
+                    <th>Hito</th>
+                    <th>Clientes</th>
+                    <th>MRR</th>
+                    <th>Acción</th>
+                </tr>
+                <tr>
+                    <td>Solo Founder</td>
+                    <td>0-30</td>
+                    <td>$0-2,000</td>
+                    <td>Todo tú solo</td>
+                </tr>
+                <tr>
+                    <td>Primer VA</td>
+                    <td>30-50</td>
+                    <td>$2,000-4,000</td>
+                    <td>Contratar soporte part-time</td>
+                </tr>
+                <tr>
+                    <td>Equipo pequeño</td>
+                    <td>50-100</td>
+                    <td>$4,000-7,000</td>
+                    <td>VA full-time + desarrollador</td>
+                </tr>
+                <tr>
+                    <td>Agencia</td>
+                    <td>100+</td>
+                    <td>$7,000+</td>
+                    <td>Equipo de ventas, automatizar todo</td>
+                </tr>
+            </table>
+
+            <h3>8.2 Automatización</h3>
+            <div class="orion-specific">
+                <strong>Qué automatizar primero:</strong>
+                <ul>
+                    <li>Onboarding de clientes (documentos, setup inicial)</li>
+                    <li>Facturación recurrente (Stripe subscriptions)</li>
+                    <li>Soporte tier 1 (FAQ bot, tutoriales)</li>
+                    <li>Reportes mensuales automáticos</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- MÉTRICAS CLAVE -->
+        <div class="chapter" id="metricas">
+            <div class="phase-header"
+                style="background: linear-gradient(135deg, rgba(37,211,102,0.1), rgba(0,243,255,0.1));">
+                <h2>📊 MÉTRICAS CLAVE ORION TECH</h2>
+            </div>
+
+            <h3>CAC, LTV, ROAS - Definiciones</h3>
+            <table>
+                <tr>
+                    <th>Métrica</th>
+                    <th>Fórmula</th>
+                    <th>Meta ORION</th>
+                </tr>
+                <tr>
+                    <td><strong>CAC</strong> (Costo Adquisición Cliente)</td>
+                    <td>Total Marketing ÷ Nuevos Clientes</td>
+                    <td class="price-green">&lt; $100</td>
+                </tr>
+                <tr>
+                    <td><strong>LTV</strong> (Lifetime Value)</td>
+                    <td>Ticket Promedio × Meses Retención</td>
+                    <td class="price-green">&gt; $1,500</td>
+                </tr>
+                <tr>
+                    <td><strong>LTV:CAC Ratio</strong></td>
+                    <td>LTV ÷ CAC</td>
+                    <td class="price-green">&gt; 3:1</td>
+                </tr>
+                <tr>
+                    <td><strong>ROAS</strong> (Return on Ad Spend)</td>
+                    <td>Revenue ÷ Ad Spend</td>
+                    <td class="price-green">&gt; 4x</td>
+                </tr>
+                <tr>
+                    <td><strong>MRR</strong> (Monthly Recurring Revenue)</td>
+                    <td>Suma de hosting mensual</td>
+                    <td>$9,240 (Año 1)</td>
+                </tr>
+                <tr>
+                    <td><strong>Churn Rate</strong></td>
+                    <td>Clientes perdidos ÷ Total</td>
+                    <td class="price-green">&lt; 5%/mes</td>
+                </tr>
+            </table>
+
+            <h3>Ejemplo ORION Tech Real</h3>
+            <div class="highlight">
+                <strong>Cálculo LTV Cliente Business:</strong>
+                <ul>
+                    <li>Setup: $1,497 (one-time)</li>
+                    <li>Hosting: $79/mes × 24 meses (retención promedio) = $1,896</li>
+                    <li><strong>LTV Total = $3,393</strong></li>
+                </ul>
+                <strong>Si CAC = $100:</strong> LTV:CAC = 33:1 (excelente)
+            </div>
+        </div>
+
+        <!-- PLAN DE CONTINGENCIA -->
+        <div class="chapter" id="contingencia">
+            <div class="phase-header"
+                style="background: linear-gradient(135deg, rgba(255,0,0,0.1), rgba(255,107,53,0.1));">
+                <h2>⚠️ PLAN DE CONTINGENCIA</h2>
+            </div>
+
+            <div class="critical">
+                <h4>🔴 ESCENARIOS DE RIESGO Y RESPUESTAS</h4>
+                <table>
+                    <tr>
+                        <th>Riesgo</th>
+                        <th>Probabilidad</th>
+                        <th>Impacto</th>
+                        <th>Mitigación</th>
+                    </tr>
+                    <tr>
+                        <td>Meta/WhatsApp cambia términos API</td>
+                        <td>Media</td>
+                        <td>Alto</td>
+                        <td>Diversificar a Telegram, SMS</td>
+                    </tr>
+                    <tr>
+                        <td>Cliente grande cancela</td>
+                        <td>Media</td>
+                        <td>Medio</td>
+                        <td>No depender de 1 cliente &gt;20% revenue</td>
+                    </tr>
+                    <tr>
+                        <td>Competidor con precios más bajos</td>
+                        <td>Alta</td>
+                        <td>Medio</td>
+                        <td>Diferenciación (servicio, idiomas)</td>
+                    </tr>
+                    <tr>
+                        <td>Cash flow negativo</td>
+                        <td>Baja</td>
+                        <td>Alto</td>
+                        <td>Reserva 3-6 meses gastos</td>
+                    </tr>
+                    <tr>
+                        <td>Demanda de cliente</td>
+                        <td>Baja</td>
+                        <td>Alto</td>
+                        <td>LLC protege, seguro E&O</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>Reserva de Emergencia</h3>
+            <div class="warning">
+                <strong>Meta:</strong> Mantener 3-6 meses de gastos operativos en reserva.
+                <ul>
+                    <li>Gastos mensuales estimados: $800-1,200</li>
+                    <li>Reserva mínima: $2,400</li>
+                    <li>Reserva ideal: $7,200</li>
+                </ul>
+            </div>
+
+            <h3>Pivote Si Necesario</h3>
+            <div class="orion-specific">
+                <strong>Opciones de pivote si WhatsApp no funciona:</strong>
+                <ul>
+                    <li>Bots para Instagram/Facebook Messenger</li>
+                    <li>Desarrollo de apps móviles custom</li>
+                    <li>Automatización de procesos (Zapier, Make)</li>
+                    <li>Consultoría de marketing digital</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div
+            style="text-align: center; padding: 40px; background: rgba(0,243,255,0.05); margin-top: 40px; border-radius: 10px;">
+            <h2 style="color: #25D366;">🚀 ORION TECH</h2>
+            <p>Automatización WhatsApp para Negocios del Bay Area</p>
+            <p>San Jose, CA | (669) 234-2444 | agem2013@gmail.com</p>
+            <p style="margin-top: 20px;">
+                <a href="orion-bots.html">Landing Page</a> |
+                <a href="ORION_MANUAL_EMPRESARIAL.html">Manual Original</a> |
+                <a href="ORION_CAPITULO_LEGAL.html">Legal Expandido</a>
+            </p>
+            <p style="margin-top:20px; color:#666; font-size:0.85rem;">Última actualización: Diciembre 2024 | v3.0 PRO
+            </p>
+        </div>
+
+    </div>
+</body>
+
+</html>
