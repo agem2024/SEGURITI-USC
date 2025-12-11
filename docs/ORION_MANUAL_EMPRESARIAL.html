@@ -136,6 +136,48 @@
             font-size: 0.85rem;
             margin-bottom: 30px;
         }
+
+        /* CRITICAL - RED BOXES */
+        .critical {
+            background: rgba(255, 0, 0, 0.15);
+            padding: 25px;
+            border: 2px solid #ff0000;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+
+        .critical h4 {
+            color: #ff0000;
+            margin-top: 0;
+            font-size: 1.2rem;
+        }
+
+        .critical-text {
+            color: #ff6b6b;
+            font-weight: 600;
+        }
+
+        /* GUIDE - BLUE */
+        .guide {
+            background: rgba(0, 243, 255, 0.05);
+            padding: 20px;
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .guide h4 {
+            color: #00f3ff;
+            margin-top: 0;
+        }
+
+        .guide ol {
+            margin-top: 10px;
+        }
+
+        a {
+            color: #00f3ff;
+        }
     </style>
 </head>
 
@@ -157,6 +199,7 @@
             <a href="#cap8">8. Plan de Viralización</a>
             <a href="#cap9">9. Cronograma de Lanzamiento</a>
             <a href="#cap10">10. Proyecciones Financieras</a>
+            <a href="#cap11" style="color:#ff6b6b;">11. ⚖️ CAPÍTULO LEGAL (CRÍTICO)</a>
         </div>
 
         <!-- CAPÍTULO 1 -->
@@ -1451,6 +1494,363 @@
                 <a href="ORION_PLAN_MAESTRO.md" style="color: #00f3ff;">Plan Maestro MD</a>
             </p>
         </div>
+
+    </div>
+    </div>
+
+    <!-- CAPÍTULO 11: LEGAL -->
+    <div class="chapter" id="cap11">
+        <h2>⚖️ CAPÍTULO 11: MARCO LEGAL COMPLETO</h2>
+
+        <h3>11.1 REQUISITOS LOCALES - SAN JOSE, CA</h3>
+
+        <div class="critical">
+            <h4>🚨 CRÍTICO: BUSINESS TAX CERTIFICATE</h4>
+            <p class="critical-text">OBLIGATORIO para cualquier negocio operando en San Jose.</p>
+            <ul>
+                <li><strong>Plazo:</strong> Registrar dentro de 90 días de iniciar operaciones</li>
+                <li><strong>Costo:</strong> Variable según tipo de negocio</li>
+                <li><strong>Renovación:</strong> Anual - vence 31 de Dic, renovar antes del 1 de Marzo</li>
+                <li><strong>Penalidad:</strong> 10% por mes de retraso + intereses</li>
+            </ul>
+        </div>
+
+        <div class="guide">
+            <h4>📝 GUÍA: Obtener Business Tax Certificate</h4>
+            <ol>
+                <li>Ir a: <a href="https://www.sanjoseca.gov/your-government/departments-offices/finance/business-tax"
+                        target="_blank">sanjoseca.gov/business-tax</a></li>
+                <li>Crear cuenta y completar aplicación online</li>
+                <li>Información requerida: TIN/SSN/EIN, Driver's License, Dirección</li>
+                <li>Pagar fee online</li>
+                <li>Recibirás certificado por correo en 5-10 días</li>
+            </ol>
+        </div>
+
+        <h3>11.2 REQUISITOS ESTATALES - CALIFORNIA</h3>
+
+        <div class="critical">
+            <h4>🚨 CRÍTICO: ESTRUCTURA DE NEGOCIO</h4>
+            <p class="critical-text">Recomendado: LLC para protección de activos personales</p>
+            <table>
+                <tr>
+                    <th>Estructura</th>
+                    <th>Costo Inicial</th>
+                    <th>Costo Anual</th>
+                    <th>Protección</th>
+                </tr>
+                <tr>
+                    <td>Sole Proprietorship</td>
+                    <td>$0</td>
+                    <td>$0</td>
+                    <td>❌ Ninguna</td>
+                </tr>
+                <tr>
+                    <td>LLC</td>
+                    <td>$70</td>
+                    <td>$800</td>
+                    <td>✅ Completa</td>
+                </tr>
+                <tr>
+                    <td>Corporation</td>
+                    <td>$100</td>
+                    <td>$800+</td>
+                    <td>✅ Completa</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="critical">
+            <h4>🚨 CRÍTICO: CALIFORNIA FRANCHISE TAX ($800/AÑO)</h4>
+            <p class="critical-text">TODAS las LLC deben pagar $800/año al Franchise Tax Board.</p>
+            <ul>
+                <li><strong>Cuándo:</strong> 15 de Abril</li>
+                <li><strong>Cómo:</strong> <a href="https://www.ftb.ca.gov" target="_blank">ftb.ca.gov</a></li>
+            </ul>
+        </div>
+
+        <div class="guide">
+            <h4>📝 GUÍA: Formar LLC en California</h4>
+            <ol>
+                <li>Ir a: <a href="https://bizfileportal.sos.ca.gov" target="_blank">bizfileportal.sos.ca.gov</a></li>
+                <li>Fijar "Articles of Organization" - $70</li>
+                <li>Dentro de 90 días: "Statement of Information" - $20</li>
+                <li>Crear Operating Agreement</li>
+                <li>Obtener EIN del IRS (gratis)</li>
+            </ol>
+        </div>
+
+        <div class="critical">
+            <h4>🚨 CRÍTICO: IMPUESTOS (TAXES)</h4>
+            <table>
+                <tr>
+                    <th>Tipo</th>
+                    <th>Tasa</th>
+                    <th>Frecuencia</th>
+                </tr>
+                <tr>
+                    <td>Self-Employment Tax</td>
+                    <td>15.3%</td>
+                    <td>Trimestral</td>
+                </tr>
+                <tr>
+                    <td>Federal Income Tax</td>
+                    <td>10-37%</td>
+                    <td>Trimestral</td>
+                </tr>
+                <tr>
+                    <td>California State Tax</td>
+                    <td>1-12.3%</td>
+                    <td>Trimestral</td>
+                </tr>
+                <tr>
+                    <td>LLC Franchise Tax</td>
+                    <td>$800 flat</td>
+                    <td>Anual</td>
+                </tr>
+            </table>
+            <p style="margin-top:15px;"><strong>Reservar 35-40% de cada ingreso para impuestos.</strong></p>
+        </div>
+
+        <div class="highlight">
+            <strong>✅ BUENAS NOTICIAS:</strong> Servicios de software/SaaS entregados electrónicamente NO requieren
+            Sales Tax en California.
+        </div>
+
+        <h3>11.3 REQUISITOS FEDERALES - USA</h3>
+
+        <div class="guide">
+            <h4>📝 GUÍA: Obtener EIN (GRATIS)</h4>
+            <ol>
+                <li>Ir a: <a
+                        href="https://www.irs.gov/businesses/small-businesses-self-employed/apply-for-an-employer-identification-number-ein-online"
+                        target="_blank">irs.gov/EIN</a></li>
+                <li>Completar aplicación online (10 minutos)</li>
+                <li>Recibes EIN inmediatamente</li>
+            </ol>
+        </div>
+
+        <h3>11.4 TÉRMINOS WHATSAPP BUSINESS API</h3>
+
+        <div class="critical">
+            <h4>🚨 CRÍTICO: REGLAS DE USO COMERCIAL</h4>
+            <p class="critical-text">Violaciones = SUSPENSIÓN PERMANENTE de cuenta y API</p>
+            <table>
+                <tr>
+                    <th>Requisito</th>
+                    <th>Descripción</th>
+                </tr>
+                <tr>
+                    <td class="critical-text">OPT-IN Explícito</td>
+                    <td>Usuario debe dar consentimiento ANTES de recibir mensajes</td>
+                </tr>
+                <tr>
+                    <td class="critical-text">Templates Aprobados</td>
+                    <td>Mensajes iniciados por negocio deben usar templates aprobados</td>
+                </tr>
+                <tr>
+                    <td class="critical-text">Ventana 24 horas</td>
+                    <td>Solo puedes responder libremente dentro de 24h del último mensaje</td>
+                </tr>
+                <tr>
+                    <td class="critical-text">Opt-Out Fácil</td>
+                    <td>Usuario debe poder dejar de recibir mensajes</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="critical">
+            <h4>🚨 PROHIBIDO (puede cerrar tu cuenta):</h4>
+            <ul>
+                <li>Spam y mensajes no solicitados</li>
+                <li>Envío masivo sin consentimiento</li>
+                <li>Contenido para adultos, armas, drogas</li>
+                <li>Estafas o contenido engañoso</li>
+            </ul>
+        </div>
+
+        <h3>11.5 DERECHOS DE AUTOR Y COPYRIGHT</h3>
+
+        <div class="highlight">
+            <strong>✅ Protección Automática:</strong> El código de software tiene protección automática bajo copyright
+            desde el momento de creación.
+        </div>
+
+        <div class="warning">
+            <strong>PERO:</strong> Para demandar por infracción en corte federal, DEBES registrar en U.S. Copyright
+            Office.
+        </div>
+
+        <div class="guide">
+            <h4>📝 GUÍA: Registrar Copyright de Software</h4>
+            <ol>
+                <li>Ir a: <a href="https://www.copyright.gov" target="_blank">copyright.gov</a></li>
+                <li>Crear cuenta en eCO</li>
+                <li>Seleccionar "Register a Work" > "Literary Work"</li>
+                <li>Pagar: $45-65 (online)</li>
+                <li>Subir código fuente</li>
+            </ol>
+        </div>
+
+        <h3>11.6 PROTECCIÓN INTERNACIONAL</h3>
+
+        <div class="highlight">
+            <strong>Berne Convention:</strong> Software registrado en USA tiene protección automática en 181 países:
+            🇨🇦 Canadá | 🇲🇽 México | 🇧🇷 Brasil | 🇦🇷 Argentina | 🇨🇴 Colombia | 🇨🇱 Chile | 🇵🇪 Perú
+        </div>
+
+        <table>
+            <tr>
+                <th>País</th>
+                <th>Protección</th>
+                <th>Duración</th>
+            </tr>
+            <tr>
+                <td>🇨🇦 Canadá</td>
+                <td>Copyright Act (automático)</td>
+                <td>Vida + 70 años</td>
+            </tr>
+            <tr>
+                <td>🇲🇽 México</td>
+                <td>Ley Federal Derecho de Autor</td>
+                <td>100 años</td>
+            </tr>
+            <tr>
+                <td>🇧🇷 Brasil</td>
+                <td>Lei do Software (9,609/98)</td>
+                <td>50 años</td>
+            </tr>
+            <tr>
+                <td>🇨🇴 Colombia</td>
+                <td>Decisión Andina 351</td>
+                <td>Vida + 70 años</td>
+            </tr>
+        </table>
+
+        <div class="warning">
+            <strong>⚠️ Nota Latinoamérica:</strong> Enforcement puede ser difícil. Piratería sigue siendo problema. Usar
+            licencias SaaS (no entregar código).
+        </div>
+
+        <h3>11.7 CHECKLIST LEGAL COMPLETO</h3>
+
+        <div class="critical">
+            <h4>🔴 HACER ANTES DE OPERAR:</h4>
+            <table>
+                <tr>
+                    <th>Tarea</th>
+                    <th>Costo</th>
+                    <th>Tiempo</th>
+                </tr>
+                <tr>
+                    <td>Business Tax Certificate (San Jose)</td>
+                    <td>Variable</td>
+                    <td>1-2 semanas</td>
+                </tr>
+                <tr>
+                    <td>Formar LLC en California</td>
+                    <td>$70</td>
+                    <td>1-2 días</td>
+                </tr>
+                <tr>
+                    <td>Statement of Information</td>
+                    <td>$20</td>
+                    <td>1 día</td>
+                </tr>
+                <tr>
+                    <td>Obtener EIN del IRS</td>
+                    <td>GRATIS</td>
+                    <td>Inmediato</td>
+                </tr>
+                <tr>
+                    <td>Abrir cuenta bancaria de negocio</td>
+                    <td>$0-25</td>
+                    <td>1 día</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="critical">
+            <h4>🔴 ANUALES/RECURRENTES:</h4>
+            <table>
+                <tr>
+                    <th>Tarea</th>
+                    <th>Costo</th>
+                    <th>Fecha Límite</th>
+                </tr>
+                <tr>
+                    <td>Franchise Tax California</td>
+                    <td>$800</td>
+                    <td>15 Abril</td>
+                </tr>
+                <tr>
+                    <td>Renovar Business Tax Certificate</td>
+                    <td>Variable</td>
+                    <td>1 Marzo</td>
+                </tr>
+                <tr>
+                    <td>Estimated Taxes (Trimestral)</td>
+                    <td>~35% ingresos</td>
+                    <td>15 Abr/Jun/Sep/Ene</td>
+                </tr>
+            </table>
+        </div>
+
+        <h3>11.8 RESUMEN DE COSTOS LEGALES</h3>
+        <table>
+            <tr>
+                <th>Concepto</th>
+                <th>Año 1</th>
+                <th>Recurrente</th>
+            </tr>
+            <tr>
+                <td>LLC Formation</td>
+                <td>$70</td>
+                <td>$0</td>
+            </tr>
+            <tr>
+                <td>Statement of Information</td>
+                <td>$20</td>
+                <td>$20/2 años</td>
+            </tr>
+            <tr>
+                <td>Franchise Tax</td>
+                <td>$800</td>
+                <td>$800/año</td>
+            </tr>
+            <tr>
+                <td>Business Tax Certificate</td>
+                <td>$50-200</td>
+                <td>$50-200/año</td>
+            </tr>
+            <tr>
+                <td>Copyright Registration</td>
+                <td>$65</td>
+                <td>$0</td>
+            </tr>
+            <tr>
+                <th>TOTAL MÍNIMO</th>
+                <th>~$1,000</th>
+                <th>~$900/año</th>
+            </tr>
+        </table>
+
+        <div
+            style="text-align: center; padding: 20px; background: rgba(255,0,0,0.05); border: 1px solid rgba(255,0,0,0.3); margin-top: 30px;">
+            <p style="font-size: 0.9rem; color: #ff6b6b;"><strong>⚠️ DISCLAIMER:</strong> Este documento es solo
+                informativo. Consulta con abogado y/o CPA para tu situación específica.</p>
+        </div>
+    </div>
+
+    <div style="text-align: center; padding: 40px; background: rgba(0,243,255,0.05); margin-top: 40px;">
+        <h2 style="color: #25D366;">🚀 ORION TECH</h2>
+        <p>San Jose, California | (669) 234-2444 | agem2013@gmail.com</p>
+        <p style="margin-top: 20px;">
+            <a href="orion-bots.html" style="color: #00f3ff;">Landing Page</a> |
+            <a href="ORION_PLAN_MAESTRO.md" style="color: #00f3ff;">Plan Maestro MD</a> |
+            <a href="ORION_CAPITULO_LEGAL.html" style="color: #ff6b6b;">Capítulo Legal Expandido</a>
+        </p>
+    </div>
 
     </div>
 </body>
