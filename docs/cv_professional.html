@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex G. Espinosa - Professional Resume</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a365d;
+            --accent: #2563eb;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --bg: #ffffff;
+            --border: #e5e7eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            background: #f3f4f6;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .cv-container {
+            max-width: 850px;
+            margin: 20px auto;
+            background: var(--bg);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* HEADER */
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+
+        .header .title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            opacity: 0.95;
+            margin-bottom: 20px;
+        }
+
+        .contact-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 0.9rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* MAIN CONTENT */
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 8px;
+            margin-bottom: 16px;
+        }
+
+        /* PROFILE */
+        .profile-text {
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* EXPERIENCE */
+        .job {
+            margin-bottom: 24px;
+            page-break-inside: avoid;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+
+        .job-title {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text);
+        }
+
+        .job-company {
+            font-weight: 500;
+            color: var(--accent);
+        }
+
+        .job-location {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .job-date {
+            font-weight: 500;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .job ul {
+            margin-left: 20px;
+            margin-top: 8px;
+        }
+
+        .job li {
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+
+        .job li strong {
+            color: var(--primary);
+        }
+
+        /* EDUCATION */
+        .edu-item {
+            margin-bottom: 12px;
+        }
+
+        .edu-degree {
+            font-weight: 600;
+        }
+
+        .edu-school {
+            color: var(--text-light);
+        }
+
+        /* SKILLS */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .skill-category h4 {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+            color: var(--primary);
+        }
+
+        .skill-category p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* CERTIFICATIONS */
+        .cert-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .cert-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .cert-item::before {
+            content: "✓";
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* LANGUAGES */
+        .lang-row {
+            display: flex;
+            gap: 30px;
+        }
+
+        .lang-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .lang-level {
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        /* PRINT */
+        @media print {
+            body {
+                background: white;
+            }
+
+            .cv-container {
+                box-shadow: none;
+                margin: 0;
+            }
+
+            .header {
+                padding: 30px;
+            }
+
+            .content {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header {
+                padding: 25px;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .content {
+                padding: 25px;
+            }
+
+            .skills-grid,
+            .cert-list {
+                grid-template-columns: 1fr;
+            }
+
+            .job-header {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="cv-container">
+
+        <!-- HEADER -->
+        <header class="header">
+            <h1>ALEX G. ESPINOSA</h1>
+            <p class="title">Senior AI Solutions Architect | Environmental Engineer | Project Manager</p>
+            <div class="contact-row">
+                <div class="contact-item">📍 San Jose, California</div>
+                <div class="contact-item">📞 <a href="tel:6692342444">(669) 234-2444</a></div>
+                <div class="contact-item">📧 <a href="mailto:agem2013@gmail.com">agem2013@gmail.com</a></div>
+                <div class="contact-item">🌐 <a href="https://agem2024.github.io/SEGURITI-USC/cv_pro.html">Portfolio</a>
+                </div>
+            </div>
+        </header>
+
+        <div class="content">
+
+            <!-- PROFESSIONAL SUMMARY -->
+            <section class="section">
+                <h2 class="section-title">Professional Summary</h2>
+                <p class="profile-text">
+                    Results-oriented <strong>AI Solutions Architect</strong> and <strong>Senior Engineer</strong> with
+                    <strong>21+ years</strong> of multidisciplinary experience bridging physical engineering systems and
+                    cutting-edge Artificial Intelligence. Proven track record in orchestrating multi-agent AI systems
+                    for business automation while maintaining a decade-long successful practice in high-end construction
+                    project management in California. Expert in optimizing complex workflows—from municipal wastewater
+                    treatment designs to automated plumbing estimation using Computer Vision. Bilingual professional
+                    (English/Spanish) seeking to leverage cross-industry expertise in technology-forward organizations.
+                </p>
+            </section>
+
+            <!-- PROFESSIONAL EXPERIENCE -->
+            <section class="section">
+                <h2 class="section-title">Professional Experience</h2>
+
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">AI Solutions Architect & Founder</div>
+                            <div class="job-company">Orion Systems (Independent Consultancy)</div>
+                            <div class="job-location">San Jose, CA</div>
+                        </div>
+                        <div class="job-date">2024 – Present</div>
+                    </div>
+                    <ul>
+                        <li>Architected <strong>"Orion"</strong>—a comprehensive multi-modal AI assistant integrated
+                            into WhatsApp, handling filesystem operations, financial tracking, and autonomous task
+                            execution</li>
+                        <li>Developed <strong>Plumbing Estimator Pro</strong>, an AI tool analyzing site photos to
+                            generate instant material lists and cost estimates, reducing quote generation time by
+                            <strong>700%</strong></li>
+                        <li>Implemented digital intake forms and automated client communication systems, replacing
+                            legacy paper-based workflows for local businesses</li>
+                        <li>Built RAG-powered document retrieval systems for immigration case preparation, streamlining
+                            complex legal documentation</li>
+                    </ul>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Senior Plumbing Project Manager & Contractor</div>
+                            <div class="job-company">Independent Contractor (VILLARA, TAO LTD, Mike Counsil)</div>
+                            <div class="job-location">San Jose, CA</div>
+                        </div>
+                        <div class="job-date">2014 – Present</div>
+                    </div>
+                    <ul>
+                        <li>Successfully executed <strong>100+ high-end residential installations</strong>, managing
+                            budgets from <strong>$50k to $500k</strong></li>
+                        <li>Maintained <strong>100% code compliance</strong> with California Building standards across
+                            all inspections</li>
+                        <li>Led diverse teams of technicians ensuring strict adherence to safety protocols and project
+                            timelines</li>
+                        <li>Pioneered digital tools for field estimation and material projection, minimizing waste and
+                            maximizing profit margins</li>
+                        <li>Specialized in complex re-pipes, tankless water heater installations, and water treatment
+                            systems</li>
+                    </ul>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Hotel Maintenance Manager</div>
+                            <div class="job-company">Bristol, Elan, Carlile & Campbell Hotels</div>
+                            <div class="job-location">Campbell, CA</div>
+                        </div>
+                        <div class="job-date">2015 – 2017</div>
+                    </div>
+                    <ul>
+                        <li>Directed comprehensive preventive maintenance programs for HVAC, plumbing, and electrical
+                            systems across hotel portfolio</li>
+                        <li>Managed vendor relationships and negotiated contracts, achieving measurable cost reductions
+                        </li>
+                        <li>Supervised maintenance staff, implementing training standards that improved response times
+                            and guest satisfaction</li>
+                    </ul>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Environmental Engineer & Lead Consultant</div>
+                            <div class="job-company">Private Practice & Various Municipalities</div>
+                            <div class="job-location">Colombia (International)</div>
+                        </div>
+                        <div class="job-date">2004 – 2014</div>
+                    </div>
+                    <ul>
+                        <li><strong>ISO 14001 Auditor:</strong> Conducted internal and external audits for the Water &
+                            Sewerage Company of Pereira</li>
+                        <li>Designed wastewater treatment systems and hydraulic structures for multiple municipalities
+                        </li>
+                        <li>Led environmental impact studies for hospital waste management (PGIRSH) and urban
+                            development projects</li>
+                        <li>Published two university-sponsored research studies on fauna conservation and organic waste
+                            optimization</li>
+                        <li>Founded and managed DSA LTDA, an environmental systems development company (2006-2009)</li>
+                    </ul>
+                </div>
+
+            </section>
+
+            <!-- EDUCATION -->
+            <section class="section">
+                <h2 class="section-title">Education</h2>
+                <div class="edu-item">
+                    <div class="edu-degree">Bachelor of Science in Environmental Engineering</div>
+                    <div class="edu-school">Universidad Libre Seccional Pereira, Colombia — 2004</div>
+                    <div style="color: var(--text-light); font-size: 0.9rem;">Research Focus: Sustainable Systems, Fauna
+                        Conservation, Organic Waste Management</div>
+                </div>
+            </section>
+
+            <!-- SKILLS -->
+            <section class="section">
+                <h2 class="section-title">Technical & Professional Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4>AI & Development</h4>
+                        <p>Multi-Agent Systems, RAG, Prompt Engineering, Gemini 1.5 Pro, GPT-4, Node.js, Python,
+                            WhatsApp Automation</p>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Engineering Software</h4>
+                        <p>AutoCAD, ArcGIS, Epanet, WinFlume, Google SketchUp, Microsoft Office Suite</p>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Construction & Plumbing</h4>
+                        <p>California Plumbing Codes, Hydraulic Design, Project Estimation, WWTP Design, Material
+                            Projection</p>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Management</h4>
+                        <p>Project Cost Estimation, Team Leadership, Regulatory Compliance, ISO 14001 Auditing, Vendor
+                            Negotiation</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CERTIFICATIONS -->
+            <section class="section">
+                <h2 class="section-title">Certifications & Training</h2>
+                <div class="cert-list">
+                    <div class="cert-item">ISO 14001 Environmental Management Auditor</div>
+                    <div class="cert-item">California Residential Plumbing Specialist</div>
+                    <div class="cert-item">Environmental Air Quality Certification</div>
+                    <div class="cert-item">Integrated Water Management Diploma (UTP, 2011)</div>
+                    <div class="cert-item">Urban Development & Housing (BID, 2018)</div>
+                    <div class="cert-item">The Route to Smart Cities (BID, 2018)</div>
+                </div>
+            </section>
+
+            <!-- LANGUAGES -->
+            <section class="section">
+                <h2 class="section-title">Languages</h2>
+                <div class="lang-row">
+                    <div class="lang-item">
+                        <strong>Spanish</strong>
+                        <span class="lang-level">— Native / Bilingual</span>
+                    </div>
+                    <div class="lang-item">
+                        <strong>English</strong>
+                        <span class="lang-level">— Professional Working Proficiency</span>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
