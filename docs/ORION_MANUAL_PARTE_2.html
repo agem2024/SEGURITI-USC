@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORION Tech - Manual Profesional Parte 2</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fff;
+            color: #1a1a1a;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 50px 30px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            border-bottom: 3px solid #000;
+            padding-bottom: 15px;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            color: #1a1a1a;
+            margin: 40px 0 15px;
+            padding: 10px 0;
+            border-bottom: 2px solid #333;
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            color: #333;
+            margin: 25px 0 12px;
+        }
+
+        h4 {
+            font-size: 1rem;
+            color: #444;
+            margin: 18px 0 8px;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+
+        th,
+        td {
+            padding: 10px 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+
+        ul,
+        ol {
+            margin: 12px 0 12px 25px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        .critical {
+            background: #fff0f0;
+            padding: 18px;
+            border: 2px solid #d00;
+            margin: 18px 0;
+            border-radius: 5px;
+        }
+
+        .critical-title {
+            color: #d00;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .success {
+            background: #f0fff0;
+            padding: 15px;
+            border-left: 4px solid #090;
+            margin: 15px 0;
+        }
+
+        .info {
+            background: #f0f8ff;
+            padding: 15px;
+            border-left: 4px solid #06c;
+            margin: 15px 0;
+        }
+
+        .warning {
+            background: #fffaf0;
+            padding: 15px;
+            border-left: 4px solid #f80;
+            margin: 15px 0;
+        }
+
+        .nav-link {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            display: inline-block;
+            margin: 20px 10px;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .nav-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .toc {
+            background: #f9f9f9;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+
+        .toc a {
+            color: #06c;
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+        }
+
+        .chapter {
+            margin-bottom: 50px;
+            page-break-inside: avoid;
+        }
+
+        .formula {
+            background: #f5f5f5;
+            padding: 15px;
+            font-family: monospace;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        .header-info {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .verified {
+            background: linear-gradient(90deg, rgba(57, 255, 20, 0.15), rgba(57, 255, 20, 0.05));
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+            color: #1a1a1a;
+            border-left: 3px solid #39ff14;
+            display: inline-block;
+            margin: 2px 0;
+        }
+
+        .nav-container {
+            text-align: center;
+            padding: 30px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        @media print {
+            .chapter {
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <h1>MANUAL DE NEGOCIOS PROFESIONAL - PARTE 2</h1>
+        <p class="header-info"><strong>ORION Tech</strong> - Servicios de Automatización WhatsApp<br>
+            San Jose, California | Diciembre 2024 | Versión 4.0 - Parte 2</p>
+
+        <div class="nav-container">
+            <a href="ORION_MANUAL_PROFESIONAL.html" class="nav-link">⬅️ Volver a Parte 1 (Capítulos 1-15)</a>
+        </div>
+
+        <div class="toc">
+            <h3>ÍNDICE - PARTE 2</h3>
+            <a href="#cap16">Capítulo 16: Misión, Visión, Valores y Objetivos Estratégicos</a>
+            <a href="#cap17">Capítulo 17: Gestión de Calidad - Metodología Lean</a>
+            <a href="#cap18">Capítulo 18: Políticas Operativas, Contratos y Facturación</a>
+        </div>
+
+        <!-- CAPÍTULO 16: MISIÓN, VISIÓN, VALORES -->
+        <div class="chapter" id="cap16">
+            <h2>CAPÍTULO 16: MISIÓN, VISIÓN, VALORES Y OBJETIVOS ESTRATÉGICOS</h2>
+
+            <h3>16.1 Misión de ORION Tech</h3>
+            <div class="success" style="font-size:1.05rem; padding:25px;">
+                <strong>Nuestra Misión:</strong><br><br>
+                "Democratizar la automatización empresarial para pequeños negocios del Bay Area, permitiéndoles competir
+                en igualdad de condiciones con grandes corporaciones mediante tecnología WhatsApp accesible,
+                personalizada y en su idioma."
+            </div>
+
+            <h3>16.2 Visión de ORION Tech</h3>
+            <div class="info" style="font-size:1.05rem; padding:25px;">
+                <strong>Visión 2027 (3 años):</strong><br><br>
+                "Ser el proveedor #1 de automatización WhatsApp para pequeños negocios en California, con presencia en
+                las 10 principales ciudades del estado, sirviendo a más de 1,000 clientes activos y generando un impacto
+                económico medible de $10M+ anuales en ahorro y ventas adicionales para nuestrosclientes."
+            </div>
+
+            <h3>16.3 Valores Fundamentales</h3>
+            <table>
+                <tr>
+                    <th>Valor</th>
+                    <th>Qué Significa</th>
+                    <th>Cómo lo Vivimos</th>
+                </tr>
+                <tr>
+                    <td><strong>🌍 Local First</strong></td>
+                    <td>Priorizamos negocios locales del Bay Area</td>
+                    <td>Visitas presenciales, soporte en persona, conocemos a nuestros clientes</td>
+                </tr>
+                <tr>
+                    <td><strong>🗣️ Bilingüe por Diseño</strong></td>
+                    <td>Español e inglés con igual calidad</td>
+                    <td>Documentación, soporte, bots - todo disponible en ambos idiomas</td>
+                </tr>
+                <tr>
+                    <td><strong>💡 Tecnología Accesible</strong></td>
+                    <td>La tech debe ser simple, no intimidante</td>
+                    <td>Explicamos en lenguaje claro, sin jerga innecesaria</td>
+                </tr>
+                <tr>
+                    <td><strong>📈 Resultados Medibles</strong></td>
+                    <td>Nos importan los números reales</td>
+                    <td>Reportes mensuales, métricas claras, ROI transparente</td>
+                </tr>
+                <tr>
+                    <td><strong>🤝 Partnerships, no Vendor</strong></td>
+                    <td>Somos socios de nuestros clientes</td>
+                    <td>Éxito compartido, comisiones por referidos, feedback constante</td>
+                </tr>
+                <tr>
+                    <td><strong>⚡ Acción sobre Perfección</strong></td>
+                    <td>Mejor hecho que perfecto</td>
+                    <td>Lanzamos rápido, iteramos basado en feedback real</td>
+                </tr>
+            </table>
+
+            <h3>16.4 Política de Calidad</h3>
+            <div class="warning">
+                <strong>Compromiso de Calidad ORION Tech:</strong><br><br>
+                Nos comprometemos a:<br>
+                ✅ Responder consultas en menos de 2 horas (horario laboral)<br>
+                ✅ Configurar nuevos bots en máximo 5 días laborales<br>
+                ✅ Mantener 99% uptime en todos nuestros servicios<br>
+                ✅ Resolver tickets de soporte en máximo 24 horas<br>
+                ✅ Ofrecer 30 días de garantía: si no funciona, devolvemos setup fee<br>
+                ✅ Capacitar al cliente hasta que se sienta 100% cómodo<br>
+                ✅ Mejora continua basada en feedback (encuesta trimestral)
+            </div>
+
+            <h3>16.5 Objetivos Estratégicos 2025</h3>
+            <table>
+                <tr>
+                    <th>Área</th>
+                    <th>Objetivo</th>
+                    <th>Meta Q1</th>
+                    <th>Meta Q2</th>
+                    <th>Meta Q3</th>
+                    <th>Meta Q4</th>
+                </tr>
+                <tr>
+                    <td><strong>Clientes</strong></td>
+                    <td>Crecimiento sostenible</td>
+                    <td>15</td>
+                    <td>35</td>
+                    <td>60</td>
+                    <td>100</td>
+                </tr>
+                <tr>
+                    <td><strong>Revenue</strong></td>
+                    <td>MRR creciente</td>
+                    <td>$1,000</td>
+                    <td>$2,500</td>
+                    <td>$4,500</td>
+                    <td>$7,000</td>
+                </tr>
+                <tr>
+                    <td><strong>Retención</strong></td>
+                    <td>Churn &lt;5%</td>
+                    <td>&lt;10%</td>
+                    <td>&lt;7%</td>
+                    <td>&lt;5%</td>
+                    <td>&lt;5%</td>
+                </tr>
+                <tr>
+                    <td><strong>Producto</strong></td>
+                    <td>Nuevas features</td>
+                    <td>IA básica</td>
+                    <td>Pagos integrados</td>
+                    <td>Multi-agente</td>
+                    <td>Analytics dashboard</td>
+                </tr>
+                <tr>
+                    <td><strong>Marketing</strong></td>
+                    <td>Brand awareness</td>
+                    <td>100 seguidores</td>
+                    <td>500 seguidores</td>
+                    <td>1,500 seguidores</td>
+                    <td>3,000 seguidores</td>
+                </tr>
+            </table>
+
+            <h3>16.6 KPIs Críticos (Key Performance Indicators)</h3>
+            <table>
+                <tr>
+                    <th>KPI</th>
+                    <th>Fórmula</th>
+                    <th>Meta</th>
+                    <th>Frecuencia</th>
+                </tr>
+                <tr>
+                    <td><strong>CAC (Customer Acquisition Cost)</strong></td>
+                    <td>Total gastos marketing ÷ Nuevos clientes</td>
+                    <td class="verified">&lt;$100</td>
+                    <td>Mensual</td>
+                </tr>
+                <tr>
+                    <td><strong>LTV (Lifetime Value)</strong></td>
+                    <td>MRR promedio × Meses retención</td>
+                    <td class="verified">&gt;$1,500</td>
+                    <td>Trimestral</td>
+                </tr>
+                <tr>
+                    <td><strong>LTV:CAC Ratio</strong></td>
+                    <td>LTV ÷ CAC</td>
+                    <td class="verified">&gt;3:1</td>
+                    <td>Trimestral</td>
+                </tr>
+                <tr>
+                    <td><strong>Churn Rate</strong></td>
+                    <td>Clientes perdidos ÷ Total clientes</td>
+                    <td class="verified">&lt;5%/mes</td>
+                    <td>Mensual</td>
+                </tr>
+                <tr>
+                    <td><strong>NPS (Net Promoter Score)</strong></td>
+                    <td>% Promoters - % Detractors</td>
+                    <td class="verified">&gt;50</td>
+                    <td>Trimestral</td>
+                </tr>
+                <tr>
+                    <td><strong>Tiempo Respuesta</strong></td>
+                    <td>Promedio horas hasta primera respuesta</td>
+                    <td class="verified">&lt;2h</td>
+                    <td>Semanal</td>
+                </tr>
+            </table>
+
+            <h3>16.7 Metas SMART Específicas</h3>
+            <div class="formula">
+                <strong>META #1: Adquisición de Clientes</strong><br>
+                - <strong>S</strong>pecific: Adquirir 60 clientes pagando hosting<br>
+                - <strong>M</strong>easurable: Trackear en CRM (Notion), confirmar pagos<br>
+                - <strong>A</strong>chievable: 5 clientes/mes promedio es realista<br>
+                - <strong>R</strong>elevant: Base necesaria para sostenibilidad<br>
+                - <strong>T</strong>ime-bound: Diciembre 31, 2025<br><br>
+
+                <strong>META #2: Revenue Recurrente</strong><br>
+                - Alcanzar $7,000 MRR al final del año<br>
+                - 100 clientes × $70 promedio = $7,000<br>
+                - Deadline: Q4 2025<br><br>
+
+                <strong>META #3: Eficiencia Operativa</strong><br>
+                - Automatizar onboarding: De 8h a 2h por cliente<br>
+                - Templates reutilizables: 5 verticales predefinidos<br>
+                - Deadline: Q2 2025
+            </div>
+        </div>
+
+        <!-- CAPÍTULO 17: LEAN QUALITY -->
+        <div class="chapter" id="cap17">
+            <h2>CAPÍTULO 17: GESTIÓN DE CALIDAD - METODOLOGÍA LEAN</h2>
+
+            <h3>17.1 Introducción a Lean para ORION Tech</h3>
+            <p><strong>Lean Thinking</strong> es una filosofía de gestión que se enfoca en maximizar valor para el
+                cliente mientras se minimizan desperdicios. Para ORION Tech, esto significa:</p>
+            <ul>
+                <li>Entregar bots funcionales rápido (no meses de desarrollo)</li>
+                <li>Eliminar pasos innecesarios en el onboarding</li>
+                <li>Mejorar continuamente basado en feedback real</li>
+                <li>No construir features que nadie pide</li>
+            </ul>
+
+            <h3>17.2 Los 7 Desperdicios (Muda) y Cómo Evitarlos</h3>
+            <table>
+                <tr>
+                    <th>Desperdicio</th>
+                    <th>Qué Es</th>
+                    <th>Ejemplo en ORION</th>
+                    <th>Cómo Eliminarlo</th>
+                </tr>
+                <tr>
+                    <td><strong>1. Sobreproducción</strong></td>
+                    <td>Hacer más de lo necesario</td>
+                    <td>Bot con 50 features que el cliente nunca usa</td>
+                    <td>MVP primero, agregar features solo si se piden</td>
+                </tr>
+                <tr>
+                    <td><strong>2. Espera</strong></td>
+                    <td>Tiempo muerto sin valor</td>
+                    <td>Cliente espera 2 semanas para su bot</td>
+                    <td>Templates pre-configurados, deploy en 2 días</td>
+                </tr>
+                <tr>
+                    <td><strong>3. Transporte</strong></td>
+                    <td>Mover cosas innecesariamente</td>
+                    <td>Enviar archivos por email, WhatsApp, Drive</td>
+                    <td>Todo en un solo sistema (GitHub + Notion)</td>
+                </tr>
+                <tr>
+                    <td><strong>4. Sobre-procesamiento</strong></td>
+                    <td>Hacer más de lo pedido</td>
+                    <td>3 reuniones cuando con 1 bastaba</td>
+                    <td>Kickoff call único de 30 min con checklist</td>
+                </tr>
+                <tr>
+                    <td><strong>5. Inventario</strong></td>
+                    <td>Trabajo en progreso acumulado</td>
+                    <td>10 proyectos empezados, ninguno terminado</td>
+                    <td>Kanban: max 3 proyectos simultáneos</td>
+                </tr>
+                <tr>
+                    <td><strong>6. Movimiento</strong></td>
+                    <td>Acciones físicas innecesarias</td>
+                    <td>Buscar info del cliente en 5 lugares diferentes</td>
+                    <td>CRM centralizado con toda la info</td>
+                </tr>
+                <tr>
+                    <td><strong>7. Defectos</strong></td>
+                    <td>Errores, re-trabajo</td>
+                    <td>Bot que no funciona, hay que rehacerlo</td>
+                    <td>Testing checklist antes de entregar</td>
+                </tr>
+            </table>
+
+            <h3>17.3 Ciclo PDCA (Plan-Do-Check-Act)</h3>
+            <div class="formula">
+                <strong>PLAN (Planificar):</strong><br>
+                - Identificar problema/oportunidad<br>
+                - Analizar causa raíz (5 Whys)<br>
+                - Proponer solución<br>
+                - Definir métricas de éxito<br><br>
+
+                <strong>DO (Hacer):</strong><br>
+                - Implementar solución en pequeña escala (piloto)<br>
+                - Documentar proceso<br>
+                - Recolectar datos<br><br>
+
+                <strong>CHECK (Verificar):</strong><br>
+                - Comparar resultados vs expectativa<br>
+                - Analizar qué funcionó y qué no<br>
+                - Identificar aprendizajes<br><br>
+
+                <strong>ACT (Actuar):</strong><br>
+                - Si funciona: Estandarizar y escalar<br>
+                - Si no funciona: Ajustar y repetir ciclo<br>
+                - Documentar lecciones aprendidas
+            </div>
+
+            <h3>17.4 Kaizen: Mejora Continua en ORION</h3>
+            <table>
+                <tr>
+                    <th>Frecuencia</th>
+                    <th>Actividad Kaizen</th>
+                    <th>Participantes</th>
+                    <th>Output</th>
+                </tr>
+                <tr>
+                    <td><strong>Semanal</strong></td>
+                    <td>Review de tickets pendientes</td>
+                    <td>Solo founder (tú)</td>
+                    <td>Lista priorizada de fixes</td>
+                </tr>
+                <tr>
+                    <td><strong>Mensual</strong></td>
+                    <td>Análisis de métricas</td>
+                    <td>Founder + feedback clientes</td>
+                    <td>Ajustes en proceso</td>
+                </tr>
+                <tr>
+                    <td><strong>Trimestral</strong></td>
+                    <td>Encuesta NPS a clientes</td>
+                    <td>Todos los clientes activos</td>
+                    <td>Roadmap de mejoras</td>
+                </tr>
+                <tr>
+                    <td><strong>Anual</strong></td>
+                    <td>Retrospectiva completa</td>
+                    <td>Founder + mentors/asesores</td>
+                    <td>Plan estratégico año siguiente</td>
+                </tr>
+            </table>
+
+            <h3>17.5 Value Stream Mapping: Proceso de Onboarding</h3>
+            <div class="info">
+                <strong>ESTADO ACTUAL (Antes de Lean):</strong><br>
+                1. Lead llena formulario → 24h<br>
+                2. Llamada discovery → 48h espera<br>
+                3. Envío propuesta → 24h<br>
+                4. Negociación → 72h<br>
+                5. Pago → 24h<br>
+                6. Desarrollo bot → 5 días<br>
+                7. Testing → 2 días<br>
+                8. Capacitación → 1 día<br>
+                <strong>TOTAL: 12-14 días</strong><br><br>
+
+                <strong>ESTADO FUTURO (Lean Optimizado):</strong><br>
+                1. Lead llena formulario → 2h respuesta automática<br>
+                2. Llamada + cierre mismo día → 1h<br>
+                3. Pago online inmediato → 10min<br>
+                4. Deploy de template → 2h<br>
+                5. Customización → 4h<br>
+                6. Testing automático → 30min<br>
+                7. Capacitación video grabado → 0h (async)<br>
+                <strong>TOTAL: 2 días 🎯</strong>
+            </div>
+
+            <h3>17.6 Kanban Board para ORION</h3>
+            <table>
+                <tr>
+                    <th>Backlog</th>
+                    <th>To Do</th>
+                    <th>In Progress</th>
+                    <th>Testing</th>
+                    <th>Done</th>
+                </tr>
+                <tr>
+                    <td>Ideas futuras<br>Feature requests<br>Mejoras</td>
+                    <td>Priorizados<br>Ready to start<br>Max 10 items</td>
+                    <td>Trabajando ahora<br><span class="verified">Max 3 WIP</span></td>
+                    <td>QA pendiente<br>Max 2</td>
+                    <td>Desplegado<br>Completo</td>
+                </tr>
+            </table>
+
+            <h3>17.7 Métricas Lean de ORION</h3>
+            <table>
+                <tr>
+                    <th>Métrica</th>
+                    <th>Qué Mide</th>
+                    <th>Meta</th>
+                    <th>Cómo Mejorar</th>
+                </tr>
+                <tr>
+                    <td><strong>Lead Time</strong></td>
+                    <td>Tiempo desde lead hasta cliente activo</td>
+                    <td class="verified">&lt;5 días</td>
+                    <td>Automatizar, templates</td>
+                </tr>
+                <tr>
+                    <td><strong>Cycle Time</strong></td>
+                    <td>Tiempo de desarrollo de bot</td>
+                    <td class="verified">&lt;8h</td>
+                    <td>Componentes reusables</td>
+                </tr>
+                <tr>
+                    <td><strong>First Contact Resolution</strong></td>
+                    <td>% tickets resueltos en primer contacto</td>
+                    <td class="verified">&gt;80%</td>
+                    <td>FAQ mejor, docs claros</td>
+                </tr>
+                <tr>
+                    <td><strong>Defect Rate</strong></td>
+                    <td>% bots con bugs en primera semana</td>
+                    <td class="verified">&lt;5%</td>
+                    <td>Testing checklist riguroso</td>
+                </tr>
+            </table>
+
+            <h3>17.8 Gemba Walk: Observación del Cliente</h3>
+            <p><strong>Gemba</strong> (現場) = "el lugar real" en japonés. Para ORION:</p>
+            <ul>
+                <li>Visitar al cliente en persona después del setup</li>
+                <li>Observar cómo usa el bot en su día a día</li>
+                <li>Preguntarle qué le gusta, qué no</li>
+                <li>Identificar pain points que no mencionó antes</li>
+                <li><strong>Frecuencia:</strong> 1 Gemba Walk por semana con cliente diferente</li>
+            </ul>
+        </div>
+
+        <!-- CAPÍTULO 18: POLÍTICAS OPERATIVAS -->
+        <div class="chapter" id="cap18">
+            <h2>CAPÍTULO 18: POLÍTICAS OPERATIVAS, CONTRATOS Y FACTURACIÓN</h2>
+
+            <h3>18.1 Política de Privacidad y Datos</h3>
+            <div class="critical">
+                <p class="critical-title">⚠️ CUMPLIMIENTO OBLIGATORIO</p>
+                <strong>ORION Tech se compromete a:</strong><br><br>
+                ✅ No vender ni compartir datos de clientes con terceros<br>
+                ✅ Encriptar todas las conversaciones de WhatsApp<br>
+                ✅ Almacenar datos en servidores seguros (Google Cloud us-central1)<br>
+                ✅ Backups diarios automáticos<br>
+                ✅ Retención: 90 días de logs, luego eliminación permanente<br>
+                ✅ Derecho del cliente a solicitar eliminación total de sus datos<br>
+                ✅ Cumplir con WhatsApp Business Policy (no spam, opt-in requerido)
+            </div>
+
+            <h3>18.2 Términos de Servicio (ToS) Resumidos</h3>
+            <table>
+                <tr>
+                    <th>Aspecto</th>
+                    <th>Política</th>
+                </tr>
+                <tr>
+                    <td><strong>Pago Setup Fee</strong></td>
+                    <td>50% al firmar contrato, 50% antes de go-live</td>
+                </tr>
+                <tr>
+                    <td><strong>Hosting Mensual</strong></td>
+                    <td>Cobro automático cada 1ro del mes, PayPal/Zelle</td>
+                </tr>
+                <tr>
+                    <td><strong>Periodo de Prueba</strong></td>
+                    <td>7 días gratis solo para clientes pre-aprobados</td>
+                </tr>
+                <tr>
+                    <td><strong>Garantía</strong></td>
+                    <td>30 días: si bot no reduce 20%+ mensajes manuales, reembolso setup</td>
+                </tr>
+                <tr>
+                    <td><strong>Cancelación</strong></td>
+                    <td>30 días de aviso, sin penalización. Setup fee no reembolsable</td>
+                </tr>
+                <tr>
+                    <td><strong>Uptime SLA</strong></td>
+                    <td>99% uptime garantizado, crédito de 1 mes si &lt;95%</td>
+                </tr>
+                <tr>
+                    <td><strong>Soporte</strong></td>
+                    <td>Email/WhatsApp L-V 9am-6pm PT, respuesta &lt;2h</td>
+                </tr>
+            </table>
+
+            <h3>18.3 Template de Contrato de Servicio</h3>
+            <div class="formula" style="font-size:0.9rem;">
+                <strong>CONTRATO DE SERVICIOS ORION TECH</strong><br><br>
+
+                Entre: ORION Tech ("Proveedor")<br>
+                Y: [Nombre Cliente] ("Cliente")<br>
+                Fecha: [DD/MM/AAAA]<br><br>
+
+                <strong>1. SERVICIOS:</strong> [Paquete] por $[setup] + $[hosting]/mes<br>
+                <strong>2. PAGOS:</strong> 50% firma, 50% antes go-live, luego mensual<br>
+                <strong>3. PLAZO:</strong> Go-live en 5 días laborales<br>
+                <strong>4. GARANTÍA:</strong> 30 días satisfacción garantizada<br>
+                <strong>5. TERMINACIÓN:</strong> 30 días aviso por escrito<br><br>
+
+                Firmas: _____________ (ORION) _____________ (Cliente)
+            </div>
+
+            <h3>18.4 Sistema de Facturación</h3>
+            <table>
+                <tr>
+                    <th>Tipo Invoice</th>
+                    <th>Cuándo</th>
+                    <th>Herramienta</th>
+                </tr>
+                <tr>
+                    <td>Setup</td>
+                    <td>Al firmar contrato</td>
+                    <td>Wave / QuickBooks</td>
+                </tr>
+                <tr>
+                    <td>Mensual</td>
+                    <td>1ro de cada mes</td>
+                    <td>Automático (Stripe)</td>
+                </tr>
+                <tr>
+                    <td>Recibo</td>
+                    <td>Al recibir pago</td>
+                    <td>Wave auto-email</td>
+                </tr>
+            </table>
+
+            <h3>18.5 Política de Reembolsos</h3>
+            <table>
+                <tr>
+                    <th>Escenario</th>
+                    <th>Política</th>
+                </tr>
+                <tr>
+                    <td>Bot no funciona (defecto nuestro)</td>
+                    <td>Reembolso 100% setup en 7 días</td>
+                </tr>
+                <tr>
+                    <td>Cliente no satisfecho</td>
+                    <td>Garantía 30 días con condiciones</td>
+                </tr>
+                <tr>
+                    <td>Cancelación anticipada</td>
+                    <td>Setup NO reembolsable, hosting prorrateado</td>
+                </tr>
+                <tr>
+                    <td>Downtime &gt;5%</td>
+                    <td>Crédito 1 mes hosting</td>
+                </tr>
+            </table>
+
+            <h3>18.6 SLA (Service Level Agreement)</h3>
+            <table>
+                <tr>
+                    <th>Servicio</th>
+                    <th>Nivel Comprometido</th>
+                    <th>Penalización</th>
+                </tr>
+                <tr>
+                    <td><strong>Uptime</strong></td>
+                    <td class="verified">99%</td>
+                    <td>Crédito 1 mes si &lt;95%</td>
+                </tr>
+                <tr>
+                    <td><strong>Tiempo Respuesta</strong></td>
+                    <td class="verified">&lt;2h</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td><strong>Tiempo Resolución</strong></td>
+                    <td class="verified">&lt;24h</td>
+                    <td>10% desc si &gt;48h</td>
+                </tr>
+                <tr>
+                    <td><strong>Deployment</strong></td>
+                    <td class="verified">&lt;5 días</td>
+                    <td>$50 desc/día extra</td>
+                </tr>
+            </table>
+
+            <h3>18.7 Política de Seguridad</h3>
+            <div class="warning">
+                <strong>Medidas de Seguridad:</strong><br><br>
+                🔒 Encriptación TLS 1.3<br>
+                🔒 2FA en cuentas admin<br>
+                🔒 Backups diarios (30 días retención)<br>
+                🔒 Acceso mínimo privilegio<br>
+                🔒 Monitoreo 24/7<br>
+                🔒 Parches seguridad en 48h<br>
+                🔒 Plan de respuesta a incidentes
+            </div>
+
+            <h3>18.8 Uso Aceptable - PROHIBIDO</h3>
+            <div class="critical">
+                <p class="critical-title">❌ CAUSAS DE TERMINACIÓN INMEDIATA</p>
+                <ul>
+                    <li>Spam o mensajes masivos no solicitados</li>
+                    <li>Contenido ilegal</li>
+                    <li>Violación de privacidad de terceros</li>
+                    <li>Ingeniería inversa del bot</li>
+                    <li>Reventa sin autorización</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="nav-container">
+            <a href="ORION_MANUAL_PROFESIONAL.html" class="nav-link">⬅️ Volver a Parte 1 (Capítulos 1-15)</a>
+        </div>
+
+        <!-- FOOTER -->
+        <div
+            style="text-align: center; padding: 40px; background: #f9f9f9; margin-top: 40px; border-top: 3px solid #333;">
+            <h3>ORION TECH</h3>
+            <p>Automatización WhatsApp para Negocios del Bay Area</p>
+            <p>San Jose, California | (669) 234-2444 | agem2013@gmail.com</p>
+            <p style="margin-top:20px; color:#666; font-size:0.85rem;">
+                Documento Profesional - Parte 2 | Diciembre 2024 | Versión 4.0<br>
+                Capítulos 16-18: Misión/Visión, Lean Quality, Políticas Operativas
+            </p>
+        </div>
+
+    </div>
+</body>
+
+</html>
