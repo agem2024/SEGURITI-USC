@@ -322,6 +322,31 @@
         </div>
     </div>
 
+    <!-- PRESENTATION VIDEO -->
+    <div class="section" id="presentation" style="padding: 60px 20px; text-align: center;">
+        <h2 class="section-title" data-i18n="video_title">MEET ALEX</h2>
+        <div style="position: relative; max-width: 900px; margin: 0 auto;">
+            <video id="presentationVideo"
+                style="width: 100%; border-radius: 20px; box-shadow: 0 0 50px rgba(0, 243, 255, 0.3);" autoplay
+                playsinline poster="images/cv_intro_eye_1765352245536.png">
+                <source src="images/presentacion.mp4" type="video/mp4">
+            </video>
+            <!-- Audio/Play Controls -->
+            <div style="position: absolute; bottom: 20px; right: 20px; display: flex; gap: 10px;">
+                <button id="playPauseBtn" onclick="togglePlay()" style="background: rgba(0,0,0,0.8); border: 1px solid var(--neon-blue); color: var(--neon-blue); 
+                               padding: 12px 20px; border-radius: 30px; cursor: pointer; font-size: 1rem;
+                               backdrop-filter: blur(10px);">
+                    ▶️ Play
+                </button>
+                <button id="muteBtn" onclick="toggleMute()" style="background: rgba(0,0,0,0.8); border: 1px solid var(--neon-purple); color: var(--neon-purple); 
+                               padding: 12px 20px; border-radius: 30px; cursor: pointer; font-size: 1rem;
+                               backdrop-filter: blur(10px);">
+                    🔊 Audio
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- SERVICES -->
     <div class="section" id="work">
         <h2 class="section-title" data-i18n="section_title">SYSTEM ARCHITECTURE</h2>
@@ -497,6 +522,48 @@
         document.addEventListener('DOMContentLoaded', () => {
             const savedLang = localStorage.getItem('cv_lang') || 'en';
             setLang(savedLang);
+        });
+
+        // Video Controls
+        function togglePlay() {
+            const video = document.getElementById('presentationVideo');
+            const btn = document.getElementById('playPauseBtn');
+            if (video.paused) {
+                video.play();
+                btn.textContent = '⏸️ Pause';
+            } else {
+                video.pause();
+                btn.textContent = '▶️ Play';
+            }
+        }
+
+        function toggleMute() {
+            const video = document.getElementById('presentationVideo');
+            const btn = document.getElementById('muteBtn');
+            if (video.muted) {
+                video.muted = false;
+                btn.textContent = '🔊 Audio ON';
+                btn.style.borderColor = '#00f3ff';
+                btn.style.color = '#00f3ff';
+            } else {
+                video.muted = true;
+                btn.textContent = '🔇 Audio OFF';
+                btn.style.borderColor = '#bc13fe';
+                btn.style.color = '#bc13fe';
+            }
+        }
+
+        // Auto-update button states
+        document.addEventListener('DOMContentLoaded', () => {
+            const video = document.getElementById('presentationVideo');
+            if (video) {
+                video.addEventListener('play', () => {
+                    document.getElementById('playPauseBtn').textContent = '⏸️ Pause';
+                });
+                video.addEventListener('pause', () => {
+                    document.getElementById('playPauseBtn').textContent = '▶️ Play';
+                });
+            }
         });
     </script>
 
