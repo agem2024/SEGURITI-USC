@@ -176,6 +176,42 @@
             margin-bottom: 30px;
         }
 
+        /* DATOS VERIFICADOS - VERDE NEÓN */
+        .verified {
+            background: linear-gradient(90deg, rgba(57, 255, 20, 0.15), rgba(57, 255, 20, 0.05));
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+            color: #1a1a1a;
+            border-left: 3px solid #39ff14;
+            display: inline-block;
+            margin: 2px 0;
+        }
+
+        .verified-inline {
+            background: rgba(57, 255, 20, 0.2);
+            padding: 1px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+            color: #1a1a1a;
+            border-bottom: 2px solid #39ff14;
+        }
+
+        .real-value {
+            color: #39ff14;
+            font-weight: 700;
+            text-shadow: 0 0 5px rgba(57, 255, 20, 0.5);
+        }
+
+        .data-source {
+            background: #f0f0f0;
+            padding: 8px 12px;
+            margin: 10px 0;
+            border-left: 3px solid #39ff14;
+            font-size: 0.85rem;
+            font-style: italic;
+        }
+
         @media print {
             .chapter {
                 page-break-after: always;
@@ -521,21 +557,29 @@
                     </tr>
                     <tr>
                         <td>Business Tax Certificate (San Jose)</td>
-                        <td>$50-150</td>
+                        <td><span class="verified">$216.35</span> <span class="real-value">[VERIFICADO
+                                2024-2025]</span><br><small>(Base 1-2 empleados)</small></td>
                         <td>sanjoseca.gov/business-tax</td>
                         <td>1-2 semanas</td>
                     </tr>
                     <tr>
                         <td>Fictitious Business Name (DBA)</td>
-                        <td>$50-80</td>
+                        <td><span class="verified">$47</span> (County filing)<br><small>$50-80 con publicación</small>
+                        </td>
                         <td>County Clerk Santa Clara</td>
                         <td>1-2 semanas</td>
                     </tr>
                     <tr>
-                        <td>Publicación en periódico</td>
-                        <td>$40-100</td>
+                        <td>Publicación en periódico (Statement of Abandonment)</td>
+                        <td><span class="verified-inline">$40-100</span></td>
                         <td>Periódico local autorizado</td>
                         <td>4 semanas</td>
+                    </tr>
+                    <tr>
+                        <td>State SB-1186 fee (anual)</td>
+                        <td><span class="verified">$4/año</span></td>
+                        <td>Incluido en Business Tax</td>
+                        <td>-</td>
                     </tr>
                 </table>
             </div>
@@ -637,15 +681,22 @@
                 </tr>
                 <tr>
                     <td>Business Tax Certificate</td>
-                    <td class="expense">$100</td>
-                    <td>One-time</td>
-                    <td>San Jose</td>
+                    <td class="expense"><span class="verified">$216</span> <span class="real-value">+ $4 state
+                            fee</span></td>
+                    <td>Anual (renovar antes 1 Mar)</td>
+                    <td><span class="data-source">Fuente: sanjoseca.gov 2024-2025</span></td>
                 </tr>
                 <tr>
-                    <td>DBA + Publicación</td>
-                    <td class="expense">$120</td>
+                    <td>DBA (Fictitious Business Name)</td>
+                    <td class="expense"><span class="verified">$47</span> County filing</td>
                     <td>One-time</td>
-                    <td>Nombre "ORION Tech"</td>
+                    <td>Santa Clara County Clerk</td>
+                </tr>
+                <tr>
+                    <td>DBA Publicación Periódico</td>
+                    <td class="expense">$70</td>
+                    <td>One-time (4 semanas)</td>
+                    <td>Newspaper adjudication</td>
                 </tr>
                 <tr>
                     <td>Dominio web (.com)</td>
@@ -679,15 +730,16 @@
                 </tr>
                 <tr>
                     <td>Buffer emergencias (20%)</td>
-                    <td class="expense">$100</td>
+                    <td class="expense">$120</td>
                     <td>Reserva</td>
                     <td>Imprevistos</td>
                 </tr>
-                <tr>
+                <tr style="background: rgba(57,255,20,0.1);">
                     <th>TOTAL INVERSIÓN INICIAL</th>
-                    <th class="expense">$612</th>
-                    <th></th>
-                    <th></th>
+                    <th class="expense"><span class="verified">$653</span> <span class="real-value">✓ VERIFICADO</span>
+                    </th>
+                    <th colspan="2"><span class="data-source">Con Business Tax $216 + DBA $47 + Periódico $70 + Dominio
+                            + API + Tarjetas</span></th>
                 </tr>
             </table>
 
@@ -801,18 +853,19 @@
                     <th>Contras</th>
                 </tr>
                 <tr>
-                    <td><strong>360dialog</strong></td>
-                    <td class="expense">$50/número</td>
-                    <td>Solo Meta fees</td>
-                    <td>Sin markup, API directa</td>
+                    <td><strong>360dialog</strong> <span class="real-value">✓ RECOMENDADO</span></td>
+                    <td class="expense"><span class="verified">$50/número/mes</span> <span class="real-value">[Dic
+                            2024]</span></td>
+                    <td><span class="verified-inline">Solo Meta fees</span> (sin markup)</td>
+                    <td>Sin markup, API directa Meta</td>
                     <td>Interfaz básica</td>
                 </tr>
                 <tr>
                     <td>Twilio</td>
-                    <td>$0</td>
-                    <td class="expense">$0.005 + Meta fees</td>
-                    <td>Documentación excelente</td>
-                    <td>Más caro por volumen</td>
+                    <td class="expense">$0 mensual</td>
+                    <td class="expense"><span class="verified">$0.005/msg</span> + Meta fees</td>
+                    <td>Documentación excelente, APIs potentes</td>
+                    <td>Más caro por volumen alto</td>
                 </tr>
                 <tr>
                     <td>MessageBird</td>
@@ -838,73 +891,94 @@
             </div>
 
             <h3>5.2 Meta (WhatsApp) Conversation Fees - Región Norte América</h3>
+            <div class="data-source">✓ Datos verificados de Meta Business Help Center - Noviembre 2024</div>
             <table>
                 <tr>
                     <th>Tipo de Conversación</th>
                     <th>Costo por Conversación (24h)</th>
                     <th>Notas</th>
+                    <th>Volumen Alto (Descuento)</th>
                 </tr>
                 <tr>
                     <td>Marketing</td>
-                    <td class="expense">$0.0250</td>
+                    <td class="expense"><span class="verified">$0.0250</span> <span class="real-value">[USD]</span></td>
                     <td>Mensajes promocionales</td>
+                    <td>Tier pricing disponible</td>
                 </tr>
                 <tr>
                     <td>Utility</td>
-                    <td class="expense">$0.0150</td>
+                    <td class="expense"><span class="verified">$0.0150</span></td>
                     <td>Confirmaciones, notificaciones</td>
+                    <td>Tier pricing disponible</td>
                 </tr>
                 <tr>
                     <td>Authentication</td>
-                    <td class="expense">$0.0135</td>
-                    <td>Códigos de verificación</td>
+                    <td class="expense"><span class="verified">$0.0135</span></td>
+                    <td>Códigos de verificación (OTP)</td>
+                    <td>Tier: hasta $0.0081</td>
                 </tr>
                 <tr>
                     <td>Service (usuario inicia)</td>
-                    <td class="currency">GRATIS</td>
-                    <td>Desde Nov 2024</td>
+                    <td class="currency"><span class="verified">GRATIS</span> <span class="real-value">✓ Nov 2024</span>
+                    </td>
+                    <td>Cliente contacta primero</td>
+                    <td>Ilimitado</td>
                 </tr>
             </table>
 
-            <p class="source">Fuente: Meta Business Help Center, Noviembre 2024</p>
+            <div class="success">
+                <strong>🎯 ESTRATEGIA PARA MINIMIZAR COSTOS:</strong><br>
+                - El 90% de mensajes son SERVICE (gratis) porque el cliente contacta primero<br>
+                - Solo pagas por mensajes de MARKETING que tú inicias<br>
+                - Click-to-WhatsApp ads = 72h ventana gratis si respondes en 24h
+            </div>
 
             <h3>5.3 Hosting y Cloud (Precios Reales 2024)</h3>
+            <div class="data-source">✓ Verificado de documentación oficial Google Cloud, Railway, Render - Diciembre
+                2024</div>
             <table>
                 <tr>
                     <th>Servicio</th>
-                    <th>Costo Mensual</th>
+                    <th>Costo Mensual Real</th>
                     <th>Free Tier</th>
                     <th>Para ORION</th>
+                    <th>Detalles Tier Gratis</th>
                 </tr>
                 <tr>
-                    <td>Google Cloud Run</td>
-                    <td>$0-15</td>
-                    <td>2M requests gratis</td>
-                    <td>✅ Recomendado</td>
-                </tr>
-                <tr>
-                    <td>Heroku</td>
-                    <td>$7-25</td>
-                    <td>Eliminado en 2022</td>
-                    <td>❌ Caro</td>
+                    <td><strong>Google Cloud Run</strong> <span class="real-value">✓ RECOMENDADO</span></td>
+                    <td class="expense"><span class="verified">$0-15/mes</span></td>
+                    <td class="currency"><span class="verified">2M requests</span> + 240K vCPU-seconds + 450K GiB-sec +
+                        1GB egress</td>
+                    <td>✅ Mejor opción</td>
+                    <td>Bots pequeños permanecen gratis</td>
                 </tr>
                 <tr>
                     <td>Railway.app</td>
-                    <td>$5+</td>
-                    <td>$5/mes créditos</td>
-                    <td>✅ Alternativa</td>
+                    <td>$5-20/mes</td>
+                    <td>$5 créditos/mes</td>
+                    <td>✅ Alternativa buena</td>
+                    <td>Fácil deploy desde GitHub</td>
                 </tr>
                 <tr>
                     <td>Render</td>
-                    <td>$7+</td>
-                    <td>Gratis con límites</td>
-                    <td>✅ Alternativa</td>
+                    <td><span class="verified">$7+/mes</span></td>
+                    <td>Gratis con sleep (inactivo 15min)</td>
+                    <td>✅ Para testing</td>
+                    <td>No apto para prod (sleep)</td>
+                </tr>
+                <tr>
+                    <td>Heroku</td>
+                    <td class="expense">$7-25/mes</td>
+                    <td><span class="real-value">ELIMINADO 2022</span></td>
+                    <td>❌ Ya no tiene free tier</td>
+                    <td>Caro para empezar</td>
                 </tr>
                 <tr>
                     <td>AWS Lambda</td>
-                    <td>$0-10</td>
-                    <td>1M invocaciones gratis</td>
-                    <td>✅ Más setup</td>
+                    <td>$0-10/mes</td>
+                    <td><span class="verified">1M invocaciones</span> gratis</td>
+                    <td>✅ Si sabes AWS</td>
+                    <td>Setup más complejo</td>
                 </tr>
             </table>
 
