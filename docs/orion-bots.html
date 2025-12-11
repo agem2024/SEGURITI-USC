@@ -4,20 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ORION Tech | WhatsApp Bots & Custom Apps | Bay Area</title>
+    <title>ORION Tech | AI Automation & Custom Apps | Bay Area</title>
     <meta name="description"
-        content="WhatsApp bots and custom apps for restaurants, liquor stores, salons, and businesses. 24/7 automation. Serving Bay Area in 5 languages.">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+        content="Futuristic AI automation: WhatsApp bots, custom apps, enterprise solutions. Bay Area's top AI agency.">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <style>
         :root {
-            --primary: #25D366;
-            --primary-dark: #128C7E;
-            --secondary: #075E54;
-            --accent: #34B7F1;
-            --dark: #0a0a0a;
-            --light: #ffffff;
-            --gray: #6b7280;
-            --gradient: linear-gradient(135deg, #25D366 0%, #128C7E 50%, #075E54 100%);
+            --neon-green: #25D366;
+            --neon-blue: #00f3ff;
+            --neon-purple: #bc13fe;
+            --dark: #000;
+            --darker: #050505;
+            --light: #fff;
+            --gray: #888;
         }
 
         * {
@@ -35,6 +36,46 @@
             background: var(--dark);
             color: var(--light);
             line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* GLOW EFFECTS */
+        .glow-text {
+            text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue), 0 0 40px var(--neon-blue);
+        }
+
+        .glow-green {
+            text-shadow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-green);
+        }
+
+        .glow-box {
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.3), inset 0 0 30px rgba(0, 243, 255, 0.05);
+        }
+
+        /* ANIMATED BACKGROUND */
+        .cyber-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background:
+                linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+                radial-gradient(ellipse at 50% 50%, rgba(0, 243, 255, 0.05) 0%, transparent 70%);
+            background-size: 80px 80px, 80px 80px, 100% 100%;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(80px);
+            }
         }
 
         /* LANGUAGE SELECTOR */
@@ -45,16 +86,16 @@
             z-index: 1001;
             display: flex;
             gap: 5px;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9);
             padding: 8px 12px;
             border-radius: 30px;
-            border: 1px solid rgba(37, 211, 102, 0.3);
+            border: 1px solid rgba(0, 243, 255, 0.3);
         }
 
         .lang-btn {
             background: transparent;
             border: none;
-            color: #888;
+            color: #666;
             padding: 5px 10px;
             cursor: pointer;
             font-size: 0.8rem;
@@ -63,12 +104,13 @@
         }
 
         .lang-btn.active {
-            background: var(--primary);
-            color: white;
+            background: var(--neon-blue);
+            color: black;
+            box-shadow: 0 0 15px var(--neon-blue);
         }
 
         .lang-btn:hover {
-            color: white;
+            color: var(--neon-blue);
         }
 
         /* NAV */
@@ -80,36 +122,42 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(20px);
             z-index: 1000;
-            border-bottom: 1px solid rgba(37, 211, 102, 0.2);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.2);
         }
 
         .logo {
+            font-family: 'Orbitron', sans-serif;
             font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--primary);
+            font-weight: 900;
+            color: var(--neon-blue);
             text-decoration: none;
+            letter-spacing: 3px;
         }
 
         .logo span {
-            color: var(--light);
+            color: var(--neon-green);
         }
 
         .nav-cta {
-            background: var(--gradient);
-            color: white;
+            background: linear-gradient(135deg, var(--neon-green), var(--neon-blue));
+            color: black;
             padding: 12px 30px;
-            border-radius: 50px;
+            border-radius: 0;
             text-decoration: none;
-            font-weight: 600;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+            font-weight: 700;
+            clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
             transition: 0.3s;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
         }
 
         .nav-cta:hover {
-            transform: translateY(-2px);
+            transform: scale(1.05);
+            box-shadow: 0 0 30px var(--neon-green);
         }
 
         /* HERO */
@@ -120,31 +168,70 @@
             justify-content: center;
             text-align: center;
             padding: 120px 5% 80px;
-            background: radial-gradient(ellipse at 20% 50%, rgba(37, 211, 102, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 50%, rgba(52, 183, 241, 0.1) 0%, transparent 50%), var(--dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            z-index: -1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.9) 100%);
         }
 
         .hero-content {
-            max-width: 900px;
+            max-width: 1000px;
+            z-index: 1;
         }
 
         .badge {
             display: inline-block;
-            background: rgba(37, 211, 102, 0.15);
-            border: 1px solid rgba(37, 211, 102, 0.3);
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            color: var(--primary);
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid var(--neon-blue);
+            padding: 10px 25px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            color: var(--neon-blue);
             margin-bottom: 30px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 5px var(--neon-blue);
+            }
+
+            50% {
+                box-shadow: 0 0 25px var(--neon-blue);
+            }
         }
 
         h1 {
-            font-size: clamp(2.2rem, 5vw, 4rem);
-            font-weight: 800;
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 900;
             line-height: 1.1;
             margin-bottom: 25px;
-            background: linear-gradient(to right, #fff, #25D366);
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-green), var(--neon-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -165,45 +252,44 @@
         }
 
         .btn-primary {
-            background: var(--gradient);
-            color: white;
-            padding: 18px 40px;
-            border-radius: 50px;
+            background: linear-gradient(135deg, var(--neon-green), #128C7E);
+            color: black;
+            padding: 18px 45px;
             text-decoration: none;
             font-weight: 700;
             font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 30px rgba(37, 211, 102, 0.4);
+            clip-path: polygon(15px 0, 100% 0, calc(100% - 15px) 100%, 0 100%);
             transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .btn-primary:hover {
             transform: scale(1.05);
+            box-shadow: 0 0 40px var(--neon-green);
         }
 
         .btn-secondary {
             background: transparent;
-            color: var(--light);
-            padding: 18px 40px;
-            border-radius: 50px;
+            color: var(--neon-blue);
+            padding: 18px 45px;
             text-decoration: none;
             font-weight: 600;
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            border: 2px solid var(--neon-blue);
             transition: 0.3s;
         }
 
         .btn-secondary:hover {
-            border-color: var(--primary);
-            color: var(--primary);
+            background: var(--neon-blue);
+            color: black;
+            box-shadow: 0 0 30px var(--neon-blue);
         }
 
         .stats {
             display: flex;
             justify-content: center;
-            gap: 50px;
-            margin-top: 50px;
+            gap: 60px;
+            margin-top: 60px;
             flex-wrap: wrap;
         }
 
@@ -212,34 +298,36 @@
         }
 
         .stat-number {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--primary);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--neon-blue);
         }
 
         .stat-label {
             color: var(--gray);
             font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         /* SECTIONS */
         .section {
-            padding: 80px 5%;
-        }
-
-        .section-dark {
-            background: #111;
+            padding: 100px 5%;
+            position: relative;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
 
         .section-title h2 {
-            font-size: 2.2rem;
-            font-weight: 800;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
             margin-bottom: 15px;
+            letter-spacing: 2px;
         }
 
         .section-title p {
@@ -251,204 +339,212 @@
         /* SERVICES */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 25px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .service-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 35px;
+            background: rgba(0, 243, 255, 0.02);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            padding: 40px;
             transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+            animation: scanLine 3s infinite;
+        }
+
+        @keyframes scanLine {
+            to {
+                left: 100%;
+            }
         }
 
         .service-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-5px);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 40px rgba(0, 243, 255, 0.2);
+            transform: translateY(-10px);
         }
 
         .service-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 10px var(--neon-blue));
         }
 
         .service-card h3 {
+            font-family: 'Orbitron', sans-serif;
             font-size: 1.2rem;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
+            color: var(--neon-blue);
         }
 
         .service-card p {
             color: var(--gray);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
         }
 
-        /* INDUSTRIES */
-        .industries-grid {
+        /* DEMOS */
+        .demos-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            max-width: 1100px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
-        .industry-card {
-            background: linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(52, 183, 241, 0.05));
-            border: 1px solid rgba(37, 211, 102, 0.2);
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
+        .demo-card {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(188, 19, 254, 0.3);
+            border-radius: 0;
+            overflow: hidden;
+            transition: 0.3s;
         }
 
-        .industry-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
+        .demo-card:hover {
+            border-color: var(--neon-purple);
+            box-shadow: 0 0 50px rgba(188, 19, 254, 0.3);
         }
 
-        .industry-card h3 {
+        .demo-video {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .demo-content {
+            padding: 25px;
+        }
+
+        .demo-badge {
+            display: inline-block;
+            background: var(--neon-purple);
+            color: white;
+            padding: 3px 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .demo-card h3 {
+            font-family: 'Orbitron', sans-serif;
             font-size: 1.1rem;
             margin-bottom: 10px;
         }
 
-        .industry-card p {
+        .demo-card p {
             color: var(--gray);
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             margin-bottom: 15px;
         }
 
-        .industry-price {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary);
+        .demo-link {
+            color: var(--neon-blue);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.3s;
         }
 
-        .industry-price span {
-            font-size: 0.8rem;
-            font-weight: 400;
-            color: var(--gray);
+        .demo-link:hover {
+            text-shadow: 0 0 10px var(--neon-blue);
         }
 
-        /* PRICING */
-        .pricing-grid {
+        /* INDUSTRIES */
+        .ind-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            max-width: 1100px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
-        .price-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 25px;
-            padding: 40px;
+        .ind-card {
+            background: linear-gradient(135deg, rgba(0, 243, 255, 0.05), rgba(188, 19, 254, 0.05));
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            padding: 30px;
             text-align: center;
-            position: relative;
+            transition: 0.3s;
         }
 
-        .price-card.featured {
-            border-color: var(--primary);
-            background: rgba(37, 211, 102, 0.05);
+        .ind-card:hover {
+            transform: scale(1.05);
+            border-color: var(--neon-green);
         }
 
-        .price-card.featured::before {
-            content: '⭐';
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--gradient);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
+        .ind-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
         }
 
-        .price-name {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--gray);
-            margin-bottom: 10px;
-        }
-
-        .price-amount {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--primary);
-        }
-
-        .price-period {
-            color: var(--gray);
-            font-size: 0.85rem;
-            margin-bottom: 25px;
-        }
-
-        .price-features {
-            text-align: left;
-            margin-bottom: 30px;
-        }
-
-        .price-features li {
-            list-style: none;
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .ind-card h3 {
+            font-family: 'Orbitron', sans-serif;
             font-size: 0.9rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
         }
 
-        .price-features li::before {
-            content: '✓';
-            color: var(--primary);
-            font-weight: bold;
+        .ind-price {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            color: var(--neon-green);
+            font-weight: 700;
         }
 
         /* CTA */
         .cta-section {
-            padding: 80px 5%;
-            background: var(--gradient);
+            padding: 100px 5%;
             text-align: center;
+            position: relative;
+            background: linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(0, 243, 255, 0.1));
+            border-top: 1px solid var(--neon-blue);
+            border-bottom: 1px solid var(--neon-blue);
         }
 
         .cta-section h2 {
+            font-family: 'Orbitron', sans-serif;
             font-size: 2.5rem;
-            font-weight: 800;
+            font-weight: 900;
             margin-bottom: 20px;
+            letter-spacing: 3px;
         }
 
         .cta-section p {
             font-size: 1.1rem;
-            opacity: 0.9;
+            color: var(--gray);
             max-width: 600px;
             margin: 0 auto 30px;
-        }
-
-        .cta-section .btn-primary {
-            background: white;
-            color: var(--secondary);
         }
 
         /* FOOTER */
         footer {
             padding: 40px 5%;
-            background: #050505;
+            background: var(--darker);
             text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(0, 243, 255, 0.1);
         }
 
         footer p {
             color: var(--gray);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         footer a {
-            color: var(--primary);
+            color: var(--neon-blue);
             text-decoration: none;
         }
 
@@ -459,27 +555,26 @@
             right: 25px;
             width: 60px;
             height: 60px;
-            background: var(--primary);
-            border-radius: 50%;
+            background: var(--neon-green);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.8rem;
             text-decoration: none;
-            box-shadow: 0 5px 25px rgba(37, 211, 102, 0.5);
             z-index: 999;
-            animation: pulse 2s infinite;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            animation: floatPulse 2s infinite;
         }
 
-        @keyframes pulse {
+        @keyframes floatPulse {
 
             0%,
             100% {
-                transform: scale(1);
+                box-shadow: 0 0 20px var(--neon-green);
             }
 
             50% {
-                transform: scale(1.1);
+                box-shadow: 0 0 40px var(--neon-green);
             }
         }
 
@@ -489,29 +584,26 @@
                 bottom: 100px;
                 right: 15px;
                 flex-direction: column;
-                padding: 10px;
-            }
-
-            .hero {
-                padding: 100px 5% 50px;
             }
 
             h1 {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
             }
 
             .stats {
-                gap: 25px;
+                gap: 30px;
             }
 
-            .cta-section h2 {
-                font-size: 1.8rem;
+            .stat-number {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
 
 <body>
+
+    <div class="cyber-grid"></div>
 
     <!-- LANGUAGE SELECTOR -->
     <div class="lang-selector">
@@ -524,81 +616,131 @@
 
     <!-- NAV -->
     <nav>
-        <a href="#" class="logo">🤖 ORION<span>Tech</span></a>
-        <a href="https://wa.me/16692342444?text=Hi!%20I%20want%20info%20about%20your%20services" class="nav-cta"
-            data-i18n="nav_cta">Get Quote</a>
+        <a href="#" class="logo">ORION<span>_</span>TECH</a>
+        <a href="https://wa.me/16692342444?text=Hi!%20I%20want%20a%20quote" class="nav-cta"
+            data-i18n="nav_cta">Initialize Contact</a>
     </nav>
 
     <!-- HERO -->
     <section class="hero">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="images/cv_intro_eye_1765352245536.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
         <div class="hero-content">
-            <span class="badge" data-i18n="badge">🚀 AI Automation for Bay Area Businesses</span>
-            <h1 data-i18n="hero_title">WhatsApp Bots & Custom Apps for Your Business</h1>
-            <p data-i18n="hero_desc">Automate customer service, bookings, orders, and more. We build custom solutions
-                for restaurants, liquor stores, salons, and service businesses.</p>
+            <span class="badge" data-i18n="badge">⚡ NEXT-GEN AI AUTOMATION</span>
+            <h1 data-i18n="hero_title">DEPLOY INTELLIGENT SYSTEMS FOR YOUR BUSINESS</h1>
+            <p data-i18n="hero_desc">WhatsApp bots, custom apps, AI integration. We build autonomous systems that work
+                24/7 so you don't have to.</p>
             <div class="hero-buttons">
-                <a href="https://wa.me/16692342444?text=Hi!%20I%20need%20a%20bot%20or%20app%20for%20my%20business"
-                    class="btn-primary">
-                    💬 <span data-i18n="hero_cta1">Free Consultation</span>
+                <a href="https://wa.me/16692342444?text=Deploy%20AI%20for%20my%20business" class="btn-primary">
+                    💬 <span data-i18n="hero_cta1">DEPLOY NOW</span>
                 </a>
-                <a href="#services" class="btn-secondary" data-i18n="hero_cta2">See Services</a>
+                <a href="#demos" class="btn-secondary" data-i18n="hero_cta2">VIEW DEMOS</a>
             </div>
             <div class="stats">
                 <div class="stat">
                     <div class="stat-number">24/7</div>
-                    <div class="stat-label" data-i18n="stat1">Available</div>
+                    <div class="stat-label" data-i18n="stat1">ONLINE</div>
                 </div>
                 <div class="stat">
                     <div class="stat-number">5</div>
-                    <div class="stat-label" data-i18n="stat2">Languages</div>
+                    <div class="stat-label" data-i18n="stat2">LANGUAGES</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-number">100+</div>
-                    <div class="stat-label" data-i18n="stat3">Businesses Served</div>
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label" data-i18n="stat3">SCALABILITY</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- SERVICES -->
-    <section class="section section-dark" id="services">
+    <section class="section" id="services">
         <div class="section-title">
-            <h2 data-i18n="services_title">Our Services</h2>
-            <p data-i18n="services_desc">Complete digital solutions for individuals, businesses, and enterprises</p>
+            <h2 class="glow-text" data-i18n="services_title">// CAPABILITIES</h2>
+            <p data-i18n="services_desc">What we deploy for individuals, businesses, and enterprises</p>
         </div>
         <div class="services-grid">
             <div class="service-card">
-                <div class="service-icon">💬</div>
-                <h3 data-i18n="svc1_title">WhatsApp Bots</h3>
-                <p data-i18n="svc1_desc">24/7 automated responses, menus, booking, orders. Your business never sleeps.
-                </p>
+                <div class="service-icon">🤖</div>
+                <h3 data-i18n="svc1_title">WHATSAPP AGENTS</h3>
+                <p data-i18n="svc1_desc">Autonomous bots that handle customer service, orders, bookings. Zero human
+                    intervention required.</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">📱</div>
-                <h3 data-i18n="svc2_title">Custom Mobile Apps</h3>
-                <p data-i18n="svc2_desc">iOS & Android apps tailored to your business. Ordering, loyalty programs,
-                    notifications.</p>
+                <h3 data-i18n="svc2_title">MOBILE SYSTEMS</h3>
+                <p data-i18n="svc2_desc">Native iOS & Android apps. Push notifications, offline mode, seamless UX.</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">🌐</div>
-                <h3 data-i18n="svc3_title">Web Applications</h3>
-                <p data-i18n="svc3_desc">Professional websites, online stores, booking systems, admin dashboards.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🤖</div>
-                <h3 data-i18n="svc4_title">AI Integration</h3>
-                <p data-i18n="svc4_desc">GPT-4 powered chatbots, image analysis, document processing, voice assistants.
+                <h3 data-i18n="svc3_title">WEB PLATFORMS</h3>
+                <p data-i18n="svc3_desc">E-commerce, dashboards, admin panels, booking engines. Full-stack solutions.
                 </p>
             </div>
             <div class="service-card">
-                <div class="service-icon">📊</div>
-                <h3 data-i18n="svc5_title">Business Automation</h3>
-                <p data-i18n="svc5_desc">Invoicing, inventory, CRM, email automation. Less manual work, more profit.</p>
+                <div class="service-icon">🧠</div>
+                <h3 data-i18n="svc4_title">AI INTEGRATION</h3>
+                <p data-i18n="svc4_desc">GPT-4, Gemini, Claude. Vision, voice, text. Your business powered by the latest
+                    AI.</p>
             </div>
             <div class="service-card">
-                <div class="service-icon">🔧</div>
-                <h3 data-i18n="svc6_title">Maintenance & Support</h3>
-                <p data-i18n="svc6_desc">Ongoing updates, hosting, security patches, 24/7 monitoring and support.</p>
+                <div class="service-icon">⚡</div>
+                <h3 data-i18n="svc5_title">WORKFLOW AUTOMATION</h3>
+                <p data-i18n="svc5_desc">Invoicing, inventory, CRM sync, email flows. Eliminate manual work.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🛡️</div>
+                <h3 data-i18n="svc6_title">24/7 OPERATIONS</h3>
+                <p data-i18n="svc6_desc">Monitoring, updates, security, backups. We keep your systems running.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEMOS -->
+    <section class="section" id="demos" style="background: rgba(0,0,0,0.5);">
+        <div class="section-title">
+            <h2 class="glow-text" data-i18n="demos_title">// LIVE EXAMPLES</h2>
+            <p data-i18n="demos_desc">See our technology in action</p>
+        </div>
+        <div class="demos-grid">
+            <div class="demo-card">
+                <video class="demo-video" autoplay muted loop playsinline>
+                    <source src="images/cv_digital_ops_1765352273224.mp4" type="video/mp4">
+                </video>
+                <div class="demo-content">
+                    <span class="demo-badge">WhatsApp Bot</span>
+                    <h3 data-i18n="demo1_title">Restaurant Order Bot</h3>
+                    <p data-i18n="demo1_desc">Automated menu, order taking, payment links, delivery tracking. 40% more
+                        orders.</p>
+                    <a href="https://wa.me/16692342444?text=Demo%20restaurant%20bot" class="demo-link">→ Request
+                        Demo</a>
+                </div>
+            </div>
+            <div class="demo-card">
+                <video class="demo-video" autoplay muted loop playsinline>
+                    <source src="images/cv_architect_holo_1765352204492.mp4" type="video/mp4">
+                </video>
+                <div class="demo-content">
+                    <span class="demo-badge">Custom App</span>
+                    <h3 data-i18n="demo2_title">Service Booking App</h3>
+                    <p data-i18n="demo2_desc">Appointment scheduling, reminders, loyalty points, payment processing. For
+                        salons, clinics, contractors.</p>
+                    <a href="https://wa.me/16692342444?text=Demo%20booking%20app" class="demo-link">→ Request Demo</a>
+                </div>
+            </div>
+            <div class="demo-card">
+                <video class="demo-video" autoplay muted loop playsinline>
+                    <source src="images/cv_eco_tech_1765352222464.mp4" type="video/mp4">
+                </video>
+                <div class="demo-content">
+                    <span class="demo-badge">AI System</span>
+                    <h3 data-i18n="demo3_title">Quote Estimator Bot</h3>
+                    <p data-i18n="demo3_desc">Customer sends photo → AI analyzes → Instant quote generated. For
+                        plumbers, contractors, repair services.</p>
+                    <a href="https://wa.me/16692342444?text=Demo%20quote%20bot" class="demo-link">→ Request Demo</a>
+                </div>
             </div>
         </div>
     </section>
@@ -606,255 +748,164 @@
     <!-- INDUSTRIES -->
     <section class="section" id="industries">
         <div class="section-title">
-            <h2 data-i18n="ind_title">Solutions by Industry</h2>
-            <p data-i18n="ind_desc">Specialized packages for Bay Area businesses</p>
+            <h2 class="glow-text" data-i18n="ind_title">// INDUSTRY PACKAGES</h2>
+            <p data-i18n="ind_desc">Specialized solutions starting from</p>
         </div>
-        <div class="industries-grid">
-            <div class="industry-card">
-                <div class="industry-icon">🍽️</div>
-                <h3 data-i18n="ind1_title">Restaurants & Taquerias</h3>
-                <p data-i18n="ind1_desc">Online ordering, table reservations, menu bot, delivery tracking</p>
-                <div class="industry-price">$1,497 <span data-i18n="ind_from">from</span></div>
+        <div class="ind-grid">
+            <div class="ind-card">
+                <div class="ind-icon">🍽️</div>
+                <h3>RESTAURANTS</h3>
+                <div class="ind-price">$1,497</div>
             </div>
-            <div class="industry-card">
-                <div class="industry-icon">🍺</div>
-                <h3 data-i18n="ind2_title">Liquor Stores</h3>
-                <p data-i18n="ind2_desc">Product catalog, age verification, delivery orders, promotions</p>
-                <div class="industry-price">$1,297 <span data-i18n="ind_from">from</span></div>
+            <div class="ind-card">
+                <div class="ind-icon">🍺</div>
+                <h3>LIQUOR STORES</h3>
+                <div class="ind-price">$1,297</div>
             </div>
-            <div class="industry-card">
-                <div class="industry-icon">💇</div>
-                <h3 data-i18n="ind3_title">Beauty Salons</h3>
-                <p data-i18n="ind3_desc">Appointment booking, service catalog, reminders, loyalty points</p>
-                <div class="industry-price">$997 <span data-i18n="ind_from">from</span></div>
+            <div class="ind-card">
+                <div class="ind-icon">💇</div>
+                <h3>BEAUTY SALONS</h3>
+                <div class="ind-price">$997</div>
             </div>
-            <div class="industry-card">
-                <div class="industry-icon">🔧</div>
-                <h3 data-i18n="ind4_title">Contractors & Plumbers</h3>
-                <p data-i18n="ind4_desc">Quote requests, photo estimates, scheduling, invoicing</p>
-                <div class="industry-price">$1,497 <span data-i18n="ind_from">from</span></div>
+            <div class="ind-card">
+                <div class="ind-icon">🔧</div>
+                <h3>CONTRACTORS</h3>
+                <div class="ind-price">$1,497</div>
             </div>
-            <div class="industry-card">
-                <div class="industry-icon">🏪</div>
-                <h3 data-i18n="ind5_title">Retail Stores</h3>
-                <p data-i18n="ind5_desc">Product catalog, inventory alerts, customer orders, promotions</p>
-                <div class="industry-price">$1,197 <span data-i18n="ind_from">from</span></div>
+            <div class="ind-card">
+                <div class="ind-icon">🏪</div>
+                <h3>RETAIL</h3>
+                <div class="ind-price">$1,197</div>
             </div>
-            <div class="industry-card">
-                <div class="industry-icon">🏢</div>
-                <h3 data-i18n="ind6_title">Enterprise Custom</h3>
-                <p data-i18n="ind6_desc">Full custom development, API integrations, multi-location support</p>
-                <div class="industry-price">$4,997+ <span data-i18n="ind_from">from</span></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PRICING -->
-    <section class="section section-dark" id="pricing">
-        <div class="section-title">
-            <h2 data-i18n="price_title">Pricing Plans</h2>
-            <p data-i18n="price_desc">Flexible options for every budget</p>
-        </div>
-        <div class="pricing-grid">
-            <div class="price-card">
-                <div class="price-name" data-i18n="plan1_name">PERSONAL</div>
-                <div class="price-amount">$497</div>
-                <div class="price-period" data-i18n="plan1_period">One-time + $29/mo</div>
-                <ul class="price-features">
-                    <li data-i18n="plan1_f1">Basic WhatsApp bot</li>
-                    <li data-i18n="plan1_f2">Auto-replies</li>
-                    <li data-i18n="plan1_f3">Simple menu</li>
-                    <li data-i18n="plan1_f4">Email support</li>
-                </ul>
-                <a href="https://wa.me/16692342444?text=I%20want%20PERSONAL%20plan" class="btn-primary"
-                    style="width:100%;justify-content:center;" data-i18n="plan_btn">Get Started</a>
-            </div>
-            <div class="price-card featured">
-                <div class="price-name" data-i18n="plan2_name">BUSINESS</div>
-                <div class="price-amount">$1,997</div>
-                <div class="price-period" data-i18n="plan2_period">One-time + $79/mo</div>
-                <ul class="price-features">
-                    <li data-i18n="plan2_f1">Advanced bot + AI</li>
-                    <li data-i18n="plan2_f2">Booking system</li>
-                    <li data-i18n="plan2_f3">Payment integration</li>
-                    <li data-i18n="plan2_f4">Analytics dashboard</li>
-                    <li data-i18n="plan2_f5">Priority support</li>
-                </ul>
-                <a href="https://wa.me/16692342444?text=I%20want%20BUSINESS%20plan" class="btn-primary"
-                    style="width:100%;justify-content:center;" data-i18n="plan_btn">Get Started</a>
-            </div>
-            <div class="price-card">
-                <div class="price-name" data-i18n="plan3_name">ENTERPRISE</div>
-                <div class="price-amount">$4,997+</div>
-                <div class="price-period" data-i18n="plan3_period">Custom quote</div>
-                <ul class="price-features">
-                    <li data-i18n="plan3_f1">Custom app development</li>
-                    <li data-i18n="plan3_f2">Multi-platform (iOS/Android/Web)</li>
-                    <li data-i18n="plan3_f3">Full AI integration</li>
-                    <li data-i18n="plan3_f4">Unlimited users</li>
-                    <li data-i18n="plan3_f5">24/7 dedicated support</li>
-                </ul>
-                <a href="https://wa.me/16692342444?text=I%20want%20ENTERPRISE%20quote" class="btn-primary"
-                    style="width:100%;justify-content:center;" data-i18n="plan_btn_quote">Get Quote</a>
+            <div class="ind-card">
+                <div class="ind-icon">🏢</div>
+                <h3>ENTERPRISE</h3>
+                <div class="ind-price">$4,997+</div>
             </div>
         </div>
     </section>
 
     <!-- CTA -->
     <section class="cta-section">
-        <h2 data-i18n="cta_title">Ready to Automate Your Business?</h2>
-        <p data-i18n="cta_desc">Join hundreds of Bay Area businesses saving time and making more money with our
-            solutions.</p>
-        <a href="https://wa.me/16692342444?text=Hi!%20I%20want%20to%20automate%20my%20business" class="btn-primary">
-            💬 <span data-i18n="cta_btn">Talk to an Expert</span>
+        <h2 class="glow-green" data-i18n="cta_title">DEPLOY YOUR SYSTEM TODAY</h2>
+        <p data-i18n="cta_desc">Free consultation. No commitment. See what AI can do for your business.</p>
+        <a href="https://wa.me/16692342444?text=I%20want%20to%20deploy%20AI%20for%20my%20business" class="btn-primary">
+            💬 <span data-i18n="cta_btn">INITIALIZE CONTACT</span>
         </a>
     </section>
 
     <!-- FOOTER -->
     <footer>
-        <p>© 2024 ORION Tech | <a href="https://agem2024.github.io/SEGURITI-USC/cv_pro.html">Alex G. Espinosa</a></p>
-        <p style="margin-top:10px;">📞 (669) 234-2444 | 📧 agem2013@gmail.com | 📍 San Jose, California</p>
+        <p style="font-family: 'Orbitron', sans-serif; letter-spacing: 2px; margin-bottom: 10px;">ORION_TECH // SAN
+            JOSE, CA</p>
+        <p>📞 (669) 234-2444 | 📧 agem2013@gmail.com | <a
+                href="https://agem2024.github.io/SEGURITI-USC/cv_pro.html">Alex G. Espinosa</a></p>
     </footer>
 
     <!-- WhatsApp Float -->
-    <a href="https://wa.me/16692342444?text=Hi!" class="whatsapp-float">💬</a>
+    <a href="https://wa.me/16692342444" class="whatsapp-float">💬</a>
 
     <script>
         const translations = {
             en: {
-                nav_cta: "Get Quote", badge: "🚀 AI Automation for Bay Area Businesses",
-                hero_title: "WhatsApp Bots & Custom Apps for Your Business",
-                hero_desc: "Automate customer service, bookings, orders, and more. We build custom solutions for restaurants, liquor stores, salons, and service businesses.",
-                hero_cta1: "Free Consultation", hero_cta2: "See Services",
-                stat1: "Available", stat2: "Languages", stat3: "Businesses Served",
-                services_title: "Our Services", services_desc: "Complete digital solutions for individuals, businesses, and enterprises",
-                svc1_title: "WhatsApp Bots", svc1_desc: "24/7 automated responses, menus, booking, orders. Your business never sleeps.",
-                svc2_title: "Custom Mobile Apps", svc2_desc: "iOS & Android apps tailored to your business. Ordering, loyalty programs, notifications.",
-                svc3_title: "Web Applications", svc3_desc: "Professional websites, online stores, booking systems, admin dashboards.",
-                svc4_title: "AI Integration", svc4_desc: "GPT-4 powered chatbots, image analysis, document processing, voice assistants.",
-                svc5_title: "Business Automation", svc5_desc: "Invoicing, inventory, CRM, email automation. Less manual work, more profit.",
-                svc6_title: "Maintenance & Support", svc6_desc: "Ongoing updates, hosting, security patches, 24/7 monitoring and support.",
-                ind_title: "Solutions by Industry", ind_desc: "Specialized packages for Bay Area businesses", ind_from: "from",
-                ind1_title: "Restaurants & Taquerias", ind1_desc: "Online ordering, table reservations, menu bot, delivery tracking",
-                ind2_title: "Liquor Stores", ind2_desc: "Product catalog, age verification, delivery orders, promotions",
-                ind3_title: "Beauty Salons", ind3_desc: "Appointment booking, service catalog, reminders, loyalty points",
-                ind4_title: "Contractors & Plumbers", ind4_desc: "Quote requests, photo estimates, scheduling, invoicing",
-                ind5_title: "Retail Stores", ind5_desc: "Product catalog, inventory alerts, customer orders, promotions",
-                ind6_title: "Enterprise Custom", ind6_desc: "Full custom development, API integrations, multi-location support",
-                price_title: "Pricing Plans", price_desc: "Flexible options for every budget",
-                plan1_name: "PERSONAL", plan1_period: "One-time + $29/mo", plan1_f1: "Basic WhatsApp bot", plan1_f2: "Auto-replies", plan1_f3: "Simple menu", plan1_f4: "Email support",
-                plan2_name: "BUSINESS", plan2_period: "One-time + $79/mo", plan2_f1: "Advanced bot + AI", plan2_f2: "Booking system", plan2_f3: "Payment integration", plan2_f4: "Analytics dashboard", plan2_f5: "Priority support",
-                plan3_name: "ENTERPRISE", plan3_period: "Custom quote", plan3_f1: "Custom app development", plan3_f2: "Multi-platform (iOS/Android/Web)", plan3_f3: "Full AI integration", plan3_f4: "Unlimited users", plan3_f5: "24/7 dedicated support",
-                plan_btn: "Get Started", plan_btn_quote: "Get Quote",
-                cta_title: "Ready to Automate Your Business?", cta_desc: "Join hundreds of Bay Area businesses saving time and making more money with our solutions.", cta_btn: "Talk to an Expert"
+                nav_cta: "Initialize Contact", badge: "⚡ NEXT-GEN AI AUTOMATION",
+                hero_title: "DEPLOY INTELLIGENT SYSTEMS FOR YOUR BUSINESS",
+                hero_desc: "WhatsApp bots, custom apps, AI integration. We build autonomous systems that work 24/7 so you don't have to.",
+                hero_cta1: "DEPLOY NOW", hero_cta2: "VIEW DEMOS",
+                stat1: "ONLINE", stat2: "LANGUAGES", stat3: "SCALABILITY",
+                services_title: "// CAPABILITIES", services_desc: "What we deploy for individuals, businesses, and enterprises",
+                svc1_title: "WHATSAPP AGENTS", svc1_desc: "Autonomous bots that handle customer service, orders, bookings. Zero human intervention required.",
+                svc2_title: "MOBILE SYSTEMS", svc2_desc: "Native iOS & Android apps. Push notifications, offline mode, seamless UX.",
+                svc3_title: "WEB PLATFORMS", svc3_desc: "E-commerce, dashboards, admin panels, booking engines. Full-stack solutions.",
+                svc4_title: "AI INTEGRATION", svc4_desc: "GPT-4, Gemini, Claude. Vision, voice, text. Your business powered by the latest AI.",
+                svc5_title: "WORKFLOW AUTOMATION", svc5_desc: "Invoicing, inventory, CRM sync, email flows. Eliminate manual work.",
+                svc6_title: "24/7 OPERATIONS", svc6_desc: "Monitoring, updates, security, backups. We keep your systems running.",
+                demos_title: "// LIVE EXAMPLES", demos_desc: "See our technology in action",
+                demo1_title: "Restaurant Order Bot", demo1_desc: "Automated menu, order taking, payment links, delivery tracking. 40% more orders.",
+                demo2_title: "Service Booking App", demo2_desc: "Appointment scheduling, reminders, loyalty points, payment processing.",
+                demo3_title: "Quote Estimator Bot", demo3_desc: "Customer sends photo → AI analyzes → Instant quote. For contractors, plumbers.",
+                ind_title: "// INDUSTRY PACKAGES", ind_desc: "Specialized solutions starting from",
+                cta_title: "DEPLOY YOUR SYSTEM TODAY", cta_desc: "Free consultation. No commitment. See what AI can do for your business.", cta_btn: "INITIALIZE CONTACT"
             },
             es: {
-                nav_cta: "Cotizar", badge: "🚀 Automatización IA para Negocios del Bay Area",
-                hero_title: "Bots de WhatsApp y Apps Personalizadas para tu Negocio",
-                hero_desc: "Automatiza servicio al cliente, reservas, pedidos y más. Creamos soluciones para restaurantes, licorerías, salones y negocios de servicio.",
-                hero_cta1: "Consulta Gratis", hero_cta2: "Ver Servicios",
-                stat1: "Disponible", stat2: "Idiomas", stat3: "Negocios Atendidos",
-                services_title: "Nuestros Servicios", services_desc: "Soluciones digitales completas para personas, negocios y empresas",
-                svc1_title: "Bots de WhatsApp", svc1_desc: "Respuestas automáticas 24/7, menús, reservas, pedidos. Tu negocio nunca duerme.",
-                svc2_title: "Apps Móviles", svc2_desc: "Apps iOS y Android a tu medida. Pedidos, programas de lealtad, notificaciones.",
-                svc3_title: "Aplicaciones Web", svc3_desc: "Sitios profesionales, tiendas online, sistemas de reservas, dashboards.",
-                svc4_title: "Integración de IA", svc4_desc: "Chatbots con GPT-4, análisis de imágenes, procesamiento de documentos.",
-                svc5_title: "Automatización", svc5_desc: "Facturación, inventario, CRM, emails. Menos trabajo manual, más ganancias.",
-                svc6_title: "Soporte Continuo", svc6_desc: "Actualizaciones, hosting, seguridad, monitoreo y soporte 24/7.",
-                ind_title: "Soluciones por Industria", ind_desc: "Paquetes especializados para negocios del Bay Area", ind_from: "desde",
-                ind1_title: "Restaurantes y Taquerías", ind1_desc: "Pedidos online, reservas de mesa, bot de menú, tracking de delivery",
-                ind2_title: "Licorerías", ind2_desc: "Catálogo de productos, verificación de edad, pedidos, promociones",
-                ind3_title: "Salones de Belleza", ind3_desc: "Reserva de citas, catálogo, recordatorios, puntos de lealtad",
-                ind4_title: "Contratistas y Plomeros", ind4_desc: "Solicitud de cotizaciones, estimados por foto, agenda, facturación",
-                ind5_title: "Tiendas Retail", ind5_desc: "Catálogo, alertas de inventario, pedidos, promociones",
-                ind6_title: "Empresarial Custom", ind6_desc: "Desarrollo completo, integraciones API, multi-ubicación",
-                price_title: "Planes y Precios", price_desc: "Opciones flexibles para cada presupuesto",
-                plan1_name: "PERSONAL", plan1_period: "Único + $29/mes", plan1_f1: "Bot WhatsApp básico", plan1_f2: "Auto-respuestas", plan1_f3: "Menú simple", plan1_f4: "Soporte email",
-                plan2_name: "NEGOCIO", plan2_period: "Único + $79/mes", plan2_f1: "Bot avanzado + IA", plan2_f2: "Sistema de reservas", plan2_f3: "Integración de pagos", plan2_f4: "Dashboard analytics", plan2_f5: "Soporte prioritario",
-                plan3_name: "EMPRESA", plan3_period: "Cotización", plan3_f1: "Desarrollo de app custom", plan3_f2: "Multi-plataforma", plan3_f3: "IA completa", plan3_f4: "Usuarios ilimitados", plan3_f5: "Soporte dedicado 24/7",
-                plan_btn: "Empezar", plan_btn_quote: "Cotizar",
-                cta_title: "¿Listo Para Automatizar?", cta_desc: "Únete a cientos de negocios del Bay Area que ahorran tiempo y ganan más.", cta_btn: "Hablar con Experto"
+                nav_cta: "Iniciar Contacto", badge: "⚡ AUTOMATIZACIÓN IA DE NUEVA GENERACIÓN",
+                hero_title: "DESPLIEGA SISTEMAS INTELIGENTES PARA TU NEGOCIO",
+                hero_desc: "Bots de WhatsApp, apps personalizadas, integración IA. Construimos sistemas autónomos que trabajan 24/7 para que tú no tengas que hacerlo.",
+                hero_cta1: "DESPLEGAR AHORA", hero_cta2: "VER DEMOS",
+                stat1: "EN LÍNEA", stat2: "IDIOMAS", stat3: "ESCALABILIDAD",
+                services_title: "// CAPACIDADES", services_desc: "Lo que desplegamos para personas, negocios y empresas",
+                svc1_title: "AGENTES WHATSAPP", svc1_desc: "Bots autónomos que manejan servicio al cliente, pedidos, reservas. Sin intervención humana.",
+                svc2_title: "SISTEMAS MÓVILES", svc2_desc: "Apps nativas iOS y Android. Notificaciones push, modo offline, UX perfecta.",
+                svc3_title: "PLATAFORMAS WEB", svc3_desc: "E-commerce, dashboards, paneles admin, motores de reservas. Soluciones full-stack.",
+                svc4_title: "INTEGRACIÓN IA", svc4_desc: "GPT-4, Gemini, Claude. Visión, voz, texto. Tu negocio potenciado con IA.",
+                svc5_title: "AUTOMATIZACIÓN", svc5_desc: "Facturación, inventario, CRM, emails. Elimina el trabajo manual.",
+                svc6_title: "OPERACIONES 24/7", svc6_desc: "Monitoreo, actualizaciones, seguridad, backups. Mantenemos tus sistemas.",
+                demos_title: "// EJEMPLOS EN VIVO", demos_desc: "Ve nuestra tecnología en acción",
+                demo1_title: "Bot de Pedidos Restaurante", demo1_desc: "Menú automatizado, toma de pedidos, links de pago, tracking de delivery. 40% más pedidos.",
+                demo2_title: "App de Reservas", demo2_desc: "Agenda de citas, recordatorios, puntos de lealtad, procesamiento de pagos.",
+                demo3_title: "Bot Estimador de Cotizaciones", demo3_desc: "Cliente envía foto → IA analiza → Cotización instantánea. Para contratistas, plomeros.",
+                ind_title: "// PAQUETES POR INDUSTRIA", ind_desc: "Soluciones especializadas desde",
+                cta_title: "DESPLIEGA TU SISTEMA HOY", cta_desc: "Consulta gratis. Sin compromiso. Ve lo que la IA puede hacer por tu negocio.", cta_btn: "INICIAR CONTACTO"
             },
             zh: {
-                nav_cta: "获取报价", badge: "🚀 湾区商业AI自动化",
-                hero_title: "WhatsApp机器人和定制应用程序",
-                hero_desc: "自动化客户服务、预订、订单等。我们为餐厅、酒类商店、美容院和服务企业构建定制解决方案。",
-                hero_cta1: "免费咨询", hero_cta2: "查看服务",
-                stat1: "全天候", stat2: "种语言", stat3: "服务商家",
-                services_title: "我们的服务", services_desc: "为个人、企业和公司提供完整的数字解决方案",
-                svc1_title: "WhatsApp机器人", svc1_desc: "24/7自动回复、菜单、预订、订单。您的业务永不休息。",
-                svc2_title: "定制移动应用", svc2_desc: "为您的业务量身定制的iOS和Android应用。",
-                svc3_title: "网络应用", svc3_desc: "专业网站、在线商店、预订系统、管理仪表板。",
-                svc4_title: "AI集成", svc4_desc: "GPT-4驱动的聊天机器人、图像分析、文档处理。",
-                svc5_title: "业务自动化", svc5_desc: "发票、库存、CRM、邮件自动化。减少手工，增加利润。",
-                svc6_title: "维护与支持", svc6_desc: "持续更新、托管、安全补丁、24/7监控和支持。",
-                ind_title: "行业解决方案", ind_desc: "湾区企业专业套餐", ind_from: "起",
-                ind1_title: "餐厅", ind1_desc: "在线订餐、餐桌预订、菜单机器人、配送跟踪",
-                ind2_title: "酒类商店", ind2_desc: "产品目录、年龄验证、配送订单、促销",
-                ind3_title: "美容院", ind3_desc: "预约、服务目录、提醒、积分",
-                ind4_title: "承包商和水管工", ind4_desc: "报价请求、照片估价、日程安排、开票",
-                ind5_title: "零售店", ind5_desc: "产品目录、库存警报、客户订单、促销",
-                ind6_title: "企业定制", ind6_desc: "完全定制开发、API集成、多地点支持",
-                price_title: "定价计划", price_desc: "适合各种预算的灵活选项",
-                plan1_name: "个人", plan1_period: "一次性 + $29/月", plan1_f1: "基础WhatsApp机器人", plan1_f2: "自动回复", plan1_f3: "简单菜单", plan1_f4: "邮件支持",
-                plan2_name: "商业", plan2_period: "一次性 + $79/月", plan2_f1: "高级机器人+AI", plan2_f2: "预订系统", plan2_f3: "支付集成", plan2_f4: "分析仪表板", plan2_f5: "优先支持",
-                plan3_name: "企业", plan3_period: "定制报价", plan3_f1: "定制应用开发", plan3_f2: "多平台", plan3_f3: "完整AI集成", plan3_f4: "无限用户", plan3_f5: "24/7专属支持",
-                plan_btn: "开始", plan_btn_quote: "获取报价",
-                cta_title: "准备自动化您的业务？", cta_desc: "加入数百家湾区企业，节省时间，赚更多钱。", cta_btn: "与专家交谈"
+                nav_cta: "开始联系", badge: "⚡ 新一代AI自动化",
+                hero_title: "为您的业务部署智能系统",
+                hero_desc: "WhatsApp机器人、定制应用、AI集成。我们构建24/7自主运行的系统。",
+                hero_cta1: "立即部署", hero_cta2: "查看演示",
+                stat1: "在线", stat2: "种语言", stat3: "可扩展性",
+                services_title: "// 功能", services_desc: "我们为个人、企业和公司部署的解决方案",
+                svc1_title: "WHATSAPP代理", svc1_desc: "自主机器人处理客户服务、订单、预订。无需人工干预。",
+                svc2_title: "移动系统", svc2_desc: "原生iOS和Android应用。推送通知、离线模式。",
+                svc3_title: "WEB平台", svc3_desc: "电子商务、仪表板、管理面板、预订引擎。",
+                svc4_title: "AI集成", svc4_desc: "GPT-4、Gemini、Claude。视觉、语音、文本。",
+                svc5_title: "工作流自动化", svc5_desc: "发票、库存、CRM同步、邮件流程。",
+                svc6_title: "24/7运营", svc6_desc: "监控、更新、安全、备份。",
+                demos_title: "// 实时示例", demos_desc: "查看我们的技术",
+                demo1_title: "餐厅订单机器人", demo1_desc: "自动菜单、接单、支付链接、配送跟踪。增加40%订单。",
+                demo2_title: "服务预订应用", demo2_desc: "预约安排、提醒、积分、支付处理。",
+                demo3_title: "报价估算机器人", demo3_desc: "客户发送照片→AI分析→即时报价。",
+                ind_title: "// 行业套餐", ind_desc: "专业解决方案起价",
+                cta_title: "今天部署您的系统", cta_desc: "免费咨询。无需承诺。", cta_btn: "开始联系"
             },
             tl: {
-                nav_cta: "Kumuha ng Quote", badge: "🚀 AI Automation para sa Bay Area",
-                hero_title: "WhatsApp Bots at Custom Apps para sa iyong Negosyo",
-                hero_desc: "I-automate ang customer service, bookings, orders. Gumagawa kami ng solutions para sa restaurants, liquor stores, salons.",
-                hero_cta1: "Libreng Konsulta", hero_cta2: "Tingnan ang Serbisyo",
-                stat1: "Available", stat2: "Wika", stat3: "Negosyo na Pinagsilbihan",
-                services_title: "Aming mga Serbisyo", services_desc: "Kumpletong digital solutions para sa mga indibidwal at negosyo",
-                svc1_title: "WhatsApp Bots", svc1_desc: "24/7 automated na sagot, menus, booking, orders.",
-                svc2_title: "Custom na Mobile Apps", svc2_desc: "iOS at Android apps na angkop sa iyong negosyo.",
-                svc3_title: "Web Applications", svc3_desc: "Professional websites, online stores, booking systems.",
-                svc4_title: "AI Integration", svc4_desc: "GPT-4 na chatbots, image analysis, document processing.",
-                svc5_title: "Business Automation", svc5_desc: "Invoicing, inventory, CRM, email automation.",
-                svc6_title: "Maintenance at Support", svc6_desc: "Patuloy na updates, hosting, security, 24/7 support.",
-                ind_title: "Solutions ayon sa Industry", ind_desc: "Specialized packages para sa Bay Area", ind_from: "mula sa",
-                ind1_title: "Restaurants", ind1_desc: "Online ordering, reservations, menu bot, delivery tracking",
-                ind2_title: "Liquor Stores", ind2_desc: "Product catalog, age verification, delivery orders",
-                ind3_title: "Beauty Salons", ind3_desc: "Appointment booking, service catalog, reminders",
-                ind4_title: "Contractors at Plumbers", ind4_desc: "Quote requests, photo estimates, scheduling",
-                ind5_title: "Retail Stores", ind5_desc: "Product catalog, inventory alerts, orders",
-                ind6_title: "Enterprise Custom", ind6_desc: "Full custom development, API integrations",
-                price_title: "Pricing Plans", price_desc: "Flexible options para sa bawat budget",
-                plan1_name: "PERSONAL", plan1_period: "One-time + $29/mo", plan1_f1: "Basic WhatsApp bot", plan1_f2: "Auto-replies", plan1_f3: "Simple menu", plan1_f4: "Email support",
-                plan2_name: "BUSINESS", plan2_period: "One-time + $79/mo", plan2_f1: "Advanced bot + AI", plan2_f2: "Booking system", plan2_f3: "Payment integration", plan2_f4: "Analytics", plan2_f5: "Priority support",
-                plan3_name: "ENTERPRISE", plan3_period: "Custom quote", plan3_f1: "Custom app development", plan3_f2: "Multi-platform", plan3_f3: "Full AI", plan3_f4: "Unlimited users", plan3_f5: "24/7 support",
-                plan_btn: "Magsimula", plan_btn_quote: "Kumuha ng Quote",
-                cta_title: "Handa na bang i-automate?", cta_desc: "Sumali sa daan-daang negosyo sa Bay Area na nagtitipid ng oras.", cta_btn: "Makipag-usap sa Expert"
+                nav_cta: "Simulan ang Contact", badge: "⚡ NEXT-GEN AI AUTOMATION",
+                hero_title: "MAG-DEPLOY NG INTELLIGENT SYSTEMS PARA SA IYONG NEGOSYO",
+                hero_desc: "WhatsApp bots, custom apps, AI integration. Gumagawa kami ng autonomous systems na gumagana 24/7.",
+                hero_cta1: "DEPLOY NGAYON", hero_cta2: "TINGNAN ANG DEMOS",
+                stat1: "ONLINE", stat2: "WIKA", stat3: "SCALABILITY",
+                services_title: "// CAPABILITIES", services_desc: "Kung ano ang naka-deploy namin para sa mga indibidwal, negosyo, at empresa",
+                svc1_title: "WHATSAPP AGENTS", svc1_desc: "Autonomous na bots na humahawak ng customer service, orders, bookings.",
+                svc2_title: "MOBILE SYSTEMS", svc2_desc: "Native na iOS at Android apps. Push notifications, offline mode.",
+                svc3_title: "WEB PLATFORMS", svc3_desc: "E-commerce, dashboards, admin panels, booking engines.",
+                svc4_title: "AI INTEGRATION", svc4_desc: "GPT-4, Gemini, Claude. Vision, voice, text.",
+                svc5_title: "WORKFLOW AUTOMATION", svc5_desc: "Invoicing, inventory, CRM sync, email flows.",
+                svc6_title: "24/7 OPERATIONS", svc6_desc: "Monitoring, updates, security, backups.",
+                demos_title: "// LIVE EXAMPLES", demos_desc: "Tingnan ang aming technology in action",
+                demo1_title: "Restaurant Order Bot", demo1_desc: "Automated menu, order taking, payment links. 40% more orders.",
+                demo2_title: "Service Booking App", demo2_desc: "Appointment scheduling, reminders, loyalty points.",
+                demo3_title: "Quote Estimator Bot", demo3_desc: "Customer nagpadala ng photo → AI nag-analyze → Instant quote.",
+                ind_title: "// INDUSTRY PACKAGES", ind_desc: "Specialized solutions simula sa",
+                cta_title: "DEPLOY ANG IYONG SYSTEM NGAYON", cta_desc: "Libreng konsulta. Walang commitment.", cta_btn: "SIMULAN ANG CONTACT"
             },
             vi: {
-                nav_cta: "Nhận Báo Giá", badge: "🚀 Tự động hóa AI cho Bay Area",
-                hero_title: "WhatsApp Bot và Ứng dụng Tùy chỉnh cho Doanh nghiệp",
-                hero_desc: "Tự động hóa dịch vụ khách hàng, đặt chỗ, đơn hàng. Chúng tôi xây dựng giải pháp cho nhà hàng, cửa hàng rượu, tiệm làm đẹp.",
-                hero_cta1: "Tư vấn Miễn phí", hero_cta2: "Xem Dịch vụ",
-                stat1: "Khả dụng", stat2: "Ngôn ngữ", stat3: "Doanh nghiệp Phục vụ",
-                services_title: "Dịch vụ của Chúng tôi", services_desc: "Giải pháp số hoàn chỉnh cho cá nhân và doanh nghiệp",
-                svc1_title: "WhatsApp Bot", svc1_desc: "Phản hồi tự động 24/7, menu, đặt chỗ, đơn hàng.",
-                svc2_title: "Ứng dụng Di động", svc2_desc: "Ứng dụng iOS & Android phù hợp với doanh nghiệp của bạn.",
-                svc3_title: "Ứng dụng Web", svc3_desc: "Website chuyên nghiệp, cửa hàng trực tuyến, hệ thống đặt chỗ.",
-                svc4_title: "Tích hợp AI", svc4_desc: "Chatbot GPT-4, phân tích hình ảnh, xử lý tài liệu.",
-                svc5_title: "Tự động hóa", svc5_desc: "Hóa đơn, kho, CRM, email tự động.",
-                svc6_title: "Bảo trì & Hỗ trợ", svc6_desc: "Cập nhật, hosting, bảo mật, hỗ trợ 24/7.",
-                ind_title: "Giải pháp theo Ngành", ind_desc: "Gói chuyên biệt cho Bay Area", ind_from: "từ",
-                ind1_title: "Nhà hàng", ind1_desc: "Đặt hàng online, đặt bàn, bot menu, theo dõi giao hàng",
-                ind2_title: "Cửa hàng Rượu", ind2_desc: "Danh mục sản phẩm, xác minh tuổi, đơn giao hàng",
-                ind3_title: "Tiệm Làm đẹp", ind3_desc: "Đặt lịch, danh mục dịch vụ, nhắc nhở",
-                ind4_title: "Nhà thầu & Thợ ống nước", ind4_desc: "Yêu cầu báo giá, ước tính qua ảnh, lịch hẹn",
-                ind5_title: "Cửa hàng Bán lẻ", ind5_desc: "Danh mục, cảnh báo tồn kho, đơn hàng",
-                ind6_title: "Doanh nghiệp", ind6_desc: "Phát triển tùy chỉnh hoàn toàn, tích hợp API",
-                price_title: "Bảng Giá", price_desc: "Tùy chọn linh hoạt cho mọi ngân sách",
-                plan1_name: "CÁ NHÂN", plan1_period: "Một lần + $29/tháng", plan1_f1: "Bot WhatsApp cơ bản", plan1_f2: "Tự động trả lời", plan1_f3: "Menu đơn giản", plan1_f4: "Hỗ trợ email",
-                plan2_name: "DOANH NGHIỆP", plan2_period: "Một lần + $79/tháng", plan2_f1: "Bot nâng cao + AI", plan2_f2: "Hệ thống đặt chỗ", plan2_f3: "Tích hợp thanh toán", plan2_f4: "Bảng phân tích", plan2_f5: "Hỗ trợ ưu tiên",
-                plan3_name: "CÔNG TY", plan3_period: "Báo giá tùy chỉnh", plan3_f1: "Phát triển app tùy chỉnh", plan3_f2: "Đa nền tảng", plan3_f3: "AI hoàn chỉnh", plan3_f4: "Người dùng không giới hạn", plan3_f5: "Hỗ trợ 24/7",
-                plan_btn: "Bắt đầu", plan_btn_quote: "Nhận Báo Giá",
-                cta_title: "Sẵn sàng Tự động hóa?", cta_desc: "Tham gia cùng hàng trăm doanh nghiệp Bay Area tiết kiệm thời gian.", cta_btn: "Nói chuyện với Chuyên gia"
+                nav_cta: "Bắt đầu Liên hệ", badge: "⚡ TỰ ĐỘNG HÓA AI THẾ HỆ MỚI",
+                hero_title: "TRIỂN KHAI HỆ THỐNG THÔNG MINH CHO DOANH NGHIỆP",
+                hero_desc: "WhatsApp bot, ứng dụng tùy chỉnh, tích hợp AI. Chúng tôi xây dựng hệ thống tự động hoạt động 24/7.",
+                hero_cta1: "TRIỂN KHAI NGAY", hero_cta2: "XEM DEMO",
+                stat1: "ONLINE", stat2: "NGÔN NGỮ", stat3: "KHẢ NĂNG MỞ RỘNG",
+                services_title: "// KHẢ NĂNG", services_desc: "Những gì chúng tôi triển khai cho cá nhân, doanh nghiệp",
+                svc1_title: "WHATSAPP AGENTS", svc1_desc: "Bot tự động xử lý dịch vụ khách hàng, đơn hàng, đặt chỗ.",
+                svc2_title: "HỆ THỐNG DI ĐỘNG", svc2_desc: "Ứng dụng iOS & Android. Thông báo đẩy, chế độ ngoại tuyến.",
+                svc3_title: "NỀN TẢNG WEB", svc3_desc: "Thương mại điện tử, bảng điều khiển, hệ thống đặt chỗ.",
+                svc4_title: "TÍCH HỢP AI", svc4_desc: "GPT-4, Gemini, Claude. Hình ảnh, giọng nói, văn bản.",
+                svc5_title: "TỰ ĐỘNG HÓA", svc5_desc: "Hóa đơn, kho, CRM, email tự động.",
+                svc6_title: "VẬN HÀNH 24/7", svc6_desc: "Giám sát, cập nhật, bảo mật, sao lưu.",
+                demos_title: "// VÍ DỤ TRỰC TIẾP", demos_desc: "Xem công nghệ của chúng tôi",
+                demo1_title: "Bot Đặt hàng Nhà hàng", demo1_desc: "Menu tự động, nhận đơn, liên kết thanh toán. Tăng 40% đơn hàng.",
+                demo2_title: "Ứng dụng Đặt lịch", demo2_desc: "Lên lịch hẹn, nhắc nhở, điểm tích lũy.",
+                demo3_title: "Bot Ước tính Báo giá", demo3_desc: "Khách gửi ảnh → AI phân tích → Báo giá tức thì.",
+                ind_title: "// GÓI NGÀNH", ind_desc: "Giải pháp chuyên biệt từ",
+                cta_title: "TRIỂN KHAI HỆ THỐNG HÔM NAY", cta_desc: "Tư vấn miễn phí. Không cam kết.", cta_btn: "BẮT ĐẦU LIÊN HỆ"
             }
         };
         let currentLang = 'en';
@@ -864,17 +915,12 @@
             document.querySelector(`[onclick="setLang('${lang}')"]`).classList.add('active');
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (translations[lang] && translations[lang][key]) {
-                    el.textContent = translations[lang][key];
-                }
+                if (translations[lang] && translations[lang][key]) el.textContent = translations[lang][key];
             });
             document.documentElement.lang = lang;
             localStorage.setItem('orion_lang', lang);
         }
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedLang = localStorage.getItem('orion_lang') || 'en';
-            setLang(savedLang);
-        });
+        document.addEventListener('DOMContentLoaded', () => setLang(localStorage.getItem('orion_lang') || 'en'));
     </script>
 </body>
 
