@@ -467,42 +467,85 @@
         /* INDUSTRIES */
         .ind-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            max-width: 1000px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
         .ind-card {
-            background: linear-gradient(135deg, rgba(0, 243, 255, 0.05), rgba(188, 19, 254, 0.05));
-            border: 1px solid rgba(0, 243, 255, 0.2);
-            padding: 30px;
-            text-align: center;
-            transition: 0.3s;
+            position: relative;
+            height: 320px;
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            overflow: hidden;
+            transition: 0.4s;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .ind-card-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+            transition: 0.4s;
+        }
+
+        .ind-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, transparent 30%, rgba(0, 0, 0, 0.9) 100%);
+            z-index: 1;
         }
 
         .ind-card:hover {
-            transform: scale(1.05);
+            transform: translateY(-10px);
             border-color: var(--neon-green);
+            box-shadow: 0 20px 40px rgba(37, 211, 102, 0.3);
         }
 
-        .ind-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
+        .ind-card:hover .ind-card-img {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .ind-content {
+            position: relative;
+            z-index: 2;
+            padding: 25px;
+            text-align: center;
         }
 
         .ind-card h3 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
         }
 
         .ind-price {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             color: var(--neon-green);
             font-weight: 700;
+            text-shadow: 0 0 15px var(--neon-green);
+        }
+
+        .ind-more {
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: var(--neon-blue);
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         /* CTA */
@@ -753,44 +796,58 @@
         </div>
         <div class="ind-grid">
             <a href="industry-individual.html" class="ind-card" style="text-decoration:none; color:inherit;">
-                <div class="ind-icon">👤</div>
-                <h3>INDIVIDUALS</h3>
-                <div class="ind-price">$297</div>
-                <div style="margin-top:10px; font-size:0.75rem; color:var(--neon-blue);">→ MORE</div>
+                <img src="images/industry_individual.png" class="ind-card-img" alt="Individual">
+                <div class="ind-content">
+                    <h3>INDIVIDUALS</h3>
+                    <div class="ind-price">$297</div>
+                    <div class="ind-more">→ DETAILS</div>
+                </div>
             </a>
             <a href="industry-restaurant.html" class="ind-card" style="text-decoration:none; color:inherit;">
-                <div class="ind-icon">🍽️</div>
-                <h3>RESTAURANTS</h3>
-                <div class="ind-price">$1,497</div>
-                <div style="margin-top:10px; font-size:0.75rem; color:var(--neon-blue);">→ MORE</div>
+                <img src="images/industry_restaurant.png" class="ind-card-img" alt="Restaurant">
+                <div class="ind-content">
+                    <h3>RESTAURANTS</h3>
+                    <div class="ind-price">$1,497</div>
+                    <div class="ind-more">→ DETAILS</div>
+                </div>
             </a>
             <a href="industry-liquor.html" class="ind-card" style="text-decoration:none; color:inherit;">
-                <div class="ind-icon">🍺</div>
-                <h3>LIQUOR STORES</h3>
-                <div class="ind-price">$1,297</div>
-                <div style="margin-top:10px; font-size:0.75rem; color:var(--neon-blue);">→ MORE</div>
+                <img src="images/industry_liquor.png" class="ind-card-img" alt="Liquor Store">
+                <div class="ind-content">
+                    <h3>LIQUOR STORES</h3>
+                    <div class="ind-price">$1,297</div>
+                    <div class="ind-more">→ DETAILS</div>
+                </div>
             </a>
             <a href="industry-salon.html" class="ind-card" style="text-decoration:none; color:inherit;">
-                <div class="ind-icon">💇</div>
-                <h3>BEAUTY SALONS</h3>
-                <div class="ind-price">$997</div>
-                <div style="margin-top:10px; font-size:0.75rem; color:var(--neon-blue);">→ MORE</div>
+                <img src="images/industry_salon.png" class="ind-card-img" alt="Beauty Salon">
+                <div class="ind-content">
+                    <h3>BEAUTY SALONS</h3>
+                    <div class="ind-price">$997</div>
+                    <div class="ind-more">→ DETAILS</div>
+                </div>
             </a>
             <a href="industry-contractor.html" class="ind-card" style="text-decoration:none; color:inherit;">
-                <div class="ind-icon">🔧</div>
-                <h3>CONTRACTORS</h3>
-                <div class="ind-price">$1,497</div>
-                <div style="margin-top:10px; font-size:0.75rem; color:var(--neon-blue);">→ MORE</div>
+                <img src="images/industry_contractor.png" class="ind-card-img" alt="Contractors">
+                <div class="ind-content">
+                    <h3>CONTRACTORS</h3>
+                    <div class="ind-price">$1,497</div>
+                    <div class="ind-more">→ DETAILS</div>
+                </div>
             </a>
             <div class="ind-card">
-                <div class="ind-icon">🏪</div>
-                <h3>RETAIL</h3>
-                <div class="ind-price">$1,197</div>
+                <img src="images/industry_retail.png" class="ind-card-img" alt="Retail">
+                <div class="ind-content">
+                    <h3>RETAIL</h3>
+                    <div class="ind-price">$1,197</div>
+                </div>
             </div>
             <div class="ind-card">
-                <div class="ind-icon">🏢</div>
-                <h3>ENTERPRISE</h3>
-                <div class="ind-price">$4,997+</div>
+                <img src="images/industry_enterprise.png" class="ind-card-img" alt="Enterprise">
+                <div class="ind-content">
+                    <h3>ENTERPRISE</h3>
+                    <div class="ind-price">$4,997+</div>
+                </div>
             </div>
         </div>
     </section>
