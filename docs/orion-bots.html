@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORION Bots | Automatización WhatsApp para tu Negocio</title>
+    <meta name="description"
+        content="Automatiza tu negocio con bots de WhatsApp inteligentes. Respuestas 24/7, más ventas, menos trabajo. Cotización gratis.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #25D366;
+            /* WhatsApp Green */
+            --primary-dark: #128C7E;
+            --secondary: #075E54;
+            --accent: #34B7F1;
+            --dark: #0a0a0a;
+            --light: #ffffff;
+            --gray: #6b7280;
+            --gradient: linear-gradient(135deg, #25D366 0%, #128C7E 50%, #075E54 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+        }
+
+        /* NAVIGATION */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(37, 211, 102, 0.2);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--light);
+        }
+
+        .nav-cta {
+            background: var(--gradient);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 5% 80px;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(37, 211, 102, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 50%, rgba(52, 183, 241, 0.1) 0%, transparent 50%),
+                var(--dark);
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(37, 211, 102, 0.15);
+            border: 1px solid rgba(37, 211, 102, 0.3);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: var(--primary);
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            background: linear-gradient(to right, #fff, #25D366);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            padding: 18px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 40px rgba(37, 211, 102, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--light);
+            padding: 18px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: 0.3s;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* STATS */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* FEATURES */
+        .features {
+            padding: 100px 5%;
+            background: linear-gradient(180deg, var(--dark) 0%, #111 100%);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(37, 211, 102, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+
+        .feature-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* PRICING */
+        .pricing {
+            padding: 100px 5%;
+            background: var(--dark);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .price-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 45px;
+            text-align: center;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .price-card.featured {
+            border-color: var(--primary);
+            background: rgba(37, 211, 102, 0.05);
+            transform: scale(1.05);
+        }
+
+        .price-card.featured::before {
+            content: '⭐ MÁS POPULAR';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient);
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .price-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--gray);
+        }
+
+        .price-amount {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .price-period {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+        }
+
+        .price-features {
+            text-align: left;
+            margin-bottom: 35px;
+        }
+
+        .price-features li {
+            list-style: none;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .price-features li::before {
+            content: '✓';
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* TESTIMONIALS */
+        .testimonials {
+            padding: 100px 5%;
+            background: linear-gradient(180deg, #111 0%, var(--dark) 100%);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 35px;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            font-style: italic;
+            color: #ddd;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .author-info h4 {
+            font-size: 1rem;
+            margin-bottom: 3px;
+        }
+
+        .author-info p {
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        /* CTA SECTION */
+        .cta-section {
+            padding: 100px 5%;
+            background: var(--gradient);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .cta-section .btn-primary {
+            background: white;
+            color: var(--secondary);
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 50px 5%;
+            background: #0a0a0a;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer p {
+            color: var(--gray);
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 100px 5% 60px;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .stats {
+                gap: 30px;
+            }
+
+            .price-card.featured {
+                transform: scale(1);
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 65px;
+            height: 65px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            text-decoration: none;
+            box-shadow: 0 5px 25px rgba(37, 211, 102, 0.5);
+            z-index: 999;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <a href="#" class="logo">🤖 ORION<span>Bots</span></a>
+        <a href="https://wa.me/16692342444?text=Hola!%20Quiero%20información%20sobre%20un%20bot%20de%20WhatsApp"
+            class="nav-cta">Cotizar Ahora</a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="badge">🚀 Automatización Inteligente para Negocios</span>
+            <h1>Tu Negocio Funcionando 24/7 con Bots de WhatsApp</h1>
+            <p>Responde clientes automáticamente, genera citas, cobra pagos y vende más. Todo en WhatsApp donde ya están
+                tus clientes.</p>
+            <div class="hero-buttons">
+                <a href="https://wa.me/16692342444?text=Hola!%20Quiero%20un%20bot%20para%20mi%20negocio"
+                    class="btn-primary">
+                    💬 Cotización Gratis
+                </a>
+                <a href="#features" class="btn-secondary">Ver Cómo Funciona</a>
+            </div>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">700%</div>
+                    <div class="stat-label">Más Rápido</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Disponible</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Negocios Automatizados</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features" id="features">
+        <div class="section-title">
+            <h2>¿Qué Puede Hacer Tu Bot?</h2>
+            <p>Automatiza las tareas repetitivas y enfócate en lo que importa: crecer tu negocio</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">💬</div>
+                <h3>Respuestas Automáticas 24/7</h3>
+                <p>Tu bot responde preguntas frecuentes, envía menús, catálogos y precios automáticamente a cualquier
+                    hora.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📅</div>
+                <h3>Agendamiento de Citas</h3>
+                <p>Los clientes agendan citas directamente en WhatsApp. El bot sincroniza con tu calendario y envía
+                    recordatorios.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3>Cotizaciones Instantáneas</h3>
+                <p>Envía fotos del proyecto y recibe cotizaciones automáticas. Ideal para plomería, construcción,
+                    mantenimiento.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛒</div>
+                <h3>Ventas y Pedidos</h3>
+                <p>Catálogo de productos, carrito de compras y procesamiento de pedidos. Todo sin salir de WhatsApp.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Reportes y Analytics</h3>
+                <p>Dashboard con métricas: mensajes recibidos, leads generados, citas agendadas, ventas cerradas.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3>Inteligencia Artificial</h3>
+                <p>Usa GPT-4 para conversaciones naturales. Tu bot entiende contexto y responde como un humano.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="pricing" id="pricing">
+        <div class="section-title">
+            <h2>Planes y Precios</h2>
+            <p>Soluciones para cada tamaño de negocio</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="price-card">
+                <div class="price-name">STARTER</div>
+                <div class="price-amount">$997</div>
+                <div class="price-period">Pago único + $49/mes hosting</div>
+                <ul class="price-features">
+                    <li>Respuestas automáticas</li>
+                    <li>Menú interactivo</li>
+                    <li>Hasta 500 conversaciones/mes</li>
+                    <li>Soporte por email</li>
+                    <li>1 número de WhatsApp</li>
+                </ul>
+                <a href="https://wa.me/16692342444?text=Quiero%20el%20plan%20STARTER" class="btn-primary"
+                    style="width:100%; justify-content:center;">Empezar</a>
+            </div>
+            <div class="price-card featured">
+                <div class="price-name">BUSINESS</div>
+                <div class="price-amount">$2,497</div>
+                <div class="price-period">Pago único + $99/mes hosting</div>
+                <ul class="price-features">
+                    <li>Todo de Starter +</li>
+                    <li>Agendamiento de citas</li>
+                    <li>Integración con calendario</li>
+                    <li>Hasta 2,000 conversaciones/mes</li>
+                    <li>Soporte prioritario</li>
+                    <li>Dashboard analytics</li>
+                </ul>
+                <a href="https://wa.me/16692342444?text=Quiero%20el%20plan%20BUSINESS" class="btn-primary"
+                    style="width:100%; justify-content:center;">Empezar</a>
+            </div>
+            <div class="price-card">
+                <div class="price-name">ENTERPRISE</div>
+                <div class="price-amount">$4,997+</div>
+                <div class="price-period">Cotización personalizada</div>
+                <ul class="price-features">
+                    <li>Todo de Business +</li>
+                    <li>IA Conversacional (GPT-4)</li>
+                    <li>Multi-agente (varios números)</li>
+                    <li>Conversaciones ilimitadas</li>
+                    <li>Integraciones personalizadas</li>
+                    <li>Soporte dedicado 24/7</li>
+                </ul>
+                <a href="https://wa.me/16692342444?text=Quiero%20cotización%20ENTERPRISE" class="btn-primary"
+                    style="width:100%; justify-content:center;">Cotizar</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-title">
+            <h2>Lo Que Dicen Nuestros Clientes</h2>
+            <p>Negocios que ya automatizaron su WhatsApp</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-text">"El bot responde a mis clientes mientras duermo. Mis ventas aumentaron 40%
+                    el primer mes. Increíble inversión."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">MC</div>
+                    <div class="author-info">
+                        <h4>María C.</h4>
+                        <p>Tienda de Ropa Online</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Ya no pierdo tiempo respondiendo las mismas preguntas. El bot maneja todo y
+                    yo me enfoco en los trabajos."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">JR</div>
+                    <div class="author-info">
+                        <h4>José R.</h4>
+                        <p>Plomero Profesional</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Mis citas se agendan solas. Antes perdía 2 horas al día coordinando. Ahora
+                    el bot lo hace perfecto."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">LP</div>
+                    <div class="author-info">
+                        <h4>Laura P.</h4>
+                        <p>Salón de Belleza</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2>¿Listo Para Automatizar?</h2>
+        <p>Únete a cientos de negocios que ya trabajan menos y ganan más con bots de WhatsApp.</p>
+        <a href="https://wa.me/16692342444?text=Hola!%20Quiero%20automatizar%20mi%20negocio%20con%20un%20bot"
+            class="btn-primary">
+            💬 Hablar con un Experto
+        </a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2024 ORION Bots | Creado por <a href="https://agem2024.github.io/SEGURITI-USC/cv_pro.html">Alex G.
+                Espinosa</a></p>
+        <p style="margin-top: 10px;">📞 (669) 234-2444 | 📧 agem2013@gmail.com | 📍 San Jose, California</p>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/16692342444?text=Hola!%20Vi%20su%20página%20de%20bots" class="whatsapp-float">💬</a>
+
+</body>
+
+</html>
