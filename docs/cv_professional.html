@@ -35,6 +35,29 @@
             margin: 20px auto;
             background: var(--bg);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Watermark Background - AI + Engineering + Plumbing Fusion */
+        .cv-container::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            background: url('images/cv_watermark.png') center center no-repeat;
+            background-size: contain;
+            opacity: 0.06;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .cv-container>* {
+            position: relative;
+            z-index: 1;
         }
 
         /* HEADER */
@@ -323,7 +346,8 @@
                             execution</li>
                         <li>Developed <strong>Plumbing Estimator Pro</strong>, an AI tool analyzing site photos to
                             generate instant material lists and cost estimates, reducing quote generation time by
-                            <strong>700%</strong></li>
+                            <strong>700%</strong>
+                        </li>
                         <li>Implemented digital intake forms and automated client communication systems, replacing
                             legacy paper-based workflows for local businesses</li>
                         <li>Built RAG-powered document retrieval systems for immigration case preparation, streamlining
