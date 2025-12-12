@@ -1,47 +1,33 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ORION Price Book Pro | Interactive Pricing System</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+    <title>ORION Price Book Pro | 103 Servicios</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #1e3a8a;
             --primary-light: #3b82f6;
-            --primary-dark: #1e40af;
             --accent: #f59e0b;
-            --accent-light: #fbbf24;
             --success: #10b981;
-            --warning: #f59e0b;
             --danger: #ef4444;
             --bg-dark: #0f172a;
             --bg-card: #ffffff;
             --bg-light: #f1f5f9;
             --text-dark: #1e293b;
             --text-light: #64748b;
-            --shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            --shadow-hover: 0 20px 60px rgba(0, 0, 0, 0.15);
-            --radius: 16px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow: 0 4px 20px rgba(0,0,0,0.1);
+            --radius: 12px;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark), var(--primary));
             min-height: 100vh;
             color: var(--text-dark);
         }
-
-        /* ===== HEADER ===== */
+        
         .header {
             background: rgba(15, 23, 42, 0.95);
             backdrop-filter: blur(20px);
@@ -49,204 +35,166 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-
         .header-content {
             max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
-
         .logo {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.75rem;
             color: white;
         }
-
         .logo-icon {
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             background: linear-gradient(135deg, var(--primary-light), var(--accent));
-            border-radius: 12px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-        }
-
-        .logo-text {
-            font-weight: 800;
             font-size: 1.3rem;
         }
-
-        .logo-text span {
-            color: var(--accent);
-        }
-
+        .logo-text { font-weight: 800; font-size: 1.2rem; }
+        .logo-text span { color: var(--accent); }
+        
         .nav-tabs {
             display: flex;
             gap: 0.5rem;
+            flex-wrap: wrap;
         }
-
         .nav-tab {
-            padding: 0.75rem 1.5rem;
+            padding: 0.6rem 1.2rem;
             background: transparent;
             border: none;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.85rem;
             font-weight: 500;
             cursor: pointer;
-            border-radius: 10px;
-            transition: var(--transition);
+            border-radius: 8px;
+            transition: all 0.3s;
         }
-
-        .nav-tab:hover,
-        .nav-tab.active {
-            background: rgba(255, 255, 255, 0.1);
+        .nav-tab:hover, .nav-tab.active {
+            background: rgba(255,255,255,0.1);
             color: white;
         }
-
-        .nav-tab.active {
-            background: var(--primary-light);
-        }
-
-        /* ===== MAIN CONTAINER ===== */
+        .nav-tab.active { background: var(--primary-light); }
+        
         .main-container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 1.5rem;
         }
-
-        /* ===== TAB CONTENT ===== */
-        .tab-content {
-            display: none;
-        }
-
+        
+        .tab-content { display: none; }
         .tab-content.active {
             display: block;
-            animation: fadeIn 0.5s ease;
+            animation: fadeIn 0.4s ease;
         }
-
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
-        /* ===== CALCULATOR SECTION ===== */
+        
+        .stats-banner {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .stat-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            border-radius: var(--radius);
+            text-align: center;
+            color: white;
+        }
+        .stat-card .number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+        .stat-card .label {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        
+        /* Calculator */
         .calculator-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            gap: 1.5rem;
         }
-
+        @media (max-width: 900px) {
+            .calculator-grid { grid-template-columns: 1fr; }
+        }
         .calc-card {
             background: var(--bg-card);
             border-radius: var(--radius);
-            padding: 2rem;
+            padding: 1.5rem;
             box-shadow: var(--shadow);
         }
-
         .calc-card h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
             color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
-
         .input-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
-
         .input-group label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
             font-weight: 600;
-            color: var(--text-dark);
+            font-size: 0.9rem;
         }
-
-        .input-group input,
-        .input-group select {
+        .input-group input, .input-group select {
             width: 100%;
-            padding: 1rem;
+            padding: 0.75rem;
             border: 2px solid #e2e8f0;
-            border-radius: 10px;
+            border-radius: 8px;
             font-size: 1rem;
-            transition: var(--transition);
         }
-
-        .input-group input:focus,
-        .input-group select:focus {
+        .input-group input:focus, .input-group select:focus {
             outline: none;
             border-color: var(--primary-light);
-            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
         }
-
         .input-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1rem;
+            gap: 0.75rem;
         }
-
         .result-card {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            background: linear-gradient(135deg, var(--primary), var(--bg-dark));
             color: white;
         }
-
-        .result-card h2 {
-            color: white;
-        }
-
+        .result-card h2 { color: white; }
         .result-item {
             display: flex;
             justify-content: space-between;
-            padding: 1rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.95rem;
         }
-
-        .result-item:last-child {
-            border-bottom: none;
-        }
-
-        .result-label {
-            opacity: 0.9;
-        }
-
-        .result-value {
-            font-weight: 700;
-            font-size: 1.2rem;
-        }
-
+        .result-value { font-weight: 700; }
         .result-total {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1.5rem;
-            border-radius: 12px;
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 10px;
             margin-top: 1rem;
             text-align: center;
         }
-
-        .result-total .label {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
         .result-total .amount {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 900;
         }
-
         .margin-badge {
             display: inline-block;
             background: var(--success);
@@ -255,454 +203,170 @@
             font-size: 0.8rem;
             margin-top: 0.5rem;
         }
-
-        /* ===== PACKAGES SECTION ===== */
-        .packages-header {
-            text-align: center;
-            color: white;
-            margin-bottom: 2rem;
-        }
-
-        .packages-header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .packages-header p {
-            opacity: 0.8;
-        }
-
-        .service-selector {
-            background: var(--bg-card);
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            box-shadow: var(--shadow);
-        }
-
-        .service-selector label {
-            font-weight: 600;
-            margin-right: 1rem;
-        }
-
-        .service-selector select {
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
-            border: 2px solid #e2e8f0;
-            border-radius: 10px;
-            min-width: 300px;
-        }
-
-        .packages-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-
-        .package-card {
-            background: var(--bg-card);
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .package-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .package-card.recommended {
-            border: 3px solid var(--accent);
-        }
-
-        .package-card.recommended::before {
-            content: '⭐ RECOMENDADO';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: var(--accent);
-            color: var(--bg-dark);
-            text-align: center;
-            padding: 0.5rem;
-            font-weight: 700;
-            font-size: 0.8rem;
-        }
-
-        .package-header {
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .package-card.recommended .package-header {
-            padding-top: 3rem;
-        }
-
-        .package-tier {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .package-name {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary);
-        }
-
-        .package-price {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: var(--text-dark);
-            margin: 1rem 0;
-        }
-
-        .package-price span {
-            font-size: 1rem;
-            font-weight: 400;
-            color: var(--text-light);
-        }
-
-        .package-features {
-            padding: 0 2rem 2rem;
-        }
-
-        .feature-item {
+        
+        /* Category pills */
+        .category-pills {
             display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid #f1f5f9;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
         }
-
-        .feature-item:last-child {
-            border-bottom: none;
-        }
-
-        .feature-check {
-            color: var(--success);
-            font-weight: bold;
-        }
-
-        .package-cta {
-            padding: 1.5rem 2rem;
-            background: #f8fafc;
-        }
-
-        .package-btn {
-            width: 100%;
-            padding: 1rem;
-            border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 600;
+        .category-pill {
+            padding: 0.5rem 1rem;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50px;
+            color: white;
+            font-size: 0.85rem;
             cursor: pointer;
-            transition: var(--transition);
+            transition: all 0.3s;
         }
-
-        .package-card:first-child .package-btn {
-            background: #e2e8f0;
-            color: var(--text-dark);
+        .category-pill:hover, .category-pill.active {
+            background: var(--primary-light);
+            border-color: var(--primary-light);
         }
-
-        .package-card.recommended .package-btn {
-            background: var(--accent);
-            color: var(--bg-dark);
-        }
-
-        .package-card:last-child .package-btn {
-            background: var(--primary);
-            color: white;
-        }
-
-        .package-btn:hover {
-            transform: scale(1.02);
-        }
-
-        /* ===== SERVICES CATALOG ===== */
-        .search-filter-bar {
+        
+        /* Search */
+        .search-bar {
             display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
         }
-
         .search-box {
             flex: 1;
             position: relative;
         }
-
         .search-box input {
             width: 100%;
-            padding: 1rem 1rem 1rem 3rem;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
             border: none;
             border-radius: var(--radius);
-            font-size: 1rem;
-            box-shadow: var(--shadow);
+            font-size: 0.95rem;
         }
-
         .search-box::before {
             content: '🔍';
             position: absolute;
-            left: 1rem;
+            left: 0.75rem;
             top: 50%;
             transform: translateY(-50%);
         }
-
-        .filter-btn {
-            padding: 1rem 1.5rem;
+        .sort-btn {
+            padding: 0.75rem 1rem;
             background: var(--bg-card);
             border: none;
             border-radius: var(--radius);
-            font-size: 0.9rem;
-            font-weight: 500;
+            font-size: 0.85rem;
             cursor: pointer;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
         }
-
-        .filter-btn:hover,
-        .filter-btn.active {
-            background: var(--primary);
-            color: white;
-        }
-
+        .sort-btn:hover { background: var(--accent); color: var(--bg-dark); }
+        
+        /* Services grid */
         .services-grid {
             display: grid;
-            gap: 1rem;
+            gap: 0.75rem;
         }
-
         .service-card {
             background: var(--bg-card);
             border-radius: var(--radius);
             overflow: hidden;
             box-shadow: var(--shadow);
-            transition: var(--transition);
+            transition: all 0.3s;
         }
-
         .service-card:hover {
-            box-shadow: var(--shadow-hover);
+            transform: translateX(5px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.15);
         }
-
         .service-header {
-            padding: 1.5rem;
-            display: flex;
-            justify-content: space-between;
+            padding: 1rem;
+            display: grid;
+            grid-template-columns: 1fr auto auto;
             align-items: center;
+            gap: 1rem;
             cursor: pointer;
             border-left: 4px solid var(--primary);
         }
-
-        .service-header:hover {
-            background: #f8fafc;
-        }
-
         .service-info h3 {
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             color: var(--primary);
-            margin-bottom: 0.25rem;
         }
-
         .service-info .code {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-light);
         }
-
-        .service-price-range {
+        .service-pricing {
             text-align: right;
         }
-
-        .service-price-range .price {
-            font-size: 1.3rem;
+        .service-pricing .price {
+            font-size: 1.1rem;
             font-weight: 700;
             color: var(--success);
         }
-
-        .service-price-range .time {
-            font-size: 0.85rem;
+        .service-pricing .time {
+            font-size: 0.8rem;
             color: var(--text-light);
         }
-
         .service-expand {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             color: var(--text-light);
-            transition: var(--transition);
+            transition: transform 0.3s;
         }
-
         .service-card.expanded .service-expand {
             transform: rotate(180deg);
         }
-
         .service-details {
             display: none;
-            padding: 0 1.5rem 1.5rem;
+            padding: 1rem;
             border-top: 1px solid #e2e8f0;
+            background: #fafafa;
         }
-
         .service-card.expanded .service-details {
             display: block;
-            animation: slideDown 0.3s ease;
         }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                max-height: 0;
-            }
-
-            to {
-                opacity: 1;
-                max-height: 1000px;
-            }
-        }
-
         .detail-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
+            gap: 1rem;
         }
-
+        @media (max-width: 600px) {
+            .detail-grid { grid-template-columns: 1fr; }
+        }
         .detail-section h4 {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-light);
-            margin-bottom: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
         }
-
         .detail-table {
             width: 100%;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
-
         .detail-table td {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #f1f5f9;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid #eee;
         }
-
-        .detail-table td:last-child {
-            text-align: right;
-            font-weight: 600;
-        }
-
-        .upsell-badge {
+        .detail-table td:last-child { text-align: right; font-weight: 600; }
+        .tier-badge {
             display: inline-block;
-            background: linear-gradient(135deg, var(--accent-light), var(--accent));
-            color: var(--bg-dark);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            font-size: 0.85rem;
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
             font-weight: 600;
-            margin-top: 1rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.3rem;
         }
-
-        .script-box {
-            background: #f0fdf4;
-            border-left: 4px solid var(--success);
-            padding: 1rem;
-            border-radius: 0 8px 8px 0;
-            margin-top: 1rem;
-            font-style: italic;
-            color: var(--text-dark);
-        }
-
-        /* ===== CATEGORY FILTERS ===== */
-        .category-pills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .category-pill {
-            padding: 0.5rem 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50px;
+        .tier-good { background: #e2e8f0; }
+        .tier-better { background: #fef3c7; color: #92400e; }
+        .tier-best { background: #dbeafe; color: #1e40af; }
+        
+        /* Count display */
+        .service-count {
             color: white;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .category-pill:hover,
-        .category-pill.active {
-            background: var(--primary-light);
-            border-color: var(--primary-light);
-        }
-
-        /* ===== STATS BANNER ===== */
-        .stats-banner {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .stat-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 1.5rem;
-            border-radius: var(--radius);
-            text-align: center;
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .stat-card .number {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--accent);
-        }
-
-        .stat-card .label {
-            font-size: 0.85rem;
-            opacity: 0.8;
-            margin-top: 0.25rem;
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 1024px) {
-
-            .calculator-grid,
-            .packages-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .detail-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stats-banner {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .nav-tabs {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .main-container {
-                padding: 1rem;
-            }
-
-            .stats-banner {
-                grid-template-columns: 1fr 1fr;
-            }
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
         }
     </style>
 </head>
-
 <body>
-    <!-- HEADER -->
     <header class="header">
         <div class="header-content">
             <div class="logo">
@@ -710,724 +374,1808 @@
                 <div class="logo-text">ORION <span>Price Book</span> Pro</div>
             </div>
             <nav class="nav-tabs">
-                <button class="nav-tab active" onclick="showTab('calculator')">🧮 Calculadora</button>
-                <button class="nav-tab" onclick="showTab('packages')">📦 Paquetes</button>
-                <button class="nav-tab" onclick="showTab('catalog')">📋 Catálogo</button>
-                <button class="nav-tab" onclick="showTab('settings')">⚙️ Config</button>
+                <button class="nav-tab active" onclick="showTab('catalog')">📋 Catálogo (103)</button>
+                <button class="nav-tab" onclick="showTab('calculator')">🧮 Calculadora</button>
             </nav>
         </div>
     </header>
-
+    
     <main class="main-container">
-        <!-- STATS BANNER -->
         <div class="stats-banner">
             <div class="stat-card">
+                <div class="number">103</div>
+                <div class="label">Servicios</div>
+            </div>
+            <div class="stat-card">
                 <div class="number">$185</div>
-                <div class="label">Rate/Hora Lead</div>
+                <div class="label">Rate/Hora</div>
             </div>
             <div class="stat-card">
                 <div class="number">45%</div>
-                <div class="label">Margen Objetivo</div>
+                <div class="label">Margen Obj.</div>
             </div>
             <div class="stat-card">
-                <div class="number">30%</div>
-                <div class="label">Markup Material</div>
-            </div>
-            <div class="stat-card">
-                <div class="number">200+</div>
-                <div class="label">Servicios</div>
+                <div class="number">12</div>
+                <div class="label">Categorías</div>
             </div>
         </div>
+        
+        <!-- CATALOG TAB -->
+        <div id="tab-catalog" class="tab-content active">
+            <div class="category-pills">
+                <button class="category-pill active" onclick="filterCategory('all')">📋 Todos (103)</button>
+<button class="category-pill" onclick="filterCategory('appliance')">🔌 Appliances (16)</button>
+<button class="category-pill" onclick="filterCategory('gas')">🔥 Gas Systems (12)</button>
+<button class="category-pill" onclick="filterCategory('backflow')">🔄 Backflow (5)</button>
+<button class="category-pill" onclick="filterCategory('demo')">🔨 Demolition (10)</button>
+<button class="category-pill" onclick="filterCategory('drain')">🚿 Drain Cleaning (13)</button>
+<button class="category-pill" onclick="filterCategory('faucet')">🚰 Faucets (9)</button>
+<button class="category-pill" onclick="filterCategory('filtration')">💧 Filtration (7)</button>
+<button class="category-pill" onclick="filterCategory('waterheater')">♨️ Water Heaters (11)</button>
+<button class="category-pill" onclick="filterCategory('distribution')">🔧 Distribution/Repipes (6)</button>
+<button class="category-pill" onclick="filterCategory('slab')">🏠 Slab Leaks (3)</button>
+<button class="category-pill" onclick="filterCategory('toilet')">🚽 Toilets (5)</button>
+<button class="category-pill" onclick="filterCategory('client')">📦 Client Supplied (6)</button>
 
-        <!-- TAB: CALCULATOR -->
-        <div id="tab-calculator" class="tab-content active">
+            </div>
+            
+            <div class="search-bar">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Buscar por código, nombre o descripción..." onkeyup="searchServices()">
+                </div>
+                <button class="sort-btn" onclick="sortServices('price')">💰 Precio</button>
+                <button class="sort-btn" onclick="sortServices('margin')">📈 Margen</button>
+            </div>
+            
+            <div class="service-count" id="serviceCount">Mostrando 103 servicios</div>
+            
+            <div class="services-grid" id="servicesGrid"></div>
+        </div>
+        
+        <!-- CALCULATOR TAB -->
+        <div id="tab-calculator" class="tab-content">
             <div class="calculator-grid">
                 <div class="calc-card">
                     <h2>🧮 Calculadora de Precios</h2>
-
                     <div class="input-group">
                         <label>Tipo de Servicio</label>
-                        <select id="serviceType" onchange="updateCalculator()">
-                            <option value="standard">Servicio Estándar</option>
-                            <option value="emergency">Emergencia (+50%)</option>
-                            <option value="afterhours">After Hours (+25%)</option>
-                            <option value="weekend">Fin de Semana (+35%)</option>
+                        <select id="serviceType" onchange="updateCalc()">
+                            <option value="1.0">Estándar</option>
+                            <option value="1.5">Emergencia (+50%)</option>
+                            <option value="1.25">After Hours (+25%)</option>
+                            <option value="1.35">Fin de Semana (+35%)</option>
                         </select>
                     </div>
-
                     <div class="input-row">
                         <div class="input-group">
-                            <label>Horas Lead Plumber</label>
-                            <input type="number" id="hoursLead" value="2" min="0" step="0.5"
-                                onchange="updateCalculator()">
+                            <label>Horas Lead ($185/hr)</label>
+                            <input type="number" id="hoursLead" value="2" step="0.5" onchange="updateCalc()">
                         </div>
                         <div class="input-group">
-                            <label>Horas Ayudante</label>
-                            <input type="number" id="hoursHelper" value="0" min="0" step="0.5"
-                                onchange="updateCalculator()">
+                            <label>Horas Ayudante ($95/hr)</label>
+                            <input type="number" id="hoursHelper" value="0" step="0.5" onchange="updateCalc()">
                         </div>
                     </div>
-
                     <div class="input-group">
-                        <label>Costo Materiales (Tu Costo)</label>
-                        <input type="number" id="materialCost" value="100" min="0" step="10"
-                            onchange="updateCalculator()">
+                        <label>Costo Materiales</label>
+                        <input type="number" id="materialCost" value="100" step="10" onchange="updateCalc()">
                     </div>
-
                     <div class="input-row">
                         <div class="input-group">
-                            <label>Margen Deseado (%)</label>
-                            <input type="number" id="marginPercent" value="45" min="20" max="70"
-                                onchange="updateCalculator()">
+                            <label>Margen (%)</label>
+                            <input type="number" id="marginPct" value="45" onchange="updateCalc()">
                         </div>
                         <div class="input-group">
-                            <label>Contingencia (%)</label>
-                            <input type="number" id="contingency" value="10" min="0" max="25"
-                                onchange="updateCalculator()">
+                            <label>Tier</label>
+                            <select id="tier" onchange="updateCalc()">
+                                <option value="1.0">Good</option>
+                                <option value="1.25" selected>Better (+25%)</option>
+                                <option value="1.5">Best (+50%)</option>
+                            </select>
                         </div>
-                    </div>
-
-                    <div class="input-group">
-                        <label>Tier de Precio</label>
-                        <select id="priceTier" onchange="updateCalculator()">
-                            <option value="good">🥉 GOOD (Base)</option>
-                            <option value="better" selected>🥈 BETTER (+25%)</option>
-                            <option value="best">🥇 BEST (+50%)</option>
-                        </select>
                     </div>
                 </div>
-
+                
                 <div class="calc-card result-card">
                     <h2>💰 Resultado</h2>
-
                     <div class="result-item">
-                        <span class="result-label">Mano de Obra Lead</span>
-                        <span class="result-value" id="laborLeadCost">$370.00</span>
+                        <span>Mano de Obra Lead</span>
+                        <span class="result-value" id="rLead">$370</span>
                     </div>
                     <div class="result-item">
-                        <span class="result-label">Mano de Obra Ayudante</span>
-                        <span class="result-value" id="laborHelperCost">$0.00</span>
+                        <span>Mano de Obra Ayudante</span>
+                        <span class="result-value" id="rHelper">$0</span>
                     </div>
                     <div class="result-item">
-                        <span class="result-label">Materiales (+30% markup)</span>
-                        <span class="result-value" id="materialTotal">$130.00</span>
+                        <span>Materiales (+30%)</span>
+                        <span class="result-value" id="rMat">$130</span>
                     </div>
                     <div class="result-item">
-                        <span class="result-label">Subtotal (Tu Costo)</span>
-                        <span class="result-value" id="subtotal">$500.00</span>
+                        <span>Tu Costo Total</span>
+                        <span class="result-value" id="rCost">$500</span>
                     </div>
-                    <div class="result-item">
-                        <span class="result-label">Multiplicador Tier</span>
-                        <span class="result-value" id="tierMultiplier">×1.25</span>
-                    </div>
-                    <div class="result-item">
-                        <span class="result-label">Contingencia</span>
-                        <span class="result-value" id="contingencyAmount">+$90.63</span>
-                    </div>
-
                     <div class="result-total">
-                        <div class="label">PRECIO AL CLIENTE</div>
-                        <div class="amount" id="finalPrice">$996.88</div>
-                        <div class="margin-badge" id="marginBadge">✓ 45% Margen = $448.59 ganancia</div>
+                        <div style="font-size:0.9rem;opacity:0.8;">PRECIO AL CLIENTE</div>
+                        <div class="amount" id="rPrice">$906</div>
+                        <div class="margin-badge" id="rMargin">45% = $406 ganancia</div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- TAB: PACKAGES -->
-        <div id="tab-packages" class="tab-content">
-            <div class="packages-header">
-                <h1>📦 Sistema de Paquetes</h1>
-                <p>Presenta las 3 opciones. El 60% de clientes elige BETTER.</p>
-            </div>
-
-            <div class="service-selector">
-                <label>Selecciona el Servicio:</label>
-                <select id="packageService" onchange="updatePackages()">
-                    <option value="wh40">Water Heater 40 Gal - Standard Install</option>
-                    <option value="wh50">Water Heater 50 Gal - Standard Install</option>
-                    <option value="tankless">Tankless Water Heater Install</option>
-                    <option value="toilet">Toilet Replacement</option>
-                    <option value="faucet">Kitchen Faucet Install</option>
-                    <option value="disposal">Garbage Disposal Install</option>
-                    <option value="mainline">Main Line Cleaning</option>
-                    <option value="repipe">Whole House Repipe (Per Bath)</option>
-                </select>
-            </div>
-
-            <div class="packages-grid" id="packagesGrid">
-                <!-- Packages will be populated by JS -->
-            </div>
-        </div>
-
-        <!-- TAB: CATALOG -->
-        <div id="tab-catalog" class="tab-content">
-            <div class="category-pills">
-                <button class="category-pill active" onclick="filterCategory('all')">📋 Todos</button>
-                <button class="category-pill" onclick="filterCategory('appliance')">🔌 Appliances</button>
-                <button class="category-pill" onclick="filterCategory('gas')">🔥 Gas</button>
-                <button class="category-pill" onclick="filterCategory('drain')">🚿 Drenajes</button>
-                <button class="category-pill" onclick="filterCategory('waterheater')">♨️ Water Heaters</button>
-                <button class="category-pill" onclick="filterCategory('faucet')">🚰 Grifería</button>
-                <button class="category-pill" onclick="filterCategory('filtration')">💧 Filtración</button>
-            </div>
-
-            <div class="search-filter-bar">
-                <div class="search-box">
-                    <input type="text" id="catalogSearch" placeholder="Buscar servicio, código, o descripción..."
-                        onkeyup="searchCatalog()">
-                </div>
-                <button class="filter-btn" onclick="sortCatalog('price')">💰 Por Precio</button>
-                <button class="filter-btn" onclick="sortCatalog('time')">⏱️ Por Tiempo</button>
-                <button class="filter-btn" onclick="sortCatalog('margin')">📈 Por Margen</button>
-            </div>
-
-            <div class="services-grid" id="servicesGrid">
-                <!-- Services will be populated by JS -->
-            </div>
-        </div>
-
-        <!-- TAB: SETTINGS -->
-        <div id="tab-settings" class="tab-content">
-            <div class="calc-card" style="max-width: 600px;">
-                <h2>⚙️ Configuración de Rates</h2>
-
-                <div class="input-group">
-                    <label>Rate Lead Plumber ($/hr)</label>
-                    <input type="number" id="rateLead" value="185" onchange="saveSettings()">
-                </div>
-
-                <div class="input-group">
-                    <label>Rate Ayudante ($/hr)</label>
-                    <input type="number" id="rateHelper" value="95" onchange="saveSettings()">
-                </div>
-
-                <div class="input-group">
-                    <label>Markup Materiales (%)</label>
-                    <input type="number" id="markupMaterial" value="30" onchange="saveSettings()">
-                </div>
-
-                <div class="input-group">
-                    <label>Margen Objetivo Default (%)</label>
-                    <input type="number" id="defaultMargin" value="45" onchange="saveSettings()">
-                </div>
-
-                <div class="input-group">
-                    <label>Región</label>
-                    <select id="region" onchange="saveSettings()">
-                        <option value="bayarea" selected>Bay Area, CA</option>
-                        <option value="la">Los Angeles, CA</option>
-                        <option value="sacramento">Sacramento, CA</option>
-                        <option value="other">Otra Región</option>
-                    </select>
                 </div>
             </div>
         </div>
     </main>
-
+    
     <script>
-        // ===== SETTINGS =====
-        let settings = {
-            rateLead: 185,
-            rateHelper: 95,
-            markupMaterial: 30,
-            defaultMargin: 45
-        };
-
-        // ===== SERVICES DATABASE =====
-        const servicesDB = [
-            {
-                id: 'AP-002',
-                category: 'appliance',
-                name: 'Dishwasher Complete Installation',
-                description: 'Instalación completa de lavavajillas provisto por cliente',
-                time: 1.5,
-                materials: 57,
-                priceGood: 485,
-                priceBetter: 585,
-                priceBest: 725,
-                tasks: [
-                    { name: 'Posicionar unidad', time: '15 min' },
-                    { name: 'Conectar suministro agua', time: '20 min' },
-                    { name: 'Conectar drenaje', time: '20 min' },
-                    { name: 'Conexión eléctrica', time: '10 min' },
-                    { name: 'Test funcionamiento', time: '15 min' }
-                ],
-                upsells: [
-                    { name: 'Braided SS Hoses', price: 85 },
-                    { name: 'Air Gap Chrome', price: 125 }
-                ],
-                script: 'Estas mangueras de acero inoxidable duran 10+ años y previenen inundaciones.'
-            },
-            {
-                id: 'GS-007',
-                category: 'gas',
-                name: 'Gas Dryer Connection',
-                description: 'Conexión de secadora de gas con flex SS 48"',
-                time: 0.75,
-                materials: 47,
-                priceGood: 350,
-                priceBetter: 425,
-                priceBest: 550,
-                tasks: [
-                    { name: 'Verificar shut-off valve', time: '5 min' },
-                    { name: 'Instalar gas flex', time: '25 min' },
-                    { name: 'Prueba de fugas', time: '10 min' },
-                    { name: 'Verificar ignición', time: '5 min' }
-                ],
-                upsells: [
-                    { name: 'Seismic Valve', price: 450 },
-                    { name: 'Sediment Trap', price: 185 }
-                ],
-                script: 'Obligatorio en California para nuevas instalaciones - protege de fugas por terremoto.'
-            },
-            {
-                id: 'DR-090',
-                category: 'drain',
-                name: 'Main Line Cleaning (Through Clean Out)',
-                description: 'Limpieza de línea principal 3-4" con cable machine',
-                time: 1.75,
-                materials: 0,
-                priceGood: 385,
-                priceBetter: 485,
-                priceBest: 650,
-                tasks: [
-                    { name: 'Locate clean out', time: '5 min' },
-                    { name: 'Setup machine', time: '10 min' },
-                    { name: 'Cable main line', time: '60 min' },
-                    { name: 'Test flow', time: '10 min' },
-                    { name: 'Cleanup', time: '15 min' }
-                ],
-                upsells: [
-                    { name: 'Camera Inspection', price: 250 },
-                    { name: 'Install Cleanout', price: 800 }
-                ],
-                script: 'Podemos ver exactamente qué hay en sus tuberías y prevenir problemas futuros.'
-            },
-            {
-                id: 'WH-350',
-                category: 'waterheater',
-                name: 'Water Heater 40 Gal Install',
-                description: 'Instalación completa de calentador 40 galones con code upgrades',
-                time: 3.5,
-                materials: 850,
-                priceGood: 2400,
-                priceBetter: 2950,
-                priceBest: 3800,
-                tasks: [
-                    { name: 'Drain & remove old unit', time: '45 min' },
-                    { name: 'Position new heater', time: '30 min' },
-                    { name: 'Connect water lines', time: '45 min' },
-                    { name: 'Connect gas line', time: '30 min' },
-                    { name: 'Install T&P valve', time: '15 min' },
-                    { name: 'Install seismic straps', time: '20 min' },
-                    { name: 'Light pilot & test', time: '25 min' }
-                ],
-                upsells: [
-                    { name: 'Expansion Tank', price: 350 },
-                    { name: 'Recirculation Pump', price: 650 },
-                    { name: 'PRV Replace', price: 450 }
-                ],
-                script: 'El tanque de expansión es obligatorio por código y protege su calentador de daños por presión.'
-            },
-            {
-                id: 'FC-123',
-                category: 'faucet',
-                name: 'Kitchen Faucet Installation',
-                description: 'Instalación de grifo de cocina estándar',
-                time: 1.0,
-                materials: 20,
-                priceGood: 350,
-                priceBetter: 425,
-                priceBest: 550,
-                tasks: [
-                    { name: 'Disconnect old faucet', time: '15 min' },
-                    { name: 'Remove & clean', time: '10 min' },
-                    { name: 'Install new faucet', time: '25 min' },
-                    { name: 'Connect supplies', time: '10 min' }
-                ],
-                upsells: [
-                    { name: 'Braided SS Supplies', price: 45 },
-                    { name: 'Angle Stops Upgrade', price: 95 }
-                ],
-                script: 'Las líneas de acero inoxidable previenen fugas y duran toda la vida del grifo.'
-            },
-            {
-                id: 'WF-144',
-                category: 'filtration',
-                name: 'Water Softener Install (1-3 Bath)',
-                description: 'Sistema suavizador de agua WS 1054',
-                time: 3.5,
-                materials: 790,
-                priceGood: 2800,
-                priceBetter: 3200,
-                priceBest: 3800,
-                tasks: [
-                    { name: 'Site prep, locate loop', time: '30 min' },
-                    { name: 'Install softener tanks', time: '60 min' },
-                    { name: 'Connect water lines', time: '45 min' },
-                    { name: 'Install drain line', time: '30 min' },
-                    { name: 'Program controller', time: '15 min' }
-                ],
-                upsells: [
-                    { name: 'RO System Add-on', price: 650 },
-                    { name: 'Sediment Pre-filter', price: 185 }
-                ],
-                script: 'Un sistema RO bajo el fregadero le dará agua de calidad premium para beber.'
-            }
-        ];
-
-        // ===== PACKAGES DATA =====
-        const packagesData = {
-            wh40: {
-                name: 'Water Heater 40 Gal',
-                good: {
-                    price: 2400,
-                    features: [
-                        'Bradford White Standard 40 Gal',
-                        'Instalación básica',
-                        'Conexiones estándar',
-                        'Garantía 6 años tanque',
-                        'Garantía 30 días labor'
-                    ]
-                },
-                better: {
-                    price: 2950,
-                    features: [
-                        'Bradford White Standard 40 Gal',
-                        'Expansion Tank incluido',
-                        'Drain Pan + Drain Line',
-                        'Seismic Straps Premium',
-                        'Garantía 6 años tanque',
-                        'Garantía 1 año labor'
-                    ]
-                },
-                best: {
-                    price: 3800,
-                    features: [
-                        'Rheem Professional Grade 40 Gal',
-                        'ALL Code Upgrades incluidos',
-                        'Expansion Tank',
-                        'Recirculation Pump',
-                        'PRV Check/Replace',
-                        'Garantía 10 años tanque',
-                        'Garantía 2 años labor'
-                    ]
-                }
-            },
-            tankless: {
-                name: 'Tankless Water Heater',
-                good: {
-                    price: 4200,
-                    features: [
-                        'Rinnai/Navien Standard',
-                        'Gas line extension básica',
-                        'Venting estándar',
-                        'Garantía fabricante'
-                    ]
-                },
-                better: {
-                    price: 5500,
-                    features: [
-                        'Rinnai/Navien Premium',
-                        'Recirculation built-in',
-                        'Scale flush kit',
-                        'WiFi control',
-                        'Garantía 1 año labor'
-                    ]
-                },
-                best: {
-                    price: 7200,
-                    features: [
-                        'Navien NPE-240A Premium',
-                        'Dual recirculation',
-                        'Whole house integration',
-                        'Smart home compatible',
-                        'Scale prevention system',
-                        'Garantía 2 años labor'
-                    ]
-                }
-            },
-            toilet: {
-                name: 'Toilet Replacement',
-                good: {
-                    price: 485,
-                    features: [
-                        'Standard toilet (client provides)',
-                        'Wax ring new',
-                        'Flange inspection',
-                        'Basic install'
-                    ]
-                },
-                better: {
-                    price: 650,
-                    features: [
-                        'Premium wax-free seal',
-                        'New supply line SS',
-                        'New angle stop',
-                        'Flange repair if needed',
-                        '1 year labor warranty'
-                    ]
-                },
-                best: {
-                    price: 850,
-                    features: [
-                        'Toto/Kohler style bolt caps',
-                        'All new hardware',
-                        'Caulk professional finish',
-                        'Slow-close seat included',
-                        'Extended warranty'
-                    ]
-                }
-            }
-        };
-
-        // ===== TAB NAVIGATION =====
-        function showTab(tabName) {
-            // Hide all tabs
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-
-            // Remove active from all nav tabs
-            document.querySelectorAll('.nav-tab').forEach(btn => {
-                btn.classList.remove('active');
-            });
-
-            // Show selected tab
-            document.getElementById('tab-' + tabName).classList.add('active');
-
-            // Highlight nav button
-            event.target.classList.add('active');
-
-            // Initialize content if needed
-            if (tabName === 'packages') updatePackages();
-            if (tabName === 'catalog') renderCatalog();
-        }
-
-        // ===== CALCULATOR =====
-        function updateCalculator() {
-            const serviceType = document.getElementById('serviceType').value;
-            const hoursLead = parseFloat(document.getElementById('hoursLead').value) || 0;
-            const hoursHelper = parseFloat(document.getElementById('hoursHelper').value) || 0;
-            const materialCost = parseFloat(document.getElementById('materialCost').value) || 0;
-            const marginPercent = parseFloat(document.getElementById('marginPercent').value) || 45;
-            const contingency = parseFloat(document.getElementById('contingency').value) || 10;
-            const priceTier = document.getElementById('priceTier').value;
-
-            // Service type multipliers
-            const typeMultipliers = {
-                standard: 1.0,
-                emergency: 1.5,
-                afterhours: 1.25,
-                weekend: 1.35
-            };
-
-            // Tier multipliers
-            const tierMultipliers = {
-                good: 1.0,
-                better: 1.25,
-                best: 1.50
-            };
-
-            const typeMultiplier = typeMultipliers[serviceType];
-            const tierMultiplier = tierMultipliers[priceTier];
-
-            // Calculations
-            const laborLeadCost = hoursLead * settings.rateLead * typeMultiplier;
-            const laborHelperCost = hoursHelper * settings.rateHelper * typeMultiplier;
-            const materialTotal = materialCost * (1 + settings.markupMaterial / 100);
-            const subtotal = laborLeadCost + laborHelperCost + materialTotal;
-
-            // Apply margin formula: Price = Cost / (1 - margin%)
-            const basePrice = subtotal / (1 - marginPercent / 100);
-            const tieredPrice = basePrice * tierMultiplier;
-            const contingencyAmount = tieredPrice * (contingency / 100);
-            const finalPrice = tieredPrice + contingencyAmount;
-
-            // Calculate actual profit
-            const profit = finalPrice - subtotal;
-            const actualMargin = (profit / finalPrice) * 100;
-
-            // Update UI
-            document.getElementById('laborLeadCost').textContent = '$' + laborLeadCost.toFixed(2);
-            document.getElementById('laborHelperCost').textContent = '$' + laborHelperCost.toFixed(2);
-            document.getElementById('materialTotal').textContent = '$' + materialTotal.toFixed(2);
-            document.getElementById('subtotal').textContent = '$' + subtotal.toFixed(2);
-            document.getElementById('tierMultiplier').textContent = '×' + tierMultiplier.toFixed(2);
-            document.getElementById('contingencyAmount').textContent = '+$' + contingencyAmount.toFixed(2);
-            document.getElementById('finalPrice').textContent = '$' + finalPrice.toFixed(2);
-            document.getElementById('marginBadge').textContent = '✓ ' + actualMargin.toFixed(0) + '% Margen = $' + profit.toFixed(2) + ' ganancia';
-        }
-
-        // ===== PACKAGES =====
-        function updatePackages() {
-            const serviceId = document.getElementById('packageService').value;
-            const data = packagesData[serviceId] || packagesData.wh40;
-
-            const grid = document.getElementById('packagesGrid');
-            grid.innerHTML = `
-                <div class="package-card">
-                    <div class="package-header">
-                        <div class="package-tier">🥉</div>
-                        <div class="package-name">GOOD</div>
-                        <div class="package-price">$${data.good.price.toLocaleString()}</div>
-                    </div>
-                    <div class="package-features">
-                        ${data.good.features.map(f => `
-                            <div class="feature-item">
-                                <span class="feature-check">✓</span>
-                                <span>${f}</span>
-                            </div>
-                        `).join('')}
-                    </div>
-                    <div class="package-cta">
-                        <button class="package-btn">Seleccionar GOOD</button>
-                    </div>
-                </div>
-                
-                <div class="package-card recommended">
-                    <div class="package-header">
-                        <div class="package-tier">🥈</div>
-                        <div class="package-name">BETTER</div>
-                        <div class="package-price">$${data.better.price.toLocaleString()}</div>
-                    </div>
-                    <div class="package-features">
-                        ${data.better.features.map(f => `
-                            <div class="feature-item">
-                                <span class="feature-check">✓</span>
-                                <span>${f}</span>
-                            </div>
-                        `).join('')}
-                    </div>
-                    <div class="package-cta">
-                        <button class="package-btn">Seleccionar BETTER</button>
-                    </div>
-                </div>
-                
-                <div class="package-card">
-                    <div class="package-header">
-                        <div class="package-tier">🥇</div>
-                        <div class="package-name">BEST</div>
-                        <div class="package-price">$${data.best.price.toLocaleString()}</div>
-                    </div>
-                    <div class="package-features">
-                        ${data.best.features.map(f => `
-                            <div class="feature-item">
-                                <span class="feature-check">✓</span>
-                                <span>${f}</span>
-                            </div>
-                        `).join('')}
-                    </div>
-                    <div class="package-cta">
-                        <button class="package-btn">Seleccionar BEST</button>
-                    </div>
-                </div>
-            `;
-        }
-
-        // ===== CATALOG =====
+        const services = [
+    {
+        "code": "AP-002",
+        "name": "Dishwasher Complete Installation (Monitor Only - Client Provides Unit)",
+        "category": "appliance",
+        "categoryName": "Appliances",
+        "categoryIcon": "🔌",
+        "description": "Instalación completa de lavavajillas provisto por cliente. Verificación de funcionamiento.",
+        "time": "1.0",
+        "materials": 0,
+        "priceLow": 200,
+        "priceHigh": 400,
+        "marginLow": 100,
+        "marginHigh": 200,
+        "tasks": []
+    },
+    {
+        "code": "AP-003",
+        "name": "Complete Braided SS Supply Kit (Supply + Drain + Cord)",
+        "category": "appliance",
+        "categoryName": "Appliances",
+        "categoryIcon": "🔌",
+        "description": "Complete Braided SS Supply Kit (Supply + Drain + Cord)",
+        "time": "1.0",
+        "materials": 45,
+        "priceLow": 265,
+        "priceHigh": 325,
+        "marginLow": 115,
+        "marginHigh": 175,
+        "tasks": []
+    },
+    {
+        "code": "AP-004",
+        "name": "Braided Stainless Supply Line Only (48\")",
+        "category": "appliance",
+        "categoryName": "Appliances",
+        "categoryIcon": "🔌",
+        "description": "Braided Stainless Supply Line Only (48\")",
+        "time": "1.0",
+        "materials": 18,
+        "priceLow": 145,
+        "priceHigh": 185,
+        "marginLow": 76,
+        "marginHigh": 116,
+        "tasks": []
+    },
+    {
+        "code": "AP-005",
+        "name": "Air Gap with Rubber Hose to Garbage Disposal",
+        "category": "appliance",
+        "categoryName": "Appliances",
+        "categoryIcon": "🔌",
+        "description": "Instalación de air gap obligatorio por código (evita retroceso de agua contaminada).",
+        "time": "1.0",
+        "materials": 0,
+        "priceLow": 285,
+        "priceHigh": 350,
+        "marginLow": 124,
+        "marginHigh": 189,
+        "tasks": []
+    },
+    {
+        "code": "AP-018",
+        "name": "Ice Maker Soft Copper Water Supply (Up to 15')",
+        "category": "appliance",
+        "categoryName": "Appliances",
+        "categoryIcon": "🔌",
+        "description": "Ice Maker Soft Copper Water Supply (Up to 15')",
+        "time": "1.0",
+        "materials": 0,
+        "priceLow": 425,
+        "priceHigh": 525,
+        "marginLow": 191,
+        "marginHigh": 291,
+        "tasks": [{"name": "L", "time": ""}, {"name": "I", "time": ""}, {"name": "T", "time": ""}, {"name": "C", "time": ""}]
+    },
+    {
+        "code": "AP-020",
+        "name": "Emergency Water Shut-Off Valve (1/4 Turn)",
+        "category": "appliance",
+        "categoryName": "Appliances",
+        "categoryIcon": "🔌",
+        "description": "Emergency Water Shut-Off Valve (1/4 Turn)",
+        "time": "1.0",
+        "materials": 15,
+        "priceLow": 225,
+        "priceHigh": 285,
+        "marginLow": 114,
+        "marginHigh": 174,
+        "tasks": []
+    },
+    {
+        "code": "AP-021",
+        "name": "Recessed Box with Emergency Shut-Off",
+        "category": "appliance",
+        "categoryName": "Appliances",
+        "categoryIcon": "🔌",
+        "description": "Caja empotrada para ice maker con válvula de emergencia.",
+        "time": "2.0",
+        "materials": 85,
+        "priceLow": 750,
+        "priceHigh": 950,
+        "marginLow": 270,
+        "marginHigh": 470,
+        "tasks": []
+    },
+    {
+        "code": "AP-022",
+        "name": "Inline Water Filter for Ice Maker",
+        "category": "appliance",
+        "categoryName": "Appliances",
+        "categoryIcon": "🔌",
+        "description": "Inline Water Filter for Ice Maker",
+        "time": "1.0",
+        "materials": 35,
+        "priceLow": 325,
+        "priceHigh": 425,
+        "marginLow": 142,
+        "marginHigh": 242,
+        "tasks": []
+    },
+    {
+        "code": "AP-024",
+        "name": "Water Supply to Insta-Hot",
+        "category": "appliance",
+        "categoryName": "Appliances",
+        "categoryIcon": "🔌",
+        "description": "Water Supply to Insta-Hot",
+        "time": "1.0",
+        "materials": 30,
+        "priceLow": 385,
+        "priceHigh": 485,
+        "marginLow": 161,
+        "marginHigh": 261,
+        "tasks": []
+    },
+    {
+        "code": "AP-025",
+        "name": "Dispenser Supply from Insta-Hot + Valve",
+        "category": "appliance",
+        "categoryName": "Appliances",
+        "categoryIcon": "🔌",
+        "description": "Dispenser Supply from Insta-Hot + Valve",
+        "time": "1.5",
+        "materials": 45,
+        "priceLow": 550,
+        "priceHigh": 685,
+        "marginLow": 215,
+        "marginHigh": 350,
+        "tasks": []
+    },
+    {
+        "code": "AP-027",
+        "name": "Disconnect & Reinstall Washer & Dryer",
+        "category": "appliance",
+        "categoryName": "Appliances",
+        "categoryIcon": "🔌",
+        "description": "Disconnect & Reinstall Washer & Dryer",
+        "time": "1.0",
+        "materials": 0,
+        "priceLow": 350,
+        "priceHigh": 450,
+        "marginLow": 165,
+        "marginHigh": 265,
+        "tasks": [{"name": "C", "time": ""}, {"name": "D", "time": ""}, {"name": "M", "time": ""}, {"name": "R", "time": ""}]
+    },
+    {
+        "code": "AP-029",
+        "name": "Braided Stainless No-Burst Hoses (Par)",
+        "category": "appliance",
+        "categoryName": "Appliances",
+        "categoryIcon": "🔌",
+        "description": "Braided Stainless No-Burst Hoses (Par)",
+        "time": "1.0",
+        "materials": 35,
+        "priceLow": 165,
+        "priceHigh": 225,
+        "marginLow": 74,
+        "marginHigh": 134,
+        "tasks": []
+    },
+    {
+        "code": "AP-031",
+        "name": "Trap & Standpipe (Excl. Drywall)",
+        "category": "appliance",
+        "categoryName": "Appliances",
+        "categoryIcon": "🔌",
+        "description": "Trap & Standpipe (Excl. Drywall)",
+        "time": "2.0",
+        "materials": 45,
+        "priceLow": 750,
+        "priceHigh": 950,
+        "marginLow": 322,
+        "marginHigh": 522,
+        "tasks": []
+    },
+    {
+        "code": "AP-032",
+        "name": "Recessed Box (Water & Drain)",
+        "category": "appliance",
+        "categoryName": "Appliances",
+        "categoryIcon": "🔌",
+        "description": "Recessed Box (Water & Drain)",
+        "time": "3.0",
+        "materials": 120,
+        "priceLow": 1150,
+        "priceHigh": 1450,
+        "marginLow": 439,
+        "marginHigh": 739,
+        "tasks": []
+    },
+    {
+        "code": "AP-033",
+        "name": "Washing Machine Drain Pan & Drain Line",
+        "category": "appliance",
+        "categoryName": "Appliances",
+        "categoryIcon": "🔌",
+        "description": "Washing Machine Drain Pan & Drain Line",
+        "time": "1.5",
+        "materials": 45,
+        "priceLow": 550,
+        "priceHigh": 685,
+        "marginLow": 215,
+        "marginHigh": 350,
+        "tasks": []
+    },
+    {
+        "code": "AP-034",
+        "name": "Hammer Arrestor",
+        "category": "appliance",
+        "categoryName": "Appliances",
+        "categoryIcon": "🔌",
+        "description": "Reduce golpe de ariete (water hammer) en lavadoras.",
+        "time": "1.0",
+        "materials": 35,
+        "priceLow": 250,
+        "priceHigh": 325,
+        "marginLow": 113,
+        "marginHigh": 188,
+        "tasks": []
+    },
+    {
+        "code": "GS-007",
+        "name": "Connect Gas Dryer (48\" Stainless Flex)",
+        "category": "gas",
+        "categoryName": "Gas Systems",
+        "categoryIcon": "🔥",
+        "description": "Connect Gas Dryer (48\" Stainless Flex)",
+        "time": "1.0",
+        "materials": 0,
+        "priceLow": 350,
+        "priceHigh": 450,
+        "marginLow": 151,
+        "marginHigh": 251,
+        "tasks": []
+    },
+    {
+        "code": "GS-008",
+        "name": "Connect Gas Range/Cooktop (48\" Stainless Flex)",
+        "category": "gas",
+        "categoryName": "Gas Systems",
+        "categoryIcon": "🔥",
+        "description": "Connect Gas Range/Cooktop (48\" Stainless Flex)",
+        "time": "1.0",
+        "materials": 50,
+        "priceLow": 425,
+        "priceHigh": 550,
+        "marginLow": 175,
+        "marginHigh": 300,
+        "tasks": []
+    },
+    {
+        "code": "GS-009",
+        "name": "Connect Dryer Vent (Flex Between Dryer & Wall)",
+        "category": "gas",
+        "categoryName": "Gas Systems",
+        "categoryIcon": "🔥",
+        "description": "Connect Dryer Vent (Flex Between Dryer & Wall)",
+        "time": "1.0",
+        "materials": 25,
+        "priceLow": 225,
+        "priceHigh": 285,
+        "marginLow": 101,
+        "marginHigh": 161,
+        "tasks": []
+    },
+    {
+        "code": "GS-010",
+        "name": "Dryer Vent Kit Through Stucco/Siding",
+        "category": "gas",
+        "categoryName": "Gas Systems",
+        "categoryIcon": "🔥",
+        "description": "Dryer Vent Kit Through Stucco/Siding",
+        "time": "2.5",
+        "materials": 65,
+        "priceLow": 950,
+        "priceHigh": 1200,
+        "marginLow": 404,
+        "marginHigh": 654,
+        "tasks": []
+    },
+    {
+        "code": "GS-011",
+        "name": "Hard Pipe Dryer Vent (Up to 10')",
+        "category": "gas",
+        "categoryName": "Gas Systems",
+        "categoryIcon": "🔥",
+        "description": "Hard Pipe Dryer Vent (Up to 10')",
+        "time": "2.0",
+        "materials": 60,
+        "priceLow": 750,
+        "priceHigh": 950,
+        "marginLow": 302,
+        "marginHigh": 502,
+        "tasks": [{"name": "D", "time": ""}, {"name": "I", "time": ""}, {"name": "C", "time": ""}, {"name": "S", "time": ""}, {"name": "T", "time": ""}]
+    },
+    {
+        "code": "GS-012",
+        "name": "Under House Repair Fee (Access Charge)",
+        "category": "gas",
+        "categoryName": "Gas Systems",
+        "categoryIcon": "🔥",
+        "description": "Cargo adicional por trabajo en crawlspace.",
+        "time": "1.0",
+        "materials": 0,
+        "priceLow": 200,
+        "priceHigh": 400,
+        "marginLow": 100,
+        "marginHigh": 200,
+        "tasks": []
+    },
+    {
+        "code": "GS-013",
+        "name": "1/2\" × 18\" SS Gas Supply with Emergency Shut-Off",
+        "category": "gas",
+        "categoryName": "Gas Systems",
+        "categoryIcon": "🔥",
+        "description": "1/2\" × 18\" SS Gas Supply with Emergency Shut-Off",
+        "time": "1.0",
+        "materials": 0,
+        "priceLow": 425,
+        "priceHigh": 550,
+        "marginLow": 183,
+        "marginHigh": 308,
+        "tasks": []
+    },
+    {
+        "code": "GS-014",
+        "name": "Sediment Trap for Gas Line",
+        "category": "gas",
+        "categoryName": "Gas Systems",
+        "categoryIcon": "🔥",
+        "description": "Obligatorio por código. Trampa de sedimento antes del appliance.",
+        "time": "1.0",
+        "materials": 20,
+        "priceLow": 285,
+        "priceHigh": 385,
+        "marginLow": 121,
+        "marginHigh": 221,
+        "tasks": []
+    },
+    {
+        "code": "GS-015",
+        "name": "1/2\" Emergency Gas Shut-Off Valve",
+        "category": "gas",
+        "categoryName": "Gas Systems",
+        "categoryIcon": "🔥",
+        "description": "1/2\" Emergency Gas Shut-Off Valve",
+        "time": "1.0",
+        "materials": 18,
+        "priceLow": 285,
+        "priceHigh": 385,
+        "marginLow": 124,
+        "marginHigh": 224,
+        "tasks": []
+    },
+    {
+        "code": "GS-016",
+        "name": "3/4\" Emergency Gas Shut-Off Valve",
+        "category": "gas",
+        "categoryName": "Gas Systems",
+        "categoryIcon": "🔥",
+        "description": "3/4\" Emergency Gas Shut-Off Valve",
+        "time": "1.0",
+        "materials": 25,
+        "priceLow": 325,
+        "priceHigh": 425,
+        "marginLow": 155,
+        "marginHigh": 255,
+        "tasks": []
+    },
+    {
+        "code": "GS-017",
+        "name": "1\" Emergency Gas Shut-Off Valve",
+        "category": "gas",
+        "categoryName": "Gas Systems",
+        "categoryIcon": "🔥",
+        "description": "1\" Emergency Gas Shut-Off Valve",
+        "time": "1.0",
+        "materials": 45,
+        "priceLow": 425,
+        "priceHigh": 550,
+        "marginLow": 182,
+        "marginHigh": 307,
+        "tasks": []
+    },
+    {
+        "code": "GS-100",
+        "name": "Seismic/Earthquake Shut-Off Valve (3/4\" - 1\")",
+        "category": "gas",
+        "categoryName": "Gas Systems",
+        "categoryIcon": "🔥",
+        "description": "Válvula automática de cierre por sismo. OBLIGATORIO en California para nuevas instalaciones.",
+        "time": "2.5",
+        "materials": 0,
+        "priceLow": 1100,
+        "priceHigh": 1400,
+        "marginLow": 443,
+        "marginHigh": 743,
+        "tasks": [{"name": "C", "time": ""}, {"name": "C", "time": ""}, {"name": "P", "time": ""}, {"name": "I", "time": ""}, {"name": "P", "time": ""}, {"name": "R", "time": ""}]
+    },
+    {
+        "code": "BF-036",
+        "name": "3/4\" Reduced Pressure Backflow Preventer (RPZ)",
+        "category": "backflow",
+        "categoryName": "Backflow",
+        "categoryIcon": "🔄",
+        "description": "3/4\" Reduced Pressure Backflow Preventer (RPZ)",
+        "time": "3.0",
+        "materials": 0,
+        "priceLow": 2800,
+        "priceHigh": 3200,
+        "marginLow": 1017,
+        "marginHigh": 1417,
+        "tasks": [{"name": "C", "time": ""}, {"name": "C", "time": ""}, {"name": "P", "time": ""}, {"name": "I", "time": ""}, {"name": "I", "time": ""}, {"name": "P", "time": ""}]
+    },
+    {
+        "code": "BF-037",
+        "name": "1\" Reduced Pressure Backflow Preventer",
+        "category": "backflow",
+        "categoryName": "Backflow",
+        "categoryIcon": "🔄",
+        "description": "1\" Reduced Pressure Backflow Preventer",
+        "time": "3.5",
+        "materials": 950,
+        "priceLow": 3200,
+        "priceHigh": 3800,
+        "marginLow": 1188,
+        "marginHigh": 1788,
+        "tasks": []
+    },
+    {
+        "code": "BF-040",
+        "name": "2\" Reduced Pressure Backflow Preventer",
+        "category": "backflow",
+        "categoryName": "Backflow",
+        "categoryIcon": "🔄",
+        "description": "2\" Reduced Pressure Backflow Preventer",
+        "time": "5.0",
+        "materials": 1,
+        "priceLow": 5500,
+        "priceHigh": 6500,
+        "marginLow": 2040,
+        "marginHigh": 3040,
+        "tasks": []
+    },
+    {
+        "code": "BF-041",
+        "name": "3/4\" or 1\" Relief Valve Kit (Repair Parts)",
+        "category": "backflow",
+        "categoryName": "Backflow",
+        "categoryIcon": "🔄",
+        "description": "3/4\" or 1\" Relief Valve Kit (Repair Parts)",
+        "time": "1.0",
+        "materials": 120,
+        "priceLow": 550,
+        "priceHigh": 750,
+        "marginLow": 209,
+        "marginHigh": 409,
+        "tasks": []
+    },
+    {
+        "code": "BF-044",
+        "name": "Backflow Bag (Cover)",
+        "category": "backflow",
+        "categoryName": "Backflow",
+        "categoryIcon": "🔄",
+        "description": "Backflow Bag (Cover)",
+        "time": "1.0",
+        "materials": 85,
+        "priceLow": 265,
+        "priceHigh": 325,
+        "marginLow": 109,
+        "marginHigh": 169,
+        "tasks": []
+    },
+    {
+        "code": "DM-047",
+        "name": "Whole Bath Demo (Excludes Subfloor)",
+        "category": "demo",
+        "categoryName": "Demolition",
+        "categoryIcon": "🔨",
+        "description": "Whole Bath Demo (Excludes Subfloor)",
+        "time": "4.0",
+        "materials": 100,
+        "priceLow": 1500,
+        "priceHigh": 2000,
+        "marginLow": 630,
+        "marginHigh": 1130,
+        "tasks": []
+    },
+    {
+        "code": "DM-048",
+        "name": "Fiberglass Tub/Shower with Walls",
+        "category": "demo",
+        "categoryName": "Demolition",
+        "categoryIcon": "🔨",
+        "description": "Fiberglass Tub/Shower with Walls",
+        "time": "3.0",
+        "materials": 0,
+        "priceLow": 1100,
+        "priceHigh": 1400,
+        "marginLow": 448,
+        "marginHigh": 748,
+        "tasks": []
+    },
+    {
+        "code": "DM-049",
+        "name": "Tile Tub/Shower with Walls",
+        "category": "demo",
+        "categoryName": "Demolition",
+        "categoryIcon": "🔨",
+        "description": "Tile Tub/Shower with Walls",
+        "time": "5.0",
+        "materials": 0,
+        "priceLow": 1850,
+        "priceHigh": 2400,
+        "marginLow": 730,
+        "marginHigh": 1280,
+        "tasks": []
+    },
+    {
+        "code": "DM-056",
+        "name": "Re-Pour/Patch Concrete (2×2 Area)",
+        "category": "demo",
+        "categoryName": "Demolition",
+        "categoryIcon": "🔨",
+        "description": "Re-Pour/Patch Concrete (2×2 Area)",
+        "time": "2.5",
+        "materials": 40,
+        "priceLow": 850,
+        "priceHigh": 1100,
+        "marginLow": 336,
+        "marginHigh": 586,
+        "tasks": []
+    },
+    {
+        "code": "DM-057",
+        "name": "Re-Pour/Patch Concrete (4×4 Area)",
+        "category": "demo",
+        "categoryName": "Demolition",
+        "categoryIcon": "🔨",
+        "description": "Re-Pour/Patch Concrete (4×4 Area)",
+        "time": "4.0",
+        "materials": 80,
+        "priceLow": 1450,
+        "priceHigh": 1850,
+        "marginLow": 606,
+        "marginHigh": 1006,
+        "tasks": []
+    },
+    {
+        "code": "DM-064",
+        "name": "Patch Stucco (Up to 3×3)",
+        "category": "demo",
+        "categoryName": "Demolition",
+        "categoryIcon": "🔨",
+        "description": "Patch Stucco (Up to 3×3)",
+        "time": "2.0",
+        "materials": 35,
+        "priceLow": 685,
+        "priceHigh": 850,
+        "marginLow": 270,
+        "marginHigh": 435,
+        "tasks": []
+    },
+    {
+        "code": "DM-067",
+        "name": "Cut Drywall Hole (Up to 2×2)",
+        "category": "demo",
+        "categoryName": "Demolition",
+        "categoryIcon": "🔨",
+        "description": "Cut Drywall Hole (Up to 2×2)",
+        "time": "1.0",
+        "materials": 0,
+        "priceLow": 165,
+        "priceHigh": 225,
+        "marginLow": 73,
+        "marginHigh": 133,
+        "tasks": []
+    },
+    {
+        "code": "DM-075",
+        "name": "Patch Wall (2×2)",
+        "category": "demo",
+        "categoryName": "Demolition",
+        "categoryIcon": "🔨",
+        "description": "Patch Wall (2×2)",
+        "time": "1.5",
+        "materials": 25,
+        "priceLow": 550,
+        "priceHigh": 750,
+        "marginLow": 241,
+        "marginHigh": 441,
+        "tasks": []
+    },
+    {
+        "code": "DM-076",
+        "name": "Patch Wall (3×3)",
+        "category": "demo",
+        "categoryName": "Demolition",
+        "categoryIcon": "🔨",
+        "description": "Patch Wall (3×3)",
+        "time": "2.0",
+        "materials": 35,
+        "priceLow": 685,
+        "priceHigh": 850,
+        "marginLow": 270,
+        "marginHigh": 435,
+        "tasks": []
+    },
+    {
+        "code": "DM-081",
+        "name": "Lath & Plaster Patch (3×3)",
+        "category": "demo",
+        "categoryName": "Demolition",
+        "categoryIcon": "🔨",
+        "description": "Lath & Plaster Patch (3×3)",
+        "time": "2.5",
+        "materials": 45,
+        "priceLow": 850,
+        "priceHigh": 1100,
+        "marginLow": 330,
+        "marginHigh": 580,
+        "tasks": []
+    },
+    {
+        "code": "DR-083",
+        "name": "Bar Sink Stoppage (Remove Trap)",
+        "category": "drain",
+        "categoryName": "Drain Cleaning",
+        "categoryIcon": "🚿",
+        "description": "Bar Sink Stoppage (Remove Trap)",
+        "time": "1.0",
+        "materials": 0,
+        "priceLow": 165,
+        "priceHigh": 225,
+        "marginLow": 73,
+        "marginHigh": 133,
+        "tasks": []
+    },
+    {
+        "code": "DR-084",
+        "name": "Kitchen Sink (Outside Clean Out)",
+        "category": "drain",
+        "categoryName": "Drain Cleaning",
+        "categoryIcon": "🚿",
+        "description": "Kitchen Sink (Outside Clean Out)",
+        "time": "1.0",
+        "materials": 0,
+        "priceLow": 225,
+        "priceHigh": 285,
+        "marginLow": 87,
+        "marginHigh": 147,
+        "tasks": []
+    },
+    {
+        "code": "DR-085",
+        "name": "Kitchen Sink (Under Sink - Cable Machine)",
+        "category": "drain",
+        "categoryName": "Drain Cleaning",
+        "categoryIcon": "🚿",
+        "description": "Kitchen Sink (Under Sink - Cable Machine)",
+        "time": "1.0",
+        "materials": 0,
+        "priceLow": 225,
+        "priceHigh": 285,
+        "marginLow": 87,
+        "marginHigh": 147,
+        "tasks": [{"name": "R", "time": ""}, {"name": "C", "time": ""}, {"name": "R", "time": ""}]
+    },
+    {
+        "code": "DR-088",
+        "name": "Lavatory Stoppage (Through Pop-Up)",
+        "category": "drain",
+        "categoryName": "Drain Cleaning",
+        "categoryIcon": "🚿",
+        "description": "Lavatory Stoppage (Through Pop-Up)",
+        "time": "1.0",
+        "materials": 0,
+        "priceLow": 165,
+        "priceHigh": 225,
+        "marginLow": 73,
+        "marginHigh": 133,
+        "tasks": []
+    },
+    {
+        "code": "DR-089",
+        "name": "Lavatory Stoppage (Remove Trap)",
+        "category": "drain",
+        "categoryName": "Drain Cleaning",
+        "categoryIcon": "🚿",
+        "description": "Lavatory Stoppage (Remove Trap)",
+        "time": "1.0",
+        "materials": 0,
+        "priceLow": 185,
+        "priceHigh": 250,
+        "marginLow": 47,
+        "marginHigh": 112,
+        "tasks": []
+    },
+    {
+        "code": "DR-090",
+        "name": "Main Line (Through Clean Out - 1st Bail)",
+        "category": "drain",
+        "categoryName": "Drain Cleaning",
+        "categoryIcon": "🚿",
+        "description": "Main Line (Through Clean Out - 1st Bail)",
+        "time": "1.5-2.0",
+        "materials": 0,
+        "priceLow": 385,
+        "priceHigh": 550,
+        "marginLow": 108,
+        "marginHigh": 180,
+        "tasks": [{"name": "L", "time": ""}, {"name": "S", "time": ""}, {"name": "C", "time": ""}, {"name": "T", "time": ""}, {"name": "C", "time": ""}]
+    },
+    {
+        "code": "DR-091",
+        "name": "Main Line (Through Water Closet - 1st Bail)",
+        "category": "drain",
+        "categoryName": "Drain Cleaning",
+        "categoryIcon": "🚿",
+        "description": "Main Line (Through Water Closet - 1st Bail)",
+        "time": "2.0",
+        "materials": 15,
+        "priceLow": 550,
+        "priceHigh": 750,
+        "marginLow": 161,
+        "marginHigh": 361,
+        "tasks": [{"name": "P", "time": ""}, {"name": "C", "time": ""}, {"name": "R", "time": ""}, {"name": "T", "time": ""}]
+    },
+    {
+        "code": "DR-092",
+        "name": "Additional Bail (Main Line)",
+        "category": "drain",
+        "categoryName": "Drain Cleaning",
+        "categoryIcon": "🚿",
+        "description": "Additional Bail (Main Line)",
+        "time": "1.0",
+        "materials": 0,
+        "priceLow": 200,
+        "priceHigh": 400,
+        "marginLow": 100,
+        "marginHigh": 200,
+        "tasks": []
+    },
+    {
+        "code": "DR-093",
+        "name": "Water Closet Stoppage (Auger)",
+        "category": "drain",
+        "categoryName": "Drain Cleaning",
+        "categoryIcon": "🚿",
+        "description": "Water Closet Stoppage (Auger)",
+        "time": "1.0",
+        "materials": 0,
+        "priceLow": 145,
+        "priceHigh": 185,
+        "marginLow": 53,
+        "marginHigh": 93,
+        "tasks": []
+    },
+    {
+        "code": "DR-098",
+        "name": "HydroJet Residential Main (Up to 200')",
+        "category": "drain",
+        "categoryName": "Drain Cleaning",
+        "categoryIcon": "🚿",
+        "description": "Limpieza a alta presión para grasa, raíces, y buildup severo.",
+        "time": "2.5-3.0",
+        "materials": 25,
+        "priceLow": 850,
+        "priceHigh": 1250,
+        "marginLow": 355,
+        "marginHigh": 662,
+        "tasks": [{"name": "C", "time": ""}, {"name": "S", "time": ""}, {"name": "J", "time": ""}, {"name": "P", "time": ""}]
+    },
+    {
+        "code": "DR-099",
+        "name": "Camera Sewer Line (Drain Vision Inspection)",
+        "category": "drain",
+        "categoryName": "Drain Cleaning",
+        "categoryIcon": "🚿",
+        "description": "Camera Sewer Line (Drain Vision Inspection)",
+        "time": "1.0",
+        "materials": 10,
+        "priceLow": 350,
+        "priceHigh": 550,
+        "marginLow": 152,
+        "marginHigh": 352,
+        "tasks": []
+    },
+    {
+        "code": "DR-100",
+        "name": "Install House Clean Out (One Way)",
+        "category": "drain",
+        "categoryName": "Drain Cleaning",
+        "categoryIcon": "🚿",
+        "description": "Instalación de cleanout accesible para mantenimiento futuro.",
+        "time": "3.0-4.0",
+        "materials": 80,
+        "priceLow": 1200,
+        "priceHigh": 1600,
+        "marginLow": 541,
+        "marginHigh": 756,
+        "tasks": [{"name": "E", "time": ""}, {"name": "C", "time": ""}, {"name": "I", "time": ""}, {"name": "B", "time": ""}, {"name": "T", "time": ""}]
+    },
+    {
+        "code": "DR-114",
+        "name": "HydroJet Commercial Main (Up to 300')",
+        "category": "drain",
+        "categoryName": "Drain Cleaning",
+        "categoryIcon": "🚿",
+        "description": "HydroJet Commercial Main (Up to 300')",
+        "time": "4.0",
+        "materials": 50,
+        "priceLow": 1450,
+        "priceHigh": 1850,
+        "marginLow": 645,
+        "marginHigh": 1045,
+        "tasks": []
+    },
+    {
+        "code": "FC-123",
+        "name": "Kitchen Faucet (No Pull Out)",
+        "category": "faucet",
+        "categoryName": "Faucets",
+        "categoryIcon": "🚰",
+        "description": "Kitchen Faucet (No Pull Out)",
+        "time": "1.0",
+        "materials": 20,
+        "priceLow": 350,
+        "priceHigh": 450,
+        "marginLow": 139,
+        "marginHigh": 239,
+        "tasks": [{"name": "T", "time": ""}, {"name": "R", "time": ""}, {"name": "C", "time": ""}, {"name": "I", "time": ""}, {"name": "C", "time": ""}]
+    },
+    {
+        "code": "FC-124",
+        "name": "Kitchen Faucet (With Pull Out/Down)",
+        "category": "faucet",
+        "categoryName": "Faucets",
+        "categoryIcon": "🚰",
+        "description": "Kitchen Faucet (With Pull Out/Down)",
+        "time": "1.25",
+        "materials": 25,
+        "priceLow": 425,
+        "priceHigh": 550,
+        "marginLow": 162,
+        "marginHigh": 287,
+        "tasks": []
+    },
+    {
+        "code": "FC-125",
+        "name": "Kitchen Faucet (Pull Down Goose Neck w/Spring)",
+        "category": "faucet",
+        "categoryName": "Faucets",
+        "categoryIcon": "🚰",
+        "description": "Kitchen Faucet (Pull Down Goose Neck w/Spring)",
+        "time": "1.5",
+        "materials": 30,
+        "priceLow": 485,
+        "priceHigh": 625,
+        "marginLow": 169,
+        "marginHigh": 309,
+        "tasks": []
+    },
+    {
+        "code": "FC-126",
+        "name": "Bathroom Faucet (4\" Centered)",
+        "category": "faucet",
+        "categoryName": "Faucets",
+        "categoryIcon": "🚰",
+        "description": "Bathroom Faucet (4\" Centered)",
+        "time": "1.0",
+        "materials": 20,
+        "priceLow": 350,
+        "priceHigh": 450,
+        "marginLow": 139,
+        "marginHigh": 239,
+        "tasks": []
+    },
+    {
+        "code": "FC-127",
+        "name": "Bathroom Faucet (Widespread)",
+        "category": "faucet",
+        "categoryName": "Faucets",
+        "categoryIcon": "🚰",
+        "description": "Bathroom Faucet (Widespread)",
+        "time": "1.5",
+        "materials": 25,
+        "priceLow": 550,
+        "priceHigh": 685,
+        "marginLow": 241,
+        "marginHigh": 376,
+        "tasks": []
+    },
+    {
+        "code": "FC-128",
+        "name": "Bathroom Faucet (Wall Mount - Excl. Patch)",
+        "category": "faucet",
+        "categoryName": "Faucets",
+        "categoryIcon": "🚰",
+        "description": "Bathroom Faucet (Wall Mount - Excl. Patch)",
+        "time": "2.0",
+        "materials": 30,
+        "priceLow": 685,
+        "priceHigh": 850,
+        "marginLow": 276,
+        "marginHigh": 441,
+        "tasks": []
+    },
+    {
+        "code": "FC-129",
+        "name": "Tub/Shower Valve (Excl. Tile/Patch/Risers)",
+        "category": "faucet",
+        "categoryName": "Faucets",
+        "categoryIcon": "🚰",
+        "description": "Tub/Shower Valve (Excl. Tile/Patch/Risers)",
+        "time": "3.0",
+        "materials": 150,
+        "priceLow": 1250,
+        "priceHigh": 1650,
+        "marginLow": 500,
+        "marginHigh": 900,
+        "tasks": []
+    },
+    {
+        "code": "FC-133",
+        "name": "Premier Finishes (Add-On)",
+        "category": "faucet",
+        "categoryName": "Faucets",
+        "categoryIcon": "🚰",
+        "description": "Brushed nickel, matte black, etc.",
+        "time": "1.0",
+        "materials": 0,
+        "priceLow": 200,
+        "priceHigh": 400,
+        "marginLow": 100,
+        "marginHigh": 200,
+        "tasks": []
+    },
+    {
+        "code": "FC-134",
+        "name": "Luxury Brands (Add-On)",
+        "category": "faucet",
+        "categoryName": "Faucets",
+        "categoryIcon": "🚰",
+        "description": "Kohler, Grohe, Hansgrohe installations.",
+        "time": "1.0",
+        "materials": 0,
+        "priceLow": 200,
+        "priceHigh": 400,
+        "marginLow": 100,
+        "marginHigh": 200,
+        "tasks": []
+    },
+    {
+        "code": "WF-136",
+        "name": "Removal & Disposal of Existing Softener",
+        "category": "filtration",
+        "categoryName": "Filtration",
+        "categoryIcon": "💧",
+        "description": "Removal & Disposal of Existing Softener",
+        "time": "1.5",
+        "materials": 0,
+        "priceLow": 625,
+        "priceHigh": 785,
+        "marginLow": 251,
+        "marginHigh": 411,
+        "tasks": []
+    },
+    {
+        "code": "WF-137",
+        "name": "Whole House Sediment Filter",
+        "category": "filtration",
+        "categoryName": "Filtration",
+        "categoryIcon": "💧",
+        "description": "Whole House Sediment Filter",
+        "time": "2.5",
+        "materials": 150,
+        "priceLow": 1100,
+        "priceHigh": 1450,
+        "marginLow": 443,
+        "marginHigh": 793,
+        "tasks": []
+    },
+    {
+        "code": "WF-138",
+        "name": "844 Eco Scale Reducer (1-3 Bath)",
+        "category": "filtration",
+        "categoryName": "Filtration",
+        "categoryIcon": "💧",
+        "description": "844 Eco Scale Reducer (1-3 Bath)",
+        "time": "3.0",
+        "materials": 600,
+        "priceLow": 2200,
+        "priceHigh": 2800,
+        "marginLow": 865,
+        "marginHigh": 1465,
+        "tasks": []
+    },
+    {
+        "code": "WF-144",
+        "name": "WS 1054 Water Softener (1-3 Bath)",
+        "category": "filtration",
+        "categoryName": "Filtration",
+        "categoryIcon": "💧",
+        "description": "Sistema de suavizador de agua para casas pequeñas.",
+        "time": "3.0-4.0",
+        "materials": 0,
+        "priceLow": 2800,
+        "priceHigh": 3500,
+        "marginLow": 1033,
+        "marginHigh": 1733,
+        "tasks": [{"name": "S", "time": ""}, {"name": "I", "time": ""}, {"name": "C", "time": ""}, {"name": "I", "time": ""}, {"name": "P", "time": ""}, {"name": "I", "time": ""}]
+    },
+    {
+        "code": "WF-145",
+        "name": "WS 1252 Water Softener (4-6 Bath)",
+        "category": "filtration",
+        "categoryName": "Filtration",
+        "categoryIcon": "💧",
+        "description": "WS 1252 Water Softener (4-6 Bath)",
+        "time": "4.0-4.5",
+        "materials": 950,
+        "priceLow": 3500,
+        "priceHigh": 4200,
+        "marginLow": 1303,
+        "marginHigh": 2003,
+        "tasks": []
+    },
+    {
+        "code": "WF-156",
+        "name": "6 Stage Pro R.O. System with Minerals",
+        "category": "filtration",
+        "categoryName": "Filtration",
+        "categoryIcon": "💧",
+        "description": "6 Stage Pro R.O. System with Minerals",
+        "time": "2.0",
+        "materials": 300,
+        "priceLow": 1250,
+        "priceHigh": 1550,
+        "marginLow": 490,
+        "marginHigh": 790,
+        "tasks": []
+    },
+    {
+        "code": "WF-163",
+        "name": "Connect Ice Maker (to RO/Filtration)",
+        "category": "filtration",
+        "categoryName": "Filtration",
+        "categoryIcon": "💧",
+        "description": "Connect Ice Maker (to RO/Filtration)",
+        "time": "1.0",
+        "materials": 35,
+        "priceLow": 385,
+        "priceHigh": 485,
+        "marginLow": 155,
+        "marginHigh": 255,
+        "tasks": []
+    },
+    {
+        "code": "WH-306",
+        "name": "Flexible Supply Line (Water)",
+        "category": "waterheater",
+        "categoryName": "Water Heaters",
+        "categoryIcon": "♨️",
+        "description": "Flexible Supply Line (Water)",
+        "time": "1.0",
+        "materials": 20,
+        "priceLow": 185,
+        "priceHigh": 245,
+        "marginLow": 67,
+        "marginHigh": 127,
+        "tasks": []
+    },
+    {
+        "code": "WH-307",
+        "name": "Seismic Support (Straps) 30-50 Gal",
+        "category": "waterheater",
+        "categoryName": "Water Heaters",
+        "categoryIcon": "♨️",
+        "description": "Seismic Support (Straps) 30-50 Gal",
+        "time": "1.0",
+        "materials": 40,
+        "priceLow": 385,
+        "priceHigh": 485,
+        "marginLow": 148,
+        "marginHigh": 248,
+        "tasks": []
+    },
+    {
+        "code": "WH-308",
+        "name": "Seismic Support 75-100 Gal",
+        "category": "waterheater",
+        "categoryName": "Water Heaters",
+        "categoryIcon": "♨️",
+        "description": "Seismic Support 75-100 Gal",
+        "time": "1.25",
+        "materials": 60,
+        "priceLow": 485,
+        "priceHigh": 625,
+        "marginLow": 176,
+        "marginHigh": 316,
+        "tasks": []
+    },
+    {
+        "code": "WH-314",
+        "name": "Gas Flex Line with Valve",
+        "category": "waterheater",
+        "categoryName": "Water Heaters",
+        "categoryIcon": "♨️",
+        "description": "Gas Flex Line with Valve",
+        "time": "1.0",
+        "materials": 45,
+        "priceLow": 325,
+        "priceHigh": 425,
+        "marginLow": 129,
+        "marginHigh": 229,
+        "tasks": []
+    },
+    {
+        "code": "WH-330",
+        "name": "3/4\" T&P Relief Valve",
+        "category": "waterheater",
+        "categoryName": "Water Heaters",
+        "categoryIcon": "♨️",
+        "description": "3/4\" T&P Relief Valve",
+        "time": "1.0",
+        "materials": 25,
+        "priceLow": 285,
+        "priceHigh": 385,
+        "marginLow": 115,
+        "marginHigh": 215,
+        "tasks": []
+    },
+    {
+        "code": "WH-335",
+        "name": "Thermocouple Replacement",
+        "category": "waterheater",
+        "categoryName": "Water Heaters",
+        "categoryIcon": "♨️",
+        "description": "Thermocouple Replacement",
+        "time": "1.0",
+        "materials": 25,
+        "priceLow": 350,
+        "priceHigh": 450,
+        "marginLow": 133,
+        "marginHigh": 233,
+        "tasks": []
+    },
+    {
+        "code": "WH-336",
+        "name": "Thermopile Replacement",
+        "category": "waterheater",
+        "categoryName": "Water Heaters",
+        "categoryIcon": "♨️",
+        "description": "Thermopile Replacement",
+        "time": "1.25",
+        "materials": 45,
+        "priceLow": 485,
+        "priceHigh": 625,
+        "marginLow": 196,
+        "marginHigh": 336,
+        "tasks": []
+    },
+    {
+        "code": "WH-339",
+        "name": "Expansion Tank (40-50 Gal)",
+        "category": "waterheater",
+        "categoryName": "Water Heaters",
+        "categoryIcon": "♨️",
+        "description": "Expansion Tank (40-50 Gal)",
+        "time": "1.0",
+        "materials": 80,
+        "priceLow": 485,
+        "priceHigh": 625,
+        "marginLow": 196,
+        "marginHigh": 336,
+        "tasks": []
+    },
+    {
+        "code": "WH-343",
+        "name": "Flush & Drain (Maintenance)",
+        "category": "waterheater",
+        "categoryName": "Water Heaters",
+        "categoryIcon": "♨️",
+        "description": "Flush & Drain (Maintenance)",
+        "time": "1.0",
+        "materials": 15,
+        "priceLow": 325,
+        "priceHigh": 425,
+        "marginLow": 121,
+        "marginHigh": 221,
+        "tasks": []
+    },
+    {
+        "code": "WH-100",
+        "name": "40 Gallon Gas Water Heater Install (Standard)",
+        "category": "waterheater",
+        "categoryName": "Water Heaters",
+        "categoryIcon": "♨️",
+        "description": "Instalación completa con code upgrades.",
+        "time": "1.0",
+        "materials": 0,
+        "priceLow": 200,
+        "priceHigh": 400,
+        "marginLow": 100,
+        "marginHigh": 200,
+        "tasks": []
+    },
+    {
+        "code": "WH-354",
+        "name": "Tankless Install (Condensing 199k BTU - Navien)",
+        "category": "waterheater",
+        "categoryName": "Water Heaters",
+        "categoryIcon": "♨️",
+        "description": "Conversión de tank a tankless. Proyecto mayor.",
+        "time": "10.0",
+        "materials": 0,
+        "priceLow": 7000,
+        "priceHigh": 9000,
+        "marginLow": 2550,
+        "marginHigh": 4550,
+        "tasks": []
+    },
+    {
+        "code": "WD-168",
+        "name": "1/2\" Pressure Regulator",
+        "category": "distribution",
+        "categoryName": "Distribution/Repipes",
+        "categoryIcon": "🔧",
+        "description": "1/2\" Pressure Regulator",
+        "time": "1.5",
+        "materials": 80,
+        "priceLow": 650,
+        "priceHigh": 850,
+        "marginLow": 269,
+        "marginHigh": 469,
+        "tasks": []
+    },
+    {
+        "code": "WD-169",
+        "name": "3/4\" Pressure Regulator",
+        "category": "distribution",
+        "categoryName": "Distribution/Repipes",
+        "categoryIcon": "🔧",
+        "description": "3/4\" Pressure Regulator",
+        "time": "2.0",
+        "materials": 110,
+        "priceLow": 850,
+        "priceHigh": 1100,
+        "marginLow": 337,
+        "marginHigh": 587,
+        "tasks": []
+    },
+    {
+        "code": "WD-185",
+        "name": "Repipe: 1 Bath Home (Horizontal)",
+        "category": "distribution",
+        "categoryName": "Distribution/Repipes",
+        "categoryIcon": "🔧",
+        "description": "Repipe: 1 Bath Home (Horizontal)",
+        "time": "16",
+        "materials": 800,
+        "priceLow": 6500,
+        "priceHigh": 8500,
+        "marginLow": 2500,
+        "marginHigh": 4500,
+        "tasks": []
+    },
+    {
+        "code": "WD-186",
+        "name": "Repipe: 2 Bath Home (Horizontal)",
+        "category": "distribution",
+        "categoryName": "Distribution/Repipes",
+        "categoryIcon": "🔧",
+        "description": "Repipe: 2 Bath Home (Horizontal)",
+        "time": "24",
+        "materials": 1,
+        "priceLow": 9500,
+        "priceHigh": 12500,
+        "marginLow": 3500,
+        "marginHigh": 6500,
+        "tasks": []
+    },
+    {
+        "code": "WD-227",
+        "name": "Repair Water Leak in Wall",
+        "category": "distribution",
+        "categoryName": "Distribution/Repipes",
+        "categoryIcon": "🔧",
+        "description": "Repair Water Leak in Wall",
+        "time": "2.5",
+        "materials": 30,
+        "priceLow": 850,
+        "priceHigh": 1200,
+        "marginLow": 349,
+        "marginHigh": 699,
+        "tasks": []
+    },
+    {
+        "code": "SL-241",
+        "name": "Minor Leak Search & Isolation",
+        "category": "slab",
+        "categoryName": "Slab Leaks",
+        "categoryIcon": "🏠",
+        "description": "Minor Leak Search & Isolation",
+        "time": "2.0",
+        "materials": 40,
+        "priceLow": 685,
+        "priceHigh": 950,
+        "marginLow": 263,
+        "marginHigh": 528,
+        "tasks": []
+    },
+    {
+        "code": "SL-242",
+        "name": "Electronic Slab Leak Locate (with Specialist)",
+        "category": "slab",
+        "categoryName": "Slab Leaks",
+        "categoryIcon": "🏠",
+        "description": "Electronic Slab Leak Locate (with Specialist)",
+        "time": "3.0",
+        "materials": 0,
+        "priceLow": 1350,
+        "priceHigh": 1750,
+        "marginLow": 545,
+        "marginHigh": 945,
+        "tasks": []
+    },
+    {
+        "code": "SL-243",
+        "name": "Repair Pipe Under Slab (Jackhammer)",
+        "category": "slab",
+        "categoryName": "Slab Leaks",
+        "categoryIcon": "🏠",
+        "description": "Repair Pipe Under Slab (Jackhammer)",
+        "time": "8.0",
+        "materials": 150,
+        "priceLow": 2800,
+        "priceHigh": 3800,
+        "marginLow": 1125,
+        "marginHigh": 2125,
+        "tasks": []
+    },
+    {
+        "code": "TL-276",
+        "name": "Replace Tank (Standard)",
+        "category": "toilet",
+        "categoryName": "Toilets",
+        "categoryIcon": "🚽",
+        "description": "Replace Tank (Standard)",
+        "time": "1.5",
+        "materials": 120,
+        "priceLow": 685,
+        "priceHigh": 850,
+        "marginLow": 252,
+        "marginHigh": 417,
+        "tasks": []
+    },
+    {
+        "code": "TL-277",
+        "name": "Major Tank Rebuild (All Internals)",
+        "category": "toilet",
+        "categoryName": "Toilets",
+        "categoryIcon": "🚽",
+        "description": "Major Tank Rebuild (All Internals)",
+        "time": "1.25",
+        "materials": 45,
+        "priceLow": 485,
+        "priceHigh": 625,
+        "marginLow": 196,
+        "marginHigh": 336,
+        "tasks": []
+    },
+    {
+        "code": "TL-278",
+        "name": "Minor Tank Rebuild (Fill Valve + Flapper)",
+        "category": "toilet",
+        "categoryName": "Toilets",
+        "categoryIcon": "🚽",
+        "description": "Minor Tank Rebuild (Fill Valve + Flapper)",
+        "time": "1.0",
+        "materials": 25,
+        "priceLow": 285,
+        "priceHigh": 385,
+        "marginLow": 115,
+        "marginHigh": 215,
+        "tasks": []
+    },
+    {
+        "code": "TL-283",
+        "name": "Pull & Reset Toilet",
+        "category": "toilet",
+        "categoryName": "Toilets",
+        "categoryIcon": "🚽",
+        "description": "Pull & Reset Toilet",
+        "time": "1.0",
+        "materials": 15,
+        "priceLow": 325,
+        "priceHigh": 425,
+        "marginLow": 121,
+        "marginHigh": 221,
+        "tasks": []
+    },
+    {
+        "code": "TL-297",
+        "name": "Closet Flange Replacement",
+        "category": "toilet",
+        "categoryName": "Toilets",
+        "categoryIcon": "🚽",
+        "description": "Closet Flange Replacement",
+        "time": "2.0",
+        "materials": 35,
+        "priceLow": 685,
+        "priceHigh": 850,
+        "marginLow": 270,
+        "marginHigh": 435,
+        "tasks": []
+    },
+    {
+        "code": "CS-392",
+        "name": "Install Client's Garbage Disposal",
+        "category": "client",
+        "categoryName": "Client Supplied",
+        "categoryIcon": "📦",
+        "description": "Install Client's Garbage Disposal",
+        "time": "1.0",
+        "materials": 15,
+        "priceLow": 350,
+        "priceHigh": 450,
+        "marginLow": 146,
+        "marginHigh": 246,
+        "tasks": []
+    },
+    {
+        "code": "CS-393",
+        "name": "Install Client's Dishwasher",
+        "category": "client",
+        "categoryName": "Client Supplied",
+        "categoryIcon": "📦",
+        "description": "Install Client's Dishwasher",
+        "time": "1.5",
+        "materials": 30,
+        "priceLow": 485,
+        "priceHigh": 585,
+        "marginLow": 169,
+        "marginHigh": 269,
+        "tasks": []
+    },
+    {
+        "code": "CS-398",
+        "name": "Install Client's Toilet",
+        "category": "client",
+        "categoryName": "Client Supplied",
+        "categoryIcon": "📦",
+        "description": "Install Client's Toilet",
+        "time": "1.5",
+        "materials": 15,
+        "priceLow": 450,
+        "priceHigh": 550,
+        "marginLow": 154,
+        "marginHigh": 254,
+        "tasks": []
+    },
+    {
+        "code": "CS-420",
+        "name": "Install Client's Water Heater (Less Code Upgrade)",
+        "category": "client",
+        "categoryName": "Client Supplied",
+        "categoryIcon": "📦",
+        "description": "Install Client's Water Heater (Less Code Upgrade)",
+        "time": "3.5",
+        "materials": 80,
+        "priceLow": 1250,
+        "priceHigh": 1600,
+        "marginLow": 499,
+        "marginHigh": 849,
+        "tasks": []
+    },
+    {
+        "code": "WD-206",
+        "name": "Hammer Arrestor Install",
+        "category": "distribution",
+        "categoryName": "Distribution/Repipes",
+        "categoryIcon": "🔧",
+        "description": "Hammer Arrestor Install",
+        "time": "0.75",
+        "materials": 0,
+        "priceLow": 285,
+        "priceHigh": 385,
+        "marginLow": 180,
+        "marginHigh": 280,
+        "tasks": []
+    },
+    {
+        "code": "CS-394",
+        "name": "Install Client's Kitchen Faucet",
+        "category": "client",
+        "categoryName": "Client Supplied",
+        "categoryIcon": "📦",
+        "description": "Install Client's Kitchen Faucet",
+        "time": "1.0",
+        "materials": 0,
+        "priceLow": 325,
+        "priceHigh": 425,
+        "marginLow": 180,
+        "marginHigh": 280,
+        "tasks": []
+    },
+    {
+        "code": "CS-402",
+        "name": "Install Client's Vanity",
+        "category": "client",
+        "categoryName": "Client Supplied",
+        "categoryIcon": "📦",
+        "description": "Install Client's Vanity",
+        "time": "2.5",
+        "materials": 0,
+        "priceLow": 850,
+        "priceHigh": 1100,
+        "marginLow": 450,
+        "marginHigh": 550,
+        "tasks": []
+    }
+];
+        
         let currentCategory = 'all';
-
-        function renderCatalog() {
+        let currentSort = 'code';
+        
+        function showTab(name) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            document.getElementById('tab-' + name).classList.add('active');
+            event.target.classList.add('active');
+        }
+        
+        function renderServices(list) {
             const grid = document.getElementById('servicesGrid');
-            let services = servicesDB;
-
-            if (currentCategory !== 'all') {
-                services = services.filter(s => s.category === currentCategory);
-            }
-
-            grid.innerHTML = services.map(service => `
-                <div class="service-card" id="service-${service.id}">
-                    <div class="service-header" onclick="toggleService('${service.id}')">
+            grid.innerHTML = list.map(s => `
+                <div class="service-card" id="svc-${s.code}">
+                    <div class="service-header" onclick="toggleService('${s.code}')">
                         <div class="service-info">
-                            <h3>${service.name}</h3>
-                            <span class="code">${service.id} | ${service.description}</span>
+                            <h3>${s.categoryIcon} ${s.name}</h3>
+                            <span class="code">${s.code} | ${s.description.substring(0,60)}...</span>
                         </div>
-                        <div class="service-price-range">
-                            <div class="price">$${service.priceGood} - $${service.priceBest}</div>
-                            <div class="time">⏱️ ${service.time} hrs</div>
+                        <div class="service-pricing">
+                            <div class="price">$${s.priceLow} - $${s.priceHigh}</div>
+                            <div class="time">⏱️ ${s.time} hrs</div>
                         </div>
                         <span class="service-expand">▼</span>
                     </div>
                     <div class="service-details">
                         <div class="detail-grid">
                             <div class="detail-section">
-                                <h4>📋 Actividades Detalladas</h4>
-                                <table class="detail-table">
-                                    ${service.tasks.map(t => `
-                                        <tr>
-                                            <td>${t.name}</td>
-                                            <td>${t.time}</td>
-                                        </tr>
-                                    `).join('')}
-                                </table>
+                                <h4>📋 Pricing Tiers</h4>
+                                <span class="tier-badge tier-good">🥉 Good: $${s.priceLow}</span>
+                                <span class="tier-badge tier-better">🥈 Better: $${Math.round((s.priceLow + s.priceHigh)/2)}</span>
+                                <span class="tier-badge tier-best">🥇 Best: $${s.priceHigh}</span>
+                                <h4 style="margin-top:1rem;">💰 Margen</h4>
+                                <p>$${s.marginLow} - $${s.marginHigh}</p>
                             </div>
                             <div class="detail-section">
-                                <h4>💰 Pricing Tiers</h4>
+                                ${s.tasks.length > 0 ? `
+                                <h4>📝 Actividades</h4>
                                 <table class="detail-table">
-                                    <tr><td>🥉 GOOD</td><td>$${service.priceGood}</td></tr>
-                                    <tr><td>🥈 BETTER</td><td>$${service.priceBetter}</td></tr>
-                                    <tr><td>🥇 BEST</td><td>$${service.priceBest}</td></tr>
+                                    ${s.tasks.map(t => `<tr><td>${t.name}</td><td>${t.time}</td></tr>`).join('')}
                                 </table>
-                                
-                                <h4 style="margin-top:1rem;">📈 Upsells</h4>
-                                ${service.upsells.map(u => `
-                                    <div class="upsell-badge">+$${u.price} ${u.name}</div>
-                                `).join(' ')}
+                                ` : '<h4>📝 Tiempo Total: ' + s.time + ' hrs</h4>'}
                             </div>
-                        </div>
-                        <div class="script-box">
-                            <strong>💬 Script de Venta:</strong> "${service.script}"
                         </div>
                     </div>
                 </div>
             `).join('');
+            
+            document.getElementById('serviceCount').textContent = `Mostrando ${list.length} servicios`;
         }
-
-        function toggleService(id) {
-            const card = document.getElementById('service-' + id);
-            card.classList.toggle('expanded');
+        
+        function toggleService(code) {
+            document.getElementById('svc-' + code).classList.toggle('expanded');
         }
-
-        function filterCategory(category) {
-            currentCategory = category;
-
-            document.querySelectorAll('.category-pill').forEach(pill => {
-                pill.classList.remove('active');
-            });
+        
+        function filterCategory(cat) {
+            currentCategory = cat;
+            document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
             event.target.classList.add('active');
-
-            renderCatalog();
+            applyFilters();
         }
-
-        function searchCatalog() {
-            const query = document.getElementById('catalogSearch').value.toLowerCase();
-            const cards = document.querySelectorAll('.service-card');
-
-            cards.forEach(card => {
-                const text = card.textContent.toLowerCase();
-                card.style.display = text.includes(query) ? 'block' : 'none';
-            });
+        
+        function searchServices() {
+            applyFilters();
         }
-
-        // ===== SETTINGS =====
-        function saveSettings() {
-            settings.rateLead = parseFloat(document.getElementById('rateLead').value) || 185;
-            settings.rateHelper = parseFloat(document.getElementById('rateHelper').value) || 95;
-            settings.markupMaterial = parseFloat(document.getElementById('markupMaterial').value) || 30;
-            settings.defaultMargin = parseFloat(document.getElementById('defaultMargin').value) || 45;
-
-            updateCalculator();
+        
+        function sortServices(by) {
+            currentSort = by;
+            applyFilters();
         }
-
-        // ===== INIT =====
-        document.addEventListener('DOMContentLoaded', function () {
-            updateCalculator();
-            updatePackages();
-            renderCatalog();
-        });
+        
+        function applyFilters() {
+            let list = [...services];
+            
+            if (currentCategory !== 'all') {
+                list = list.filter(s => s.category === currentCategory);
+            }
+            
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            if (query) {
+                list = list.filter(s => 
+                    s.code.toLowerCase().includes(query) ||
+                    s.name.toLowerCase().includes(query) ||
+                    s.description.toLowerCase().includes(query)
+                );
+            }
+            
+            if (currentSort === 'price') {
+                list.sort((a, b) => b.priceHigh - a.priceHigh);
+            } else if (currentSort === 'margin') {
+                list.sort((a, b) => b.marginHigh - a.marginHigh);
+            }
+            
+            renderServices(list);
+        }
+        
+        function updateCalc() {
+            const type = parseFloat(document.getElementById('serviceType').value);
+            const hLead = parseFloat(document.getElementById('hoursLead').value) || 0;
+            const hHelp = parseFloat(document.getElementById('hoursHelper').value) || 0;
+            const mat = parseFloat(document.getElementById('materialCost').value) || 0;
+            const margin = parseFloat(document.getElementById('marginPct').value) || 45;
+            const tier = parseFloat(document.getElementById('tier').value);
+            
+            const laborLead = hLead * 185 * type;
+            const laborHelp = hHelp * 95 * type;
+            const matTotal = mat * 1.3;
+            const cost = laborLead + laborHelp + matTotal;
+            const basePrice = cost / (1 - margin/100);
+            const finalPrice = basePrice * tier;
+            const profit = finalPrice - cost;
+            
+            document.getElementById('rLead').textContent = '$' + laborLead.toFixed(0);
+            document.getElementById('rHelper').textContent = '$' + laborHelp.toFixed(0);
+            document.getElementById('rMat').textContent = '$' + matTotal.toFixed(0);
+            document.getElementById('rCost').textContent = '$' + cost.toFixed(0);
+            document.getElementById('rPrice').textContent = '$' + finalPrice.toFixed(0);
+            document.getElementById('rMargin').textContent = margin + '% = $' + profit.toFixed(0) + ' ganancia';
+        }
+        
+        // Init
+        renderServices(services);
+        updateCalc();
     </script>
 </body>
-
 </html>
