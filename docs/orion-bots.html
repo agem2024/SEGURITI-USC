@@ -396,6 +396,72 @@
             font-size: 0.95rem;
         }
 
+        .more-btn {
+            margin-top: 15px;
+            padding: 8px 20px;
+            background: transparent;
+            border: 1px solid var(--neon-blue);
+            color: var(--neon-blue);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 20px;
+        }
+
+        .more-btn:hover {
+            background: var(--neon-blue);
+            color: #000;
+            box-shadow: 0 0 15px var(--neon-blue);
+        }
+
+        .service-details {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0, 243, 255, 0.2);
+            text-align: left;
+        }
+
+        .service-details.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .service-details ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .service-details li {
+            color: var(--gray);
+            font-size: 0.85rem;
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .service-details li:last-child {
+            border-bottom: none;
+        }
+
+        .service-card.expanded {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
+        }
+
         /* DEMOS */
         .demos-grid {
             display: grid;
@@ -705,45 +771,108 @@
             <p data-i18n="services_desc">What we deploy for individuals, businesses, and enterprises</p>
         </div>
         <div class="services-grid">
-            <div class="service-card">
-                <img src="images/capability_whatsapp_bot_1765573180451.png" class="service-icon-img" alt="WhatsApp Bot"
+            <div class="service-card" onclick="toggleDetails(this)">
+                <img src="images/capability_whatsapp_bot_1765573180451.png" class="service-icon-img" alt="AI Agents"
                     style="width:80px;height:80px;object-fit:cover;border-radius:10px;margin-bottom:20px;box-shadow:0 0 20px rgba(0,243,255,0.5);">
-                <h3 data-i18n="svc1_title">WHATSAPP AGENTS</h3>
-                <p data-i18n="svc1_desc">Autonomous bots that handle customer service, orders, bookings. Zero human
-                    intervention required.</p>
+                <h3 data-i18n="svc1_title">CUSTOM AI AGENTS</h3>
+                <p data-i18n="svc1_desc">Autonomous bots for WhatsApp, Telegram, Instagram. 24/7 customer service.</p>
+                <button class="more-btn">+ MORE</button>
+                <div class="service-details">
+                    <ul>
+                        <li>🤖 Multi-platform (WhatsApp, Telegram, IG, Messenger)</li>
+                        <li>🧠 GPT-4 / Gemini / Claude powered</li>
+                        <li>🌐 5 languages (EN/ES/ZH/TL/VI)</li>
+                        <li>📊 Analytics dashboard</li>
+                        <li>🔄 CRM integrations</li>
+                        <li>💬 Unlimited conversations</li>
+                    </ul>
+                </div>
             </div>
-            <div class="service-card">
+            <div class="service-card" onclick="toggleDetails(this)">
                 <img src="images/capability_mobile_systems_1765573258112.png" class="service-icon-img"
                     alt="Mobile Systems"
                     style="width:80px;height:80px;object-fit:cover;border-radius:10px;margin-bottom:20px;box-shadow:0 0 20px rgba(0,243,255,0.5);">
                 <h3 data-i18n="svc2_title">MOBILE SYSTEMS</h3>
-                <p data-i18n="svc2_desc">Native iOS & Android apps. Push notifications, offline mode, seamless UX.</p>
+                <p data-i18n="svc2_desc">Native iOS & Android apps. Push notifications, offline mode.</p>
+                <button class="more-btn">+ MORE</button>
+                <div class="service-details">
+                    <ul>
+                        <li>📱 Native iOS & Android development</li>
+                        <li>🔔 Push notifications & alerts</li>
+                        <li>📶 Offline mode functionality</li>
+                        <li>🔐 Biometric authentication</li>
+                        <li>📍 GPS & location services</li>
+                        <li>🏪 App Store & Play Store publishing</li>
+                    </ul>
+                </div>
             </div>
-            <div class="service-card">
+            <div class="service-card" onclick="toggleDetails(this)">
                 <img src="images/capability_web_platform_1765573194485.png" class="service-icon-img" alt="Web Platform"
                     style="width:80px;height:80px;object-fit:cover;border-radius:10px;margin-bottom:20px;box-shadow:0 0 20px rgba(0,243,255,0.5);">
                 <h3 data-i18n="svc3_title">WEB PLATFORMS</h3>
-                <p data-i18n="svc3_desc">E-commerce, dashboards, admin panels, booking engines. Full-stack solutions.
-                </p>
+                <p data-i18n="svc3_desc">E-commerce, dashboards, admin panels, booking engines.</p>
+                <button class="more-btn">+ MORE</button>
+                <div class="service-details">
+                    <ul>
+                        <li>🛒 E-commerce with payments (Stripe/PayPal)</li>
+                        <li>📊 Real-time analytics dashboards</li>
+                        <li>📅 Booking & reservation systems</li>
+                        <li>👤 Customer portals</li>
+                        <li>🔒 SSL & security hardened</li>
+                        <li>📱 Mobile-responsive design</li>
+                    </ul>
+                </div>
             </div>
-            <div class="service-card">
+            <div class="service-card" onclick="toggleDetails(this)">
                 <img src="images/capability_ai_brain_1765573234371.png" class="service-icon-img" alt="AI Integration"
                     style="width:80px;height:80px;object-fit:cover;border-radius:10px;margin-bottom:20px;box-shadow:0 0 20px rgba(188,19,254,0.5);">
                 <h3 data-i18n="svc4_title">AI INTEGRATION</h3>
-                <p data-i18n="svc4_desc">GPT-4, Gemini, Claude. Vision, voice, text. Your business powered by the latest
-                    AI.</p>
+                <p data-i18n="svc4_desc">GPT-4, Gemini, Claude. Vision, voice, text processing.</p>
+                <button class="more-btn">+ MORE</button>
+                <div class="service-details">
+                    <ul>
+                        <li>🧠 GPT-4, Gemini Pro, Claude 3</li>
+                        <li>👁️ Vision AI (image analysis)</li>
+                        <li>🎤 Voice recognition & synthesis</li>
+                        <li>📝 Document processing (OCR)</li>
+                        <li>🔮 Predictive analytics</li>
+                        <li>🤖 Custom model training</li>
+                    </ul>
+                </div>
             </div>
-            <div class="service-card">
+            <div class="service-card" onclick="toggleDetails(this)">
                 <img src="images/capability_automation_1765573271380.png" class="service-icon-img" alt="Automation"
                     style="width:80px;height:80px;object-fit:cover;border-radius:10px;margin-bottom:20px;box-shadow:0 0 20px rgba(0,243,255,0.5);">
                 <h3 data-i18n="svc5_title">WORKFLOW AUTOMATION</h3>
-                <p data-i18n="svc5_desc">Invoicing, inventory, CRM sync, email flows. Eliminate manual work.</p>
+                <p data-i18n="svc5_desc">Invoicing, inventory, CRM sync, email flows.</p>
+                <button class="more-btn">+ MORE</button>
+                <div class="service-details">
+                    <ul>
+                        <li>📧 Email automation & sequences</li>
+                        <li>📦 Inventory management</li>
+                        <li>💰 Automatic invoicing</li>
+                        <li>🔗 Zapier/Make integrations</li>
+                        <li>📋 Task & project automation</li>
+                        <li>📊 Report generation</li>
+                    </ul>
+                </div>
             </div>
-            <div class="service-card">
+            <div class="service-card" onclick="toggleDetails(this)">
                 <img src="images/capability_247_ops_1765573285705.png" class="service-icon-img" alt="24/7 Operations"
                     style="width:80px;height:80px;object-fit:cover;border-radius:10px;margin-bottom:20px;box-shadow:0 0 20px rgba(37,211,102,0.5);">
                 <h3 data-i18n="svc6_title">24/7 OPERATIONS</h3>
-                <p data-i18n="svc6_desc">Monitoring, updates, security, backups. We keep your systems running.</p>
+                <p data-i18n="svc6_desc">Monitoring, updates, security, backups.</p>
+                <button class="more-btn">+ MORE</button>
+                <div class="service-details">
+                    <ul>
+                        <li>🖥️ 24/7 system monitoring</li>
+                        <li>🔄 Automatic updates & patches</li>
+                        <li>🛡️ Security audits & protection</li>
+                        <li>💾 Daily backups (cloud)</li>
+                        <li>📞 Priority support</li>
+                        <li>📈 Uptime guarantee 99.9%</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
@@ -1326,6 +1455,24 @@
     </style>
 
     <script>
+        // Toggle service details
+        function toggleDetails(card) {
+            const details = card.querySelector('.service-details');
+            const btn = card.querySelector('.more-btn');
+            const isActive = details.classList.contains('active');
+
+            // Close all other details
+            document.querySelectorAll('.service-details.active').forEach(d => d.classList.remove('active'));
+            document.querySelectorAll('.service-card.expanded').forEach(c => c.classList.remove('expanded'));
+            document.querySelectorAll('.more-btn').forEach(b => b.textContent = '+ MORE');
+
+            if (!isActive) {
+                details.classList.add('active');
+                card.classList.add('expanded');
+                btn.textContent = '- LESS';
+            }
+        }
+
         const XONA_API = 'http://localhost:3030/api/chat';
         let xonaChatOpen = false;
         let isListening = false;
