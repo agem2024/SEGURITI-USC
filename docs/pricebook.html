@@ -1,343 +1,2500 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>💰 ORION Price Book Pro | AC Water Heaters & Plumbing</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💰 ORION Price Book Pro - AC Water Heaters & Plumbing</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--p:#1e3a8a;--pl:#3b82f6;--a:#f59e0b;--s:#10b981;--d:#ef4444;--bg:#0f172a;--c:#fff;--t:#1e293b;--tl:#64748b}*{margin:0;padding:0;box-sizing:border-box}body{font-family:Inter,sans-serif;background:var(--bg);color:var(--t);line-height:1.6}.header{background:linear-gradient(135deg,#0f172a,#1e3a8a);padding:2rem;text-align:center;color:#fff;border-bottom:4px solid var(--a)}.logo{display:flex;justify-content:center;align-items:center;gap:1rem;margin-bottom:1rem}.logo img{width:60px;height:60px;border-radius:12px}.logo h1{font-size:2rem;font-weight:800}.logo h1 span{color:var(--a)}.subtitle{font-size:1rem;opacity:.8;max-width:600px;margin:0 auto}.nav{display:flex;justify-content:center;gap:.5rem;flex-wrap:wrap;margin-top:1.5rem}.nav-btn{padding:.6rem 1.5rem;background:rgba(255,255,255,.1);border:none;color:#fff;border-radius:8px;font-size:.9rem;cursor:pointer;transition:.3s}.nav-btn:hover,.nav-btn.active{background:var(--a);color:var(--bg)}.container{max-width:1400px;margin:0 auto;padding:2rem}.section{display:none;animation:fadeIn .4s}.section.active{display:block}@keyframes fadeIn{from{opacity:0}to{opacity:1}}.card{background:var(--c);border-radius:16px;padding:2rem;margin-bottom:2rem;box-shadow:0 4px 20px rgba(0,0,0,.1)}.card h2{color:var(--p);margin-bottom:1.5rem;font-size:1.5rem;border-bottom:2px solid var(--a);padding-bottom:.5rem}.card h3{color:var(--p);margin:1.5rem 0 1rem;font-size:1.2rem}table{width:100%;border-collapse:collapse;margin:1rem 0}th,td{padding:.75rem;text-align:left;border-bottom:1px solid #e2e8f0}th{background:#f8fafc;font-weight:600;color:var(--p)}tr:hover{background:#f8fafc}.highlight{background:linear-gradient(135deg,#fef3c7,#fde68a);padding:1.5rem;border-radius:12px;margin:1rem 0;border-left:4px solid var(--a)}.tip{background:#ecfdf5;padding:1rem;border-radius:8px;margin:1rem 0;border-left:4px solid var(--s)}.warning{background:#fef2f2;padding:1rem;border-radius:8px;margin:1rem 0;border-left:4px solid var(--d)}.img-container{text-align:center;margin:1.5rem 0}.img-container img{max-width:100%;height:auto;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.15)}.img-caption{font-size:.85rem;color:var(--tl);margin-top:.5rem}.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}@media(max-width:768px){.calc-grid{grid-template-columns:1fr}}.input-group{margin-bottom:1rem}.input-group label{display:block;font-weight:600;margin-bottom:.5rem;color:var(--p)}.input-group label small{font-weight:400;color:var(--tl)}.input-group input,.input-group select{width:100%;padding:.75rem;border:2px solid #e2e8f0;border-radius:8px;font-size:1rem}.input-group input:focus,.input-group select:focus{outline:none;border-color:var(--pl)}.result-card{background:linear-gradient(135deg,var(--p),var(--bg));color:#fff;padding:2rem;border-radius:16px}.result-item{display:flex;justify-content:space-between;padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,.2)}.result-total{background:rgba(255,255,255,.15);padding:1.5rem;border-radius:12px;margin-top:1rem;text-align:center}.result-total .amount{font-size:3rem;font-weight:900}.margin-badge{display:inline-block;background:var(--s);padding:.5rem 1rem;border-radius:50px;margin-top:1rem}.category-pills{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}.pill{padding:.5rem 1rem;background:#f1f5f9;border:1px solid #e2e8f0;border-radius:50px;font-size:.85rem;cursor:pointer;transition:.3s}.pill:hover,.pill.active{background:var(--pl);color:#fff;border-color:var(--pl)}.search-row{display:flex;gap:1rem;margin-bottom:1.5rem}.search-box{flex:1;position:relative}.search-box input{width:100%;padding:.75rem 1rem .75rem 2.5rem;border:2px solid #e2e8f0;border-radius:10px}.search-box::before{content:"🔍";position:absolute;left:.75rem;top:50%;transform:translateY(-50%)}.services-grid{display:grid;gap:1rem}.service-card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.05);transition:.3s}.service-card:hover{box-shadow:0 4px 20px rgba(0,0,0,.1)}.service-header{padding:1rem 1.5rem;display:grid;grid-template-columns:1fr auto;align-items:center;cursor:pointer;border-left:4px solid var(--p)}.service-info h4{color:var(--p);font-size:1rem;margin-bottom:.25rem}.service-info .code{font-size:.8rem;color:var(--tl)}.service-pricing{text-align:right}.service-pricing .price{font-size:1.1rem;font-weight:700;color:var(--s)}.service-pricing .time{font-size:.8rem;color:var(--tl)}.tier{display:inline-block;padding:.25rem .75rem;border-radius:6px;font-size:.8rem;font-weight:600;margin-right:.5rem}.tier-good{background:#e2e8f0}.tier-better{background:#fef3c7;color:#92400e}.tier-best{background:#dbeafe;color:#1e40af}.footer{background:var(--bg);color:rgba(255,255,255,.7);text-align:center;padding:2rem;margin-top:2rem;font-size:.9rem}
+:root {
+    --primary: #1e3a8a;
+    --primary-light: #3b82f6;
+    --accent: #f59e0b;
+    --success: #10b981;
+    --danger: #ef4444;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-light: #64748b;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 0;
+}
+
+/* HEADER */
+.header {
+    background: linear-gradient(135deg, #0f172a, #1e3a8a);
+    color: white;
+    padding: 3rem 2rem;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+.header h1 span { color: var(--accent); }
+.header p {
+    opacity: 0.9;
+    font-size: 1rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+.nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+.nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1.5rem;
+    background: rgba(255,255,255,0.1);
+    border-radius: 8px;
+    transition: 0.3s;
+}
+.nav a:hover {
+    background: var(--accent);
+    color: #0f172a;
+}
+
+/* CONTAINER */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* HEADINGS */
+h1 {
+    font-size: 2rem;
+    color: var(--primary);
+    margin: 3rem 0 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 4px solid var(--accent);
+}
+h2 {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin: 2.5rem 0 1rem;
+    padding-left: 1rem;
+    border-left: 4px solid var(--primary-light);
+}
+h3 {
+    font-size: 1.25rem;
+    color: var(--primary);
+    margin: 2rem 0 1rem;
+    background: linear-gradient(90deg, #e0f2fe, transparent);
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--accent);
+}
+
+/* PARAGRAPHS */
+p {
+    margin: 1rem 0;
+    color: var(--text);
+}
+strong {
+    color: var(--primary);
+}
+
+/* TABLES - CRITICAL FOR SHOWING DETAILS */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    background: var(--card);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+th {
+    background: var(--primary);
+    color: white;
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+}
+td {
+    padding: 0.875rem 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+tr:hover td {
+    background: #f8fafc;
+}
+tr:last-child td {
+    border-bottom: none;
+}
+/* Highlight important rows */
+tr td:first-child strong,
+tr td strong {
+    color: var(--success);
+}
+td:last-child {
+    font-weight: 500;
+}
+
+/* PRICES */
+td:contains("$"), 
+td[data-price] {
+    font-weight: 700;
+    color: var(--success);
+}
+
+/* IMAGES */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin: 2rem auto;
+    display: block;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+/* BLOCKQUOTES (Notes/Tips) */
+blockquote {
+    background: #fef3c7;
+    border-left: 4px solid var(--accent);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 0 12px 12px 0;
+}
+blockquote p {
+    margin: 0;
+}
+
+/* HORIZONTAL RULE */
+hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-light), transparent);
+    margin: 3rem 0;
+}
+
+/* LISTS */
+ul, ol {
+    margin: 1rem 0 1rem 2rem;
+}
+li {
+    margin: 0.5rem 0;
+    padding-left: 0.5rem;
+}
+
+/* CODE */
+code {
+    background: #e2e8f0;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.9em;
+}
+pre {
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: 1.5rem;
+    border-radius: 12px;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+}
+pre code {
+    background: none;
+    padding: 0;
+    color: inherit;
+}
+
+/* CALCULATOR LINK */
+.calc-link {
+    display: inline-block;
+    background: var(--accent);
+    color: #0f172a;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    margin: 1rem 0;
+    transition: 0.3s;
+}
+.calc-link:hover {
+    background: #d97706;
+    transform: translateY(-2px);
+}
+
+/* SEARCH */
+.search-box {
+    position: sticky;
+    top: 120px;
+    background: white;
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    z-index: 100;
+}
+.search-box input {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+.search-box input:focus {
+    outline: none;
+    border-color: var(--primary-light);
+}
+
+/* FOOTER */
+.footer {
+    background: #0f172a;
+    color: rgba(255,255,255,0.8);
+    text-align: center;
+    padding: 3rem;
+    margin-top: 4rem;
+}
+.footer p { margin: 0.5rem 0; }
+
+/* PRINT FRIENDLY */
+@media print {
+    .header { position: relative; }
+    .search-box { display: none; }
+    body { background: white; }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .header h1 { font-size: 1.75rem; }
+    .container { padding: 1rem; }
+    table { font-size: 0.9rem; }
+    th, td { padding: 0.5rem; }
+}
 </style>
 </head>
 <body>
 
 <header class="header">
-<div class="logo">
-<img src="images/orion_tech_logo_1765429291614.png" alt="ORION Tech Logo" onerror="this.style.display='none'">
-<h1>💰 ORION <span>Price Book</span> Pro</h1>
-</div>
-<p class="subtitle">AC Water Heaters & Plumbing | Bay Area, CA | Lead: $185/hr | Ayudante: $95/hr | Margen Objetivo: 40-50%</p>
-<nav class="nav">
-<button class="nav-btn active" onclick="showSection('metodologia')">📊 Metodología</button>
-<button class="nav-btn" onclick="showSection('calculadora')">🧮 Calculadora</button>
-<button class="nav-btn" onclick="showSection('catalogo')">📋 Catálogo (142)</button>
-<button class="nav-btn" onclick="showSection('upsells')">💡 Upsells</button>
-<button class="nav-btn" onclick="showSection('garantias')">🛡️ Garantías</button>
-</nav>
+    <h1>💰 ORION <span>Price Book</span> Pro</h1>
+    <p>AC Water Heaters & Plumbing | Bay Area, CA</p>
+    <p style="margin-top:0.5rem">Lead Rate: <strong>$185/hr</strong> | Helper: <strong>$95/hr</strong> | Material Markup: <strong>30%</strong> | Margen Objetivo: <strong>40-50%</strong></p>
+    <nav class="nav">
+        <a href="#metodologia">📊 Metodología</a>
+        <a href="#appliances">🔌 Appliances</a>
+        <a href="#gas">🔥 Gas</a>
+        <a href="#drains">🚿 Drains</a>
+        <a href="#waterheaters">♨️ Water Heaters</a>
+    </nav>
 </header>
 
 <div class="container">
-
-<!-- METODOLOGÍA SECTION -->
-<div id="metodologia" class="section active">
-<div class="card">
-<h2>📊 Metodología de Cálculo de Precios</h2>
-<p>Este sistema te permite calcular precios profesionales y competitivos para cualquier trabajo de plomería.</p>
-
-<h3>Fórmulas Base:</h3>
+    <div class="search-box">
+        <input type="text" id="search" placeholder="🔍 Buscar código, servicio, material..." onkeyup="searchContent()">
+    </div>
+    
+    <div id="content">
+<h1>💰 PRICE BOOK MAESTRO PROFESIONAL - ORION TECH (EXPANDED V4)</h1>
+<p><strong>Región:</strong> Bay Area, CA | <strong>Mano de Obra Lead:</strong> $185/hr | <strong>Ayudante:</strong> $95/hr | <strong>Markup Material:</strong> 30% | <strong>Margen Objetivo:</strong> 40-50%<br />
+<strong>Última Actualización:</strong> Diciembre 2024 | <strong>Fuentes:</strong> Ferguson, Home Depot, Angi, HomeGuide, Industry Research</p>
+<blockquote>
+<p>[!NOTE]<br />
+Este Price Book incorpora las mejores prácticas de la industria (ServiceTitan, Workiz, The New Flat Rate) para maximizar ventas y profesionalismo.</p>
+</blockquote>
+<hr />
+<h1>📋 METODOLOGÍA DE CÁLCULO</h1>
 <table>
-<tr><th>Concepto</th><th>Fórmula</th><th>Ejemplo</th></tr>
-<tr><td><strong>Costo Material (+Markup)</strong></td><td>Costo Base × 1.30</td><td>$100 → $130</td></tr>
-<tr><td><strong>Costo Mano de Obra</strong></td><td>Horas × $185/hr</td><td>2 hr → $370</td></tr>
-<tr><td><strong>Costo Total (Tu Costo)</strong></td><td>Material + Mano de Obra</td><td>$130 + $370 = $500</td></tr>
-<tr><td><strong>Precio Cliente</strong></td><td>Costo Total × 1.45 (≈45% margen)</td><td>$500 × 1.45 = $725</td></tr>
-<tr><td><strong>Contingencia</strong></td><td>+10-15% para imprevistos</td><td>$725 + $72 = ~$800</td></tr>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>Fórmula</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Costo Material (+Markup)</strong></td>
+<td>Costo Base × 1.30</td>
+<td>$100 → $130</td>
+</tr>
+<tr>
+<td><strong>Costo Mano de Obra</strong></td>
+<td>Horas × $185/hr</td>
+<td>2 hr → $370</td>
+</tr>
+<tr>
+<td><strong>Costo Total (Tu Costo)</strong></td>
+<td>Material + Mano de Obra</td>
+<td>$130 + $370 = $500</td>
+</tr>
+<tr>
+<td><strong>Precio Cliente</strong></td>
+<td>Costo Total × 1.45 (≈45% margen)</td>
+<td>$500 × 1.45 = $725</td>
+</tr>
+<tr>
+<td><strong>Contingencia</strong></td>
+<td>+10-15% para imprevistos</td>
+<td>$725 + $72 = ~$800</td>
+</tr>
+</tbody>
 </table>
-
-<div class="highlight">
-<strong>💡 IMPORTANTE:</strong> El margen del 40-50% es estándar en la industria. Cubre overhead, seguros, licencias, y ganancia neta.
-</div>
-</div>
-
-<div class="card">
-<h2>🎯 Sistema Good / Better / Best</h2>
-<div class="tip">
-<strong>Estrategia de Ventas:</strong> Siempre presenta las 3 opciones. El 60% de clientes elige "BETTER".
-</div>
-
+<hr />
+<h1>🎯 SISTEMA DE PRICING ESCALONADO (GOOD / BETTER / BEST)</h1>
+<blockquote>
+<p>[!TIP]<br />
+<strong>Estrategia de Ventas:</strong> Siempre presenta las 3 opciones. El 60% de clientes elige "BETTER".</p>
+</blockquote>
+<h2>Cómo Usar el Sistema:</h2>
 <table>
-<tr><th>Tier</th><th>Descripción</th><th>Markup Extra</th><th>Cuándo Ofrecer</th></tr>
-<tr><td><span class="tier tier-good">🥉 GOOD</span></td><td>Servicio básico, materiales estándar</td><td>Base</td><td>Cliente sensible a precio</td></tr>
-<tr><td><span class="tier tier-better">🥈 BETTER</span></td><td>Materiales premium, garantía extendida</td><td>+20-30%</td><td>Recomendado por defecto</td></tr>
-<tr><td><span class="tier tier-best">🥇 BEST</span></td><td>Top de línea, máxima garantía, add-ons</td><td>+40-60%</td><td>Clientes que quieren lo mejor</td></tr>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Descripción</th>
+<th>Markup Extra</th>
+<th>Cuándo Ofrecer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🥉 <strong>GOOD</strong></td>
+<td>Servicio básico, materiales estándar</td>
+<td>Base</td>
+<td>Cliente sensible a precio</td>
+</tr>
+<tr>
+<td>🥈 <strong>BETTER</strong></td>
+<td>Materiales premium, garantía extendida</td>
+<td>+20-30%</td>
+<td>Recomendado por defecto</td>
+</tr>
+<tr>
+<td>🥇 <strong>BEST</strong></td>
+<td>Top de línea, máxima garantía, add-ons incluidos</td>
+<td>+40-60%</td>
+<td>Clientes que quieren lo mejor</td>
+</tr>
+</tbody>
 </table>
-
-<h3>Ejemplo Aplicado: Water Heater 40 Gal</h3>
+<h2>Ejemplo Aplicado: Water Heater 40 Gal</h2>
 <table>
-<tr><th>Opción</th><th>Descripción</th><th>Garantía</th><th>Precio</th></tr>
-<tr><td><span class="tier tier-good">🥉 GOOD</span></td><td>Bradford White Standard</td><td>6 años tanque</td><td><strong>$2,400</strong></td></tr>
-<tr><td><span class="tier tier-better">🥈 BETTER</span></td><td>+ Expansion Tank + Pan + Straps</td><td>6 años + 1 año labor</td><td><strong>$2,950</strong></td></tr>
-<tr><td><span class="tier tier-best">🥇 BEST</span></td><td>Rheem Pro + All Code Upgrades + Recirculation</td><td>10 años + 2 años labor</td><td><strong>$3,800</strong></td></tr>
+<thead>
+<tr>
+<th>Opción</th>
+<th>Descripción</th>
+<th>Garantía</th>
+<th>Precio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🥉 <strong>GOOD</strong></td>
+<td>Bradford White Standard, install básico</td>
+<td>6 años tanque</td>
+<td><strong>$2,400</strong></td>
+</tr>
+<tr>
+<td>🥈 <strong>BETTER</strong></td>
+<td>Bradford White + Expansion Tank + Pan + Straps Premium</td>
+<td>6 años + 1 año labor</td>
+<td><strong>$2,950</strong></td>
+</tr>
+<tr>
+<td>🥇 <strong>BEST</strong></td>
+<td>Rheem Professional + All Code Upgrades + Recirculation Pump</td>
+<td>10 años + 2 años labor</td>
+<td><strong>$3,800</strong></td>
+</tr>
+</tbody>
 </table>
-</div>
-
-<div class="card">
-<h3>Imágenes de Referencia - Instalaciones</h3>
-<div class="img-container">
-<img src="images/appliance_install_diagram_1765474393045.png" alt="Instalación Appliances">
-<p class="img-caption">Diagrama de instalación de electrodomésticos</p>
-</div>
-<div class="img-container">
-<img src="images/water_heater_diagram_1765473737166.png" alt="Water Heater">
-<p class="img-caption">Componentes de un calentador de agua</p>
-</div>
-<div class="img-container">
-<img src="images/gas_seismic_valve_1765473792296.png" alt="Válvula Sísmica">
-<p class="img-caption">Válvula sísmica de gas - OBLIGATORIA en California</p>
-</div>
-</div>
-</div>
-
-<!-- CALCULADORA SECTION -->
-<div id="calculadora" class="section">
-<div class="card">
-<h2>🧮 Calculadora de Precios Profesional</h2>
-<p style="margin-bottom:1.5rem">Esta calculadora usa la metodología exacta del Price Book para darte precios competitivos y rentables.</p>
-
-<div class="calc-grid">
-<div>
-<div class="input-group">
-<label>Tipo de Servicio <small>(afecta tarifa hora)</small></label>
-<select id="serviceType" onchange="calc()">
-<option value="1.0">Estándar (Rate Normal)</option>
-<option value="1.5">Emergencia (+50% Rate)</option>
-<option value="1.25">After Hours (+25% Rate)</option>
-<option value="1.75">Fin de Semana/Feriado (+75% Rate)</option>
-</select>
-</div>
-
-<div class="input-group">
-<label>Horas Trabajo Lead <small>($185/hr base)</small></label>
-<input type="number" id="hoursLead" value="2" step="0.25" onchange="calc()">
-</div>
-
-<div class="input-group">
-<label>Horas Trabajo Ayudante <small>($95/hr base)</small></label>
-<input type="number" id="hoursHelper" value="0" step="0.25" onchange="calc()">
-</div>
-
-<div class="input-group">
-<label>Costo de Materiales <small>(tu costo real)</small></label>
-<input type="number" id="materials" value="100" step="10" onchange="calc()">
-</div>
-
-<div class="input-group">
-<label>Margen de Ganancia <small>(% sobre costo total)</small></label>
-<input type="number" id="margin" value="45" min="0" max="100" onchange="calc()">
-</div>
-
-<div class="input-group">
-<label>Tier de Precio <small>(Good/Better/Best)</small></label>
-<select id="tier" onchange="calc()">
-<option value="1.0">🥉 Good (Base)</option>
-<option value="1.25" selected>🥈 Better (+25%)</option>
-<option value="1.5">🥇 Best (+50%)</option>
-</select>
-</div>
-</div>
-
-<div class="result-card">
-<h3 style="margin-top:0">💰 Desglose de Precio</h3>
-
-<div class="result-item">
-<span>Mano de Obra Lead</span>
-<span id="rLead">$370</span>
-</div>
-<div class="result-item">
-<span>Mano de Obra Ayudante</span>
-<span id="rHelper">$0</span>
-</div>
-<div class="result-item">
-<span>Materiales + 30% Markup</span>
-<span id="rMat">$130</span>
-</div>
-<div class="result-item">
-<span>TU COSTO TOTAL</span>
-<span id="rCost">$500</span>
-</div>
-
-<div class="result-total">
-<div style="font-size:.9rem;opacity:.8">PRECIO AL CLIENTE</div>
-<div class="amount" id="rPrice">$906</div>
-<div class="margin-badge" id="rMargin">45% margen = $406 ganancia</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-<!-- CATÁLOGO SECTION -->
-<div id="catalogo" class="section">
-<div class="card">
-<h2>📋 Catálogo de Servicios (142 actividades)</h2>
-
-<div class="category-pills" id="pills"></div>
-
-<div class="search-row">
-<div class="search-box">
-<input type="text" id="search" placeholder="Buscar código, nombre..." onkeyup="filterSvc()">
-</div>
-<button class="nav-btn" onclick="sortSvc('price')">💰 Por Precio</button>
-<button class="nav-btn" onclick="sortSvc('time')">⏱️ Por Tiempo</button>
-</div>
-
-<p id="count" style="margin-bottom:1rem;color:var(--tl)">Mostrando 142 servicios</p>
-<div class="services-grid" id="grid"></div>
-</div>
-</div>
-
-<!-- UPSELLS SECTION -->
-<div id="upsells" class="section">
-<div class="card">
-<h2>💡 Sistema de Upsells Inteligentes</h2>
-<div class="highlight">Cada job es una oportunidad. Estos upsells aumentan ticket promedio 25-40%.</div>
-
+<hr />
+<h1>💡 SISTEMA DE UPSELLS INTELIGENTES</h1>
+<blockquote>
+<p>[!IMPORTANT]<br />
+Cada job es una oportunidad de venta adicional. Estos upsells aumentan ticket promedio 25-40%.</p>
+</blockquote>
+<h2>Upsells por Categoría:</h2>
 <h3>🔧 Al Instalar Appliances:</h3>
 <table>
-<tr><th>Upsell</th><th>Precio</th><th>Script de Venta</th></tr>
-<tr><td><strong>Braided SS Hoses</strong></td><td>+$85</td><td>"Estas mangueras de acero inoxidable duran 10+ años y previenen inundaciones"</td></tr>
-<tr><td><strong>Emergency Shut-Off Valve</strong></td><td>+$185</td><td>"Si hay una fuga, puede cerrar el agua en segundos sin buscar la llave principal"</td></tr>
-<tr><td><strong>Hammer Arrestor</strong></td><td>+$145</td><td>"Elimina ese golpe que escucha cuando cierra el agua - protege sus tuberías"</td></tr>
+<thead>
+<tr>
+<th>Upsell</th>
+<th>Precio</th>
+<th>Script de Venta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Braided SS Hoses</strong> (en vez de rubber)</td>
+<td>+$85</td>
+<td>"Estas mangueras de acero inoxidable duran 10+ años y previenen inundaciones"</td>
+</tr>
+<tr>
+<td><strong>Emergency Shut-Off Valve</strong></td>
+<td>+$185</td>
+<td>"Si hay una fuga, puede cerrar el agua en segundos sin buscar la llave principal"</td>
+</tr>
+<tr>
+<td><strong>Hammer Arrestor</strong></td>
+<td>+$145</td>
+<td>"Elimina ese golpe que escucha cuando cierra el agua - protege sus tuberías"</td>
+</tr>
+</tbody>
 </table>
-
 <h3>🔥 Al Trabajar con Gas:</h3>
 <table>
-<tr><th>Upsell</th><th>Precio</th><th>Script de Venta</th></tr>
-<tr><td><strong>Seismic Valve</strong></td><td>+$450</td><td>"Obligatorio en California - protege de fugas por terremoto"</td></tr>
-<tr><td><strong>Sediment Trap</strong></td><td>+$185</td><td>"Captura partículas antes de que dañen su equipo"</td></tr>
-<tr><td><strong>Gas Leak Test (Whole House)</strong></td><td>+$150</td><td>"Ya que estamos aquí, podemos verificar todo su sistema de gas"</td></tr>
+<thead>
+<tr>
+<th>Upsell</th>
+<th>Precio</th>
+<th>Script de Venta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Seismic Valve</strong></td>
+<td>+$450</td>
+<td>"Obligatorio en California para nuevas instalaciones - protege de fugas por terremoto"</td>
+</tr>
+<tr>
+<td><strong>Sediment Trap</strong></td>
+<td>+$185</td>
+<td>"Captura partículas antes de que dañen su equipo"</td>
+</tr>
+<tr>
+<td><strong>Gas Leak Test (Whole House)</strong></td>
+<td>+$150</td>
+<td>"Ya que estamos aquí, podemos verificar todo su sistema de gas"</td>
+</tr>
+</tbody>
 </table>
-
-<h3>♨️ Al Instalar Water Heater:</h3>
+<h3>🚿 Al Trabajar en Drenajes:</h3>
 <table>
-<tr><th>Upsell</th><th>Precio</th><th>Script de Venta</th></tr>
-<tr><td><strong>Expansion Tank</strong></td><td>+$350</td><td>"Obligatorio por código y protege su calentador de daños por presión"</td></tr>
-<tr><td><strong>Recirculation Pump</strong></td><td>+$650</td><td>"Agua caliente instantánea en cualquier grifo - ahorra agua y tiempo"</td></tr>
-<tr><td><strong>PRV Check/Replace</strong></td><td>+$450</td><td>"La presión alta es la causa #1 de fallas prematuras"</td></tr>
+<thead>
+<tr>
+<th>Upsell</th>
+<th>Precio</th>
+<th>Script de Venta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Camera Inspection</strong></td>
+<td>+$250</td>
+<td>"Podemos ver exactamente qué hay en sus tuberías y prevenir problemas futuros"</td>
+</tr>
+<tr>
+<td><strong>Install Cleanout</strong></td>
+<td>+$800</td>
+<td>"Hace el mantenimiento futuro mucho más fácil y barato"</td>
+</tr>
+<tr>
+<td><strong>Enzyme Treatment (3-pack)</strong></td>
+<td>+$45</td>
+<td>"Mantenga sus drenajes limpios mensualmente con este tratamiento"</td>
+</tr>
+</tbody>
 </table>
-
-<div class="img-container">
-<img src="images/water_filtration_diagram_1765474408515.png" alt="Sistema Filtración">
-<p class="img-caption">Sistema de filtración de agua - Oportunidad de upsell en cada visita</p>
-</div>
-</div>
-</div>
-
-<!-- GARANTÍAS SECTION -->
-<div id="garantias" class="section">
-<div class="card">
-<h2>🛡️ Garantías Estándar AC Water Heaters & Plumbing</h2>
-
+<h3>🔥 Al Instalar Water Heater:</h3>
 <table>
-<tr><th>Tipo de Trabajo</th><th>Garantía Labor</th><th>Garantía Partes</th><th>Notas</th></tr>
-<tr><td><strong>Reparaciones Menores</strong></td><td>30 días</td><td>Fabricante</td><td>Flappers, válvulas, etc.</td></tr>
-<tr><td><strong>Instalaciones Estándar</strong></td><td>1 año</td><td>Fabricante</td><td>Faucets, disposals, toilets</td></tr>
-<tr><td><strong>Water Heaters</strong></td><td>1 año</td><td>6-10 años (fab.)</td><td>Depende del modelo</td></tr>
-<tr><td><strong>Repipes</strong></td><td>2 años</td><td>Lifetime (copper/PEX)</td><td>Mano de obra garantizada</td></tr>
-<tr><td><strong>Drain Cleaning</strong></td><td>30 días</td><td>N/A</td><td>Misma obstrucción</td></tr>
-<tr><td><strong>Backflow Devices</strong></td><td>1 año</td><td>5 años (fab.)</td><td>Requiere test anual</td></tr>
+<thead>
+<tr>
+<th>Upsell</th>
+<th>Precio</th>
+<th>Script de Venta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Expansion Tank</strong></td>
+<td>+$350</td>
+<td>"Obligatorio por código y protege su calentador de daños por presión"</td>
+</tr>
+<tr>
+<td><strong>Recirculation Pump</strong></td>
+<td>+$650</td>
+<td>"Agua caliente instantánea en cualquier grifo - ahorra agua y tiempo"</td>
+</tr>
+<tr>
+<td><strong>PRV Check/Replace</strong></td>
+<td>+$450</td>
+<td>"La presión alta es la causa #1 de fallas prematuras de calentadores"</td>
+</tr>
+<tr>
+<td><strong>Anode Rod</strong></td>
+<td>+$185</td>
+<td>"Extiende la vida de su calentador 2-3 años adicionales"</td>
+</tr>
+</tbody>
 </table>
-
-<div class="warning">
-<strong>⚠️ Sin Garantía:</strong> Trabajos en tuberías galvanizadas, fixtures provistos por cliente, emergencias fuera de norma.
-</div>
-
-<h3>💳 Opciones de Financiamiento (Trabajos > $1,500)</h3>
+<hr />
+<h1>📋 GARANTÍAS Y WARRANTIES</h1>
+<h2>Garantías Estándar AC Water Heaters &amp; Plumbing:</h2>
 <table>
-<tr><th>Opción</th><th>Proveedor</th><th>Términos</th></tr>
-<tr><td><strong>0% APR 12 meses</strong></td><td>GreenSky / Synchrony</td><td>Aprobación rápida</td></tr>
-<tr><td><strong>Low APR 24-60 meses</strong></td><td>GreenSky</td><td>7.99%-12.99%</td></tr>
-<tr><td><strong>Same-As-Cash 6 meses</strong></td><td>Synchrony</td><td>Sin interés si paga a tiempo</td></tr>
+<thead>
+<tr>
+<th>Tipo de Trabajo</th>
+<th>Garantía Labor</th>
+<th>Garantía Partes</th>
+<th>Notas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Reparaciones Menores</strong></td>
+<td>30 días</td>
+<td>Fabricante</td>
+<td>Flappers, válvulas, etc.</td>
+</tr>
+<tr>
+<td><strong>Instalaciones Estándar</strong></td>
+<td>1 año</td>
+<td>Fabricante</td>
+<td>Faucets, disposals, toilets</td>
+</tr>
+<tr>
+<td><strong>Water Heaters</strong></td>
+<td>1 año</td>
+<td>6-10 años (fab.)</td>
+<td>Depende del modelo</td>
+</tr>
+<tr>
+<td><strong>Repipes</strong></td>
+<td>2 años</td>
+<td>Lifetime (copper/PEX)</td>
+<td>Mano de obra garantizada</td>
+</tr>
+<tr>
+<td><strong>Drain Cleaning</strong></td>
+<td>30 días</td>
+<td>N/A</td>
+<td>Misma obstrucción</td>
+</tr>
+<tr>
+<td><strong>Backflow Devices</strong></td>
+<td>1 año</td>
+<td>5 años (fab.)</td>
+<td>Requiere test anual</td>
+</tr>
+</tbody>
 </table>
-
-<div class="tip">
-<strong>Script de Financiamiento:</strong> "Entiendo que $4,500 por un calentador tankless es una inversión considerable. La buena noticia es que ofrecemos financiamiento con <strong>0% de interés por 12 meses</strong>. Eso serían solo <strong>$375/mes</strong> y tendría agua caliente infinita desde hoy."
-</div>
-</div>
-</div>
-
+<blockquote>
+<p>[!WARNING]<br />
+<strong>Sin Garantía:</strong> Trabajos en tuberías galvanizadas, fixtures provistos por cliente, emergencias fuera de norma.</p>
+</blockquote>
+<hr />
+<h1>💳 OPCIONES DE FINANCIAMIENTO</h1>
+<h2>Para Trabajos &gt; $1,500:</h2>
+<table>
+<thead>
+<tr>
+<th>Opción</th>
+<th>Proveedor</th>
+<th>Términos</th>
+<th>Tu Beneficio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>0% APR 12 meses</strong></td>
+<td>GreenSky / Synchrony</td>
+<td>Aprobación rápida</td>
+<td>Cierra más ventas</td>
+</tr>
+<tr>
+<td><strong>Low APR 24-60 meses</strong></td>
+<td>GreenSky</td>
+<td>7.99%-12.99%</td>
+<td>Proyectos grandes</td>
+</tr>
+<tr>
+<td><strong>Same-As-Cash 6 meses</strong></td>
+<td>Synchrony</td>
+<td>Sin interés si paga a tiempo</td>
+<td>Popular</td>
+</tr>
+</tbody>
+</table>
+<h3>Script de Financiamiento:</h3>
+<blockquote>
+<p>"Entiendo que $4,500 por un calentador tankless es una inversión considerable. La buena noticia es que ofrecemos financiamiento con <strong>0% de interés por 12 meses</strong>. Eso serían solo <strong>$375/mes</strong> y tendría agua caliente infinita desde hoy."</p>
+</blockquote>
+<hr />
+<h1>📊 PRESENTACIÓN VISUAL PARA CLIENTES</h1>
+<h2>Template de Cotización (3 Opciones):</h2>
+<pre><code>┌─────────────────────────────────────────────────────────────┐
+│  AC WATER HEATERS &amp; PLUMBING - OPCIONES DE SERVICIO        │
+│  Cliente: _____________ | Fecha: ____________              │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  🥉 OPCIÓN BÁSICA (GOOD)                    $ _________    │
+│  ○ [Descripción del servicio básico]                       │
+│  ○ Garantía: 30 días labor                                 │
+│                                                             │
+│  🥈 OPCIÓN RECOMENDADA (BETTER)     ⭐     $ _________    │
+│  ○ [Descripción del servicio mejorado]                     │
+│  ○ Materiales premium incluidos                            │
+│  ○ Garantía: 1 año labor                                   │
+│                                                             │
+│  🥇 OPCIÓN PREMIUM (BEST)                   $ _________    │
+│  ○ [Descripción completa con todos los upgrades]           │
+│  ○ Todos los code upgrades incluidos                       │
+│  ○ Garantía: 2 años labor + extended warranty              │
+│                                                             │
+├─────────────────────────────────────────────────────────────┤
+│  ✓ Trabajo garantizado    ✓ Licenciado #______             │
+│  ✓ Financiamiento disponible (0% APR 12 meses)             │
+└─────────────────────────────────────────────────────────────┘
+</code></pre>
+<hr />
+<h1>📈 MÉTRICAS DE NEGOCIO</h1>
+<h2>KPIs a Trackear:</h2>
+<table>
+<thead>
+<tr>
+<th>Métrica</th>
+<th>Objetivo</th>
+<th>Cómo Calcular</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ticket Promedio</strong></td>
+<td>&gt;$450</td>
+<td>Total ventas ÷ # de jobs</td>
+</tr>
+<tr>
+<td><strong>Tasa de Cierre</strong></td>
+<td>&gt;70%</td>
+<td>Jobs cerrados ÷ Total cotizaciones</td>
+</tr>
+<tr>
+<td><strong>Upsell Rate</strong></td>
+<td>&gt;40%</td>
+<td>Jobs con upsell ÷ Total jobs</td>
+</tr>
+<tr>
+<td><strong>% BETTER/BEST</strong></td>
+<td>&gt;50%</td>
+<td>Clientes que eligen Better o Best ÷ Total</td>
+</tr>
+<tr>
+<td><strong>Repeat Customer Rate</strong></td>
+<td>&gt;25%</td>
+<td>Clientes que regresan ÷ Total clientes</td>
+</tr>
+</tbody>
+</table>
+<h2>Calculadora de Ingresos Proyectados:</h2>
+<table>
+<thead>
+<tr>
+<th>Escenario</th>
+<th>Jobs/Semana</th>
+<th>Ticket Promedio</th>
+<th>Ingreso Mensual</th>
+<th>Ingreso Anual</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Conservador</strong></td>
+<td>8</td>
+<td>$350</td>
+<td>$11,200</td>
+<td>$134,400</td>
+</tr>
+<tr>
+<td><strong>Moderado</strong></td>
+<td>12</td>
+<td>$450</td>
+<td>$21,600</td>
+<td>$259,200</td>
+</tr>
+<tr>
+<td><strong>Agresivo</strong></td>
+<td>18</td>
+<td>$550</td>
+<td>$39,600</td>
+<td>$475,200</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1>🆚 COMPARACIÓN CON COMPETENCIA (Software Price Books)</h1>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th><strong>ORION Price Book</strong></th>
+<th>ServiceTitan ($398/mo)</th>
+<th>Workiz ($65/mo)</th>
+<th>Housecall Pro ($59/mo)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Good/Better/Best Tiers</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Desglose de Materiales</td>
+<td>✅ Detallado</td>
+<td>✅</td>
+<td>Básico</td>
+<td>Básico</td>
+</tr>
+<tr>
+<td>Upsell Recommendations</td>
+<td>✅ con Scripts</td>
+<td>✅ IA</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Imágenes Didácticas</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Regional Pricing (Bay Area)</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Integración con IA (ORION)</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Costo Mensual</td>
+<td><strong>$0</strong></td>
+<td>$398+</td>
+<td>$65+</td>
+<td>$59+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1>1. APPLIANCE CONNECTION (ELECTRODOMÉSTICOS)</h1>
+<p><img alt="Instalación de Electrodomésticos" src="images/appliance_install_diagram_1765474393045.png" /></p>
+<h2>1.1 DISHWASHERS (Lavavajillas)</h2>
+<h3>AP-002: Dishwasher Complete Installation (Monitor Only - Client Provides Unit)</h3>
+<p><strong>Descripción:</strong> Instalación completa de lavavajillas provisto por cliente. Verificación de funcionamiento.</p>
+<table>
+<thead>
+<tr>
+<th>Sub-Actividad</th>
+<th>Tiempo</th>
+<th>Detalle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Posicionar unidad bajo encimera</td>
+<td>15 min</td>
+<td>Verificar nivel, ajustar patas</td>
+</tr>
+<tr>
+<td>Conectar línea de suministro de agua</td>
+<td>20 min</td>
+<td>3/8" compression a válvula angular</td>
+</tr>
+<tr>
+<td>Conectar línea de drenaje</td>
+<td>20 min</td>
+<td>High loop o air gap obligatorio</td>
+</tr>
+<tr>
+<td>Conexión eléctrica</td>
+<td>10 min</td>
+<td>Verificar voltaje 120V, cord kit si necesario</td>
+</tr>
+<tr>
+<td>Asegurar unidad a encimera</td>
+<td>10 min</td>
+<td>Brackets de montaje</td>
+</tr>
+<tr>
+<td>Prueba de funcionamiento</td>
+<td>15 min</td>
+<td>Ciclo de prueba, verificar fugas</td>
+</tr>
+<tr>
+<td><strong>TOTAL</strong></td>
+<td><strong>1.5 hr</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Lista de Materiales (Si Aplica):</strong><br />
+| Material | Cantidad | Precio Unitario | Subtotal |<br />
+|----------|----------|-----------------|----------|<br />
+| Braided SS Supply 48" | 1 | $18.00 | $18.00 |<br />
+| Drain hose 6' | 1 | $12.00 | $12.00 |<br />
+| Power cord kit 6' | 1 | $15.00 | $15.00 |<br />
+| Air gap (chrome) | 1 | $8.00 | $8.00 |<br />
+| Hose clamps | 2 | $2.00 | $4.00 |<br />
+| <strong>Subtotal Materiales</strong> | | | <strong>$57.00</strong> |<br />
+| <strong>+30% Markup</strong> | | | <strong>$74.10</strong> |</p>
+<p><strong>Cálculo de Precio:</strong><br />
+| Concepto | Cálculo | Total |<br />
+|----------|---------|-------|<br />
+| Mano de Obra (1.5 hr × $185) | | $277.50 |<br />
+| Materiales (con markup) | | $74.10 |<br />
+| <strong>Tu Costo Total</strong> | | <strong>$351.60</strong> |<br />
+| <strong>Precio Cliente (45% margen)</strong> | $351.60 × 1.45 | <strong>$509.82 → $510</strong> |<br />
+| <strong>Precio Recomendado (Rango)</strong> | | <strong>$485 - $585</strong> |<br />
+| <strong>Tu Ganancia Neta</strong> | | <strong>~$158 - $233</strong> |</p>
+<hr />
+<h3>AP-003: Complete Braided SS Supply Kit (Supply + Drain + Cord)</h3>
+<p><strong>Tiempo:</strong> 30 min | <strong>Materiales:</strong> $45 (con markup: $58.50)<br />
+<strong>Tu Costo:</strong> $92 + $58.50 = $150.50<br />
+<strong>Precio Cliente:</strong> <strong>$265 - $325</strong> | <strong>Margen:</strong> ~$115 - $175</p>
+<hr />
+<h3>AP-004: Braided Stainless Supply Line Only (48")</h3>
+<p><strong>Tiempo:</strong> 15 min | <strong>Material:</strong> SS Supply 48" = $18 (con markup: $23.40)<br />
+<strong>Tu Costo:</strong> $46 + $23.40 = $69.40<br />
+<strong>Precio Cliente:</strong> <strong>$145 - $185</strong> | <strong>Margen:</strong> ~$76 - $116<br />
+<strong>Fuente Material:</strong> Home Depot, Ferguson ($13-25 retail)</p>
+<hr />
+<h3>AP-005: Air Gap with Rubber Hose to Garbage Disposal</h3>
+<p><strong>Descripción:</strong> Instalación de air gap obligatorio por código (evita retroceso de agua contaminada).</p>
+<p><strong>Lista de Materiales:</strong><br />
+| Material | Precio |<br />
+|----------|--------|<br />
+| Air Gap Chrome | $8.00 |<br />
+| Rubber hose 5/8" | $6.00 |<br />
+| Hose clamps (2) | $4.00 |<br />
+| <strong>Total (+30%)</strong> | <strong>$23.40</strong> |</p>
+<p><strong>Tiempo:</strong> 45 min | <strong>Tu Costo:</strong> $138 + $23.40 = $161.40<br />
+<strong>Precio Cliente:</strong> <strong>$285 - $350</strong> | <strong>Margen:</strong> ~$124 - $189</p>
+<hr />
+<h2>1.2 ICE MAKERS (Fábricas de Hielo)</h2>
+<h3>AP-018: Ice Maker Soft Copper Water Supply (Up to 15')</h3>
+<p><strong>Sub-Actividades:</strong><br />
+1. Localizar línea de agua fría más cercana (10 min)<br />
+2. Instalar saddle valve o angle stop (20 min)<br />
+3. Tender línea de cobre 1/4" (20 min)<br />
+4. Conectar al refrigerador (10 min)</p>
+<p><strong>Materiales:</strong><br />
+| Item | Precio |<br />
+|------|--------|<br />
+| Soft copper 1/4" × 15' | $18.00 |<br />
+| Self-piercing saddle valve | $12.00 |<br />
+| Compression fittings | $8.00 |<br />
+| <strong>Total (+30%)</strong> | <strong>$49.40</strong> |</p>
+<p><strong>Tiempo:</strong> 1.0 hr | <strong>Tu Costo:</strong> $185 + $49.40 = $234.40<br />
+<strong>Precio Cliente:</strong> <strong>$425 - $525</strong> | <strong>Margen:</strong> ~$191 - $291</p>
+<hr />
+<h3>AP-020: Emergency Water Shut-Off Valve (1/4 Turn)</h3>
+<p><strong>Tiempo:</strong> 30 min | <strong>Material:</strong> Angle stop 1/4 turn + escutcheon = $15 (+30%: $19.50)<br />
+<strong>Tu Costo:</strong> $92 + $19.50 = $111.50<br />
+<strong>Precio Cliente:</strong> <strong>$225 - $285</strong> | <strong>Margen:</strong> ~$114 - $174</p>
+<hr />
+<h3>AP-021: Recessed Box with Emergency Shut-Off</h3>
+<p><strong>Descripción:</strong> Caja empotrada para ice maker con válvula de emergencia.<br />
+<strong>Tiempo:</strong> 2.0 hr | <strong>Materiales:</strong> Recessed box + valve + PEX ($85 con markup: $110.50)<br />
+<strong>Tu Costo:</strong> $370 + $110.50 = $480.50<br />
+<strong>Precio Cliente:</strong> <strong>$750 - $950</strong> | <strong>Margen:</strong> ~$270 - $470</p>
+<hr />
+<h3>AP-022: Inline Water Filter for Ice Maker</h3>
+<p><strong>Tiempo:</strong> 45 min | <strong>Material:</strong> Inline filter + fittings = $35 (+30%: $45.50)<br />
+<strong>Tu Costo:</strong> $138 + $45.50 = $183.50<br />
+<strong>Precio Cliente:</strong> <strong>$325 - $425</strong> | <strong>Margen:</strong> ~$142 - $242</p>
+<hr />
+<h2>1.3 INSTA-HOTS (Dispensadores de Agua Caliente Instantánea)</h2>
+<h3>AP-024: Water Supply to Insta-Hot</h3>
+<p><strong>Tiempo:</strong> 1.0 hr | <strong>Material:</strong> Supply line + angle stop = $30 (+30%: $39)<br />
+<strong>Tu Costo:</strong> $185 + $39 = $224<br />
+<strong>Precio Cliente:</strong> <strong>$385 - $485</strong> | <strong>Margen:</strong> ~$161 - $261</p>
+<hr />
+<h3>AP-025: Dispenser Supply from Insta-Hot + Valve</h3>
+<p><strong>Tiempo:</strong> 1.5 hr | <strong>Material:</strong> Line + fittings + valve = $45 (+30%: $58.50)<br />
+<strong>Tu Costo:</strong> $277 + $58.50 = $335.50<br />
+<strong>Precio Cliente:</strong> <strong>$550 - $685</strong> | <strong>Margen:</strong> ~$215 - $350</p>
+<hr />
+<h2>1.4 WASHING MACHINE (Lavadoras)</h2>
+<h3>AP-027: Disconnect &amp; Reinstall Washer &amp; Dryer</h3>
+<p><strong>Sub-Actividades:</strong><br />
+1. Cerrar válvulas de agua (5 min)<br />
+2. Desconectar mangueras y drenaje (10 min)<br />
+3. Mover unidades (20 min)<br />
+4. Reconectar todo (25 min)</p>
+<p><strong>Tiempo:</strong> 1.0 hr | <strong>Materiales:</strong> N/A (cliente mantiene los suyos)<br />
+<strong>Tu Costo:</strong> $185<br />
+<strong>Precio Cliente:</strong> <strong>$350 - $450</strong> | <strong>Margen:</strong> ~$165 - $265</p>
+<hr />
+<h3>AP-029: Braided Stainless No-Burst Hoses (Par)</h3>
+<p><strong>Material:</strong> 2× FloodSafe SS Hoses 6' = $35 (+30%: $45.50)<br />
+<strong>Tiempo:</strong> 15 min<br />
+<strong>Tu Costo:</strong> $46 + $45.50 = $91.50<br />
+<strong>Precio Cliente:</strong> <strong>$165 - $225</strong> | <strong>Margen:</strong> ~$74 - $134</p>
+<hr />
+<h3>AP-031: Trap &amp; Standpipe (Excl. Drywall)</h3>
+<p><strong>Tiempo:</strong> 2.0 hr | <strong>Material:</strong> 2" P-trap, standpipe, fittings = $45 (+30%: $58.50)<br />
+<strong>Tu Costo:</strong> $370 + $58.50 = $428.50<br />
+<strong>Precio Cliente:</strong> <strong>$750 - $950</strong> | <strong>Margen:</strong> ~$322 - $522</p>
+<hr />
+<h3>AP-032: Recessed Box (Water &amp; Drain)</h3>
+<p><strong>Tiempo:</strong> 3.0 hr | <strong>Material:</strong> Oatey box, valves, drain = $120 (+30%: $156)<br />
+<strong>Tu Costo:</strong> $555 + $156 = $711<br />
+<strong>Precio Cliente:</strong> <strong>$1,150 - $1,450</strong> | <strong>Margen:</strong> ~$439 - $739</p>
+<hr />
+<h3>AP-033: Washing Machine Drain Pan &amp; Drain Line</h3>
+<p><strong>Tiempo:</strong> 1.5 hr | <strong>Material:</strong> Pan + PVC drain + fittings = $45 (+30%: $58.50)<br />
+<strong>Tu Costo:</strong> $277 + $58.50 = $335.50<br />
+<strong>Precio Cliente:</strong> <strong>$550 - $685</strong> | <strong>Margen:</strong> ~$215 - $350</p>
+<hr />
+<h3>AP-034: Hammer Arrestor</h3>
+<p><strong>Descripción:</strong> Reduce golpe de ariete (water hammer) en lavadoras.<br />
+<strong>Tiempo:</strong> 30 min | <strong>Material:</strong> Sioux Chief AA = $35 (+30%: $45.50)<br />
+<strong>Tu Costo:</strong> $92 + $45.50 = $137.50<br />
+<strong>Precio Cliente:</strong> <strong>$250 - $325</strong> | <strong>Margen:</strong> ~$113 - $188</p>
+<hr />
+<h1>2. GAS APPLIANCE &amp; SYSTEM (SISTEMAS DE GAS)</h1>
+<p><img alt="Válvula de Gas Sísmica" src="images/gas_seismic_valve_1765473792296.png" /></p>
+<h2>2.1 GAS DRYER &amp; RANGE CONNECTIONS</h2>
+<h3>GS-007: Connect Gas Dryer (48" Stainless Flex)</h3>
+<p><strong>Sub-Actividades:</strong><br />
+| Tarea | Tiempo |<br />
+|-------|--------|<br />
+| Verificar shut-off valve existente | 5 min |<br />
+| Instalar gas flex con fittings | 25 min |<br />
+| Prueba de fugas (soapy water) | 10 min |<br />
+| Verificar ignición | 5 min |</p>
+<p><strong>Material:</strong><br />
+| Item | Precio |<br />
+|------|--------|<br />
+| SS Gas Flex 48" 1/2" | $28.00 |<br />
+| Gas shut-off valve (si no existe) | $15.00 |<br />
+| Yellow Teflon tape (gas) | $4.00 |<br />
+| <strong>Total (+30%)</strong> | <strong>$61.10</strong> |</p>
+<p><strong>Tiempo:</strong> 45 min | <strong>Tu Costo:</strong> $138 + $61.10 = $199.10<br />
+<strong>Precio Cliente:</strong> <strong>$350 - $450</strong> | <strong>Margen:</strong> ~$151 - $251</p>
+<hr />
+<h3>GS-008: Connect Gas Range/Cooktop (48" Stainless Flex)</h3>
+<p><strong>Tiempo:</strong> 1.0 hr (más complejo por ubicación)<br />
+<strong>Material:</strong> Gas flex + fittings + valve = $50 (+30%: $65)<br />
+<strong>Tu Costo:</strong> $185 + $65 = $250<br />
+<strong>Precio Cliente:</strong> <strong>$425 - $550</strong> | <strong>Margen:</strong> ~$175 - $300</p>
+<hr />
+<h3>GS-009: Connect Dryer Vent (Flex Between Dryer &amp; Wall)</h3>
+<p><strong>Tiempo:</strong> 30 min | <strong>Material:</strong> Semi-rigid flex duct 4" + clamps = $25 (+30%: $32.50)<br />
+<strong>Tu Costo:</strong> $92 + $32.50 = $124.50<br />
+<strong>Precio Cliente:</strong> <strong>$225 - $285</strong> | <strong>Margen:</strong> ~$101 - $161</p>
+<hr />
+<h3>GS-010: Dryer Vent Kit Through Stucco/Siding</h3>
+<p><strong>Tiempo:</strong> 2.5 hr | <strong>Material:</strong> Vent kit + hood + rigid duct = $65 (+30%: $84.50)<br />
+<strong>Tu Costo:</strong> $462 + $84.50 = $546.50<br />
+<strong>Precio Cliente:</strong> <strong>$950 - $1,200</strong> | <strong>Margen:</strong> ~$404 - $654</p>
+<hr />
+<h3>GS-011: Hard Pipe Dryer Vent (Up to 10')</h3>
+<p><strong>Sub-Actividades:</strong><br />
+1. Demolición path (si aplica) - 30 min<br />
+2. Instalar rigid duct con elbows - 45 min<br />
+3. Conectar a exterior hood - 20 min<br />
+4. Sellar penetraciones - 15 min<br />
+5. Test airflow - 10 min</p>
+<p><strong>Material:</strong> Rigid aluminum 4" × 10' + elbows + hood + tape = $60 (+30%: $78)<br />
+<strong>Tiempo:</strong> 2.0 hr | <strong>Tu Costo:</strong> $370 + $78 = $448<br />
+<strong>Precio Cliente:</strong> <strong>$750 - $950</strong> | <strong>Margen:</strong> ~$302 - $502</p>
+<hr />
+<h2>2.2 GAS VALVES &amp; SAFETY</h2>
+<h3>GS-012: Under House Repair Fee (Access Charge)</h3>
+<p><strong>Descripción:</strong> Cargo adicional por trabajo en crawlspace.<br />
+<strong>Tiempo:</strong> Variable | <strong>Cargo Fijo:</strong> <strong>$150 - $250</strong></p>
+<hr />
+<h3>GS-013: 1/2" × 18" SS Gas Supply with Emergency Shut-Off</h3>
+<p><strong>Material:</strong><br />
+| Item | Precio |<br />
+|------|--------|<br />
+| SS Gas Flex 18" 1/2" | $22.00 |<br />
+| 1/2" Gas Ball Valve | $18.00 |<br />
+| Yellow Teflon | $4.00 |<br />
+| <strong>Total (+30%)</strong> | <strong>$57.20</strong> |</p>
+<p><strong>Tiempo:</strong> 1.0 hr | <strong>Tu Costo:</strong> $185 + $57.20 = $242.20<br />
+<strong>Precio Cliente:</strong> <strong>$425 - $550</strong> | <strong>Margen:</strong> ~$183 - $308</p>
+<hr />
+<h3>GS-014: Sediment Trap for Gas Line</h3>
+<p><strong>Descripción:</strong> Obligatorio por código. Trampa de sedimento antes del appliance.<br />
+<strong>Material:</strong> Black iron tee 1/2" + nipple 3" + cap = $20 (+30%: $26)<br />
+<strong>Tiempo:</strong> 45 min | <strong>Tu Costo:</strong> $138 + $26 = $164<br />
+<strong>Precio Cliente:</strong> <strong>$285 - $385</strong> | <strong>Margen:</strong> ~$121 - $221</p>
+<hr />
+<h3>GS-015: 1/2" Emergency Gas Shut-Off Valve</h3>
+<p><strong>Tiempo:</strong> 45 min | <strong>Material:</strong> 1/2" Gas ball valve = $18 (+30%: $23.40)<br />
+<strong>Tu Costo:</strong> $138 + $23.40 = $161.40<br />
+<strong>Precio Cliente:</strong> <strong>$285 - $385</strong> | <strong>Margen:</strong> ~$124 - $224</p>
+<hr />
+<h3>GS-016: 3/4" Emergency Gas Shut-Off Valve</h3>
+<p><strong>Tiempo:</strong> 45 min | <strong>Material:</strong> 3/4" Gas ball valve = $25 (+30%: $32.50)<br />
+<strong>Tu Costo:</strong> $138 + $32.50 = $170.50<br />
+<strong>Precio Cliente:</strong> <strong>$325 - $425</strong> | <strong>Margen:</strong> ~$155 - $255</p>
+<hr />
+<h3>GS-017: 1" Emergency Gas Shut-Off Valve</h3>
+<p><strong>Tiempo:</strong> 1.0 hr | <strong>Material:</strong> 1" Gas ball valve + adapters = $45 (+30%: $58.50)<br />
+<strong>Tu Costo:</strong> $185 + $58.50 = $243.50<br />
+<strong>Precio Cliente:</strong> <strong>$425 - $550</strong> | <strong>Margen:</strong> ~$182 - $307</p>
+<hr />
+<h3>GS-100: Seismic/Earthquake Shut-Off Valve (3/4" - 1")</h3>
+<p><strong>Descripción:</strong> Válvula automática de cierre por sismo. OBLIGATORIO en California para nuevas instalaciones.<br />
+<strong>Sub-Actividades:</strong><br />
+1. Cierre de gas en medidor (10 min)<br />
+2. Cortar línea existente (15 min)<br />
+3. Preparar conexiones (threading/adapters) (30 min)<br />
+4. Instalar válvula sísmica (20 min)<br />
+5. Prueba de presión (30 min)<br />
+6. Reencender pilotos (15 min)</p>
+<p><strong>Material (3/4"):</strong><br />
+| Item | Precio |<br />
+|------|--------|<br />
+| Seismic valve (Watts, NSF Listed) | $120.00 |<br />
+| Nipples, unions | $25.00 |<br />
+| Teflon, pipe dope | $5.00 |<br />
+| <strong>Total (+30%)</strong> | <strong>$195.00</strong> |</p>
+<p><strong>Tiempo:</strong> 2.5 hr | <strong>Tu Costo:</strong> $462 + $195 = $657<br />
+<strong>Precio Cliente:</strong> <strong>$1,100 - $1,400</strong> | <strong>Margen:</strong> ~$443 - $743<br />
+<strong>Fuente:</strong> Home Depot, Ferguson ($100-180 retail)</p>
+<hr />
+<h1>3. BACKFLOW DEVICES (PREVENCIÓN DE FLUJO INVERSO)</h1>
+<blockquote>
+<p>[!IMPORTANT]<br />
+Dispositivos de backflow requieren certificación anual. Ofrece plan de mantenimiento.</p>
+</blockquote>
+<h3>BF-036: 3/4" Reduced Pressure Backflow Preventer (RPZ)</h3>
+<p><strong>Marca Recomendada:</strong> Wilkins 975XL3<br />
+<strong>Precio Material Verificado:</strong> $809 - $885 (Home Depot, Ferguson 2024)</p>
+<p><strong>Sub-Actividades:</strong><br />
+1. Cerrar agua y drenar sistema (20 min)<br />
+2. Cortar línea existente (15 min)<br />
+3. Preparar conexiones (unions, adapters) (30 min)<br />
+4. Instalar device con soporte (45 min)<br />
+5. Instalar válvulas de aislamiento (30 min)<br />
+6. Prueba de funcionamiento (30 min)</p>
+<p><strong>Material:</strong><br />
+| Item | Precio |<br />
+|------|--------|<br />
+| Wilkins 975XL3 3/4" | $850.00 |<br />
+| Ball valves (2) | $40.00 |<br />
+| Unions/adapters | $30.00 |<br />
+| Support strut | $25.00 |<br />
+| <strong>Total (+30%)</strong> | <strong>$1,228.50</strong> |</p>
+<p><strong>Tiempo:</strong> 3.0 hr | <strong>Tu Costo:</strong> $555 + $1,228.50 = $1,783.50<br />
+<strong>Precio Cliente:</strong> <strong>$2,800 - $3,200</strong> | <strong>Margen:</strong> ~$1,017 - $1,417<br />
+<strong>Fuente Precio Device:</strong> Home Depot $809.99, CPE Supply $884.99 (verificado Dic 2024)</p>
+<hr />
+<h3>BF-037: 1" Reduced Pressure Backflow Preventer</h3>
+<p><strong>Material:</strong> Wilkins 975XL 1" (~$950) + fittings = $1,050 (+30%: $1,365)<br />
+<strong>Tiempo:</strong> 3.5 hr | <strong>Tu Costo:</strong> $647 + $1,365 = $2,012<br />
+<strong>Precio Cliente:</strong> <strong>$3,200 - $3,800</strong> | <strong>Margen:</strong> ~$1,188 - $1,788</p>
+<hr />
+<h3>BF-040: 2" Reduced Pressure Backflow Preventer</h3>
+<p><strong>Material:</strong> Device 2" (~$1,800) + fittings = $1,950 (+30%: $2,535)<br />
+<strong>Tiempo:</strong> 5.0 hr | <strong>Tu Costo:</strong> $925 + $2,535 = $3,460<br />
+<strong>Precio Cliente:</strong> <strong>$5,500 - $6,500</strong> | <strong>Margen:</strong> ~$2,040 - $3,040</p>
+<hr />
+<h3>BF-041: 3/4" or 1" Relief Valve Kit (Repair Parts)</h3>
+<p><strong>Material:</strong> Repair kit = $120 (+30%: $156)<br />
+<strong>Tiempo:</strong> 1.0 hr | <strong>Tu Costo:</strong> $185 + $156 = $341<br />
+<strong>Precio Cliente:</strong> <strong>$550 - $750</strong> | <strong>Margen:</strong> ~$209 - $409</p>
+<hr />
+<h3>BF-044: Backflow Bag (Cover)</h3>
+<p><strong>Tiempo:</strong> 15 min | <strong>Material:</strong> Insulation bag = $85 (+30%: $110.50)<br />
+<strong>Tu Costo:</strong> $46 + $110.50 = $156.50<br />
+<strong>Precio Cliente:</strong> <strong>$265 - $325</strong> | <strong>Margen:</strong> ~$109 - $169</p>
+<hr />
+<h1>4. DEMOLITION &amp; PATCHING (DEMOLICIÓN Y PARCHES)</h1>
+<h2>4.1 BATHROOM DEMO</h2>
+<h3>DM-047: Whole Bath Demo (Excludes Subfloor)</h3>
+<p><strong>Sub-Actividades:</strong><br />
+| Tarea | Tiempo |<br />
+|-------|--------|<br />
+| Desconectar plomería (toilet, sink, tub) | 1.0 hr |<br />
+| Remover fixtures | 1.0 hr |<br />
+| Demo tile/walls si aplica | 1.0 hr |<br />
+| Disposal/cleanup | 1.0 hr |</p>
+<p><strong>Tiempo:</strong> 4.0 hr | <strong>Material:</strong> Disposal/dump fees = $100 (+30%: $130)<br />
+<strong>Tu Costo:</strong> $740 + $130 = $870<br />
+<strong>Precio Cliente:</strong> <strong>$1,500 - $2,000</strong> | <strong>Margen:</strong> ~$630 - $1,130</p>
+<hr />
+<h3>DM-048: Fiberglass Tub/Shower with Walls</h3>
+<p><strong>Tiempo:</strong> 3.0 hr | <strong>Disposal:</strong> $75 (+30%: $97.50)<br />
+<strong>Tu Costo:</strong> $555 + $97.50 = $652.50<br />
+<strong>Precio Cliente:</strong> <strong>$1,100 - $1,400</strong> | <strong>Margen:</strong> ~$448 - $748</p>
+<hr />
+<h3>DM-049: Tile Tub/Shower with Walls</h3>
+<p><strong>Tiempo:</strong> 5.0 hr | <strong>Disposal:</strong> $150 (+30%: $195)<br />
+<strong>Tu Costo:</strong> $925 + $195 = $1,120<br />
+<strong>Precio Cliente:</strong> <strong>$1,850 - $2,400</strong> | <strong>Margen:</strong> ~$730 - $1,280</p>
+<hr />
+<h2>4.2 CONCRETE &amp; STUCCO</h2>
+<h3>DM-056: Re-Pour/Patch Concrete (2×2 Area)</h3>
+<p><strong>Material:</strong> Quikrete sac, rebar, mixing = $40 (+30%: $52)<br />
+<strong>Tiempo:</strong> 2.5 hr | <strong>Tu Costo:</strong> $462 + $52 = $514<br />
+<strong>Precio Cliente:</strong> <strong>$850 - $1,100</strong> | <strong>Margen:</strong> ~$336 - $586</p>
+<hr />
+<h3>DM-057: Re-Pour/Patch Concrete (4×4 Area)</h3>
+<p><strong>Material:</strong> $80 (+30%: $104)<br />
+<strong>Tiempo:</strong> 4.0 hr | <strong>Tu Costo:</strong> $740 + $104 = $844<br />
+<strong>Precio Cliente:</strong> <strong>$1,450 - $1,850</strong> | <strong>Margen:</strong> ~$606 - $1,006</p>
+<hr />
+<h3>DM-064: Patch Stucco (Up to 3×3)</h3>
+<p><strong>Material:</strong> Stucco mix, mesh, paint = $35 (+30%: $45.50)<br />
+<strong>Tiempo:</strong> 2.0 hr | <strong>Tu Costo:</strong> $370 + $45.50 = $415.50<br />
+<strong>Precio Cliente:</strong> <strong>$685 - $850</strong> | <strong>Margen:</strong> ~$270 - $435</p>
+<hr />
+<h2>4.3 DRYWALL</h2>
+<h3>DM-067: Cut Drywall Hole (Up to 2×2)</h3>
+<p><strong>Tiempo:</strong> 30 min | <strong>Material:</strong> N/A<br />
+<strong>Tu Costo:</strong> $92<br />
+<strong>Precio Cliente:</strong> <strong>$165 - $225</strong> | <strong>Margen:</strong> ~$73 - $133</p>
+<hr />
+<h3>DM-075: Patch Wall (2×2)</h3>
+<p><strong>Material:</strong> Drywall patch, mud, tape, sanding = $25 (+30%: $32.50)<br />
+<strong>Tiempo:</strong> 1.5 hr | <strong>Tu Costo:</strong> $277 + $32.50 = $309.50<br />
+<strong>Precio Cliente:</strong> <strong>$550 - $750</strong> | <strong>Margen:</strong> ~$241 - $441</p>
+<hr />
+<h3>DM-076: Patch Wall (3×3)</h3>
+<p><strong>Material:</strong> $35 (+30%: $45.50)<br />
+<strong>Tiempo:</strong> 2.0 hr | <strong>Tu Costo:</strong> $370 + $45.50 = $415.50<br />
+<strong>Precio Cliente:</strong> <strong>$685 - $850</strong> | <strong>Margen:</strong> ~$270 - $435</p>
+<hr />
+<h3>DM-081: Lath &amp; Plaster Patch (3×3)</h3>
+<p><strong>Material:</strong> Drywall + mud + special mesh = $45 (+30%: $58.50)<br />
+<strong>Tiempo:</strong> 2.5 hr | <strong>Tu Costo:</strong> $462 + $58.50 = $520.50<br />
+<strong>Precio Cliente:</strong> <strong>$850 - $1,100</strong> | <strong>Margen:</strong> ~$330 - $580</p>
+<hr />
+<h1>5. DRAIN LINE STOPPAGES (LIMPIEZA DE DRENAJES)</h1>
+<p><img alt="Limpieza de Drenajes" src="images/hydrojet_sewer_diagram_1765474424069.png" /></p>
+<h2>5.1 SINK &amp; LAV STOPPAGES</h2>
+<h3>DR-083: Bar Sink Stoppage (Remove Trap)</h3>
+<p><strong>Tiempo:</strong> 30 min | <strong>Material:</strong> N/A<br />
+<strong>Tu Costo:</strong> $92<br />
+<strong>Precio Cliente:</strong> <strong>$165 - $225</strong> | <strong>Margen:</strong> ~$73 - $133</p>
+<hr />
+<h3>DR-084: Kitchen Sink (Outside Clean Out)</h3>
+<p><strong>Tiempo:</strong> 45 min | <strong>Tu Costo:</strong> $138<br />
+<strong>Precio Cliente:</strong> <strong>$225 - $285</strong> | <strong>Margen:</strong> ~$87 - $147</p>
+<hr />
+<h3>DR-085: Kitchen Sink (Under Sink - Cable Machine)</h3>
+<p><strong>Sub-Actividades:</strong><br />
+1. Remove P-trap (5 min)<br />
+2. Cable machine hasta 25' (30 min)<br />
+3. Reassemble, test (10 min)</p>
+<p><strong>Tiempo:</strong> 45 min | <strong>Tu Costo:</strong> $138<br />
+<strong>Precio Cliente:</strong> <strong>$225 - $285</strong> | <strong>Margen:</strong> ~$87 - $147</p>
+<hr />
+<h3>DR-088: Lavatory Stoppage (Through Pop-Up)</h3>
+<p><strong>Tiempo:</strong> 30 min | <strong>Tu Costo:</strong> $92<br />
+<strong>Precio Cliente:</strong> <strong>$165 - $225</strong> | <strong>Margen:</strong> ~$73 - $133</p>
+<hr />
+<h3>DR-089: Lavatory Stoppage (Remove Trap)</h3>
+<p><strong>Tiempo:</strong> 45 min | <strong>Tu Costo:</strong> $138<br />
+<strong>Precio Cliente:</strong> <strong>$185 - $250</strong> | <strong>Margen:</strong> ~$47 - $112</p>
+<hr />
+<h2>5.2 MAIN LINE STOPPAGES</h2>
+<h3>DR-090: Main Line (Through Clean Out - 1st Bail)</h3>
+<p><strong>Sub-Actividades:</strong><br />
+1. Locate clean out (5 min)<br />
+2. Setup machine (10 min)<br />
+3. Cable main line 3-4" (60 min)<br />
+4. Test flow (10 min)<br />
+5. Cleanup (15 min)</p>
+<p><strong>Tiempo:</strong> 1.5-2.0 hr | <strong>Tu Costo:</strong> $277 - $370<br />
+<strong>Precio Cliente:</strong> <strong>$385 - $550</strong> | <strong>Margen:</strong> ~$108 - $180</p>
+<hr />
+<h3>DR-091: Main Line (Through Water Closet - 1st Bail)</h3>
+<p><strong>Sub-Actividades:</strong><br />
+1. Pull toilet (15 min)<br />
+2. Cable through flange (75 min)<br />
+3. Reinstall toilet (25 min)<br />
+4. Test (5 min)</p>
+<p><strong>Material:</strong> Wax ring + bolts = $15 (+30%: $19.50)<br />
+<strong>Tiempo:</strong> 2.0 hr | <strong>Tu Costo:</strong> $370 + $19.50 = $389.50<br />
+<strong>Precio Cliente:</strong> <strong>$550 - $750</strong> | <strong>Margen:</strong> ~$161 - $361</p>
+<hr />
+<h3>DR-092: Additional Bail (Main Line)</h3>
+<p><strong>Tiempo:</strong> 1.0 hr adicional<br />
+<strong>Precio Cliente:</strong> <strong>+$185 - $285</strong> por bail adicional</p>
+<hr />
+<h3>DR-093: Water Closet Stoppage (Auger)</h3>
+<p><strong>Tiempo:</strong> 30 min | <strong>Tu Costo:</strong> $92<br />
+<strong>Precio Cliente:</strong> <strong>$145 - $185</strong> | <strong>Margen:</strong> ~$53 - $93</p>
+<hr />
+<h2>5.3 HYDROJET &amp; CAMERA</h2>
+<h3>DR-098: HydroJet Residential Main (Up to 200')</h3>
+<p><strong>Descripción:</strong> Limpieza a alta presión para grasa, raíces, y buildup severo.<br />
+<strong>Sub-Actividades:</strong><br />
+1. Camera inspection previa (30 min)<br />
+2. Setup jetter equipment (20 min)<br />
+3. Jetting cycles (60-90 min)<br />
+4. Post-camera verification (15 min)</p>
+<p><strong>Tiempo:</strong> 2.5-3.0 hr | <strong>Material:</strong> Nozzle wear = $25 (+30%: $32.50)<br />
+<strong>Tu Costo:</strong> $462-$555 + $32.50 = $495-$588<br />
+<strong>Precio Cliente:</strong> <strong>$850 - $1,250</strong> | <strong>Margen:</strong> ~$355 - $662</p>
+<hr />
+<h3>DR-099: Camera Sewer Line (Drain Vision Inspection)</h3>
+<p><strong>Tiempo:</strong> 1.0 hr | <strong>Material:</strong> USB drive for recording = $10 (+30%: $13)<br />
+<strong>Tu Costo:</strong> $185 + $13 = $198<br />
+<strong>Precio Cliente:</strong> <strong>$350 - $550</strong> | <strong>Margen:</strong> ~$152 - $352</p>
+<hr />
+<h3>DR-100: Install House Clean Out (One Way)</h3>
+<p><strong>Descripción:</strong> Instalación de cleanout accesible para mantenimiento futuro.<br />
+<strong>Sub-Actividades:</strong><br />
+1. Excavation 2×2×2 (1.0 hr)<br />
+2. Cut existing line (20 min)<br />
+3. Install wye + cleanout (45 min)<br />
+4. Backfill (30 min)<br />
+5. Test (15 min)</p>
+<p><strong>Material:</strong> 4" ABS wye, cleanout, riser, box = $80 (+30%: $104)<br />
+<strong>Tiempo:</strong> 3.0-4.0 hr | <strong>Tu Costo:</strong> $555-$740 + $104 = $659-$844<br />
+<strong>Precio Cliente:</strong> <strong>$1,200 - $1,600</strong> | <strong>Margen:</strong> ~$541 - $756</p>
+<hr />
+<h3>DR-114: HydroJet Commercial Main (Up to 300')</h3>
+<p><strong>Tiempo:</strong> 4.0 hr | <strong>Material:</strong> $50 (+30%: $65)<br />
+<strong>Tu Costo:</strong> $740 + $65 = $805<br />
+<strong>Precio Cliente:</strong> <strong>$1,450 - $1,850</strong> | <strong>Margen:</strong> ~$645 - $1,045</p>
+<hr />
+<h1>6. FAUCET INSTALLATIONS (GRIFERÍA)</h1>
+<h3>FC-123: Kitchen Faucet (No Pull Out)</h3>
+<p><strong>Sub-Actividades:</strong><br />
+1. Turn off water, disconnect old (15 min)<br />
+2. Remove old faucet (10 min)<br />
+3. Clean surface, apply putty (5 min)<br />
+4. Install new faucet (20 min)<br />
+5. Connect supplies (10 min)</p>
+<p><strong>Material:</strong> Supply lines + putty = $20 (+30%: $26)<br />
+<strong>Tiempo:</strong> 1.0 hr | <strong>Tu Costo:</strong> $185 + $26 = $211<br />
+<strong>Precio Cliente:</strong> <strong>$350 - $450</strong> | <strong>Margen:</strong> ~$139 - $239</p>
+<hr />
+<h3>FC-124: Kitchen Faucet (With Pull Out/Down)</h3>
+<p><strong>Tiempo:</strong> 1.25 hr | <strong>Material:</strong> $25 (+30%: $32.50)<br />
+<strong>Tu Costo:</strong> $231 + $32.50 = $263.50<br />
+<strong>Precio Cliente:</strong> <strong>$425 - $550</strong> | <strong>Margen:</strong> ~$162 - $287</p>
+<hr />
+<h3>FC-125: Kitchen Faucet (Pull Down Goose Neck w/Spring)</h3>
+<p><strong>Tiempo:</strong> 1.5 hr | <strong>Material:</strong> $30 (+30%: $39)<br />
+<strong>Tu Costo:</strong> $277 + $39 = $316<br />
+<strong>Precio Cliente:</strong> <strong>$485 - $625</strong> | <strong>Margen:</strong> ~$169 - $309</p>
+<hr />
+<h3>FC-126: Bathroom Faucet (4" Centered)</h3>
+<p><strong>Tiempo:</strong> 1.0 hr | <strong>Material:</strong> $20 (+30%: $26)<br />
+<strong>Tu Costo:</strong> $185 + $26 = $211<br />
+<strong>Precio Cliente:</strong> <strong>$350 - $450</strong> | <strong>Margen:</strong> ~$139 - $239</p>
+<hr />
+<h3>FC-127: Bathroom Faucet (Widespread)</h3>
+<p><strong>Tiempo:</strong> 1.5 hr | <strong>Material:</strong> $25 (+30%: $32.50)<br />
+<strong>Tu Costo:</strong> $277 + $32.50 = $309.50<br />
+<strong>Precio Cliente:</strong> <strong>$550 - $685</strong> | <strong>Margen:</strong> ~$241 - $376</p>
+<hr />
+<h3>FC-128: Bathroom Faucet (Wall Mount - Excl. Patch)</h3>
+<p><strong>Tiempo:</strong> 2.0 hr | <strong>Material:</strong> $30 (+30%: $39)<br />
+<strong>Tu Costo:</strong> $370 + $39 = $409<br />
+<strong>Precio Cliente:</strong> <strong>$685 - $850</strong> | <strong>Margen:</strong> ~$276 - $441</p>
+<hr />
+<h3>FC-129: Tub/Shower Valve (Excl. Tile/Patch/Risers)</h3>
+<p><strong>Tiempo:</strong> 3.0 hr | <strong>Material:</strong> Valve body = $150 (+30%: $195)<br />
+<strong>Tu Costo:</strong> $555 + $195 = $750<br />
+<strong>Precio Cliente:</strong> <strong>$1,250 - $1,650</strong> | <strong>Margen:</strong> ~$500 - $900</p>
+<hr />
+<h3>FC-133: Premier Finishes (Add-On)</h3>
+<p><strong>Descripción:</strong> Brushed nickel, matte black, etc.<br />
+<strong>Precio Cliente:</strong> <strong>+15-25% adicional</strong></p>
+<hr />
+<h3>FC-134: Luxury Brands (Add-On)</h3>
+<p><strong>Descripción:</strong> Kohler, Grohe, Hansgrohe installations.<br />
+<strong>Precio Cliente:</strong> <strong>+25-40% adicional</strong> por complejidad</p>
+<hr />
+<h1>7. WATER FILTRATION (FILTRACIÓN Y SUAVIZADORES)</h1>
+<p><img alt="Sistema de Filtración" src="images/water_filtration_diagram_1765474408515.png" /></p>
+<blockquote>
+<p>[!TIP]<br />
+Ofrece contratos de mantenimiento anual para suavizadores y filtros. Recurrente $150-300/año.</p>
+</blockquote>
+<h3>WF-136: Removal &amp; Disposal of Existing Softener</h3>
+<p><strong>Tiempo:</strong> 1.5 hr | <strong>Disposal:</strong> $75 (+30%: $97.50)<br />
+<strong>Tu Costo:</strong> $277 + $97.50 = $374.50<br />
+<strong>Precio Cliente:</strong> <strong>$625 - $785</strong> | <strong>Margen:</strong> ~$251 - $411</p>
+<hr />
+<h3>WF-137: Whole House Sediment Filter</h3>
+<p><strong>Material:</strong> Housing + filter + bypass = $150 (+30%: $195)<br />
+<strong>Tiempo:</strong> 2.5 hr | <strong>Tu Costo:</strong> $462 + $195 = $657<br />
+<strong>Precio Cliente:</strong> <strong>$1,100 - $1,450</strong> | <strong>Margen:</strong> ~$443 - $793</p>
+<hr />
+<h3>WF-138: 844 Eco Scale Reducer (1-3 Bath)</h3>
+<p><strong>Material:</strong> Unit + media + fittings = $600 (+30%: $780)<br />
+<strong>Tiempo:</strong> 3.0 hr | <strong>Tu Costo:</strong> $555 + $780 = $1,335<br />
+<strong>Precio Cliente:</strong> <strong>$2,200 - $2,800</strong> | <strong>Margen:</strong> ~$865 - $1,465</p>
+<hr />
+<h3>WF-144: WS 1054 Water Softener (1-3 Bath)</h3>
+<p><strong>Descripción:</strong> Sistema de suavizador de agua para casas pequeñas.<br />
+<strong>Sub-Actividades:</strong><br />
+1. Site prep, locate loop (30 min)<br />
+2. Install softener tanks (60 min)<br />
+3. Connect water lines (45 min)<br />
+4. Install drain line (30 min)<br />
+5. Program controller (15 min)<br />
+6. Initial regeneration (active but can leave)</p>
+<p><strong>Material:</strong><br />
+| Item | Precio |<br />
+|------|--------|<br />
+| WS 1054 Unit | $700.00 |<br />
+| Salt (initial 80lb) | $15.00 |<br />
+| Loop fittings | $50.00 |<br />
+| Drain line | $25.00 |<br />
+| <strong>Total (+30%)</strong> | <strong>$1,027.00</strong> |</p>
+<p><strong>Tiempo:</strong> 3.0-4.0 hr | <strong>Tu Costo:</strong> $555-$740 + $1,027 = $1,582-$1,767<br />
+<strong>Precio Cliente:</strong> <strong>$2,800 - $3,500</strong> | <strong>Margen:</strong> ~$1,033 - $1,733<br />
+<strong>Fuente:</strong> Water softener install typically 2-4 hrs (Angi, Benjamin Franklin 2024)</p>
+<hr />
+<h3>WF-145: WS 1252 Water Softener (4-6 Bath)</h3>
+<p><strong>Material:</strong> Unit $950 + fittings = $1,050 (+30%: $1,365)<br />
+<strong>Tiempo:</strong> 4.0-4.5 hr | <strong>Tu Costo:</strong> $740-$832 + $1,365 = $2,105-$2,197<br />
+<strong>Precio Cliente:</strong> <strong>$3,500 - $4,200</strong> | <strong>Margen:</strong> ~$1,303 - $2,003</p>
+<hr />
+<h3>WF-156: 6 Stage Pro R.O. System with Minerals</h3>
+<p><strong>Material:</strong> iSpring/APEC unit = $300 (+30%: $390)<br />
+<strong>Tiempo:</strong> 2.0 hr | <strong>Tu Costo:</strong> $370 + $390 = $760<br />
+<strong>Precio Cliente:</strong> <strong>$1,250 - $1,550</strong> | <strong>Margen:</strong> ~$490 - $790</p>
+<hr />
+<h3>WF-163: Connect Ice Maker (to RO/Filtration)</h3>
+<p><strong>Tiempo:</strong> 1.0 hr | <strong>Material:</strong> 1/4" line + valve + tee = $35 (+30%: $45.50)<br />
+<strong>Tu Costo:</strong> $185 + $45.50 = $230.50<br />
+<strong>Precio Cliente:</strong> <strong>$385 - $485</strong> | <strong>Margen:</strong> ~$155 - $255</p>
+<hr />
+<h1>8. WATER HEATERS (CALENTADORES)</h1>
+<p><img alt="Calentador de Agua" src="images/water_heater_diagram_1765473737166.png" /></p>
+<h2>8.1 WATER HEATER REPAIRS &amp; CODE UPGRADES</h2>
+<h3>WH-306: Flexible Supply Line (Water)</h3>
+<p><strong>Tiempo:</strong> 30 min | <strong>Material:</strong> SS Flex 18" = $20 (+30%: $26)<br />
+<strong>Tu Costo:</strong> $92 + $26 = $118<br />
+<strong>Precio Cliente:</strong> <strong>$185 - $245</strong> | <strong>Margen:</strong> ~$67 - $127</p>
+<hr />
+<h3>WH-307: Seismic Support (Straps) 30-50 Gal</h3>
+<p><strong>Tiempo:</strong> 1.0 hr | <strong>Material:</strong> Strap kit = $40 (+30%: $52)<br />
+<strong>Tu Costo:</strong> $185 + $52 = $237<br />
+<strong>Precio Cliente:</strong> <strong>$385 - $485</strong> | <strong>Margen:</strong> ~$148 - $248</p>
+<hr />
+<h3>WH-308: Seismic Support 75-100 Gal</h3>
+<p><strong>Tiempo:</strong> 1.25 hr | <strong>Material:</strong> Heavy strap kit = $60 (+30%: $78)<br />
+<strong>Tu Costo:</strong> $231 + $78 = $309<br />
+<strong>Precio Cliente:</strong> <strong>$485 - $625</strong> | <strong>Margen:</strong> ~$176 - $316</p>
+<hr />
+<h3>WH-314: Gas Flex Line with Valve</h3>
+<p><strong>Tiempo:</strong> 45 min | <strong>Material:</strong> Flex + valve = $45 (+30%: $58.50)<br />
+<strong>Tu Costo:</strong> $138 + $58.50 = $196.50<br />
+<strong>Precio Cliente:</strong> <strong>$325 - $425</strong> | <strong>Margen:</strong> ~$129 - $229</p>
+<hr />
+<h3>WH-330: 3/4" T&amp;P Relief Valve</h3>
+<p><strong>Tiempo:</strong> 45 min | <strong>Material:</strong> T&amp;P valve = $25 (+30%: $32.50)<br />
+<strong>Tu Costo:</strong> $138 + $32.50 = $170.50<br />
+<strong>Precio Cliente:</strong> <strong>$285 - $385</strong> | <strong>Margen:</strong> ~$115 - $215</p>
+<hr />
+<h3>WH-335: Thermocouple Replacement</h3>
+<p><strong>Tiempo:</strong> 1.0 hr | <strong>Material:</strong> Thermocouple universal = $25 (+30%: $32.50)<br />
+<strong>Tu Costo:</strong> $185 + $32.50 = $217.50<br />
+<strong>Precio Cliente:</strong> <strong>$350 - $450</strong> | <strong>Margen:</strong> ~$133 - $233</p>
+<hr />
+<h3>WH-336: Thermopile Replacement</h3>
+<p><strong>Tiempo:</strong> 1.25 hr | <strong>Material:</strong> Thermopile = $45 (+30%: $58.50)<br />
+<strong>Tu Costo:</strong> $231 + $58.50 = $289.50<br />
+<strong>Precio Cliente:</strong> <strong>$485 - $625</strong> | <strong>Margen:</strong> ~$196 - $336</p>
+<hr />
+<h3>WH-339: Expansion Tank (40-50 Gal)</h3>
+<p><strong>Tiempo:</strong> 1.0 hr | <strong>Material:</strong> Exp tank + tee = $80 (+30%: $104)<br />
+<strong>Tu Costo:</strong> $185 + $104 = $289<br />
+<strong>Precio Cliente:</strong> <strong>$485 - $625</strong> | <strong>Margen:</strong> ~$196 - $336</p>
+<hr />
+<h3>WH-343: Flush &amp; Drain (Maintenance)</h3>
+<p><strong>Tiempo:</strong> 1.0 hr | <strong>Material:</strong> De-scaler = $15 (+30%: $19.50)<br />
+<strong>Tu Costo:</strong> $185 + $19.50 = $204.50<br />
+<strong>Precio Cliente:</strong> <strong>$325 - $425</strong> | <strong>Margen:</strong> ~$121 - $221</p>
+<hr />
+<h2>8.2 FULL WATER HEATER INSTALLATIONS</h2>
+<h3>WH-100: 40 Gallon Gas Water Heater Install (Standard)</h3>
+<p><strong>Descripción:</strong> Instalación completa con code upgrades.</p>
+<p><strong>Sub-Actividades (Verified 2-4 hrs industry standard):</strong><br />
+| Tarea | Tiempo |<br />
+|-------|--------|<br />
+| Drain, disconnect, remove old unit | 45-60 min |<br />
+| Position new unit | 30 min |<br />
+| Connect water lines (flex) | 30 min |<br />
+| Connect gas line | 30 min |<br />
+| Install T&amp;P drain line | 15 min |<br />
+| Seismic straps | 15 min |<br />
+| Test, check for leaks | 15 min |<br />
+| Re-light pilot, verify operation | 15 min |<br />
+| <strong>TOTAL</strong> | <strong>3.0-4.0 hr</strong> |</p>
+<p><strong>Material (NOT including WH unit):</strong><br />
+| Item | Precio |<br />
+|------|--------|<br />
+| SS Water flex (2) | $40.00 |<br />
+| Gas flex + valve | $45.00 |<br />
+| Seismic straps | $35.00 |<br />
+| T&amp;P drain line | $20.00 |<br />
+| Expansion tank | $75.00 |<br />
+| Pan (if required) | $25.00 |<br />
+| Misc fittings | $20.00 |<br />
+| <strong>Subtotal (+30%)</strong> | <strong>$338.00</strong> |</p>
+<p><strong>Cálculo (Labor Only - Client Provides Unit):</strong><br />
+| Concepto | Total |<br />
+|----------|-------|<br />
+| Mano de Obra (3.5 hr × $185) | $647.50 |<br />
+| Materiales | $338.00 |<br />
+| <strong>Tu Costo Total</strong> | <strong>$985.50</strong> |<br />
+| <strong>Precio Cliente (Install Only)</strong> | <strong>$1,550 - $1,950</strong> |<br />
+| <strong>Margen</strong> | ~$565 - $965 |</p>
+<p><strong>Cálculo (Full Install - We Supply Unit):</strong><br />
+| Concepto | Total |<br />
+|----------|-------|<br />
+| Bradford White 40G Gas (~$650) | $845.00 (+30%) |<br />
+| Labor + Materials | $985.50 |<br />
+| <strong>Tu Costo Total</strong> | <strong>$1,830.50</strong> |<br />
+| <strong>Precio Cliente</strong> | <strong>$2,800 - $3,200</strong> |<br />
+| <strong>Margen</strong> | ~$970 - $1,370 |</p>
+<hr />
+<h3>WH-354: Tankless Install (Condensing 199k BTU - Navien)</h3>
+<p><strong>Descripción:</strong> Conversión de tank a tankless. Proyecto mayor.</p>
+<p><strong>Sub-Actividades:</strong><br />
+| Tarea | Tiempo |<br />
+|-------|--------|<br />
+| Remove existing tank | 1.0 hr |<br />
+| Mount tankless unit | 1.0 hr |<br />
+| Run new gas line (if needed) | 2.0 hr |<br />
+| PVC venting installation | 2.0 hr |<br />
+| Water connections | 1.0 hr |<br />
+| Electrical connection | 0.5 hr |<br />
+| Condensate drain | 0.5 hr |<br />
+| Program, test | 1.0 hr |<br />
+| <strong>TOTAL</strong> | <strong>9.0-11.0 hr</strong> |</p>
+<p><strong>Material:</strong><br />
+| Item | Precio Verificado |<br />
+|------|-------------------|<br />
+| Navien NPE-240A2 | $1,400-$2,300 (retail ~$2,295, wholesale ~$1,400) |<br />
+| PVC venting kit | $150.00 |<br />
+| Isolation valves | $80.00 |<br />
+| Gas line extension | $100.00 |<br />
+| Condensate drain | $50.00 |<br />
+| Electrical | $40.00 |<br />
+| <strong>Subtotal (+30%)</strong> | <strong>~$2,600</strong> |</p>
+<p><strong>Tiempo:</strong> 10.0 hr | <strong>Tu Costo:</strong> $1,850 + $2,600 = $4,450<br />
+<strong>Precio Cliente:</strong> <strong>$7,000 - $9,000</strong> | <strong>Margen:</strong> ~$2,550 - $4,550<br />
+<strong>Fuente Precio Unit:</strong> Active Plumbing $2,295, wholesale ~$1,400 (verified Dec 2024)</p>
+<hr />
+<h1>9. WATER DISTRIBUTION / REPIPES</h1>
+<h3>WD-168: 1/2" Pressure Regulator</h3>
+<p><strong>Material:</strong> Watts regulator = $80 (+30%: $104)<br />
+<strong>Tiempo:</strong> 1.5 hr | <strong>Tu Costo:</strong> $277 + $104 = $381<br />
+<strong>Precio Cliente:</strong> <strong>$650 - $850</strong> | <strong>Margen:</strong> ~$269 - $469</p>
+<hr />
+<h3>WD-169: 3/4" Pressure Regulator</h3>
+<p><strong>Material:</strong> Watts 3/4" = $110 (+30%: $143)<br />
+<strong>Tiempo:</strong> 2.0 hr | <strong>Tu Costo:</strong> $370 + $143 = $513<br />
+<strong>Precio Cliente:</strong> <strong>$850 - $1,100</strong> | <strong>Margen:</strong> ~$337 - $587</p>
+<hr />
+<h3>WD-185: Repipe: 1 Bath Home (Horizontal)</h3>
+<p><strong>Tiempo:</strong> 16 hr (2 días) | <strong>Material:</strong> PEX/Copper + fittings = $800 (+30%: $1,040)<br />
+<strong>Tu Costo:</strong> $2,960 + $1,040 = $4,000<br />
+<strong>Precio Cliente:</strong> <strong>$6,500 - $8,500</strong> | <strong>Margen:</strong> ~$2,500 - $4,500</p>
+<hr />
+<h3>WD-186: Repipe: 2 Bath Home (Horizontal)</h3>
+<p><strong>Tiempo:</strong> 24 hr (3 días) | <strong>Material:</strong> $1,200 (+30%: $1,560)<br />
+<strong>Tu Costo:</strong> $4,440 + $1,560 = $6,000<br />
+<strong>Precio Cliente:</strong> <strong>$9,500 - $12,500</strong> | <strong>Margen:</strong> ~$3,500 - $6,500</p>
+<hr />
+<h3>WD-227: Repair Water Leak in Wall</h3>
+<p><strong>Tiempo:</strong> 2.5 hr | <strong>Material:</strong> Pipe + couplings = $30 (+30%: $39)<br />
+<strong>Tu Costo:</strong> $462 + $39 = $501<br />
+<strong>Precio Cliente:</strong> <strong>$850 - $1,200</strong> | <strong>Margen:</strong> ~$349 - $699</p>
+<hr />
+<h1>10. SLAB LEAKS</h1>
+<h3>SL-241: Minor Leak Search &amp; Isolation</h3>
+<p><strong>Tiempo:</strong> 2.0 hr | <strong>Material:</strong> Nitrogen test kit = $40 (+30%: $52)<br />
+<strong>Tu Costo:</strong> $370 + $52 = $422<br />
+<strong>Precio Cliente:</strong> <strong>$685 - $950</strong> | <strong>Margen:</strong> ~$263 - $528</p>
+<hr />
+<h3>SL-242: Electronic Slab Leak Locate (with Specialist)</h3>
+<p><strong>Tiempo:</strong> 3.0 hr | <strong>Specialist Fee:</strong> $250<br />
+<strong>Tu Costo:</strong> $555 + $250 = $805<br />
+<strong>Precio Cliente:</strong> <strong>$1,350 - $1,750</strong> | <strong>Margen:</strong> ~$545 - $945</p>
+<hr />
+<h3>SL-243: Repair Pipe Under Slab (Jackhammer)</h3>
+<p><strong>Tiempo:</strong> 8.0 hr | <strong>Material:</strong> Concrete, pipe, copper/PEX = $150 (+30%: $195)<br />
+<strong>Tu Costo:</strong> $1,480 + $195 = $1,675<br />
+<strong>Precio Cliente:</strong> <strong>$2,800 - $3,800</strong> | <strong>Margen:</strong> ~$1,125 - $2,125</p>
+<hr />
+<h1>11. TOILET REPAIRS (WATER CLOSET)</h1>
+<p><img alt="Partes Internas del Inodoro" src="images/toilet_internal_diagram_1765473771685.png" /></p>
+<h3>TL-276: Replace Tank (Standard)</h3>
+<p><strong>Tiempo:</strong> 1.5 hr | <strong>Material:</strong> Tank + internals = $120 (+30%: $156)<br />
+<strong>Tu Costo:</strong> $277 + $156 = $433<br />
+<strong>Precio Cliente:</strong> <strong>$685 - $850</strong> | <strong>Margen:</strong> ~$252 - $417</p>
+<hr />
+<h3>TL-277: Major Tank Rebuild (All Internals)</h3>
+<p><strong>Tiempo:</strong> 1.25 hr | <strong>Material:</strong> Fluidmaster kit = $45 (+30%: $58.50)<br />
+<strong>Tu Costo:</strong> $231 + $58.50 = $289.50<br />
+<strong>Precio Cliente:</strong> <strong>$485 - $625</strong> | <strong>Margen:</strong> ~$196 - $336</p>
+<hr />
+<h3>TL-278: Minor Tank Rebuild (Fill Valve + Flapper)</h3>
+<p><strong>Tiempo:</strong> 45 min | <strong>Material:</strong> Fill valve + flapper = $25 (+30%: $32.50)<br />
+<strong>Tu Costo:</strong> $138 + $32.50 = $170.50<br />
+<strong>Precio Cliente:</strong> <strong>$285 - $385</strong> | <strong>Margen:</strong> ~$115 - $215</p>
+<hr />
+<h3>TL-283: Pull &amp; Reset Toilet</h3>
+<p><strong>Tiempo:</strong> 1.0 hr | <strong>Material:</strong> Wax ring, bolts, caulk = $15 (+30%: $19.50)<br />
+<strong>Tu Costo:</strong> $185 + $19.50 = $204.50<br />
+<strong>Precio Cliente:</strong> <strong>$325 - $425</strong> | <strong>Margen:</strong> ~$121 - $221</p>
+<hr />
+<h3>TL-297: Closet Flange Replacement</h3>
+<p><strong>Tiempo:</strong> 2.0 hr | <strong>Material:</strong> PVC flange + ring = $35 (+30%: $45.50)<br />
+<strong>Tu Costo:</strong> $370 + $45.50 = $415.50<br />
+<strong>Precio Cliente:</strong> <strong>$685 - $850</strong> | <strong>Margen:</strong> ~$270 - $435</p>
+<hr />
+<h1>12. CLIENT SUPPLIED FIXTURES</h1>
+<blockquote>
+<p>[!WARNING]<br />
+Sin garantía en producto. Disclaimer obligatorio en factura.</p>
+</blockquote>
+<h3>CS-392: Install Client's Garbage Disposal</h3>
+<p><strong>Tiempo:</strong> 1.0 hr | <strong>Material:</strong> Putty, cord = $15 (+30%: $19.50)<br />
+<strong>Tu Costo:</strong> $185 + $19.50 = $204.50<br />
+<strong>Precio Cliente:</strong> <strong>$350 - $450</strong> | <strong>Margen:</strong> ~$146 - $246</p>
+<hr />
+<h3>CS-393: Install Client's Dishwasher</h3>
+<p><strong>Tiempo:</strong> 1.5 hr | <strong>Material:</strong> Supply/drain = $30 (+30%: $39)<br />
+<strong>Tu Costo:</strong> $277 + $39 = $316<br />
+<strong>Precio Cliente:</strong> <strong>$485 - $585</strong> | <strong>Margen:</strong> ~$169 - $269</p>
+<hr />
+<h3>CS-398: Install Client's Toilet</h3>
+<p><strong>Tiempo:</strong> 1.5 hr | <strong>Material:</strong> Wax, bolts = $15 (+30%: $19.50)<br />
+<strong>Tu Costo:</strong> $277 + $19.50 = $296.50<br />
+<strong>Precio Cliente:</strong> <strong>$450 - $550</strong> | <strong>Margen:</strong> ~$154 - $254</p>
+<hr />
+<h3>CS-420: Install Client's Water Heater (Less Code Upgrade)</h3>
+<p><strong>Tiempo:</strong> 3.5 hr | <strong>Material:</strong> Flex lines, pan = $80 (+30%: $104)<br />
+<strong>Tu Costo:</strong> $647 + $104 = $751<br />
+<strong>Precio Cliente:</strong> <strong>$1,250 - $1,600</strong> | <strong>Margen:</strong> ~$499 - $849</p>
+<hr />
+<h1>📊 RESUMEN DE MÁRGENES POR CATEGORÍA</h1>
+<table>
+<thead>
+<tr>
+<th>Categoría</th>
+<th>Margen Promedio</th>
+<th>Notas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Appliances</strong></td>
+<td>40-50%</td>
+<td>Trabajo rápido, buenos márgenes</td>
+</tr>
+<tr>
+<td><strong>Gas Systems</strong></td>
+<td>45-55%</td>
+<td>Alto riesgo = alto precio</td>
+</tr>
+<tr>
+<td><strong>Backflow</strong></td>
+<td>40-50%</td>
+<td>Material caro, pero buen markup</td>
+</tr>
+<tr>
+<td><strong>Drains</strong></td>
+<td>50-60%</td>
+<td>Sin materiales = puro labor</td>
+</tr>
+<tr>
+<td><strong>Faucets</strong></td>
+<td>35-45%</td>
+<td>Competitivo, ajustar</td>
+</tr>
+<tr>
+<td><strong>Filtration</strong></td>
+<td>45-55%</td>
+<td>Oportunidad de recurring revenue</td>
+</tr>
+<tr>
+<td><strong>Water Heaters</strong></td>
+<td>40-50%</td>
+<td>Buen balance labor/material</td>
+</tr>
+<tr>
+<td><strong>Repipes</strong></td>
+<td>45-55%</td>
+<td>Proyectos grandes = buenos márgenes</td>
+</tr>
+<tr>
+<td><strong>Slab Leaks</strong></td>
+<td>50-60%</td>
+<td>Especializado = premium</td>
+</tr>
+<tr>
+<td><strong>Client Supplied</strong></td>
+<td>55-65%</td>
+<td>Solo labor = máximo margen</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>NOTA FINAL:</strong> Este Price Book está basado en datos verificados de:<br />
+- Home Depot, Ferguson, CPE Supply (materiales 2024)<br />
+- Angi, HomeGuide, industry sources (labor rates Bay Area)<br />
+- California Plumbing Code (requirements)</p>
+<p><em>Actualizado: Diciembre 2024 | Próxima revisión: Junio 2025</em></p>
+<p><strong>Región:</strong> Bay Area, CA | <strong>Mano de Obra:</strong> $185/hr (Lead) | <strong>Markup Material:</strong> 30% | <strong>Margen Objetivo:</strong> ~40-50%</p>
+<hr />
+<h2>1. APPLIANCE CONNECTION (ELECTRODOMÉSTICOS)</h2>
+<p><img alt="Instalación de Electrodomésticos" src="images/appliance_install_diagram_1765474393045.png" /></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Código</th>
+<th style="text-align: left;">Actividad</th>
+<th style="text-align: left;">Tiempo</th>
+<th style="text-align: left;">Materiales (Est.)</th>
+<th style="text-align: left;">Mano de Obra</th>
+<th style="text-align: left;">Costo Total</th>
+<th style="text-align: left;"><strong>Precio Cliente</strong></th>
+<th style="text-align: left;"><strong>Margen</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>AP-002</strong></td>
+<td style="text-align: left;"><strong>DISHWASHERS - Install (Monitor)</strong></td>
+<td style="text-align: left;">1.5 hr</td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;">$277</td>
+<td style="text-align: left;">$277</td>
+<td style="text-align: left;"><strong>$450 - $550</strong></td>
+<td style="text-align: left;">~$223</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>AP-003</strong></td>
+<td style="text-align: left;"><strong>Complete-Braided Stainless Supply</strong></td>
+<td style="text-align: left;">0.5 hr</td>
+<td style="text-align: left;">Supply hose, Drain hose, Cord ($45)</td>
+<td style="text-align: left;">$92</td>
+<td style="text-align: left;">$137</td>
+<td style="text-align: left;"><strong>$265 - $325</strong></td>
+<td style="text-align: left;">~$150</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>AP-004</strong></td>
+<td style="text-align: left;"><strong>Braided Stainless Supply (Only)</strong></td>
+<td style="text-align: left;">0.25 hr</td>
+<td style="text-align: left;">SS Supply 48" ($18)</td>
+<td style="text-align: left;">$46</td>
+<td style="text-align: left;">$64</td>
+<td style="text-align: left;"><strong>$145 - $185</strong></td>
+<td style="text-align: left;">~$100</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>AP-005</strong></td>
+<td style="text-align: left;"><strong>Air Gap w/ Rubber Hose to Disposal</strong></td>
+<td style="text-align: left;">0.75 hr</td>
+<td style="text-align: left;">Air gap, Hose, Clamps ($25)</td>
+<td style="text-align: left;">$138</td>
+<td style="text-align: left;">$163</td>
+<td style="text-align: left;"><strong>$285 - $350</strong></td>
+<td style="text-align: left;">~$150</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>AP-018</strong></td>
+<td style="text-align: left;"><strong>ICE MAKERS - Install Line</strong></td>
+<td style="text-align: left;">1.0 hr</td>
+<td style="text-align: left;">Copper/PEX line, Valve ($40)</td>
+<td style="text-align: left;">$185</td>
+<td style="text-align: left;">$225</td>
+<td style="text-align: left;"><strong>$425 - $525</strong></td>
+<td style="text-align: left;">~$250</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>AP-020</strong></td>
+<td style="text-align: left;"><strong>Emergency Water Shut-Off Valve</strong></td>
+<td style="text-align: left;">0.5 hr</td>
+<td style="text-align: left;">Angle stop 1/4 turn ($15)</td>
+<td style="text-align: left;">$92</td>
+<td style="text-align: left;">$107</td>
+<td style="text-align: left;"><strong>$225 - $285</strong></td>
+<td style="text-align: left;">~$150</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>AP-027</strong></td>
+<td style="text-align: left;"><strong>WASHING MACHINE - Install</strong></td>
+<td style="text-align: left;">1.0 hr</td>
+<td style="text-align: left;">Hoses not incl.</td>
+<td style="text-align: left;">$185</td>
+<td style="text-align: left;">$185</td>
+<td style="text-align: left;"><strong>$350 - $450</strong></td>
+<td style="text-align: left;">~$215</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>AP-029</strong></td>
+<td style="text-align: left;"><strong>Braided Stainless No Burst Hoses</strong></td>
+<td style="text-align: left;">0.25 hr</td>
+<td style="text-align: left;">2x SS Hoses ($35)</td>
+<td style="text-align: left;">$46</td>
+<td style="text-align: left;">$81</td>
+<td style="text-align: left;"><strong>$165 - $225</strong></td>
+<td style="text-align: left;">~$110</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>AP-033</strong></td>
+<td style="text-align: left;"><strong>Washing Machine Drain Pan</strong></td>
+<td style="text-align: left;">1.5 hr</td>
+<td style="text-align: left;">Pan, PVC drain ($45)</td>
+<td style="text-align: left;">$277</td>
+<td style="text-align: left;">$322</td>
+<td style="text-align: left;"><strong>$550 - $685</strong></td>
+<td style="text-align: left;">~$280</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2. GAS APPLIANCE &amp; SYSTEM (SISTEMAS DE GAS)</h2>
+<p><img alt="Válvula de Gas Sísmica" src="images/gas_seismic_valve_1765473792296.png" /></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Código</th>
+<th style="text-align: left;">Actividad</th>
+<th style="text-align: left;">Tiempo</th>
+<th style="text-align: left;">Materiales (Est.)</th>
+<th style="text-align: left;">Mano de Obra</th>
+<th style="text-align: left;">Costo Total</th>
+<th style="text-align: left;"><strong>Precio Cliente</strong></th>
+<th style="text-align: left;"><strong>Margen</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>GS-007</strong></td>
+<td style="text-align: left;"><strong>Connect Gas Dryer (Flex Supply)</strong></td>
+<td style="text-align: left;">0.75 hr</td>
+<td style="text-align: left;">Gas flex 48" ($35)</td>
+<td style="text-align: left;">$138</td>
+<td style="text-align: left;">$173</td>
+<td style="text-align: left;"><strong>$325 - $425</strong></td>
+<td style="text-align: left;">~$200</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>GS-008</strong></td>
+<td style="text-align: left;"><strong>Connect Gas Range/Cooktop</strong></td>
+<td style="text-align: left;">1.0 hr</td>
+<td style="text-align: left;">Gas flex, Fittings ($40)</td>
+<td style="text-align: left;">$185</td>
+<td style="text-align: left;">$225</td>
+<td style="text-align: left;"><strong>$385 - $485</strong></td>
+<td style="text-align: left;">~$200</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>GS-011</strong></td>
+<td style="text-align: left;"><strong>Hard Pipe Dryer Vent (up to 10')</strong></td>
+<td style="text-align: left;">2.0 hr</td>
+<td style="text-align: left;">Rigid duct, Tape, Elbows ($60)</td>
+<td style="text-align: left;">$370</td>
+<td style="text-align: left;">$430</td>
+<td style="text-align: left;"><strong>$750 - $950</strong></td>
+<td style="text-align: left;">~$400</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>GS-013</strong></td>
+<td style="text-align: left;"><strong>Gas Supply &amp; Emergency Shut-Off</strong></td>
+<td style="text-align: left;">1.0 hr</td>
+<td style="text-align: left;">Gas valve, Flex ($45)</td>
+<td style="text-align: left;">$185</td>
+<td style="text-align: left;">$230</td>
+<td style="text-align: left;"><strong>$425 - $550</strong></td>
+<td style="text-align: left;">~$250</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>GS-014</strong></td>
+<td style="text-align: left;"><strong>Sediment Trap for Gas Line</strong></td>
+<td style="text-align: left;">0.75 hr</td>
+<td style="text-align: left;">Blk Iron Tee, Nipple, Cap ($20)</td>
+<td style="text-align: left;">$138</td>
+<td style="text-align: left;">$158</td>
+<td style="text-align: left;"><strong>$285 - $385</strong></td>
+<td style="text-align: left;">~$180</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>GS-016</strong></td>
+<td style="text-align: left;"><strong>3/4" Emergency Gas Shut-Off</strong></td>
+<td style="text-align: left;">0.75 hr</td>
+<td style="text-align: left;">Gas Valve 3/4" ($30)</td>
+<td style="text-align: left;">$138</td>
+<td style="text-align: left;">$168</td>
+<td style="text-align: left;"><strong>$325 - $425</strong></td>
+<td style="text-align: left;">~$200</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>GS-100</strong></td>
+<td style="text-align: left;"><strong>Seismic Shut-Off Valve (Earthquake)</strong></td>
+<td style="text-align: left;">2.5 hr</td>
+<td style="text-align: left;">3/4" - 1" Valve ($150)</td>
+<td style="text-align: left;">$462</td>
+<td style="text-align: left;">$612</td>
+<td style="text-align: left;"><strong>$1,100 - $1,400</strong></td>
+<td style="text-align: left;">~$600</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3. BACKFLOW DEVICES (PREVENCIÓN DE FLUJO INVERSO)</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Código</th>
+<th style="text-align: left;">Actividad</th>
+<th style="text-align: left;">Tiempo</th>
+<th style="text-align: left;">Materiales (Est.)</th>
+<th style="text-align: left;">Mano de Obra</th>
+<th style="text-align: left;">Costo Total</th>
+<th style="text-align: left;"><strong>Precio Cliente</strong></th>
+<th style="text-align: left;"><strong>Margen</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>BF-036</strong></td>
+<td style="text-align: left;"><strong>3/4" Reduced Pressure Device</strong></td>
+<td style="text-align: left;">3.0 hr</td>
+<td style="text-align: left;">Wilkins 975XL ($250)</td>
+<td style="text-align: left;">$555</td>
+<td style="text-align: left;">$805</td>
+<td style="text-align: left;"><strong>$1,450 - $1,800</strong></td>
+<td style="text-align: left;">~$800</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>BF-037</strong></td>
+<td style="text-align: left;"><strong>1" Reduced Pressure Device</strong></td>
+<td style="text-align: left;">3.5 hr</td>
+<td style="text-align: left;">Device 1" ($350)</td>
+<td style="text-align: left;">$647</td>
+<td style="text-align: left;">$997</td>
+<td style="text-align: left;"><strong>$1,850 - $2,200</strong></td>
+<td style="text-align: left;">~$1000</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>BF-040</strong></td>
+<td style="text-align: left;"><strong>2" Reduced Pressure Device</strong></td>
+<td style="text-align: left;">5.0 hr</td>
+<td style="text-align: left;">Device 2" ($800)</td>
+<td style="text-align: left;">$925</td>
+<td style="text-align: left;">$1,725</td>
+<td style="text-align: left;"><strong>$3,200 - $3,800</strong></td>
+<td style="text-align: left;">~$1700</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>BF-041</strong></td>
+<td style="text-align: left;"><strong>3/4" or 1" Relief Valve Kit (Repair)</strong></td>
+<td style="text-align: left;">1.0 hr</td>
+<td style="text-align: left;">Repair Kit ($120)</td>
+<td style="text-align: left;">$185</td>
+<td style="text-align: left;">$305</td>
+<td style="text-align: left;"><strong>$550 - $750</strong></td>
+<td style="text-align: left;">~$350</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. DEMOLITION &amp; PATCHING (DEMOLICIÓN Y PARCHES)</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Código</th>
+<th style="text-align: left;">Actividad</th>
+<th style="text-align: left;">Tiempo</th>
+<th style="text-align: left;">Materiales (Est.)</th>
+<th style="text-align: left;">Mano de Obra</th>
+<th style="text-align: left;">Costo Total</th>
+<th style="text-align: left;"><strong>Precio Cliente</strong></th>
+<th style="text-align: left;"><strong>Margen</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>DM-047</strong></td>
+<td style="text-align: left;"><strong>Whole Bath Demo (Excl. Subfloor)</strong></td>
+<td style="text-align: left;">4.0 hr</td>
+<td style="text-align: left;">Disposal fees ($100)</td>
+<td style="text-align: left;">$740</td>
+<td style="text-align: left;">$840</td>
+<td style="text-align: left;"><strong>$1,500 - $2,000</strong></td>
+<td style="text-align: left;">~$900</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>DM-056</strong></td>
+<td style="text-align: left;"><strong>Concrete Re-Pour/Patch (2x2)</strong></td>
+<td style="text-align: left;">2.5 hr</td>
+<td style="text-align: left;">Concrete sac, Rebar ($40)</td>
+<td style="text-align: left;">$462</td>
+<td style="text-align: left;">$502</td>
+<td style="text-align: left;"><strong>$850 - $1,100</strong></td>
+<td style="text-align: left;">~$450</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>DM-067</strong></td>
+<td style="text-align: left;"><strong>Cut Drywall Hole (up to 2x2)</strong></td>
+<td style="text-align: left;">0.5 hr</td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;">$92</td>
+<td style="text-align: left;">$92</td>
+<td style="text-align: left;"><strong>$165 - $225</strong></td>
+<td style="text-align: left;">~$100</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>DM-075</strong></td>
+<td style="text-align: left;"><strong>Patch Wall (Standard 2x2)</strong></td>
+<td style="text-align: left;">1.5 hr</td>
+<td style="text-align: left;">Drywall, Mud, Tape ($25)</td>
+<td style="text-align: left;">$277</td>
+<td style="text-align: left;">$302</td>
+<td style="text-align: left;"><strong>$550 - $750</strong></td>
+<td style="text-align: left;">~$350</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>5. DRAIN LINE STOPPAGES (LIMPIEZA DE DRENAJES)</h2>
+<p><img alt="Limpieza de Drenajes" src="images/hydrojet_sewer_diagram_1765474424069.png" /></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Código</th>
+<th style="text-align: left;">Actividad</th>
+<th style="text-align: left;">Tiempo</th>
+<th style="text-align: left;">Materiales (Est.)</th>
+<th style="text-align: left;">Mano de Obra</th>
+<th style="text-align: left;">Costo Total</th>
+<th style="text-align: left;"><strong>Precio Cliente</strong></th>
+<th style="text-align: left;"><strong>Margen</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>DR-085</strong></td>
+<td style="text-align: left;"><strong>Kitchen Sink Stoppage (Under Sink)</strong></td>
+<td style="text-align: left;">0.75 hr</td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;">$138</td>
+<td style="text-align: left;">$138</td>
+<td style="text-align: left;"><strong>$225 - $285</strong></td>
+<td style="text-align: left;">~$110</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>DR-090</strong></td>
+<td style="text-align: left;"><strong>Main Line (Clean Out Access)</strong></td>
+<td style="text-align: left;">1.5 hr</td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;">$277</td>
+<td style="text-align: left;">$277</td>
+<td style="text-align: left;"><strong>$385 - $550</strong></td>
+<td style="text-align: left;">~$200</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>DR-091</strong></td>
+<td style="text-align: left;"><strong>Main Line (Pull Toilet)</strong></td>
+<td style="text-align: left;">2.0 hr</td>
+<td style="text-align: left;">Wax Ring, Bolts ($15)</td>
+<td style="text-align: left;">$370</td>
+<td style="text-align: left;">$385</td>
+<td style="text-align: left;"><strong>$550 - $750</strong></td>
+<td style="text-align: left;">~$260</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>DR-098</strong></td>
+<td style="text-align: left;"><strong>AquaBright / HydroJet (Residential)</strong></td>
+<td style="text-align: left;">2.5 hr</td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;">$462</td>
+<td style="text-align: left;">$462</td>
+<td style="text-align: left;"><strong>$850 - $1,250</strong></td>
+<td style="text-align: left;">~$600</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>DR-099</strong></td>
+<td style="text-align: left;"><strong>Camera Sewer Line (Inspection)</strong></td>
+<td style="text-align: left;">1.0 hr</td>
+<td style="text-align: left;">USB drive</td>
+<td style="text-align: left;">$185</td>
+<td style="text-align: left;">$185</td>
+<td style="text-align: left;"><strong>$350 - $550</strong></td>
+<td style="text-align: left;">~$260</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>DR-100</strong></td>
+<td style="text-align: left;"><strong>Install House Clean Out (One Way)</strong></td>
+<td style="text-align: left;">4.0 hr</td>
+<td style="text-align: left;">ABS Pipe, Fitting, Box ($120)</td>
+<td style="text-align: left;">$740</td>
+<td style="text-align: left;">$860</td>
+<td style="text-align: left;"><strong>$1,600 - $2,200</strong></td>
+<td style="text-align: left;">~$1000</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>6. FAUCET INSTALLATIONS (GRIFERÍA)</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Código</th>
+<th style="text-align: left;">Actividad</th>
+<th style="text-align: left;">Tiempo</th>
+<th style="text-align: left;">Materiales (Est.)</th>
+<th style="text-align: left;">Mano de Obra</th>
+<th style="text-align: left;">Costo Total</th>
+<th style="text-align: left;"><strong>Precio Cliente</strong></th>
+<th style="text-align: left;"><strong>Margen</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>FC-123</strong></td>
+<td style="text-align: left;"><strong>Kitchen Faucet (No Pull Out)</strong></td>
+<td style="text-align: left;">1.0 hr</td>
+<td style="text-align: left;">Supply lines, Putty ($20)</td>
+<td style="text-align: left;">$185</td>
+<td style="text-align: left;">$205</td>
+<td style="text-align: left;"><strong>$350 - $450</strong></td>
+<td style="text-align: left;">~$200</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>FC-124</strong></td>
+<td style="text-align: left;"><strong>Kitchen Faucet (With Pull Out)</strong></td>
+<td style="text-align: left;">1.25 hr</td>
+<td style="text-align: left;">Supply lines ($20)</td>
+<td style="text-align: left;">$231</td>
+<td style="text-align: left;">$251</td>
+<td style="text-align: left;"><strong>$425 - $550</strong></td>
+<td style="text-align: left;">~$230</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>FC-127</strong></td>
+<td style="text-align: left;"><strong>Bathroom Faucet (Widespread)</strong></td>
+<td style="text-align: left;">1.5 hr</td>
+<td style="text-align: left;">Supply lines ($25)</td>
+<td style="text-align: left;">$277</td>
+<td style="text-align: left;">$302</td>
+<td style="text-align: left;"><strong>$550 - $685</strong></td>
+<td style="text-align: left;">~$300</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>FC-129</strong></td>
+<td style="text-align: left;"><strong>Tub/Shower Valve (Rough-in Only)</strong></td>
+<td style="text-align: left;">3.0 hr</td>
+<td style="text-align: left;">Valve body ($150)</td>
+<td style="text-align: left;">$555</td>
+<td style="text-align: left;">$705</td>
+<td style="text-align: left;"><strong>$1,250 - $1,650</strong></td>
+<td style="text-align: left;">~$700</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>7. WATER FILTRATION (FILTRACIÓN Y SUAVIZADORES)</h2>
+<p><img alt="Sistema de Filtración" src="images/water_filtration_diagram_1765474408515.png" /></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Código</th>
+<th style="text-align: left;">Actividad</th>
+<th style="text-align: left;">Tiempo</th>
+<th style="text-align: left;">Materiales (Est.)</th>
+<th style="text-align: left;">Mano de Obra</th>
+<th style="text-align: left;">Costo Total</th>
+<th style="text-align: left;"><strong>Precio Cliente</strong></th>
+<th style="text-align: left;"><strong>Margen</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>WF-137</strong></td>
+<td style="text-align: left;"><strong>Whole House Sediment Filter</strong></td>
+<td style="text-align: left;">2.5 hr</td>
+<td style="text-align: left;">Filter Housing ($150)</td>
+<td style="text-align: left;">$462</td>
+<td style="text-align: left;">$612</td>
+<td style="text-align: left;"><strong>$1,100 - $1,450</strong></td>
+<td style="text-align: left;">~$600</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>WF-144</strong></td>
+<td style="text-align: left;"><strong>WS 1054 Water Softener (1-3 Bath)</strong></td>
+<td style="text-align: left;">4.0 hr</td>
+<td style="text-align: left;">Unit + Salt + Loop ($900)</td>
+<td style="text-align: left;">$740</td>
+<td style="text-align: left;">$1,640</td>
+<td style="text-align: left;"><strong>$2,800 - $3,500</strong></td>
+<td style="text-align: left;">~$1400</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>WF-145</strong></td>
+<td style="text-align: left;"><strong>WS 1252 Water Softener (4-6 Bath)</strong></td>
+<td style="text-align: left;">4.5 hr</td>
+<td style="text-align: left;">Unit + Salt + Loop ($1200)</td>
+<td style="text-align: left;">$832</td>
+<td style="text-align: left;">$2,032</td>
+<td style="text-align: left;"><strong>$3,500 - $4,200</strong></td>
+<td style="text-align: left;">~$1800</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>WF-156</strong></td>
+<td style="text-align: left;"><strong>6 Stage RO System</strong></td>
+<td style="text-align: left;">2.0 hr</td>
+<td style="text-align: left;">RO Unit ($300)</td>
+<td style="text-align: left;">$370</td>
+<td style="text-align: left;">$670</td>
+<td style="text-align: left;"><strong>$1,100 - $1,400</strong></td>
+<td style="text-align: left;">~$500</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>WF-163</strong></td>
+<td style="text-align: left;"><strong>Connect Ice Maker</strong></td>
+<td style="text-align: left;">1.0 hr</td>
+<td style="text-align: left;">1/4" Line, Valve ($35)</td>
+<td style="text-align: left;">$185</td>
+<td style="text-align: left;">$220</td>
+<td style="text-align: left;"><strong>$385 - $485</strong></td>
+<td style="text-align: left;">~$200</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>8. WATER HEATERS (CALENTADORES)</h2>
+<p><img alt="Calentador de Agua" src="images/water_heater_diagram_1765473737166.png" /></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Código</th>
+<th style="text-align: left;">Actividad</th>
+<th style="text-align: left;">Tiempo</th>
+<th style="text-align: left;">Materiales (Est.)</th>
+<th style="text-align: left;">Mano de Obra</th>
+<th style="text-align: left;">Costo Total</th>
+<th style="text-align: left;"><strong>Precio Cliente</strong></th>
+<th style="text-align: left;"><strong>Margen</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>WH-306</strong></td>
+<td style="text-align: left;"><strong>Flexible Supply Line (Heater)</strong></td>
+<td style="text-align: left;">0.5 hr</td>
+<td style="text-align: left;">SS Flex 18" ($20)</td>
+<td style="text-align: left;">$92</td>
+<td style="text-align: left;">$112</td>
+<td style="text-align: left;"><strong>$185 - $245</strong></td>
+<td style="text-align: left;">~$100</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>WH-307</strong></td>
+<td style="text-align: left;"><strong>Seismic Support (Straps)</strong></td>
+<td style="text-align: left;">1.0 hr</td>
+<td style="text-align: left;">Strap Kit ($40)</td>
+<td style="text-align: left;">$185</td>
+<td style="text-align: left;">$225</td>
+<td style="text-align: left;"><strong>$385 - $485</strong></td>
+<td style="text-align: left;">~$200</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>WH-335</strong></td>
+<td style="text-align: left;"><strong>Replace Thermocouple</strong></td>
+<td style="text-align: left;">1.0 hr</td>
+<td style="text-align: left;">Thermocouple ($25)</td>
+<td style="text-align: left;">$185</td>
+<td style="text-align: left;">$210</td>
+<td style="text-align: left;"><strong>$350 - $450</strong></td>
+<td style="text-align: left;">~$200</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>WH-343</strong></td>
+<td style="text-align: left;"><strong>Flush &amp; Drain (Maintenance)</strong></td>
+<td style="text-align: left;">1.0 hr</td>
+<td style="text-align: left;">De-scaler ($15)</td>
+<td style="text-align: left;">$185</td>
+<td style="text-align: left;">$200</td>
+<td style="text-align: left;"><strong>$325 - $425</strong></td>
+<td style="text-align: left;">~$180</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>WH-354</strong></td>
+<td style="text-align: left;"><strong>Tankless Install (Condensing 199k)</strong></td>
+<td style="text-align: left;">10.0 hr</td>
+<td style="text-align: left;">Navien 240A ($1800) + Kit</td>
+<td style="text-align: left;">$1,850</td>
+<td style="text-align: left;">$3,650</td>
+<td style="text-align: left;"><strong>$5,800 - $7,500</strong></td>
+<td style="text-align: left;">~$3000</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>9. WATER DISTRIBUTION / REPIPES (TUBERÍAS DE AGUA)</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Código</th>
+<th style="text-align: left;">Actividad</th>
+<th style="text-align: left;">Tiempo</th>
+<th style="text-align: left;">Materiales (Est.)</th>
+<th style="text-align: left;">Mano de Obra</th>
+<th style="text-align: left;">Costo Total</th>
+<th style="text-align: left;"><strong>Precio Cliente</strong></th>
+<th style="text-align: left;"><strong>Margen</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>WD-168</strong></td>
+<td style="text-align: left;"><strong>1/2" Pressure Regulator</strong></td>
+<td style="text-align: left;">1.5 hr</td>
+<td style="text-align: left;">Regulator ($80)</td>
+<td style="text-align: left;">$277</td>
+<td style="text-align: left;">$357</td>
+<td style="text-align: left;"><strong>$650 - $850</strong></td>
+<td style="text-align: left;">~$400</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>WD-169</strong></td>
+<td style="text-align: left;"><strong>3/4" Pressure Regulator</strong></td>
+<td style="text-align: left;">2.0 hr</td>
+<td style="text-align: left;">Regulator ($110)</td>
+<td style="text-align: left;">$370</td>
+<td style="text-align: left;">$480</td>
+<td style="text-align: left;"><strong>$850 - $1,100</strong></td>
+<td style="text-align: left;">~$500</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>WD-185</strong></td>
+<td style="text-align: left;"><strong>Repipe: 1 Bath Home (Horizontal)</strong></td>
+<td style="text-align: left;">16 hr</td>
+<td style="text-align: left;">PEX/Copper ($800)</td>
+<td style="text-align: left;">$2,960</td>
+<td style="text-align: left;">$3,760</td>
+<td style="text-align: left;"><strong>$6,500 - $8,500</strong></td>
+<td style="text-align: left;">~$3500</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>WD-186</strong></td>
+<td style="text-align: left;"><strong>Repipe: 2 Bath Home (Horizontal)</strong></td>
+<td style="text-align: left;">24 hr</td>
+<td style="text-align: left;">PEX/Copper ($1200)</td>
+<td style="text-align: left;">$4,440</td>
+<td style="text-align: left;">$5,640</td>
+<td style="text-align: left;"><strong>$9,500 - $12,500</strong></td>
+<td style="text-align: left;">~$5000</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>WD-206</strong></td>
+<td style="text-align: left;"><strong>Hammer Arrestor Install</strong></td>
+<td style="text-align: left;">0.75 hr</td>
+<td style="text-align: left;">Arrestor AA ($35)</td>
+<td style="text-align: left;">$138</td>
+<td style="text-align: left;">$173</td>
+<td style="text-align: left;"><strong>$285 - $385</strong></td>
+<td style="text-align: left;">~$180</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>WD-227</strong></td>
+<td style="text-align: left;"><strong>Repair Water Leak in Wall</strong></td>
+<td style="text-align: left;">2.5 hr</td>
+<td style="text-align: left;">Pipe, Couplings ($30)</td>
+<td style="text-align: left;">$462</td>
+<td style="text-align: left;">$492</td>
+<td style="text-align: left;"><strong>$850 - $1,200</strong></td>
+<td style="text-align: left;">~$500</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>10. SLAB LEAKS (FUGAS EN LOSA)</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Código</th>
+<th style="text-align: left;">Actividad</th>
+<th style="text-align: left;">Tiempo</th>
+<th style="text-align: left;">Materiales (Est.)</th>
+<th style="text-align: left;">Mano de Obra</th>
+<th style="text-align: left;">Costo Total</th>
+<th style="text-align: left;"><strong>Precio Cliente</strong></th>
+<th style="text-align: left;"><strong>Margen</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>SL-241</strong></td>
+<td style="text-align: left;"><strong>Minor Leak Search / Isolation</strong></td>
+<td style="text-align: left;">2.0 hr</td>
+<td style="text-align: left;">Nitrogen Test</td>
+<td style="text-align: left;">$370</td>
+<td style="text-align: left;">$370</td>
+<td style="text-align: left;"><strong>$550 - $750</strong></td>
+<td style="text-align: left;">~$300</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>SL-242</strong></td>
+<td style="text-align: left;"><strong>Electronic Slab Leak Locate</strong></td>
+<td style="text-align: left;">3.0 hr</td>
+<td style="text-align: left;">Specialist Equip.</td>
+<td style="text-align: left;">$555</td>
+<td style="text-align: left;">$555</td>
+<td style="text-align: left;"><strong>$950 - $1,400</strong></td>
+<td style="text-align: left;">~$600</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>SL-243</strong></td>
+<td style="text-align: left;"><strong>Repair Pipe Under Slab (Jackhammer)</strong></td>
+<td style="text-align: left;">8.0 hr</td>
+<td style="text-align: left;">Concrete, Pipe ($150)</td>
+<td style="text-align: left;">$1,480</td>
+<td style="text-align: left;">$1,630</td>
+<td style="text-align: left;"><strong>$2,800 - $3,800</strong></td>
+<td style="text-align: left;">~$1500</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>11. CLIENT SUPPLIED FIXTURES (INSTALACIÓN SOLAMENTE)</h2>
+<p><em>Nota: Sin garantía en el producto. Solo labor.</em></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Código</th>
+<th style="text-align: left;">Actividad</th>
+<th style="text-align: left;">Tiempo</th>
+<th style="text-align: left;">Materiales (Est.)</th>
+<th style="text-align: left;">Mano de Obra</th>
+<th style="text-align: left;">Costo Total</th>
+<th style="text-align: left;"><strong>Precio Cliente</strong></th>
+<th style="text-align: left;"><strong>Margen</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>CS-392</strong></td>
+<td style="text-align: left;"><strong>Install Client's Garbage Disposal</strong></td>
+<td style="text-align: left;">1.0 hr</td>
+<td style="text-align: left;">Putty/Cord ($15)</td>
+<td style="text-align: left;">$185</td>
+<td style="text-align: left;">$200</td>
+<td style="text-align: left;"><strong>$350 - $450</strong></td>
+<td style="text-align: left;">~$200</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>CS-393</strong></td>
+<td style="text-align: left;"><strong>Install Client's Dishwasher</strong></td>
+<td style="text-align: left;">1.5 hr</td>
+<td style="text-align: left;">Supply/Drain ($30)</td>
+<td style="text-align: left;">$277</td>
+<td style="text-align: left;">$307</td>
+<td style="text-align: left;"><strong>$485 - $585</strong></td>
+<td style="text-align: left;">~$220</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>CS-394</strong></td>
+<td style="text-align: left;"><strong>Install Client's Kitchen Faucet</strong></td>
+<td style="text-align: left;">1.0 hr</td>
+<td style="text-align: left;">Supply lines ($20)</td>
+<td style="text-align: left;">$185</td>
+<td style="text-align: left;">$205</td>
+<td style="text-align: left;"><strong>$325 - $425</strong></td>
+<td style="text-align: left;">~$180</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>CS-398</strong></td>
+<td style="text-align: left;"><strong>Install Client's Toilet</strong></td>
+<td style="text-align: left;">1.5 hr</td>
+<td style="text-align: left;">Wax, Bolts ($15)</td>
+<td style="text-align: left;">$277</td>
+<td style="text-align: left;">$292</td>
+<td style="text-align: left;"><strong>$450 - $550</strong></td>
+<td style="text-align: left;">~$200</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>CS-402</strong></td>
+<td style="text-align: left;"><strong>Install Client's Vanity</strong></td>
+<td style="text-align: left;">2.5 hr</td>
+<td style="text-align: left;">P-trap, Silicone ($40)</td>
+<td style="text-align: left;">$462</td>
+<td style="text-align: left;">$502</td>
+<td style="text-align: left;"><strong>$850 - $1,100</strong></td>
+<td style="text-align: left;">~$450</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>CS-420</strong></td>
+<td style="text-align: left;"><strong>Install Client's Water Heater</strong></td>
+<td style="text-align: left;">3.5 hr</td>
+<td style="text-align: left;">Flex lines, Pan ($80)</td>
+<td style="text-align: left;">$647</td>
+<td style="text-align: left;">$727</td>
+<td style="text-align: left;"><strong>$1,250 - $1,600</strong></td>
+<td style="text-align: left;">~$650</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>NOTA:</strong> Precios basados en promedio de mercado Bay Area 2024-2025. Los márgenes incluyen cobertura de overhead (seguros, vehículos, licencias), no es ganancia neta pura.</p>
+    </div>
 </div>
 
 <footer class="footer">
-<p>💰 ORION Price Book Pro | AC Water Heaters & Plumbing | Bay Area, CA</p>
-<p>Lead Rate: $185/hr | Helper: $95/hr | Material Markup: 30% | Margen Objetivo: 40-50%</p>
-<p>Última actualización: Diciembre 2024 | 142 Servicios | 20 Categorías</p>
+    <p>💰 ORION Price Book Pro | AC Water Heaters & Plumbing</p>
+    <p>Bay Area, CA | Última actualización: Diciembre 2024</p>
+    <p>Lead: $185/hr | Helper: $95/hr | Markup: 30% | Margen: 40-50%</p>
 </footer>
 
 <script>
-const services=[{"code":"NCR-001","name":"Rough-In Baño Completo","category":"ncr","categoryName":"Construcción Nueva Residencial","categoryIcon":"🏠","time":"8","priceLow":1800,"priceHigh":2500,"marginLow":280,"marginHigh":420},{"code":"NCR-002","name":"Rough-In Medio Baño","category":"ncr","categoryName":"Construcción Nueva Residencial","categoryIcon":"🏠","time":"5","priceLow":1200,"priceHigh":1600,"marginLow":160,"marginHigh":240},{"code":"NCR-003","name":"Rough-In Cocina Completa","category":"ncr","categoryName":"Construcción Nueva Residencial","categoryIcon":"🏠","time":"6","priceLow":1500,"priceHigh":2200,"marginLow":280,"marginHigh":420},{"code":"NCR-004","name":"Rough-In Lavadora","category":"ncr","categoryName":"Construcción Nueva Residencial","categoryIcon":"🏠","time":"3","priceLow":800,"priceHigh":1200,"marginLow":160,"marginHigh":240},{"code":"NCR-005","name":"Trim-Out Baño Completo","category":"ncr","categoryName":"Construcción Nueva Residencial","categoryIcon":"🏠","time":"4","priceLow":1200,"priceHigh":1800,"marginLow":240,"marginHigh":360},{"code":"NCR-006","name":"Re-entubado PEX 1 Baño","category":"ncr","categoryName":"Construcción Nueva Residencial","categoryIcon":"🏠","time":"16","priceLow":6500,"priceHigh":8500,"marginLow":800,"marginHigh":1200},{"code":"NCR-007","name":"Re-entubado PEX 2 Baños","category":"ncr","categoryName":"Construcción Nueva Residencial","categoryIcon":"🏠","time":"24","priceLow":9500,"priceHigh":12500,"marginLow":1200,"marginHigh":1800},{"code":"NCR-008","name":"Re-entubado Cobre 1 Baño","category":"ncr","categoryName":"Construcción Nueva Residencial","categoryIcon":"🏠","time":"20","priceLow":8500,"priceHigh":11500,"marginLow":1200,"marginHigh":1800},{"code":"NCR-009","name":"Línea Principal hasta 50ft","category":"ncr","categoryName":"Construcción Nueva Residencial","categoryIcon":"🏠","time":"6","priceLow":2500,"priceHigh":3800,"marginLow":520,"marginHigh":780},{"code":"NCR-010","name":"Línea Principal 50-100ft","category":"ncr","categoryName":"Construcción Nueva Residencial","categoryIcon":"🏠","time":"10","priceLow":4500,"priceHigh":6500,"marginLow":800,"marginHigh":1200},{"code":"NCC-001","name":"Rough-In Baño Comercial 2WC","category":"ncc","categoryName":"Construcción Comercial","categoryIcon":"🏢","time":"10","priceLow":3200,"priceHigh":4500,"marginLow":520,"marginHigh":780},{"code":"NCC-002","name":"Rough-In Baño Comercial 4WC","category":"ncc","categoryName":"Construcción Comercial","categoryIcon":"🏢","time":"16","priceLow":5500,"priceHigh":7500,"marginLow":800,"marginHigh":1200},{"code":"NCC-003","name":"Instalación Fluxómetro WC","category":"ncc","categoryName":"Construcción Comercial","categoryIcon":"🏢","time":"1.5","priceLow":650,"priceHigh":950,"marginLow":120,"marginHigh":180},{"code":"NCC-004","name":"Separador de Grasa 50 Gal","category":"ncc","categoryName":"Construcción Comercial","categoryIcon":"🏢","time":"6","priceLow":2800,"priceHigh":4000,"marginLow":480,"marginHigh":720},{"code":"NCC-005","name":"Separador de Grasa 100 Gal","category":"ncc","categoryName":"Construcción Comercial","categoryIcon":"🏢","time":"8","priceLow":4500,"priceHigh":6500,"marginLow":800,"marginHigh":1200},{"code":"NCC-006","name":"Drenaje de Piso 4in","category":"ncc","categoryName":"Construcción Comercial","categoryIcon":"🏢","time":"2","priceLow":550,"priceHigh":850,"marginLow":120,"marginHigh":180},{"code":"NCC-007","name":"Conexión Alcantarillado","category":"ncc","categoryName":"Construcción Comercial","categoryIcon":"🏢","time":"16","priceLow":8500,"priceHigh":12000,"marginLow":1400,"marginHigh":2100},{"code":"NCC-008","name":"Bomba Sumidero 1HP","category":"ncc","categoryName":"Construcción Comercial","categoryIcon":"🏢","time":"4","priceLow":1800,"priceHigh":2600,"marginLow":320,"marginHigh":480},{"code":"NCC-009","name":"Rough-In Cocina Restaurante","category":"ncc","categoryName":"Construcción Comercial","categoryIcon":"🏢","time":"24","priceLow":12000,"priceHigh":18000,"marginLow":2400,"marginHigh":3600},{"code":"NCC-010","name":"Línea Gas Comercial 2in","category":"ncc","categoryName":"Construcción Comercial","categoryIcon":"🏢","time":"8","priceLow":3500,"priceHigh":5500,"marginLow":800,"marginHigh":1200},{"code":"NCI-001","name":"Tubería Acero Carbono 2in","category":"nci","categoryName":"Construcción Industrial","categoryIcon":"🏭","time":"4","priceLow":1200,"priceHigh":1800,"marginLow":240,"marginHigh":360},{"code":"NCI-002","name":"Tubería Acero Carbono 4in","category":"nci","categoryName":"Construcción Industrial","categoryIcon":"🏭","time":"6","priceLow":2200,"priceHigh":3200,"marginLow":400,"marginHigh":600},{"code":"NCI-003","name":"Tubería Acero Inox 2in","category":"nci","categoryName":"Construcción Industrial","categoryIcon":"🏭","time":"6","priceLow":3500,"priceHigh":5000,"marginLow":600,"marginHigh":900},{"code":"NCI-004","name":"Soldadura Orbital Inox","category":"nci","categoryName":"Construcción Industrial","categoryIcon":"🏭","time":"4","priceLow":2500,"priceHigh":3800,"marginLow":520,"marginHigh":780},{"code":"NCI-005","name":"Línea Aire Comprimido 1in","category":"nci","categoryName":"Construcción Industrial","categoryIcon":"🏭","time":"3","priceLow":950,"priceHigh":1400,"marginLow":180,"marginHigh":270},{"code":"NCI-006","name":"Trampa Vapor 1in","category":"nci","categoryName":"Construcción Industrial","categoryIcon":"🏭","time":"2","priceLow":850,"priceHigh":1300,"marginLow":180,"marginHigh":270},{"code":"NCI-007","name":"Válvula Industrial Gate 4in","category":"nci","categoryName":"Construcción Industrial","categoryIcon":"🏭","time":"2","priceLow":1200,"priceHigh":1800,"marginLow":240,"marginHigh":360},{"code":"NCI-008","name":"Válvula Industrial Ball 4in","category":"nci","categoryName":"Construcción Industrial","categoryIcon":"🏭","time":"2.5","priceLow":1500,"priceHigh":2200,"marginLow":280,"marginHigh":420},{"code":"NCI-009","name":"Manifold Industrial","category":"nci","categoryName":"Construcción Industrial","categoryIcon":"🏭","time":"8","priceLow":4500,"priceHigh":6500,"marginLow":800,"marginHigh":1200},{"code":"NCI-010","name":"Prueba Hidrostática Industrial","category":"nci","categoryName":"Construcción Industrial","categoryIcon":"🏭","time":"4","priceLow":1500,"priceHigh":2500,"marginLow":400,"marginHigh":600},{"code":"CM-001","name":"Montaje Bomba Booster 1HP","category":"cm","categoryName":"Cuartos Mecánicos","categoryIcon":"⚙️","time":"6","priceLow":2800,"priceHigh":4000,"marginLow":480,"marginHigh":720},{"code":"CM-002","name":"Montaje Bomba Booster 3HP","category":"cm","categoryName":"Cuartos Mecánicos","categoryIcon":"⚙️","time":"8","priceLow":4500,"priceHigh":6500,"marginLow":800,"marginHigh":1200},{"code":"CM-003","name":"Sistema Booster 2 Bombas","category":"cm","categoryName":"Cuartos Mecánicos","categoryIcon":"⚙️","time":"16","priceLow":12000,"priceHigh":18000,"marginLow":2400,"marginHigh":3600},{"code":"CM-004","name":"Instalación Caldera 500k BTU","category":"cm","categoryName":"Cuartos Mecánicos","categoryIcon":"⚙️","time":"12","priceLow":8500,"priceHigh":12500,"marginLow":1600,"marginHigh":2400},{"code":"CM-005","name":"Conexión Chiller 50 Tons","category":"cm","categoryName":"Cuartos Mecánicos","categoryIcon":"⚙️","time":"16","priceLow":12000,"priceHigh":18000,"marginLow":2400,"marginHigh":3600},{"code":"CM-006","name":"Manifold Agua Fría 4in","category":"cm","categoryName":"Cuartos Mecánicos","categoryIcon":"⚙️","time":"6","priceLow":3500,"priceHigh":5000,"marginLow":600,"marginHigh":900},{"code":"CM-007","name":"Tanque Expansión 50 Gal","category":"cm","categoryName":"Cuartos Mecánicos","categoryIcon":"⚙️","time":"4","priceLow":1800,"priceHigh":2800,"marginLow":400,"marginHigh":600},{"code":"CM-008","name":"Sistema Recirculación","category":"cm","categoryName":"Cuartos Mecánicos","categoryIcon":"⚙️","time":"12","priceLow":8500,"priceHigh":12500,"marginLow":1600,"marginHigh":2400},{"code":"CM-009","name":"Soportería Sísmica","category":"cm","categoryName":"Cuartos Mecánicos","categoryIcon":"⚙️","time":"16","priceLow":6500,"priceHigh":9500,"marginLow":1200,"marginHigh":1800},{"code":"CM-010","name":"Puesta en Marcha Sistema","category":"cm","categoryName":"Cuartos Mecánicos","categoryIcon":"⚙️","time":"8","priceLow":3500,"priceHigh":5500,"marginLow":800,"marginHigh":1200},{"code":"FP-001","name":"Red Rociadores 2000 sqft","category":"fp","categoryName":"Sistemas Contra Incendio","categoryIcon":"🔥","time":"16","priceLow":8500,"priceHigh":12500,"marginLow":1600,"marginHigh":2400},{"code":"FP-002","name":"Gabinete Contra Incendio Tipo III","category":"fp","categoryName":"Sistemas Contra Incendio","categoryIcon":"🔥","time":"4","priceLow":2200,"priceHigh":3200,"marginLow":400,"marginHigh":600},{"code":"FP-003","name":"Hidrante Patio 4in","category":"fp","categoryName":"Sistemas Contra Incendio","categoryIcon":"🔥","time":"8","priceLow":4500,"priceHigh":6500,"marginLow":800,"marginHigh":1200},{"code":"FP-004","name":"Bomba Contra Incendio 500GPM","category":"fp","categoryName":"Sistemas Contra Incendio","categoryIcon":"🔥","time":"16","priceLow":18000,"priceHigh":28000,"marginLow":4000,"marginHigh":6000},{"code":"FP-005","name":"Bomba Jockey","category":"fp","categoryName":"Sistemas Contra Incendio","categoryIcon":"🔥","time":"6","priceLow":3500,"priceHigh":5500,"marginLow":800,"marginHigh":1200},{"code":"FP-006","name":"Prueba Hidrostática FP","category":"fp","categoryName":"Sistemas Contra Incendio","categoryIcon":"🔥","time":"6","priceLow":2500,"priceHigh":4000,"marginLow":600,"marginHigh":900},{"code":"FP-007","name":"Certificación Anual FP","category":"fp","categoryName":"Sistemas Contra Incendio","categoryIcon":"🔥","time":"4","priceLow":1500,"priceHigh":2500,"marginLow":400,"marginHigh":600},{"code":"FP-008","name":"Rociador Upright/Pendant","category":"fp","categoryName":"Sistemas Contra Incendio","categoryIcon":"🔥","time":"0.5","priceLow":85,"priceHigh":150,"marginLow":26,"marginHigh":39},{"code":"FP-009","name":"Conexión Siamesa 4in","category":"fp","categoryName":"Sistemas Contra Incendio","categoryIcon":"🔥","time":"4","priceLow":2200,"priceHigh":3200,"marginLow":400,"marginHigh":600},{"code":"FP-010","name":"Tubería Standpipe por Piso","category":"fp","categoryName":"Sistemas Contra Incendio","categoryIcon":"🔥","time":"8","priceLow":4500,"priceHigh":6500,"marginLow":800,"marginHigh":1200},{"code":"MF-001","name":"Rough-In Baño Unidad","category":"mf","categoryName":"Edificios Multifamiliares","categoryIcon":"🏗️","time":"8","priceLow":1800,"priceHigh":2600,"marginLow":320,"marginHigh":480},{"code":"MF-002","name":"Rough-In Cocina Unidad","category":"mf","categoryName":"Edificios Multifamiliares","categoryIcon":"🏗️","time":"6","priceLow":1500,"priceHigh":2200,"marginLow":280,"marginHigh":420},{"code":"MF-003","name":"Trim-Out Unidad Completa","category":"mf","categoryName":"Edificios Multifamiliares","categoryIcon":"🏗️","time":"8","priceLow":2500,"priceHigh":3800,"marginLow":520,"marginHigh":780},{"code":"MF-004","name":"Riser Agua Fría por Piso","category":"mf","categoryName":"Edificios Multifamiliares","categoryIcon":"🏗️","time":"6","priceLow":2800,"priceHigh":4200,"marginLow":560,"marginHigh":840},{"code":"MF-005","name":"Riser Drenaje por Piso","category":"mf","categoryName":"Edificios Multifamiliares","categoryIcon":"🏗️","time":"8","priceLow":3500,"priceHigh":5200,"marginLow":680,"marginHigh":1020},{"code":"MF-006","name":"Acometida Principal 2in","category":"mf","categoryName":"Edificios Multifamiliares","categoryIcon":"🏗️","time":"10","priceLow":5500,"priceHigh":8000,"marginLow":1000,"marginHigh":1500},{"code":"MF-007","name":"Cuarto Mecánico 40 Unidades","category":"mf","categoryName":"Edificios Multifamiliares","categoryIcon":"🏗️","time":"80","priceLow":65000,"priceHigh":95000,"marginLow":12000,"marginHigh":18000},{"code":"MF-008","name":"Medición Individual 40 Units","category":"mf","categoryName":"Edificios Multifamiliares","categoryIcon":"🏗️","time":"24","priceLow":12000,"priceHigh":18000,"marginLow":2400,"marginHigh":3600},{"code":"MF-009","name":"Red Gas por Piso","category":"mf","categoryName":"Edificios Multifamiliares","categoryIcon":"🏗️","time":"8","priceLow":4500,"priceHigh":6800,"marginLow":920,"marginHigh":1380},{"code":"MF-010","name":"Paquete Unidad 2B+Cocina+Lavadora","category":"mf","categoryName":"Edificios Multifamiliares","categoryIcon":"🏗️","time":"20","priceLow":6500,"priceHigh":9500,"marginLow":1200,"marginHigh":1800},{"code":"RM-001","name":"Demolición Tuberías Baño","category":"rm","categoryName":"Remodelación","categoryIcon":"🔧","time":"4","priceLow":950,"priceHigh":1500,"marginLow":220,"marginHigh":330},{"code":"RM-002","name":"Reubicación WC hasta 6ft","category":"rm","categoryName":"Remodelación","categoryIcon":"🔧","time":"6","priceLow":1800,"priceHigh":2800,"marginLow":400,"marginHigh":600},{"code":"RM-003","name":"Reubicación Lavabo 4ft","category":"rm","categoryName":"Remodelación","categoryIcon":"🔧","time":"4","priceLow":1200,"priceHigh":1900,"marginLow":280,"marginHigh":420},{"code":"RM-004","name":"Actualización Galv a PEX 1B","category":"rm","categoryName":"Remodelación","categoryIcon":"🔧","time":"8","priceLow":3500,"priceHigh":5200,"marginLow":680,"marginHigh":1020},{"code":"RM-005","name":"Actualización Galv a PEX 2B","category":"rm","categoryName":"Remodelación","categoryIcon":"🔧","time":"14","priceLow":6500,"priceHigh":9500,"marginLow":1200,"marginHigh":1800},{"code":"RM-006","name":"Conversión Closet a Baño","category":"rm","categoryName":"Remodelación","categoryIcon":"🔧","time":"20","priceLow":8500,"priceHigh":12500,"marginLow":1600,"marginHigh":2400},{"code":"RM-007","name":"Adición Línea Gas Estufa","category":"rm","categoryName":"Remodelación","categoryIcon":"🔧","time":"4","priceLow":1100,"priceHigh":1700,"marginLow":240,"marginHigh":360},{"code":"RM-008","name":"Ampliación Lavandería","category":"rm","categoryName":"Remodelación","categoryIcon":"🔧","time":"8","priceLow":2800,"priceHigh":4200,"marginLow":560,"marginHigh":840},{"code":"RM-009","name":"Bypass Tubería Dañada","category":"rm","categoryName":"Remodelación","categoryIcon":"🔧","time":"6","priceLow":2200,"priceHigh":3500,"marginLow":520,"marginHigh":780},{"code":"RM-010","name":"Integración Nueva Unidad","category":"rm","categoryName":"Remodelación","categoryIcon":"🔧","time":"16","priceLow":6500,"priceHigh":9500,"marginLow":1200,"marginHigh":1800},{"code":"MP-001","name":"Inspección Hidráulica Residencial","category":"mp","categoryName":"Mantenimiento Preventivo","categoryIcon":"🔍","time":"4","priceLow":650,"priceHigh":1000,"marginLow":140,"marginHigh":210},{"code":"MP-002","name":"Inspección Hidráulica Comercial","category":"mp","categoryName":"Mantenimiento Preventivo","categoryIcon":"🔍","time":"6","priceLow":1200,"priceHigh":1800,"marginLow":240,"marginHigh":360},{"code":"MP-003","name":"Revisión Presiones Bombeo","category":"mp","categoryName":"Mantenimiento Preventivo","categoryIcon":"🔍","time":"3","priceLow":550,"priceHigh":900,"marginLow":140,"marginHigh":210},{"code":"MP-004","name":"Revisión Anual Calentador","category":"mp","categoryName":"Mantenimiento Preventivo","categoryIcon":"🔍","time":"2","priceLow":285,"priceHigh":425,"marginLow":56,"marginHigh":84},{"code":"MP-005","name":"Desincrustado Tankless","category":"mp","categoryName":"Mantenimiento Preventivo","categoryIcon":"🔍","time":"2","priceLow":350,"priceHigh":550,"marginLow":80,"marginHigh":120},{"code":"MP-006","name":"Prueba Fugas Gas Residencial","category":"mp","categoryName":"Mantenimiento Preventivo","categoryIcon":"🔍","time":"2","priceLow":285,"priceHigh":450,"marginLow":66,"marginHigh":99},{"code":"MP-007","name":"Limpieza Drenajes Edificio","category":"mp","categoryName":"Mantenimiento Preventivo","categoryIcon":"🔍","time":"6","priceLow":1100,"priceHigh":1700,"marginLow":240,"marginHigh":360},{"code":"MP-008","name":"Contrato Mant. Anual Residencial","category":"mp","categoryName":"Mantenimiento Preventivo","categoryIcon":"🔍","time":"8","priceLow":1200,"priceHigh":1800,"marginLow":240,"marginHigh":360},{"code":"MP-009","name":"Contrato Mant. Anual Comercial","category":"mp","categoryName":"Mantenimiento Preventivo","categoryIcon":"🔍","time":"16","priceLow":3500,"priceHigh":5500,"marginLow":800,"marginHigh":1200},{"code":"MP-010","name":"Certificación Backflow","category":"mp","categoryName":"Mantenimiento Preventivo","categoryIcon":"🔍","time":"2","priceLow":350,"priceHigh":550,"marginLow":80,"marginHigh":120},{"code":"AP-002","name":"Dishwasher Install","category":"appliance","categoryName":"Appliances","categoryIcon":"🔌","time":"1.5","priceLow":450,"priceHigh":550,"marginLow":40,"marginHigh":60},{"code":"AP-003","name":"Complete SS Supply Kit","category":"appliance","categoryName":"Appliances","categoryIcon":"🔌","time":"0.5","priceLow":265,"priceHigh":325,"marginLow":24,"marginHigh":36},{"code":"AP-018","name":"Ice Maker Water Line","category":"appliance","categoryName":"Appliances","categoryIcon":"🔌","time":"1.0","priceLow":425,"priceHigh":525,"marginLow":40,"marginHigh":60},{"code":"AP-020","name":"Emergency Shut-Off Valve","category":"appliance","categoryName":"Appliances","categoryIcon":"🔌","time":"0.5","priceLow":225,"priceHigh":285,"marginLow":24,"marginHigh":36},{"code":"AP-027","name":"Washer Disconnect/Reinstall","category":"appliance","categoryName":"Appliances","categoryIcon":"🔌","time":"1.0","priceLow":350,"priceHigh":450,"marginLow":40,"marginHigh":60},{"code":"AP-029","name":"SS No-Burst Hoses (Par)","category":"appliance","categoryName":"Appliances","categoryIcon":"🔌","time":"0.25","priceLow":165,"priceHigh":225,"marginLow":24,"marginHigh":36},{"code":"AP-031","name":"Trap and Standpipe","category":"appliance","categoryName":"Appliances","categoryIcon":"🔌","time":"2.0","priceLow":750,"priceHigh":950,"marginLow":80,"marginHigh":120},{"code":"AP-032","name":"Recessed Box Water/Drain","category":"appliance","categoryName":"Appliances","categoryIcon":"🔌","time":"3.0","priceLow":1150,"priceHigh":1450,"marginLow":120,"marginHigh":180},{"code":"AP-033","name":"Washing Machine Drain Pan","category":"appliance","categoryName":"Appliances","categoryIcon":"🔌","time":"1.5","priceLow":550,"priceHigh":685,"marginLow":54,"marginHigh":81},{"code":"AP-034","name":"Hammer Arrestor","category":"appliance","categoryName":"Appliances","categoryIcon":"🔌","time":"0.5","priceLow":250,"priceHigh":325,"marginLow":30,"marginHigh":45},{"code":"GS-007","name":"Connect Gas Dryer","category":"gas","categoryName":"Gas Systems","categoryIcon":"🔥","time":"0.75","priceLow":350,"priceHigh":450,"marginLow":40,"marginHigh":60},{"code":"GS-008","name":"Connect Gas Range","category":"gas","categoryName":"Gas Systems","categoryIcon":"🔥","time":"1.0","priceLow":425,"priceHigh":550,"marginLow":50,"marginHigh":75},{"code":"GS-009","name":"Connect Dryer Vent","category":"gas","categoryName":"Gas Systems","categoryIcon":"🔥","time":"0.5","priceLow":225,"priceHigh":285,"marginLow":24,"marginHigh":36},{"code":"GS-013","name":"SS Gas Supply + Shut-Off","category":"gas","categoryName":"Gas Systems","categoryIcon":"🔥","time":"1.0","priceLow":425,"priceHigh":550,"marginLow":50,"marginHigh":75},{"code":"GS-014","name":"Sediment Trap Gas Line","category":"gas","categoryName":"Gas Systems","categoryIcon":"🔥","time":"0.75","priceLow":285,"priceHigh":385,"marginLow":40,"marginHigh":60},{"code":"GS-015","name":"1/2in Emergency Gas Valve","category":"gas","categoryName":"Gas Systems","categoryIcon":"🔥","time":"0.75","priceLow":285,"priceHigh":385,"marginLow":40,"marginHigh":60},{"code":"GS-016","name":"3/4in Emergency Gas Valve","category":"gas","categoryName":"Gas Systems","categoryIcon":"🔥","time":"0.75","priceLow":325,"priceHigh":425,"marginLow":40,"marginHigh":60},{"code":"GS-100","name":"Seismic Earthquake Valve","category":"gas","categoryName":"Gas Systems","categoryIcon":"🔥","time":"2.5","priceLow":1100,"priceHigh":1400,"marginLow":120,"marginHigh":180},{"code":"BF-036","name":"3/4in RPZ Backflow","category":"backflow","categoryName":"Backflow Devices","categoryIcon":"🔄","time":"3.0","priceLow":2800,"priceHigh":3200,"marginLow":160,"marginHigh":240},{"code":"BF-037","name":"1in RPZ Backflow","category":"backflow","categoryName":"Backflow Devices","categoryIcon":"🔄","time":"3.5","priceLow":3200,"priceHigh":3800,"marginLow":240,"marginHigh":360},{"code":"BF-040","name":"2in RPZ Backflow","category":"backflow","categoryName":"Backflow Devices","categoryIcon":"🔄","time":"5.0","priceLow":5500,"priceHigh":6500,"marginLow":400,"marginHigh":600},{"code":"BF-041","name":"Relief Valve Kit 3/4-1in","category":"backflow","categoryName":"Backflow Devices","categoryIcon":"🔄","time":"1.0","priceLow":550,"priceHigh":750,"marginLow":80,"marginHigh":120},{"code":"DR-083","name":"Bar Sink Stoppage","category":"drain","categoryName":"Drain Cleaning","categoryIcon":"🚿","time":"0.5","priceLow":165,"priceHigh":225,"marginLow":24,"marginHigh":36},{"code":"DR-085","name":"Kitchen Sink Cable","category":"drain","categoryName":"Drain Cleaning","categoryIcon":"🚿","time":"0.75","priceLow":225,"priceHigh":285,"marginLow":24,"marginHigh":36},{"code":"DR-090","name":"Main Line Clean Out","category":"drain","categoryName":"Drain Cleaning","categoryIcon":"🚿","time":"1.75","priceLow":385,"priceHigh":550,"marginLow":66,"marginHigh":99},{"code":"DR-091","name":"Main Line Through WC","category":"drain","categoryName":"Drain Cleaning","categoryIcon":"🚿","time":"2.0","priceLow":550,"priceHigh":750,"marginLow":80,"marginHigh":120},{"code":"DR-098","name":"HydroJet Residential Main","category":"drain","categoryName":"Drain Cleaning","categoryIcon":"🚿","time":"2.75","priceLow":850,"priceHigh":1250,"marginLow":160,"marginHigh":240},{"code":"DR-099","name":"Camera Sewer Line","category":"drain","categoryName":"Drain Cleaning","categoryIcon":"🚿","time":"1.0","priceLow":350,"priceHigh":550,"marginLow":80,"marginHigh":120},{"code":"DR-100","name":"Install House Clean Out","category":"drain","categoryName":"Drain Cleaning","categoryIcon":"🚿","time":"3.5","priceLow":1200,"priceHigh":1600,"marginLow":160,"marginHigh":240},{"code":"FC-123","name":"Kitchen Faucet Standard","category":"faucet","categoryName":"Faucets","categoryIcon":"🚰","time":"1.0","priceLow":350,"priceHigh":450,"marginLow":40,"marginHigh":60},{"code":"FC-124","name":"Kitchen Faucet Pull Out","category":"faucet","categoryName":"Faucets","categoryIcon":"🚰","time":"1.25","priceLow":425,"priceHigh":550,"marginLow":50,"marginHigh":75},{"code":"FC-126","name":"Bathroom Faucet 4in","category":"faucet","categoryName":"Faucets","categoryIcon":"🚰","time":"1.0","priceLow":350,"priceHigh":450,"marginLow":40,"marginHigh":60},{"code":"FC-127","name":"Bathroom Faucet Widespread","category":"faucet","categoryName":"Faucets","categoryIcon":"🚰","time":"1.5","priceLow":550,"priceHigh":685,"marginLow":54,"marginHigh":81},{"code":"FC-129","name":"Tub/Shower Valve","category":"faucet","categoryName":"Faucets","categoryIcon":"🚰","time":"3.0","priceLow":1250,"priceHigh":1650,"marginLow":160,"marginHigh":240},{"code":"WF-137","name":"Whole House Sediment Filter","category":"filtration","categoryName":"Filtration","categoryIcon":"💧","time":"2.5","priceLow":1100,"priceHigh":1450,"marginLow":140,"marginHigh":210},{"code":"WF-144","name":"Water Softener 1-3 Bath","category":"filtration","categoryName":"Filtration","categoryIcon":"💧","time":"3.5","priceLow":2800,"priceHigh":3500,"marginLow":280,"marginHigh":420},{"code":"WF-156","name":"6 Stage Pro RO System","category":"filtration","categoryName":"Filtration","categoryIcon":"💧","time":"2.0","priceLow":1250,"priceHigh":1550,"marginLow":120,"marginHigh":180},{"code":"WH-100","name":"40 Gal Gas WH Install","category":"waterheater","categoryName":"Water Heaters","categoryIcon":"♨️","time":"3.5","priceLow":2800,"priceHigh":3200,"marginLow":160,"marginHigh":240},{"code":"WH-306","name":"Flexible Supply Line","category":"waterheater","categoryName":"Water Heaters","categoryIcon":"♨️","time":"0.5","priceLow":185,"priceHigh":245,"marginLow":24,"marginHigh":36},{"code":"WH-307","name":"Seismic Straps 30-50 Gal","category":"waterheater","categoryName":"Water Heaters","categoryIcon":"♨️","time":"1.0","priceLow":385,"priceHigh":485,"marginLow":40,"marginHigh":60},{"code":"WH-335","name":"Thermocouple Replacement","category":"waterheater","categoryName":"Water Heaters","categoryIcon":"♨️","time":"1.0","priceLow":350,"priceHigh":450,"marginLow":40,"marginHigh":60},{"code":"WH-343","name":"Flush and Drain Maint.","category":"waterheater","categoryName":"Water Heaters","categoryIcon":"♨️","time":"1.0","priceLow":325,"priceHigh":425,"marginLow":40,"marginHigh":60},{"code":"WH-354","name":"Tankless Install Navien","category":"waterheater","categoryName":"Water Heaters","categoryIcon":"♨️","time":"10.0","priceLow":7000,"priceHigh":9000,"marginLow":800,"marginHigh":1200},{"code":"WD-168","name":"1/2in Pressure Regulator","category":"distribution","categoryName":"Distribution/Repipes","categoryIcon":"🔧","time":"1.5","priceLow":650,"priceHigh":850,"marginLow":80,"marginHigh":120},{"code":"WD-185","name":"Repipe 1 Bath Home","category":"distribution","categoryName":"Distribution/Repipes","categoryIcon":"🔧","time":"16","priceLow":6500,"priceHigh":8500,"marginLow":800,"marginHigh":1200},{"code":"WD-186","name":"Repipe 2 Bath Home","category":"distribution","categoryName":"Distribution/Repipes","categoryIcon":"🔧","time":"24","priceLow":9500,"priceHigh":12500,"marginLow":1200,"marginHigh":1800},{"code":"WD-227","name":"Repair Water Leak in Wall","category":"distribution","categoryName":"Distribution/Repipes","categoryIcon":"🔧","time":"2.5","priceLow":850,"priceHigh":1200,"marginLow":140,"marginHigh":210},{"code":"SL-241","name":"Minor Leak Search","category":"slab","categoryName":"Slab Leaks","categoryIcon":"🏠","time":"2.0","priceLow":685,"priceHigh":950,"marginLow":106,"marginHigh":159},{"code":"SL-242","name":"Electronic Slab Leak Locate","category":"slab","categoryName":"Slab Leaks","categoryIcon":"🏠","time":"3.0","priceLow":1350,"priceHigh":1750,"marginLow":160,"marginHigh":240},{"code":"SL-243","name":"Repair Pipe Under Slab","category":"slab","categoryName":"Slab Leaks","categoryIcon":"🏠","time":"8.0","priceLow":2800,"priceHigh":3800,"marginLow":400,"marginHigh":600},{"code":"TL-276","name":"Replace Tank Standard","category":"toilet","categoryName":"Toilets","categoryIcon":"🚽","time":"1.5","priceLow":685,"priceHigh":850,"marginLow":66,"marginHigh":99},{"code":"TL-277","name":"Major Tank Rebuild","category":"toilet","categoryName":"Toilets","categoryIcon":"🚽","time":"1.25","priceLow":485,"priceHigh":625,"marginLow":56,"marginHigh":84},{"code":"TL-283","name":"Pull and Reset Toilet","category":"toilet","categoryName":"Toilets","categoryIcon":"🚽","time":"1.0","priceLow":325,"priceHigh":425,"marginLow":40,"marginHigh":60},{"code":"TL-297","name":"Closet Flange Replacement","category":"toilet","categoryName":"Toilets","categoryIcon":"🚽","time":"2.0","priceLow":685,"priceHigh":850,"marginLow":66,"marginHigh":99},{"code":"CS-392","name":"Install Client Garbage Disposal","category":"client","categoryName":"Client Supplied","categoryIcon":"📦","time":"1.0","priceLow":350,"priceHigh":450,"marginLow":40,"marginHigh":60},{"code":"CS-393","name":"Install Client Dishwasher","category":"client","categoryName":"Client Supplied","categoryIcon":"📦","time":"1.5","priceLow":485,"priceHigh":585,"marginLow":40,"marginHigh":60},{"code":"CS-398","name":"Install Client Toilet","category":"client","categoryName":"Client Supplied","categoryIcon":"📦","time":"1.5","priceLow":450,"priceHigh":550,"marginLow":40,"marginHigh":60},{"code":"CS-420","name":"Install Client Water Heater","category":"client","categoryName":"Client Supplied","categoryIcon":"📦","time":"3.5","priceLow":1250,"priceHigh":1600,"marginLow":140,"marginHigh":210},{"code":"DM-047","name":"Whole Bath Demo","category":"demo","categoryName":"Demolition","categoryIcon":"🔨","time":"4.0","priceLow":1500,"priceHigh":2000,"marginLow":200,"marginHigh":300},{"code":"DM-048","name":"Fiberglass Tub/Shower Demo","category":"demo","categoryName":"Demolition","categoryIcon":"🔨","time":"3.0","priceLow":1100,"priceHigh":1400,"marginLow":120,"marginHigh":180},{"code":"DM-056","name":"Concrete Re-Pour Patch 2x2","category":"demo","categoryName":"Demolition","categoryIcon":"🔨","time":"2.5","priceLow":850,"priceHigh":1100,"marginLow":100,"marginHigh":150},{"code":"DM-075","name":"Patch Wall 2x2","category":"demo","categoryName":"Demolition","categoryIcon":"🔨","time":"1.5","priceLow":550,"priceHigh":750,"marginLow":80,"marginHigh":120}];
-let filtered=[...services];
-let currentCat='all';
-let currentSort='code';
-
-function showSection(id){
-document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
-document.getElementById(id).classList.add('active');
-event.target.classList.add('active');
+function searchContent() {
+    const query = document.getElementById('search').value.toLowerCase();
+    const content = document.getElementById('content');
+    const elements = content.querySelectorAll('h1, h2, h3, p, td, li');
+    
+    // Reset all
+    elements.forEach(el => el.style.backgroundColor = '');
+    
+    if (query.length < 2) return;
+    
+    // Highlight matches
+    let found = 0;
+    elements.forEach(el => {
+        if (el.textContent.toLowerCase().includes(query)) {
+            el.style.backgroundColor = '#fef3c7';
+            if (found === 0) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            found++;
+        }
+    });
 }
 
-function calc(){
-const type=parseFloat(document.getElementById('serviceType').value);
-const hL=parseFloat(document.getElementById('hoursLead').value)||0;
-const hH=parseFloat(document.getElementById('hoursHelper').value)||0;
-const mat=parseFloat(document.getElementById('materials').value)||0;
-const margin=parseFloat(document.getElementById('margin').value)||45;
-const tier=parseFloat(document.getElementById('tier').value);
-
-const laborLead=hL*185*type;
-const laborHelp=hH*95*type;
-const matTotal=mat*1.3;
-const cost=laborLead+laborHelp+matTotal;
-const base=cost/(1-margin/100);
-const final=base*tier;
-const profit=final-cost;
-
-document.getElementById('rLead').textContent='$'+laborLead.toFixed(0);
-document.getElementById('rHelper').textContent='$'+laborHelp.toFixed(0);
-document.getElementById('rMat').textContent='$'+matTotal.toFixed(0);
-document.getElementById('rCost').textContent='$'+cost.toFixed(0);
-document.getElementById('rPrice').textContent='$'+final.toFixed(0);
-document.getElementById('rMargin').textContent=margin+'% margen = $'+profit.toFixed(0)+' ganancia';
-}
-
-function renderPills(){
-const cats={};
-services.forEach(s=>{if(!cats[s.category])cats[s.category]={name:s.categoryName,icon:s.categoryIcon,count:0};cats[s.category].count++;});
-let html='<span class="pill active" onclick="filterCat(\'all\')">📋 Todos ('+services.length+')</span>';
-Object.keys(cats).sort((a,b)=>cats[b].count-cats[a].count).forEach(c=>{
-html+='<span class="pill" onclick="filterCat(\''+c+'\')">'+cats[c].icon+' '+cats[c].name+' ('+cats[c].count+')</span>';
+// Add anchors to headings
+document.querySelectorAll('h1, h2').forEach((h, i) => {
+    const id = h.textContent.toLowerCase().replace(/[^a-z0-9]+/g, '-').substring(0, 30);
+    h.id = id || 'section-' + i;
 });
-document.getElementById('pills').innerHTML=html;
-}
-
-function renderGrid(list){
-document.getElementById('grid').innerHTML=list.map(s=>'<div class="service-card"><div class="service-header"><div class="service-info"><h4>'+s.categoryIcon+' '+s.name+'</h4><span class="code">'+s.code+'</span></div><div class="service-pricing"><div class="price">$'+s.priceLow.toLocaleString()+' - $'+s.priceHigh.toLocaleString()+'</div><div class="time">⏱️ '+s.time+' hrs</div></div></div></div>').join('');
-document.getElementById('count').textContent='Mostrando '+list.length+' servicios';
-}
-
-function filterCat(cat){
-currentCat=cat;
-document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
-event.target.classList.add('active');
-applyFilters();
-}
-
-function filterSvc(){applyFilters();}
-
-function sortSvc(by){currentSort=by;applyFilters();}
-
-function applyFilters(){
-let list=[...services];
-if(currentCat!=='all')list=list.filter(s=>s.category===currentCat);
-const q=document.getElementById('search').value.toLowerCase();
-if(q)list=list.filter(s=>s.code.toLowerCase().includes(q)||s.name.toLowerCase().includes(q));
-if(currentSort==='price')list.sort((a,b)=>b.priceHigh-a.priceHigh);
-else if(currentSort==='time')list.sort((a,b)=>parseFloat(b.time)-parseFloat(a.time));
-renderGrid(list);
-}
-
-renderPills();
-renderGrid(services);
-calc();
 </script>
-</body></html>
+
+</body>
+</html>
