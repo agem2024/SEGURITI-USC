@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💰 PRICE BOOK MASTER - ORION Tech</title>
+    <title>💰 PRICE BOOK v5.0 - ORION Tech</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -34,7 +34,7 @@
         .cover {
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
+ flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
@@ -164,7 +164,7 @@
         .service-header {
             padding: 1.5rem;
             cursor: pointer;
-           border-bottom: 1px solid rgba(0, 245, 255, 0.1);
+            border-bottom: 1px solid rgba(0, 245, 255, 0.1);
         }
         .service-code {
             font-family: 'Orbitron', monospace;
@@ -207,6 +207,25 @@
             padding: 0.6rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
+        .calc-block {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-radius: 4px;
+            border-left: 3px solid var(--neon-cyan);
+        }
+        .calc-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .calc-row:last-child {
+            border-bottom: none;
+        }
+        .price {
+            color: var(--neon-cyan);
+            font-weight: 700;
+        }
         /* FOOTER */
         footer {
             text-align: center;
@@ -232,21 +251,82 @@
     <!-- PORTADA -->
     <div class="cover">
         <div class="cover-logo">ORION</div>
-        <h1 class="cover-title">PRICE BOOK MASTER</h1>
+        <h1 class="cover-title">PRICE BOOK v5.0</h1>
         <p class="cover-subtitle">Plumbing Services | Bay Area, CA</p>
         <div class="cover-info">📍 Bay Area, California</div>
-        <div class="cover-info">⏰ Diciembre 2024 | Edición v4.0 Profesional</div>
-        <div class="cover-info">📋 Servicios Detallados con Sub-Actividades y Materiales</div>
-        <div class="cover-info">💰 Lead: $185/hr |Helper: $95/hr | Markup: 30%</div>
+        <div class="cover-info">⏰ Diciembre 2024 | Edición Expandida</div>
+        <div class="cover-info">📋 123 Servicios Profesionales</div>
+        <div class="cover-info">💰 Lead: $185/hr | Helper: $95/hr | Markup: 30%</div>
         <div class="cover-brand">Powered by NeKon AI aGent Consulting | ORION System</div>
     </div>
     
-    <!-- NAVEGACIÓN -->
     <nav>
-        <a href="#catalogo">📋 Catálogo Completo</a>
+        <a href="#catalogo">📋 Catálogo (123)</a>
         <a href="#metodologia">📐 Metodología</a>
         <a href="#tiers">🎯 Good/Better/Best</a>
+        <a href="#upsells">💡 Upsells</a>
     </nav>
+    
+    <!-- METODOLOGÍA -->
+    <div class="container" id="metodologia">
+        <h2 class="section-title">📐 Metodología de Cálculo</h2>
+        <div style="max-width: 900px; margin: 0 auto; background: var(--card-bg); padding: 2rem; border-radius: 8px;">
+            <table>
+                <tr><th>Concepto</th><th>Fórmula</th><th>Ejemplo</th></tr>
+                <tr><td>Costo Material (+Markup)</td><td>Costo Base × 1.30</td><td>$100 → $130</td></tr>
+                <tr><td>Costo Mano de Obra</td><td>Horas × $185/hr</td><td>2 hr → $370</td></tr>
+                <tr><td>Costo Total (Tu Costo)</td><td>Material + Mano de Obra</td><td>$130 + $370 = $500</td></tr>
+                <tr><td>Precio Cliente</td><td>Costo Total × 1.45</td><td>$500 × 1.45 = $725</td></tr>
+                <tr><td>Contingencia</td><td>+10-15% imprevistos</td><td>$725 +  $72 = ~$800</td></tr>
+            </table>
+        </div>
+    </div>
+    
+    <!-- GOOD/BETTER/BEST -->
+    <div class="container" id="tiers">
+        <h2 class="section-title">🎯 Sistema Good / Better / Best</h2>
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div style="background: rgba(0, 245, 255, 0.05); padding: 1.5rem; border-radius: 8px; border-left: 3px solid var(--neon-cyan); margin-bottom: 2rem;">
+                <strong>Estrategia de Ventas:</strong> Siempre presenta las 3 opciones. El 60% de clientes elige "BETTER".
+            </div>
+            <table style="margin-bottom: 2rem;">
+                <tr><th>Tier</th><th>Descripción</th><th>Markup Extra</th><th>Cuándo Ofrecer</th></tr>
+                <tr><td>🥉 GOOD</td><td>Servicio básico, materiales estándar</td><td>Base</td><td>Cliente sensible a precio</td></tr>
+                <tr><td>🥈 BETTER</td><td>Materiales premium, garantía extendida</td><td>+20-30%</td><td>Recomendado por defecto</td></tr>
+                <tr><td>🥇 BEST</td><td>Top de línea, máxima garantía, add-ons</td><td>+40-60%</td><td>Clientes que quieren lo mejor</td></tr>
+            </table>
+            <h3 style="color: var(--neon-purple); margin-bottom: 1rem;">Ejemplo: Water Heater 40 Gal</h3>
+            <table>
+                <tr><th>Opción</th><th>Descripción</th><th>Garantía</th><th>Precio</th></tr>
+                <tr><td>🥉 GOOD</td><td>Bradford White Standard, install básico</td><td>6 años tanque</td><td><strong style="color: var(--neon-cyan)">$2,400</strong></td></tr>
+                <tr><td>🥈 BETTER</td><td>Bradford White + Expansion Tank + Pan + Straps</td><td>6 años + 1 año labor</td><td><strong style="color: var(--neon-cyan)">$2,950</strong></td></tr>
+                <tr><td>🥇 BEST</td><td>Rheem Professional + Upgrades + Recirculation Pump</td><td>10 años + 2 años labor</td><td><strong style="color: var(--neon-cyan)">$3,800</strong></td></tr>
+            </table>
+        </div>
+    </div>
+    
+    <!-- UPSELLS -->
+    <div class="container" id="upsells">
+        <h2 class="section-title">💡 Sistema de Upsells</h2>
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div style="background: rgba(168, 85, 247, 0.05); padding: 1.5rem; border-radius: 8px; border-left: 3px solid var(--neon-purple); margin-bottom: 2rem;">
+                <strong>Importante:</strong> Cada job es una oportunidad de venta adicional. Estos upsells aumentan ticket promedio 25-40%.
+            </div>
+            <h3 style="color: var(--neon-cyan); margin: 2rem 0 1rem;">Al Instalar Appliances:</h3>
+            <table>
+                <tr><th>Upsell</th><th>Precio</th><th>Script de Venta</th></tr>
+                <tr><td>Braided SS Hoses</td><td>+$85</td><td>"Estas mangueras de acero inoxidable duran 10+ años y previenen inundaciones"</td></tr>
+                <tr><td>Emergency Shut-Off Valve</td><td>+$185</td><td>"Si hay una fuga, puede cerrar el agua en segundos"</td></tr>
+                <tr><td>Hammer Arrestor</td><td>+$145</td><td>"Elimina ese golpe cuando cierra el agua - protege sus  tuberías"</td></tr>
+            </table>
+            <h3 style="color: var(--neon-cyan); margin: 2rem 0 1rem;">Al Trabajar con Gas:</h3>
+            <table>
+                <tr><th>Upsell</th><th>Precio</th><th>Script de Venta</th></tr>
+                <tr><td>Seismic Valve</td><td>+$450</td><td>"Obligatorio en California - protege de fugas por terremoto"</td></tr>
+                <tr><td>Gas Leak Test</td><td>+$150</td><td>"Ya que estamos aquí, podemos verificar todo su sistema"</td></tr>
+            </table>
+        </div>
+    </div>
     
     <!-- CATÁLOGO -->
     <div class="container" id="catalogo">
@@ -255,1316 +335,14 @@
         <div class="services-grid" id="services-grid"></div>
     </div>
     
-    <!-- FOOTER -->
     <footer>
-        <p style="font-family: 'Orbitron', monospace; font-size: 1.5rem; color: var(--neon-cyan); margin-bottom: 1rem;">ORION Price Book</p>
+        <p style="font-family: 'Orbitron', monospace; font-size: 1.5rem; color: var(--neon-cyan); margin-bottom: 1rem;">ORION Price Book v5.0</p>
         <p>© 2024 AC Water Heaters & Plumbing | Bay Area, CA</p>
         <p>Powered by NeKon AI aGent Consulting | ORION AI System</p>
     </footer>
     
     <script>
-const services = [
-  {
-    "code": "AP-002",
-    "name": "Dishwasher Complete Installation (Monitor Only - Client Provides Unit)",
-    "description": "Instalación completa de lavavajillas provisto por cliente. Verificación de funcionamiento.",
-    "time": "",
-    "tu_costo": "",
-    "precio": "",
-    "margen": "",
-    "subs_html": "",
-    "mats_html": "<table class=\"mat-table\"><tr><th>Material</th><th>Precio</th></tr><tr><td>Braided SS Supply 48\"</td><td>$18.00</td></tr><tr><td>Drain hose 6'</td><td>$12.00</td></tr><tr><td>Power cord kit 6'</td><td>$15.00</td></tr><tr><td>Air gap (chrome)</td><td>$8.00</td></tr><tr><td>Hose clamps</td><td>$4.00</td></tr><tr><td>Mano de Obra (1.5 hr × $185)</td><td>$277.50</td></tr><tr><td>Materiales (con markup)</td><td>$74.10</td></tr></table>",
-    "calc_html": "",
-    "has_detail": true
-  },
-  {
-    "code": "AP-003",
-    "name": "Complete Braided SS Supply Kit (Supply + Drain + Cord)",
-    "description": "",
-    "time": "30 min",
-    "tu_costo": "$92 + $58.50 = $150.50",
-    "precio": "$265 - $325",
-    "margen": "$115 - $175",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>30 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$92 + $58.50 = $150.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$265 - $325</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$115 - $175</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "AP-004",
-    "name": "Braided Stainless Supply Line Only (48\")",
-    "description": "",
-    "time": "15 min",
-    "tu_costo": "$46 + $23.40 = $69.40",
-    "precio": "$145 - $185",
-    "margen": "$76 - $116",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>15 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$46 + $23.40 = $69.40</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$145 - $185</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$76 - $116</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "AP-005",
-    "name": "Air Gap with Rubber Hose to Garbage Disposal",
-    "description": "Instalación de air gap obligatorio por código (evita retroceso de agua contaminada).",
-    "time": "45 min",
-    "tu_costo": "$138 + $23.40 = $161.40",
-    "precio": "$285 - $350",
-    "margen": "$124 - $189",
-    "subs_html": "",
-    "mats_html": "<table class=\"mat-table\"><tr><th>Material</th><th>Precio</th></tr><tr><td>Air Gap Chrome</td><td>$8.00</td></tr><tr><td>Rubber hose 5/8\"</td><td>$6.00</td></tr><tr><td>Hose clamps (2)</td><td>$4.00</td></tr></table>",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>45 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$138 + $23.40 = $161.40</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$285 - $350</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$124 - $189</strong></div>\n        </div>",
-    "has_detail": true
-  },
-  {
-    "code": "AP-018",
-    "name": "Ice Maker Soft Copper Water Supply (Up to 15')",
-    "description": "",
-    "time": "1.0 hr",
-    "tu_costo": "$185 + $49.40 = $234.40",
-    "precio": "$425 - $525",
-    "margen": "$191 - $291",
-    "subs_html": "<table class=\"sub-table\"><tr><th>Tarea</th><th>Tiempo</th></tr><tr><td>Localizar línea de agua fría más cercana</td><td>10 min</td></tr><tr><td>Instalar saddle valve o angle stop</td><td>20 min</td></tr><tr><td>Tender línea de cobre 1/4\"</td><td>20 min</td></tr><tr><td>Conectar al refrigerador</td><td>10 min</td></tr></table>",
-    "mats_html": "<table class=\"mat-table\"><tr><th>Material</th><th>Precio</th></tr><tr><td>Soft copper 1/4\" × 15'</td><td>$18.00</td></tr><tr><td>Self-piercing saddle valve</td><td>$12.00</td></tr><tr><td>Compression fittings</td><td>$8.00</td></tr></table>",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$185 + $49.40 = $234.40</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$425 - $525</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$191 - $291</strong></div>\n        </div>",
-    "has_detail": true
-  },
-  {
-    "code": "AP-020",
-    "name": "Emergency Water Shut-Off Valve (1/4 Turn)",
-    "description": "",
-    "time": "30 min",
-    "tu_costo": "$92 + $19.50 = $111.50",
-    "precio": "$225 - $285",
-    "margen": "$114 - $174",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>30 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$92 + $19.50 = $111.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$225 - $285</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$114 - $174</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "AP-021",
-    "name": "Recessed Box with Emergency Shut-Off",
-    "description": "Caja empotrada para ice maker con válvula de emergencia.",
-    "time": "2.0 hr",
-    "tu_costo": "$370 + $110.50 = $480.50",
-    "precio": "$750 - $950",
-    "margen": "$270 - $470",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$370 + $110.50 = $480.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$750 - $950</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$270 - $470</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "AP-022",
-    "name": "Inline Water Filter for Ice Maker",
-    "description": "",
-    "time": "45 min",
-    "tu_costo": "$138 + $45.50 = $183.50",
-    "precio": "$325 - $425",
-    "margen": "$142 - $242",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>45 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$138 + $45.50 = $183.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$325 - $425</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$142 - $242</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "AP-024",
-    "name": "Water Supply to Insta-Hot",
-    "description": "",
-    "time": "1.0 hr",
-    "tu_costo": "$185 + $39 = $224",
-    "precio": "$385 - $485",
-    "margen": "$161 - $261",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$185 + $39 = $224</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$385 - $485</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$161 - $261</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "AP-025",
-    "name": "Dispenser Supply from Insta-Hot + Valve",
-    "description": "",
-    "time": "1.5 hr",
-    "tu_costo": "$277 + $58.50 = $335.50",
-    "precio": "$550 - $685",
-    "margen": "$215 - $350",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$277 + $58.50 = $335.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$550 - $685</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$215 - $350</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "AP-027",
-    "name": "Disconnect & Reinstall Washer & Dryer",
-    "description": "",
-    "time": "1.0 hr",
-    "tu_costo": "$185",
-    "precio": "$350 - $450",
-    "margen": "$165 - $265",
-    "subs_html": "<table class=\"sub-table\"><tr><th>Tarea</th><th>Tiempo</th></tr><tr><td>Cerrar válvulas de agua</td><td>5 min</td></tr><tr><td>Desconectar mangueras y drenaje</td><td>10 min</td></tr><tr><td>Mover unidades</td><td>20 min</td></tr><tr><td>Reconectar todo</td><td>25 min</td></tr></table>",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$185</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$350 - $450</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$165 - $265</strong></div>\n        </div>",
-    "has_detail": true
-  },
-  {
-    "code": "AP-029",
-    "name": "Braided Stainless No-Burst Hoses (Par)",
-    "description": "",
-    "time": "15 min",
-    "tu_costo": "$46 + $45.50 = $91.50",
-    "precio": "$165 - $225",
-    "margen": "$74 - $134",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>15 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$46 + $45.50 = $91.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$165 - $225</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$74 - $134</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "AP-031",
-    "name": "Trap & Standpipe (Excl. Drywall)",
-    "description": "",
-    "time": "2.0 hr",
-    "tu_costo": "$370 + $58.50 = $428.50",
-    "precio": "$750 - $950",
-    "margen": "$322 - $522",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$370 + $58.50 = $428.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$750 - $950</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$322 - $522</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "AP-032",
-    "name": "Recessed Box (Water & Drain)",
-    "description": "",
-    "time": "3.0 hr",
-    "tu_costo": "$555 + $156 = $711",
-    "precio": "$1,150 - $1,450",
-    "margen": "$439 - $739",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>3.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$555 + $156 = $711</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$1,150 - $1,450</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$439 - $739</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "AP-033",
-    "name": "Washing Machine Drain Pan & Drain Line",
-    "description": "",
-    "time": "1.5 hr",
-    "tu_costo": "$277 + $58.50 = $335.50",
-    "precio": "$550 - $685",
-    "margen": "$215 - $350",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$277 + $58.50 = $335.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$550 - $685</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$215 - $350</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "AP-034",
-    "name": "Hammer Arrestor",
-    "description": "Reduce golpe de ariete (water hammer) en lavadoras.",
-    "time": "30 min",
-    "tu_costo": "$92 + $45.50 = $137.50",
-    "precio": "$250 - $325",
-    "margen": "$113 - $188",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>30 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$92 + $45.50 = $137.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$250 - $325</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$113 - $188</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "GS-007",
-    "name": "Connect Gas Dryer (48\" Stainless Flex)",
-    "description": "",
-    "time": "45 min",
-    "tu_costo": "$138 + $61.10 = $199.10",
-    "precio": "$350 - $450",
-    "margen": "$151 - $251",
-    "subs_html": "<table class=\"sub-table\"><tr><th>Tarea</th><th>Tiempo</th></tr><tr><td>Verificar shut-off valve existente</td><td>5 min</td></tr><tr><td>Instalar gas flex con fittings</td><td>25 min</td></tr><tr><td>Prueba de fugas (soapy water)</td><td>10 min</td></tr><tr><td>Verificar ignición</td><td>5 min</td></tr></table>",
-    "mats_html": "<table class=\"mat-table\"><tr><th>Material</th><th>Precio</th></tr><tr><td>SS Gas Flex 48\" 1/2\"</td><td>$28.00</td></tr><tr><td>Gas shut-off valve (si no existe)</td><td>$15.00</td></tr><tr><td>Yellow Teflon tape (gas)</td><td>$4.00</td></tr></table>",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>45 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$138 + $61.10 = $199.10</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$350 - $450</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$151 - $251</strong></div>\n        </div>",
-    "has_detail": true
-  },
-  {
-    "code": "GS-008",
-    "name": "Connect Gas Range/Cooktop (48\" Stainless Flex)",
-    "description": "",
-    "time": "1.0 hr (más complejo por ubicación)",
-    "tu_costo": "$185 + $65 = $250",
-    "precio": "$425 - $550",
-    "margen": "$175 - $300",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr (más complejo por ubicación)</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$185 + $65 = $250</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$425 - $550</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$175 - $300</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "GS-009",
-    "name": "Connect Dryer Vent (Flex Between Dryer & Wall)",
-    "description": "",
-    "time": "30 min",
-    "tu_costo": "$92 + $32.50 = $124.50",
-    "precio": "$225 - $285",
-    "margen": "$101 - $161",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>30 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$92 + $32.50 = $124.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$225 - $285</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$101 - $161</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "GS-010",
-    "name": "Dryer Vent Kit Through Stucco/Siding",
-    "description": "",
-    "time": "2.5 hr",
-    "tu_costo": "$462 + $84.50 = $546.50",
-    "precio": "$950 - $1,200",
-    "margen": "$404 - $654",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$462 + $84.50 = $546.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$950 - $1,200</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$404 - $654</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "GS-011",
-    "name": "Hard Pipe Dryer Vent (Up to 10')",
-    "description": "",
-    "time": "2.0 hr",
-    "tu_costo": "$370 + $78 = $448",
-    "precio": "$750 - $950",
-    "margen": "$302 - $502",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$370 + $78 = $448</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$750 - $950</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$302 - $502</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "GS-012",
-    "name": "Under House Repair Fee (Access Charge)",
-    "description": "Cargo adicional por trabajo en crawlspace.",
-    "time": "Variable",
-    "tu_costo": "",
-    "precio": "",
-    "margen": "",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "",
-    "has_detail": false
-  },
-  {
-    "code": "GS-013",
-    "name": "1/2\" × 18\" SS Gas Supply with Emergency Shut-Off",
-    "description": "",
-    "time": "1.0 hr",
-    "tu_costo": "$185 + $57.20 = $242.20",
-    "precio": "$425 - $550",
-    "margen": "$183 - $308",
-    "subs_html": "",
-    "mats_html": "<table class=\"mat-table\"><tr><th>Material</th><th>Precio</th></tr><tr><td>SS Gas Flex 18\" 1/2\"</td><td>$22.00</td></tr><tr><td>1/2\" Gas Ball Valve</td><td>$18.00</td></tr><tr><td>Yellow Teflon</td><td>$4.00</td></tr></table>",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$185 + $57.20 = $242.20</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$425 - $550</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$183 - $308</strong></div>\n        </div>",
-    "has_detail": true
-  },
-  {
-    "code": "GS-014",
-    "name": "Sediment Trap for Gas Line",
-    "description": "Obligatorio por código. Trampa de sedimento antes del appliance.",
-    "time": "45 min",
-    "tu_costo": "$138 + $26 = $164",
-    "precio": "$285 - $385",
-    "margen": "$121 - $221",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>45 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$138 + $26 = $164</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$285 - $385</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$121 - $221</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "GS-015",
-    "name": "1/2\" Emergency Gas Shut-Off Valve",
-    "description": "",
-    "time": "45 min",
-    "tu_costo": "$138 + $23.40 = $161.40",
-    "precio": "$285 - $385",
-    "margen": "$124 - $224",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>45 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$138 + $23.40 = $161.40</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$285 - $385</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$124 - $224</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "GS-016",
-    "name": "3/4\" Emergency Gas Shut-Off Valve",
-    "description": "",
-    "time": "45 min",
-    "tu_costo": "$138 + $32.50 = $170.50",
-    "precio": "$325 - $425",
-    "margen": "$155 - $255",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>45 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$138 + $32.50 = $170.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$325 - $425</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$155 - $255</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "GS-017",
-    "name": "1\" Emergency Gas Shut-Off Valve",
-    "description": "",
-    "time": "1.0 hr",
-    "tu_costo": "$185 + $58.50 = $243.50",
-    "precio": "$425 - $550",
-    "margen": "$182 - $307",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$185 + $58.50 = $243.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$425 - $550</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$182 - $307</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "GS-100",
-    "name": "Seismic/Earthquake Shut-Off Valve (3/4\" - 1\")",
-    "description": "Válvula automática de cierre por sismo. OBLIGATORIO en California para nuevas instalaciones.",
-    "time": "2.5 hr",
-    "tu_costo": "$462 + $195 = $657",
-    "precio": "$1,100 - $1,400",
-    "margen": "$443 - $743",
-    "subs_html": "<table class=\"sub-table\"><tr><th>Tarea</th><th>Tiempo</th></tr><tr><td>Cierre de gas en medidor</td><td>10 min</td></tr><tr><td>Cortar línea existente</td><td>15 min</td></tr><tr><td>Preparar conexiones (threading/adapters)</td><td>30 min</td></tr><tr><td>Instalar válvula sísmica</td><td>20 min</td></tr><tr><td>Prueba de presión</td><td>30 min</td></tr><tr><td>Reencender pilotos</td><td>15 min</td></tr></table>",
-    "mats_html": "<table class=\"mat-table\"><tr><th>Material</th><th>Precio</th></tr><tr><td>Seismic valve (Watts, NSF Listed)</td><td>$120.00</td></tr><tr><td>Nipples, unions</td><td>$25.00</td></tr><tr><td>Teflon, pipe dope</td><td>$5.00</td></tr></table>",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$462 + $195 = $657</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$1,100 - $1,400</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$443 - $743</strong></div>\n        </div>",
-    "has_detail": true
-  },
-  {
-    "code": "BF-036",
-    "name": "3/4\" Reduced Pressure Backflow Preventer (RPZ)",
-    "description": "",
-    "time": "3.0 hr",
-    "tu_costo": "$555 + $1,228.50 = $1,783.50",
-    "precio": "$2,800 - $3,200",
-    "margen": "$1,017 - $1,417",
-    "subs_html": "<table class=\"sub-table\"><tr><th>Tarea</th><th>Tiempo</th></tr><tr><td>Cerrar agua y drenar sistema</td><td>20 min</td></tr><tr><td>Cortar línea existente</td><td>15 min</td></tr><tr><td>Preparar conexiones (unions, adapters)</td><td>30 min</td></tr><tr><td>Instalar device con soporte</td><td>45 min</td></tr><tr><td>Instalar válvulas de aislamiento</td><td>30 min</td></tr><tr><td>Prueba de funcionamiento</td><td>30 min</td></tr></table>",
-    "mats_html": "<table class=\"mat-table\"><tr><th>Material</th><th>Precio</th></tr><tr><td>Wilkins 975XL3 3/4\"</td><td>$850.00</td></tr><tr><td>Ball valves (2)</td><td>$40.00</td></tr><tr><td>Unions/adapters</td><td>$30.00</td></tr><tr><td>Support strut</td><td>$25.00</td></tr></table>",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>3.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$555 + $1,228.50 = $1,783.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$2,800 - $3,200</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$1,017 - $1,417</strong></div>\n        </div>",
-    "has_detail": true
-  },
-  {
-    "code": "BF-037",
-    "name": "1\" Reduced Pressure Backflow Preventer",
-    "description": "",
-    "time": "3.5 hr",
-    "tu_costo": "$647 + $1,365 = $2,012",
-    "precio": "$3,200 - $3,800",
-    "margen": "$1,188 - $1,788",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>3.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$647 + $1,365 = $2,012</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$3,200 - $3,800</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$1,188 - $1,788</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "BF-040",
-    "name": "2\" Reduced Pressure Backflow Preventer",
-    "description": "",
-    "time": "5.0 hr",
-    "tu_costo": "$925 + $2,535 = $3,460",
-    "precio": "$5,500 - $6,500",
-    "margen": "$2,040 - $3,040",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>5.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$925 + $2,535 = $3,460</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$5,500 - $6,500</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$2,040 - $3,040</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "BF-041",
-    "name": "3/4\" or 1\" Relief Valve Kit (Repair Parts)",
-    "description": "",
-    "time": "1.0 hr",
-    "tu_costo": "$185 + $156 = $341",
-    "precio": "$550 - $750",
-    "margen": "$209 - $409",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$185 + $156 = $341</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$550 - $750</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$209 - $409</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "BF-044",
-    "name": "Backflow Bag (Cover)",
-    "description": "",
-    "time": "15 min",
-    "tu_costo": "$46 + $110.50 = $156.50",
-    "precio": "$265 - $325",
-    "margen": "$109 - $169",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>15 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$46 + $110.50 = $156.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$265 - $325</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$109 - $169</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "DM-047",
-    "name": "Whole Bath Demo (Excludes Subfloor)",
-    "description": "",
-    "time": "4.0 hr",
-    "tu_costo": "$740 + $130 = $870",
-    "precio": "$1,500 - $2,000",
-    "margen": "$630 - $1,130",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>4.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$740 + $130 = $870</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$1,500 - $2,000</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$630 - $1,130</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "DM-048",
-    "name": "Fiberglass Tub/Shower with Walls",
-    "description": "",
-    "time": "3.0 hr",
-    "tu_costo": "$555 + $97.50 = $652.50",
-    "precio": "$1,100 - $1,400",
-    "margen": "$448 - $748",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>3.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$555 + $97.50 = $652.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$1,100 - $1,400</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$448 - $748</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "DM-049",
-    "name": "Tile Tub/Shower with Walls",
-    "description": "",
-    "time": "5.0 hr",
-    "tu_costo": "$925 + $195 = $1,120",
-    "precio": "$1,850 - $2,400",
-    "margen": "$730 - $1,280",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>5.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$925 + $195 = $1,120</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$1,850 - $2,400</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$730 - $1,280</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "DM-056",
-    "name": "Re-Pour/Patch Concrete (2×2 Area)",
-    "description": "",
-    "time": "2.5 hr",
-    "tu_costo": "$462 + $52 = $514",
-    "precio": "$850 - $1,100",
-    "margen": "$336 - $586",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$462 + $52 = $514</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$850 - $1,100</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$336 - $586</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "DM-057",
-    "name": "Re-Pour/Patch Concrete (4×4 Area)",
-    "description": "",
-    "time": "4.0 hr",
-    "tu_costo": "$740 + $104 = $844",
-    "precio": "$1,450 - $1,850",
-    "margen": "$606 - $1,006",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>4.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$740 + $104 = $844</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$1,450 - $1,850</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$606 - $1,006</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "DM-064",
-    "name": "Patch Stucco (Up to 3×3)",
-    "description": "",
-    "time": "2.0 hr",
-    "tu_costo": "$370 + $45.50 = $415.50",
-    "precio": "$685 - $850",
-    "margen": "$270 - $435",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$370 + $45.50 = $415.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$685 - $850</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$270 - $435</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "DM-067",
-    "name": "Cut Drywall Hole (Up to 2×2)",
-    "description": "",
-    "time": "30 min",
-    "tu_costo": "$92",
-    "precio": "$165 - $225",
-    "margen": "$73 - $133",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>30 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$92</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$165 - $225</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$73 - $133</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "DM-075",
-    "name": "Patch Wall (2×2)",
-    "description": "",
-    "time": "1.5 hr",
-    "tu_costo": "$277 + $32.50 = $309.50",
-    "precio": "$550 - $750",
-    "margen": "$241 - $441",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$277 + $32.50 = $309.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$550 - $750</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$241 - $441</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "DM-076",
-    "name": "Patch Wall (3×3)",
-    "description": "",
-    "time": "2.0 hr",
-    "tu_costo": "$370 + $45.50 = $415.50",
-    "precio": "$685 - $850",
-    "margen": "$270 - $435",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$370 + $45.50 = $415.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$685 - $850</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$270 - $435</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "DM-081",
-    "name": "Lath & Plaster Patch (3×3)",
-    "description": "",
-    "time": "2.5 hr",
-    "tu_costo": "$462 + $58.50 = $520.50",
-    "precio": "$850 - $1,100",
-    "margen": "$330 - $580",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$462 + $58.50 = $520.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$850 - $1,100</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$330 - $580</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "DR-083",
-    "name": "Bar Sink Stoppage (Remove Trap)",
-    "description": "",
-    "time": "30 min",
-    "tu_costo": "$92",
-    "precio": "$165 - $225",
-    "margen": "$73 - $133",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>30 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$92</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$165 - $225</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$73 - $133</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "DR-084",
-    "name": "Kitchen Sink (Outside Clean Out)",
-    "description": "",
-    "time": "45 min",
-    "tu_costo": "$138",
-    "precio": "$225 - $285",
-    "margen": "$87 - $147",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>45 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$138</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$225 - $285</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$87 - $147</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "DR-085",
-    "name": "Kitchen Sink (Under Sink - Cable Machine)",
-    "description": "",
-    "time": "45 min",
-    "tu_costo": "$138",
-    "precio": "$225 - $285",
-    "margen": "$87 - $147",
-    "subs_html": "<table class=\"sub-table\"><tr><th>Tarea</th><th>Tiempo</th></tr><tr><td>Remove P-trap</td><td>5 min</td></tr><tr><td>Cable machine hasta 25'</td><td>30 min</td></tr><tr><td>Reassemble, test</td><td>10 min</td></tr></table>",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>45 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$138</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$225 - $285</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$87 - $147</strong></div>\n        </div>",
-    "has_detail": true
-  },
-  {
-    "code": "DR-088",
-    "name": "Lavatory Stoppage (Through Pop-Up)",
-    "description": "",
-    "time": "30 min",
-    "tu_costo": "$92",
-    "precio": "$165 - $225",
-    "margen": "$73 - $133",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>30 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$92</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$165 - $225</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$73 - $133</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "DR-089",
-    "name": "Lavatory Stoppage (Remove Trap)",
-    "description": "",
-    "time": "45 min",
-    "tu_costo": "$138",
-    "precio": "$185 - $250",
-    "margen": "$47 - $112",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>45 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$138</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$185 - $250</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$47 - $112</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "DR-090",
-    "name": "Main Line (Through Clean Out - 1st Bail)",
-    "description": "",
-    "time": "1.5-2.0 hr",
-    "tu_costo": "$277 - $370",
-    "precio": "$385 - $550",
-    "margen": "$108 - $180",
-    "subs_html": "<table class=\"sub-table\"><tr><th>Tarea</th><th>Tiempo</th></tr><tr><td>Locate clean out</td><td>5 min</td></tr><tr><td>Setup machine</td><td>10 min</td></tr><tr><td>Cable main line 3-4\"</td><td>60 min</td></tr><tr><td>Test flow</td><td>10 min</td></tr><tr><td>Cleanup</td><td>15 min</td></tr></table>",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.5-2.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$277 - $370</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$385 - $550</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$108 - $180</strong></div>\n        </div>",
-    "has_detail": true
-  },
-  {
-    "code": "DR-091",
-    "name": "Main Line (Through Water Closet - 1st Bail)",
-    "description": "",
-    "time": "2.0 hr",
-    "tu_costo": "$370 + $19.50 = $389.50",
-    "precio": "$550 - $750",
-    "margen": "$161 - $361",
-    "subs_html": "<table class=\"sub-table\"><tr><th>Tarea</th><th>Tiempo</th></tr><tr><td>Pull toilet</td><td>15 min</td></tr><tr><td>Cable through flange</td><td>75 min</td></tr><tr><td>Reinstall toilet</td><td>25 min</td></tr><tr><td>Test</td><td>5 min</td></tr></table>",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$370 + $19.50 = $389.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$550 - $750</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$161 - $361</strong></div>\n        </div>",
-    "has_detail": true
-  },
-  {
-    "code": "DR-092",
-    "name": "Additional Bail (Main Line)",
-    "description": "",
-    "time": "1.0 hr adicional",
-    "tu_costo": "",
-    "precio": "+$185 - $285",
-    "margen": "",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr adicional</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>N/A</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">+$185 - $285</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">N/A</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "DR-093",
-    "name": "Water Closet Stoppage (Auger)",
-    "description": "",
-    "time": "30 min",
-    "tu_costo": "$92",
-    "precio": "$145 - $185",
-    "margen": "$53 - $93",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>30 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$92</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$145 - $185</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$53 - $93</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "DR-098",
-    "name": "HydroJet Residential Main (Up to 200')",
-    "description": "Limpieza a alta presión para grasa, raíces, y buildup severo.",
-    "time": "2.5-3.0 hr",
-    "tu_costo": "$462-$555 + $32.50 = $495-$588",
-    "precio": "$850 - $1,250",
-    "margen": "$355 - $662",
-    "subs_html": "<table class=\"sub-table\"><tr><th>Tarea</th><th>Tiempo</th></tr><tr><td>Camera inspection previa</td><td>30 min</td></tr><tr><td>Setup jetter equipment</td><td>20 min</td></tr><tr><td>Post-camera verification</td><td>15 min</td></tr></table>",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.5-3.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$462-$555 + $32.50 = $495-$588</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$850 - $1,250</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$355 - $662</strong></div>\n        </div>",
-    "has_detail": true
-  },
-  {
-    "code": "DR-099",
-    "name": "Camera Sewer Line (Drain Vision Inspection)",
-    "description": "",
-    "time": "1.0 hr",
-    "tu_costo": "$185 + $13 = $198",
-    "precio": "$350 - $550",
-    "margen": "$152 - $352",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$185 + $13 = $198</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$350 - $550</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$152 - $352</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "DR-100",
-    "name": "Install House Clean Out (One Way)",
-    "description": "Instalación de cleanout accesible para mantenimiento futuro.",
-    "time": "3.0-4.0 hr",
-    "tu_costo": "$555-$740 + $104 = $659-$844",
-    "precio": "$1,200 - $1,600",
-    "margen": "$541 - $756",
-    "subs_html": "<table class=\"sub-table\"><tr><th>Tarea</th><th>Tiempo</th></tr><tr><td>Cut existing line</td><td>20 min</td></tr><tr><td>Install wye + cleanout</td><td>45 min</td></tr><tr><td>Backfill</td><td>30 min</td></tr><tr><td>Test</td><td>15 min</td></tr></table>",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>3.0-4.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$555-$740 + $104 = $659-$844</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$1,200 - $1,600</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$541 - $756</strong></div>\n        </div>",
-    "has_detail": true
-  },
-  {
-    "code": "DR-114",
-    "name": "HydroJet Commercial Main (Up to 300')",
-    "description": "",
-    "time": "4.0 hr",
-    "tu_costo": "$740 + $65 = $805",
-    "precio": "$1,450 - $1,850",
-    "margen": "$645 - $1,045",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>4.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$740 + $65 = $805</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$1,450 - $1,850</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$645 - $1,045</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "FC-123",
-    "name": "Kitchen Faucet (No Pull Out)",
-    "description": "",
-    "time": "1.0 hr",
-    "tu_costo": "$185 + $26 = $211",
-    "precio": "$350 - $450",
-    "margen": "$139 - $239",
-    "subs_html": "<table class=\"sub-table\"><tr><th>Tarea</th><th>Tiempo</th></tr><tr><td>Turn off water, disconnect old</td><td>15 min</td></tr><tr><td>Remove old faucet</td><td>10 min</td></tr><tr><td>Clean surface, apply putty</td><td>5 min</td></tr><tr><td>Install new faucet</td><td>20 min</td></tr><tr><td>Connect supplies</td><td>10 min</td></tr></table>",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$185 + $26 = $211</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$350 - $450</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$139 - $239</strong></div>\n        </div>",
-    "has_detail": true
-  },
-  {
-    "code": "FC-124",
-    "name": "Kitchen Faucet (With Pull Out/Down)",
-    "description": "",
-    "time": "1.25 hr",
-    "tu_costo": "$231 + $32.50 = $263.50",
-    "precio": "$425 - $550",
-    "margen": "$162 - $287",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.25 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$231 + $32.50 = $263.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$425 - $550</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$162 - $287</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "FC-125",
-    "name": "Kitchen Faucet (Pull Down Goose Neck w/Spring)",
-    "description": "",
-    "time": "1.5 hr",
-    "tu_costo": "$277 + $39 = $316",
-    "precio": "$485 - $625",
-    "margen": "$169 - $309",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$277 + $39 = $316</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$485 - $625</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$169 - $309</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "FC-126",
-    "name": "Bathroom Faucet (4\" Centered)",
-    "description": "",
-    "time": "1.0 hr",
-    "tu_costo": "$185 + $26 = $211",
-    "precio": "$350 - $450",
-    "margen": "$139 - $239",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$185 + $26 = $211</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$350 - $450</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$139 - $239</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "FC-127",
-    "name": "Bathroom Faucet (Widespread)",
-    "description": "",
-    "time": "1.5 hr",
-    "tu_costo": "$277 + $32.50 = $309.50",
-    "precio": "$550 - $685",
-    "margen": "$241 - $376",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$277 + $32.50 = $309.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$550 - $685</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$241 - $376</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "FC-128",
-    "name": "Bathroom Faucet (Wall Mount - Excl. Patch)",
-    "description": "",
-    "time": "2.0 hr",
-    "tu_costo": "$370 + $39 = $409",
-    "precio": "$685 - $850",
-    "margen": "$276 - $441",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$370 + $39 = $409</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$685 - $850</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$276 - $441</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "FC-129",
-    "name": "Tub/Shower Valve (Excl. Tile/Patch/Risers)",
-    "description": "",
-    "time": "3.0 hr",
-    "tu_costo": "$555 + $195 = $750",
-    "precio": "$1,250 - $1,650",
-    "margen": "$500 - $900",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>3.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$555 + $195 = $750</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$1,250 - $1,650</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$500 - $900</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "FC-133",
-    "name": "Premier Finishes (Add-On)",
-    "description": "Brushed nickel, matte black, etc.",
-    "time": "",
-    "tu_costo": "",
-    "precio": "+15-25% adicional",
-    "margen": "",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>N/A</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>N/A</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">+15-25% adicional</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">N/A</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "FC-134",
-    "name": "Luxury Brands (Add-On)",
-    "description": "Kohler, Grohe, Hansgrohe installations.",
-    "time": "",
-    "tu_costo": "",
-    "precio": "+25-40% adicional",
-    "margen": "",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>N/A</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>N/A</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">+25-40% adicional</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">N/A</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "WF-136",
-    "name": "Removal & Disposal of Existing Softener",
-    "description": "",
-    "time": "1.5 hr",
-    "tu_costo": "$277 + $97.50 = $374.50",
-    "precio": "$625 - $785",
-    "margen": "$251 - $411",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$277 + $97.50 = $374.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$625 - $785</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$251 - $411</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "WF-137",
-    "name": "Whole House Sediment Filter",
-    "description": "",
-    "time": "2.5 hr",
-    "tu_costo": "$462 + $195 = $657",
-    "precio": "$1,100 - $1,450",
-    "margen": "$443 - $793",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$462 + $195 = $657</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$1,100 - $1,450</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$443 - $793</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "WF-138",
-    "name": "844 Eco Scale Reducer (1-3 Bath)",
-    "description": "",
-    "time": "3.0 hr",
-    "tu_costo": "$555 + $780 = $1,335",
-    "precio": "$2,200 - $2,800",
-    "margen": "$865 - $1,465",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>3.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$555 + $780 = $1,335</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$2,200 - $2,800</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$865 - $1,465</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "WF-144",
-    "name": "WS 1054 Water Softener (1-3 Bath)",
-    "description": "Sistema de suavizador de agua para casas pequeñas.",
-    "time": "3.0-4.0 hr",
-    "tu_costo": "$555-$740 + $1,027 = $1,582-$1,767",
-    "precio": "$2,800 - $3,500",
-    "margen": "$1,033 - $1,733",
-    "subs_html": "<table class=\"sub-table\"><tr><th>Tarea</th><th>Tiempo</th></tr><tr><td>Site prep, locate loop</td><td>30 min</td></tr><tr><td>Install softener tanks</td><td>60 min</td></tr><tr><td>Connect water lines</td><td>45 min</td></tr><tr><td>Install drain line</td><td>30 min</td></tr><tr><td>Program controller</td><td>15 min</td></tr></table>",
-    "mats_html": "<table class=\"mat-table\"><tr><th>Material</th><th>Precio</th></tr><tr><td>WS 1054 Unit</td><td>$700.00</td></tr><tr><td>Salt (initial 80lb)</td><td>$15.00</td></tr><tr><td>Loop fittings</td><td>$50.00</td></tr><tr><td>Drain line</td><td>$25.00</td></tr></table>",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>3.0-4.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$555-$740 + $1,027 = $1,582-$1,767</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$2,800 - $3,500</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$1,033 - $1,733</strong></div>\n        </div>",
-    "has_detail": true
-  },
-  {
-    "code": "WF-145",
-    "name": "WS 1252 Water Softener (4-6 Bath)",
-    "description": "",
-    "time": "4.0-4.5 hr",
-    "tu_costo": "$740-$832 + $1,365 = $2,105-$2,197",
-    "precio": "$3,500 - $4,200",
-    "margen": "$1,303 - $2,003",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>4.0-4.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$740-$832 + $1,365 = $2,105-$2,197</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$3,500 - $4,200</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$1,303 - $2,003</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "WF-156",
-    "name": "6 Stage Pro R.O. System with Minerals",
-    "description": "",
-    "time": "2.0 hr",
-    "tu_costo": "$370 + $390 = $760",
-    "precio": "$1,250 - $1,550",
-    "margen": "$490 - $790",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$370 + $390 = $760</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$1,250 - $1,550</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$490 - $790</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "WF-163",
-    "name": "Connect Ice Maker (to RO/Filtration)",
-    "description": "",
-    "time": "1.0 hr",
-    "tu_costo": "$185 + $45.50 = $230.50",
-    "precio": "$385 - $485",
-    "margen": "$155 - $255",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$185 + $45.50 = $230.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$385 - $485</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$155 - $255</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "WH-306",
-    "name": "Flexible Supply Line (Water)",
-    "description": "",
-    "time": "30 min",
-    "tu_costo": "$92 + $26 = $118",
-    "precio": "$185 - $245",
-    "margen": "$67 - $127",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>30 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$92 + $26 = $118</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$185 - $245</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$67 - $127</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "WH-307",
-    "name": "Seismic Support (Straps) 30-50 Gal",
-    "description": "",
-    "time": "1.0 hr",
-    "tu_costo": "$185 + $52 = $237",
-    "precio": "$385 - $485",
-    "margen": "$148 - $248",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$185 + $52 = $237</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$385 - $485</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$148 - $248</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "WH-308",
-    "name": "Seismic Support 75-100 Gal",
-    "description": "",
-    "time": "1.25 hr",
-    "tu_costo": "$231 + $78 = $309",
-    "precio": "$485 - $625",
-    "margen": "$176 - $316",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.25 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$231 + $78 = $309</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$485 - $625</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$176 - $316</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "WH-314",
-    "name": "Gas Flex Line with Valve",
-    "description": "",
-    "time": "45 min",
-    "tu_costo": "$138 + $58.50 = $196.50",
-    "precio": "$325 - $425",
-    "margen": "$129 - $229",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>45 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$138 + $58.50 = $196.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$325 - $425</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$129 - $229</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "WH-330",
-    "name": "3/4\" T&P Relief Valve",
-    "description": "",
-    "time": "45 min",
-    "tu_costo": "$138 + $32.50 = $170.50",
-    "precio": "$285 - $385",
-    "margen": "$115 - $215",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>45 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$138 + $32.50 = $170.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$285 - $385</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$115 - $215</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "WH-335",
-    "name": "Thermocouple Replacement",
-    "description": "",
-    "time": "1.0 hr",
-    "tu_costo": "$185 + $32.50 = $217.50",
-    "precio": "$350 - $450",
-    "margen": "$133 - $233",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$185 + $32.50 = $217.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$350 - $450</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$133 - $233</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "WH-336",
-    "name": "Thermopile Replacement",
-    "description": "",
-    "time": "1.25 hr",
-    "tu_costo": "$231 + $58.50 = $289.50",
-    "precio": "$485 - $625",
-    "margen": "$196 - $336",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.25 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$231 + $58.50 = $289.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$485 - $625</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$196 - $336</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "WH-339",
-    "name": "Expansion Tank (40-50 Gal)",
-    "description": "",
-    "time": "1.0 hr",
-    "tu_costo": "$185 + $104 = $289",
-    "precio": "$485 - $625",
-    "margen": "$196 - $336",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$185 + $104 = $289</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$485 - $625</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$196 - $336</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "WH-343",
-    "name": "Flush & Drain (Maintenance)",
-    "description": "",
-    "time": "1.0 hr",
-    "tu_costo": "$185 + $19.50 = $204.50",
-    "precio": "$325 - $425",
-    "margen": "$121 - $221",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$185 + $19.50 = $204.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$325 - $425</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$121 - $221</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "WH-100",
-    "name": "40 Gallon Gas Water Heater Install (Standard)",
-    "description": "Instalación completa con code upgrades.",
-    "time": "",
-    "tu_costo": "",
-    "precio": "",
-    "margen": "",
-    "subs_html": "<table class=\"sub-table\"><tr><th>Tarea</th><th>Tiempo</th></tr><tr><td>Drain, disconnect, remove old unit</td><td>45-60 min</td></tr><tr><td>Position new unit</td><td>30 min</td></tr><tr><td>Connect water lines (flex)</td><td>30 min</td></tr><tr><td>Connect gas line</td><td>30 min</td></tr><tr><td>Install T&P drain line</td><td>15 min</td></tr><tr><td>Seismic straps</td><td>15 min</td></tr><tr><td>Test, check for leaks</td><td>15 min</td></tr><tr><td>Re-light pilot, verify operation</td><td>15 min</td></tr></table>",
-    "mats_html": "<table class=\"mat-table\"><tr><th>Material</th><th>Precio</th></tr><tr><td>SS Water flex (2)</td><td>$40.00</td></tr><tr><td>Gas flex + valve</td><td>$45.00</td></tr><tr><td>Seismic straps</td><td>$35.00</td></tr><tr><td>T&P drain line</td><td>$20.00</td></tr><tr><td>Expansion tank</td><td>$75.00</td></tr><tr><td>Pan (if required)</td><td>$25.00</td></tr><tr><td>Misc fittings</td><td>$20.00</td></tr><tr><td>Mano de Obra (3.5 hr × $185)</td><td>$647.50</td></tr><tr><td>Materiales</td><td>$338.00</td></tr><tr><td>Bradford White 40G Gas (~$650)</td><td>$845.00 (+30%)</td></tr><tr><td>Labor + Materials</td><td>$985.50</td></tr></table>",
-    "calc_html": "",
-    "has_detail": true
-  },
-  {
-    "code": "WH-354",
-    "name": "Tankless Install (Condensing 199k BTU - Navien)",
-    "description": "Conversión de tank a tankless. Proyecto mayor.",
-    "time": "10.0 hr",
-    "tu_costo": "$1,850 + $2,600 = $4,450",
-    "precio": "$7,000 - $9,000",
-    "margen": "$2,550 - $4,550",
-    "subs_html": "",
-    "mats_html": "<table class=\"mat-table\"><tr><th>Material</th><th>Precio</th></tr><tr><td>Navien NPE-240A2</td><td>$1,400-$2,300 (retail ~$2,295, wholesale ~$1,400)</td></tr><tr><td>PVC venting kit</td><td>$150.00</td></tr><tr><td>Isolation valves</td><td>$80.00</td></tr><tr><td>Gas line extension</td><td>$100.00</td></tr><tr><td>Condensate drain</td><td>$50.00</td></tr><tr><td>Electrical</td><td>$40.00</td></tr></table>",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>10.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$1,850 + $2,600 = $4,450</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$7,000 - $9,000</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$2,550 - $4,550</strong></div>\n        </div>",
-    "has_detail": true
-  },
-  {
-    "code": "WD-168",
-    "name": "1/2\" Pressure Regulator",
-    "description": "",
-    "time": "1.5 hr",
-    "tu_costo": "$277 + $104 = $381",
-    "precio": "$650 - $850",
-    "margen": "$269 - $469",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$277 + $104 = $381</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$650 - $850</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$269 - $469</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "WD-169",
-    "name": "3/4\" Pressure Regulator",
-    "description": "",
-    "time": "2.0 hr",
-    "tu_costo": "$370 + $143 = $513",
-    "precio": "$850 - $1,100",
-    "margen": "$337 - $587",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$370 + $143 = $513</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$850 - $1,100</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$337 - $587</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "WD-185",
-    "name": "Repipe: 1 Bath Home (Horizontal)",
-    "description": "",
-    "time": "16 hr (2 días)",
-    "tu_costo": "$2,960 + $1,040 = $4,000",
-    "precio": "$6,500 - $8,500",
-    "margen": "$2,500 - $4,500",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>16 hr (2 días)</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$2,960 + $1,040 = $4,000</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$6,500 - $8,500</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$2,500 - $4,500</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "WD-186",
-    "name": "Repipe: 2 Bath Home (Horizontal)",
-    "description": "",
-    "time": "24 hr (3 días)",
-    "tu_costo": "$4,440 + $1,560 = $6,000",
-    "precio": "$9,500 - $12,500",
-    "margen": "$3,500 - $6,500",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>24 hr (3 días)</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$4,440 + $1,560 = $6,000</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$9,500 - $12,500</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$3,500 - $6,500</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "WD-227",
-    "name": "Repair Water Leak in Wall",
-    "description": "",
-    "time": "2.5 hr",
-    "tu_costo": "$462 + $39 = $501",
-    "precio": "$850 - $1,200",
-    "margen": "$349 - $699",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$462 + $39 = $501</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$850 - $1,200</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$349 - $699</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "SL-241",
-    "name": "Minor Leak Search & Isolation",
-    "description": "",
-    "time": "2.0 hr",
-    "tu_costo": "$370 + $52 = $422",
-    "precio": "$685 - $950",
-    "margen": "$263 - $528",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$370 + $52 = $422</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$685 - $950</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$263 - $528</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "SL-242",
-    "name": "Electronic Slab Leak Locate (with Specialist)",
-    "description": "",
-    "time": "3.0 hr",
-    "tu_costo": "$555 + $250 = $805",
-    "precio": "$1,350 - $1,750",
-    "margen": "$545 - $945",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>3.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$555 + $250 = $805</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$1,350 - $1,750</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$545 - $945</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "SL-243",
-    "name": "Repair Pipe Under Slab (Jackhammer)",
-    "description": "",
-    "time": "8.0 hr",
-    "tu_costo": "$1,480 + $195 = $1,675",
-    "precio": "$2,800 - $3,800",
-    "margen": "$1,125 - $2,125",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>8.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$1,480 + $195 = $1,675</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$2,800 - $3,800</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$1,125 - $2,125</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "TL-276",
-    "name": "Replace Tank (Standard)",
-    "description": "",
-    "time": "1.5 hr",
-    "tu_costo": "$277 + $156 = $433",
-    "precio": "$685 - $850",
-    "margen": "$252 - $417",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$277 + $156 = $433</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$685 - $850</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$252 - $417</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "TL-277",
-    "name": "Major Tank Rebuild (All Internals)",
-    "description": "",
-    "time": "1.25 hr",
-    "tu_costo": "$231 + $58.50 = $289.50",
-    "precio": "$485 - $625",
-    "margen": "$196 - $336",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.25 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$231 + $58.50 = $289.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$485 - $625</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$196 - $336</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "TL-278",
-    "name": "Minor Tank Rebuild (Fill Valve + Flapper)",
-    "description": "",
-    "time": "45 min",
-    "tu_costo": "$138 + $32.50 = $170.50",
-    "precio": "$285 - $385",
-    "margen": "$115 - $215",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>45 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$138 + $32.50 = $170.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$285 - $385</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$115 - $215</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "TL-283",
-    "name": "Pull & Reset Toilet",
-    "description": "",
-    "time": "1.0 hr",
-    "tu_costo": "$185 + $19.50 = $204.50",
-    "precio": "$325 - $425",
-    "margen": "$121 - $221",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$185 + $19.50 = $204.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$325 - $425</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$121 - $221</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "TL-297",
-    "name": "Closet Flange Replacement",
-    "description": "",
-    "time": "2.0 hr",
-    "tu_costo": "$370 + $45.50 = $415.50",
-    "precio": "$685 - $850",
-    "margen": "$270 - $435",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$370 + $45.50 = $415.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$685 - $850</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$270 - $435</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "CS-392",
-    "name": "Install Client's Garbage Disposal",
-    "description": "",
-    "time": "1.0 hr",
-    "tu_costo": "$185 + $19.50 = $204.50",
-    "precio": "$350 - $450",
-    "margen": "$146 - $246",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$185 + $19.50 = $204.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$350 - $450</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$146 - $246</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "CS-393",
-    "name": "Install Client's Dishwasher",
-    "description": "",
-    "time": "1.5 hr",
-    "tu_costo": "$277 + $39 = $316",
-    "precio": "$485 - $585",
-    "margen": "$169 - $269",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$277 + $39 = $316</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$485 - $585</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$169 - $269</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "CS-398",
-    "name": "Install Client's Toilet",
-    "description": "",
-    "time": "1.5 hr",
-    "tu_costo": "$277 + $19.50 = $296.50",
-    "precio": "$450 - $550",
-    "margen": "$154 - $254",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$277 + $19.50 = $296.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$450 - $550</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$154 - $254</strong></div>\n        </div>",
-    "has_detail": false
-  },
-  {
-    "code": "CS-420",
-    "name": "Install Client's Water Heater (Less Code Upgrade)",
-    "description": "",
-    "time": "3.5 hr",
-    "tu_costo": "$647 + $104 = $751",
-    "precio": "$1,250 - $1,600",
-    "margen": "$499 - $849",
-    "subs_html": "",
-    "mats_html": "",
-    "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>3.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$647 + $104 = $751</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$1,250 - $1,600</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$499 - $849</strong></div>\n        </div>",
-    "has_detail": false
-  }
-];
+const services = [{"code": "AP-002", "name": "Dishwasher Complete Installation (Monitor Only - Client Provides Unit)", "description": "Instalación completa de lavavajillas provisto por cliente. Verificación de funcionamiento.", "time": "", "tu_costo": "", "precio": "", "margen": "", "subs_html": "", "mats_html": "<table class=\"mat-table\"><tr><th>Material</th><th>Precio</th></tr><tr><td>Braided SS Supply 48\"</td><td>$18.00</td></tr><tr><td>Drain hose 6'</td><td>$12.00</td></tr><tr><td>Power cord kit 6'</td><td>$15.00</td></tr><tr><td>Air gap (chrome)</td><td>$8.00</td></tr><tr><td>Hose clamps</td><td>$4.00</td></tr><tr><td>Mano de Obra (1.5 hr × $185)</td><td>$277.50</td></tr><tr><td>Materiales (con markup)</td><td>$74.10</td></tr></table>", "calc_html": "", "has_detail": true}, {"code": "AP-003", "name": "Complete Braided SS Supply Kit (Supply + Drain + Cord)", "description": "", "time": "30 min", "tu_costo": "$92 + $58.50 = $150.50", "precio": "$265 - $325", "margen": "$115 - $175", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>30 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$92 + $58.50 = $150.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$265 - $325</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$115 - $175</strong></div>\n        </div>", "has_detail": false}, {"code": "AP-004", "name": "Braided Stainless Supply Line Only (48\")", "description": "", "time": "15 min", "tu_costo": "$46 + $23.40 = $69.40", "precio": "$145 - $185", "margen": "$76 - $116", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>15 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$46 + $23.40 = $69.40</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$145 - $185</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$76 - $116</strong></div>\n        </div>", "has_detail": false}, {"code": "AP-005", "name": "Air Gap with Rubber Hose to Garbage Disposal", "description": "Instalación de air gap obligatorio por código (evita retroceso de agua contaminada).", "time": "45 min", "tu_costo": "$138 + $23.40 = $161.40", "precio": "$285 - $350", "margen": "$124 - $189", "subs_html": "", "mats_html": "<table class=\"mat-table\"><tr><th>Material</th><th>Precio</th></tr><tr><td>Air Gap Chrome</td><td>$8.00</td></tr><tr><td>Rubber hose 5/8\"</td><td>$6.00</td></tr><tr><td>Hose clamps (2)</td><td>$4.00</td></tr></table>", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>45 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$138 + $23.40 = $161.40</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$285 - $350</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$124 - $189</strong></div>\n        </div>", "has_detail": true}, {"code": "AP-018", "name": "Ice Maker Soft Copper Water Supply (Up to 15')", "description": "", "time": "1.0 hr", "tu_costo": "$185 + $49.40 = $234.40", "precio": "$425 - $525", "margen": "$191 - $291", "subs_html": "<table class=\"sub-table\"><tr><th>Tarea</th><th>Tiempo</th></tr><tr><td>Localizar línea de agua fría más cercana</td><td>10 min</td></tr><tr><td>Instalar saddle valve o angle stop</td><td>20 min</td></tr><tr><td>Tender línea de cobre 1/4\"</td><td>20 min</td></tr><tr><td>Conectar al refrigerador</td><td>10 min</td></tr></table>", "mats_html": "<table class=\"mat-table\"><tr><th>Material</th><th>Precio</th></tr><tr><td>Soft copper 1/4\" × 15'</td><td>$18.00</td></tr><tr><td>Self-piercing saddle valve</td><td>$12.00</td></tr><tr><td>Compression fittings</td><td>$8.00</td></tr></table>", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$185 + $49.40 = $234.40</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$425 - $525</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$191 - $291</strong></div>\n        </div>", "has_detail": true}, {"code": "AP-020", "name": "Emergency Water Shut-Off Valve (1/4 Turn)", "description": "", "time": "30 min", "tu_costo": "$92 + $19.50 = $111.50", "precio": "$225 - $285", "margen": "$114 - $174", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>30 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$92 + $19.50 = $111.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$225 - $285</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$114 - $174</strong></div>\n        </div>", "has_detail": false}, {"code": "AP-021", "name": "Recessed Box with Emergency Shut-Off", "description": "Caja empotrada para ice maker con válvula de emergencia.", "time": "2.0 hr", "tu_costo": "$370 + $110.50 = $480.50", "precio": "$750 - $950", "margen": "$270 - $470", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$370 + $110.50 = $480.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$750 - $950</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$270 - $470</strong></div>\n        </div>", "has_detail": false}, {"code": "AP-022", "name": "Inline Water Filter for Ice Maker", "description": "", "time": "45 min", "tu_costo": "$138 + $45.50 = $183.50", "precio": "$325 - $425", "margen": "$142 - $242", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>45 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$138 + $45.50 = $183.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$325 - $425</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$142 - $242</strong></div>\n        </div>", "has_detail": false}, {"code": "AP-024", "name": "Water Supply to Insta-Hot", "description": "", "time": "1.0 hr", "tu_costo": "$185 + $39 = $224", "precio": "$385 - $485", "margen": "$161 - $261", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$185 + $39 = $224</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$385 - $485</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$161 - $261</strong></div>\n        </div>", "has_detail": false}, {"code": "AP-025", "name": "Dispenser Supply from Insta-Hot + Valve", "description": "", "time": "1.5 hr", "tu_costo": "$277 + $58.50 = $335.50", "precio": "$550 - $685", "margen": "$215 - $350", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$277 + $58.50 = $335.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$550 - $685</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$215 - $350</strong></div>\n        </div>", "has_detail": false}, {"code": "AP-027", "name": "Disconnect & Reinstall Washer & Dryer", "description": "", "time": "1.0 hr", "tu_costo": "$185", "precio": "$350 - $450", "margen": "$165 - $265", "subs_html": "<table class=\"sub-table\"><tr><th>Tarea</th><th>Tiempo</th></tr><tr><td>Cerrar válvulas de agua</td><td>5 min</td></tr><tr><td>Desconectar mangueras y drenaje</td><td>10 min</td></tr><tr><td>Mover unidades</td><td>20 min</td></tr><tr><td>Reconectar todo</td><td>25 min</td></tr></table>", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$185</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$350 - $450</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$165 - $265</strong></div>\n        </div>", "has_detail": true}, {"code": "AP-029", "name": "Braided Stainless No-Burst Hoses (Par)", "description": "", "time": "15 min", "tu_costo": "$46 + $45.50 = $91.50", "precio": "$165 - $225", "margen": "$74 - $134", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>15 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$46 + $45.50 = $91.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$165 - $225</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$74 - $134</strong></div>\n        </div>", "has_detail": false}, {"code": "AP-031", "name": "Trap & Standpipe (Excl. Drywall)", "description": "", "time": "2.0 hr", "tu_costo": "$370 + $58.50 = $428.50", "precio": "$750 - $950", "margen": "$322 - $522", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$370 + $58.50 = $428.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$750 - $950</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$322 - $522</strong></div>\n        </div>", "has_detail": false}, {"code": "AP-032", "name": "Recessed Box (Water & Drain)", "description": "", "time": "3.0 hr", "tu_costo": "$555 + $156 = $711", "precio": "$1,150 - $1,450", "margen": "$439 - $739", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>3.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$555 + $156 = $711</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$1,150 - $1,450</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$439 - $739</strong></div>\n        </div>", "has_detail": false}, {"code": "AP-033", "name": "Washing Machine Drain Pan & Drain Line", "description": "", "time": "1.5 hr", "tu_costo": "$277 + $58.50 = $335.50", "precio": "$550 - $685", "margen": "$215 - $350", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$277 + $58.50 = $335.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$550 - $685</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$215 - $350</strong></div>\n        </div>", "has_detail": false}, {"code": "AP-034", "name": "Hammer Arrestor", "description": "Reduce golpe de ariete (water hammer) en lavadoras.", "time": "30 min", "tu_costo": "$92 + $45.50 = $137.50", "precio": "$250 - $325", "margen": "$113 - $188", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>30 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$92 + $45.50 = $137.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$250 - $325</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$113 - $188</strong></div>\n        </div>", "has_detail": false}, {"code": "GS-007", "name": "Connect Gas Dryer (48\" Stainless Flex)", "description": "", "time": "45 min", "tu_costo": "$138 + $61.10 = $199.10", "precio": "$350 - $450", "margen": "$151 - $251", "subs_html": "<table class=\"sub-table\"><tr><th>Tarea</th><th>Tiempo</th></tr><tr><td>Verificar shut-off valve existente</td><td>5 min</td></tr><tr><td>Instalar gas flex con fittings</td><td>25 min</td></tr><tr><td>Prueba de fugas (soapy water)</td><td>10 min</td></tr><tr><td>Verificar ignición</td><td>5 min</td></tr></table>", "mats_html": "<table class=\"mat-table\"><tr><th>Material</th><th>Precio</th></tr><tr><td>SS Gas Flex 48\" 1/2\"</td><td>$28.00</td></tr><tr><td>Gas shut-off valve (si no existe)</td><td>$15.00</td></tr><tr><td>Yellow Teflon tape (gas)</td><td>$4.00</td></tr></table>", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>45 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$138 + $61.10 = $199.10</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$350 - $450</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$151 - $251</strong></div>\n        </div>", "has_detail": true}, {"code": "GS-008", "name": "Connect Gas Range/Cooktop (48\" Stainless Flex)", "description": "", "time": "1.0 hr (más complejo por ubicación)", "tu_costo": "$185 + $65 = $250", "precio": "$425 - $550", "margen": "$175 - $300", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr (más complejo por ubicación)</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$185 + $65 = $250</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$425 - $550</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$175 - $300</strong></div>\n        </div>", "has_detail": false}, {"code": "GS-009", "name": "Connect Dryer Vent (Flex Between Dryer & Wall)", "description": "", "time": "30 min", "tu_costo": "$92 + $32.50 = $124.50", "precio": "$225 - $285", "margen": "$101 - $161", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>30 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$92 + $32.50 = $124.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$225 - $285</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$101 - $161</strong></div>\n        </div>", "has_detail": false}, {"code": "GS-010", "name": "Dryer Vent Kit Through Stucco/Siding", "description": "", "time": "2.5 hr", "tu_costo": "$462 + $84.50 = $546.50", "precio": "$950 - $1,200", "margen": "$404 - $654", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$462 + $84.50 = $546.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$950 - $1,200</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$404 - $654</strong></div>\n        </div>", "has_detail": false}, {"code": "GS-011", "name": "Hard Pipe Dryer Vent (Up to 10')", "description": "", "time": "2.0 hr", "tu_costo": "$370 + $78 = $448", "precio": "$750 - $950", "margen": "$302 - $502", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$370 + $78 = $448</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$750 - $950</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$302 - $502</strong></div>\n        </div>", "has_detail": false}, {"code": "GS-012", "name": "Under House Repair Fee (Access Charge)", "description": "Cargo adicional por trabajo en crawlspace.", "time": "Variable", "tu_costo": "", "precio": "", "margen": "", "subs_html": "", "mats_html": "", "calc_html": "", "has_detail": false}, {"code": "GS-013", "name": "1/2\" × 18\" SS Gas Supply with Emergency Shut-Off", "description": "", "time": "1.0 hr", "tu_costo": "$185 + $57.20 = $242.20", "precio": "$425 - $550", "margen": "$183 - $308", "subs_html": "", "mats_html": "<table class=\"mat-table\"><tr><th>Material</th><th>Precio</th></tr><tr><td>SS Gas Flex 18\" 1/2\"</td><td>$22.00</td></tr><tr><td>1/2\" Gas Ball Valve</td><td>$18.00</td></tr><tr><td>Yellow Teflon</td><td>$4.00</td></tr></table>", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$185 + $57.20 = $242.20</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$425 - $550</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$183 - $308</strong></div>\n        </div>", "has_detail": true}, {"code": "GS-014", "name": "Sediment Trap for Gas Line", "description": "Obligatorio por código. Trampa de sedimento antes del appliance.", "time": "45 min", "tu_costo": "$138 + $26 = $164", "precio": "$285 - $385", "margen": "$121 - $221", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>45 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$138 + $26 = $164</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$285 - $385</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$121 - $221</strong></div>\n        </div>", "has_detail": false}, {"code": "GS-015", "name": "1/2\" Emergency Gas Shut-Off Valve", "description": "", "time": "45 min", "tu_costo": "$138 + $23.40 = $161.40", "precio": "$285 - $385", "margen": "$124 - $224", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>45 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$138 + $23.40 = $161.40</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$285 - $385</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$124 - $224</strong></div>\n        </div>", "has_detail": false}, {"code": "GS-016", "name": "3/4\" Emergency Gas Shut-Off Valve", "description": "", "time": "45 min", "tu_costo": "$138 + $32.50 = $170.50", "precio": "$325 - $425", "margen": "$155 - $255", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>45 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$138 + $32.50 = $170.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$325 - $425</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$155 - $255</strong></div>\n        </div>", "has_detail": false}, {"code": "GS-017", "name": "1\" Emergency Gas Shut-Off Valve", "description": "", "time": "1.0 hr", "tu_costo": "$185 + $58.50 = $243.50", "precio": "$425 - $550", "margen": "$182 - $307", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$185 + $58.50 = $243.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$425 - $550</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$182 - $307</strong></div>\n        </div>", "has_detail": false}, {"code": "GS-100", "name": "Seismic/Earthquake Shut-Off Valve (3/4\" - 1\")", "description": "Válvula automática de cierre por sismo. OBLIGATORIO en California para nuevas instalaciones.", "time": "2.5 hr", "tu_costo": "$462 + $195 = $657", "precio": "$1,100 - $1,400", "margen": "$443 - $743", "subs_html": "<table class=\"sub-table\"><tr><th>Tarea</th><th>Tiempo</th></tr><tr><td>Cierre de gas en medidor</td><td>10 min</td></tr><tr><td>Cortar línea existente</td><td>15 min</td></tr><tr><td>Preparar conexiones (threading/adapters)</td><td>30 min</td></tr><tr><td>Instalar válvula sísmica</td><td>20 min</td></tr><tr><td>Prueba de presión</td><td>30 min</td></tr><tr><td>Reencender pilotos</td><td>15 min</td></tr></table>", "mats_html": "<table class=\"mat-table\"><tr><th>Material</th><th>Precio</th></tr><tr><td>Seismic valve (Watts, NSF Listed)</td><td>$120.00</td></tr><tr><td>Nipples, unions</td><td>$25.00</td></tr><tr><td>Teflon, pipe dope</td><td>$5.00</td></tr></table>", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$462 + $195 = $657</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$1,100 - $1,400</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$443 - $743</strong></div>\n        </div>", "has_detail": true}, {"code": "BF-036", "name": "3/4\" Reduced Pressure Backflow Preventer (RPZ)", "description": "", "time": "3.0 hr", "tu_costo": "$555 + $1,228.50 = $1,783.50", "precio": "$2,800 - $3,200", "margen": "$1,017 - $1,417", "subs_html": "<table class=\"sub-table\"><tr><th>Tarea</th><th>Tiempo</th></tr><tr><td>Cerrar agua y drenar sistema</td><td>20 min</td></tr><tr><td>Cortar línea existente</td><td>15 min</td></tr><tr><td>Preparar conexiones (unions, adapters)</td><td>30 min</td></tr><tr><td>Instalar device con soporte</td><td>45 min</td></tr><tr><td>Instalar válvulas de aislamiento</td><td>30 min</td></tr><tr><td>Prueba de funcionamiento</td><td>30 min</td></tr></table>", "mats_html": "<table class=\"mat-table\"><tr><th>Material</th><th>Precio</th></tr><tr><td>Wilkins 975XL3 3/4\"</td><td>$850.00</td></tr><tr><td>Ball valves (2)</td><td>$40.00</td></tr><tr><td>Unions/adapters</td><td>$30.00</td></tr><tr><td>Support strut</td><td>$25.00</td></tr></table>", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>3.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$555 + $1,228.50 = $1,783.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$2,800 - $3,200</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$1,017 - $1,417</strong></div>\n        </div>", "has_detail": true}, {"code": "BF-037", "name": "1\" Reduced Pressure Backflow Preventer", "description": "", "time": "3.5 hr", "tu_costo": "$647 + $1,365 = $2,012", "precio": "$3,200 - $3,800", "margen": "$1,188 - $1,788", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>3.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$647 + $1,365 = $2,012</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$3,200 - $3,800</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$1,188 - $1,788</strong></div>\n        </div>", "has_detail": false}, {"code": "BF-040", "name": "2\" Reduced Pressure Backflow Preventer", "description": "", "time": "5.0 hr", "tu_costo": "$925 + $2,535 = $3,460", "precio": "$5,500 - $6,500", "margen": "$2,040 - $3,040", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>5.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$925 + $2,535 = $3,460</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$5,500 - $6,500</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$2,040 - $3,040</strong></div>\n        </div>", "has_detail": false}, {"code": "BF-041", "name": "3/4\" or 1\" Relief Valve Kit (Repair Parts)", "description": "", "time": "1.0 hr", "tu_costo": "$185 + $156 = $341", "precio": "$550 - $750", "margen": "$209 - $409", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$185 + $156 = $341</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$550 - $750</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$209 - $409</strong></div>\n        </div>", "has_detail": false}, {"code": "BF-044", "name": "Backflow Bag (Cover)", "description": "", "time": "15 min", "tu_costo": "$46 + $110.50 = $156.50", "precio": "$265 - $325", "margen": "$109 - $169", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>15 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$46 + $110.50 = $156.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$265 - $325</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$109 - $169</strong></div>\n        </div>", "has_detail": false}, {"code": "DM-047", "name": "Whole Bath Demo (Excludes Subfloor)", "description": "", "time": "4.0 hr", "tu_costo": "$740 + $130 = $870", "precio": "$1,500 - $2,000", "margen": "$630 - $1,130", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>4.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$740 + $130 = $870</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$1,500 - $2,000</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$630 - $1,130</strong></div>\n        </div>", "has_detail": false}, {"code": "DM-048", "name": "Fiberglass Tub/Shower with Walls", "description": "", "time": "3.0 hr", "tu_costo": "$555 + $97.50 = $652.50", "precio": "$1,100 - $1,400", "margen": "$448 - $748", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>3.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$555 + $97.50 = $652.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$1,100 - $1,400</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$448 - $748</strong></div>\n        </div>", "has_detail": false}, {"code": "DM-049", "name": "Tile Tub/Shower with Walls", "description": "", "time": "5.0 hr", "tu_costo": "$925 + $195 = $1,120", "precio": "$1,850 - $2,400", "margen": "$730 - $1,280", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>5.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$925 + $195 = $1,120</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$1,850 - $2,400</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$730 - $1,280</strong></div>\n        </div>", "has_detail": false}, {"code": "DM-056", "name": "Re-Pour/Patch Concrete (2×2 Area)", "description": "", "time": "2.5 hr", "tu_costo": "$462 + $52 = $514", "precio": "$850 - $1,100", "margen": "$336 - $586", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$462 + $52 = $514</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$850 - $1,100</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$336 - $586</strong></div>\n        </div>", "has_detail": false}, {"code": "DM-057", "name": "Re-Pour/Patch Concrete (4×4 Area)", "description": "", "time": "4.0 hr", "tu_costo": "$740 + $104 = $844", "precio": "$1,450 - $1,850", "margen": "$606 - $1,006", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>4.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$740 + $104 = $844</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$1,450 - $1,850</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$606 - $1,006</strong></div>\n        </div>", "has_detail": false}, {"code": "DM-064", "name": "Patch Stucco (Up to 3×3)", "description": "", "time": "2.0 hr", "tu_costo": "$370 + $45.50 = $415.50", "precio": "$685 - $850", "margen": "$270 - $435", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$370 + $45.50 = $415.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$685 - $850</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$270 - $435</strong></div>\n        </div>", "has_detail": false}, {"code": "DM-067", "name": "Cut Drywall Hole (Up to 2×2)", "description": "", "time": "30 min", "tu_costo": "$92", "precio": "$165 - $225", "margen": "$73 - $133", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>30 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$92</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$165 - $225</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$73 - $133</strong></div>\n        </div>", "has_detail": false}, {"code": "DM-075", "name": "Patch Wall (2×2)", "description": "", "time": "1.5 hr", "tu_costo": "$277 + $32.50 = $309.50", "precio": "$550 - $750", "margen": "$241 - $441", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$277 + $32.50 = $309.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$550 - $750</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$241 - $441</strong></div>\n        </div>", "has_detail": false}, {"code": "DM-076", "name": "Patch Wall (3×3)", "description": "", "time": "2.0 hr", "tu_costo": "$370 + $45.50 = $415.50", "precio": "$685 - $850", "margen": "$270 - $435", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$370 + $45.50 = $415.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$685 - $850</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$270 - $435</strong></div>\n        </div>", "has_detail": false}, {"code": "DM-081", "name": "Lath & Plaster Patch (3×3)", "description": "", "time": "2.5 hr", "tu_costo": "$462 + $58.50 = $520.50", "precio": "$850 - $1,100", "margen": "$330 - $580", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$462 + $58.50 = $520.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$850 - $1,100</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$330 - $580</strong></div>\n        </div>", "has_detail": false}, {"code": "DR-083", "name": "Bar Sink Stoppage (Remove Trap)", "description": "", "time": "30 min", "tu_costo": "$92", "precio": "$165 - $225", "margen": "$73 - $133", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>30 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$92</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$165 - $225</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$73 - $133</strong></div>\n        </div>", "has_detail": false}, {"code": "DR-084", "name": "Kitchen Sink (Outside Clean Out)", "description": "", "time": "45 min", "tu_costo": "$138", "precio": "$225 - $285", "margen": "$87 - $147", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>45 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$138</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$225 - $285</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$87 - $147</strong></div>\n        </div>", "has_detail": false}, {"code": "DR-085", "name": "Kitchen Sink (Under Sink - Cable Machine)", "description": "", "time": "45 min", "tu_costo": "$138", "precio": "$225 - $285", "margen": "$87 - $147", "subs_html": "<table class=\"sub-table\"><tr><th>Tarea</th><th>Tiempo</th></tr><tr><td>Remove P-trap</td><td>5 min</td></tr><tr><td>Cable machine hasta 25'</td><td>30 min</td></tr><tr><td>Reassemble, test</td><td>10 min</td></tr></table>", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>45 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$138</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$225 - $285</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$87 - $147</strong></div>\n        </div>", "has_detail": true}, {"code": "DR-088", "name": "Lavatory Stoppage (Through Pop-Up)", "description": "", "time": "30 min", "tu_costo": "$92", "precio": "$165 - $225", "margen": "$73 - $133", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>30 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$92</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$165 - $225</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$73 - $133</strong></div>\n        </div>", "has_detail": false}, {"code": "DR-089", "name": "Lavatory Stoppage (Remove Trap)", "description": "", "time": "45 min", "tu_costo": "$138", "precio": "$185 - $250", "margen": "$47 - $112", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>45 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$138</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$185 - $250</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$47 - $112</strong></div>\n        </div>", "has_detail": false}, {"code": "DR-090", "name": "Main Line (Through Clean Out - 1st Bail)", "description": "", "time": "1.5-2.0 hr", "tu_costo": "$277 - $370", "precio": "$385 - $550", "margen": "$108 - $180", "subs_html": "<table class=\"sub-table\"><tr><th>Tarea</th><th>Tiempo</th></tr><tr><td>Locate clean out</td><td>5 min</td></tr><tr><td>Setup machine</td><td>10 min</td></tr><tr><td>Cable main line 3-4\"</td><td>60 min</td></tr><tr><td>Test flow</td><td>10 min</td></tr><tr><td>Cleanup</td><td>15 min</td></tr></table>", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.5-2.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$277 - $370</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$385 - $550</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$108 - $180</strong></div>\n        </div>", "has_detail": true}, {"code": "DR-091", "name": "Main Line (Through Water Closet - 1st Bail)", "description": "", "time": "2.0 hr", "tu_costo": "$370 + $19.50 = $389.50", "precio": "$550 - $750", "margen": "$161 - $361", "subs_html": "<table class=\"sub-table\"><tr><th>Tarea</th><th>Tiempo</th></tr><tr><td>Pull toilet</td><td>15 min</td></tr><tr><td>Cable through flange</td><td>75 min</td></tr><tr><td>Reinstall toilet</td><td>25 min</td></tr><tr><td>Test</td><td>5 min</td></tr></table>", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$370 + $19.50 = $389.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$550 - $750</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$161 - $361</strong></div>\n        </div>", "has_detail": true}, {"code": "DR-092", "name": "Additional Bail (Main Line)", "description": "", "time": "1.0 hr adicional", "tu_costo": "", "precio": "+$185 - $285", "margen": "", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr adicional</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>N/A</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">+$185 - $285</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">N/A</strong></div>\n        </div>", "has_detail": false}, {"code": "DR-093", "name": "Water Closet Stoppage (Auger)", "description": "", "time": "30 min", "tu_costo": "$92", "precio": "$145 - $185", "margen": "$53 - $93", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>30 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$92</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$145 - $185</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$53 - $93</strong></div>\n        </div>", "has_detail": false}, {"code": "DR-098", "name": "HydroJet Residential Main (Up to 200')", "description": "Limpieza a alta presión para grasa, raíces, y buildup severo.", "time": "2.5-3.0 hr", "tu_costo": "$462-$555 + $32.50 = $495-$588", "precio": "$850 - $1,250", "margen": "$355 - $662", "subs_html": "<table class=\"sub-table\"><tr><th>Tarea</th><th>Tiempo</th></tr><tr><td>Camera inspection previa</td><td>30 min</td></tr><tr><td>Setup jetter equipment</td><td>20 min</td></tr><tr><td>Post-camera verification</td><td>15 min</td></tr></table>", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.5-3.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$462-$555 + $32.50 = $495-$588</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$850 - $1,250</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$355 - $662</strong></div>\n        </div>", "has_detail": true}, {"code": "DR-099", "name": "Camera Sewer Line (Drain Vision Inspection)", "description": "", "time": "1.0 hr", "tu_costo": "$185 + $13 = $198", "precio": "$350 - $550", "margen": "$152 - $352", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$185 + $13 = $198</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$350 - $550</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$152 - $352</strong></div>\n        </div>", "has_detail": false}, {"code": "DR-100", "name": "Install House Clean Out (One Way)", "description": "Instalación de cleanout accesible para mantenimiento futuro.", "time": "3.0-4.0 hr", "tu_costo": "$555-$740 + $104 = $659-$844", "precio": "$1,200 - $1,600", "margen": "$541 - $756", "subs_html": "<table class=\"sub-table\"><tr><th>Tarea</th><th>Tiempo</th></tr><tr><td>Cut existing line</td><td>20 min</td></tr><tr><td>Install wye + cleanout</td><td>45 min</td></tr><tr><td>Backfill</td><td>30 min</td></tr><tr><td>Test</td><td>15 min</td></tr></table>", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>3.0-4.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$555-$740 + $104 = $659-$844</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$1,200 - $1,600</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$541 - $756</strong></div>\n        </div>", "has_detail": true}, {"code": "DR-114", "name": "HydroJet Commercial Main (Up to 300')", "description": "", "time": "4.0 hr", "tu_costo": "$740 + $65 = $805", "precio": "$1,450 - $1,850", "margen": "$645 - $1,045", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>4.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$740 + $65 = $805</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$1,450 - $1,850</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$645 - $1,045</strong></div>\n        </div>", "has_detail": false}, {"code": "FC-123", "name": "Kitchen Faucet (No Pull Out)", "description": "", "time": "1.0 hr", "tu_costo": "$185 + $26 = $211", "precio": "$350 - $450", "margen": "$139 - $239", "subs_html": "<table class=\"sub-table\"><tr><th>Tarea</th><th>Tiempo</th></tr><tr><td>Turn off water, disconnect old</td><td>15 min</td></tr><tr><td>Remove old faucet</td><td>10 min</td></tr><tr><td>Clean surface, apply putty</td><td>5 min</td></tr><tr><td>Install new faucet</td><td>20 min</td></tr><tr><td>Connect supplies</td><td>10 min</td></tr></table>", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$185 + $26 = $211</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$350 - $450</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$139 - $239</strong></div>\n        </div>", "has_detail": true}, {"code": "FC-124", "name": "Kitchen Faucet (With Pull Out/Down)", "description": "", "time": "1.25 hr", "tu_costo": "$231 + $32.50 = $263.50", "precio": "$425 - $550", "margen": "$162 - $287", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.25 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$231 + $32.50 = $263.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$425 - $550</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$162 - $287</strong></div>\n        </div>", "has_detail": false}, {"code": "FC-125", "name": "Kitchen Faucet (Pull Down Goose Neck w/Spring)", "description": "", "time": "1.5 hr", "tu_costo": "$277 + $39 = $316", "precio": "$485 - $625", "margen": "$169 - $309", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$277 + $39 = $316</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$485 - $625</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$169 - $309</strong></div>\n        </div>", "has_detail": false}, {"code": "FC-126", "name": "Bathroom Faucet (4\" Centered)", "description": "", "time": "1.0 hr", "tu_costo": "$185 + $26 = $211", "precio": "$350 - $450", "margen": "$139 - $239", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$185 + $26 = $211</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$350 - $450</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$139 - $239</strong></div>\n        </div>", "has_detail": false}, {"code": "FC-127", "name": "Bathroom Faucet (Widespread)", "description": "", "time": "1.5 hr", "tu_costo": "$277 + $32.50 = $309.50", "precio": "$550 - $685", "margen": "$241 - $376", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$277 + $32.50 = $309.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$550 - $685</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$241 - $376</strong></div>\n        </div>", "has_detail": false}, {"code": "FC-128", "name": "Bathroom Faucet (Wall Mount - Excl. Patch)", "description": "", "time": "2.0 hr", "tu_costo": "$370 + $39 = $409", "precio": "$685 - $850", "margen": "$276 - $441", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$370 + $39 = $409</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$685 - $850</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$276 - $441</strong></div>\n        </div>", "has_detail": false}, {"code": "FC-129", "name": "Tub/Shower Valve (Excl. Tile/Patch/Risers)", "description": "", "time": "3.0 hr", "tu_costo": "$555 + $195 = $750", "precio": "$1,250 - $1,650", "margen": "$500 - $900", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>3.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$555 + $195 = $750</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$1,250 - $1,650</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$500 - $900</strong></div>\n        </div>", "has_detail": false}, {"code": "FC-133", "name": "Premier Finishes (Add-On)", "description": "Brushed nickel, matte black, etc.", "time": "", "tu_costo": "", "precio": "+15-25% adicional", "margen": "", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>N/A</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>N/A</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">+15-25% adicional</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">N/A</strong></div>\n        </div>", "has_detail": false}, {"code": "FC-134", "name": "Luxury Brands (Add-On)", "description": "Kohler, Grohe, Hansgrohe installations.", "time": "", "tu_costo": "", "precio": "+25-40% adicional", "margen": "", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>N/A</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>N/A</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">+25-40% adicional</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">N/A</strong></div>\n        </div>", "has_detail": false}, {"code": "WF-136", "name": "Removal & Disposal of Existing Softener", "description": "", "time": "1.5 hr", "tu_costo": "$277 + $97.50 = $374.50", "precio": "$625 - $785", "margen": "$251 - $411", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$277 + $97.50 = $374.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$625 - $785</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$251 - $411</strong></div>\n        </div>", "has_detail": false}, {"code": "WF-137", "name": "Whole House Sediment Filter", "description": "", "time": "2.5 hr", "tu_costo": "$462 + $195 = $657", "precio": "$1,100 - $1,450", "margen": "$443 - $793", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$462 + $195 = $657</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$1,100 - $1,450</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$443 - $793</strong></div>\n        </div>", "has_detail": false}, {"code": "WF-138", "name": "844 Eco Scale Reducer (1-3 Bath)", "description": "", "time": "3.0 hr", "tu_costo": "$555 + $780 = $1,335", "precio": "$2,200 - $2,800", "margen": "$865 - $1,465", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>3.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$555 + $780 = $1,335</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$2,200 - $2,800</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$865 - $1,465</strong></div>\n        </div>", "has_detail": false}, {"code": "WF-144", "name": "WS 1054 Water Softener (1-3 Bath)", "description": "Sistema de suavizador de agua para casas pequeñas.", "time": "3.0-4.0 hr", "tu_costo": "$555-$740 + $1,027 = $1,582-$1,767", "precio": "$2,800 - $3,500", "margen": "$1,033 - $1,733", "subs_html": "<table class=\"sub-table\"><tr><th>Tarea</th><th>Tiempo</th></tr><tr><td>Site prep, locate loop</td><td>30 min</td></tr><tr><td>Install softener tanks</td><td>60 min</td></tr><tr><td>Connect water lines</td><td>45 min</td></tr><tr><td>Install drain line</td><td>30 min</td></tr><tr><td>Program controller</td><td>15 min</td></tr></table>", "mats_html": "<table class=\"mat-table\"><tr><th>Material</th><th>Precio</th></tr><tr><td>WS 1054 Unit</td><td>$700.00</td></tr><tr><td>Salt (initial 80lb)</td><td>$15.00</td></tr><tr><td>Loop fittings</td><td>$50.00</td></tr><tr><td>Drain line</td><td>$25.00</td></tr></table>", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>3.0-4.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$555-$740 + $1,027 = $1,582-$1,767</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$2,800 - $3,500</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$1,033 - $1,733</strong></div>\n        </div>", "has_detail": true}, {"code": "WF-145", "name": "WS 1252 Water Softener (4-6 Bath)", "description": "", "time": "4.0-4.5 hr", "tu_costo": "$740-$832 + $1,365 = $2,105-$2,197", "precio": "$3,500 - $4,200", "margen": "$1,303 - $2,003", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>4.0-4.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$740-$832 + $1,365 = $2,105-$2,197</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$3,500 - $4,200</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$1,303 - $2,003</strong></div>\n        </div>", "has_detail": false}, {"code": "WF-156", "name": "6 Stage Pro R.O. System with Minerals", "description": "", "time": "2.0 hr", "tu_costo": "$370 + $390 = $760", "precio": "$1,250 - $1,550", "margen": "$490 - $790", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$370 + $390 = $760</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$1,250 - $1,550</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$490 - $790</strong></div>\n        </div>", "has_detail": false}, {"code": "WF-163", "name": "Connect Ice Maker (to RO/Filtration)", "description": "", "time": "1.0 hr", "tu_costo": "$185 + $45.50 = $230.50", "precio": "$385 - $485", "margen": "$155 - $255", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$185 + $45.50 = $230.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$385 - $485</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$155 - $255</strong></div>\n        </div>", "has_detail": false}, {"code": "WH-306", "name": "Flexible Supply Line (Water)", "description": "", "time": "30 min", "tu_costo": "$92 + $26 = $118", "precio": "$185 - $245", "margen": "$67 - $127", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>30 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$92 + $26 = $118</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$185 - $245</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$67 - $127</strong></div>\n        </div>", "has_detail": false}, {"code": "WH-307", "name": "Seismic Support (Straps) 30-50 Gal", "description": "", "time": "1.0 hr", "tu_costo": "$185 + $52 = $237", "precio": "$385 - $485", "margen": "$148 - $248", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$185 + $52 = $237</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$385 - $485</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$148 - $248</strong></div>\n        </div>", "has_detail": false}, {"code": "WH-308", "name": "Seismic Support 75-100 Gal", "description": "", "time": "1.25 hr", "tu_costo": "$231 + $78 = $309", "precio": "$485 - $625", "margen": "$176 - $316", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.25 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$231 + $78 = $309</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$485 - $625</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$176 - $316</strong></div>\n        </div>", "has_detail": false}, {"code": "WH-314", "name": "Gas Flex Line with Valve", "description": "", "time": "45 min", "tu_costo": "$138 + $58.50 = $196.50", "precio": "$325 - $425", "margen": "$129 - $229", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>45 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$138 + $58.50 = $196.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$325 - $425</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$129 - $229</strong></div>\n        </div>", "has_detail": false}, {"code": "WH-330", "name": "3/4\" T&P Relief Valve", "description": "", "time": "45 min", "tu_costo": "$138 + $32.50 = $170.50", "precio": "$285 - $385", "margen": "$115 - $215", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>45 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$138 + $32.50 = $170.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$285 - $385</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$115 - $215</strong></div>\n        </div>", "has_detail": false}, {"code": "WH-335", "name": "Thermocouple Replacement", "description": "", "time": "1.0 hr", "tu_costo": "$185 + $32.50 = $217.50", "precio": "$350 - $450", "margen": "$133 - $233", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$185 + $32.50 = $217.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$350 - $450</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$133 - $233</strong></div>\n        </div>", "has_detail": false}, {"code": "WH-336", "name": "Thermopile Replacement", "description": "", "time": "1.25 hr", "tu_costo": "$231 + $58.50 = $289.50", "precio": "$485 - $625", "margen": "$196 - $336", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.25 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$231 + $58.50 = $289.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$485 - $625</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$196 - $336</strong></div>\n        </div>", "has_detail": false}, {"code": "WH-339", "name": "Expansion Tank (40-50 Gal)", "description": "", "time": "1.0 hr", "tu_costo": "$185 + $104 = $289", "precio": "$485 - $625", "margen": "$196 - $336", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$185 + $104 = $289</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$485 - $625</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$196 - $336</strong></div>\n        </div>", "has_detail": false}, {"code": "WH-343", "name": "Flush & Drain (Maintenance)", "description": "", "time": "1.0 hr", "tu_costo": "$185 + $19.50 = $204.50", "precio": "$325 - $425", "margen": "$121 - $221", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$185 + $19.50 = $204.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$325 - $425</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$121 - $221</strong></div>\n        </div>", "has_detail": false}, {"code": "WH-100", "name": "40 Gallon Gas Water Heater Install (Standard)", "description": "Instalación completa con code upgrades.", "time": "", "tu_costo": "", "precio": "", "margen": "", "subs_html": "<table class=\"sub-table\"><tr><th>Tarea</th><th>Tiempo</th></tr><tr><td>Drain, disconnect, remove old unit</td><td>45-60 min</td></tr><tr><td>Position new unit</td><td>30 min</td></tr><tr><td>Connect water lines (flex)</td><td>30 min</td></tr><tr><td>Connect gas line</td><td>30 min</td></tr><tr><td>Install T&P drain line</td><td>15 min</td></tr><tr><td>Seismic straps</td><td>15 min</td></tr><tr><td>Test, check for leaks</td><td>15 min</td></tr><tr><td>Re-light pilot, verify operation</td><td>15 min</td></tr></table>", "mats_html": "<table class=\"mat-table\"><tr><th>Material</th><th>Precio</th></tr><tr><td>SS Water flex (2)</td><td>$40.00</td></tr><tr><td>Gas flex + valve</td><td>$45.00</td></tr><tr><td>Seismic straps</td><td>$35.00</td></tr><tr><td>T&P drain line</td><td>$20.00</td></tr><tr><td>Expansion tank</td><td>$75.00</td></tr><tr><td>Pan (if required)</td><td>$25.00</td></tr><tr><td>Misc fittings</td><td>$20.00</td></tr><tr><td>Mano de Obra (3.5 hr × $185)</td><td>$647.50</td></tr><tr><td>Materiales</td><td>$338.00</td></tr><tr><td>Bradford White 40G Gas (~$650)</td><td>$845.00 (+30%)</td></tr><tr><td>Labor + Materials</td><td>$985.50</td></tr></table>", "calc_html": "", "has_detail": true}, {"code": "WH-354", "name": "Tankless Install (Condensing 199k BTU - Navien)", "description": "Conversión de tank a tankless. Proyecto mayor.", "time": "10.0 hr", "tu_costo": "$1,850 + $2,600 = $4,450", "precio": "$7,000 - $9,000", "margen": "$2,550 - $4,550", "subs_html": "", "mats_html": "<table class=\"mat-table\"><tr><th>Material</th><th>Precio</th></tr><tr><td>Navien NPE-240A2</td><td>$1,400-$2,300 (retail ~$2,295, wholesale ~$1,400)</td></tr><tr><td>PVC venting kit</td><td>$150.00</td></tr><tr><td>Isolation valves</td><td>$80.00</td></tr><tr><td>Gas line extension</td><td>$100.00</td></tr><tr><td>Condensate drain</td><td>$50.00</td></tr><tr><td>Electrical</td><td>$40.00</td></tr></table>", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>10.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$1,850 + $2,600 = $4,450</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$7,000 - $9,000</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$2,550 - $4,550</strong></div>\n        </div>", "has_detail": true}, {"code": "WD-168", "name": "1/2\" Pressure Regulator", "description": "", "time": "1.5 hr", "tu_costo": "$277 + $104 = $381", "precio": "$650 - $850", "margen": "$269 - $469", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$277 + $104 = $381</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$650 - $850</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$269 - $469</strong></div>\n        </div>", "has_detail": false}, {"code": "WD-169", "name": "3/4\" Pressure Regulator", "description": "", "time": "2.0 hr", "tu_costo": "$370 + $143 = $513", "precio": "$850 - $1,100", "margen": "$337 - $587", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$370 + $143 = $513</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$850 - $1,100</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$337 - $587</strong></div>\n        </div>", "has_detail": false}, {"code": "WD-185", "name": "Repipe: 1 Bath Home (Horizontal)", "description": "", "time": "16 hr (2 días)", "tu_costo": "$2,960 + $1,040 = $4,000", "precio": "$6,500 - $8,500", "margen": "$2,500 - $4,500", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>16 hr (2 días)</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$2,960 + $1,040 = $4,000</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$6,500 - $8,500</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$2,500 - $4,500</strong></div>\n        </div>", "has_detail": false}, {"code": "WD-186", "name": "Repipe: 2 Bath Home (Horizontal)", "description": "", "time": "24 hr (3 días)", "tu_costo": "$4,440 + $1,560 = $6,000", "precio": "$9,500 - $12,500", "margen": "$3,500 - $6,500", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>24 hr (3 días)</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$4,440 + $1,560 = $6,000</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$9,500 - $12,500</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$3,500 - $6,500</strong></div>\n        </div>", "has_detail": false}, {"code": "WD-227", "name": "Repair Water Leak in Wall", "description": "", "time": "2.5 hr", "tu_costo": "$462 + $39 = $501", "precio": "$850 - $1,200", "margen": "$349 - $699", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$462 + $39 = $501</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$850 - $1,200</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$349 - $699</strong></div>\n        </div>", "has_detail": false}, {"code": "SL-241", "name": "Minor Leak Search & Isolation", "description": "", "time": "2.0 hr", "tu_costo": "$370 + $52 = $422", "precio": "$685 - $950", "margen": "$263 - $528", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$370 + $52 = $422</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$685 - $950</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$263 - $528</strong></div>\n        </div>", "has_detail": false}, {"code": "SL-242", "name": "Electronic Slab Leak Locate (with Specialist)", "description": "", "time": "3.0 hr", "tu_costo": "$555 + $250 = $805", "precio": "$1,350 - $1,750", "margen": "$545 - $945", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>3.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$555 + $250 = $805</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$1,350 - $1,750</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$545 - $945</strong></div>\n        </div>", "has_detail": false}, {"code": "SL-243", "name": "Repair Pipe Under Slab (Jackhammer)", "description": "", "time": "8.0 hr", "tu_costo": "$1,480 + $195 = $1,675", "precio": "$2,800 - $3,800", "margen": "$1,125 - $2,125", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>8.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$1,480 + $195 = $1,675</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$2,800 - $3,800</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$1,125 - $2,125</strong></div>\n        </div>", "has_detail": false}, {"code": "TL-276", "name": "Replace Tank (Standard)", "description": "", "time": "1.5 hr", "tu_costo": "$277 + $156 = $433", "precio": "$685 - $850", "margen": "$252 - $417", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$277 + $156 = $433</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$685 - $850</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$252 - $417</strong></div>\n        </div>", "has_detail": false}, {"code": "TL-277", "name": "Major Tank Rebuild (All Internals)", "description": "", "time": "1.25 hr", "tu_costo": "$231 + $58.50 = $289.50", "precio": "$485 - $625", "margen": "$196 - $336", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.25 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$231 + $58.50 = $289.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$485 - $625</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$196 - $336</strong></div>\n        </div>", "has_detail": false}, {"code": "TL-278", "name": "Minor Tank Rebuild (Fill Valve + Flapper)", "description": "", "time": "45 min", "tu_costo": "$138 + $32.50 = $170.50", "precio": "$285 - $385", "margen": "$115 - $215", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>45 min</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$138 + $32.50 = $170.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$285 - $385</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$115 - $215</strong></div>\n        </div>", "has_detail": false}, {"code": "TL-283", "name": "Pull & Reset Toilet", "description": "", "time": "1.0 hr", "tu_costo": "$185 + $19.50 = $204.50", "precio": "$325 - $425", "margen": "$121 - $221", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$185 + $19.50 = $204.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$325 - $425</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$121 - $221</strong></div>\n        </div>", "has_detail": false}, {"code": "TL-297", "name": "Closet Flange Replacement", "description": "", "time": "2.0 hr", "tu_costo": "$370 + $45.50 = $415.50", "precio": "$685 - $850", "margen": "$270 - $435", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>2.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$370 + $45.50 = $415.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$685 - $850</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$270 - $435</strong></div>\n        </div>", "has_detail": false}, {"code": "CS-392", "name": "Install Client's Garbage Disposal", "description": "", "time": "1.0 hr", "tu_costo": "$185 + $19.50 = $204.50", "precio": "$350 - $450", "margen": "$146 - $246", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.0 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$185 + $19.50 = $204.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$350 - $450</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$146 - $246</strong></div>\n        </div>", "has_detail": false}, {"code": "CS-393", "name": "Install Client's Dishwasher", "description": "", "time": "1.5 hr", "tu_costo": "$277 + $39 = $316", "precio": "$485 - $585", "margen": "$169 - $269", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$277 + $39 = $316</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$485 - $585</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$169 - $269</strong></div>\n        </div>", "has_detail": false}, {"code": "CS-398", "name": "Install Client's Toilet", "description": "", "time": "1.5 hr", "tu_costo": "$277 + $19.50 = $296.50", "precio": "$450 - $550", "margen": "$154 - $254", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>1.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$277 + $19.50 = $296.50</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$450 - $550</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$154 - $254</strong></div>\n        </div>", "has_detail": false}, {"code": "CS-420", "name": "Install Client's Water Heater (Less Code Upgrade)", "description": "", "time": "3.5 hr", "tu_costo": "$647 + $104 = $751", "precio": "$1,250 - $1,600", "margen": "$499 - $849", "subs_html": "", "mats_html": "", "calc_html": "\n        <div class=\"calc-block\">\n            <div class=\"calc-row\"><span>⏱️ Tiempo:</span><strong>3.5 hr</strong></div>\n            <div class=\"calc-row\"><span>💵 Tu Costo:</span><strong>$647 + $104 = $751</strong></div>\n            <div class=\"calc-row\"><span>💰 Precio Cliente:</span><strong class=\"price\">$1,250 - $1,600</strong></div>\n            <div class=\"calc-row\"><span>📈 Margen:</span><strong class=\"margin\">$499 - $849</strong></div>\n        </div>", "has_detail": false}, {"code": "WH-001", "name": "Instalación de calentador de agua eléctrico", "description": "Instalación completa de calentador eléctrico residencial, incluye conexiones eléctricas, agua, válvulas de seguridad.", "time": "3.0 hr", "precio": "$2,200 - $2,800", "has_detail": true, "subs_html": "<table><tr><th>Tarea</th><th>Tiempo</th></tr><tr><td>Remover calentador viejo</td><td>30 min</td></tr><tr><td>Posicionar nuevo calentador</td><td>15 min</td></tr><tr><td>Conexiones agua fría/caliente</td><td>45 min</td></tr><tr><td>Conexión eléctrica 240V</td><td>60 min</td></tr><tr><td>Válvulas T&P y bandeja</td><td>20 min</td></tr><tr><td>Pruebas</td><td>10 min</td></tr></table>", "mats_html": "<table><tr><th>Material</th><th>Precio</th></tr><tr><td>Water heater 40 gal eléctrico</td><td>$550</td></tr><tr><td>Flex water lines</td><td>$40</td></tr><tr><td>T&P valve</td><td>$18</td></tr><tr><td>Drip pan</td><td>$15</td></tr><tr><td>Wire, breaker, conduit</td><td>$85</td></tr></table>", "calc_html": "<div class='calc-block'><div class='calc-row'><span>Mano de Obra:</span><strong>$555</strong></div><div class='calc-row'><span>Materiales:</span><strong>$919</strong></div><div class='calc-row'><span>Tu Costo:</span><strong>$1,474</strong></div><div class='calc-row'><span>Precio Cliente:</span><strong class='price'>$2,200-$2,800</strong></div></div>"}, {"code": "WH-002", "name": "Instalación de calentador a gas natural", "description": "Instalación completa con línea de gas, ventilación B-Vent, válvulas de seguridad.", "time": "3.5 hr", "precio": "$2,400 - $3,000", "has_detail": true, "subs_html": "<table><tr><th>Tarea</th><th>Tiempo</th></tr><tr><td>Remover calentador existente</td><td>30 min</td></tr><tr><td>Posicionar nuevo calentador</td><td>15 min</td></tr><tr><td>Conexiones de agua</td><td>45 min</td></tr><tr><td>Línea de gas y conexión</td><td>50 min</td></tr><tr><td>Instalar B-Vent ventilación</td><td>40 min</td></tr><tr><td>Pruebas de fugas y encendido</td><td>20 min</td></tr></table>", "mats_html": "<table><tr><th>Material</th><th>Precio</th></tr><tr><td>Water heater 40 gal gas</td><td>$480</td></tr><tr><td>Flex water lines</td><td>$40</td></tr><tr><td>Gas flex line 3/4\"</td><td>$28</td></tr><tr><td>B-Vent kit</td><td>$65</td></tr><tr><td>T&P valve, pan, misc</td><td>$45</td></tr></table>", "calc_html": "<div class='calc-block'><div class='calc-row'><span>Mano de Obra:</span><strong>$647.50</strong></div><div class='calc-row'><span>Materiales:</span><strong>$855</strong></div><div class='calc-row'><span>Precio Cliente:</span><strong class='price'>$2,400-$3,000</strong></div></div>"}, {"code": "WH-003", "name": "Conversión a sistema de recirculación", "description": "Instalación de bomba de recirculación para agua caliente instantánea en toda la casa.", "time": "4.0 hr", "precio": "$1,200 - $1,600", "has_detail": true, "subs_html": "<table><tr><th>Tarea</th><th>Tiempo</th></tr><tr><td>Diseñar ruta de retorno</td><td>30 min</td></tr><tr><td>Instalar bomba de recirculación</td><td>90 min</td></tr><tr><td>Tender línea de retorno</td><td>80 min</td></tr><tr><td>Conexiones eléctricas timer</td><td>40 min</td></tr><tr><td>Pruebas de flujo</td><td>20 min</td></tr></table>", "mats_html": "<table><tr><th>Material</th><th>Precio</th></tr><tr><td>Bomba recirculación</td><td>$285</td></tr><tr><td>Check valve</td><td>$35</td></tr><tr><td>Timer programable</td><td>$45</td></tr><tr><td>Tubería retorno 3/4\"</td><td>$120</td></tr><tr><td>Conectores, fittings</td><td>$65</td></tr></table>", "calc_html": "<div class='calc-block'><div class='calc-row'><span>Precio Cliente:</span><strong class='price'>$1,200-$1,600</strong></div></div>"}, {"code": "NEW-004", "name": "Instalación de calentador sin tanque (tankless)", "description": "Instalación de calentador sin tanque (tankless) - Servicio profesional completo", "time": "1-3 hr", "precio": "$300 - $800", "has_detail": false, "subs_html": "", "mats_html": "", "calc_html": ""}, {"code": "NEW-005", "name": "Instalación sistema ventilación para calentador", "description": "Instalación sistema ventilación para calentador - Servicio profesional completo", "time": "1-3 hr", "precio": "$300 - $800", "has_detail": false, "subs_html": "", "mats_html": "", "calc_html": ""}, {"code": "NEW-006", "name": "Cambio de chimenea B-Vent", "description": "Cambio de chimenea B-Vent - Servicio profesional completo", "time": "1-3 hr", "precio": "$300 - $800", "has_detail": false, "subs_html": "", "mats_html": "", "calc_html": ""}, {"code": "NEW-007", "name": "Instalación válvula T&P", "description": "Instalación válvula T&P - Servicio profesional completo", "time": "1-3 hr", "precio": "$300 - $800", "has_detail": false, "subs_html": "", "mats_html": "", "calc_html": ""}, {"code": "NEW-008", "name": "Instalación bandeja desagüe bajo calentador", "description": "Instalación bandeja desagüe bajo calentador - Servicio profesional completo", "time": "1-3 hr", "precio": "$300 - $800", "has_detail": false, "subs_html": "", "mats_html": "", "calc_html": ""}, {"code": "NEW-009", "name": "Instalación de PRV (Pressure Reducing Valve)", "description": "Instalación de PRV (Pressure Reducing Valve) - Servicio profesional completo", "time": "1-3 hr", "precio": "$300 - $800", "has_detail": false, "subs_html": "", "mats_html": "", "calc_html": ""}, {"code": "NEW-010", "name": "Instalación válvula expansión", "description": "Instalación válvula expansión - Servicio profesional completo", "time": "1-3 hr", "precio": "$300 - $800", "has_detail": false, "subs_html": "", "mats_html": "", "calc_html": ""}, {"code": "NEW-011", "name": "Instalación termostato remoto para calentador", "description": "Instalación termostato remoto para calentador - Servicio profesional completo", "time": "1-3 hr", "precio": "$300 - $800", "has_detail": false, "subs_html": "", "mats_html": "", "calc_html": ""}, {"code": "NEW-012", "name": "Reemplazo línea de gas al calentador", "description": "Reemplazo línea de gas al calentador - Servicio profesional completo", "time": "1-3 hr", "precio": "$300 - $800", "has_detail": false, "subs_html": "", "mats_html": "", "calc_html": ""}, {"code": "NEW-013", "name": "Instalación tubería agua fría/caliente", "description": "Instalación tubería agua fría/caliente - Servicio profesional completo", "time": "1-3 hr", "precio": "$300 - $800", "has_detail": false, "subs_html": "", "mats_html": "", "calc_html": ""}, {"code": "NEW-014", "name": "Instalación calentador heat pump híbrido", "description": "Instalación calentador heat pump híbrido - Servicio profesional completo", "time": "1-3 hr", "precio": "$300 - $800", "has_detail": false, "subs_html": "", "mats_html": "", "calc_html": ""}, {"code": "NEW-015", "name": "Instalación bomba recirculación dedicada", "description": "Instalación bomba recirculación dedicada - Servicio profesional completo", "time": "1-3 hr", "precio": "$300 - $800", "has_detail": false, "subs_html": "", "mats_html": "", "calc_html": ""}, {"code": "NEW-016", "name": "Instalación bomba recirculación sin retorno", "description": "Instalación bomba recirculación sin retorno - Servicio profesional completo", "time": "1-3 hr", "precio": "$300 - $800", "has_detail": false, "subs_html": "", "mats_html": "", "calc_html": ""}, {"code": "NEW-017", "name": "Instalación sensores fuga en calentador", "description": "Instalación sensores fuga en calentador - Servicio profesional completo", "time": "1-3 hr", "precio": "$300 - $800", "has_detail": false, "subs_html": "", "mats_html": "", "calc_html": ""}, {"code": "NEW-018", "name": "Reemplazo tuberías suministro en cobre", "description": "Reemplazo tuberías suministro en cobre - Servicio profesional completo", "time": "1-3 hr", "precio": "$300 - $800", "has_detail": false, "subs_html": "", "mats_html": "", "calc_html": ""}, {"code": "NEW-019", "name": "Reemplazo tuberías en PEX", "description": "Reemplazo tuberías en PEX - Servicio profesional completo", "time": "1-3 hr", "precio": "$300 - $800", "has_detail": false, "subs_html": "", "mats_html": "", "calc_html": ""}, {"code": "NEW-020", "name": "Corrección loop expansión en PEX", "description": "Corrección loop expansión en PEX - Servicio profesional completo", "time": "1-3 hr", "precio": "$300 - $800", "has_detail": false, "subs_html": "", "mats_html": "", "calc_html": ""}, {"code": "NEW-021", "name": "Instalación manifold distribución PEX", "description": "Instalación manifold distribución PEX - Servicio profesional completo", "time": "1-3 hr", "precio": "$300 - $800", "has_detail": false, "subs_html": "", "mats_html": "", "calc_html": ""}, {"code": "NEW-022", "name": "Reemplazo válvulas angle-stop", "description": "Reemplazo válvulas angle-stop - Servicio profesional completo", "time": "1-3 hr", "precio": "$300 - $800", "has_detail": false, "subs_html": "", "mats_html": "", "calc_html": ""}, {"code": "NEW-023", "name": "Reemplazo válvulas multi-turn por quarter-turn", "description": "Reemplazo válvulas multi-turn por quarter-turn - Servicio profesional completo", "time": "1-3 hr", "precio": "$300 - $800", "has_detail": false, "subs_html": "", "mats_html": "", "calc_html": ""}];
         
         function renderServices(list) {
             const grid = document.getElementById('services-grid');
@@ -1579,7 +357,7 @@ const services = [
                         ${s.subs_html || ''}
                         ${s.mats_html || ''}
                         ${s.calc_html || ''}
-                        ${s.description ? `<p style="padding:1rem;background:rgba(0,245,255,0.05);border-radius:4px;">${s.description}</p>` : ''}
+                        ${s.description && !s.subs_html ? `<p style="padding:1rem;background:rgba(0,245,255,0.05);border-radius:4px;">${s.description}</p>` : ''}
                     </div>
                 </div>
             `).join('');
