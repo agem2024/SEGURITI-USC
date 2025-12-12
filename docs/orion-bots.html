@@ -1273,20 +1273,147 @@
                 I optimize your reality today?</div>
         </div>
         <div class="xona-input-area">
-            <input type="text" class="xona-input" id="xonaInput" placeholder="Type your query..."
+            <button class="xona-mic" id="xonaMic" onclick="toggleVoiceInput()" title="Voice Input">🎤</button>
+            <input type="text" class="xona-input" id="xonaInput" placeholder="Type or speak..."
                 onkeypress="if(event.key==='Enter')sendXonaMsg()">
             <button class="xona-send" onclick="sendXonaMsg()">➤</button>
         </div>
+        <div class="xona-voice-status" id="xonaVoiceStatus"></div>
     </div>
+
+    <style>
+        .xona-mic {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+
+        .xona-mic:hover,
+        .xona-mic.listening {
+            background: linear-gradient(135deg, #ff006e, #bc13fe);
+            border-color: #ff006e;
+            box-shadow: 0 0 20px rgba(255, 0, 110, 0.5);
+            animation: micPulse 0.5s infinite;
+        }
+
+        @keyframes micPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .xona-voice-status {
+            text-align: center;
+            font-size: 0.75rem;
+            color: #00f3ff;
+            padding: 5px;
+            height: 20px;
+        }
+    </style>
 
     <script>
         const XONA_API = 'http://localhost:3030/api/chat';
         let xonaChatOpen = false;
+        let isListening = false;
+        let recognition = null;
+
+        // Initialize Speech Recognition
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new SpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.lang = currentLang === 'es' ? 'es-MX' : 'en-US';
+
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                document.getElementById('xonaInput').value = transcript;
+                document.getElementById('xonaVoiceStatus').textContent = '';
+                stopListening();
+                sendXonaMsg();
+            };
+
+            recognition.onerror = (event) => {
+                console.error('Speech error:', event.error);
+                document.getElementById('xonaVoiceStatus').textContent = '⚠️ Voice error. Try again.';
+                stopListening();
+            };
+
+            recognition.onend = () => stopListening();
+        }
 
         function toggleXonaChat() {
             xonaChatOpen = !xonaChatOpen;
             document.getElementById('xonaChat').classList.toggle('active', xonaChatOpen);
-            if (xonaChatOpen) document.getElementById('xonaInput').focus();
+            if (xonaChatOpen) {
+                document.getElementById('xonaInput').focus();
+                // Speak greeting on open
+                speakXona("Greetings. I am XONA. How may I help you?");
+            }
+        }
+
+        function toggleVoiceInput() {
+            if (!recognition) {
+                alert('Voice input not supported in this browser. Try Chrome.');
+                return;
+            }
+            if (isListening) {
+                stopListening();
+            } else {
+                startListening();
+            }
+        }
+
+        function startListening() {
+            isListening = true;
+            recognition.lang = currentLang === 'es' ? 'es-MX' : 'en-US';
+            document.getElementById('xonaMic').classList.add('listening');
+            document.getElementById('xonaVoiceStatus').textContent = '🎤 Listening...';
+            recognition.start();
+        }
+
+        function stopListening() {
+            isListening = false;
+            document.getElementById('xonaMic').classList.remove('listening');
+            document.getElementById('xonaVoiceStatus').textContent = '';
+            try { recognition.stop(); } catch (e) { }
+        }
+
+        // Text-to-Speech for XONA responses
+        function speakXona(text) {
+            if ('speechSynthesis' in window) {
+                // Cancel any ongoing speech
+                speechSynthesis.cancel();
+
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = currentLang === 'es' ? 'es-MX' : 'en-US';
+                utterance.rate = 1.0;
+                utterance.pitch = 1.1;
+
+                // Try to find a good voice
+                const voices = speechSynthesis.getVoices();
+                const preferredVoice = voices.find(v =>
+                    (currentLang === 'es' && v.lang.includes('es')) ||
+                    (currentLang !== 'es' && v.lang.includes('en') && v.name.includes('Female'))
+                );
+                if (preferredVoice) utterance.voice = preferredVoice;
+
+                speechSynthesis.speak(utterance);
+            }
         }
 
         async function sendXonaMsg() {
@@ -1318,14 +1445,23 @@
 
                 if (data.response) {
                     messagesDiv.innerHTML += `<div class="xona-msg bot">${data.response}</div>`;
+                    speakXona(data.response); // Speak the response!
                 } else {
-                    messagesDiv.innerHTML += `<div class="xona-msg bot">⚠️ Neural link interrupted. Please contact via WhatsApp.</div>`;
+                    const errMsg = '⚠️ Neural link interrupted. Please contact via WhatsApp.';
+                    messagesDiv.innerHTML += `<div class="xona-msg bot">${errMsg}</div>`;
+                    speakXona('Neural link interrupted. Contact via WhatsApp.');
                 }
             } catch (e) {
                 document.getElementById(typingId).remove();
                 messagesDiv.innerHTML += `<div class="xona-msg bot">⚠️ ORION offline. <a href="https://wa.me/16692342444" style="color:#25D366;">Contact via WhatsApp</a></div>`;
+                speakXona('ORION is offline. Please contact via WhatsApp.');
             }
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        // Load voices when available
+        if ('speechSynthesis' in window) {
+            speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices();
         }
     </script>
 </body>
