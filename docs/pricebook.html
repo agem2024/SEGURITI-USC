@@ -23,280 +23,102 @@ body {
     background: var(--bg);
     color: var(--text);
     line-height: 1.7;
-    padding: 0;
 }
 
 /* HEADER */
 .header {
     background: linear-gradient(135deg, #0f172a, #1e3a8a);
     color: white;
-    padding: 3rem 2rem;
+    padding: 2rem;
     text-align: center;
     position: sticky;
     top: 0;
     z-index: 1000;
 }
-.header h1 {
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin-bottom: 0.5rem;
-}
+.header h1 { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
 .header h1 span { color: var(--accent); }
-.header p {
-    opacity: 0.9;
-    font-size: 1rem;
-    max-width: 700px;
-    margin: 0 auto;
-}
-.nav {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 1.5rem;
-    flex-wrap: wrap;
-}
-.nav a {
-    color: white;
-    text-decoration: none;
-    padding: 0.5rem 1.5rem;
-    background: rgba(255,255,255,0.1);
-    border-radius: 8px;
-    transition: 0.3s;
-}
-.nav a:hover {
-    background: var(--accent);
-    color: #0f172a;
-}
+.header p { opacity: 0.9; font-size: 0.95rem; }
+.nav { display: flex; justify-content: center; gap: 0.5rem; margin-top: 1rem; flex-wrap: wrap; }
+.nav a { color: white; text-decoration: none; padding: 0.4rem 1rem; background: rgba(255,255,255,0.1); border-radius: 6px; font-size: 0.85rem; }
+.nav a:hover { background: var(--accent); color: #0f172a; }
 
 /* CONTAINER */
-.container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 2rem;
-}
+.container { max-width: 1000px; margin: 0 auto; padding: 1.5rem; }
 
 /* HEADINGS */
-h1 {
-    font-size: 2rem;
-    color: var(--primary);
-    margin: 3rem 0 1.5rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 4px solid var(--accent);
-}
-h2 {
-    font-size: 1.5rem;
-    color: var(--primary);
-    margin: 2.5rem 0 1rem;
-    padding-left: 1rem;
-    border-left: 4px solid var(--primary-light);
-}
-h3 {
-    font-size: 1.25rem;
-    color: var(--primary);
-    margin: 2rem 0 1rem;
-    background: linear-gradient(90deg, #e0f2fe, transparent);
-    padding: 1rem;
-    border-radius: 8px;
-    border-left: 4px solid var(--accent);
-}
+h1 { font-size: 1.75rem; color: var(--primary); margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 3px solid var(--accent); }
+h2 { font-size: 1.35rem; color: var(--primary); margin: 2rem 0 0.75rem; padding-left: 0.75rem; border-left: 4px solid var(--primary-light); }
+h3 { font-size: 1.1rem; color: var(--primary); margin: 1.5rem 0 0.75rem; background: linear-gradient(90deg, #e0f2fe, transparent); padding: 0.75rem; border-radius: 6px; border-left: 3px solid var(--accent); }
 
-/* PARAGRAPHS */
-p {
-    margin: 1rem 0;
-    color: var(--text);
-}
-strong {
-    color: var(--primary);
-}
-
-/* TABLES - CRITICAL FOR SHOWING DETAILS */
+/* TABLES - CRITICAL */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin: 1.5rem 0;
+    margin: 1rem 0;
     background: var(--card);
-    border-radius: 12px;
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    font-size: 0.9rem;
 }
-th {
-    background: var(--primary);
-    color: white;
-    padding: 1rem;
-    text-align: left;
-    font-weight: 600;
-}
-td {
-    padding: 0.875rem 1rem;
-    border-bottom: 1px solid #e2e8f0;
-}
-tr:hover td {
-    background: #f8fafc;
-}
-tr:last-child td {
-    border-bottom: none;
-}
-/* Highlight important rows */
-tr td:first-child strong,
-tr td strong {
-    color: var(--success);
-}
-td:last-child {
-    font-weight: 500;
-}
-
-/* PRICES */
-td:contains("$"), 
-td[data-price] {
-    font-weight: 700;
-    color: var(--success);
-}
+th { background: var(--primary); color: white; padding: 0.75rem; text-align: left; font-weight: 600; }
+td { padding: 0.65rem 0.75rem; border-bottom: 1px solid #e2e8f0; }
+tr:hover td { background: #f8fafc; }
+td strong { color: var(--success); }
 
 /* IMAGES */
-img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 12px;
-    margin: 2rem auto;
-    display: block;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-}
+img { max-width: 100%; height: auto; border-radius: 10px; margin: 1.5rem auto; display: block; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
 
-/* BLOCKQUOTES (Notes/Tips) */
-blockquote {
-    background: #fef3c7;
-    border-left: 4px solid var(--accent);
-    padding: 1.5rem;
-    margin: 1.5rem 0;
-    border-radius: 0 12px 12px 0;
-}
-blockquote p {
-    margin: 0;
-}
+/* BLOCKQUOTES */
+blockquote { background: #fef3c7; border-left: 4px solid var(--accent); padding: 1rem; margin: 1rem 0; border-radius: 0 8px 8px 0; }
+blockquote p { margin: 0; }
 
-/* HORIZONTAL RULE */
-hr {
-    border: none;
-    height: 2px;
-    background: linear-gradient(90deg, var(--primary-light), transparent);
-    margin: 3rem 0;
-}
+/* HR */
+hr { border: none; height: 2px; background: linear-gradient(90deg, var(--primary-light), transparent); margin: 2rem 0; }
 
-/* LISTS */
-ul, ol {
-    margin: 1rem 0 1rem 2rem;
-}
-li {
-    margin: 0.5rem 0;
-    padding-left: 0.5rem;
-}
+/* PARAGRAPHS */
+p { margin: 0.75rem 0; }
 
 /* CODE */
-code {
-    background: #e2e8f0;
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    font-family: monospace;
-    font-size: 0.9em;
-}
-pre {
-    background: #1e293b;
-    color: #e2e8f0;
-    padding: 1.5rem;
-    border-radius: 12px;
-    overflow-x: auto;
-    margin: 1.5rem 0;
-}
-pre code {
-    background: none;
-    padding: 0;
-    color: inherit;
-}
-
-/* CALCULATOR LINK */
-.calc-link {
-    display: inline-block;
-    background: var(--accent);
-    color: #0f172a;
-    padding: 1rem 2rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    margin: 1rem 0;
-    transition: 0.3s;
-}
-.calc-link:hover {
-    background: #d97706;
-    transform: translateY(-2px);
-}
+pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; margin: 1rem 0; font-size: 0.85rem; }
 
 /* SEARCH */
-.search-box {
-    position: sticky;
-    top: 120px;
-    background: white;
-    padding: 1rem;
-    border-radius: 12px;
-    margin-bottom: 2rem;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    z-index: 100;
-}
-.search-box input {
-    width: 100%;
-    padding: 1rem 1.5rem;
-    border: 2px solid #e2e8f0;
-    border-radius: 8px;
-    font-size: 1rem;
-}
-.search-box input:focus {
-    outline: none;
-    border-color: var(--primary-light);
-}
+.search-box { position: sticky; top: 100px; background: white; padding: 0.75rem; border-radius: 10px; margin-bottom: 1.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 100; }
+.search-box input { width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 6px; font-size: 0.95rem; }
+.search-box input:focus { outline: none; border-color: var(--primary-light); }
 
 /* FOOTER */
-.footer {
-    background: #0f172a;
-    color: rgba(255,255,255,0.8);
-    text-align: center;
-    padding: 3rem;
-    margin-top: 4rem;
-}
-.footer p { margin: 0.5rem 0; }
-
-/* PRINT FRIENDLY */
-@media print {
-    .header { position: relative; }
-    .search-box { display: none; }
-    body { background: white; }
-}
+.footer { background: #0f172a; color: rgba(255,255,255,0.8); text-align: center; padding: 2rem; margin-top: 3rem; font-size: 0.9rem; }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
-    .header h1 { font-size: 1.75rem; }
+    .header h1 { font-size: 1.5rem; }
     .container { padding: 1rem; }
-    table { font-size: 0.9rem; }
-    th, td { padding: 0.5rem; }
+    table { font-size: 0.8rem; }
+    th, td { padding: 0.4rem; }
 }
+
+/* PRICE HIGHLIGHTS */
+td:last-child { font-weight: 500; }
 </style>
 </head>
 <body>
 
 <header class="header">
     <h1>💰 ORION <span>Price Book</span> Pro</h1>
-    <p>AC Water Heaters & Plumbing | Bay Area, CA</p>
-    <p style="margin-top:0.5rem">Lead Rate: <strong>$185/hr</strong> | Helper: <strong>$95/hr</strong> | Material Markup: <strong>30%</strong> | Margen Objetivo: <strong>40-50%</strong></p>
+    <p>AC Water Heaters & Plumbing | Bay Area, CA | Lead: <strong>$185/hr</strong> | Helper: <strong>$95/hr</strong> | Markup: <strong>30%</strong></p>
     <nav class="nav">
-        <a href="#metodologia">📊 Metodología</a>
-        <a href="#appliances">🔌 Appliances</a>
-        <a href="#gas">🔥 Gas</a>
-        <a href="#drains">🚿 Drains</a>
-        <a href="#waterheaters">♨️ Water Heaters</a>
+        <a href="#-metodolog-a-de-c-lculo">📊 Metodología</a>
+        <a href="#1-appliance-connection-electrodom-sticos-">🔌 Appliances</a>
+        <a href="#2-gas-appliance-system-sistemas-de-gas-">🔥 Gas</a>
+        <a href="#4-drain-line-stoppages-obstrucciones-de-drenaje-">🚿 Drains</a>
+        <a href="#7-water-heaters-calentadores-de-agua-">♨️ Water Heaters</a>
     </nav>
 </header>
 
 <div class="container">
     <div class="search-box">
-        <input type="text" id="search" placeholder="🔍 Buscar código, servicio, material..." onkeyup="searchContent()">
+        <input type="text" id="search" placeholder="🔍 Buscar código, servicio, material, precio..." onkeyup="searchContent()">
     </div>
     
     <div id="content">
@@ -842,25 +664,103 @@ Cada job es una oportunidad de venta adicional. Estos upsells aumentan ticket pr
 </tr>
 </tbody>
 </table>
-<p><strong>Lista de Materiales (Si Aplica):</strong><br />
-| Material | Cantidad | Precio Unitario | Subtotal |<br />
-|----------|----------|-----------------|----------|<br />
-| Braided SS Supply 48" | 1 | $18.00 | $18.00 |<br />
-| Drain hose 6' | 1 | $12.00 | $12.00 |<br />
-| Power cord kit 6' | 1 | $15.00 | $15.00 |<br />
-| Air gap (chrome) | 1 | $8.00 | $8.00 |<br />
-| Hose clamps | 2 | $2.00 | $4.00 |<br />
-| <strong>Subtotal Materiales</strong> | | | <strong>$57.00</strong> |<br />
-| <strong>+30% Markup</strong> | | | <strong>$74.10</strong> |</p>
-<p><strong>Cálculo de Precio:</strong><br />
-| Concepto | Cálculo | Total |<br />
-|----------|---------|-------|<br />
-| Mano de Obra (1.5 hr × $185) | | $277.50 |<br />
-| Materiales (con markup) | | $74.10 |<br />
-| <strong>Tu Costo Total</strong> | | <strong>$351.60</strong> |<br />
-| <strong>Precio Cliente (45% margen)</strong> | $351.60 × 1.45 | <strong>$509.82 → $510</strong> |<br />
-| <strong>Precio Recomendado (Rango)</strong> | | <strong>$485 - $585</strong> |<br />
-| <strong>Tu Ganancia Neta</strong> | | <strong>~$158 - $233</strong> |</p>
+<p><strong>Lista de Materiales (Si Aplica):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Material</th>
+<th>Cantidad</th>
+<th>Precio Unitario</th>
+<th>Subtotal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Braided SS Supply 48"</td>
+<td>1</td>
+<td>$18.00</td>
+<td>$18.00</td>
+</tr>
+<tr>
+<td>Drain hose 6'</td>
+<td>1</td>
+<td>$12.00</td>
+<td>$12.00</td>
+</tr>
+<tr>
+<td>Power cord kit 6'</td>
+<td>1</td>
+<td>$15.00</td>
+<td>$15.00</td>
+</tr>
+<tr>
+<td>Air gap (chrome)</td>
+<td>1</td>
+<td>$8.00</td>
+<td>$8.00</td>
+</tr>
+<tr>
+<td>Hose clamps</td>
+<td>2</td>
+<td>$2.00</td>
+<td>$4.00</td>
+</tr>
+<tr>
+<td><strong>Subtotal Materiales</strong></td>
+<td></td>
+<td></td>
+<td><strong>$57.00</strong></td>
+</tr>
+<tr>
+<td><strong>+30% Markup</strong></td>
+<td></td>
+<td></td>
+<td><strong>$74.10</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cálculo de Precio:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>Cálculo</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mano de Obra (1.5 hr × $185)</td>
+<td></td>
+<td>$277.50</td>
+</tr>
+<tr>
+<td>Materiales (con markup)</td>
+<td></td>
+<td>$74.10</td>
+</tr>
+<tr>
+<td><strong>Tu Costo Total</strong></td>
+<td></td>
+<td><strong>$351.60</strong></td>
+</tr>
+<tr>
+<td><strong>Precio Cliente (45% margen)</strong></td>
+<td>$351.60 × 1.45</td>
+<td><strong>$509.82 → $510</strong></td>
+</tr>
+<tr>
+<td><strong>Precio Recomendado (Rango)</strong></td>
+<td></td>
+<td><strong>$485 - $585</strong></td>
+</tr>
+<tr>
+<td><strong>Tu Ganancia Neta</strong></td>
+<td></td>
+<td><strong>~$158 - $233</strong></td>
+</tr>
+</tbody>
+</table>
 <hr />
 <h3>AP-003: Complete Braided SS Supply Kit (Supply + Drain + Cord)</h3>
 <p><strong>Tiempo:</strong> 30 min | <strong>Materiales:</strong> $45 (con markup: $58.50)<br />
@@ -875,13 +775,33 @@ Cada job es una oportunidad de venta adicional. Estos upsells aumentan ticket pr
 <hr />
 <h3>AP-005: Air Gap with Rubber Hose to Garbage Disposal</h3>
 <p><strong>Descripción:</strong> Instalación de air gap obligatorio por código (evita retroceso de agua contaminada).</p>
-<p><strong>Lista de Materiales:</strong><br />
-| Material | Precio |<br />
-|----------|--------|<br />
-| Air Gap Chrome | $8.00 |<br />
-| Rubber hose 5/8" | $6.00 |<br />
-| Hose clamps (2) | $4.00 |<br />
-| <strong>Total (+30%)</strong> | <strong>$23.40</strong> |</p>
+<p><strong>Lista de Materiales:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Material</th>
+<th>Precio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Air Gap Chrome</td>
+<td>$8.00</td>
+</tr>
+<tr>
+<td>Rubber hose 5/8"</td>
+<td>$6.00</td>
+</tr>
+<tr>
+<td>Hose clamps (2)</td>
+<td>$4.00</td>
+</tr>
+<tr>
+<td><strong>Total (+30%)</strong></td>
+<td><strong>$23.40</strong></td>
+</tr>
+</tbody>
+</table>
 <p><strong>Tiempo:</strong> 45 min | <strong>Tu Costo:</strong> $138 + $23.40 = $161.40<br />
 <strong>Precio Cliente:</strong> <strong>$285 - $350</strong> | <strong>Margen:</strong> ~$124 - $189</p>
 <hr />
@@ -892,13 +812,33 @@ Cada job es una oportunidad de venta adicional. Estos upsells aumentan ticket pr
 2. Instalar saddle valve o angle stop (20 min)<br />
 3. Tender línea de cobre 1/4" (20 min)<br />
 4. Conectar al refrigerador (10 min)</p>
-<p><strong>Materiales:</strong><br />
-| Item | Precio |<br />
-|------|--------|<br />
-| Soft copper 1/4" × 15' | $18.00 |<br />
-| Self-piercing saddle valve | $12.00 |<br />
-| Compression fittings | $8.00 |<br />
-| <strong>Total (+30%)</strong> | <strong>$49.40</strong> |</p>
+<p><strong>Materiales:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Precio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Soft copper 1/4" × 15'</td>
+<td>$18.00</td>
+</tr>
+<tr>
+<td>Self-piercing saddle valve</td>
+<td>$12.00</td>
+</tr>
+<tr>
+<td>Compression fittings</td>
+<td>$8.00</td>
+</tr>
+<tr>
+<td><strong>Total (+30%)</strong></td>
+<td><strong>$49.40</strong></td>
+</tr>
+</tbody>
+</table>
 <p><strong>Tiempo:</strong> 1.0 hr | <strong>Tu Costo:</strong> $185 + $49.40 = $234.40<br />
 <strong>Precio Cliente:</strong> <strong>$425 - $525</strong> | <strong>Margen:</strong> ~$191 - $291</p>
 <hr />
@@ -971,20 +911,60 @@ Cada job es una oportunidad de venta adicional. Estos upsells aumentan ticket pr
 <p><img alt="Válvula de Gas Sísmica" src="images/gas_seismic_valve_1765473792296.png" /></p>
 <h2>2.1 GAS DRYER &amp; RANGE CONNECTIONS</h2>
 <h3>GS-007: Connect Gas Dryer (48" Stainless Flex)</h3>
-<p><strong>Sub-Actividades:</strong><br />
-| Tarea | Tiempo |<br />
-|-------|--------|<br />
-| Verificar shut-off valve existente | 5 min |<br />
-| Instalar gas flex con fittings | 25 min |<br />
-| Prueba de fugas (soapy water) | 10 min |<br />
-| Verificar ignición | 5 min |</p>
-<p><strong>Material:</strong><br />
-| Item | Precio |<br />
-|------|--------|<br />
-| SS Gas Flex 48" 1/2" | $28.00 |<br />
-| Gas shut-off valve (si no existe) | $15.00 |<br />
-| Yellow Teflon tape (gas) | $4.00 |<br />
-| <strong>Total (+30%)</strong> | <strong>$61.10</strong> |</p>
+<p><strong>Sub-Actividades:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tarea</th>
+<th>Tiempo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verificar shut-off valve existente</td>
+<td>5 min</td>
+</tr>
+<tr>
+<td>Instalar gas flex con fittings</td>
+<td>25 min</td>
+</tr>
+<tr>
+<td>Prueba de fugas (soapy water)</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>Verificar ignición</td>
+<td>5 min</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Material:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Precio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SS Gas Flex 48" 1/2"</td>
+<td>$28.00</td>
+</tr>
+<tr>
+<td>Gas shut-off valve (si no existe)</td>
+<td>$15.00</td>
+</tr>
+<tr>
+<td>Yellow Teflon tape (gas)</td>
+<td>$4.00</td>
+</tr>
+<tr>
+<td><strong>Total (+30%)</strong></td>
+<td><strong>$61.10</strong></td>
+</tr>
+</tbody>
+</table>
 <p><strong>Tiempo:</strong> 45 min | <strong>Tu Costo:</strong> $138 + $61.10 = $199.10<br />
 <strong>Precio Cliente:</strong> <strong>$350 - $450</strong> | <strong>Margen:</strong> ~$151 - $251</p>
 <hr />
@@ -1021,13 +1001,33 @@ Cada job es una oportunidad de venta adicional. Estos upsells aumentan ticket pr
 <strong>Tiempo:</strong> Variable | <strong>Cargo Fijo:</strong> <strong>$150 - $250</strong></p>
 <hr />
 <h3>GS-013: 1/2" × 18" SS Gas Supply with Emergency Shut-Off</h3>
-<p><strong>Material:</strong><br />
-| Item | Precio |<br />
-|------|--------|<br />
-| SS Gas Flex 18" 1/2" | $22.00 |<br />
-| 1/2" Gas Ball Valve | $18.00 |<br />
-| Yellow Teflon | $4.00 |<br />
-| <strong>Total (+30%)</strong> | <strong>$57.20</strong> |</p>
+<p><strong>Material:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Precio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SS Gas Flex 18" 1/2"</td>
+<td>$22.00</td>
+</tr>
+<tr>
+<td>1/2" Gas Ball Valve</td>
+<td>$18.00</td>
+</tr>
+<tr>
+<td>Yellow Teflon</td>
+<td>$4.00</td>
+</tr>
+<tr>
+<td><strong>Total (+30%)</strong></td>
+<td><strong>$57.20</strong></td>
+</tr>
+</tbody>
+</table>
 <p><strong>Tiempo:</strong> 1.0 hr | <strong>Tu Costo:</strong> $185 + $57.20 = $242.20<br />
 <strong>Precio Cliente:</strong> <strong>$425 - $550</strong> | <strong>Margen:</strong> ~$183 - $308</p>
 <hr />
@@ -1061,13 +1061,33 @@ Cada job es una oportunidad de venta adicional. Estos upsells aumentan ticket pr
 4. Instalar válvula sísmica (20 min)<br />
 5. Prueba de presión (30 min)<br />
 6. Reencender pilotos (15 min)</p>
-<p><strong>Material (3/4"):</strong><br />
-| Item | Precio |<br />
-|------|--------|<br />
-| Seismic valve (Watts, NSF Listed) | $120.00 |<br />
-| Nipples, unions | $25.00 |<br />
-| Teflon, pipe dope | $5.00 |<br />
-| <strong>Total (+30%)</strong> | <strong>$195.00</strong> |</p>
+<p><strong>Material (3/4"):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Precio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Seismic valve (Watts, NSF Listed)</td>
+<td>$120.00</td>
+</tr>
+<tr>
+<td>Nipples, unions</td>
+<td>$25.00</td>
+</tr>
+<tr>
+<td>Teflon, pipe dope</td>
+<td>$5.00</td>
+</tr>
+<tr>
+<td><strong>Total (+30%)</strong></td>
+<td><strong>$195.00</strong></td>
+</tr>
+</tbody>
+</table>
 <p><strong>Tiempo:</strong> 2.5 hr | <strong>Tu Costo:</strong> $462 + $195 = $657<br />
 <strong>Precio Cliente:</strong> <strong>$1,100 - $1,400</strong> | <strong>Margen:</strong> ~$443 - $743<br />
 <strong>Fuente:</strong> Home Depot, Ferguson ($100-180 retail)</p>
@@ -1087,14 +1107,37 @@ Dispositivos de backflow requieren certificación anual. Ofrece plan de mantenim
 4. Instalar device con soporte (45 min)<br />
 5. Instalar válvulas de aislamiento (30 min)<br />
 6. Prueba de funcionamiento (30 min)</p>
-<p><strong>Material:</strong><br />
-| Item | Precio |<br />
-|------|--------|<br />
-| Wilkins 975XL3 3/4" | $850.00 |<br />
-| Ball valves (2) | $40.00 |<br />
-| Unions/adapters | $30.00 |<br />
-| Support strut | $25.00 |<br />
-| <strong>Total (+30%)</strong> | <strong>$1,228.50</strong> |</p>
+<p><strong>Material:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Precio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wilkins 975XL3 3/4"</td>
+<td>$850.00</td>
+</tr>
+<tr>
+<td>Ball valves (2)</td>
+<td>$40.00</td>
+</tr>
+<tr>
+<td>Unions/adapters</td>
+<td>$30.00</td>
+</tr>
+<tr>
+<td>Support strut</td>
+<td>$25.00</td>
+</tr>
+<tr>
+<td><strong>Total (+30%)</strong></td>
+<td><strong>$1,228.50</strong></td>
+</tr>
+</tbody>
+</table>
 <p><strong>Tiempo:</strong> 3.0 hr | <strong>Tu Costo:</strong> $555 + $1,228.50 = $1,783.50<br />
 <strong>Precio Cliente:</strong> <strong>$2,800 - $3,200</strong> | <strong>Margen:</strong> ~$1,017 - $1,417<br />
 <strong>Fuente Precio Device:</strong> Home Depot $809.99, CPE Supply $884.99 (verificado Dic 2024)</p>
@@ -1122,13 +1165,33 @@ Dispositivos de backflow requieren certificación anual. Ofrece plan de mantenim
 <h1>4. DEMOLITION &amp; PATCHING (DEMOLICIÓN Y PARCHES)</h1>
 <h2>4.1 BATHROOM DEMO</h2>
 <h3>DM-047: Whole Bath Demo (Excludes Subfloor)</h3>
-<p><strong>Sub-Actividades:</strong><br />
-| Tarea | Tiempo |<br />
-|-------|--------|<br />
-| Desconectar plomería (toilet, sink, tub) | 1.0 hr |<br />
-| Remover fixtures | 1.0 hr |<br />
-| Demo tile/walls si aplica | 1.0 hr |<br />
-| Disposal/cleanup | 1.0 hr |</p>
+<p><strong>Sub-Actividades:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tarea</th>
+<th>Tiempo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Desconectar plomería (toilet, sink, tub)</td>
+<td>1.0 hr</td>
+</tr>
+<tr>
+<td>Remover fixtures</td>
+<td>1.0 hr</td>
+</tr>
+<tr>
+<td>Demo tile/walls si aplica</td>
+<td>1.0 hr</td>
+</tr>
+<tr>
+<td>Disposal/cleanup</td>
+<td>1.0 hr</td>
+</tr>
+</tbody>
+</table>
 <p><strong>Tiempo:</strong> 4.0 hr | <strong>Material:</strong> Disposal/dump fees = $100 (+30%: $130)<br />
 <strong>Tu Costo:</strong> $740 + $130 = $870<br />
 <strong>Precio Cliente:</strong> <strong>$1,500 - $2,000</strong> | <strong>Margen:</strong> ~$630 - $1,130</p>
@@ -1351,14 +1414,37 @@ Ofrece contratos de mantenimiento anual para suavizadores y filtros. Recurrente 
 4. Install drain line (30 min)<br />
 5. Program controller (15 min)<br />
 6. Initial regeneration (active but can leave)</p>
-<p><strong>Material:</strong><br />
-| Item | Precio |<br />
-|------|--------|<br />
-| WS 1054 Unit | $700.00 |<br />
-| Salt (initial 80lb) | $15.00 |<br />
-| Loop fittings | $50.00 |<br />
-| Drain line | $25.00 |<br />
-| <strong>Total (+30%)</strong> | <strong>$1,027.00</strong> |</p>
+<p><strong>Material:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Precio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WS 1054 Unit</td>
+<td>$700.00</td>
+</tr>
+<tr>
+<td>Salt (initial 80lb)</td>
+<td>$15.00</td>
+</tr>
+<tr>
+<td>Loop fittings</td>
+<td>$50.00</td>
+</tr>
+<tr>
+<td>Drain line</td>
+<td>$25.00</td>
+</tr>
+<tr>
+<td><strong>Total (+30%)</strong></td>
+<td><strong>$1,027.00</strong></td>
+</tr>
+</tbody>
+</table>
 <p><strong>Tiempo:</strong> 3.0-4.0 hr | <strong>Tu Costo:</strong> $555-$740 + $1,027 = $1,582-$1,767<br />
 <strong>Precio Cliente:</strong> <strong>$2,800 - $3,500</strong> | <strong>Margen:</strong> ~$1,033 - $1,733<br />
 <strong>Fuente:</strong> Water softener install typically 2-4 hrs (Angi, Benjamin Franklin 2024)</p>
@@ -1429,70 +1515,247 @@ Ofrece contratos de mantenimiento anual para suavizadores y filtros. Recurrente 
 <h2>8.2 FULL WATER HEATER INSTALLATIONS</h2>
 <h3>WH-100: 40 Gallon Gas Water Heater Install (Standard)</h3>
 <p><strong>Descripción:</strong> Instalación completa con code upgrades.</p>
-<p><strong>Sub-Actividades (Verified 2-4 hrs industry standard):</strong><br />
-| Tarea | Tiempo |<br />
-|-------|--------|<br />
-| Drain, disconnect, remove old unit | 45-60 min |<br />
-| Position new unit | 30 min |<br />
-| Connect water lines (flex) | 30 min |<br />
-| Connect gas line | 30 min |<br />
-| Install T&amp;P drain line | 15 min |<br />
-| Seismic straps | 15 min |<br />
-| Test, check for leaks | 15 min |<br />
-| Re-light pilot, verify operation | 15 min |<br />
-| <strong>TOTAL</strong> | <strong>3.0-4.0 hr</strong> |</p>
-<p><strong>Material (NOT including WH unit):</strong><br />
-| Item | Precio |<br />
-|------|--------|<br />
-| SS Water flex (2) | $40.00 |<br />
-| Gas flex + valve | $45.00 |<br />
-| Seismic straps | $35.00 |<br />
-| T&amp;P drain line | $20.00 |<br />
-| Expansion tank | $75.00 |<br />
-| Pan (if required) | $25.00 |<br />
-| Misc fittings | $20.00 |<br />
-| <strong>Subtotal (+30%)</strong> | <strong>$338.00</strong> |</p>
-<p><strong>Cálculo (Labor Only - Client Provides Unit):</strong><br />
-| Concepto | Total |<br />
-|----------|-------|<br />
-| Mano de Obra (3.5 hr × $185) | $647.50 |<br />
-| Materiales | $338.00 |<br />
-| <strong>Tu Costo Total</strong> | <strong>$985.50</strong> |<br />
-| <strong>Precio Cliente (Install Only)</strong> | <strong>$1,550 - $1,950</strong> |<br />
-| <strong>Margen</strong> | ~$565 - $965 |</p>
-<p><strong>Cálculo (Full Install - We Supply Unit):</strong><br />
-| Concepto | Total |<br />
-|----------|-------|<br />
-| Bradford White 40G Gas (~$650) | $845.00 (+30%) |<br />
-| Labor + Materials | $985.50 |<br />
-| <strong>Tu Costo Total</strong> | <strong>$1,830.50</strong> |<br />
-| <strong>Precio Cliente</strong> | <strong>$2,800 - $3,200</strong> |<br />
-| <strong>Margen</strong> | ~$970 - $1,370 |</p>
+<p><strong>Sub-Actividades (Verified 2-4 hrs industry standard):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tarea</th>
+<th>Tiempo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Drain, disconnect, remove old unit</td>
+<td>45-60 min</td>
+</tr>
+<tr>
+<td>Position new unit</td>
+<td>30 min</td>
+</tr>
+<tr>
+<td>Connect water lines (flex)</td>
+<td>30 min</td>
+</tr>
+<tr>
+<td>Connect gas line</td>
+<td>30 min</td>
+</tr>
+<tr>
+<td>Install T&amp;P drain line</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td>Seismic straps</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td>Test, check for leaks</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td>Re-light pilot, verify operation</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td><strong>TOTAL</strong></td>
+<td><strong>3.0-4.0 hr</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Material (NOT including WH unit):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Precio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SS Water flex (2)</td>
+<td>$40.00</td>
+</tr>
+<tr>
+<td>Gas flex + valve</td>
+<td>$45.00</td>
+</tr>
+<tr>
+<td>Seismic straps</td>
+<td>$35.00</td>
+</tr>
+<tr>
+<td>T&amp;P drain line</td>
+<td>$20.00</td>
+</tr>
+<tr>
+<td>Expansion tank</td>
+<td>$75.00</td>
+</tr>
+<tr>
+<td>Pan (if required)</td>
+<td>$25.00</td>
+</tr>
+<tr>
+<td>Misc fittings</td>
+<td>$20.00</td>
+</tr>
+<tr>
+<td><strong>Subtotal (+30%)</strong></td>
+<td><strong>$338.00</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cálculo (Labor Only - Client Provides Unit):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mano de Obra (3.5 hr × $185)</td>
+<td>$647.50</td>
+</tr>
+<tr>
+<td>Materiales</td>
+<td>$338.00</td>
+</tr>
+<tr>
+<td><strong>Tu Costo Total</strong></td>
+<td><strong>$985.50</strong></td>
+</tr>
+<tr>
+<td><strong>Precio Cliente (Install Only)</strong></td>
+<td><strong>$1,550 - $1,950</strong></td>
+</tr>
+<tr>
+<td><strong>Margen</strong></td>
+<td>~$565 - $965</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cálculo (Full Install - We Supply Unit):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bradford White 40G Gas (~$650)</td>
+<td>$845.00 (+30%)</td>
+</tr>
+<tr>
+<td>Labor + Materials</td>
+<td>$985.50</td>
+</tr>
+<tr>
+<td><strong>Tu Costo Total</strong></td>
+<td><strong>$1,830.50</strong></td>
+</tr>
+<tr>
+<td><strong>Precio Cliente</strong></td>
+<td><strong>$2,800 - $3,200</strong></td>
+</tr>
+<tr>
+<td><strong>Margen</strong></td>
+<td>~$970 - $1,370</td>
+</tr>
+</tbody>
+</table>
 <hr />
 <h3>WH-354: Tankless Install (Condensing 199k BTU - Navien)</h3>
 <p><strong>Descripción:</strong> Conversión de tank a tankless. Proyecto mayor.</p>
-<p><strong>Sub-Actividades:</strong><br />
-| Tarea | Tiempo |<br />
-|-------|--------|<br />
-| Remove existing tank | 1.0 hr |<br />
-| Mount tankless unit | 1.0 hr |<br />
-| Run new gas line (if needed) | 2.0 hr |<br />
-| PVC venting installation | 2.0 hr |<br />
-| Water connections | 1.0 hr |<br />
-| Electrical connection | 0.5 hr |<br />
-| Condensate drain | 0.5 hr |<br />
-| Program, test | 1.0 hr |<br />
-| <strong>TOTAL</strong> | <strong>9.0-11.0 hr</strong> |</p>
-<p><strong>Material:</strong><br />
-| Item | Precio Verificado |<br />
-|------|-------------------|<br />
-| Navien NPE-240A2 | $1,400-$2,300 (retail ~$2,295, wholesale ~$1,400) |<br />
-| PVC venting kit | $150.00 |<br />
-| Isolation valves | $80.00 |<br />
-| Gas line extension | $100.00 |<br />
-| Condensate drain | $50.00 |<br />
-| Electrical | $40.00 |<br />
-| <strong>Subtotal (+30%)</strong> | <strong>~$2,600</strong> |</p>
+<p><strong>Sub-Actividades:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tarea</th>
+<th>Tiempo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Remove existing tank</td>
+<td>1.0 hr</td>
+</tr>
+<tr>
+<td>Mount tankless unit</td>
+<td>1.0 hr</td>
+</tr>
+<tr>
+<td>Run new gas line (if needed)</td>
+<td>2.0 hr</td>
+</tr>
+<tr>
+<td>PVC venting installation</td>
+<td>2.0 hr</td>
+</tr>
+<tr>
+<td>Water connections</td>
+<td>1.0 hr</td>
+</tr>
+<tr>
+<td>Electrical connection</td>
+<td>0.5 hr</td>
+</tr>
+<tr>
+<td>Condensate drain</td>
+<td>0.5 hr</td>
+</tr>
+<tr>
+<td>Program, test</td>
+<td>1.0 hr</td>
+</tr>
+<tr>
+<td><strong>TOTAL</strong></td>
+<td><strong>9.0-11.0 hr</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Material:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Precio Verificado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Navien NPE-240A2</td>
+<td>$1,400-$2,300 (retail ~$2,295, wholesale ~$1,400)</td>
+</tr>
+<tr>
+<td>PVC venting kit</td>
+<td>$150.00</td>
+</tr>
+<tr>
+<td>Isolation valves</td>
+<td>$80.00</td>
+</tr>
+<tr>
+<td>Gas line extension</td>
+<td>$100.00</td>
+</tr>
+<tr>
+<td>Condensate drain</td>
+<td>$50.00</td>
+</tr>
+<tr>
+<td>Electrical</td>
+<td>$40.00</td>
+</tr>
+<tr>
+<td><strong>Subtotal (+30%)</strong></td>
+<td><strong>~$2,600</strong></td>
+</tr>
+</tbody>
+</table>
 <p><strong>Tiempo:</strong> 10.0 hr | <strong>Tu Costo:</strong> $1,850 + $2,600 = $4,450<br />
 <strong>Precio Cliente:</strong> <strong>$7,000 - $9,000</strong> | <strong>Margen:</strong> ~$2,550 - $4,550<br />
 <strong>Fuente Precio Unit:</strong> Active Plumbing $2,295, wholesale ~$1,400 (verified Dec 2024)</p>
@@ -2461,38 +2724,31 @@ Sin garantía en producto. Disclaimer obligatorio en factura.</p>
 
 <footer class="footer">
     <p>💰 ORION Price Book Pro | AC Water Heaters & Plumbing</p>
-    <p>Bay Area, CA | Última actualización: Diciembre 2024</p>
-    <p>Lead: $185/hr | Helper: $95/hr | Markup: 30% | Margen: 40-50%</p>
+    <p>Bay Area, CA | Diciembre 2024 | Lead: $185/hr | Markup: 30% | Margen: 40-50%</p>
 </footer>
 
 <script>
 function searchContent() {
     const query = document.getElementById('search').value.toLowerCase();
     const content = document.getElementById('content');
-    const elements = content.querySelectorAll('h1, h2, h3, p, td, li');
+    const elements = content.querySelectorAll('h1, h2, h3, p, td, li, th');
     
-    // Reset all
     elements.forEach(el => el.style.backgroundColor = '');
     
     if (query.length < 2) return;
     
-    // Highlight matches
     let found = 0;
     elements.forEach(el => {
         if (el.textContent.toLowerCase().includes(query)) {
             el.style.backgroundColor = '#fef3c7';
-            if (found === 0) {
-                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
+            if (found === 0) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
             found++;
         }
     });
 }
 
-// Add anchors to headings
-document.querySelectorAll('h1, h2').forEach((h, i) => {
-    const id = h.textContent.toLowerCase().replace(/[^a-z0-9]+/g, '-').substring(0, 30);
-    h.id = id || 'section-' + i;
+document.querySelectorAll('h1, h2, h3').forEach((h, i) => {
+    h.id = h.textContent.toLowerCase().replace(/[^a-z0-9]+/g, '-').substring(0, 40) || 'section-' + i;
 });
 </script>
 
