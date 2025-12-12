@@ -1356,13 +1356,23 @@
             recognition.onend = () => stopListening();
         }
 
+        // Multilingual greetings
+        const xonaGreetings = {
+            en: "Greetings, human. I am XONA. How may I optimize your reality today?",
+            es: "Hola, soy XONA. ¿En qué puedo ayudarte hoy?",
+            zh: "你好，我是XONA。今天我能为您做什么？",
+            tl: "Kumusta! Ako si XONA. Paano kita matutulungan?",
+            vi: "Xin chào! Tôi là XONA. Tôi có thể giúp gì cho bạn?"
+        };
+
         function toggleXonaChat() {
             xonaChatOpen = !xonaChatOpen;
             document.getElementById('xonaChat').classList.toggle('active', xonaChatOpen);
             if (xonaChatOpen) {
                 document.getElementById('xonaInput').focus();
-                // Speak greeting on open
-                speakXona("Greetings. I am XONA. How may I help you?");
+                // Speak greeting in current language
+                const greeting = xonaGreetings[currentLang] || xonaGreetings.en;
+                speakXona(greeting);
             }
         }
 
