@@ -139,16 +139,64 @@
                 font-size: 2rem;
             }
         }
+
+        /* HERO VIDEO */
+        .hero {
+            min-height: 50vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            z-index: 0;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.95) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 60px 20px;
+        }
     </style>
 </head>
 
 <body>
+    <!-- HERO WITH EYE VIDEO -->
+    <section class="hero">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="images/cv_intro_eye_1765352245536.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <a href="orion-bots.html" class="back">← Back to Packages</a>
+            <h1>RETAIL PACKAGE</h1>
+            <div class="price">$1,197 <span style="font-size:1rem;color:#888;">/setup + $97/mo</span></div>
+            <p class="desc">Complete AI automation solution for retail stores, boutiques, and shops. Increase sales,
+                reduce staff workload, and provide 24/7 customer support.</p>
+        </div>
+    </section>
+
     <div class="container">
-        <a href="orion-bots.html" class="back">← Back to Packages</a>
-        <h1>RETAIL PACKAGE</h1>
-        <div class="price">$1,197 <span style="font-size:1rem;color:#888;">/setup + $97/mo</span></div>
-        <p class="desc">Complete AI automation solution for retail stores, boutiques, and shops. Increase sales, reduce
-            staff workload, and provide 24/7 customer support.</p>
 
         <div class="grid">
             <div class="box">

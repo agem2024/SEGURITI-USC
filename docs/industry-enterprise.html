@@ -149,17 +149,65 @@
                 font-size: 2rem;
             }
         }
+
+        /* HERO VIDEO */
+        .hero {
+            min-height: 50vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            z-index: 0;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.95) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 60px 20px;
+        }
     </style>
 </head>
 
 <body>
+    <!-- HERO WITH EYE VIDEO -->
+    <section class="hero">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="images/cv_intro_eye_1765352245536.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <a href="orion-bots.html" class="back">← Back to Packages</a>
+            <span class="badge">PREMIUM</span>
+            <h1>ENTERPRISE PACKAGE</h1>
+            <div class="price">$4,997+ <span style="font-size:1rem;color:#888;">/custom quote</span></div>
+            <p class="desc">Full-scale AI transformation for medium to large businesses. Custom development, dedicated
+                support, multi-location deployment, and advanced integrations.</p>
+        </div>
+    </section>
+
     <div class="container">
-        <a href="orion-bots.html" class="back">← Back to Packages</a>
-        <span class="badge">PREMIUM</span>
-        <h1>ENTERPRISE PACKAGE</h1>
-        <div class="price">$4,997+ <span style="font-size:1rem;color:#888;">/custom quote</span></div>
-        <p class="desc">Full-scale AI transformation for medium to large businesses. Custom development, dedicated
-            support, multi-location deployment, and advanced integrations.</p>
 
         <div class="grid">
             <div class="box">
