@@ -31,15 +31,41 @@
         }
 
         .hero {
-            min-height: 60vh;
+            min-height: 50vh;
             display: flex;
             align-items: center;
-            padding: 100px 5%;
-            background: linear-gradient(135deg, rgba(255, 193, 7, 0.1), rgba(0, 0, 0, 0.9));
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            z-index: 0;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.95) 100%);
+            z-index: 1;
         }
 
         .hero-content {
+            position: relative;
+            z-index: 2;
             max-width: 800px;
+            padding: 60px 20px;
         }
 
         .badge {
@@ -159,10 +185,13 @@
 </head>
 
 <body>
-    <a href="orion-bots.html" class="back">← Back to ORION Tech</a>
-
     <section class="hero">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="images/cv_intro_eye_1765352245536.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
         <div class="hero-content">
+            <a href="orion-bots.html" class="back">← Back to ORION Tech</a>
             <span class="badge">🍺 INDUSTRY SOLUTION</span>
             <h1>LIQUOR STORE AUTOMATION</h1>
             <p>Product catalog on WhatsApp. Age verification, delivery orders, inventory alerts, promotions. Sell more
