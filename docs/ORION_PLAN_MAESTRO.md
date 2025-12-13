@@ -12,6 +12,7 @@
 2. [Análisis del Mercado Bay Area](#análisis-del-mercado)
 3. [Segmentos de Clientes](#segmentos-de-clientes)
 4. [Productos y Servicios](#productos-y-servicios)
+   - 4B. [Enterprise por Sectores](#enterprise-por-sectores)
 5. [Modelo de Negocio](#modelo-de-negocio)
 6. [Embudo de Marketing](#embudo-de-marketing)
 7. [Estrategia de Ventas](#estrategia-de-ventas)
@@ -203,6 +204,98 @@ Transformar negocios a través de WhatsApp bots, apps personalizadas y sistemas 
 - Conversaciones ilimitadas
 - Soporte dedicado
 - Desarrollo custom
+
+---
+
+## 4B - ENTERPRISE POR SECTORES
+
+### 🏗️ SECTOR: CONSTRUCCIÓN
+
+| Subsector | Precio Setup | Hosting/mes | Incluye |
+|-----------|-------------|-------------|---------|
+| **Plomería** | $4,997 | $149 | Bot estimados foto, scheduling, invoicing, review automation |
+| **Electricidad** | $4,997 | $149 | Quote generator, permit tracking, job scheduling |
+| **HVAC** | $5,497 | $179 | Diagnostic bot, maintenance reminders, emergency dispatch |
+| **General Contractor** | $6,997 | $199 | Multi-trade coordination, subcontractor portal, project tracking |
+| **Landscaping** | $3,997 | $129 | Seasonal scheduling, quote automation, recurring service bot |
+| **Roofing** | $4,997 | $149 | Weather-aware scheduling, photo estimate, financing integration |
+
+### 🍽️ SECTOR: FOOD SERVICE
+
+| Subsector | Precio Setup | Hosting/mes | Incluye |
+|-----------|-------------|-------------|---------|
+| **Restaurante Casual** | $2,997 | $99 | Menu bot, order taking, reservation, delivery tracking |
+| **Fast Food/QSR** | $3,997 | $129 | Drive-thru integration, loyalty program, bulk ordering |
+| **Food Truck** | $1,997 | $79 | Location updates, menu bot, event booking |
+| **Catering** | $3,997 | $129 | Event booking, quote generator, follow-up automation |
+| **Ghost Kitchen** | $4,997 | $149 | Multi-brand management, delivery platform sync |
+| **Bar/Nightclub** | $3,497 | $119 | Event promotion, VIP reservations, bottle service bot |
+
+### 🛍️ SECTOR: RETAIL
+
+| Subsector | Precio Setup | Hosting/mes | Incluye |
+|-----------|-------------|-------------|---------|
+| **Tienda Ropa** | $2,497 | $89 | Inventory check, size assistant, loyalty program |
+| **Joyería** | $3,997 | $129 | Appointment booking, custom order tracking, VIP alerts |
+| **Liquor Store** | $2,997 | $99 | Product search, delivery scheduling, age verification |
+| **Convenience Store** | $1,997 | $79 | Inventory alerts, order ahead, promo bot |
+| **Farmacia** | $4,997 | $149 | Refill reminders, health advice bot, prescription tracking |
+| **Electronics** | $3,497 | $119 | Product comparison, tech support bot, warranty tracking |
+
+### 💇 SECTOR: SERVICIOS PERSONALES
+
+| Subsector | Precio Setup | Hosting/mes | Incluye |
+|-----------|-------------|-------------|---------|
+| **Salón de Belleza** | $1,997 | $79 | Appointment booking, service menu, stylist selection |
+| **Barbería** | $1,497 | $69 | Walk-in queue, appointment system, loyalty |
+| **Spa** | $2,997 | $99 | Package booking, wellness reminders, VIP perks |
+| **Nail Salon** | $1,497 | $69 | Appointment + service catalog, reminder system |
+| **Gym/Fitness** | $3,997 | $129 | Class booking, membership bot, trainer scheduling |
+| **Yoga/Pilates** | $2,497 | $89 | Class scheduling, package tracking, instructor bot |
+
+### 🏥 SECTOR: SALUD
+
+| Subsector | Precio Setup | Hosting/mes | Incluye |
+|-----------|-------------|-------------|---------|
+| **Clínica Médica** | $6,997 | $199 | Appointment system, pre-visit forms, HIPAA compliance |
+| **Dental** | $5,997 | $179 | Scheduling, reminder system, treatment follow-up |
+| **Quiropráctico** | $3,997 | $129 | Appointment + wellness tips bot |
+| **Terapia/Counseling** | $3,997 | $129 | Secure scheduling, session reminders, wellness check-ins |
+| **Veterinaria** | $4,997 | $149 | Pet records, appointment, vaccine reminders |
+
+### 🏢 SECTOR: SERVICIOS PROFESIONALES
+
+| Subsector | Precio Setup | Hosting/mes | Incluye |
+|-----------|-------------|-------------|---------|
+| **Abogados** | $5,997 | $179 | Intake bot, appointment scheduling, case updates |
+| **Contadores/CPA** | $4,997 | $149 | Document collection bot, deadline reminders, appointment |
+| **Agentes Inmobiliarios** | $2,997 | $99 | Listing bot, showing scheduler, lead qualification |
+| **Agentes de Seguros** | $2,997 | $99 | Quote bot, policy reminders, claims intake |
+| **Consultoría** | $3,997 | $129 | Discovery call scheduler, proposal automation |
+
+### 🚗 SECTOR: AUTOMOTRIZ
+
+| Subsector | Precio Setup | Hosting/mes | Incluye |
+|-----------|-------------|-------------|---------|
+| **Mecánico/Taller** | $3,997 | $129 | Appointment, diagnostic intake, estimate bot |
+| **Dealer Auto** | $6,997 | $199 | Inventory bot, test drive scheduler, financing pre-qual |
+| **Car Wash** | $1,997 | $79 | Booking system, membership bot, promo automation |
+| **Auto Detailing** | $2,497 | $89 | Service packages, mobile scheduling |
+| **Towing Service** | $3,497 | $119 | Emergency dispatch, location tracking, ETA updates |
+
+---
+
+### RESUMEN DE PRECIOS ENTERPRISE POR SECTOR
+
+| Sector | Rango Precio | Hosting Promedio |
+|--------|-------------|------------------|
+| Construcción | $3,997 - $6,997 | $129 - $199/mes |
+| Food Service | $1,997 - $4,997 | $79 - $149/mes |
+| Retail | $1,997 - $4,997 | $79 - $149/mes |
+| Servicios Personales | $1,497 - $3,997 | $69 - $129/mes |
+| Salud | $3,997 - $6,997 | $129 - $199/mes |
+| Servicios Profesionales | $2,997 - $5,997 | $99 - $179/mes |
+| Automotriz | $1,997 - $6,997 | $79 - $199/mes |
 
 ---
 
