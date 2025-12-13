@@ -147,6 +147,18 @@
                 box-shadow: 0 5px 35px rgba(0, 243, 255, 0.7);
             }
         }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
     </style>
 </head>
 
@@ -230,20 +242,18 @@
                     <div style="font-weight: 700; font-size: 0.9rem;">JARVIS</div>
                 </div>
             </a>
-
-            <a href="cv_pro.html" class="btn btn-secondary btn-portfolio" data-i18n="portfolio">VIEW FULL PORTFOLIO</a>
-            <a href="https://agem2024.github.io/SEGURITI-USC/orion-bots.html" class="btn btn-orion"
-                data-i18n="orion_tech"
-                style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;">
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <video src="images/orion_logo_2090.mp4" autoplay muted loop playsinline
-                        style="width: 40px; height: 40px; filter: drop-shadow(0 0 10px #00f3ff);"></video>
-                    <span style="font-size: 0.9rem; font-weight: 700; letter-spacing: 2px;">ORION TECH</span>
-                </div>
-                <span style="font-size: 0.65rem; opacity: 0.8; letter-spacing: 1px;">Agente en tu Bolsillo</span>
-            </a>
         </div>
     </div>
+
+    <!-- Alex CEO Floating Badge (left side) -->
+    <a href="cv_pro.html"
+        style="position: fixed; bottom: 30px; left: 30px; width: 60px; height: 60px; background: linear-gradient(135deg, #25D366, #00f3ff); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 0 25px rgba(37,211,102,0.6); z-index: 1000; transition: transform 0.3s, box-shadow 0.3s; animation: float 3s ease-in-out infinite;"
+        onmouseover="this.style.transform='scale(1.15)'; this.style.boxShadow='0 0 40px rgba(37,211,102,0.8)';"
+        onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 0 25px rgba(37,211,102,0.6)';"
+        title="View Full CV">
+        <video src="images/alex_ceo.mp4" autoplay muted loop playsinline
+            style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;"></video>
+    </a>
 
     <script>
         const translations = {
