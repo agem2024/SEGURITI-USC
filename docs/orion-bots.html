@@ -8,7 +8,7 @@
     <meta name="description"
         content="Futuristic AI automation: WhatsApp bots, custom apps, enterprise solutions. Bay Area's top AI agency.">
     <link
-        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600;700&family=Rajdhani:wght@600;700&family=Exo+2:wght@700;800;900&family=Audiowide&display=swap"
         rel="stylesheet">
     <style>
         :root {
@@ -129,16 +129,93 @@
         }
 
         .logo {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: var(--neon-blue);
+            display: flex;
+            align-items: center;
+            gap: 15px;
             text-decoration: none;
-            letter-spacing: 3px;
         }
 
-        .logo span {
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            filter: drop-shadow(0 0 10px var(--neon-blue));
+            transition: 0.3s;
+        }
+
+        .logo:hover .logo-img {
+            filter: drop-shadow(0 0 20px var(--neon-blue));
+            transform: scale(1.05);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        /* TIPOGRAFÍA OPCIÓN 1: ORBITRON (Actual - Futurista Geométrico) */
+        .logo-name-orbitron {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--neon-blue);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        /* TIPOGRAFÍA OPCIÓN 2: RAJDHANI (Futurista Angular) */
+        .logo-name-rajdhani {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--neon-blue);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        /* TIPOGRAFÍA OPCIÓN 3: EXO 2 (Futurista Tech) */
+        .logo-name-exo {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--neon-blue);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* TIPOGRAFÍA OPCIÓN 4: AUDIOWIDE (Retro-Futurista) */
+        .logo-name-audiowide {
+            font-family: 'Audiowide', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: var(--neon-blue);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Estilo actual del nombre (usando Orbitron por default) */
+        .logo-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--neon-blue);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        .logo-name span {
             color: var(--neon-green);
+        }
+
+        .logo-slogan {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 500;
+            color: var(--gray);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            opacity: 0.8;
         }
 
         .nav-contact {
@@ -738,7 +815,13 @@
 
     <!-- NAV -->
     <nav>
-        <a href="#" class="logo">ORION<span>_</span>TECH</a>
+        <a href="#" class="logo">
+            <img src="images/orion_logo_2090.png" alt="ORION Tech Logo" class="logo-img">
+            <div class="logo-text">
+                <div class="logo-name">ORION<span>_</span>TECH</div>
+                <div class="logo-slogan">Agente en tu Bolsillo</div>
+            </div>
+        </a>
     </nav>
 
     <!-- HERO -->
