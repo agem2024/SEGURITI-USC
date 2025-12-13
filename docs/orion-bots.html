@@ -141,23 +141,33 @@
             color: var(--neon-green);
         }
 
-        .nav-cta {
-            background: linear-gradient(135deg, var(--neon-green), var(--neon-blue));
-            color: black;
-            padding: 12px 30px;
-            border-radius: 0;
+        .nav-contact {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(37, 211, 102, 0.1);
+            border: 1px solid var(--neon-green);
+            color: var(--neon-green);
+            padding: 8px 16px;
+            border-radius: 25px;
             text-decoration: none;
-            font-weight: 700;
-            clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
-            transition: 0.3s;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
         }
 
-        .nav-cta:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px var(--neon-green);
+        .nav-contact:hover {
+            background: var(--neon-green);
+            color: black;
+            box-shadow: 0 0 20px var(--neon-green);
+            transform: translateY(-2px);
+        }
+
+        .nav-contact::before {
+            content: '📱';
+            font-size: 1rem;
         }
 
         /* HERO */
@@ -726,8 +736,6 @@
     <!-- NAV -->
     <nav>
         <a href="#" class="logo">ORION<span>_</span>TECH</a>
-        <a href="https://wa.me/16692342444?text=Hi!%20I%20want%20a%20quote" class="nav-cta"
-            data-i18n="nav_cta">Initialize Contact</a>
     </nav>
 
     <!-- HERO -->
