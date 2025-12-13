@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RETAIL Package | ORION Tech</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --neon-green: #25D366;
+            --neon-blue: #00f3ff;
+            --neon-purple: #bc13fe;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .back {
+            color: var(--neon-blue);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+
+        .back:hover {
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .price {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            color: var(--neon-green);
+            margin-bottom: 30px;
+        }
+
+        .desc {
+            color: #888;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        .features {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .features li {
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1rem;
+            color: #ccc;
+        }
+
+        .features li::before {
+            content: '✓ ';
+            color: var(--neon-green);
+            font-weight: bold;
+        }
+
+        .cta {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--neon-green), var(--neon-blue));
+            color: #000;
+            padding: 18px 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+
+        .cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px var(--neon-green);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .box {
+            background: rgba(0, 243, 255, 0.05);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            padding: 25px;
+        }
+
+        .box h3 {
+            font-family: 'Orbitron';
+            font-size: 1rem;
+            color: var(--neon-blue);
+            margin-bottom: 10px;
+        }
+
+        .box p {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="orion-bots.html" class="back">← Back to Packages</a>
+        <h1>RETAIL PACKAGE</h1>
+        <div class="price">$1,197 <span style="font-size:1rem;color:#888;">/setup + $97/mo</span></div>
+        <p class="desc">Complete AI automation solution for retail stores, boutiques, and shops. Increase sales, reduce
+            staff workload, and provide 24/7 customer support.</p>
+
+        <div class="grid">
+            <div class="box">
+                <h3>🛒 INVENTORY BOT</h3>
+                <p>Real-time stock tracking, auto-reorder alerts, product search for customers</p>
+            </div>
+            <div class="box">
+                <h3>💬 CUSTOMER SERVICE</h3>
+                <p>24/7 WhatsApp support, product Q&A, store hours, return policies</p>
+            </div>
+            <div class="box">
+                <h3>🏷️ PROMOTIONS</h3>
+                <p>Automated sale announcements, loyalty program, personalized offers</p>
+            </div>
+            <div class="box">
+                <h3>📊 ANALYTICS</h3>
+                <p>Sales trends, popular products, customer behavior insights</p>
+            </div>
+        </div>
+
+        <ul class="features">
+            <li>WhatsApp Business AI Bot (unlimited messages)</li>
+            <li>Product catalog integration</li>
+            <li>Payment link generation</li>
+            <li>Customer loyalty tracking</li>
+            <li>Bilingual support (EN/ES)</li>
+            <li>Weekly performance reports</li>
+            <li>30-day free adjustments</li>
+            <li>Priority WhatsApp support</li>
+        </ul>
+
+        <a href="https://wa.me/16692342444?text=I%20want%20the%20RETAIL%20package" class="cta">💬 GET STARTED</a>
+    </div>
+</body>
+
+</html>
