@@ -126,6 +126,27 @@
             border-color: #00f3ff;
             color: #00f3ff;
         }
+
+        .btn-orion {
+            background: linear-gradient(135deg, #bc13fe, #00f3ff);
+            color: #fff;
+            border: none;
+            box-shadow: 0 5px 25px rgba(188, 19, 254, 0.5);
+            font-size: 0.9rem;
+            animation: pulse-glow 2s infinite;
+        }
+
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                box-shadow: 0 5px 25px rgba(188, 19, 254, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 5px 35px rgba(0, 243, 255, 0.7);
+            }
+        }
     </style>
 </head>
 
@@ -156,6 +177,10 @@
             <a href="tel:6692342444" class="btn btn-secondary" data-i18n="call">CALL: (669) 234-2444</a>
             <a href="https://wa.me/16692342444" class="btn btn-secondary">WHATSAPP</a>
             <a href="cv_pro.html" class="btn btn-secondary btn-portfolio" data-i18n="portfolio">VIEW FULL PORTFOLIO</a>
+            <a href="https://agem2024.github.io/SEGURITI-USC/orion-bots.html" class="btn btn-orion"
+                data-i18n="orion_tech">
+                🤖 ORION TECH - AI AUTOMATION
+            </a>
         </div>
     </div>
 
