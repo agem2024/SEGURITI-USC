@@ -4,15 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ENTERPRISE Package | ORION Tech</title>
+    <title>Enterprise Solutions | ORION Tech</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap"
         rel="stylesheet">
     <style>
         :root {
-            --neon-green: #25D366;
-            --neon-blue: #00f3ff;
-            --neon-purple: #bc13fe;
+            --bg-main: #05070B;
+            --bg-card: #0B1220;
+            --border: #1F2937;
+            --accent-green: #22C55E;
+            --text-white: #E5E7EB;
+            --text-gray: #9CA3AF;
+            /* Sub-sector accents (kept subtle) */
+            --accent-orange: #F97316;
+            --accent-purple: #A855F7;
+            --accent-blue: #3B82F6;
         }
 
         * {
@@ -23,142 +30,33 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #000;
-            color: #fff;
-            min-height: 100vh;
+            font-weight: 500;
+            background: var(--bg-main);
+            color: var(--text-white);
+            line-height: 1.6;
         }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 80px 20px;
-        }
-
-        .back {
-            color: var(--neon-blue);
-            text-decoration: none;
-            font-size: 0.9rem;
-            display: inline-block;
-            margin-bottom: 30px;
-        }
-
-        .back:hover {
-            text-shadow: 0 0 10px var(--neon-blue);
-        }
-
-        h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3rem;
-            margin-bottom: 10px;
-            background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .price {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
-            color: var(--neon-purple);
-            margin-bottom: 30px;
-        }
-
-        .desc {
-            color: #888;
-            font-size: 1.1rem;
-            line-height: 1.7;
-            margin-bottom: 40px;
-        }
-
-        .features {
-            list-style: none;
-            margin-bottom: 40px;
-        }
-
-        .features li {
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 1rem;
-            color: #ccc;
-        }
-
-        .features li::before {
-            content: '⭐ ';
-            color: var(--neon-purple);
-        }
-
-        .cta {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--neon-purple), var(--neon-blue));
-            color: #fff;
-            padding: 18px 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: 0.3s;
-        }
-
-        .cta:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 40px var(--neon-purple);
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .box {
-            background: rgba(188, 19, 254, 0.05);
-            border: 1px solid rgba(188, 19, 254, 0.3);
-            padding: 25px;
-        }
-
-        .box h3 {
-            font-family: 'Orbitron';
-            font-size: 1rem;
-            color: var(--neon-purple);
-            margin-bottom: 10px;
-        }
-
-        .box p {
-            color: #888;
-            font-size: 0.9rem;
-        }
-
+        h1,
+        h2,
+        h3,
+        .price,
+        .sector-title,
         .badge {
-            display: inline-block;
-            background: var(--neon-purple);
-            color: #fff;
-            padding: 5px 15px;
-            font-size: 0.8rem;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.02em;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
         }
 
-        @media (max-width: 600px) {
-            .grid {
-                grid-template-columns: 1fr;
-            }
-
-            h1 {
-                font-size: 2rem;
-            }
-        }
-
-        /* HERO VIDEO */
         .hero {
             min-height: 50vh;
-            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
+            position: relative;
             overflow: hidden;
+            border-bottom: 1px solid var(--border);
         }
 
         .hero-video {
@@ -168,7 +66,8 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.4;
+            opacity: 0.3;
+            filter: grayscale(100%);
             z-index: 0;
         }
 
@@ -178,184 +77,394 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.95) 100%);
+            background: linear-gradient(180deg, rgba(5, 7, 11, 0.7) 0%, rgba(5, 7, 11, 0.95) 100%);
             z-index: 1;
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
+            max-width: 900px;
             padding: 60px 20px;
+        }
+
+        .badge {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid var(--accent-green);
+            padding: 6px 16px;
+            font-size: 0.75rem;
+            color: var(--accent-green);
+            margin-bottom: 24px;
+            display: inline-block;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--text-white);
+        }
+
+        /* Tactical Price Display */
+        .hero-price {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            color: var(--accent-green);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .hero-price span {
+            font-size: 1rem;
+            color: var(--text-gray);
+            font-family: 'Inter', sans-serif;
+            text-transform: none;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            margin-bottom: 32px;
+            max-width: 700px;
+            margin-left: auto;
+            auto;
+            margin-right: auto;
+        }
+
+        .section {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* CORE GRID */
+        .core-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 80px;
+        }
+
+        .core-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 25px;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        .core-card:hover {
+            border-color: var(--accent-green);
+        }
+
+        .core-card h3 {
+            color: var(--text-white);
+            margin-bottom: 10px;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .core-card p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* SECTOR BLOCKS */
+        h2 {
+            font-size: 1.5rem;
+            margin: 60px 0 30px;
+            color: var(--text-white);
+            border-left: 3px solid var(--accent-green);
+            padding-left: 15px;
+        }
+
+        .sector-block {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            margin-bottom: 30px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+        }
+
+        @media (max-width: 800px) {
+            .sector-block {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .sector-media {
+            position: relative;
+            background: #000;
+            min-height: 250px;
+        }
+
+        .sector-media video,
+        .sector-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            opacity: 0.6;
+            transition: 0.4s;
+        }
+
+        .sector-block:hover .sector-media video,
+        .sector-block:hover .sector-media img {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        .sector-content {
+            padding: 30px;
+        }
+
+        .sector-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+        }
+
+        .sector-title {
+            font-size: 1.2rem;
+            color: var(--text-white);
+        }
+
+        .sector-desc {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+
+        /* SUB-PRICING GRID */
+        .sub-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .sub-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            padding: 15px;
+            border-radius: 4px;
+        }
+
+        .sub-name {
+            font-weight: 700;
+            color: var(--text-white);
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .sub-price {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--accent-green);
+            font-size: 1.1rem;
+        }
+
+        .sub-monthly {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+        }
+
+        /* CTA */
+        .cta-section {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .btn {
+            background: var(--accent-green);
+            color: #000;
+            padding: 16px 40px;
+            text-decoration: none;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            display: inline-block;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+        }
+
+        .back {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: 0.3s;
+            z-index: 10;
+        }
+
+        .back:hover {
+            color: var(--accent-green);
         }
     </style>
 </head>
 
 <body>
-    <!-- HERO WITH EYE VIDEO -->
     <section class="hero">
         <video class="hero-video" autoplay muted loop playsinline>
             <source src="images/cv_intro_eye_1765352245536.mp4" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <a href="orion-bots.html" class="back">← Back to Packages</a>
-            <span class="badge">PREMIUM</span>
-            <h1>ENTERPRISE PACKAGE</h1>
-            <div class="price">$4,997+ <span style="font-size:1rem;color:#888;">/custom quote</span></div>
-            <p class="desc">Full-scale AI transformation for medium to large businesses. Custom development, dedicated
-                support, multi-location deployment, and advanced integrations.</p>
+            <a href="orion-bots.html" class="back">← RETURN TO BASE</a>
+            <span class="badge">SYSTEM: ENTERPRISE</span>
+            <h1>INDUSTRIAL SCALING</h1>
+            <div class="hero-price">$4,997+ <span>custom configuration</span></div>
+            <p>Full-scale AI transformation for high-volume operations. Dedicated development, multi-site operational
+                control, and custom neural integration.</p>
+            <a href="https://wa.me/16692342444?text=Initialize%20Enterprise%20Unit" class="btn">INITIATE
+                CONSULTATION</a>
         </div>
     </section>
 
-    <div class="container">
-
-        <div class="grid">
-            <div class="box">
-                <h3>🏢 MULTI-LOCATION</h3>
-                <p>Deploy across all branches with unified dashboard and reporting</p>
+    <div class="section">
+        <div class="core-grid">
+            <div class="core-card">
+                <h3>🏢 Multi-Node Deployment</h3>
+                <p>Unified command dashboard for multi-location operations. Synchronized data across all branches.</p>
             </div>
-            <div class="box">
-                <h3>🔗 CUSTOM INTEGRATIONS</h3>
-                <p>ERP, POS, CRM, accounting software - we connect everything</p>
+            <div class="core-card">
+                <h3>🔗 Custom API Bridge</h3>
+                <p>Direct integration with ERP, POS, CRM, and accounting mainframes. Seamless data flow.</p>
             </div>
-            <div class="box">
-                <h3>🧠 ADVANCED AI</h3>
-                <p>GPT-4, Gemini Pro, Claude - custom trained on your business data</p>
+            <div class="core-card">
+                <h3>🧠 Neural Training</h3>
+                <p>LLM (GPT-4) fine-tuned on proprietary business data and SOPs. Context-aware autonomy.</p>
             </div>
-            <div class="box">
-                <h3>👥 DEDICATED TEAM</h3>
-                <p>Project manager, developers, 24/7 priority support line</p>
+            <div class="core-card">
+                <h3>👥 Dedicated Ops Team</h3>
+                <p>Assigned project commander and dev squad. 24/7 priority support channel.</p>
             </div>
         </div>
 
-        <!-- INDUSTRIAL SECTOR DETAILED -->
-        <h2
-            style="font-family:'Orbitron';color:var(--neon-purple);text-align:center;margin:50px 0 30px;font-size:1.5rem;">
-            // MERCADO INDUSTRIAL - SUBDIVISIONES</h2>
-        <p style="text-align:center;color:#888;margin-bottom:40px;">Clasificación basada en SCIAN y CIIU. Mercado B2B
-            con enfoque en ROI y contratos a largo plazo.</p>
+        <h2>// INDUSTRIAL DIVISIONS</h2>
 
-        <!-- EXTRACTIVO -->
-        <div
-            style="background:rgba(255,107,53,0.08);border:1px solid rgba(255,107,53,0.4);padding:30px;margin-bottom:25px;border-radius:10px;">
-            <div style="display:flex;gap:25px;align-items:flex-start;flex-wrap:wrap;">
-                <video src="images/industrial_extractive.mp4" autoplay loop muted playsinline
-                    style="width:180px;height:180px;object-fit:cover;border-radius:10px;box-shadow:0 0 20px rgba(255,107,53,0.4);"
-                    alt="Extractivo">
-                    <div style="flex:1;min-width:280px;">
-                        <h3 style="font-family:'Orbitron';color:#ff6b35;margin-bottom:15px;font-size:1.3rem;">⛏️ SECTOR
-                            EXTRACTIVO</h3>
-                        <p style="color:#aaa;margin-bottom:15px;">Minería, petróleo, gas y agricultura industrial.
-                            Automatización de operaciones de campo.</p>
-                        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;">
-                            <div style="background:rgba(0,0,0,0.4);padding:12px;border-radius:5px;"><strong
-                                    style="color:#ff6b35;">Mining</strong><br><span style="color:#00f3ff;">$7,997</span>
-                                +
-                                $249/mo</div>
-                            <div style="background:rgba(0,0,0,0.4);padding:12px;border-radius:5px;"><strong
-                                    style="color:#ff6b35;">Oil & Gas</strong><br><span
-                                    style="color:#00f3ff;">$8,997</span>
-                                + $299/mo</div>
-                            <div style="background:rgba(0,0,0,0.4);padding:12px;border-radius:5px;"><strong
-                                    style="color:#ff6b35;">Agriculture</strong><br><span
-                                    style="color:#00f3ff;">$5,997</span> + $179/mo</div>
-                        </div>
+        <!-- EXTRACTIVE START -->
+        <div class="sector-block">
+            <div class="sector-media">
+                <video src="images/industrial_extractive.mp4" autoplay loop muted playsinline></video>
+            </div>
+            <div class="sector-content">
+                <div class="sector-header">
+                    <div class="sector-title">EXTRACTIVE SECTOR</div>
+                    <div class="uc-icon">⛏️</div>
+                </div>
+                <p class="sector-desc">Mining, Oil & Gas, Industrial Agriculture. Field operations automation and
+                    telemetry.</p>
+                <div class="sub-grid">
+                    <div class="sub-card">
+                        <span class="sub-name">Mining Ops</span>
+                        <div class="sub-price">$7,997</div>
+                        <div class="sub-monthly">+$249/mo</div>
                     </div>
-            </div>
-        </div>
-
-        <!-- MANUFACTURERO -->
-        <div
-            style="background:rgba(188,19,254,0.08);border:1px solid rgba(188,19,254,0.4);padding:30px;margin-bottom:25px;border-radius:10px;">
-            <div style="display:flex;gap:25px;align-items:flex-start;flex-wrap:wrap;">
-                <img src="images/industrial_manufacturing.png"
-                    style="width:180px;height:180px;object-fit:cover;border-radius:10px;box-shadow:0 0 20px rgba(188,19,254,0.4);"
-                    alt="Manufacturero">
-                <div style="flex:1;min-width:280px;">
-                    <h3 style="font-family:'Orbitron';color:#bc13fe;margin-bottom:15px;font-size:1.3rem;">🏭 SECTOR
-                        MANUFACTURERO</h3>
-                    <p style="color:#aaa;margin-bottom:15px;">Fábricas que transforman materias primas. Automatización
-                        de línea de producción y control de calidad.</p>
-                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;">
-                        <div style="background:rgba(0,0,0,0.4);padding:12px;border-radius:5px;"><strong
-                                style="color:#bc13fe;">Automotive</strong><br><span style="color:#00f3ff;">$9,997</span>
-                            + $349/mo</div>
-                        <div style="background:rgba(0,0,0,0.4);padding:12px;border-radius:5px;"><strong
-                                style="color:#bc13fe;">Food Processing</strong><br><span
-                                style="color:#00f3ff;">$6,997</span> + $199/mo</div>
-                        <div style="background:rgba(0,0,0,0.4);padding:12px;border-radius:5px;"><strong
-                                style="color:#bc13fe;">Textiles</strong><br><span style="color:#00f3ff;">$5,997</span> +
-                            $179/mo</div>
-                        <div style="background:rgba(0,0,0,0.4);padding:12px;border-radius:5px;"><strong
-                                style="color:#bc13fe;">Electronics</strong><br><span
-                                style="color:#00f3ff;">$7,997</span> + $249/mo</div>
+                    <div class="sub-card">
+                        <span class="sub-name">Oil & Gas</span>
+                        <div class="sub-price">$8,997</div>
+                        <div class="sub-monthly">+$299/mo</div>
+                    </div>
+                    <div class="sub-card">
+                        <span class="sub-name">Agriculture</span>
+                        <div class="sub-price">$5,997</div>
+                        <div class="sub-monthly">+$179/mo</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- CONSTRUCCIÓN Y MANTENIMIENTO -->
-        <div
-            style="background:rgba(0,243,255,0.08);border:1px solid rgba(0,243,255,0.4);padding:30px;margin-bottom:25px;border-radius:10px;">
-            <div style="display:flex;gap:25px;align-items:flex-start;flex-wrap:wrap;">
-                <video src="images/industrial_construction.mp4" autoplay loop muted playsinline
-                    style="width:180px;height:180px;object-fit:cover;border-radius:10px;box-shadow:0 0 20px rgba(0,243,255,0.4);"
-                    alt="Construcción">
-                    <div style="flex:1;min-width:280px;">
-                        <h3 style="font-family:'Orbitron';color:#00f3ff;margin-bottom:15px;font-size:1.3rem;">🏗️
-                            CONSTRUCCIÓN Y MANTENIMIENTO</h3>
-                        <p style="color:#aaa;margin-bottom:15px;">Obras industriales, comerciales y residenciales.
-                            Reparación de equipo y maquinaria.</p>
-                        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;">
-                            <div style="background:rgba(0,0,0,0.4);padding:12px;border-radius:5px;"><strong
-                                    style="color:#00f3ff;">Plumbing</strong><br><span
-                                    style="color:#25D366;">$4,997</span> +
-                                $149/mo</div>
-                            <div style="background:rgba(0,0,0,0.4);padding:12px;border-radius:5px;"><strong
-                                    style="color:#00f3ff;">Electrical</strong><br><span
-                                    style="color:#25D366;">$4,997</span>
-                                + $149/mo</div>
-                            <div style="background:rgba(0,0,0,0.4);padding:12px;border-radius:5px;"><strong
-                                    style="color:#00f3ff;">HVAC</strong><br><span style="color:#25D366;">$5,497</span> +
-                                $179/mo</div>
-                            <div style="background:rgba(0,0,0,0.4);padding:12px;border-radius:5px;"><strong
-                                    style="color:#00f3ff;">General Contractor</strong><br><span
-                                    style="color:#25D366;">$6,997</span> + $199/mo</div>
-                            <div style="background:rgba(0,0,0,0.4);padding:12px;border-radius:5px;"><strong
-                                    style="color:#00f3ff;">Landscaping</strong><br><span
-                                    style="color:#25D366;">$3,997</span> + $129/mo</div>
-                            <div style="background:rgba(0,0,0,0.4);padding:12px;border-radius:5px;"><strong
-                                    style="color:#00f3ff;">Roofing</strong><br><span
-                                    style="color:#25D366;">$4,997</span> +
-                                $149/mo</div>
-                        </div>
+        <!-- MANUFACTURING START -->
+        <div class="sector-block">
+            <div class="sector-media">
+                <img src="images/industrial_manufacturing.png" alt="Manufacturing">
+            </div>
+            <div class="sector-content">
+                <div class="sector-header">
+                    <div class="sector-title">MANUFACTURING SECTOR</div>
+                    <div class="uc-icon">🏭</div>
+                </div>
+                <p class="sector-desc">Production line automation, QC protocols, and supply chain logistics.</p>
+                <div class="sub-grid">
+                    <div class="sub-card">
+                        <span class="sub-name">Automotive</span>
+                        <div class="sub-price">$9,997</div>
+                        <div class="sub-monthly">+$349/mo</div>
                     </div>
+                    <div class="sub-card">
+                        <span class="sub-name">Food Process</span>
+                        <div class="sub-price">$6,997</div>
+                        <div class="sub-monthly">+$199/mo</div>
+                    </div>
+                    <div class="sub-card">
+                        <span class="sub-name">Electronics</span>
+                        <div class="sub-price">$7,997</div>
+                        <div class="sub-monthly">+$249/mo</div>
+                    </div>
+                    <div class="sub-card">
+                        <span class="sub-name">Textiles</span>
+                        <div class="sub-price">$5,997</div>
+                        <div class="sub-monthly">+$179/mo</div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- OTROS MERCADOS LINK -->
-        <div
-            style="background:rgba(100,100,100,0.1);border:1px solid rgba(255,255,255,0.2);padding:25px;margin-bottom:30px;border-radius:10px;text-align:center;">
-            <h3 style="font-family:'Orbitron';color:#fff;margin-bottom:15px;">📁 OTROS SECTORES</h3>
-            <p style="color:#888;margin-bottom:20px;">Consulta precios específicos para cada industria:</p>
-            <div style="display:flex;gap:15px;justify-content:center;flex-wrap:wrap;">
-                <a href="industry-restaurant.html"
-                    style="color:#25D366;text-decoration:none;padding:10px 20px;border:1px solid #25D366;border-radius:5px;">🍽️
-                    Restaurant</a>
-                <a href="industry-salon.html"
-                    style="color:#ff6ec7;text-decoration:none;padding:10px 20px;border:1px solid #ff6ec7;border-radius:5px;">💇
-                    Salon</a>
-                <a href="industry-liquor.html"
-                    style="color:#00f3ff;text-decoration:none;padding:10px 20px;border:1px solid #00f3ff;border-radius:5px;">🍺
-                    Liquor</a>
-                <a href="industry-retail.html"
-                    style="color:#bc13fe;text-decoration:none;padding:10px 20px;border:1px solid #bc13fe;border-radius:5px;">🛍️
-                    Retail</a>
+        <!-- CONSTRUCTION START -->
+        <div class="sector-block">
+            <div class="sector-media">
+                <video src="images/industrial_construction.mp4" autoplay loop muted playsinline></video>
+            </div>
+            <div class="sector-content">
+                <div class="sector-header">
+                    <div class="sector-title">CONSTRUCTION & TRADES</div>
+                    <div class="uc-icon">🏗️</div>
+                </div>
+                <p class="sector-desc">Industrial, commercial, and residential projects. Equipment tracking and
+                    dispatch.</p>
+                <div class="sub-grid">
+                    <div class="sub-card">
+                        <span class="sub-name">General Contractor</span>
+                        <div class="sub-price">$6,997</div>
+                        <div class="sub-monthly">+$199/mo</div>
+                    </div>
+                    <div class="sub-card">
+                        <span class="sub-name">HVAC Systems</span>
+                        <div class="sub-price">$5,497</div>
+                        <div class="sub-monthly">+$179/mo</div>
+                    </div>
+                    <div class="sub-card">
+                        <span class="sub-name">Electrical/Plumbing</span>
+                        <div class="sub-price">$4,997</div>
+                        <div class="sub-monthly">+$149/mo</div>
+                    </div>
+                    <div class="sub-card">
+                        <span class="sub-name">Roofing</span>
+                        <div class="sub-price">$4,997</div>
+                        <div class="sub-monthly">+$149/mo</div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <a href="https://wa.me/16692342444?text=I%20need%20an%20ENTERPRISE%20solution" class="cta">💬 SCHEDULE
-            CONSULTATION</a>
+        <div class="cta-section">
+            <a href="https://wa.me/16692342444?text=Initialize%20Enterprise%20Unit" class="btn">INITIATE
+                CONSULTATION</a>
+        </div>
     </div>
 </body>
 
