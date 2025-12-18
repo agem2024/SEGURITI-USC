@@ -117,84 +117,39 @@
 
         .use-cases {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
         }
 
         .use-case {
-            background: rgba(188, 19, 254, 0.1);
+            background: rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(188, 19, 254, 0.3);
-            padding: 20px;
-            text-align: center;
-            font-size: 0.9rem;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: 0.3s;
+            position: relative;
         }
 
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+        .use-case:hover {
+            border-color: var(--neon-purple);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(188, 19, 254, 0.2);
         }
 
-        .feature {
-            background: rgba(188, 19, 254, 0.05);
-            border: 1px solid rgba(188, 19, 254, 0.2);
-            padding: 25px;
+        .uc-video {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(188, 19, 254, 0.3);
         }
 
-        .feature h3 {
-            color: var(--neon-green);
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-
-        .feature p {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        .pricing {
-            background: rgba(188, 19, 254, 0.05);
-            border: 1px solid var(--neon-purple);
-            padding: 40px;
-            margin: 40px 0;
-            text-align: center;
-        }
-
-        .price {
+        .uc-title {
+            padding: 15px;
             font-family: 'Orbitron', sans-serif;
-            font-size: 4rem;
-            color: var(--neon-purple);
-        }
-
-        .price-desc {
-            color: var(--gray);
-            margin: 10px 0 30px;
-        }
-
-        .includes {
-            text-align: left;
-            max-width: 400px;
-            margin: 0 auto 30px;
-        }
-
-        .includes li {
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            list-style: none;
-        }
-
-        .includes li::before {
-            content: '✓';
-            color: var(--neon-green);
-            margin-right: 10px;
-        }
-
-        .back {
-            display: inline-block;
-            margin: 30px 5%;
-            color: var(--neon-blue);
-            text-decoration: none;
+            font-size: 1rem;
+            color: #fff;
+            background: rgba(188, 19, 254, 0.1);
         }
     </style>
 </head>
@@ -219,14 +174,46 @@
     <section class="section">
         <h2>// PERFECT FOR</h2>
         <div class="use-cases">
-            <div class="use-case">🎨 Content Creators</div>
-            <div class="use-case">💼 Coaches & Consultants</div>
-            <div class="use-case">🏠 Real Estate Agents</div>
-            <div class="use-case">🛡️ Insurance Agents</div>
-            <div class="use-case">📸 Photographers</div>
-            <div class="use-case">🎵 DJs & Musicians</div>
-            <div class="use-case">💪 Personal Trainers</div>
-            <div class="use-case">✨ Freelancers</div>
+            <div class="use-case">
+                <video src="images/capability_whatsapp_bot_1765573180451.mp4" class="uc-video" autoplay loop muted
+                    playsinline></video>
+                <div class="uc-title">🎨 Content Creators</div>
+            </div>
+            <div class="use-case">
+                <video src="images/contractor_reviews_1765588943726.mp4" class="uc-video" autoplay loop muted
+                    playsinline></video>
+                <div class="uc-title">💼 Coaches & Consultants</div>
+            </div>
+            <div class="use-case">
+                <video src="images/capability_mobile_systems_1765573258112.mp4" class="uc-video" autoplay loop muted
+                    playsinline></video>
+                <div class="uc-title">🏠 Real Estate Agents</div>
+            </div>
+            <div class="use-case">
+                <video src="images/capability_automation_1765573271380.mp4" class="uc-video" autoplay loop muted
+                    playsinline></video>
+                <div class="uc-title">🛡️ Insurance Agents</div>
+            </div>
+            <div class="use-case">
+                <video src="images/cv_intro_eye_1765352245536.mp4" class="uc-video" autoplay loop muted
+                    playsinline></video>
+                <div class="uc-title">📸 Photographers</div>
+            </div>
+            <div class="use-case">
+                <video src="images/capability_247_ops_1765573285705.mp4" class="uc-video" autoplay loop muted
+                    playsinline></video>
+                <div class="uc-title">🎵 DJs & Musicians</div>
+            </div>
+            <div class="use-case">
+                <video src="images/capability_ai_brain_1765573234371.mp4" class="uc-video" autoplay loop muted
+                    playsinline></video>
+                <div class="uc-title">💪 Personal Trainers</div>
+            </div>
+            <div class="use-case">
+                <video src="images/contractor_invoicing_1765588929180.mp4" class="uc-video" autoplay loop muted
+                    playsinline></video>
+                <div class="uc-title">✨ Freelancers</div>
+            </div>
         </div>
 
         <h2>// WHAT YOUR BOT DOES</h2>
