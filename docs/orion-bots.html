@@ -2,8 +2,32 @@
 <html lang="en">
 
 <head>
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-PNTF4GM9');</script>
+    <!-- End Google Tag Manager -->
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Analytics 4 (GA4) - ORION Tech -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GY61W7K2B6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-GY61W7K2B6', {
+            'page_title': 'ORION Tech - AI Automation & Custom Apps',
+            'send_page_view': true
+        });
+    </script>
+
     <title>ORION Tech | AI Automation & Custom Apps | Bay Area</title>
     <meta name="description"
         content="Futuristic AI automation: WhatsApp bots, custom apps, enterprise solutions. Bay Area's top AI agency.">
@@ -198,10 +222,26 @@
             font-family: 'Orbitron', sans-serif;
             font-size: 1.5rem;
             font-weight: 900;
-            color: var(--neon-blue);
+            color: #39ff14;
             letter-spacing: 3px;
             text-transform: uppercase;
-            text-shadow: 0 0 10px var(--neon-blue);
+            text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 40px #39ff14;
+            animation: purpleFlash 2s infinite;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        @keyframes purpleFlash {
+
+            0%,
+            100% {
+                background: transparent;
+            }
+
+            50% {
+                background: rgba(188, 19, 254, 0.4);
+                box-shadow: 0 0 30px rgba(188, 19, 254, 0.6);
+            }
         }
 
         .logo-name span {
@@ -801,16 +841,25 @@
 </head>
 
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PNTF4GM9" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <div class="cyber-grid"></div>
 
     <!-- LANGUAGE SELECTOR -->
     <div class="lang-selector">
-        <button class="lang-btn active" onclick="setLang('en')">EN</button>
-        <button class="lang-btn" onclick="setLang('es')">ES</button>
-        <button class="lang-btn" onclick="setLang('zh')">中文</button>
-        <button class="lang-btn" onclick="setLang('tl')">TL</button>
-        <button class="lang-btn" onclick="setLang('vi')">VI</button>
+        <button class="lang-btn active"
+            onclick="setLang('en'); gtag('event', 'language_change', {'event_category': 'Language', 'event_label': 'English'});">EN</button>
+        <button class="lang-btn"
+            onclick="setLang('es'); gtag('event', 'language_change', {'event_category': 'Language', 'event_label': 'Spanish'});">ES</button>
+        <button class="lang-btn"
+            onclick="setLang('zh'); gtag('event', 'language_change', {'event_category': 'Language', 'event_label': 'Chinese'});">中文</button>
+        <button class="lang-btn"
+            onclick="setLang('tl'); gtag('event', 'language_change', {'event_category': 'Language', 'event_label': 'Tagalog'});">TL</button>
+        <button class="lang-btn"
+            onclick="setLang('vi'); gtag('event', 'language_change', {'event_category': 'Language', 'event_label': 'Vietnamese'});">VI</button>
     </div>
 
     <!-- NAV -->
@@ -819,7 +868,7 @@
             <video src="images/orion_logo_2090.mp4" autoplay muted loop playsinline class="logo-img"></video>
             <div class="logo-text">
                 <div class="logo-name">ORION<span>_</span>TECH</div>
-                <div class="logo-slogan">Agente en tu Bolsillo</div>
+                <div class="logo-slogan">Un Agente en tu Bolsillo</div>
             </div>
         </a>
     </nav>
@@ -836,10 +885,13 @@
             <p data-i18n="hero_desc">AI Agents, custom apps, AI integration. We build autonomous systems that work
                 24/7 so you don't have to.</p>
             <div class="hero-buttons">
-                <a href="https://wa.me/16692342444?text=Deploy%20AI%20for%20my%20business" class="btn-primary">
+                <a href="https://wa.me/16692342444?text=Deploy%20AI%20for%20my%20business" class="btn-primary"
+                    onclick="gtag('event', 'click', {'event_category': 'CTA', 'event_label': 'Hero Deploy Now - WhatsApp', 'value': 1});">
                     💬 <span data-i18n="hero_cta1">DEPLOY NOW</span>
                 </a>
-                <a href="#demos" class="btn-secondary" data-i18n="hero_cta2">VIEW DEMOS</a>
+                <a href="#demos" class="btn-secondary" data-i18n="hero_cta2"
+                    onclick="gtag('event', 'click', {'event_category': 'Navigation', 'event_label': 'Hero View Demos'});">VIEW
+                    DEMOS</a>
             </div>
             <div class="stats">
                 <div class="stat">
@@ -866,8 +918,9 @@
         </div>
         <div class="services-grid">
             <div class="service-card" onclick="toggleDetails(this)">
-                <img src="images/capability_whatsapp_bot_1765573180451.png" class="service-icon-img" alt="AI Agents"
-                    style="width:80px;height:80px;object-fit:cover;border-radius:10px;margin-bottom:20px;box-shadow:0 0 20px rgba(0,243,255,0.5);">
+                <video src="images/capability_whatsapp_bot_1765573180451.mp4" autoplay loop muted playsinline
+                    class="service-icon-img"
+                    style="width:80px;height:80px;object-fit:cover;border-radius:10px;margin-bottom:20px;box-shadow:0 0 20px rgba(0,243,255,0.5);"></video>
                 <h3 data-i18n="svc1_title">CUSTOM AI AGENTS</h3>
                 <p data-i18n="svc1_desc">Autonomous bots for WhatsApp, Telegram, Instagram. 24/7 customer service.</p>
                 <button class="more-btn">+ MORE</button>
@@ -883,9 +936,9 @@
                 </div>
             </div>
             <div class="service-card" onclick="toggleDetails(this)">
-                <img src="images/capability_mobile_systems_1765573258112.png" class="service-icon-img"
-                    alt="Mobile Systems"
-                    style="width:80px;height:80px;object-fit:cover;border-radius:10px;margin-bottom:20px;box-shadow:0 0 20px rgba(0,243,255,0.5);">
+                <video src="images/capability_mobile_systems_1765573258112.mp4" autoplay loop muted playsinline
+                    class="service-icon-img"
+                    style="width:80px;height:80px;object-fit:cover;border-radius:10px;margin-bottom:20px;box-shadow:0 0 20px rgba(0,243,255,0.5);"></video>
                 <h3 data-i18n="svc2_title">MOBILE SYSTEMS</h3>
                 <p data-i18n="svc2_desc">Native iOS & Android apps. Push notifications, offline mode.</p>
                 <button class="more-btn">+ MORE</button>
@@ -901,8 +954,9 @@
                 </div>
             </div>
             <div class="service-card" onclick="toggleDetails(this)">
-                <img src="images/capability_web_platform_1765573194485.png" class="service-icon-img" alt="Web Platform"
-                    style="width:80px;height:80px;object-fit:cover;border-radius:10px;margin-bottom:20px;box-shadow:0 0 20px rgba(0,243,255,0.5);">
+                <video src="images/capability_web_platform_1765573194485.mp4" autoplay loop muted playsinline
+                    class="service-icon-img"
+                    style="width:80px;height:80px;object-fit:cover;border-radius:10px;margin-bottom:20px;box-shadow:0 0 20px rgba(0,243,255,0.5);"></video>
                 <h3 data-i18n="svc3_title">WEB PLATFORMS</h3>
                 <p data-i18n="svc3_desc">E-commerce, dashboards, admin panels, booking engines.</p>
                 <button class="more-btn">+ MORE</button>
@@ -918,8 +972,9 @@
                 </div>
             </div>
             <div class="service-card" onclick="toggleDetails(this)">
-                <img src="images/capability_ai_brain_1765573234371.png" class="service-icon-img" alt="AI Integration"
-                    style="width:80px;height:80px;object-fit:cover;border-radius:10px;margin-bottom:20px;box-shadow:0 0 20px rgba(188,19,254,0.5);">
+                <video src="images/capability_ai_brain_1765573234371.mp4" autoplay loop muted playsinline
+                    class="service-icon-img"
+                    style="width:80px;height:80px;object-fit:cover;border-radius:10px;margin-bottom:20px;box-shadow:0 0 20px rgba(188,19,254,0.5);"></video>
                 <h3 data-i18n="svc4_title">AI INTEGRATION</h3>
                 <p data-i18n="svc4_desc">GPT-4, Gemini, Claude. Vision, voice, text processing.</p>
                 <button class="more-btn">+ MORE</button>
@@ -935,8 +990,9 @@
                 </div>
             </div>
             <div class="service-card" onclick="toggleDetails(this)">
-                <img src="images/capability_automation_1765573271380.png" class="service-icon-img" alt="Automation"
-                    style="width:80px;height:80px;object-fit:cover;border-radius:10px;margin-bottom:20px;box-shadow:0 0 20px rgba(0,243,255,0.5);">
+                <video src="images/capability_automation_1765573271380.mp4" autoplay loop muted playsinline
+                    class="service-icon-img"
+                    style="width:80px;height:80px;object-fit:cover;border-radius:10px;margin-bottom:20px;box-shadow:0 0 20px rgba(0,243,255,0.5);"></video>
                 <h3 data-i18n="svc5_title">WORKFLOW AUTOMATION</h3>
                 <p data-i18n="svc5_desc">Invoicing, inventory, CRM sync, email flows.</p>
                 <button class="more-btn">+ MORE</button>
@@ -952,8 +1008,9 @@
                 </div>
             </div>
             <div class="service-card" onclick="toggleDetails(this)">
-                <img src="images/capability_247_ops_1765573285705.png" class="service-icon-img" alt="24/7 Operations"
-                    style="width:80px;height:80px;object-fit:cover;border-radius:10px;margin-bottom:20px;box-shadow:0 0 20px rgba(37,211,102,0.5);">
+                <video src="images/capability_247_ops_1765573285705.mp4" autoplay loop muted playsinline
+                    class="service-icon-img"
+                    style="width:80px;height:80px;object-fit:cover;border-radius:10px;margin-bottom:20px;box-shadow:0 0 20px rgba(37,211,102,0.5);"></video>
                 <h3 data-i18n="svc6_title">24/7 OPERATIONS</h3>
                 <p data-i18n="svc6_desc">Monitoring, updates, security, backups.</p>
                 <button class="more-btn">+ MORE</button>
@@ -987,7 +1044,9 @@
                     <h3 data-i18n="demo1_title">Restaurant Order Bot</h3>
                     <p data-i18n="demo1_desc">Automated menu, order taking, payment links, delivery tracking. 40% more
                         orders.</p>
-                    <a href="https://wa.me/16692342444?text=Demo%20restaurant%20bot" class="demo-link">→ Request
+                    <a href="https://wa.me/16692342444?text=Demo%20restaurant%20bot" class="demo-link"
+                        onclick="gtag('event', 'demo_request', {'event_category': 'Demos', 'event_label': 'Restaurant Bot'});">→
+                        Request
                         Demo</a>
                 </div>
             </div>
@@ -1000,7 +1059,9 @@
                     <h3 data-i18n="demo2_title">Service Booking App</h3>
                     <p data-i18n="demo2_desc">Appointment scheduling, reminders, loyalty points, payment processing. For
                         salons, clinics, contractors.</p>
-                    <a href="https://wa.me/16692342444?text=Demo%20booking%20app" class="demo-link">→ Request Demo</a>
+                    <a href="https://wa.me/16692342444?text=Demo%20booking%20app" class="demo-link"
+                        onclick="gtag('event', 'demo_request', {'event_category': 'Demos', 'event_label': 'Booking App'});">→
+                        Request Demo</a>
                 </div>
             </div>
             <div class="demo-card">
@@ -1012,7 +1073,9 @@
                     <h3 data-i18n="demo3_title">Quote Estimator Bot</h3>
                     <p data-i18n="demo3_desc">Customer sends photo → AI analyzes → Instant quote generated. For
                         plumbers, contractors, repair services.</p>
-                    <a href="https://wa.me/16692342444?text=Demo%20quote%20bot" class="demo-link">→ Request Demo</a>
+                    <a href="https://wa.me/16692342444?text=Demo%20quote%20bot" class="demo-link"
+                        onclick="gtag('event', 'demo_request', {'event_category': 'Demos', 'event_label': 'Quote Bot'});">→
+                        Request Demo</a>
                 </div>
             </div>
         </div>
@@ -1094,6 +1157,7 @@
             style="display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; max-width: 900px; margin: 0 auto;">
             <!-- CEO / Alex -->
             <a href="https://wa.me/16692342444"
+                onclick="gtag('event', 'contact', {'event_category': 'AI Assistants', 'event_label': 'Alex Espinosa WhatsApp', 'value': 1});"
                 style="background: rgba(37,211,102,0.1); border: 1px solid #25D366; padding: 25px 35px; text-decoration: none; text-align: center; min-width: 200px; border-radius: 15px; transition: all 0.3s;">
                 <video src="images/alex_ceo.mp4" autoplay muted loop playsinline
                     style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid #25D366; box-shadow: 0 0 20px rgba(37,211,102,0.5);"></video>
@@ -1104,6 +1168,7 @@
             </a>
             <!-- XONA - Voice Assistant -->
             <a href="tel:+18312221072"
+                onclick="gtag('event', 'contact', {'event_category': 'AI Assistants', 'event_label': 'XONA Voice Call', 'value': 1});"
                 style="background: rgba(0,243,255,0.1); border: 1px solid var(--neon-blue); padding: 25px 35px; text-decoration: none; text-align: center; min-width: 200px; border-radius: 15px; transition: all 0.3s;">
                 <video src="images/xona_bot.mp4" autoplay muted loop playsinline
                     style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid var(--neon-blue); box-shadow: 0 0 20px rgba(0,243,255,0.5);"></video>
@@ -1115,6 +1180,7 @@
             </a>
             <!-- ORION Bot - Telegram -->
             <a href="https://t.me/oriontechbot"
+                onclick="gtag('event', 'contact', {'event_category': 'AI Assistants', 'event_label': 'ORION Telegram Bot', 'value': 1});"
                 style="background: rgba(0,136,204,0.1); border: 1px solid #0088cc; padding: 25px 35px; text-decoration: none; text-align: center; min-width: 200px; border-radius: 15px; transition: all 0.3s;">
                 <video src="images/orion_bot.mp4" autoplay muted loop playsinline
                     style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid #0088cc; box-shadow: 0 0 20px rgba(0,136,204,0.5);"></video>
@@ -1124,6 +1190,7 @@
             </a>
             <!-- JARVIS - Email -->
             <a href="mailto:jarvis@acwater-ai.com"
+                onclick="gtag('event', 'contact', {'event_category': 'AI Assistants', 'event_label': 'JARVIS Email', 'value': 1});"
                 style="background: rgba(188,19,254,0.1); border: 1px solid var(--neon-purple); padding: 25px 35px; text-decoration: none; text-align: center; min-width: 200px; border-radius: 15px; transition: all 0.3s;">
                 <video src="images/jarvis_email.mp4" autoplay muted loop playsinline
                     style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid var(--neon-purple); box-shadow: 0 0 20px rgba(188,19,254,0.5);"></video>
@@ -1150,7 +1217,18 @@
     </footer>
 
     <!-- WhatsApp Float -->
-    <a href="https://wa.me/16692342444" class="whatsapp-float">💬</a>
+    <a href="https://wa.me/16692342444" class="whatsapp-float"
+        onclick="gtag('event', 'contact', {'event_category': 'WhatsApp Float', 'event_label': 'Floating Button Click', 'value': 1});">
+        <img src="images/capability_whatsapp_bot_1765573180451.png" alt="WhatsApp"
+            style="width: 100%; height: 100%; object-fit: cover;">
+    </a>
+
+    <!-- Telegram Float -->
+    <a href="https://t.me/oriontechbot" class="telegram-float"
+        onclick="gtag('event', 'contact', {'event_category': 'Telegram Float', 'event_label': 'Floating Button Click', 'value': 1});">
+        <video src="images/orion_bot.mp4" autoplay muted loop playsinline
+            style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;"></video>
+    </a>
 
     <script>
         const translations = {
@@ -1258,14 +1336,24 @@
         let currentLang = 'en';
         function setLang(lang) {
             currentLang = lang;
+            // Remove active from all buttons
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelector(`[onclick="setLang('${lang}')"]`).classList.add('active');
+            // Find button that contains setLang for this language
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes("setLang('" + lang + "')")) {
+                    btn.classList.add('active');
+                }
+            });
+            // Update all translatable elements
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (translations[lang] && translations[lang][key]) el.textContent = translations[lang][key];
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
             });
             document.documentElement.lang = lang;
             localStorage.setItem('orion_lang', lang);
+            console.log('Language set to:', lang);
         }
         document.addEventListener('DOMContentLoaded', () => setLang(localStorage.getItem('orion_lang') || 'en'));
     </script>
@@ -1290,11 +1378,7 @@
             border: 2px solid rgba(255, 255, 255, 0.3);
         }
 
-        .xona-chat-btn::before {
-            content: '⚡';
-            font-size: 2rem;
-            animation: xonaGlow 1.5s infinite alternate;
-        }
+        /* .xona-chat-btn::before removed to allow video content */
 
         @keyframes xonaPulse {
 
@@ -1351,6 +1435,41 @@
             to {
                 opacity: 1;
                 transform: translateY(0);
+            }
+        }
+
+        .telegram-float {
+            position: fixed;
+            bottom: 25px;
+            right: 100px;
+            width: 60px;
+            height: 60px;
+            background: #0088cc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            text-decoration: none;
+            z-index: 999;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(0, 136, 204, 0.6);
+            transition: 0.3s;
+            animation: floatPulseBlue 2s infinite;
+        }
+
+        .telegram-float:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes floatPulseBlue {
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(0, 136, 204, 0.6);
+            }
+
+            50% {
+                box-shadow: 0 0 40px rgba(0, 136, 204, 0.9);
             }
         }
 
@@ -1528,7 +1647,10 @@
     </style>
 
     <!-- Chat Button -->
-    <div class="xona-chat-btn" onclick="toggleXonaChat()"></div>
+    <div class="xona-chat-btn" onclick="toggleXonaChat()">
+        <video src="images/xona_bot.mp4" autoplay muted loop playsinline
+            style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;"></video>
+    </div>
 
     <!-- Chat Window -->
     <div class="xona-chat-container" id="xonaChat">
@@ -1647,9 +1769,10 @@
         }
 
         // Multilingual greetings - ORION Tech Professional
+        // Note: In Spanish, "XONA" is pronounced "CHONA" - written phonetically for TTS
         const xonaGreetings = {
             en: "Hello! I'm XONA, your ORION Tech assistant. How can I help automate your business today?",
-            es: "¡Hola! Soy XONA, tu asistente de ORION Tech. ¿Cómo puedo ayudarte a automatizar tu negocio?",
+            es: "¡Hola! Soy CHONA, tu asistente de ORION Tech. ¿Cómo puedo ayudarte a automatizar tu negocio?",
             zh: "您好！我是XONA，ORION Tech的AI助手。今天我能为您的业务自动化做什么？",
             tl: "Kumusta! Ako si XONA ng ORION Tech. Paano ko makakatulong sa iyong negosyo?",
             vi: "Xin chào! Tôi là XONA từ ORION Tech. Tôi có thể giúp gì cho doanh nghiệp của bạn?"

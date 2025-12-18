@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CUSTOM LUXURY | ORION V6</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00f5ff;
+            --secondary: #a855f7;
+            --accent: #ec4899;
+            --bg: #030712;
+            --surface: rgba(17, 24, 39, 0.95);
+            --border: rgba(0, 245, 255, 0.2);
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: white;
+            padding-bottom: 60px;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(3, 7, 18, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 2px solid var(--border);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .breadcrumb a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary);
+        }
+
+        .hero {
+            height: 50vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-top: 60px;
+        }
+
+        .hero-video {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.4);
+            z-index: -1;
+        }
+
+        .hero-watermark {
+            position: absolute;
+            width: 60%;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 2rem 4rem;
+        }
+
+        .service-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .service-header {
+            padding: 2rem;
+            background: linear-gradient(90deg, rgba(0, 245, 255, 0.05), transparent);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .service-thumb {
+            width: 180px;
+            height: 100px;
+            border-radius: 8px;
+            border: 2px solid var(--border);
+            object-fit: cover;
+            box-shadow: 0 0 15px rgba(0, 245, 255, 0.2);
+        }
+
+        .service-info h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .pkg-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .pkg-card.good {
+            border-top: 4px solid var(--warning);
+        }
+
+        .pkg-card.better {
+            border-top: 4px solid var(--primary);
+        }
+
+        .pkg-card.best {
+            border-top: 4px solid var(--secondary);
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), transparent);
+        }
+
+        .pkg-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin: 1rem 0;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .pkg-price span {
+            font-size: 1rem;
+            margin-top: 8px;
+            margin-right: 4px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .tech-toggle {
+            width: 100%;
+            padding: 10px;
+            background: #111;
+            border: none;
+            border-top: 1px solid var(--border);
+            color: var(--secondary);
+            font-family: 'Orbitron', monospace;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .tech-toggle:hover {
+            background: var(--secondary);
+            color: black;
+        }
+
+        .tech-panel {
+            display: none;
+            padding: 2rem;
+            background: #0f1115;
+            border-top: 1px solid var(--border);
+        }
+
+        .tech-panel.active {
+            display: block;
+        }
+
+        .finance-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Inter', monospace;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        .finance-table td {
+            padding: 0.8rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .page-counter {
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-family: 'Orbitron';
+            font-size: 0.8rem;
+            z-index: 100;
+            box-shadow: 0 0 15px rgba(0, 245, 255, 0.2);
+        }
+
+        .floating-logo {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 70px;
+            height: 70px;
+            background: rgba(3, 7, 18, 0.9);
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.4);
+            z-index: 9999;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="breadcrumb"><a href="pricebook-index.html">← MENÚ PRINCIPAL</a></div>
+        <div style="font-family:'Orbitron'; color:white;">ORION V6 // <span style="color:var(--primary);">CG</span>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <video class="hero-video" autoplay loop muted playsinline>
+            <source src="images/industry_salon_1765429859260.mp4" type="video/mp4">
+        </video>
+        <video class="hero-watermark" autoplay loop muted playsinline>
+            <source src="images/orion_logo_2090.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content" style="text-align:center; z-index:1;">
+            <h1 style="font-family:'Orbitron'; font-size:3.5rem; text-transform:uppercase; text-shadow:0 0 20px black;">
+                CUSTOM LUXURY</h1>
+            <div style="color:var(--secondary); font-family:'Orbitron'; margin-top:1rem;">10 ACTIVIDADES CERTIFICADAS
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+
+        <div class="service-card" id="srv-0">
+            <div class="service-header">
+                <img class="service-thumb" src="images/smart_leak_sensor_2090.png">
+                <div class="service-info">
+                    <div style="color:var(--secondary); font-family:'Orbitron'; font-weight:bold;">AP-002</div>
+                    <h2>Dishwasher Installation (Monitor)</h2>
+                    <p style="color:rgba(255,255,255,0.6); max-width:600px; margin-bottom:1rem;">Instalación completa de
+                        unidad provista por cliente. Verificación de nivel y fugas.</p>
+                    <div style="display:flex; gap:1rem; font-size:0.9rem;">
+                        <span
+                            style="background:rgba(0,245,255,0.1); padding:0.2rem 0.6rem; border-radius:4px; color:var(--primary);">⏱
+                            1.5 hr</span>
+                        <span
+                            style="background:rgba(168,85,247,0.1); padding:0.2rem 0.6rem; border-radius:4px; color:var(--secondary);">📦
+                            Indirects Included</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="packages-grid">
+                <div class="pkg-card good">
+                    <div class="pkg-title">GOOD</div>
+                    <div class="pkg-price"><span>$</span>440</div>
+                    <ul style="list-style:none; opacity:0.8; font-size:0.8rem; line-height:1.6;">
+                        <li>• Estándar Code</li>
+                        <li>• Garantía Básica</li>
+                    </ul>
+                </div>
+                <div class="pkg-card better">
+                    <div class="pkg-title">BETTER</div>
+                    <div class="pkg-price"><span>$</span>551</div>
+                    <ul style="list-style:none; opacity:0.8; font-size:0.8rem; line-height:1.6;">
+                        <li>• Piezas Premium</li>
+                        <li>• Garantía 3 Años</li>
+                    </ul>
+                </div>
+                <div class="pkg-card best">
+                    <div class="pkg-title">BEST</div>
+                    <div class="pkg-price"><span>$</span>705</div>
+                    <ul style="list-style:none; opacity:0.8; font-size:0.8rem; line-height:1.6;">
+                        <li>• Platinum Service</li>
+                        <li>• Garantía de por Vida</li>
+                    </ul>
+                </div>
+            </div>
+
+            <button class="tech-toggle" onclick="toggleTech('tech-0')">▼ SUPER ESTIMATE BREAKDOWN ▼</button>
+            <div class="tech-panel" id="tech-0">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem;">
+                    <div>
+                        <h3 style="color:var(--primary); font-family:'Orbitron'; margin-bottom:1rem;">ALCANCE / SPECS
+                        </h3>
+                        <div style="color:rgba(255,255,255,0.7); margin-bottom:0.2rem;">✓ Connection check</div>
+                        <div style="color:rgba(255,255,255,0.7); margin-bottom:0.2rem;">✓ Leak test</div>
+                        <div style="color:rgba(255,255,255,0.7); margin-bottom:0.2rem;">✓ Leveling</div>
+                    </div>
+                    <div>
+                        <h3 style="color:var(--secondary); font-family:'Orbitron'; margin-bottom:1rem;">COST STRUCTURE
+                            (PROFIT PROTECTED)</h3>
+                        <table class="finance-table">
+                            <tr>
+                                <td>Labor (Lead @ $185/hr)</td>
+                                <td>$277</td>
+                            </tr>
+                            <tr>
+                                <td>Materials (+Waste/Indirect)</td>
+                                <td>$0</td>
+                            </tr>
+                            <tr>
+                                <td>Overhead (15% Ops)</td>
+                                <td>$43</td>
+                            </tr>
+                            <tr>
+                                <td style="color:var(--success); font-weight:bold;">NET PROFIT (25%)</td>
+                                <td style="color:var(--success); font-weight:bold;">$110</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-card" id="srv-1">
+            <div class="service-header">
+                <img class="service-thumb" src="images/smart_leak_sensor_2090.png">
+                <div class="service-info">
+                    <div style="color:var(--secondary); font-family:'Orbitron'; font-weight:bold;">AP-003</div>
+                    <h2>Complete Braided SS Supply Kit</h2>
+                    <p style="color:rgba(255,255,255,0.6); max-width:600px; margin-bottom:1rem;">Kit de suministro
+                        premium: Manguera de abasto, drenaje y cable de poder.</p>
+                    <div style="display:flex; gap:1rem; font-size:0.9rem;">
+                        <span
+                            style="background:rgba(0,245,255,0.1); padding:0.2rem 0.6rem; border-radius:4px; color:var(--primary);">⏱
+                            0.5 hr</span>
+                        <span
+                            style="background:rgba(168,85,247,0.1); padding:0.2rem 0.6rem; border-radius:4px; color:var(--secondary);">📦
+                            Indirects Included</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="packages-grid">
+                <div class="pkg-card good">
+                    <div class="pkg-title">GOOD</div>
+                    <div class="pkg-price"><span>$</span>243</div>
+                    <ul style="list-style:none; opacity:0.8; font-size:0.8rem; line-height:1.6;">
+                        <li>• Estándar Code</li>
+                        <li>• Garantía Básica</li>
+                    </ul>
+                </div>
+                <div class="pkg-card better">
+                    <div class="pkg-title">BETTER</div>
+                    <div class="pkg-price"><span>$</span>304</div>
+                    <ul style="list-style:none; opacity:0.8; font-size:0.8rem; line-height:1.6;">
+                        <li>• Piezas Premium</li>
+                        <li>• Garantía 3 Años</li>
+                    </ul>
+                </div>
+                <div class="pkg-card best">
+                    <div class="pkg-title">BEST</div>
+                    <div class="pkg-price"><span>$</span>389</div>
+                    <ul style="list-style:none; opacity:0.8; font-size:0.8rem; line-height:1.6;">
+                        <li>• Platinum Service</li>
+                        <li>• Garantía de por Vida</li>
+                    </ul>
+                </div>
+            </div>
+
+            <button class="tech-toggle" onclick="toggleTech('tech-1')">▼ SUPER ESTIMATE BREAKDOWN ▼</button>
+            <div class="tech-panel" id="tech-1">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem;">
+                    <div>
+                        <h3 style="color:var(--primary); font-family:'Orbitron'; margin-bottom:1rem;">ALCANCE / SPECS
+                        </h3>
+                        <div style="color:rgba(255,255,255,0.7); margin-bottom:0.2rem;">✓ SS Braided</div>
+                        <div style="color:rgba(255,255,255,0.7); margin-bottom:0.2rem;">✓ No-burst warranty</div>
+                        <div style="color:rgba(255,255,255,0.7); margin-bottom:0.2rem;">✓ Power cord 6'</div>
+                    </div>
+                    <div>
+                        <h3 style="color:var(--secondary); font-family:'Orbitron'; margin-bottom:1rem;">COST STRUCTURE
+                            (PROFIT PROTECTED)</h3>
+                        <table class="finance-table">
+                            <tr>
+                                <td>Labor (Lead @ $185/hr)</td>
+                                <td>$92</td>
+                            </tr>
+                            <tr>
+                                <td>Materials (+Waste/Indirect)</td>
+                                <td>$56</td>
+                            </tr>
+                            <tr>
+                                <td>Overhead (15% Ops)</td>
+                                <td>$23</td>
+                            </tr>
+                            <tr>
+                                <td style="color:var(--success); font-weight:bold;">NET PROFIT (25%)</td>
+                                <td style="color:var(--success); font-weight:bold;">$60</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-card" id="srv-2">
+            <div class="service-header">
+                <img class="service-thumb" src="images/water_filtration_diagram_1765474408515.png">
+                <div class="service-info">
+                    <div style="color:var(--secondary); font-family:'Orbitron'; font-weight:bold;">AP-018</div>
+                    <h2>Ice Maker Water Line Install</h2>
+                    <p style="color:rgba(255,255,255,0.6); max-width:600px; margin-bottom:1rem;">Instalación de línea de
+                        agua nueva para refrigerador (hasta 15 pies).</p>
+                    <div style="display:flex; gap:1rem; font-size:0.9rem;">
+                        <span
+                            style="background:rgba(0,245,255,0.1); padding:0.2rem 0.6rem; border-radius:4px; color:var(--primary);">⏱
+                            1.0 hr</span>
+                        <span
+                            style="background:rgba(168,85,247,0.1); padding:0.2rem 0.6rem; border-radius:4px; color:var(--secondary);">📦
+                            Indirects Included</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="packages-grid">
+                <div class="pkg-card good">
+                    <div class="pkg-title">GOOD</div>
+                    <div class="pkg-price"><span>$</span>375</div>
+                    <ul style="list-style:none; opacity:0.8; font-size:0.8rem; line-height:1.6;">
+                        <li>• Estándar Code</li>
+                        <li>• Garantía Básica</li>
+                    </ul>
+                </div>
+                <div class="pkg-card better">
+                    <div class="pkg-title">BETTER</div>
+                    <div class="pkg-price"><span>$</span>469</div>
+                    <ul style="list-style:none; opacity:0.8; font-size:0.8rem; line-height:1.6;">
+                        <li>• Piezas Premium</li>
+                        <li>• Garantía 3 Años</li>
+                    </ul>
+                </div>
+                <div class="pkg-card best">
+                    <div class="pkg-title">BEST</div>
+                    <div class="pkg-price"><span>$</span>601</div>
+                    <ul style="list-style:none; opacity:0.8; font-size:0.8rem; line-height:1.6;">
+                        <li>• Platinum Service</li>
+                        <li>• Garantía de por Vida</li>
+                    </ul>
+                </div>
+            </div>
+
+            <button class="tech-toggle" onclick="toggleTech('tech-2')">▼ SUPER ESTIMATE BREAKDOWN ▼</button>
+            <div class="tech-panel" id="tech-2">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem;">
+                    <div>
+                        <h3 style="color:var(--primary); font-family:'Orbitron'; margin-bottom:1rem;">ALCANCE / SPECS
+                        </h3>
+                        <div style="color:rgba(255,255,255,0.7); margin-bottom:0.2rem;">✓ Copper/PEX line</div>
+                        <div style="color:rgba(255,255,255,0.7); margin-bottom:0.2rem;">✓ Angle stop valve</div>
+                        <div style="color:rgba(255,255,255,0.7); margin-bottom:0.2rem;">✓ Leak guarantee</div>
+                    </div>
+                    <div>
+                        <h3 style="color:var(--secondary); font-family:'Orbitron'; margin-bottom:1rem;">COST STRUCTURE
+                            (PROFIT PROTECTED)</h3>
+                        <table class="finance-table">
+                            <tr>
+                                <td>Labor (Lead @ $185/hr)</td>
+                                <td>$185</td>
+                            </tr>
+                            <tr>
+                                <td>Materials (+Waste/Indirect)</td>
+                                <td>$50</td>
+                            </tr>
+                            <tr>
+                                <td>Overhead (15% Ops)</td>
+                                <td>$36</td>
+                            </tr>
+                            <tr>
+                                <td style="color:var(--success); font-weight:bold;">NET PROFIT (25%)</td>
+                                <td style="color:var(--success); font-weight:bold;">$93</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-card" id="srv-3">
+            <div class="service-header">
+                <img class="service-thumb" src="images/gas_seismic_valve_1765473792296.png">
+                <div class="service-info">
+                    <div style="color:var(--secondary); font-family:'Orbitron'; font-weight:bold;">AP-020</div>
+                    <h2>Emergency Water Shut-Off Valve</h2>
+                    <p style="color:rgba(255,255,255,0.6); max-width:600px; margin-bottom:1rem;">Válvula de cierre de
+                        emergencia 1/4 de vuelta para seguridad inmediata.</p>
+                    <div style="display:flex; gap:1rem; font-size:0.9rem;">
+                        <span
+                            style="background:rgba(0,245,255,0.1); padding:0.2rem 0.6rem; border-radius:4px; color:var(--primary);">⏱
+                            0.5 hr</span>
+                        <span
+                            style="background:rgba(168,85,247,0.1); padding:0.2rem 0.6rem; border-radius:4px; color:var(--secondary);">📦
+                            Indirects Included</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="packages-grid">
+                <div class="pkg-card good">
+                    <div class="pkg-title">GOOD</div>
+                    <div class="pkg-price"><span>$</span>185</div>
+                    <ul style="list-style:none; opacity:0.8; font-size:0.8rem; line-height:1.6;">
+                        <li>• Estándar Code</li>
+                        <li>• Garantía Básica</li>
+                    </ul>
+                </div>
+                <div class="pkg-card better">
+                    <div class="pkg-title">BETTER</div>
+                    <div class="pkg-price"><span>$</span>232</div>
+                    <ul style="list-style:none; opacity:0.8; font-size:0.8rem; line-height:1.6;">
+                        <li>• Piezas Premium</li>
+                        <li>• Garantía 3 Años</li>
+                    </ul>
+                </div>
+                <div class="pkg-card best">
+                    <div class="pkg-title">BEST</div>
+                    <div class="pkg-price"><span>$</span>297</div>
+                    <ul style="list-style:none; opacity:0.8; font-size:0.8rem; line-height:1.6;">
+                        <li>• Platinum Service</li>
+                        <li>• Garantía de por Vida</li>
+                    </ul>
+                </div>
+            </div>
+
+            <button class="tech-toggle" onclick="toggleTech('tech-3')">▼ SUPER ESTIMATE BREAKDOWN ▼</button>
+            <div class="tech-panel" id="tech-3">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem;">
+                    <div>
+                        <h3 style="color:var(--primary); font-family:'Orbitron'; margin-bottom:1rem;">ALCANCE / SPECS
+                        </h3>
+                        <div style="color:rgba(255,255,255,0.7); margin-bottom:0.2rem;">✓ 1/4 Turn Ball Valve</div>
+                        <div style="color:rgba(255,255,255,0.7); margin-bottom:0.2rem;">✓ Chrome finish</div>
+                        <div style="color:rgba(255,255,255,0.7); margin-bottom:0.2rem;">✓ Easy access</div>
+                    </div>
+                    <div>
+                        <h3 style="color:var(--secondary); font-family:'Orbitron'; margin-bottom:1rem;">COST STRUCTURE
+                            (PROFIT PROTECTED)</h3>
+                        <table class="finance-table">
+                            <tr>
+                                <td>Labor (Lead @ $185/hr)</td>
+                                <td>$92</td>
+                            </tr>
+                            <tr>
+                                <td>Materials (+Waste/Indirect)</td>
+                                <td>$18</td>
+                            </tr>
+                            <tr>
+                                <td>Overhead (15% Ops)</td>
+                                <td>$18</td>
+                            </tr>
+                            <tr>
+                                <td style="color:var(--success); font-weight:bold;">NET PROFIT (25%)</td>
+                                <td style="color:var(--success); font-weight:bold;">$46</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-card" id="srv-4">
+            <div class="service-header">
+                <video class="service-thumb" autoplay loop muted>
+                    <source src="images/capability_ai_brain_1765573234371.mp4" type="video/mp4">
+                </video>
+                <div class="service-info">
+                    <div style="color:var(--secondary); font-family:'Orbitron'; font-weight:bold;">AP-027</div>
+                    <h2>Washing Machine Installation</h2>
+                    <p style="color:rgba(255,255,255,0.6); max-width:600px; margin-bottom:1rem;">Desconexión de unidad
+                        vieja e instalación de nueva lavadora.</p>
+                    <div style="display:flex; gap:1rem; font-size:0.9rem;">
+                        <span
+                            style="background:rgba(0,245,255,0.1); padding:0.2rem 0.6rem; border-radius:4px; color:var(--primary);">⏱
+                            1.0 hr</span>
+                        <span
+                            style="background:rgba(168,85,247,0.1); padding:0.2rem 0.6rem; border-radius:4px; color:var(--secondary);">📦
+                            Indirects Included</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="packages-grid">
+                <div class="pkg-card good">
+                    <div class="pkg-title">GOOD</div>
+                    <div class="pkg-price"><span>$</span>299</div>
+                    <ul style="list-style:none; opacity:0.8; font-size:0.8rem; line-height:1.6;">
+                        <li>• Estándar Code</li>
+                        <li>• Garantía Básica</li>
+                    </ul>
+                </div>
+                <div class="pkg-card better">
+                    <div class="pkg-title">BETTER</div>
+                    <div class="pkg-price"><span>$</span>373</div>
+                    <ul style="list-style:none; opacity:0.8; font-size:0.8rem; line-height:1.6;">
+                        <li>• Piezas Premium</li>
+                        <li>• Garantía 3 Años</li>
+                    </ul>
+                </div>
+                <div class="pkg-card best">
+                    <div class="pkg-title">BEST</div>
+                    <div class="pkg-price"><span>$</span>478</div>
+                    <ul style="list-style:none; opacity:0.8; font-size:0.8rem; line-height:1.6;">
+                        <li>• Platinum Service</li>
+                        <li>• Garantía de por Vida</li>
+                    </ul>
+                </div>
+            </div>
+
+            <button class="tech-toggle" onclick="toggleTech('tech-4')">▼ SUPER ESTIMATE BREAKDOWN ▼</button>
+            <div class="tech-panel" id="tech-4">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem;">
+                    <div>
+                        <h3 style="color:var(--primary); font-family:'Orbitron'; margin-bottom:1rem;">ALCANCE / SPECS
+                        </h3>
+                        <div style="color:rgba(255,255,255,0.7); margin-bottom:0.2rem;">✓ Level unit</div>
+                        <div style="color:rgba(255,255,255,0.7); margin-bottom:0.2rem;">✓ Drain test</div>
+                        <div style="color:rgba(255,255,255,0.7); margin-bottom:0.2rem;">✓ Supply check</div>
+                    </div>
+                    <div>
+                        <h3 style="color:var(--secondary); font-family:'Orbitron'; margin-bottom:1rem;">COST STRUCTURE
+                            (PROFIT PROTECTED)</h3>
+                        <table class="finance-table">
+                            <tr>
+                                <td>Labor (Lead @ $185/hr)</td>
+                                <td>$185</td>
+                            </tr>
+                            <tr>
+                                <td>Materials (+Waste/Indirect)</td>
+                                <td>$0</td>
+                            </tr>
+                            <tr>
+                                <td>Overhead (15% Ops)</td>
+                                <td>$29</td>
+                            </tr>
+                            <tr>
+                                <td style="color:var(--success); font-weight:bold;">NET PROFIT (25%)</td>
+                                <td style="color:var(--success); font-weight:bold;">$74</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-card" id="srv-5">
+            <div class="service-header">
+                <img class="service-thumb" src="images/drain_cleaning_diagram_1765473755211.png">
+                <div class="service-info">
+                    <div style="color:var(--secondary); font-family:'Orbitron'; font-weight:bold;">AP-033</div>
+                    <h2>Washing Machine Drain Pan</h2>
+                    <p style="color:rgba(255,255,255,0.6); max-width:600px; margin-bottom:1rem;">Bandeja de drenaje y
+                        línea de PVC para prevenir daños por agua.</p>
+                    <div style="display:flex; gap:1rem; font-size:0.9rem;">
+                        <span
+                            style="background:rgba(0,245,255,0.1); padding:0.2rem 0.6rem; border-radius:4px; color:var(--primary);">⏱
+                            1.5 hr</span>
+                        <span
+                            style="background:rgba(168,85,247,0.1); padding:0.2rem 0.6rem; border-radius:4px; color:var(--secondary);">📦
+                            Indirects Included</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="packages-grid">
+                <div class="pkg-card good">
+                    <div class="pkg-title">GOOD</div>
+                    <div class="pkg-price"><span>$</span>527</div>
+                    <ul style="list-style:none; opacity:0.8; font-size:0.8rem; line-height:1.6;">
+                        <li>• Estándar Code</li>
+                        <li>• Garantía Básica</li>
+                    </ul>
+                </div>
+                <div class="pkg-card better">
+                    <div class="pkg-title">BETTER</div>
+                    <div class="pkg-price"><span>$</span>658</div>
+                    <ul style="list-style:none; opacity:0.8; font-size:0.8rem; line-height:1.6;">
+                        <li>• Piezas Premium</li>
+                        <li>• Garantía 3 Años</li>
+                    </ul>
+                </div>
+                <div class="pkg-card best">
+                    <div class="pkg-title">BEST</div>
+                    <div class="pkg-price"><span>$</span>843</div>
+                    <ul style="list-style:none; opacity:0.8; font-size:0.8rem; line-height:1.6;">
+                        <li>• Platinum Service</li>
+                        <li>• Garantía de por Vida</li>
+                    </ul>
+                </div>
+            </div>
+
+            <button class="tech-toggle" onclick="toggleTech('tech-5')">▼ SUPER ESTIMATE BREAKDOWN ▼</button>
+            <div class="tech-panel" id="tech-5">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem;">
+                    <div>
+                        <h3 style="color:var(--primary); font-family:'Orbitron'; margin-bottom:1rem;">ALCANCE / SPECS
+                        </h3>
+                        <div style="color:rgba(255,255,255,0.7); margin-bottom:0.2rem;">✓ Impact resistant pan</div>
+                        <div style="color:rgba(255,255,255,0.7); margin-bottom:0.2rem;">✓ PVC drain line</div>
+                        <div style="color:rgba(255,255,255,0.7); margin-bottom:0.2rem;">✓ Flood protection</div>
+                    </div>
+                    <div>
+                        <h3 style="color:var(--secondary); font-family:'Orbitron'; margin-bottom:1rem;">COST STRUCTURE
+                            (PROFIT PROTECTED)</h3>
+                        <table class="finance-table">
+                            <tr>
+                                <td>Labor (Lead @ $185/hr)</td>
+                                <td>$277</td>
+                            </tr>
+                            <tr>
+                                <td>Materials (+Waste/Indirect)</td>
+                                <td>$56</td>
+                            </tr>
+                            <tr>
+                                <td>Overhead (15% Ops)</td>
+                                <td>$51</td>
+                            </tr>
+                            <tr>
+                                <td style="color:var(--success); font-weight:bold;">NET PROFIT (25%)</td>
+                                <td style="color:var(--success); font-weight:bold;">$131</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-card" id="srv-6">
+            <div class="service-header">
+                <video class="service-thumb" autoplay loop muted>
+                    <source src="images/cv_architect_holo_1765352204492.mp4" type="video/mp4">
+                </video>
+                <div class="service-info">
+                    <div style="color:var(--secondary); font-family:'Orbitron'; font-weight:bold;">FC-123</div>
+                    <h2>Kitchen Faucet Install (Standard)</h2>
+                    <p style="color:rgba(255,255,255,0.6); max-width:600px; margin-bottom:1rem;">Instalación de grifo de
+                        cocina estándar (sin pull-out).</p>
+                    <div style="display:flex; gap:1rem; font-size:0.9rem;">
+                        <span
+                            style="background:rgba(0,245,255,0.1); padding:0.2rem 0.6rem; border-radius:4px; color:var(--primary);">⏱
+                            1.0 hr</span>
+                        <span
+                            style="background:rgba(168,85,247,0.1); padding:0.2rem 0.6rem; border-radius:4px; color:var(--secondary);">📦
+                            Indirects Included</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="packages-grid">
+                <div class="pkg-card good">
+                    <div class="pkg-title">GOOD</div>
+                    <div class="pkg-price"><span>$</span>337</div>
+                    <ul style="list-style:none; opacity:0.8; font-size:0.8rem; line-height:1.6;">
+                        <li>• Estándar Code</li>
+                        <li>• Garantía Básica</li>
+                    </ul>
+                </div>
+                <div class="pkg-card better">
+                    <div class="pkg-title">BETTER</div>
+                    <div class="pkg-price"><span>$</span>421</div>
+                    <ul style="list-style:none; opacity:0.8; font-size:0.8rem; line-height:1.6;">
+                        <li>• Piezas Premium</li>
+                        <li>• Garantía 3 Años</li>
+                    </ul>
+                </div>
+                <div class="pkg-card best">
+                    <div class="pkg-title">BEST</div>
+                    <div class="pkg-price"><span>$</span>539</div>
+                    <ul style="list-style:none; opacity:0.8; font-size:0.8rem; line-height:1.6;">
+                        <li>• Platinum Service</li>
+                        <li>• Garantía de por Vida</li>
+                    </ul>
+                </div>
+            </div>
+
+            <button class="tech-toggle" onclick="toggleTech('tech-6')">▼ SUPER ESTIMATE BREAKDOWN ▼</button>
+            <div class="tech-panel" id="tech-6">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem;">
+                    <div>
+                        <h3 style="color:var(--primary); font-family:'Orbitron'; margin-bottom:1rem;">ALCANCE / SPECS
+                        </h3>
+                        <div style="color:rgba(255,255,255,0.7); margin-bottom:0.2rem;">✓ New supply lines</div>
+                        <div style="color:rgba(255,255,255,0.7); margin-bottom:0.2rem;">✓ Putty seal</div>
+                        <div style="color:rgba(255,255,255,0.7); margin-bottom:0.2rem;">✓ Aerator check</div>
+                    </div>
+                    <div>
+                        <h3 style="color:var(--secondary); font-family:'Orbitron'; margin-bottom:1rem;">COST STRUCTURE
+                            (PROFIT PROTECTED)</h3>
+                        <table class="finance-table">
+                            <tr>
+                                <td>Labor (Lead @ $185/hr)</td>
+                                <td>$185</td>
+                            </tr>
+                            <tr>
+                                <td>Materials (+Waste/Indirect)</td>
+                                <td>$25</td>
+                            </tr>
+                            <tr>
+                                <td>Overhead (15% Ops)</td>
+                                <td>$33</td>
+                            </tr>
+                            <tr>
+                                <td style="color:var(--success); font-weight:bold;">NET PROFIT (25%)</td>
+                                <td style="color:var(--success); font-weight:bold;">$84</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-card" id="srv-7">
+            <div class="service-header">
+                <img class="service-thumb" src="images/gas_seismic_valve_1765473792296.png">
+                <div class="service-info">
+                    <div style="color:var(--secondary); font-family:'Orbitron'; font-weight:bold;">FC-129</div>
+                    <h2>Tub/Shower Valve (Rough-in Only)</h2>
+                    <p style="color:rgba(255,255,255,0.6); max-width:600px; margin-bottom:1rem;">Instalación del cuerpo
+                        de válvula de ducha dentro de la pared.</p>
+                    <div style="display:flex; gap:1rem; font-size:0.9rem;">
+                        <span
+                            style="background:rgba(0,245,255,0.1); padding:0.2rem 0.6rem; border-radius:4px; color:var(--primary);">⏱
+                            3.0 hr</span>
+                        <span
+                            style="background:rgba(168,85,247,0.1); padding:0.2rem 0.6rem; border-radius:4px; color:var(--secondary);">📦
+                            Indirects Included</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="packages-grid">
+                <div class="pkg-card good">
+                    <div class="pkg-title">GOOD</div>
+                    <div class="pkg-price"><span>$</span>1,153</div>
+                    <ul style="list-style:none; opacity:0.8; font-size:0.8rem; line-height:1.6;">
+                        <li>• Estándar Code</li>
+                        <li>• Garantía Básica</li>
+                    </ul>
+                </div>
+                <div class="pkg-card better">
+                    <div class="pkg-title">BETTER</div>
+                    <div class="pkg-price"><span>$</span>1,442</div>
+                    <ul style="list-style:none; opacity:0.8; font-size:0.8rem; line-height:1.6;">
+                        <li>• Piezas Premium</li>
+                        <li>• Garantía 3 Años</li>
+                    </ul>
+                </div>
+                <div class="pkg-card best">
+                    <div class="pkg-title">BEST</div>
+                    <div class="pkg-price"><span>$</span>1,846</div>
+                    <ul style="list-style:none; opacity:0.8; font-size:0.8rem; line-height:1.6;">
+                        <li>• Platinum Service</li>
+                        <li>• Garantía de por Vida</li>
+                    </ul>
+                </div>
+            </div>
+
+            <button class="tech-toggle" onclick="toggleTech('tech-7')">▼ SUPER ESTIMATE BREAKDOWN ▼</button>
+            <div class="tech-panel" id="tech-7">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem;">
+                    <div>
+                        <h3 style="color:var(--primary); font-family:'Orbitron'; margin-bottom:1rem;">ALCANCE / SPECS
+                        </h3>
+                        <div style="color:rgba(255,255,255,0.7); margin-bottom:0.2rem;">✓ Pressure balance</div>
+                        <div style="color:rgba(255,255,255,0.7); margin-bottom:0.2rem;">✓ Secure mounting</div>
+                        <div style="color:rgba(255,255,255,0.7); margin-bottom:0.2rem;">✓ Leak test</div>
+                    </div>
+                    <div>
+                        <h3 style="color:var(--secondary); font-family:'Orbitron'; margin-bottom:1rem;">COST STRUCTURE
+                            (PROFIT PROTECTED)</h3>
+                        <table class="finance-table">
+                            <tr>
+                                <td>Labor (Lead @ $185/hr)</td>
+                                <td>$555</td>
+                            </tr>
+                            <tr>
+                                <td>Materials (+Waste/Indirect)</td>
+                                <td>$187</td>
+                            </tr>
+                            <tr>
+                                <td>Overhead (15% Ops)</td>
+                                <td>$112</td>
+                            </tr>
+                            <tr>
+                                <td style="color:var(--success); font-weight:bold;">NET PROFIT (25%)</td>
+                                <td style="color:var(--success); font-weight:bold;">$288</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-card" id="srv-8">
+            <div class="service-header">
+                <img class="service-thumb" src="images/water_filtration_diagram_1765474408515.png">
+                <div class="service-info">
+                    <div style="color:var(--secondary); font-family:'Orbitron'; font-weight:bold;">WF-137</div>
+                    <h2>Whole House Sediment Filter</h2>
+                    <p style="color:rgba(255,255,255,0.6); max-width:600px; margin-bottom:1rem;">Filtro de sedimentos
+                        para toda la casa. Protege tuberías y equipos.</p>
+                    <div style="display:flex; gap:1rem; font-size:0.9rem;">
+                        <span
+                            style="background:rgba(0,245,255,0.1); padding:0.2rem 0.6rem; border-radius:4px; color:var(--primary);">⏱
+                            2.5 hr</span>
+                        <span
+                            style="background:rgba(168,85,247,0.1); padding:0.2rem 0.6rem; border-radius:4px; color:var(--secondary);">📦
+                            Indirects Included</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="packages-grid">
+                <div class="pkg-card good">
+                    <div class="pkg-title">GOOD</div>
+                    <div class="pkg-price"><span>$</span>1,012</div>
+                    <ul style="list-style:none; opacity:0.8; font-size:0.8rem; line-height:1.6;">
+                        <li>• Estándar Code</li>
+                        <li>• Garantía Básica</li>
+                    </ul>
+                </div>
+                <div class="pkg-card better">
+                    <div class="pkg-title">BETTER</div>
+                    <div class="pkg-price"><span>$</span>1,265</div>
+                    <ul style="list-style:none; opacity:0.8; font-size:0.8rem; line-height:1.6;">
+                        <li>• Piezas Premium</li>
+                        <li>• Garantía 3 Años</li>
+                    </ul>
+                </div>
+                <div class="pkg-card best">
+                    <div class="pkg-title">BEST</div>
+                    <div class="pkg-price"><span>$</span>1,619</div>
+                    <ul style="list-style:none; opacity:0.8; font-size:0.8rem; line-height:1.6;">
+                        <li>• Platinum Service</li>
+                        <li>• Garantía de por Vida</li>
+                    </ul>
+                </div>
+            </div>
+
+            <button class="tech-toggle" onclick="toggleTech('tech-8')">▼ SUPER ESTIMATE BREAKDOWN ▼</button>
+            <div class="tech-panel" id="tech-8">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem;">
+                    <div>
+                        <h3 style="color:var(--primary); font-family:'Orbitron'; margin-bottom:1rem;">ALCANCE / SPECS
+                        </h3>
+                        <div style="color:rgba(255,255,255,0.7); margin-bottom:0.2rem;">✓ 5 Micron filter</div>
+                        <div style="color:rgba(255,255,255,0.7); margin-bottom:0.2rem;">✓ Bypass valve</div>
+                        <div style="color:rgba(255,255,255,0.7); margin-bottom:0.2rem;">✓ Clear housing</div>
+                    </div>
+                    <div>
+                        <h3 style="color:var(--secondary); font-family:'Orbitron'; margin-bottom:1rem;">COST STRUCTURE
+                            (PROFIT PROTECTED)</h3>
+                        <table class="finance-table">
+                            <tr>
+                                <td>Labor (Lead @ $185/hr)</td>
+                                <td>$462</td>
+                            </tr>
+                            <tr>
+                                <td>Materials (+Waste/Indirect)</td>
+                                <td>$187</td>
+                            </tr>
+                            <tr>
+                                <td>Overhead (15% Ops)</td>
+                                <td>$99</td>
+                            </tr>
+                            <tr>
+                                <td style="color:var(--success); font-weight:bold;">NET PROFIT (25%)</td>
+                                <td style="color:var(--success); font-weight:bold;">$253</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-card" id="srv-9">
+            <div class="service-header">
+                <img class="service-thumb" src="images/water_filtration_diagram_1765474408515.png">
+                <div class="service-info">
+                    <div style="color:var(--secondary); font-family:'Orbitron'; font-weight:bold;">WF-144</div>
+                    <h2>Water Softener System (1-3 Bath)</h2>
+                    <p style="color:rgba(255,255,255,0.6); max-width:600px; margin-bottom:1rem;">Sistema completo de
+                        suavizador de agua para eliminar sarro.</p>
+                    <div style="display:flex; gap:1rem; font-size:0.9rem;">
+                        <span
+                            style="background:rgba(0,245,255,0.1); padding:0.2rem 0.6rem; border-radius:4px; color:var(--primary);">⏱
+                            4.0 hr</span>
+                        <span
+                            style="background:rgba(168,85,247,0.1); padding:0.2rem 0.6rem; border-radius:4px; color:var(--secondary);">📦
+                            Indirects Included</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="packages-grid">
+                <div class="pkg-card good">
+                    <div class="pkg-title">GOOD</div>
+                    <div class="pkg-price"><span>$</span>2,898</div>
+                    <ul style="list-style:none; opacity:0.8; font-size:0.8rem; line-height:1.6;">
+                        <li>• Estándar Code</li>
+                        <li>• Garantía Básica</li>
+                    </ul>
+                </div>
+                <div class="pkg-card better">
+                    <div class="pkg-title">BETTER</div>
+                    <div class="pkg-price"><span>$</span>3,622</div>
+                    <ul style="list-style:none; opacity:0.8; font-size:0.8rem; line-height:1.6;">
+                        <li>• Piezas Premium</li>
+                        <li>• Garantía 3 Años</li>
+                    </ul>
+                </div>
+                <div class="pkg-card best">
+                    <div class="pkg-title">BEST</div>
+                    <div class="pkg-price"><span>$</span>4,636</div>
+                    <ul style="list-style:none; opacity:0.8; font-size:0.8rem; line-height:1.6;">
+                        <li>• Platinum Service</li>
+                        <li>• Garantía de por Vida</li>
+                    </ul>
+                </div>
+            </div>
+
+            <button class="tech-toggle" onclick="toggleTech('tech-9')">▼ SUPER ESTIMATE BREAKDOWN ▼</button>
+            <div class="tech-panel" id="tech-9">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem;">
+                    <div>
+                        <h3 style="color:var(--primary); font-family:'Orbitron'; margin-bottom:1rem;">ALCANCE / SPECS
+                        </h3>
+                        <div style="color:rgba(255,255,255,0.7); margin-bottom:0.2rem;">✓ Digital control</div>
+                        <div style="color:rgba(255,255,255,0.7); margin-bottom:0.2rem;">✓ Bypass loop</div>
+                        <div style="color:rgba(255,255,255,0.7); margin-bottom:0.2rem;">✓ Drain airgap</div>
+                    </div>
+                    <div>
+                        <h3 style="color:var(--secondary); font-family:'Orbitron'; margin-bottom:1rem;">COST STRUCTURE
+                            (PROFIT PROTECTED)</h3>
+                        <table class="finance-table">
+                            <tr>
+                                <td>Labor (Lead @ $185/hr)</td>
+                                <td>$740</td>
+                            </tr>
+                            <tr>
+                                <td>Materials (+Waste/Indirect)</td>
+                                <td>$1125</td>
+                            </tr>
+                            <tr>
+                                <td>Overhead (15% Ops)</td>
+                                <td>$283</td>
+                            </tr>
+                            <tr>
+                                <td style="color:var(--success); font-weight:bold;">NET PROFIT (25%)</td>
+                                <td style="color:var(--success); font-weight:bold;">$724</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="page-counter">PAGE 5 OF 8</div>
+
+    <a href="orion-bots.html" class="floating-logo">
+        <video autoplay loop muted playsinline style="width: 85%; height: 85%; object-fit: contain;">
+            <source src="images/orion_logo_2090.mp4" type="video/mp4">
+        </video>
+    </a>
+    <script src="joe-assistant.js"></script>
+    <script>
+        function toggleTech(id) { document.getElementById(id).classList.toggle('active'); }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORION Price Book | Bay Area Professional Services</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0ea5e9;
+            --primary-dark: #0284c7;
+            --secondary: #8b5cf6;
+            --accent: #06b6d4;
+            --dark-bg: #0f172a;
+            --dark-card: #1e293b;
+            --dark-hover: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --success: #10b981;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header Navigation */
+        .header {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 0 2rem;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00ff88;
+            text-decoration: none;
+            text-shadow: 0 0 10px #00ff88,
+                0 0 20px #00ff88,
+                0 0 30px #00ff88,
+                0 0 40px #00ff88;
+            animation: neon-flash 3s ease-in-out infinite;
+        }
+
+        @keyframes neon-flash {
+
+            0%,
+            100% {
+                text-shadow: 0 0 10px #00ff88,
+                    0 0 20px #00ff88,
+                    0 0 30px #00ff88,
+                    0 0 40px #00ff88;
+            }
+
+            50% {
+                text-shadow: 0 0 20px #a855f7,
+                    0 0 30px #a855f7,
+                    0 0 40px #a855f7,
+                    0 0 50px #a855f7,
+                    0 0 60px #a855f7;
+            }
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .logo-icon video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .lang-selector {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0.375rem;
+            background: var(--dark-card);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        .lang-btn {
+            padding: 0.5rem 0.875rem;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .lang-btn:hover {
+            background: var(--dark-hover);
+            color: var(--text-secondary);
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .view-toggle-container {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0.375rem;
+            background: var(--dark-card);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        .toggle-btn {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .toggle-btn.active {
+            background: var(--secondary);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 900px;
+            height: 900px;
+            opacity: 0.35;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .hero-background video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .hero>*:not(.hero-background) {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(14, 165, 233, 0.1);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            border-radius: 100px;
+            color: var(--primary);
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #f1f5f9 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-slogan {
+            font-size: 1.125rem;
+            color: var(--primary);
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 2.5rem;
+            padding-top: 2.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Categories Section */
+        .categories-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem 5rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-description {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .category-card {
+            background: var(--dark-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .category-card:hover::before {
+            opacity: 1;
+        }
+
+        .category-visual {
+            position: relative;
+            height: 180px;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(139, 92, 246, 0.1));
+        }
+
+        .category-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .category-card:hover .category-video {
+            transform: scale(1.05);
+        }
+
+        .category-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 0.75rem;
+        }
+
+        .category-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .category-count {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            background: rgba(14, 165, 233, 0.1);
+            border-radius: 6px;
+            white-space: nowrap;
+        }
+
+        .category-description {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            flex: 1;
+        }
+
+        .category-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .category-code {
+            font-family: 'Space Grotesk', monospace;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+        }
+
+        .category-arrow {
+            color: var(--primary);
+            font-size: 1.25rem;
+            transition: transform 0.3s;
+        }
+
+        .category-card:hover .category-arrow {
+            transform: translateX(4px);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-card);
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Floating Button */
+        .floating-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(14, 165, 233, 0.3);
+            transition: all 0.3s;
+            text-decoration: none;
+            z-index: 999;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 32px rgba(14, 165, 233, 0.5);
+        }
+
+        .floating-btn video {
+            width: 70%;
+            height: 70%;
+            object-fit: contain;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                height: auto;
+                padding: 1rem 0;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .header-actions {
+                width: 100%;
+                justify-content: space-between;
+                gap: 1rem;
+            }
+
+            .lang-selector {
+                flex-wrap: wrap;
+            }
+
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .hero-stats {
+                gap: 2rem;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="orion-bots.html" class="logo">
+                <div class="logo-icon">
+                    <video autoplay loop muted playsinline>
+                        <source src="images/orion_logo_2090.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <span>ORION TECH</span>
+            </a>
+
+            <div class="header-actions">
+                <div class="lang-selector">
+                    <button class="lang-btn active" data-lang="es">🇪🇸 ES</button>
+                    <button class="lang-btn" data-lang="en">🇺🇸 EN</button>
+                    <button class="lang-btn" data-lang="zh">🇨🇳 中文</button>
+                    <button class="lang-btn" data-lang="pt">🇧🇷 PT</button>
+                    <button class="lang-btn" data-lang="fr">🇫🇷 FR</button>
+                </div>
+
+                <div class="view-toggle-container">
+                    <button class="toggle-btn active" data-view="client">
+                        <span>👤</span>
+                        <span data-i18n="viewClient">Cliente</span>
+                    </button>
+                    <button class="toggle-btn" data-view="tech">
+                        <span>🔧</span>
+                        <span data-i18n="viewTech">Técnico</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <video autoplay loop muted playsinline>
+                <source src="images/orion_logo_2090.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="hero-badge">
+            <span>✨</span>
+            <span data-i18n="badge">Sistema Profesional de Precios</span>
+        </div>
+
+        <h1 data-i18n="title">Price Book OT</h1>
+
+        <p class="hero-slogan" data-i18n="slogan">No esperamos el futuro, lo construimos</p>
+
+        <p class="hero-subtitle" data-i18n="subtitle">
+            Catálogo completo de servicios profesionales de plomería para el Bay Area, California
+        </p>
+
+        <div class="hero-stats">
+            <div class="stat">
+                <span class="stat-value">1,350+</span>
+                <span class="stat-label" data-i18n="statServices">Servicios</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value">8</span>
+                <span class="stat-label" data-i18n="statCategories">Categorías</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value" data-i18n="statRateValue">El más competitivo</span>
+                <span class="stat-label" data-i18n="statRate">Tarifa Lead</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value">Bay Area</span>
+                <span class="stat-label" data-i18n="statLocation">Ubicación</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section">
+        <div class="section-header">
+            <h2 class="section-title" data-i18n="categoriesTitle">Selecciona una Categoría</h2>
+            <p class="section-description" data-i18n="categoriesDesc">
+                Explora nuestro catálogo completo organizado por tipo de servicio
+            </p>
+        </div>
+
+        <div class="categories-grid">
+            <!-- Nueva Construcción -->
+            <a href="pricebook-nueva-construccion.html" class="category-card">
+                <div class="category-visual">
+                    <video class="category-video" autoplay loop muted playsinline>
+                        <source src="images/nueva_construccion_2090.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="category-content">
+                    <div class="category-header">
+                        <h3 class="category-name" data-i18n="cat1Name">Nueva Construcción</h3>
+                        <span class="category-count">200</span>
+                    </div>
+                    <p class="category-description" data-i18n="cat1Desc">
+                        Sistemas completos para proyectos nuevos, instalaciones residenciales y comerciales
+                    </p>
+                    <div class="category-footer">
+                        <span class="category-code">NC-001 → NC-200</span>
+                        <span class="category-arrow">→</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Multifamiliar -->
+            <a href="pricebook-multifamiliar.html" class="category-card">
+                <div class="category-visual">
+                    <video class="category-video" autoplay loop muted playsinline>
+                        <source src="images/multifamiliar_2090.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="category-content">
+                    <div class="category-header">
+                        <h3 class="category-name" data-i18n="cat2Name">Multifamiliar / Edificios</h3>
+                        <span class="category-count">150</span>
+                    </div>
+                    <p class="category-description" data-i18n="cat2Desc">
+                        Soluciones especializadas para edificios de múltiples unidades y complejos habitacionales
+                    </p>
+                    <div class="category-footer">
+                        <span class="category-code">MF-001 → MF-150</span>
+                        <span class="category-arrow">→</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Renovación -->
+            <a href="pricebook-renovacion.html" class="category-card">
+                <div class="category-visual">
+                    <video class="category-video" autoplay loop muted playsinline>
+                        <source src="images/renovacion_2090.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="category-content">
+                    <div class="category-header">
+                        <h3 class="category-name" data-i18n="cat3Name">Renovación / Remodelación</h3>
+                        <span class="category-count">150</span>
+                    </div>
+                    <p class="category-description" data-i18n="cat3Desc">
+                        Actualización de sistemas existentes, modernización y mejoras
+                    </p>
+                    <div class="category-footer">
+                        <span class="category-code">RN-001 → RN-150</span>
+                        <span class="category-arrow">→</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Repipe -->
+            <a href="pricebook-repipe.html" class="category-card">
+                <div class="category-visual">
+                    <video class="category-video" autoplay loop muted playsinline>
+                        <source src="images/repipe_2090.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="category-content">
+                    <div class="category-header">
+                        <h3 class="category-name" data-i18n="cat4Name">Repipe Total y Parcial</h3>
+                        <span class="category-count">150</span>
+                    </div>
+                    <p class="category-description" data-i18n="cat4Desc">
+                        Reemplazo completo o parcial de sistemas de tuberías en cobre, PEX y más
+                    </p>
+                    <div class="category-footer">
+                        <span class="category-code">RP-001 → RP-150</span>
+                        <span class="category-arrow">→</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Custom -->
+            <a href="pricebook-custom.html" class="category-card">
+                <div class="category-visual">
+                    <video class="category-video" autoplay loop muted playsinline>
+                        <source src="images/industry_salon_1765429859260.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="category-content">
+                    <div class="category-header">
+                        <h3 class="category-name" data-i18n="cat5Name">Custom / Alta Gama</h3>
+                        <span class="category-count">200</span>
+                    </div>
+                    <p class="category-description" data-i18n="cat5Desc">
+                        Proyectos personalizados, instalaciones de lujo y soluciones premium
+                    </p>
+                    <div class="category-footer">
+                        <span class="category-code">CG-001 → CG-200</span>
+                        <span class="category-arrow">→</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Comercial -->
+            <a href="pricebook-comercial.html" class="category-card">
+                <div class="category-visual">
+                    <video class="category-video" autoplay loop muted playsinline>
+                        <source src="images/industry_contractor_1765429876651.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="category-content">
+                    <div class="category-header">
+                        <h3 class="category-name" data-i18n="cat6Name">Comercial</h3>
+                        <span class="category-count">200</span>
+                    </div>
+                    <p class="category-description" data-i18n="cat6Desc">
+                        Servicios especializados para negocios, restaurantes y establecimientos comerciales
+                    </p>
+                    <div class="category-footer">
+                        <span class="category-code">CM-001 → CM-200</span>
+                        <span class="category-arrow">→</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Industrial -->
+            <a href="pricebook-industrial.html" class="category-card">
+                <div class="category-visual">
+                    <video class="category-video" autoplay loop muted playsinline>
+                        <source src="images/industrial_plant_2090.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="category-content">
+                    <div class="category-header">
+                        <h3 class="category-name" data-i18n="cat7Name">Industrial</h3>
+                        <span class="category-count">150</span>
+                    </div>
+                    <p class="category-description" data-i18n="cat7Desc">
+                        Sistemas industriales de alta presión, plantas y aplicaciones especializadas
+                    </p>
+                    <div class="category-footer">
+                        <span class="category-code">IN-001 → IN-150</span>
+                        <span class="category-arrow">→</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Servicio -->
+            <a href="pricebook-servicio.html" class="category-card">
+                <div class="category-visual">
+                    <video class="category-video" autoplay loop muted playsinline>
+                        <source src="images/servicio_diagnostic_2090.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="category-content">
+                    <div class="category-header">
+                        <h3 class="category-name" data-i18n="cat8Name">Servicio y Mantenimiento</h3>
+                        <span class="category-count">250</span>
+                    </div>
+                    <p class="category-description" data-i18n="cat8Desc">
+                        Reparaciones, diagnóstico, mantenimiento preventivo y servicios de emergencia
+                    </p>
+                    <div class="category-footer">
+                        <span class="category-code">SM-001 → SM-250</span>
+                        <span class="category-arrow">→</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">⚡ ORION PRICE BOOK</div>
+            <p class="footer-text">© 2024 PLUMBING SERVICES | ORION TECH</p>
+            <p class="footer-text">Powered by NeKon AI aGent Consulting | Bay Area, California</p>
+        </div>
+    </footer>
+
+    <!-- Floating Button -->
+    <a href="orion-bots.html" class="floating-btn" title="Visit Orion Tech">
+        <video autoplay loop muted playsinline>
+            <source src="images/orion_logo_2090.mp4" type="video/mp4">
+        </video>
+    </a>
+
+    <!-- JOE AI Assistant -->
+    <script src="joe-assistant.js"></script>
+
+    <script>
+        // Translations
+        const translations = {
+            es: {
+                badge: 'Bay Area Premier',
+                title: 'Price Book OT',
+                slogan: 'Calidad sin compromisos',
+                subtitle: 'Precios transparentes. Calidad garantizada. Bay Area, California',
+                statServices: 'Servicios',
+                statCategories: 'Categorías',
+                statRateValue: 'Mejor tarifa',
+                statRate: 'Lead Rate',
+                statLocation: 'Ubicación',
+                categoriesTitle: 'Categorías de Servicio',
+                categoriesDesc: 'Soluciones profesionales para cada necesidad',
+                viewClient: 'Cliente',
+                viewTech: 'Técnico',
+                cat1Name: 'Nueva Construcción',
+                cat1Desc: 'Sistemas completos llave en mano. Invierte en calidad desde el día uno',
+                cat2Name: 'Multifamiliar',
+                cat2Desc: 'Reduzca costos de mantenimiento. Maximice satisfacción de inquilinos',
+                cat3Name: 'Renovación',
+                cat3Desc: 'Modernice su sistema. Mejoras que pagan solas con eficiencia energética',
+                cat4Name: 'Repipe',
+                cat4Desc: 'Elimine problemas de agua para siempre. Cobre, PEX, código actualizado',
+                cat5Name: 'Custom / Lujo',
+                cat5Desc: 'Instalaciones a medida que superan expectativas. Artesanía excepcional',
+                cat6Name: 'Comercial',
+                cat6Desc: 'Su negocio no puede parar. Respuesta rápida, mínimo tiempo muerto',
+                cat7Name: 'Industrial',
+                cat7Desc: 'Soluciones de alto rendimiento. Seguridad, cumplimiento, operación continua',
+                cat8Name: 'Servicio 24/7',
+                cat8Desc: 'Desde chequeos rutinarios hasta emergencias. Protegemos su propiedad 24/7'
+            },
+            en: {
+                badge: 'Bay Area Premier',
+                title: 'Price Book OT',
+                slogan: 'Quality without compromise',
+                subtitle: 'Transparent pricing. Guaranteed quality. Bay Area, California',
+                statServices: 'Services',
+                statCategories: 'Categories',
+                statRateValue: 'Best rates',
+                statRate: 'Lead Rate',
+                statLocation: 'Location',
+                categoriesTitle: 'Service Categories',
+                categoriesDesc: 'Professional solutions for every need',
+                viewClient: 'Client',
+                viewTech: 'Tech',
+                cat1Name: 'New Construction',
+                cat1Desc: 'Complete turnkey systems. Build it right from day one',
+                cat2Name: 'Multifamily',
+                cat2Desc: 'Cut maintenance costs. Maximize tenant satisfaction',
+                cat3Name: 'Renovation',
+                cat3Desc: 'Modernize your system. Energy-efficient upgrades that pay for themselves',
+                cat4Name: 'Repipe',
+                cat4Desc: 'End water problems forever. Copper, PEX, code-compliant',
+                cat5Name: 'Custom / Luxury',
+                cat5Desc: 'Bespoke installations that exceed expectations. Exceptional craftsmanship',
+                cat6Name: 'Commercial',
+                cat6Desc: 'Your business can\'t stop. Rapid response, minimal downtime',
+                cat7Name: 'Industrial',
+                cat7Desc: 'High-performance solutions. Safety, compliance, continuous operation',
+                cat8Name: 'Service 24/7',
+                cat8Desc: 'From routine checkups to emergencies. Protecting your property 24/7'
+            },
+            zh: {
+                badge: '湾区首选',
+                title: 'OT价格手册',
+                slogan: '品质绝不妥协',
+                subtitle: '透明定价。品质保证。加州湾区',
+                statServices: '服务',
+                statCategories: '类别',
+                statRateValue: '最佳价格',
+                statRate: '主管费率',
+                statLocation: '位置',
+                categoriesTitle: '服务类别',
+                categoriesDesc: '满足各种需求的专业解决方案',
+                viewClient: '客户',
+                viewTech: '技术',
+                cat1Name: '新建工程',
+                cat1Desc: '一站式完整系统。从第一天就做对',
+                cat2Name: '多户建筑',
+                cat2Desc: '降低维护成本。提升租户满意度',
+                cat3Name: '翻新改造',
+                cat3Desc: '系统现代化。节能升级自行回本',
+                cat4Name: '换管工程',
+                cat4Desc: '永久解决水问题。铜管、PEX、符合规范',
+                cat5Name: '定制/豪华',
+                cat5Desc: '超越期待的定制安装。卓越工艺',
+                cat6Name: '商业服务',
+                cat6Desc: '生意不能停。快速响应，最少停机',
+                cat7Name: '工业系统',
+                cat7Desc: '高性能解决方案。安全、合规、持续运行',
+                cat8Name: '24/7服务',
+                cat8Desc: '从常规检查到紧急救援。全天候保护您的财产'
+            },
+            pt: {
+                badge: 'Premier da Bay Area',
+                title: 'Price Book OT',
+                slogan: 'Qualidade sem concessões',
+                subtitle: 'Preços transparentes. Qualidade garantida. Bay Area, Califórnia',
+                statServices: 'Serviços',
+                statCategories: 'Categorias',
+                statRateValue: 'Melhores taxas',
+                statRate: 'Taxa Lead',
+                statLocation: 'Localização',
+                categoriesTitle: 'Categorias de Serviço',
+                categoriesDesc: 'Soluções profissionais para cada necessidade',
+                viewClient: 'Cliente',
+                viewTech: 'Técnico',
+                cat1Name: 'Nova Construção',
+                cat1Desc: 'Sistemas completos chave na mão. Faça certo desde o dia um',
+                cat2Name: 'Multifamiliar',
+                cat2Desc: 'Reduza custos de manutenção. Maximize satisfação dos inquilinos',
+                cat3Name: 'Renovação',
+                cat3Desc: 'Modernize seu sistema. Melhorias que se pagam com economia de energia',
+                cat4Name: 'Repipe',
+                cat4Desc: 'Acabe com problemas de água para sempre. Cobre, PEX, conforme código',
+                cat5Name: 'Custom / Luxo',
+                cat5Desc: 'Instalações sob medida que superam expectativas. Artesanato excepcional',
+                cat6Name: 'Comercial',
+                cat6Desc: 'Seu negócio não pode parar. Resposta rápida, tempo mínimo de parada',
+                cat7Name: 'Industrial',
+                cat7Desc: 'Soluções de alto desempenho. Segurança, conformidade, operação contínua',
+                cat8Name: 'Serviço 24/7',
+                cat8Desc: 'De check-ups de rotina a emergências. Protegendo sua propriedade 24/7'
+            },
+            fr: {
+                badge: 'Premier de Bay Area',
+                title: 'Price Book OT',
+                slogan: 'Qualité sans compromis',
+                subtitle: 'Prix transparents. Qualité garantie. Bay Area, Californie',
+                statServices: 'Services',
+                statCategories: 'Catégories',
+                statRateValue: 'Meilleurs tarifs',
+                statRate: 'Tarif Principal',
+                statLocation: 'Emplacement',
+                categoriesTitle: 'Catégories de Service',
+                categoriesDesc: 'Solutions professionnelles pour chaque besoin',
+                viewClient: 'Client',
+                viewTech: 'Technique',
+                cat1Name: 'Nouvelle Construction',
+                cat1Desc: 'Systèmes clés en main complets. Bien faire dès le premier jour',
+                cat2Name: 'Multifamilial',
+                cat2Desc: 'Réduisez les coûts de maintenance. Maximisez la satisfaction des locataires',
+                cat3Name: 'Rénovation',
+                cat3Desc: 'Modernisez votre système. Améliorations rentabilisées par économies d\'énergie',
+                cat4Name: 'Repipe',
+                cat4Desc: 'Éliminez les problèmes d\'eau pour toujours. Cuivre, PEX, conforme au code',
+                cat5Name: 'Custom / Luxe',
+                cat5Desc: 'Installations sur mesure qui dépassent les attentes. Artisanat exceptionnel',
+                cat6Name: 'Commercial',
+                cat6Desc: 'Votre entreprise ne peut pas s\'arrêter. Réponse rapide, temps d\'arrêt minimal',
+                cat7Name: 'Industriel',
+                cat7Desc: 'Solutions haute performance. Sécurité, conformité, fonctionnement continu',
+                cat8Name: 'Service 24/7',
+                cat8Desc: 'Des contrôles de routine aux urgences. Protection de votre propriété 24/7'
+            }
+        };
+
+        let currentLang = 'es';
+        let currentView = 'client';
+
+        // Language selector
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentLang = btn.dataset.lang;
+                updateTranslations();
+            });
+        });
+
+        // View toggle
+        document.querySelectorAll('.toggle-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentView = btn.dataset.view;
+                localStorage.setItem('priceBookView', currentView);
+            });
+        });
+
+        function updateTranslations() {
+            const lang = translations[currentLang];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.dataset.i18n;
+                if (lang[key]) el.textContent = lang[key];
+            });
+        }
+
+        // Restore saved view
+        if (localStorage.getItem('priceBookView') === 'tech') {
+            document.querySelector('[data-view="tech"]').click();
+        }
+    </script>
+</body>
+
+</html>

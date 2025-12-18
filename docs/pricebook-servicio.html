@@ -1,0 +1,2130 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SERVICIO DIAGNÓSTICO | ORION V6</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ... existing styles ... */
+        :root {
+            --primary: #00f5ff;
+            --secondary: #a855f7;
+            --accent: #ec4899;
+            --bg: #030712;
+            --surface: rgba(17, 24, 39, 0.95);
+            --border: rgba(0, 245, 255, 0.2);
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+
+        /* ... rest of original CSS ... */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: white;
+            padding-bottom: 60px;
+        }
+
+
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(3, 7, 18, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 2px solid var(--border);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .breadcrumb a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary);
+        }
+
+        .hero {
+            height: 50vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-top: 60px;
+        }
+
+        .hero-video {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.4);
+            z-index: -1;
+        }
+
+        .hero-watermark {
+            position: absolute;
+            width: 60%;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 2rem 4rem;
+        }
+
+        .service-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .service-header {
+            padding: 2rem;
+            background: linear-gradient(90deg, rgba(0, 245, 255, 0.05), transparent);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .service-thumb {
+            width: 180px;
+            height: 100px;
+            border-radius: 8px;
+            border: 2px solid var(--border);
+            object-fit: cover;
+            box-shadow: 0 0 15px rgba(0, 245, 255, 0.2);
+        }
+
+        .service-info h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        /* Make prices clickable */
+        .pkg-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin: 1rem 0;
+            display: flex;
+            align-items: flex-start;
+            cursor: pointer;
+            /* Clickable */
+            transition: transform 0.2s;
+        }
+
+        .pkg-price:hover {
+            transform: scale(1.05);
+            color: var(--primary);
+        }
+
+        .pkg-price span {
+            font-size: 1rem;
+            margin-top: 8px;
+            margin-right: 4px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .pkg-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .pkg-card.good {
+            border-top: 4px solid var(--warning);
+        }
+
+        .pkg-card.better {
+            border-top: 4px solid var(--primary);
+        }
+
+        .pkg-card.best {
+            border-top: 4px solid var(--secondary);
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), transparent);
+        }
+
+        .tech-toggle {
+            width: 100%;
+            padding: 10px;
+            background: #111;
+            border: none;
+            border-top: 1px solid var(--border);
+            color: var(--secondary);
+            font-family: 'Orbitron', monospace;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .tech-toggle:hover {
+            background: var(--secondary);
+            color: black;
+        }
+
+        .tech-panel {
+            display: none;
+            padding: 2rem;
+            background: #0f1115;
+            border-top: 1px solid var(--border);
+        }
+
+        .tech-panel.active {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .finance-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Inter', monospace;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        .finance-table td {
+            padding: 0.8rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .page-counter {
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-family: 'Orbitron';
+            font-size: 0.8rem;
+            z-index: 100;
+            box-shadow: 0 0 15px rgba(0, 245, 255, 0.2);
+        }
+
+        .floating-logo {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 70px;
+            height: 70px;
+            background: rgba(3, 7, 18, 0.9);
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.4);
+            z-index: 9999;
+            transition: all 0.3s;
+        }
+
+        /* INTERACTIVE PACKAGE DETAILS */
+        .pkg-detail-container {
+            display: none;
+            /* Hidden by default */
+            margin-top: 2rem;
+            border-top: 1px solid var(--border);
+            padding-top: 2rem;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .pkg-detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 1rem;
+        }
+
+        .view-tabs {
+            display: flex;
+            gap: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 5px;
+            border-radius: 8px;
+        }
+
+        .view-tab {
+            padding: 8px 16px;
+            cursor: pointer;
+            border: 1px solid transparent;
+            border-radius: 6px;
+            font-family: 'Orbitron';
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            transition: all 0.2s;
+        }
+
+        .view-tab.active {
+            background: rgba(0, 245, 255, 0.1);
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .view-tab.active-tech {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+            border-color: var(--warning);
+        }
+
+        .detail-content {
+            display: none;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        .detail-content.visible {
+            display: block;
+        }
+
+        /* Highlight selected package */
+        .pkg-card.selected {
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.2);
+            border-color: var(--primary);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* DYNAMIC CALCULATOR STYLES */
+        .dynamic-config-panel {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--primary);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .config-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .config-label {
+            font-family: 'Orbitron';
+            color: var(--secondary);
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .config-options {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .config-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            flex: 1;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .config-btn:hover {
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .config-btn.selected {
+            background: rgba(0, 245, 255, 0.2);
+            border-color: var(--primary);
+            color: var(--primary);
+            box-shadow: 0 0 10px rgba(0, 245, 255, 0.1);
+        }
+
+        .config-btn[data-risk="high"].selected {
+            background: rgba(255, 50, 50, 0.2);
+            border-color: #ff4444;
+            color: #ff4444;
+        }
+
+        .dynamic-price-display {
+            text-align: center;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(20, 20, 30, 0.8) 100%);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-top: 1rem;
+        }
+
+        .final-price {
+            font-size: 3rem;
+            font-family: 'Orbitron';
+            color: var(--primary);
+            text-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+            margin: 0.5rem 0;
+        }
+
+        .price-breakdown {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* CSS TABS LOGIC (NO-JS) */
+        .css-tab-radio {
+            display: none;
+        }
+
+        /* DEFAULT STATE: Marketing visible, Engineer hidden */
+        .content-client {
+            display: block !important;
+        }
+
+        .content-tech {
+            display: none !important;
+        }
+
+        .css-tab-radio.tab-mkt:checked~.content-client {
+            display: block !important;
+            animation: fadeIn 0.4s;
+        }
+
+        .css-tab-radio.tab-mkt:checked~.content-tech {
+            display: none !important;
+        }
+
+        .css-tab-radio.tab-eng:checked~.content-client {
+            display: none !important;
+        }
+
+        .css-tab-radio.tab-eng:checked~.content-tech {
+            display: block !important;
+            animation: fadeIn 0.4s;
+        }
+
+        /* Active Tab Styling */
+        .css-tab-radio.tab-mkt:checked~.pkg-detail-header .view-tabs .tab-client {
+            background: var(--primary);
+            color: black;
+            box-shadow: 0 0 15px var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .css-tab-radio.tab-eng:checked~.pkg-detail-header .view-tabs .tab-tech {
+            background: var(--secondary);
+            color: white;
+            box-shadow: 0 0 15px var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        /* Labels as Buttons */
+        .view-tab {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        /* HTML5 DETAILS RESET for No-JS Toggle */
+        details>summary {
+            list-style: none;
+            outline: none;
+        }
+
+        details>summary::-webkit-details-marker {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="breadcrumb"><a href="pricebook-index.html">← MENÚ PRINCIPAL</a></div>
+        <div style="font-family:'Orbitron'; color:white;">ORION V6 // <span style="color:var(--primary);">RES</span>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <video class="hero-video" autoplay loop muted playsinline>
+            <source src="images/servicio_diagnostic_2090.mp4" type="video/mp4">
+        </video>
+        <video class="hero-watermark" autoplay loop muted playsinline>
+            <source src="images/orion_logo_2090.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content" style="text-align:center; z-index:1;">
+            <h1 style="font-family:'Orbitron'; font-size:3.5rem; text-transform:uppercase; text-shadow:0 0 20px black;">
+                SERVICIO DIAGNÓSTICO</h1>
+            <div style="color:var(--secondary); font-family:'Orbitron'; margin-top:1rem;">14 ACTIVIDADES CERTIFICADAS
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+
+        <!-- SRV-0 to SRV0-9 RESTORED -->
+        <div class="service-card" id="srv-0">
+            <div class="service-header">
+                <img class="service-thumb" src="images/dishwasher_installation_modern.png">
+                <div class="service-info">
+                    <div style="color:var(--secondary); font-family:'Orbitron'; font-weight:bold;">AP-002</div>
+                    <h2>Dishwasher Installation (Monitor)</h2>
+                    <p style="color:rgba(255,255,255,0.6); max-width:600px; margin-bottom:1rem;">Instalación completa de
+                        unidad provista por cliente.</p>
+                </div>
+            </div>
+            <!-- DYNAMIC FLAT RATE CONFIGURED -->
+            <div class="dynamic-config-panel">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+                    <div class="config-group">
+                        <div class="config-label">SECTOR / USE</div>
+                        <div class="config-options">
+                            <div class="config-btn selected" onclick="selectConfig('srv-0', 'sector', 'res', this)">
+                                RESIDENCIAL</div>
+                            <div class="config-btn" onclick="selectConfig('srv-0', 'sector', 'com', this)">COMMERCIAL
+                            </div>
+                            <div class="config-btn" onclick="selectConfig('srv-0', 'sector', 'ind', this)">INDUSTRIAL
+                            </div>
+                        </div>
+                    </div>
+                    <div class="config-group">
+                        <div class="config-label">URGENCY / TIME</div>
+                        <div class="config-options">
+                            <div class="config-btn selected" onclick="selectConfig('srv-0', 'urgency', 'std', this)">
+                                SCHEDULED</div>
+                            <div class="config-btn" data-risk="high"
+                                onclick="selectConfig('srv-0', 'urgency', 'pri', this)">PRIORITY</div>
+                            <div class="config-btn" data-risk="high"
+                                onclick="selectConfig('srv-0', 'urgency', 'emg', this)">EMERGENCY</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+                    <div class="config-group">
+                        <div class="config-label">RISK / ACCESS</div>
+                        <div class="config-options">
+                            <div class="config-btn selected" onclick="selectConfig('srv-0', 'risk', 'l1', this)">LEVEL 1
+                            </div>
+                            <div class="config-btn" data-risk="high"
+                                onclick="selectConfig('srv-0', 'risk', 'l2', this)">ELEVATED</div>
+                            <div class="config-btn" data-risk="high"
+                                onclick="selectConfig('srv-0', 'risk', 'l3', this)">CONFINED</div>
+                        </div>
+                    </div>
+                    <div class="config-group">
+                        <div class="config-label">MATERIAL / COMPLEXITY</div>
+                        <div class="config-options">
+                            <div class="config-btn selected" onclick="selectConfig('srv-0', 'material', 'std', this)">
+                                STANDARD</div>
+                            <div class="config-btn" onclick="selectConfig('srv-0', 'material', 'cop', this)">PREMIUM
+                            </div>
+                            <div class="config-btn" onclick="selectConfig('srv-0', 'material', 'spec', this)">SPECIALTY
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RESULT DISPLAY -->
+            <!-- RESULT DISPLAY (DETAILS TOGGLE) -->
+            <details>
+                <summary class="dynamic-price-display" onclick="togglePackageDetail('srv-0', 'good')"
+                    style="text-align:center; padding:1.5rem; background:linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(20, 20, 30, 0.8) 100%); border-radius:12px; border:1px solid var(--border); margin-top:1rem; cursor:pointer; color:var(--text);">
+                    <div style="font-family:'Orbitron'; color:var(--secondary); letter-spacing:2px;">ESTIMATED FLAT RATE
+                    </div>
+                    <div class="final-price" id="dynamic-price-value-srv-0">$440</div>
+                    <div class="price-breakdown" id="dynamic-breakdown-text-srv-0">Base Rate Included</div>
+                    <div style="margin-top:1rem; color:var(--primary); font-size:0.8rem; cursor:pointer;">[ CLICK TO
+                        VIEW SCOPE & DETAILS ]</div>
+                </summary>
+
+                <!-- PACKAGE DETAILS -->
+                <input type="radio" name="tabs-srv0" id="tab-srv0-mkt" class="css-tab-radio tab-mkt" checked>
+                <input type="radio" name="tabs-srv0" id="tab-srv0-eng" class="css-tab-radio tab-eng">
+
+                <div class="pkg-detail-header">
+                    <h3 style="color:var(--warning); font-family:'Orbitron'">SCOPE & SPECS</h3>
+                    <div class="view-tabs">
+                        <label for="tab-srv0-mkt" class="view-tab tab-client">MARKETING VIEW</label>
+                        <label for="tab-srv0-eng" class="view-tab tab-tech">ENGINEER VIEW</label>
+                    </div>
+                </div>
+                <div class="content-client">
+                    <div style="border-left:3px solid var(--primary); padding-left:1rem; margin-bottom:1.5rem;">
+                        <h4 style="color:white; font-size:1.1rem; margin-bottom:0.5rem;">🍽️ SEAMLESS KITCHEN
+                            UPGRADE</h4>
+                        <p style="color:rgba(255,255,255,0.8); font-size:0.9rem;">Your new dishwasher installed with
+                            <b>code-compliant precision</b>. We protect your cabinetry, flooring, and countertops
+                            during the entire process.
+                        </p>
+                    </div>
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                        <div style="background:rgba(255,255,255,0.05); padding:1rem; border-radius:8px;">
+                            <h5 style="color:var(--secondary); margin-bottom:0.5rem;">🛡️ LEAK-FREE GUARANTEE</h5>
+                            <ul style="list-style:none; padding:0; font-size:0.85rem; color:rgba(255,255,255,0.7);">
+                                <li>• High Loop Drain (Code Req)</li>
+                                <li>• Brass Supply Elbow</li>
+                                <li>• Full Cycle Test</li>
+                            </ul>
+                        </div>
+                        <div style="background:rgba(255,255,255,0.05); padding:1rem; border-radius:8px;">
+                            <h5 style="color:var(--primary); margin-bottom:0.5rem;">🏠 HOME PROTECTION</h5>
+                            <ul style="list-style:none; padding:0; font-size:0.85rem; color:rgba(255,255,255,0.7);">
+                                <li>• Floor Covering</li>
+                                <li>• Cabinet Shims</li>
+                                <li>• Packaging Removal</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-tech">
+                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem;">
+                        <!-- SPECS COLUMN -->
+                        <div>
+                            <h4
+                                style="color:var(--secondary); font-family:'Orbitron'; border-bottom:1px solid rgba(255,255,255,0.2); margin-bottom:1rem;">
+                                📋 SPECIFICATIONS</h4>
+
+                            <div style="margin-bottom:1rem;">
+                                <b style="color:var(--primary); font-size:0.8rem;">CODE COMPLIANCE (CPC):</b><br>
+                                <span style="font-size:0.8rem; color:#aaa;">
+                                    • <b>CPC 807.1:</b> High Loop Required<br>
+                                    • <b>CPC 604.1:</b> Accessible Shutoff<br>
+                                    • <b>NEC 422.16:</b> Cord/Hardwire
+                                </span>
+                            </div>
+
+                            <div style="margin-bottom:1rem;">
+                                <b style="color:var(--primary); font-size:0.8rem;">MATERIAL BOM:</b><br>
+                                <ul style="font-size:0.8rem; color:#aaa; padding-left:1rem; margin:0;">
+                                    <li>1x 90° Brass Elbow (3/8 Comp)</li>
+                                    <li>1x SS Braided Supply 60"</li>
+                                    <li>1x Dishwasher Drain Boot</li>
+                                    <li>1x Cord Kit (If Hardwire Conv)</li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <b style="color:var(--primary); font-size:0.8rem;">SUPPLY CHAIN:</b><br>
+                                <span style="font-size:0.8rem; color:#aaa;">Ferguson (Acct #2991) / Bin #15-D</span>
+                            </div>
+                        </div>
+
+                        <!-- LABOR COLUMN -->
+                        <div>
+                            <h4
+                                style="color:var(--warning); font-family:'Orbitron'; border-bottom:1px solid rgba(255,255,255,0.2); margin-bottom:1rem;">
+                                ⏱️ LABOR ANALYSIS</h4>
+
+                            <div
+                                style="display:flex; justify-content:space-between; font-size:0.85rem; margin-bottom:1rem; background:rgba(255,255,255,0.1); padding:0.5rem; border-radius:4px;">
+                                <span>ALLOCATED TIME:</span>
+                                <b style="color:var(--warning);">1.5 MH</b>
+                            </div>
+
+                            <ul
+                                style="font-size:0.85rem; color:rgba(255,255,255,0.8); padding-left:0; list-style:none;">
+                                <li style="margin-bottom:0.5rem;"><b>1. PREP [0.2]:</b> Protect floor. Verify
+                                    valve/electrical. Disconnect old unit.</li>
+                                <li style="margin-bottom:0.5rem;"><b>2. PLUMB [0.4]:</b> Install 90° elbow. Connect
+                                    supply. Route drain (High Loop).</li>
+                                <li style="margin-bottom:0.5rem;"><b>3. ELECTRIC [0.3]:</b> Connect power (cord or
+                                    junction box). Verify ground.</li>
+                                <li style="margin-bottom:0.5rem;"><b>4. INSTALL [0.4]:</b> Slide in. Level legs.
+                                    Secure bracket to counter.</li>
+                                <li style="margin-bottom:0.5rem;"><b>5. TEST [0.2]:</b> Fill/Drain cycle. Check all
+                                    connections. Install toe-kick.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </details>
+        </div>
+
+        <div class="service-card" id="srv-1">
+            <div class="service-header"><img class="service-thumb" src="images/supply_kit_braided_ss.png">
+                <div class="service-info">
+                    <h2>Complete Braided SS Supply Kit</h2>
+                </div>
+            </div>
+            <!-- DYNAMIC FLAT RATE CONFIGURED -->
+            <div class="dynamic-config-panel">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+                    <div class="config-group">
+                        <div class="config-label">SECTOR / USE</div>
+                        <div class="config-options">
+                            <div class="config-btn selected" onclick="selectConfig('srv-1', 'sector', 'res', this)">
+                                RESIDENCIAL</div>
+                            <div class="config-btn" onclick="selectConfig('srv-1', 'sector', 'com', this)">COMMERCIAL
+                            </div>
+                            <div class="config-btn" onclick="selectConfig('srv-1', 'sector', 'ind', this)">INDUSTRIAL
+                            </div>
+                        </div>
+                    </div>
+                    <div class="config-group">
+                        <div class="config-label">URGENCY / TIME</div>
+                        <div class="config-options">
+                            <div class="config-btn selected" onclick="selectConfig('srv-1', 'urgency', 'std', this)">
+                                SCHEDULED</div>
+                            <div class="config-btn" data-risk="high"
+                                onclick="selectConfig('srv-1', 'urgency', 'pri', this)">PRIORITY</div>
+                            <div class="config-btn" data-risk="high"
+                                onclick="selectConfig('srv-1', 'urgency', 'emg', this)">EMERGENCY</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+                    <div class="config-group">
+                        <div class="config-label">RISK / ACCESS</div>
+                        <div class="config-options">
+                            <div class="config-btn selected" onclick="selectConfig('srv-1', 'risk', 'l1', this)">LEVEL 1
+                            </div>
+                            <div class="config-btn" data-risk="high"
+                                onclick="selectConfig('srv-1', 'risk', 'l2', this)">
+                                ELEVATED</div>
+                            <div class="config-btn" data-risk="high"
+                                onclick="selectConfig('srv-1', 'risk', 'l3', this)">
+                                CONFINED</div>
+                        </div>
+                    </div>
+                    <div class="config-group">
+                        <div class="config-label">MATERIAL / COMPLEXITY</div>
+                        <div class="config-options">
+                            <div class="config-btn selected" onclick="selectConfig('srv-1', 'material', 'std', this)">
+                                STANDARD</div>
+                            <div class="config-btn" onclick="selectConfig('srv-1', 'material', 'cop', this)">PREMIUM
+                            </div>
+                            <div class="config-btn" onclick="selectConfig('srv-1', 'material', 'spec', this)">SPECIALTY
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RESULT DISPLAY -->
+            <details>
+                <summary class="dynamic-price-display"
+                    style="text-align:center; padding:1rem; background:rgba(0,0,0,0.3); border-radius:10px; margin-top:1rem; border:1px dashed rgba(255,255,255,0.2); cursor:pointer; font-size:0.9rem; transition:0.3s; color:#00f3ff;">
+                    <div style="font-family:'Orbitron'; color:var(--secondary); letter-spacing:2px;">ESTIMATED FLAT RATE
+                    </div>
+                    <div class="final-price" id="dynamic-price-value-srv-1">$243</div>
+                    <div class="price-breakdown" id="dynamic-breakdown-text-srv-1">Base Rate Included</div>
+                    <div style="margin-top:1rem; color:var(--primary); font-size:0.8rem; cursor:pointer;">
+                        [ CLICK TO VIEW SCOPE & DETAILS ]
+                    </div>
+                </summary>
+
+                <!-- PACKAGE DETAILS -->
+                <!-- CSS TABS IMPLEMENTATION -->
+                <input type="radio" name="tabs-srv1" id="tab-srv1-mkt" class="css-tab-radio tab-mkt" checked>
+                <input type="radio" name="tabs-srv1" id="tab-srv1-eng" class="css-tab-radio tab-eng">
+
+                <div class="pkg-detail-header">
+                    <h3 style="color:var(--warning); font-family:'Orbitron'">SCOPE & SPECS</h3>
+                    <div class="view-tabs">
+                        <label for="tab-srv1-mkt" class="view-tab tab-client">MARKETING VIEW</label>
+                        <label for="tab-srv1-eng" class="view-tab tab-tech">ENGINEER VIEW</label>
+                    </div>
+                </div>
+                <div class="content-client">
+                    <div style="border-left:3px solid var(--primary); padding-left:1rem; margin-bottom:1.5rem;">
+                        <h4 style="color:white; font-size:1.1rem; margin-bottom:0.5rem;">🚫 ELIMINATE FLOOD RISK</h4>
+                        <p style="color:rgba(255,255,255,0.8); font-size:0.9rem;">The #1 cause of home water damage is
+                            failed angle stops. We replace builder-grade plastic with <b>Forged Brass</b> and
+                            <b>Burst-Proof Steel</b>.
+                        </p>
+                    </div>
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                        <div style="background:rgba(255,255,255,0.05); padding:1rem; border-radius:8px;">
+                            <h5 style="color:var(--secondary); margin-bottom:0.5rem;">💎 DIAMOND INSTALL</h5>
+                            <ul style="list-style:none; padding:0; font-size:0.85rem; color:rgba(255,255,255,0.7);">
+                                <li>• 1/4-Turn "Ball Valve" Tech</li>
+                                <li>• Solid Brass Construction</li>
+                                <li>• Chrome Escutcheon Finish</li>
+                            </ul>
+                        </div>
+                        <div style="background:rgba(255,255,255,0.05); padding:1rem; border-radius:8px;">
+                            <h5 style="color:var(--primary); margin-bottom:0.5rem;">🛡️ 5-YEAR WARRANTY</h5>
+                            <ul style="list-style:none; padding:0; font-size:0.85rem; color:rgba(255,255,255,0.7);">
+                                <li>• No-Leak Guarantee</li>
+                                <li>• 24/7 Priority Status</li>
+                                <li>• 100% Satisfaction</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-tech">
+                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem;">
+                        <!-- SPECS COLUMN -->
+                        <div>
+                            <h4
+                                style="color:var(--secondary); font-family:'Orbitron'; border-bottom:1px solid rgba(255,255,255,0.2); margin-bottom:1rem;">
+                                📋 SPECIFICATIONS</h4>
+
+                            <div style="margin-bottom:1rem;">
+                                <b style="color:var(--primary); font-size:0.8rem;">CODE COMPLIANCE (CPC/UPC):</b><br>
+                                <span style="font-size:0.8rem; color:#aaa;">
+                                    • <b>CPC 604.13:</b> Accessible Shutoff<br>
+                                    • <b>CPC 605.13:</b> Joints & Connections<br>
+                                    • <b>ASME A112.18.1:</b> Fittings Std
+                                </span>
+                            </div>
+
+                            <div style="margin-bottom:1rem;">
+                                <b style="color:var(--primary); font-size:0.8rem;">MATERIAL BOM:</b><br>
+                                <ul style="font-size:0.8rem; color:#aaa; padding-left:1rem; margin:0;">
+                                    <li>1x Angle Stop 5/8x3/8 Comp (Brass)</li>
+                                    <li>1x SS Braided Supply 30" (Fluidmaster)</li>
+                                    <li>1x Chrome Escutcheon (Split/Solid)</li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <b style="color:var(--primary); font-size:0.8rem;">SUPPLY CHAIN:</b><br>
+                                <span style="font-size:0.8rem; color:#aaa;">Ferguson (Acct #2991) / Bin #42-A</span>
+                            </div>
+                        </div>
+
+                        <!-- LABOR COLUMN -->
+                        <div>
+                            <h4
+                                style="color:var(--warning); font-family:'Orbitron'; border-bottom:1px solid rgba(255,255,255,0.2); margin-bottom:1rem;">
+                                ⏱️ LABOR & PROTOCOL</h4>
+
+                            <div
+                                style="display:flex; justify-content:space-between; font-size:0.85rem; margin-bottom:1rem; background:rgba(255,255,255,0.1); padding:0.5rem; border-radius:4px;">
+                                <span>ALLOCATED TIME:</span>
+                                <b style="color:var(--warning);">0.75 MH</b>
+                            </div>
+
+                            <ul
+                                style="font-size:0.85rem; color:rgba(255,255,255,0.8); padding-left:0; list-style:none;">
+                                <li style="margin-bottom:0.5rem;"><b>1. ISOLATION [0.1]:</b> Verify main shutoff
+                                    holding. Drain local pressure.</li>
+                                <li style="margin-bottom:0.5rem;"><b>2. EXTRACTION [0.2]:</b> Remove old compression
+                                    nut/sleeve. Clean copper stub with emery (grit 180).</li>
+                                <li style="margin-bottom:0.5rem;"><b>3. INSTALL [0.3]:</b> Press new sleeve. Torque nut
+                                    to spec (do not overtighten). Align outlet.</li>
+                                <li style="margin-bottom:0.5rem;"><b>4. TEST [0.15]:</b> Pressurize. Wipe with dry
+                                    tissue (White Glove Test). Verify 0 leaks at 60psi.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        </details>
+    </div>
+
+    <div class="service-card" id="srv-6">
+        <div class="service-header"><img class="service-thumb" src="images/drain_cleaning_diagram_1765473755211.png">
+            <div class="service-info">
+                <h2>Kitchen Sink Stoppage</h2>
+            </div>
+        </div>
+        <!-- DYNAMIC FLAT RATE CONFIGURED -->
+        <div class="dynamic-config-panel">
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+                <div class="config-group">
+                    <div class="config-label">SECTOR / USE</div>
+                    <div class="config-options">
+                        <div class="config-btn selected" onclick="selectConfig('srv-6', 'sector', 'res', this)">
+                            RESIDENCIAL</div>
+                        <div class="config-btn" onclick="selectConfig('srv-6', 'sector', 'com', this)">COMMERCIAL
+                        </div>
+                        <div class="config-btn" onclick="selectConfig('srv-6', 'sector', 'ind', this)">INDUSTRIAL
+                        </div>
+                    </div>
+                </div>
+                <div class="config-group">
+                    <div class="config-label">URGENCY / TIME</div>
+                    <div class="config-options">
+                        <div class="config-btn selected" onclick="selectConfig('srv-6', 'urgency', 'std', this)">
+                            SCHEDULED</div>
+                        <div class="config-btn" data-risk="high"
+                            onclick="selectConfig('srv-6', 'urgency', 'pri', this)">PRIORITY</div>
+                        <div class="config-btn" data-risk="high"
+                            onclick="selectConfig('srv-6', 'urgency', 'emg', this)">EMERGENCY</div>
+                    </div>
+                </div>
+            </div>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+                <div class="config-group">
+                    <div class="config-label">RISK / ACCESS</div>
+                    <div class="config-options">
+                        <div class="config-btn selected" onclick="selectConfig('srv-6', 'risk', 'l1', this)">LEVEL 1
+                        </div>
+                        <div class="config-btn" data-risk="high" onclick="selectConfig('srv-6', 'risk', 'l2', this)">
+                            ELEVATED</div>
+                        <div class="config-btn" data-risk="high" onclick="selectConfig('srv-6', 'risk', 'l3', this)">
+                            CONFINED</div>
+                    </div>
+                </div>
+                <div class="config-group">
+                    <div class="config-label">MATERIAL / COMPLEXITY</div>
+                    <div class="config-options">
+                        <div class="config-btn selected" onclick="selectConfig('srv-6', 'material', 'std', this)">
+                            STANDARD</div>
+                        <div class="config-btn" onclick="selectConfig('srv-6', 'material', 'cop', this)">PREMIUM
+                        </div>
+                        <div class="config-btn" onclick="selectConfig('srv-6', 'material', 'spec', this)">SPECIALTY
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESULT DISPLAY -->
+        <!-- RESULT DISPLAY (DETAILS TOGGLE) -->
+        <details>
+            <summary class="dynamic-price-display" onclick="togglePackageDetail('srv-6', 'good')"
+                style="text-align:center; padding:1.5rem; background:linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(20, 20, 30, 0.8) 100%); border-radius:12px; border:1px solid var(--border); margin-top:1rem; cursor:pointer; color:var(--text);">
+                <div style="font-family:'Orbitron'; color:var(--secondary); letter-spacing:2px;">ESTIMATED FLAT RATE
+                </div>
+                <div class="final-price" id="dynamic-price-value-srv-6">$228</div>
+                <div class="price-breakdown" id="dynamic-breakdown-text-srv-6">Base Rate Included</div>
+                <div style="margin-top:1rem; color:var(--primary); font-size:0.8rem; cursor:pointer;">
+                    [ CLICK TO VIEW SCOPE & DETAILS ]
+                </div>
+            </summary>
+
+            <!-- PACKAGE DETAILS -->
+            <input type="radio" name="tabs-srv6" id="tab-srv6-mkt" class="css-tab-radio tab-mkt" checked>
+            <input type="radio" name="tabs-srv6" id="tab-srv6-eng" class="css-tab-radio tab-eng">
+
+            <div class="pkg-detail-header">
+                <h3 style="color:var(--warning); font-family:'Orbitron'">SCOPE & SPECS</h3>
+                <div class="view-tabs">
+                    <label for="tab-srv6-mkt" class="view-tab tab-client">MARKETING VIEW</label>
+                    <label for="tab-srv6-eng" class="view-tab tab-tech">ENGINEER VIEW</label>
+                </div>
+            </div>
+
+            <!-- HIGH END MARKETING CLIENT VIEW -->
+            <div class="content-client">
+                <div style="border-left:3px solid var(--secondary); padding-left:1rem; margin-bottom:1.5rem;">
+                    <h4 style="color:white; font-size:1.1rem; margin-bottom:0.5rem;">🌊 RESTORE YOUR FLOW INSTANTLY
+                    </h4>
+                    <p style="color:rgba(255,255,255,0.8); font-size:0.9rem;">Don't let a clogged drain disrupt your
+                        business or home. We use <b>Industrial-Grade Hydro-Mechanical</b> equipment to surgically
+                        remove blockages, not just push them.</p>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                    <div style="background:rgba(255,255,255,0.05); padding:1rem; border-radius:8px;">
+                        <h5 style="color:var(--secondary); margin-bottom:0.5rem;">🔬 VIDEO DIAGNOSTIC</h5>
+                        <ul style="list-style:none; padding:0; font-size:0.85rem; color:rgba(255,255,255,0.7);">
+                            <li>• Root Cause Analysis</li>
+                            <li>• Before/After Verification</li>
+                            <li>• Pipe Health Check</li>
+                        </ul>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.05); padding:1rem; border-radius:8px;">
+                        <h5 style="color:var(--primary); margin-bottom:0.5rem;">✨ HYGIENE PROTCOL</h5>
+                        <ul style="list-style:none; padding:0; font-size:0.85rem; color:rgba(255,255,255,0.7);">
+                            <li>• Anti-Microbial Treatment</li>
+                            <li>• Workspace Protection</li>
+                            <li>• Zero-Mess Guarantee</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DETAILED ENGINEER / TECH VIEW -->
+            <div class="content-tech">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem;">
+                    <!-- SPECS COLUMN -->
+                    <div>
+                        <h4
+                            style="color:var(--secondary); font-family:'Orbitron'; border-bottom:1px solid rgba(255,255,255,0.2); margin-bottom:1rem;">
+                            📋 SPECIFICATIONS</h4>
+
+                        <div style="margin-bottom:1rem;">
+                            <b style="color:var(--primary); font-size:0.8rem;">CODE COMPLIANCE:</b><br>
+                            <span style="font-size:0.8rem; color:#aaa;">
+                                • <b>CPC 701.0:</b> Materials/Fittings<br>
+                                • <b>CPC 1003.0:</b> Traps/Interceptors<br>
+                            </span>
+                        </div>
+
+                        <div style="margin-bottom:1rem;">
+                            <b style="color:var(--primary); font-size:0.8rem;">EQUIPMENT / MATS:</b><br>
+                            <ul style="font-size:0.8rem; color:#aaa; padding-left:1rem; margin:0;">
+                                <li>Rigid K-45 / K-60 Machine</li>
+                                <li>C-1 Inner Core Cable (3/8" or 1/2")</li>
+                                <li>Drop Head / Spade Cutter</li>
+                                <li>Slip-Joint Washers / Trap Adapter</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- LABOR COLUMN -->
+                    <div>
+                        <h4
+                            style="color:var(--warning); font-family:'Orbitron'; border-bottom:1px solid rgba(255,255,255,0.2); margin-bottom:1rem;">
+                            ⏱️ LABOR ANALYSIS</h4>
+
+                        <div
+                            style="display:flex; justify-content:space-between; font-size:0.85rem; margin-bottom:1rem; background:rgba(255,255,255,0.1); padding:0.5rem; border-radius:4px;">
+                            <span>ALLOCATED TIME:</span>
+                            <b style="color:var(--warning);">1.0 MH</b>
+                        </div>
+
+                        <ul style="font-size:0.85rem; color:rgba(255,255,255,0.8); padding-left:0; list-style:none;">
+                            <li style="margin-bottom:0.5rem;"><b>1. SETUP [0.2]:</b> Lay drop cloths. Remove P-Trap.
+                                Inspect Trap Arm condition.</li>
+                            <li style="margin-bottom:0.5rem;"><b>2. CABLE OP [0.5]:</b> Run cable. Feel for 'Bite'.
+                                Work blockage back-and-forth. Retrieve roots/hair.</li>
+                            <li style="margin-bottom:0.5rem;"><b>3. RESTORE [0.1]:</b> Re-assemble P-Trap with new
+                                poly washers. Hand tighten.</li>
+                            <li style="margin-bottom:0.5rem;"><b>4. FLOW TEST [0.2]:</b> Fill basin to rim (Volume
+                                Test). Pull plug. Observe vortex.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </details>
+    </div>
+
+    <div class="service-card" id="srv-9">
+        <div class="service-header"><img class="service-thumb" src="images/house_cleanout_installation.png">
+            <div class="service-info">
+                <h2>Install House Clean Out</h2>
+            </div>
+        </div>
+        <!-- DYNAMIC FLAT RATE CONFIGURED -->
+        <div class="dynamic-config-panel">
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+                <div class="config-group">
+                    <div class="config-label">SECTOR / USE</div>
+                    <div class="config-options">
+                        <div class="config-btn selected" onclick="selectConfig('srv-9', 'sector', 'res', this)">
+                            RESIDENCIAL</div>
+                        <div class="config-btn" onclick="selectConfig('srv-9', 'sector', 'com', this)">COMMERCIAL
+                        </div>
+                        <div class="config-btn" onclick="selectConfig('srv-9', 'sector', 'ind', this)">INDUSTRIAL
+                        </div>
+                    </div>
+                </div>
+                <div class="config-group">
+                    <div class="config-label">URGENCY / TIME</div>
+                    <div class="config-options">
+                        <div class="config-btn selected" onclick="selectConfig('srv-9', 'urgency', 'std', this)">
+                            SCHEDULED</div>
+                        <div class="config-btn" data-risk="high"
+                            onclick="selectConfig('srv-9', 'urgency', 'pri', this)">PRIORITY</div>
+                        <div class="config-btn" data-risk="high"
+                            onclick="selectConfig('srv-9', 'urgency', 'emg', this)">EMERGENCY</div>
+                    </div>
+                </div>
+            </div>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+                <div class="config-group">
+                    <div class="config-label">RISK / ACCESS</div>
+                    <div class="config-options">
+                        <div class="config-btn selected" onclick="selectConfig('srv-9', 'risk', 'l1', this)">LEVEL 1
+                        </div>
+                        <div class="config-btn" data-risk="high" onclick="selectConfig('srv-9', 'risk', 'l2', this)">
+                            ELEVATED</div>
+                        <div class="config-btn" data-risk="high" onclick="selectConfig('srv-9', 'risk', 'l3', this)">
+                            CONFINED</div>
+                    </div>
+                </div>
+                <div class="config-group">
+                    <div class="config-label">MATERIAL / COMPLEXITY</div>
+                    <div class="config-options">
+                        <div class="config-btn selected" onclick="selectConfig('srv-9', 'material', 'std', this)">
+                            STANDARD</div>
+                        <div class="config-btn" onclick="selectConfig('srv-9', 'material', 'cop', this)">PREMIUM
+                        </div>
+                        <div class="config-btn" onclick="selectConfig('srv-9', 'material', 'spec', this)">SPECIALTY
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESULT DISPLAY (DETAILS TOGGLE) -->
+        <details>
+            <summary class="dynamic-price-display" onclick="togglePackageDetail('srv-9', 'good')"
+                style="text-align:center; padding:1.5rem; background:linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(20, 20, 30, 0.8) 100%); border-radius:12px; border:1px solid var(--border); margin-top:1rem; cursor:pointer; color:var(--text);">
+                <div style="font-family:'Orbitron'; color:var(--secondary); letter-spacing:2px;">ESTIMATED FLAT RATE
+                </div>
+                <div class="final-price" id="dynamic-price-value-srv-9">$1,403</div>
+                <div class="price-breakdown" id="dynamic-breakdown-text-srv-9">Base Rate Included</div>
+                <div style="margin-top:1rem; color:var(--primary); font-size:0.8rem; cursor:pointer;">[ CLICK TO VIEW
+                    SCOPE & DETAILS ]</div>
+            </summary>
+
+            <!-- PACKAGE DETAILS (CSS TABS + PREMIUM CONTENT) -->
+            <input type="radio" name="tabs-srv9" id="tab-srv9-mkt" class="css-tab-radio tab-mkt" checked>
+            <input type="radio" name="tabs-srv9" id="tab-srv9-eng" class="css-tab-radio tab-eng">
+
+            <div class="pkg-detail-header">
+                <h3 style="color:var(--warning); font-family:'Orbitron'">SCOPE & SPECS</h3>
+                <div class="view-tabs">
+                    <label for="tab-srv9-mkt" class="view-tab tab-client">MARKETING VIEW</label>
+                    <label for="tab-srv9-eng" class="view-tab tab-tech">ENGINEER VIEW</label>
+                </div>
+            </div>
+
+            <div class="content-client">
+                <div style="border-left:3px solid var(--primary); padding-left:1rem; margin-bottom:1.5rem;">
+                    <h4 style="color:white; font-size:1.1rem; margin-bottom:0.5rem;">🚜 PERMANENT SEWER ACCESS</h4>
+                    <p style="color:rgba(255,255,255,0.8); font-size:0.9rem;">Stop guessing. We install a
+                        <b>Code-Compliant Two-Way Cleanout</b> that gives full access for maintenance, cameras, and
+                        hydro-jetting, protecting your property value.
+                    </p>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                    <div style="background:rgba(255,255,255,0.05); padding:1rem; border-radius:8px;">
+                        <h5 style="color:var(--secondary); margin-bottom:0.5rem;">🏆 LIFETIME WARRANTY</h5>
+                        <ul style="list-style:none; padding:0; font-size:0.85rem; color:rgba(255,255,255,0.7);">
+                            <li>• Heavy Duty ABS/PVC</li>
+                            <li>• Traffic-Rated Box</li>
+                            <li>• Earth Settlement Guarantee</li>
+                        </ul>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.05); padding:1rem; border-radius:8px;">
+                        <h5 style="color:var(--primary); margin-bottom:0.5rem;">🌱 LANDSCAPE RECOVERY</h5>
+                        <ul style="list-style:none; padding:0; font-size:0.85rem; color:rgba(255,255,255,0.7);">
+                            <li>• Sod Preservation</li>
+                            <li>• Correct Grading</li>
+                            <li>• Invisible Finish</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-tech">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem;">
+                    <!-- SPECS -->
+                    <div>
+                        <h4
+                            style="color:var(--secondary); font-family:'Orbitron'; border-bottom:1px solid rgba(255,255,255,0.2); margin-bottom:1rem;">
+                            📋 SPECIFICATIONS</h4>
+                        <div style="margin-bottom:1rem;">
+                            <b style="color:var(--primary); font-size:0.8rem;">CODE COMPLIANCE:</b><br>
+                            <span style="font-size:0.8rem; color:#aaa;">
+                                • <b>CPC 707.0:</b> Cleanouts Req<br>
+                                • <b>CPC 719.0:</b> Grading/Connections
+                            </span>
+                        </div>
+                        <div style="margin-bottom:1rem;">
+                            <b style="color:var(--primary); font-size:0.8rem;">MATERIAL BOM:</b><br>
+                            <ul style="font-size:0.8rem; color:#aaa; padding-left:1rem; margin:0;">
+                                <li>1x Two-Way Tee (ABS/PVC 3" or 4")</li>
+                                <li>2x No-Hub Couplings (Shielded)</li>
+                                <li>1x Riser Pipe + Threaded Cap</li>
+                                <li>1x Christie Box (Traffic Rated)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- LABOR -->
+                    <div>
+                        <h4
+                            style="color:var(--warning); font-family:'Orbitron'; border-bottom:1px solid rgba(255,255,255,0.2); margin-bottom:1rem;">
+                            ⏱️ LABOR ANALYSIS</h4>
+                        <div
+                            style="display:flex; justify-content:space-between; font-size:0.85rem; margin-bottom:1rem; background:rgba(255,255,255,0.1); padding:0.5rem; border-radius:4px;">
+                            <span>ALLOCATED TIME:</span><b style="color:var(--warning);">4.5 MH</b>
+                        </div>
+                        <ul style="font-size:0.85rem; color:rgba(255,255,255,0.8); padding-left:0; list-style:none;">
+                            <li style="margin-bottom:0.5rem;"><b>1. LOCATE [0.5]:</b> Sonde query. Depth
+                                verification. Utility Markout (811).</li>
+                            <li style="margin-bottom:0.5rem;"><b>2. EXCAVATION [2.0]:</b> 4x4 Pit. Shoring if >5ft.
+                                Bedding prep.</li>
+                            <li style="margin-bottom:0.5rem;"><b>3. TIE-IN [1.0]:</b> Snap-cut. Fernco install
+                                (Torque 60lb). Tee leveling.</li>
+                            <li style="margin-bottom:0.5rem;"><b>4. BACKFILL [1.0]:</b> Sand shading. Water
+                                compaction. Surface restore.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </details>
+    </div>
+
+    <!-- NEW DYNAMIC SRV-10 -->
+    <div class="service-card" id="srv-10">
+        <div class="service-header">
+            <img class="service-thumb" src="images/water_heater_50gal_install.png">
+            <div class="service-info">
+                <div style="color:var(--secondary); font-family:'Orbitron'; font-weight:bold;">WH-100</div>
+                <h2>50 Gallon Gas Water Heater Install</h2>
+                <p style="color:rgba(255,255,255,0.6); max-width:600px; margin-bottom:1rem;">Dynamic Pricing
+                    Configuration.</p>
+            </div>
+        </div>
+
+        <!-- DYNAMIC FLAT RATE CONFIGURED -->
+        <div class="dynamic-config-panel">
+            <!-- ROW 1 -->
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+                <div class="config-group">
+                    <div class="config-label">SECTOR / USE</div>
+                    <div class="config-options">
+                        <div class="config-btn selected" onclick="selectConfig('srv-10', 'sector', 'res', this)">
+                            RESIDENCIAL</div>
+                        <div class="config-btn" onclick="selectConfig('srv-10', 'sector', 'com', this)">COMMERCIAL
+                        </div>
+                        <div class="config-btn" onclick="selectConfig('srv-10', 'sector', 'ind', this)">INDUSTRIAL
+                        </div>
+                    </div>
+                </div>
+                <div class="config-group">
+                    <div class="config-label">URGENCY / TIME</div>
+                    <div class="config-options">
+                        <div class="config-btn selected" onclick="selectConfig('srv-10', 'urgency', 'std', this)">
+                            SCHEDULED</div>
+                        <div class="config-btn" data-risk="high"
+                            onclick="selectConfig('srv-10', 'urgency', 'pri', this)">PRIORITY</div>
+                        <div class="config-btn" data-risk="high"
+                            onclick="selectConfig('srv-10', 'urgency', 'emg', this)">EMERGENCY</div>
+                    </div>
+                </div>
+            </div>
+            <!-- ROW 2 -->
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+                <div class="config-group">
+                    <div class="config-label">RISK / ACCESS</div>
+                    <div class="config-options">
+                        <div class="config-btn selected" onclick="selectConfig('srv-10', 'risk', 'l1', this)">LEVEL
+                            1</div>
+                        <div class="config-btn" data-risk="high" onclick="selectConfig('srv-10', 'risk', 'l2', this)">
+                            ELEVATED</div>
+                        <div class="config-btn" data-risk="high" onclick="selectConfig('srv-10', 'risk', 'l3', this)">
+                            CONFINED</div>
+                    </div>
+                </div>
+                <div class="config-group">
+                    <div class="config-label">MATERIAL / COMPLEXITY</div>
+                    <div class="config-options">
+                        <div class="config-btn selected" onclick="selectConfig('srv-10', 'material', 'std', this)">
+                            PVC/FLEX</div>
+                        <div class="config-btn" onclick="selectConfig('srv-10', 'material', 'cop', this)">COPPER
+                        </div>
+                        <div class="config-btn" onclick="selectConfig('srv-10', 'material', 'spec', this)">SPECIALTY
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESULT DISPLAY (DETAILS TOGGLE) -->
+        <details>
+            <summary class="dynamic-price-display" onclick="togglePackageDetail('srv-10', 'good')"
+                style="text-align:center; padding:1.5rem; background:linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(20, 20, 30, 0.8) 100%); border-radius:12px; border:1px solid var(--border); margin-top:1rem; cursor:pointer; color:var(--text);">
+                <div style="font-family:'Orbitron'; color:var(--secondary); letter-spacing:2px;">ESTIMATED FLAT RATE
+                </div>
+                <div class="final-price" id="dynamic-price-value-srv-10">$2,400</div>
+                <div class="price-breakdown" id="dynamic-breakdown-text-srv-10">Base Rate Included</div>
+                <div style="margin-top:1rem; color:var(--primary); font-size:0.8rem; cursor:pointer;">[ CLICK TO VIEW
+                    SCOPE & DETAILS ]</div>
+            </summary>
+
+            <!-- PACKAGE DETAILS -->
+            <input type="radio" name="tabs-srv10" id="tab-srv10-mkt" class="css-tab-radio tab-mkt" checked>
+            <input type="radio" name="tabs-srv10" id="tab-srv10-eng" class="css-tab-radio tab-eng">
+
+            <div class="pkg-detail-header">
+                <h3 style="color:var(--warning); font-family:'Orbitron'">SCOPE & SPECS</h3>
+                <div class="view-tabs">
+                    <label for="tab-srv10-mkt" class="view-tab tab-client">MARKETING VIEW</label>
+                    <label for="tab-srv10-eng" class="view-tab tab-tech">ENGINEER VIEW</label>
+                </div>
+            </div>
+            <div class="content-client">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem;">
+                    <div>
+                        <h4
+                            style="color:var(--primary); font-family:'Orbitron'; margin-bottom:1rem; border-bottom:1px solid rgba(0,245,255,0.3); padding-bottom:0.5rem;">
+                            🛡️ PROTECTION & SAFETY
+                        </h4>
+                        <ul style="list-style:none; padding:0; line-height:1.8; color:rgba(255,255,255,0.9);">
+                            <li style="margin-bottom:0.8rem;">
+                                <b style="color:var(--secondary);">✓ CODE UPGRADES INCLUDED</b><br>
+                                <span style="font-size:0.85rem; opacity:0.7;">We bring everything up to 2024
+                                    Standards: Seismic Straps, Expansion Tank, & Safe-Waste Pan.</span>
+                            </li>
+                            <li style="margin-bottom:0.8rem;">
+                                <b style="color:var(--secondary);">✓ GAS LEAK DEFENSE</b><br>
+                                <span style="font-size:0.85rem; opacity:0.7;">Complete soap-test of all gas
+                                    connections to ensure zero leaks.</span>
+                            </li>
+                            <li>
+                                <b style="color:var(--secondary);">✓ CARBON MONOXIDE CHECK</b><br>
+                                <span style="font-size:0.85rem; opacity:0.7;">Drafthood spill-test to guarantee
+                                    safe exhaust venting.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4
+                            style="color:var(--secondary); font-family:'Orbitron'; margin-bottom:1rem; border-bottom:1px solid rgba(168,85,247,0.3); padding-bottom:0.5rem;">
+                            💎 PREMIUM EXPERIENCE
+                        </h4>
+                        <ul style="list-style:none; padding:0; line-height:1.8; color:rgba(255,255,255,0.9);">
+                            <li style="margin-bottom:0.8rem;">
+                                <b style="color:var(--primary);">✓ WHITE-GLOVE SERVICE</b><br>
+                                <span style="font-size:0.85rem; opacity:0.7;">Full protection of your home's
+                                    flooring. We haul away and recycle your old unit.</span>
+                            </li>
+                            <li style="margin-bottom:0.8rem;">
+                                <b style="color:var(--primary);">✓ PROFESSIONAL GRADE MATERIAL</b><br>
+                                <span style="font-size:0.85rem; opacity:0.7;">We use Brass Valves & Stainless
+                                    Steel Connectors, not cheap plastic.</span>
+                            </li>
+                            <li>
+                                <b style="color:var(--primary);">✓ PEACE OF MIND WARRANTY</b><br>
+                                <span style="font-size:0.85rem; opacity:0.7;">Backed by our 100% Satisfaction
+                                    Guarantee.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="content-tech">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem;">
+                    <!-- COLUMN 1: MATERIAL SUPPLY CHAIN -->
+                    <div>
+                        <h4
+                            style="color:var(--secondary); font-family:'Orbitron'; border-bottom:1px solid rgba(255,255,255,0.2); padding-bottom:0.5rem; margin-bottom:1rem;">
+                            📦 MATERIAL SUPPLY CHAIN
+                        </h4>
+                        <ul style="line-height:1.6; color:rgba(255,255,255,0.8); font-size:0.9rem;">
+                            <li style="margin-bottom:0.5rem;">
+                                <b style="color:var(--primary);">PRIMARY SUPPLIER:</b><br>
+                                Ferguson Plumbing (Acct #2991)<br>
+                                <i style="font-size:0.8rem; opacity:0.7;">Pickup Window: 07:00 AM - 08:30 AM</i>
+                            </li>
+                            <li style="margin-bottom:0.5rem;">
+                                <b style="color:white;">UNIT SPEC:</b><br>
+                                Rheem Performance Plus (50 Gal)<br>
+                                <span style="color:#00ff9d;">Model: XG50T06EC38U0</span>
+                            </li>
+                            <li>
+                                <b style="color:white;">REQUIRED PARTS:</b><br>
+                                • 3/4" Full Port Ball Valves (Brass)<br>
+                                • Thermal Expansion Tank (2.1 Gal)<br>
+                                • Premium SS Flex Connectors<br>
+                                <span style="color:#00ff9d;">Check Stock at Branch</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- COLUMN 2: LABOR PROTOCOL -->
+                    <div>
+                        <h4
+                            style="color:var(--warning); font-family:'Orbitron'; border-bottom:1px solid rgba(255,255,255,0.2); padding-bottom:0.5rem; margin-bottom:1rem;">
+                            ⚒️ LABOR PROTOCOL
+                        </h4>
+                        <div style="background:rgba(255,255,255,0.05); padding:1rem; border-radius:8px;">
+                            <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+                                <span style="color:rgba(255,255,255,0.7);">CREW:</span>
+                                <b>Lead Plumber + Apprentice</b>
+                            </div>
+                            <div style="display:flex; justify-content:space-between; margin-bottom:1rem;">
+                                <span style="color:rgba(255,255,255,0.7);">TOTAL TIME:</span>
+                                <b style="color:var(--warning);">4.5 HOURS</b>
+                            </div>
+
+                            <div style="font-size:0.85rem; color:rgba(255,255,255,0.8);">
+                                <div style="margin-bottom:0.4rem;">
+                                    <span style="color:var(--primary);">▸ PREP/DEMO (0.5 hr)</span><br>
+                                    *Apprentice:* Drain & Safe Removal
+                                </div>
+                                <div style="margin-bottom:0.4rem;">
+                                    <span style="color:var(--primary);">▸ INSTALLATION (3.0 hr)</span><br>
+                                    *Lead:* Seismic Strapping, Gas, Water.<br>
+                                    *Specialty:* Soldering / Pipe Fitting
+                                </div>
+                                <div>
+                                    <span style="color:var(--primary);">▸ VERIFICATION (1.0 hr)</span><br>
+                                    *Both:* Leak Check, Draft Test, Cleanup
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </details>
+    </div>
+    <div class="service-card" id="srv-11">
+        <div class="service-header">
+            <img class="service-thumb" src="images/navien_tankless_install.png">
+            <div class="service-info">
+                <div style="color:var(--secondary); font-family:'Orbitron'; font-weight:bold;">WH-354</div>
+                <h2>Tankless Water Heater Upgrade (Navien)</h2>
+                <p style="color:rgba(255,255,255,0.6); max-width:600px; margin-bottom:1rem;">Agua caliente ilimitada
+                    y eficiencia 0.98 UEF.</p>
+            </div>
+        </div>
+        <!-- DYNAMIC FLAT RATE CONFIGURED -->
+        <div class="dynamic-config-panel">
+            <!-- ROW 1 -->
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+                <div class="config-group">
+                    <div class="config-label">SECTOR / USE</div>
+                    <div class="config-options">
+                        <div class="config-btn selected" onclick="selectConfig('srv-11', 'sector', 'res', this)">
+                            RESIDENCIAL</div>
+                        <div class="config-btn" onclick="selectConfig('srv-11', 'sector', 'com', this)">COMMERCIAL
+                        </div>
+                        <div class="config-btn" onclick="selectConfig('srv-11', 'sector', 'ind', this)">INDUSTRIAL
+                        </div>
+                    </div>
+                </div>
+                <div class="config-group">
+                    <div class="config-label">URGENCY / TIME</div>
+                    <div class="config-options">
+                        <div class="config-btn selected" onclick="selectConfig('srv-11', 'urgency', 'std', this)">
+                            SCHEDULED</div>
+                        <div class="config-btn" data-risk="high"
+                            onclick="selectConfig('srv-11', 'urgency', 'pri', this)">PRIORITY</div>
+                        <div class="config-btn" data-risk="high"
+                            onclick="selectConfig('srv-11', 'urgency', 'emg', this)">EMERGENCY</div>
+                    </div>
+                </div>
+            </div>
+            <!-- ROW 2 -->
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+                <div class="config-group">
+                    <div class="config-label">RISK / ACCESS</div>
+                    <div class="config-options">
+                        <div class="config-btn selected" onclick="selectConfig('srv-11', 'risk', 'l1', this)">LEVEL
+                            1</div>
+                        <div class="config-btn" data-risk="high" onclick="selectConfig('srv-11', 'risk', 'l2', this)">
+                            ELEVATED</div>
+                        <div class="config-btn" data-risk="high" onclick="selectConfig('srv-11', 'risk', 'l3', this)">
+                            CONFINED</div>
+                    </div>
+                </div>
+                <div class="config-group">
+                    <div class="config-label">MATERIAL / COMPLEXITY</div>
+                    <div class="config-options">
+                        <div class="config-btn selected" onclick="selectConfig('srv-11', 'material', 'std', this)">
+                            PVC/FLEX</div>
+                        <div class="config-btn" onclick="selectConfig('srv-11', 'material', 'cop', this)">COPPER
+                        </div>
+                        <div class="config-btn" onclick="selectConfig('srv-11', 'material', 'spec', this)">SPECIALTY
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESULT DISPLAY (DETAILS TOGGLE) -->
+        <details>
+            <summary class="dynamic-price-display" onclick="togglePackageDetail('srv-11', 'good')"
+                style="text-align:center; padding:1.5rem; background:linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(20, 20, 30, 0.8) 100%); border-radius:12px; border:1px solid var(--border); margin-top:1rem; cursor:pointer; color:var(--text);">
+                <div style="font-family:'Orbitron'; color:var(--secondary); letter-spacing:2px;">ESTIMATED FLAT RATE
+                </div>
+                <div class="final-price" id="dynamic-price-value-srv-11">$5,200</div>
+                <div class="price-breakdown" id="dynamic-breakdown-text-srv-11">Base Rate Included</div>
+                <div style="margin-top:1rem; color:var(--primary); font-size:0.8rem; cursor:pointer;">[ CLICK TO VIEW
+                    SCOPE & DETAILS ]</div>
+            </summary>
+
+            <!-- PACKAGE DETAILS -->
+            <input type="radio" name="tabs-srv11" id="tab-srv11-mkt" class="css-tab-radio tab-mkt" checked>
+            <input type="radio" name="tabs-srv11" id="tab-srv11-eng" class="css-tab-radio tab-eng">
+
+            <div class="pkg-detail-header">
+                <h3 style="color:var(--warning); font-family:'Orbitron'">SCOPE & SPECS</h3>
+                <div class="view-tabs">
+                    <label for="tab-srv11-mkt" class="view-tab tab-client">MARKETING VIEW</label>
+                    <label for="tab-srv11-eng" class="view-tab tab-tech">ENGINEER VIEW</label>
+                </div>
+            </div>
+            <div class="content-client">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem;">
+                    <div>
+                        <h4
+                            style="color:var(--primary); font-family:'Orbitron'; margin-bottom:1rem; border-bottom:1px solid rgba(0,245,255,0.3); padding-bottom:0.5rem;">
+                            🛡️ PROTECTION & SAFETY
+                        </h4>
+                        <ul style="list-style:none; padding:0; line-height:1.8; color:rgba(255,255,255,0.9);">
+                            <li style="margin-bottom:0.8rem;"><b style="color:var(--secondary);">✓ GAS SUPPLY
+                                    UPGRADE</b><br><span style="font-size:0.85rem; opacity:0.7;">We verify BTU
+                                    load and upgrade gas line (3/4") if needed.</span></li>
+                            <li><b style="color:var(--secondary);">✓ VENTILATION SAFETY</b><br><span
+                                    style="font-size:0.85rem; opacity:0.7;">Dedicated intake/exhaust validation
+                                    to prevent CO buildup.</span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4
+                            style="color:var(--secondary); font-family:'Orbitron'; margin-bottom:1rem; border-bottom:1px solid rgba(168,85,247,0.3); padding-bottom:0.5rem;">
+                            💎 PREMIUM EXPERIENCE
+                        </h4>
+                        <ul style="list-style:none; padding:0; line-height:1.8; color:rgba(255,255,255,0.9);">
+                            <li style="margin-bottom:0.8rem;"><b style="color:var(--primary);">✓ ENDLESS HOT
+                                    WATER</b><br><span style="font-size:0.85rem; opacity:0.7;">Never run out
+                                    again. High-efficiency 0.98 UEF System.</span></li>
+                            <li><b style="color:var(--primary);">✓ SPACE SAVING</b><br><span
+                                    style="font-size:0.85rem; opacity:0.7;">Wall-mounted design frees up
+                                    valuable floor space.</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="content-tech">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem;">
+                    <!-- COLUMN 1: MATERIAL SUPPLY CHAIN -->
+                    <div>
+                        <h4
+                            style="color:var(--secondary); font-family:'Orbitron'; border-bottom:1px solid rgba(255,255,255,0.2); padding-bottom:0.5rem; margin-bottom:1rem;">
+                            📦 MATERIAL SUPPLY CHAIN
+                        </h4>
+                        <ul style="line-height:1.6; color:rgba(255,255,255,0.8); font-size:0.9rem;">
+                            <li style="margin-bottom:0.5rem;">
+                                <b style="color:var(--primary);">PRIMARY SUPPLIER:</b><br>
+                                Ferguson Plumbing (Acct #2991)<br>
+                                <i style="font-size:0.8rem; opacity:0.7;">Pickup Window: 07:00 AM - 08:30 AM</i>
+                            </li>
+                            <li style="margin-bottom:0.5rem;">
+                                <b style="color:white;">UNIT SPEC:</b><br>
+                                Navien NPE-180A2 (Condensing)<br>
+                                <span style="color:#00ff9d;">Check Stock at Branch</span>
+                            </li>
+                            <li>
+                                <b style="color:white;">REQUIRED PARTS:</b><br>
+                                • Isolation Valve Kit (Webstone)<br>
+                                • Condensate Neutralizer<br>
+                                • SCH 40 PVC Venting (2")<br>
+                                <span style="color:#00ff9d;">Check Stock at Branch</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- COLUMN 2: LABOR PROTOCOL -->
+                    <div>
+                        <h4
+                            style="color:var(--warning); font-family:'Orbitron'; border-bottom:1px solid rgba(255,255,255,0.2); padding-bottom:0.5rem; margin-bottom:1rem;">
+                            ⚒️ LABOR PROTOCOL
+                        </h4>
+                        <div style="background:rgba(255,255,255,0.05); padding:1rem; border-radius:8px;">
+                            <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+                                <span style="color:rgba(255,255,255,0.7);">CREW:</span>
+                                <b>Lead Plumber + Helper</b>
+                            </div>
+                            <div style="display:flex; justify-content:space-between; margin-bottom:1rem;">
+                                <span style="color:rgba(255,255,255,0.7);">TOTAL TIME:</span>
+                                <b style="color:var(--warning);">8.0 HOURS</b>
+                            </div>
+
+                            <div style="font-size:0.85rem; color:rgba(255,255,255,0.8);">
+                                <div style="margin-bottom:0.4rem;">
+                                    <span style="color:var(--primary);">▸ MOUNTING (2 hrs)</span><br>
+                                    *Lead:* Install Backboard & Hang Unit
+                                </div>
+                                <div style="margin-bottom:0.4rem;">
+                                    <span style="color:var(--primary);">▸ PIPING (4 hrs)</span><br>
+                                    *Lead:* Gas & Water Lines.<br>
+                                    *Helper:* Venting Run (PVC)
+                                </div>
+                                <div>
+                                    <span style="color:var(--primary);">▸ STARTUP (2 hrs)</span><br>
+                                    *Both:* Purge Lines, Dip/Switch Settings
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </details>
+    </div>
+
+    <div class="service-card" id="srv-12">
+        <div class="service-header"> <img class="service-thumb" src="images/thermocouple_replacement_modern.png">
+            <div class="service-info">
+                <div style="color:var(--secondary); font-family:'Orbitron'; font-weight:bold;">WH-335</div>
+                <h2>Thermocouple Replacement</h2>
+                <p style="color:rgba(255,255,255,0.6); max-width:600px; margin-bottom:1rem;">Reparación de piloto
+                    que no se mantiene encendido.</p>
+                <div style="display:flex; gap:1rem; font-size:0.9rem;"> <span
+                        style="background:rgba(0,245,255,0.1); padding:0.2rem 0.6rem; border-radius:4px; color:var(--primary);">⏱
+                        1.0 hr</span> <span
+                        style="background:rgba(168,85,247,0.1); padding:0.2rem 0.6rem; border-radius:4px; color:var(--secondary);">📦
+                        Indirects Included</span> </div>
+            </div>
+        </div>
+        <!-- DYNAMIC FLAT RATE CONFIGURED -->
+        <div class="dynamic-config-panel">
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+                <div class="config-group">
+                    <div class="config-label">SECTOR / USE</div>
+                    <div class="config-options">
+                        <div class="config-btn selected" onclick="selectConfig('srv-12', 'sector', 'res', this)">
+                            RESIDENCIAL</div>
+                        <div class="config-btn" onclick="selectConfig('srv-12', 'sector', 'com', this)">COMMERCIAL
+                        </div>
+                        <div class="config-btn" onclick="selectConfig('srv-12', 'sector', 'ind', this)">INDUSTRIAL
+                        </div>
+                    </div>
+                </div>
+                <div class="config-group">
+                    <div class="config-label">URGENCY / TIME</div>
+                    <div class="config-options">
+                        <div class="config-btn selected" onclick="selectConfig('srv-12', 'urgency', 'std', this)">
+                            SCHEDULED</div>
+                        <div class="config-btn" data-risk="high"
+                            onclick="selectConfig('srv-12', 'urgency', 'pri', this)">PRIORITY</div>
+                        <div class="config-btn" data-risk="high"
+                            onclick="selectConfig('srv-12', 'urgency', 'emg', this)">EMERGENCY</div>
+                    </div>
+                </div>
+            </div>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+                <div class="config-group">
+                    <div class="config-label">RISK / ACCESS</div>
+                    <div class="config-options">
+                        <div class="config-btn selected" onclick="selectConfig('srv-12', 'risk', 'l1', this)">LEVEL
+                            1</div>
+                        <div class="config-btn" data-risk="high" onclick="selectConfig('srv-12', 'risk', 'l2', this)">
+                            ELEVATED</div>
+                        <div class="config-btn" data-risk="high" onclick="selectConfig('srv-12', 'risk', 'l3', this)">
+                            CONFINED</div>
+                    </div>
+                </div>
+                <div class="config-group">
+                    <div class="config-label">MATERIAL / COMPLEXITY</div>
+                    <div class="config-options">
+                        <div class="config-btn selected" onclick="selectConfig('srv-12', 'material', 'std', this)">
+                            STANDARD</div>
+                        <div class="config-btn" onclick="selectConfig('srv-12', 'material', 'cop', this)">PREMIUM
+                        </div>
+                        <div class="config-btn" onclick="selectConfig('srv-12', 'material', 'spec', this)">SPECIALTY
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESULT DISPLAY (DETAILS TOGGLE) -->
+        <details>
+            <summary class="dynamic-price-display" onclick="togglePackageDetail('srv-12', 'good')"
+                style="text-align:center; padding:1.5rem; background:linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(20, 20, 30, 0.8) 100%); border-radius:12px; border:1px solid var(--border); margin-top:1rem; cursor:pointer; color:var(--text);">
+                <div style="font-family:'Orbitron'; color:var(--secondary); letter-spacing:2px;">ESTIMATED FLAT RATE
+                </div>
+                <div class="final-price" id="dynamic-price-value-srv-12">$346</div>
+                <div class="price-breakdown" id="dynamic-breakdown-text-srv-12">Base Rate Included</div>
+                <div style="margin-top:1rem; color:var(--primary); font-size:0.8rem; cursor:pointer;">[ CLICK TO VIEW
+                    SCOPE & DETAILS ]</div>
+            </summary>
+
+            <!-- PACKAGE DETAILS -->
+            <input type="radio" name="tabs-srv12" id="tab-srv12-mkt" class="css-tab-radio tab-mkt" checked>
+            <input type="radio" name="tabs-srv12" id="tab-srv12-eng" class="css-tab-radio tab-eng">
+
+            <div class="pkg-detail-header">
+                <h3 style="color:var(--warning); font-family:'Orbitron'">SCOPE & SPECS</h3>
+                <div class="view-tabs">
+                    <label for="tab-srv12-mkt" class="view-tab tab-client">MARKETING VIEW</label>
+                    <label for="tab-srv12-eng" class="view-tab tab-tech">ENGINEER VIEW</label>
+                </div>
+            </div>
+            <div class="content-client">
+                <div style="border-left:3px solid var(--warning); padding-left:1rem; margin-bottom:1.5rem;">
+                    <h4 style="color:white; font-size:1.1rem; margin-bottom:0.5rem;">🔥 RESTORE YOUR HOT WATER</h4>
+                    <p style="color:rgba(255,255,255,0.8); font-size:0.9rem;">Pilot won't stay lit? We diagnose and
+                        replace your thermocouple with <b>OEM-quality parts</b>, restoring reliable ignition and
+                        peace of mind.</p>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                    <div style="background:rgba(255,255,255,0.05); padding:1rem; border-radius:8px;">
+                        <h5 style="color:var(--secondary); margin-bottom:0.5rem;">⚡ FAST DIAGNOSIS</h5>
+                        <ul style="list-style:none; padding:0; font-size:0.85rem; color:rgba(255,255,255,0.7);">
+                            <li>• Millivolt Testing</li>
+                            <li>• Pilot Orifice Cleaning</li>
+                            <li>• Flame Pattern Check</li>
+                        </ul>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.05); padding:1rem; border-radius:8px;">
+                        <h5 style="color:var(--primary); margin-bottom:0.5rem;">🛡️ SAFETY FIRST</h5>
+                        <ul style="list-style:none; padding:0; font-size:0.85rem; color:rgba(255,255,255,0.7);">
+                            <li>• Gas Valve Verification</li>
+                            <li>• CO Detector Rec</li>
+                            <li>• 90-Day Part Warranty</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="content-tech">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem;">
+                    <!-- SPECS COLUMN -->
+                    <div>
+                        <h4
+                            style="color:var(--secondary); font-family:'Orbitron'; border-bottom:1px solid rgba(255,255,255,0.2); margin-bottom:1rem;">
+                            📋 SPECIFICATIONS</h4>
+
+                        <div style="margin-bottom:1rem;">
+                            <b style="color:var(--primary); font-size:0.8rem;">CODE COMPLIANCE:</b><br>
+                            <span style="font-size:0.8rem; color:#aaa;">
+                                • <b>CFC 212.0:</b> Pilot Safety Devices<br>
+                                • <b>ANSI Z21.20:</b> Thermocouple Std
+                            </span>
+                        </div>
+
+                        <div style="margin-bottom:1rem;">
+                            <b style="color:var(--primary); font-size:0.8rem;">MATERIAL BOM:</b><br>
+                            <ul style="font-size:0.8rem; color:#aaa; padding-left:1rem; margin:0;">
+                                <li>1x Universal Thermocouple 24"</li>
+                                <li>1x Pilot Hood (if damaged)</li>
+                                <li>Emery Cloth (Contact Clean)</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <b style="color:var(--primary); font-size:0.8rem;">SUPPLY CHAIN:</b><br>
+                            <span style="font-size:0.8rem; color:#aaa;">Ferguson (Acct #2991) / WH Parts Bin</span>
+                        </div>
+                    </div>
+
+                    <!-- LABOR COLUMN -->
+                    <div>
+                        <h4
+                            style="color:var(--warning); font-family:'Orbitron'; border-bottom:1px solid rgba(255,255,255,0.2); margin-bottom:1rem;">
+                            ⏱️ LABOR ANALYSIS</h4>
+
+                        <div
+                            style="display:flex; justify-content:space-between; font-size:0.85rem; margin-bottom:1rem; background:rgba(255,255,255,0.1); padding:0.5rem; border-radius:4px;">
+                            <span>ALLOCATED TIME:</span>
+                            <b style="color:var(--warning);">1.0 MH</b>
+                        </div>
+
+                        <ul style="font-size:0.85rem; color:rgba(255,255,255,0.8); padding-left:0; list-style:none;">
+                            <li style="margin-bottom:0.5rem;"><b>1. SAFE [0.1]:</b> Gas OFF at control valve. Wait 2
+                                min dissipation.</li>
+                            <li style="margin-bottom:0.5rem;"><b>2. ACCESS [0.1]:</b> Remove burner cover. Locate
+                                pilot assembly.</li>
+                            <li style="margin-bottom:0.5rem;"><b>3. REMOVE [0.2]:</b> 7/16" wrench disconnect. Pull
+                                thermocouple.</li>
+                            <li style="margin-bottom:0.5rem;"><b>4. INSPECT [0.1]:</b> Clean pilot orifice. Check
+                                burner condition.</li>
+                            <li style="margin-bottom:0.5rem;"><b>5. INSTALL [0.2]:</b> Insert new TC. Ensure tip in
+                                flame path. Torque nut.</li>
+                            <li style="margin-bottom:0.5rem;"><b>6. TEST [0.3]:</b> Light pilot. Hold 30s. Release.
+                                Verify mV >16.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </details>
+    </div>
+    <div class="service-card" id="srv-13">
+        <div class="service-header"> <img class="service-thumb" src="images/garbage_disposal_install_professional.png">
+            <div class="service-info">
+                <div style="color:var(--secondary); font-family:'Orbitron'; font-weight:bold;">CS-392</div>
+                <h2>Install Customer's Garbage Disposal</h2>
+                <p style="color:rgba(255,255,255,0.6); max-width:600px; margin-bottom:1rem;">Instalación de
+                    triturador comprado por el cliente (Labor Only).</p>
+                <div style="display:flex; gap:1rem; font-size:0.9rem;"> <span
+                        style="background:rgba(0,245,255,0.1); padding:0.2rem 0.6rem; border-radius:4px; color:var(--primary);">⏱
+                        1.0 hr</span> <span
+                        style="background:rgba(168,85,247,0.1); padding:0.2rem 0.6rem; border-radius:4px; color:var(--secondary);">📦
+                        Indirects Included</span> </div>
+            </div>
+        </div>
+        <!-- DYNAMIC FLAT RATE CONFIGURED -->
+        <div class="dynamic-config-panel">
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+                <div class="config-group">
+                    <div class="config-label">SECTOR / USE</div>
+                    <div class="config-options">
+                        <div class="config-btn selected" onclick="selectConfig('srv-13', 'sector', 'res', this)">
+                            RESIDENCIAL</div>
+                        <div class="config-btn" onclick="selectConfig('srv-13', 'sector', 'com', this)">COMMERCIAL
+                        </div>
+                        <div class="config-btn" onclick="selectConfig('srv-13', 'sector', 'ind', this)">INDUSTRIAL
+                        </div>
+                    </div>
+                </div>
+                <div class="config-group">
+                    <div class="config-label">URGENCY / TIME</div>
+                    <div class="config-options">
+                        <div class="config-btn selected" onclick="selectConfig('srv-13', 'urgency', 'std', this)">
+                            SCHEDULED</div>
+                        <div class="config-btn" data-risk="high"
+                            onclick="selectConfig('srv-13', 'urgency', 'pri', this)">PRIORITY</div>
+                        <div class="config-btn" data-risk="high"
+                            onclick="selectConfig('srv-13', 'urgency', 'emg', this)">EMERGENCY</div>
+                    </div>
+                </div>
+            </div>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+                <div class="config-group">
+                    <div class="config-label">RISK / ACCESS</div>
+                    <div class="config-options">
+                        <div class="config-btn selected" onclick="selectConfig('srv-13', 'risk', 'l1', this)">LEVEL
+                            1</div>
+                        <div class="config-btn" data-risk="high" onclick="selectConfig('srv-13', 'risk', 'l2', this)">
+                            ELEVATED</div>
+                        <div class="config-btn" data-risk="high" onclick="selectConfig('srv-13', 'risk', 'l3', this)">
+                            CONFINED</div>
+                    </div>
+                </div>
+                <div class="config-group">
+                    <div class="config-label">MATERIAL / COMPLEXITY</div>
+                    <div class="config-options">
+                        <div class="config-btn selected" onclick="selectConfig('srv-13', 'material', 'std', this)">
+                            STANDARD</div>
+                        <div class="config-btn" onclick="selectConfig('srv-13', 'material', 'cop', this)">PREMIUM
+                        </div>
+                        <div class="config-btn" onclick="selectConfig('srv-13', 'material', 'spec', this)">SPECIALTY
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESULT DISPLAY (DETAILS TOGGLE) -->
+        <details>
+            <summary class="dynamic-price-display" onclick="togglePackageDetail('srv-13', 'good')"
+                style="text-align:center; padding:1.5rem; background:linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(20, 20, 30, 0.8) 100%); border-radius:12px; border:1px solid var(--border); margin-top:1rem; cursor:pointer; color:var(--text);">
+                <div style="font-family:'Orbitron'; color:var(--secondary); letter-spacing:2px;">ESTIMATED FLAT RATE
+                </div>
+                <div class="final-price" id="dynamic-price-value-srv-13">$327</div>
+                <div class="price-breakdown" id="dynamic-breakdown-text-srv-13">Base Rate Included</div>
+                <div style="margin-top:1rem; color:var(--primary); font-size:0.8rem; cursor:pointer;">[ CLICK TO VIEW
+                    SCOPE & DETAILS ]</div>
+            </summary>
+
+            <!-- PACKAGE DETAILS -->
+            <input type="radio" name="tabs-srv13" id="tab-srv13-mkt" class="css-tab-radio tab-mkt" checked>
+            <input type="radio" name="tabs-srv13" id="tab-srv13-eng" class="css-tab-radio tab-eng">
+
+            <div class="pkg-detail-header">
+                <h3 style="color:var(--warning); font-family:'Orbitron'">SCOPE & SPECS</h3>
+                <div class="view-tabs">
+                    <label for="tab-srv13-mkt" class="view-tab tab-client">MARKETING VIEW</label>
+                    <label for="tab-srv13-eng" class="view-tab tab-tech">ENGINEER VIEW</label>
+                </div>
+            </div>
+            <div class="content-client">
+                <div style="border-left:3px solid var(--primary); padding-left:1rem; margin-bottom:1.5rem;">
+                    <h4 style="color:white; font-size:1.1rem; margin-bottom:0.5rem;">🗑️ PROFESSIONAL DISPOSAL
+                        INSTALL</h4>
+                    <p style="color:rgba(255,255,255,0.8); font-size:0.9rem;">Your unit, expertly installed. We
+                        handle all plumbing and electrical connections with <b>code-compliant precision</b> and back
+                        it with our signature guarantee.</p>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                    <div style="background:rgba(255,255,255,0.05); padding:1rem; border-radius:8px;">
+                        <h5 style="color:var(--secondary); margin-bottom:0.5rem;">🔌 PRO CONNECTIONS</h5>
+                        <ul style="list-style:none; padding:0; font-size:0.85rem; color:rgba(255,255,255,0.7);">
+                            <li>• Hardwire or Cord Install</li>
+                            <li>• DW Knockout Removal</li>
+                            <li>• Proper Grounding</li>
+                        </ul>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.05); padding:1rem; border-radius:8px;">
+                        <h5 style="color:var(--primary); margin-bottom:0.5rem;">✨ LEAK-FREE FINISH</h5>
+                        <ul style="list-style:none; padding:0; font-size:0.85rem; color:rgba(255,255,255,0.7);">
+                            <li>• New Putty Seal</li>
+                            <li>• Vibration Check</li>
+                            <li>• 90-Day Labor Warranty</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="content-tech">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem;">
+                    <!-- SPECS COLUMN -->
+                    <div>
+                        <h4
+                            style="color:var(--secondary); font-family:'Orbitron'; border-bottom:1px solid rgba(255,255,255,0.2); margin-bottom:1rem;">
+                            📋 SPECIFICATIONS</h4>
+
+                        <div style="margin-bottom:1rem;">
+                            <b style="color:var(--primary); font-size:0.8rem;">CODE COMPLIANCE:</b><br>
+                            <span style="font-size:0.8rem; color:#aaa;">
+                                • <b>CPC 807.2:</b> Air Gap / High Loop<br>
+                                • <b>NEC 422.31:</b> Disconnecting Means
+                            </span>
+                        </div>
+
+                        <div style="margin-bottom:1rem;">
+                            <b style="color:var(--primary); font-size:0.8rem;">MATERIAL BOM:</b><br>
+                            <ul style="font-size:0.8rem; color:#aaa; padding-left:1rem; margin:0;">
+                                <li>1x Sink Flange (SS or Composite)</li>
+                                <li>1x Discharge Elbow + Gasket</li>
+                                <li>1x Power Cord Kit (if needed)</li>
+                                <li>Plumber's Putty (Stainless Safe)</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <b style="color:var(--primary); font-size:0.8rem;">SUPPLY CHAIN:</b><br>
+                            <span style="font-size:0.8rem; color:#aaa;">Ferguson (Acct #2991) / Bin #22-C</span>
+                        </div>
+                    </div>
+
+                    <!-- LABOR COLUMN -->
+                    <div>
+                        <h4
+                            style="color:var(--warning); font-family:'Orbitron'; border-bottom:1px solid rgba(255,255,255,0.2); margin-bottom:1rem;">
+                            ⏱️ LABOR ANALYSIS</h4>
+
+                        <div
+                            style="display:flex; justify-content:space-between; font-size:0.85rem; margin-bottom:1rem; background:rgba(255,255,255,0.1); padding:0.5rem; border-radius:4px;">
+                            <span>ALLOCATED TIME:</span>
+                            <b style="color:var(--warning);">1.0 MH</b>
+                        </div>
+
+                        <ul style="font-size:0.85rem; color:rgba(255,255,255,0.8); padding-left:0; list-style:none;">
+                            <li style="margin-bottom:0.5rem;"><b>1. DISCONNECT [0.1]:</b> Breaker OFF. Disconnect
+                                trap & DW hose.</li>
+                            <li style="margin-bottom:0.5rem;"><b>2. REMOVE [0.1]:</b> Twist off old. Remove flange.
+                                Clean putty.</li>
+                            <li style="margin-bottom:0.5rem;"><b>3. FLANGE [0.2]:</b> Roll putty snake. Install
+                                flange + snap ring.</li>
+                            <li style="margin-bottom:0.5rem;"><b>4. PREP [0.1]:</b> Knock DW plug. Install cord if
+                                needed.</li>
+                            <li style="margin-bottom:0.5rem;"><b>5. MOUNT [0.2]:</b> Lift & twist-lock onto mount
+                                ring.</li>
+                            <li style="margin-bottom:0.5rem;"><b>6. PLUMB [0.2]:</b> Connect discharge elbow.
+                                Connect DW hose (High).</li>
+                            <li style="margin-bottom:0.5rem;"><b>7. TEST [0.1]:</b> Fill sink. Pull plug. Run unit.
+                                Vibration/leak check.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </details>
+    </div>
+    </div>
+
+    <div class="page-counter">PAGE 8 OF 8</div>
+
+    <a href="orion-bots.html" class="floating-logo">
+        <video autoplay loop muted playsinline style="width: 85%; height: 85%; object-fit: contain;">
+            <source src="images/orion_logo_2090.mp4" type="video/mp4">
+        </video>
+    </a>
+
+    <script src="joe-assistant.js"></script>
+    <script src="js/dynamic-pricing-engine.js"></script>
+    <script>
+        // UNIVERSAL COMPATIBILITY SCRIPT V3 (Restored & Cleaned)
+
+        window.togglePackageDetail = function (serviceId, pkgLevel) {
+            try {
+                var detailId = 'detail-' + serviceId + '-' + pkgLevel;
+                var detailBlock = document.getElementById(detailId);
+
+                if (!detailBlock) {
+                    // Try finding by query if ID lookup fails differently
+                    detailBlock = document.querySelector('#' + detailId);
+                }
+
+                if (detailBlock) {
+                    var currentDisp = detailBlock.style.display;
+                    // Toggle logic
+                    if (currentDisp === 'block') {
+                        detailBlock.style.display = 'none';
+                    } else {
+                        detailBlock.style.display = 'block';
+                    }
+                } else {
+                    console.error('Target not found:', detailId);
+                }
+            } catch (e) {
+                console.error('Toggle failed:', e);
+            }
+        };
+
+        window.switchTab = function (serviceId, pkgLevel, mode) {
+            var container = document.getElementById('detail-' + serviceId + '-' + pkgLevel);
+            if (!container) return;
+
+            var clientTab = container.querySelector('.tab-client');
+            var techTab = container.querySelector('.tab-tech');
+            var clientContent = container.querySelector('.content-client');
+            var techContent = container.querySelector('.content-tech');
+
+            if (mode === 'client') {
+                if (clientTab) clientTab.classList.add('active');
+                if (techTab) techTab.classList.remove('active');
+                if (clientContent) clientContent.style.display = 'block';
+                if (techContent) techContent.style.display = 'none';
+            } else {
+                if (clientTab) clientTab.classList.remove('active');
+                if (techTab) techTab.classList.add('active');
+                if (clientContent) clientContent.style.display = 'none';
+                if (techContent) techContent.style.display = 'block';
+            }
+        };
+
+        // BIND EVENTS ON LOAD
+        document.addEventListener('DOMContentLoaded', function () {
+            // 0. CSS TAB FALLBACK - Bind click events to tab labels
+            var tabLabels = document.querySelectorAll('.view-tab');
+            for (var t = 0; t < tabLabels.length; t++) {
+                (function (label) {
+                    label.addEventListener('click', function () {
+                        var forId = label.getAttribute('for');
+                        var radio = document.getElementById(forId);
+                        if (radio) {
+                            radio.checked = true;
+                            // Force CSS update on sibling elements
+                            var container = radio.parentElement;
+                            if (container) {
+                                var clientDiv = container.querySelector('.content-client');
+                                var techDiv = container.querySelector('.content-tech');
+                                var mktLabels = container.querySelectorAll('.tab-client');
+                                var engLabels = container.querySelectorAll('.tab-tech');
+
+                                if (radio.classList.contains('tab-mkt')) {
+                                    if (clientDiv) clientDiv.style.display = 'block';
+                                    if (techDiv) techDiv.style.display = 'none';
+                                    for (var m = 0; m < mktLabels.length; m++) {
+                                        mktLabels[m].style.background = 'var(--primary)';
+                                        mktLabels[m].style.color = 'black';
+                                    }
+                                    for (var n = 0; n < engLabels.length; n++) {
+                                        engLabels[n].style.background = '';
+                                        engLabels[n].style.color = '';
+                                    }
+                                } else {
+                                    if (clientDiv) clientDiv.style.display = 'none';
+                                    if (techDiv) techDiv.style.display = 'block';
+                                    for (var m = 0; m < mktLabels.length; m++) {
+                                        mktLabels[m].style.background = '';
+                                        mktLabels[m].style.color = '';
+                                    }
+                                    for (var n = 0; n < engLabels.length; n++) {
+                                        engLabels[n].style.background = 'var(--secondary)';
+                                        engLabels[n].style.color = 'white';
+                                    }
+                                }
+                            }
+                        }
+                    });
+                })(tabLabels[t]);
+            }
+
+            // 1. Force Styling for Interactivity
+            var clickables = document.querySelectorAll('.dynamic-price-display, .action-btn');
+            for (var k = 0; k < clickables.length; k++) {
+                clickables[k].style.cursor = 'pointer';
+            }
+
+            // 2. Explicitly Re-Bind Click Events
+            var triggers = document.querySelectorAll('.dynamic-price-display');
+            for (var i = 0; i < triggers.length; i++) {
+                (function (el) {
+                    var onclickAttr = el.getAttribute('onclick');
+                    if (onclickAttr) {
+                        var parts = onclickAttr.match(/'([^']+)'/g);
+                        if (parts && parts.length >= 2) {
+                            var sId = parts[0].replace(/'/g, '');
+                            var pLvl = parts[1].replace(/'/g, '');
+
+                            el.addEventListener('click', function (e) {
+                                e.stopPropagation();
+                                window.togglePackageDetail(sId, pLvl);
+                            });
+                        }
+                    }
+                })(triggers[i]);
+            }
+
+            // 3. Init Service Data
+            if (window.registerService) {
+                registerService('srv-0', 440, 'Dishwasher Install');
+                registerService('srv-1', 243, 'Supply Kit');
+                registerService('srv-6', 228, 'Sink Stoppage');
+                registerService('srv-9', 1403, 'Clean Out Install');
+                registerService('srv-10', 2400, 'WH-100 Gas 50G');
+                registerService('srv-11', 5200, 'WH-354 Tankless');
+                registerService('srv-12', 346, 'Thermocouple');
+                registerService('srv-13', 327, 'Garbage Disposal');
+
+                var ids = ['srv-0', 'srv-1', 'srv-6', 'srv-9', 'srv-10', 'srv-11', 'srv-12', 'srv-13'];
+                for (var j = 0; j < ids.length; j++) {
+                    if (window.calculatePrice) calculatePrice(ids[j]);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

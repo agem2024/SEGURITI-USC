@@ -1,0 +1,65 @@
+{
+    "message": "PRICE BOOK EXPANSION PROJECT - 1000+ Plumbing Services",
+    "status": "IN PROGRESS",
+    "current_services": 100,
+    "target_services": 1000,
+    "categories": {
+        "maintenance": {
+            "count": 200,
+            "subcategories": [
+                "Routine Inspections",
+                "Preventive Maintenance",
+                "Seasonal Service",
+                "Filter Replacements",
+                "System Testing"
+            ]
+        },
+        "repair": {
+            "count": 300,
+            "subcategories": [
+                "Leak Repairs",
+                "Fixture Repairs",
+                "Valve Repairs",
+                "Pipe Repairs",
+                "Emergency Repairs"
+            ]
+        },
+        "installation": {
+            "count": 250,
+            "subcategories": [
+                "Appliance Installation",
+                "Fixture Installation",
+                "System Installation",
+                "Water Heaters",
+                "Filtration Systems"
+            ]
+        },
+        "repipe": {
+            "count": 150,
+            "subcategories": [
+                "Whole House Repipe",
+                "Partial Repipe",
+                "Water Line Replacement",
+                "Drain Line Replacement",
+                "Gas Line Repipe"
+            ]
+        },
+        "new_construction": {
+            "count": 100,
+            "subcategories": [
+                "Rough-In Plumbing",
+                "Finish Plumbing",
+                "Multi-Unit Buildings",
+                "Commercial Buildings",
+                "Industrial Installations"
+            ]
+        }
+    },
+    "next_steps": [
+        "1. Generate comprehensive service list with codes",
+        "2. Add detailed descriptions and materials",
+        "3. Calculate labor and pricing for each service",
+        "4. Map images to services (use existing + generate missing)",
+        "5. Integrate into pricebook.html"
+    ]
+}
