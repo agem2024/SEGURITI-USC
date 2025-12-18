@@ -514,11 +514,15 @@
             const name = document.getElementById('leadName').value;
             const contact = document.getElementById('leadContact').value;
 
-            // Format message for WhatsApp
-            const message = `PROTOCOL INITIATED:\n\nIdentity: ${name}\nContact: ${contact}\n\nRequesting ENTERPRISE consultation unit deployment.`;
+            // Format message for ORION bot processing
+            const message = `🤖 LEAD_CAPTURE
+Package: ENTERPRISE
+Name: ${name}
+Contact: ${contact}
+Action: SCHEDULE`;
             const encodedMsg = encodeURIComponent(message);
 
-            // Redirect to WhatsApp
+            // Redirect to WhatsApp (ORION number)
             window.location.href = `https://wa.me/16692342444?text=${encodedMsg}`;
 
             closeModal();
