@@ -117,39 +117,85 @@
 
         .use-cases {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
             margin-bottom: 60px;
         }
 
         .use-case {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(188, 19, 254, 0.3);
-            border-radius: 12px;
+            background: linear-gradient(145deg, rgba(20, 20, 20, 0.9), rgba(10, 10, 10, 0.95));
+            border: 1px solid rgba(188, 19, 254, 0.2);
+            border-radius: 8px;
+            /* Bordes más rectos, más pro */
             overflow: hidden;
-            transition: 0.3s;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
         }
 
         .use-case:hover {
-            border-color: var(--neon-purple);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(188, 19, 254, 0.2);
+            border-color: var(--neon-blue);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(0, 243, 255, 0.15);
+            z-index: 10;
+        }
+
+        .uc-video-wrapper {
+            width: 100%;
+            height: 120px;
+            /* Video más pequeño/panorámico */
+            overflow: hidden;
+            position: relative;
         }
 
         .uc-video {
             width: 100%;
-            height: 180px;
+            height: 100%;
             object-fit: cover;
-            border-bottom: 1px solid rgba(188, 19, 254, 0.3);
+            filter: grayscale(100%) contrast(1.2);
+            /* B/N por defecto para elegancia */
+            transition: 0.5s ease;
+            opacity: 0.7;
+        }
+
+        .use-case:hover .uc-video {
+            filter: grayscale(0%) contrast(1.1);
+            /* Color al hover */
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
+        .uc-content {
+            padding: 15px;
+            background: rgba(188, 19, 254, 0.03);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
         .uc-title {
-            padding: 15px;
             font-family: 'Orbitron', sans-serif;
-            font-size: 1rem;
+            font-size: 0.9rem;
+            /* Letra más fina y moderna */
+            font-weight: 700;
             color: #fff;
-            background: rgba(188, 19, 254, 0.1);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .uc-icon {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            text-shadow: 0 0 10px var(--neon-purple);
+        }
+
+        .use-case:hover .uc-title {
+            color: var(--neon-blue);
         }
     </style>
 </head>
@@ -175,44 +221,84 @@
         <h2>// PERFECT FOR</h2>
         <div class="use-cases">
             <div class="use-case">
-                <video src="images/capability_whatsapp_bot_1765573180451.mp4" class="uc-video" autoplay loop muted
-                    playsinline></video>
-                <div class="uc-title">🎨 Content Creators</div>
+                <div class="uc-video-wrapper">
+                    <video src="images/capability_whatsapp_bot_1765573180451.mp4" class="uc-video" autoplay loop muted
+                        playsinline></video>
+                </div>
+                <div class="uc-content">
+                    <div class="uc-title">Content Creators</div>
+                    <div class="uc-icon">🎨</div>
+                </div>
             </div>
             <div class="use-case">
-                <video src="images/contractor_reviews_1765588943726.mp4" class="uc-video" autoplay loop muted
-                    playsinline></video>
-                <div class="uc-title">💼 Coaches & Consultants</div>
+                <div class="uc-video-wrapper">
+                    <video src="images/contractor_reviews_1765588943726.mp4" class="uc-video" autoplay loop muted
+                        playsinline></video>
+                </div>
+                <div class="uc-content">
+                    <div class="uc-title">Coaches & Consultants</div>
+                    <div class="uc-icon">💼</div>
+                </div>
             </div>
             <div class="use-case">
-                <video src="images/capability_mobile_systems_1765573258112.mp4" class="uc-video" autoplay loop muted
-                    playsinline></video>
-                <div class="uc-title">🏠 Real Estate Agents</div>
+                <div class="uc-video-wrapper">
+                    <video src="images/capability_mobile_systems_1765573258112.mp4" class="uc-video" autoplay loop muted
+                        playsinline></video>
+                </div>
+                <div class="uc-content">
+                    <div class="uc-title">Real Estate Agents</div>
+                    <div class="uc-icon">🏠</div>
+                </div>
             </div>
             <div class="use-case">
-                <video src="images/capability_automation_1765573271380.mp4" class="uc-video" autoplay loop muted
-                    playsinline></video>
-                <div class="uc-title">🛡️ Insurance Agents</div>
+                <div class="uc-video-wrapper">
+                    <video src="images/capability_automation_1765573271380.mp4" class="uc-video" autoplay loop muted
+                        playsinline></video>
+                </div>
+                <div class="uc-content">
+                    <div class="uc-title">Insurance Agents</div>
+                    <div class="uc-icon">🛡️</div>
+                </div>
             </div>
             <div class="use-case">
-                <video src="images/cv_intro_eye_1765352245536.mp4" class="uc-video" autoplay loop muted
-                    playsinline></video>
-                <div class="uc-title">📸 Photographers</div>
+                <div class="uc-video-wrapper">
+                    <video src="images/cv_intro_eye_1765352245536.mp4" class="uc-video" autoplay loop muted
+                        playsinline></video>
+                </div>
+                <div class="uc-content">
+                    <div class="uc-title">Photographers</div>
+                    <div class="uc-icon">📸</div>
+                </div>
             </div>
             <div class="use-case">
-                <video src="images/capability_247_ops_1765573285705.mp4" class="uc-video" autoplay loop muted
-                    playsinline></video>
-                <div class="uc-title">🎵 DJs & Musicians</div>
+                <div class="uc-video-wrapper">
+                    <video src="images/capability_247_ops_1765573285705.mp4" class="uc-video" autoplay loop muted
+                        playsinline></video>
+                </div>
+                <div class="uc-content">
+                    <div class="uc-title">DJs & Musicians</div>
+                    <div class="uc-icon">🎵</div>
+                </div>
             </div>
             <div class="use-case">
-                <video src="images/capability_ai_brain_1765573234371.mp4" class="uc-video" autoplay loop muted
-                    playsinline></video>
-                <div class="uc-title">💪 Personal Trainers</div>
+                <div class="uc-video-wrapper">
+                    <video src="images/capability_ai_brain_1765573234371.mp4" class="uc-video" autoplay loop muted
+                        playsinline></video>
+                </div>
+                <div class="uc-content">
+                    <div class="uc-title">Personal Trainers</div>
+                    <div class="uc-icon">💪</div>
+                </div>
             </div>
             <div class="use-case">
-                <video src="images/contractor_invoicing_1765588929180.mp4" class="uc-video" autoplay loop muted
-                    playsinline></video>
-                <div class="uc-title">✨ Freelancers</div>
+                <div class="uc-video-wrapper">
+                    <video src="images/contractor_invoicing_1765588929180.mp4" class="uc-video" autoplay loop muted
+                        playsinline></video>
+                </div>
+                <div class="uc-content">
+                    <div class="uc-title">Freelancers</div>
+                    <div class="uc-icon">✨</div>
+                </div>
             </div>
         </div>
 
