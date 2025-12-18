@@ -464,23 +464,24 @@
             margin: 0 auto;
         }
 
-        /* SERVICES */
+        /* SERVICES - VIDEO FIRST LAYOUT */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
         .service-card {
             background: rgba(0, 243, 255, 0.02);
             border: 1px solid rgba(0, 243, 255, 0.2);
-            padding: 40px;
+            border-radius: 16px;
             transition: 0.3s;
             position: relative;
             overflow: hidden;
-            clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+            display: flex;
+            flex-direction: column;
         }
 
         .service-card::before {
@@ -503,50 +504,150 @@
         .service-card:hover {
             border-color: var(--neon-blue);
             box-shadow: 0 0 40px rgba(0, 243, 255, 0.2);
-            transform: translateY(-10px);
+            transform: translateY(-5px);
         }
 
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 0 10px var(--neon-blue));
+        /* VIDEO AREA - 75% of card */
+        .service-video-area {
+            width: 100%;
+            height: 220px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .service-video-area video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .service-video-area:hover video {
+            transform: scale(1.05);
+        }
+
+        .service-video-area::after {
+            content: '▶ CLICK';
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #00f3ff;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.65rem;
+            padding: 5px 10px;
+            border-radius: 15px;
+            letter-spacing: 1px;
+        }
+
+        /* CONTENT AREA - 25% of card */
+        .service-content {
+            padding: 15px 20px 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .service-card h3 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.2rem;
-            margin-bottom: 15px;
+            font-size: 1rem;
+            margin-bottom: 8px;
             color: var(--neon-blue);
         }
 
         .service-card p {
             color: var(--gray);
-            font-size: 0.95rem;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            flex: 1;
         }
 
+        /* MORE BUTTON - Neon Colors */
         .more-btn {
-            margin-top: 15px;
+            margin-top: 12px;
             padding: 8px 20px;
             background: transparent;
-            border: 1px solid var(--neon-blue);
-            color: var(--neon-blue);
             font-family: 'Orbitron', sans-serif;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             cursor: pointer;
             transition: 0.3s;
             border-radius: 20px;
+            letter-spacing: 1px;
+            align-self: flex-start;
         }
 
-        .more-btn:hover {
-            background: var(--neon-blue);
+        /* Neon color variants for MORE buttons */
+        .more-btn.neon-cyan {
+            border: 1px solid #00f3ff;
+            color: #00f3ff;
+        }
+
+        .more-btn.neon-cyan:hover {
+            background: #00f3ff;
             color: #000;
-            box-shadow: 0 0 15px var(--neon-blue);
+            box-shadow: 0 0 20px #00f3ff;
+        }
+
+        .more-btn.neon-purple {
+            border: 1px solid #bc13fe;
+            color: #bc13fe;
+        }
+
+        .more-btn.neon-purple:hover {
+            background: #bc13fe;
+            color: #fff;
+            box-shadow: 0 0 20px #bc13fe;
+        }
+
+        .more-btn.neon-green {
+            border: 1px solid #39ff14;
+            color: #39ff14;
+        }
+
+        .more-btn.neon-green:hover {
+            background: #39ff14;
+            color: #000;
+            box-shadow: 0 0 20px #39ff14;
+        }
+
+        .more-btn.neon-pink {
+            border: 1px solid #ff006e;
+            color: #ff006e;
+        }
+
+        .more-btn.neon-pink:hover {
+            background: #ff006e;
+            color: #fff;
+            box-shadow: 0 0 20px #ff006e;
+        }
+
+        .more-btn.neon-orange {
+            border: 1px solid #ff9500;
+            color: #ff9500;
+        }
+
+        .more-btn.neon-orange:hover {
+            background: #ff9500;
+            color: #000;
+            box-shadow: 0 0 20px #ff9500;
+        }
+
+        .more-btn.neon-yellow {
+            border: 1px solid #ffd700;
+            color: #ffd700;
+        }
+
+        .more-btn.neon-yellow:hover {
+            background: #ffd700;
+            color: #000;
+            box-shadow: 0 0 20px #ffd700;
         }
 
         .service-details {
             display: none;
-            margin-top: 15px;
-            padding-top: 15px;
+            margin-top: 12px;
+            padding-top: 12px;
             border-top: 1px solid rgba(0, 243, 255, 0.2);
             text-align: left;
         }
@@ -917,112 +1018,134 @@
             <p data-i18n="services_desc">What we deploy for individuals, businesses, and enterprises</p>
         </div>
         <div class="services-grid">
+            <!-- CARD 1: CUSTOM AI AGENTS - Cyan -->
             <div class="service-card" onclick="toggleDetails(this)">
-                <video src="images/capability_whatsapp_bot_1765573180451.mp4" autoplay loop muted playsinline
-                    class="service-icon-img"
-                    style="width:80px;height:80px;object-fit:cover;border-radius:10px;margin-bottom:20px;box-shadow:0 0 20px rgba(0,243,255,0.5);"></video>
-                <h3 data-i18n="svc1_title">CUSTOM AI AGENTS</h3>
-                <p data-i18n="svc1_desc">Autonomous bots for WhatsApp, Telegram, Instagram. 24/7 customer service.</p>
-                <button class="more-btn">+ MORE</button>
-                <div class="service-details">
-                    <ul>
-                        <li>🤖 Multi-platform (WhatsApp, Telegram, IG, Messenger)</li>
-                        <li>🧠 GPT-4 / Gemini / Claude powered</li>
-                        <li>🌐 5 languages (EN/ES/ZH/TL/VI)</li>
-                        <li>📊 Analytics dashboard</li>
-                        <li>🔄 CRM integrations</li>
-                        <li>💬 Unlimited conversations</li>
-                    </ul>
+                <div class="service-video-area">
+                    <video src="images/capability_whatsapp_bot_1765573180451.mp4" autoplay loop muted
+                        playsinline></video>
+                </div>
+                <div class="service-content">
+                    <h3 data-i18n="svc1_title">CUSTOM AI AGENTS</h3>
+                    <p data-i18n="svc1_desc">Autonomous bots for WhatsApp, Telegram, Instagram. 24/7 customer service.
+                    </p>
+                    <button class="more-btn neon-cyan">+ MORE</button>
+                    <div class="service-details">
+                        <ul>
+                            <li>🤖 Multi-platform (WhatsApp, Telegram, IG, Messenger)</li>
+                            <li>🧠 GPT-4 / Gemini / Claude powered</li>
+                            <li>🌐 5 languages (EN/ES/ZH/TL/VI)</li>
+                            <li>📊 Analytics dashboard</li>
+                            <li>🔄 CRM integrations</li>
+                            <li>💬 Unlimited conversations</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+            <!-- CARD 2: MOBILE SYSTEMS - Pink -->
             <div class="service-card" onclick="toggleDetails(this)">
-                <video src="images/capability_mobile_systems_1765573258112.mp4" autoplay loop muted playsinline
-                    class="service-icon-img"
-                    style="width:80px;height:80px;object-fit:cover;border-radius:10px;margin-bottom:20px;box-shadow:0 0 20px rgba(0,243,255,0.5);"></video>
-                <h3 data-i18n="svc2_title">MOBILE SYSTEMS</h3>
-                <p data-i18n="svc2_desc">Native iOS & Android apps. Push notifications, offline mode.</p>
-                <button class="more-btn">+ MORE</button>
-                <div class="service-details">
-                    <ul>
-                        <li>📱 Native iOS & Android development</li>
-                        <li>🔔 Push notifications & alerts</li>
-                        <li>📶 Offline mode functionality</li>
-                        <li>🔐 Biometric authentication</li>
-                        <li>📍 GPS & location services</li>
-                        <li>🏪 App Store & Play Store publishing</li>
-                    </ul>
+                <div class="service-video-area">
+                    <video src="images/capability_mobile_systems_1765573258112.mp4" autoplay loop muted
+                        playsinline></video>
+                </div>
+                <div class="service-content">
+                    <h3 data-i18n="svc2_title">MOBILE SYSTEMS</h3>
+                    <p data-i18n="svc2_desc">Native iOS & Android apps. Push notifications, offline mode.</p>
+                    <button class="more-btn neon-pink">+ MORE</button>
+                    <div class="service-details">
+                        <ul>
+                            <li>📱 Native iOS & Android development</li>
+                            <li>🔔 Push notifications & alerts</li>
+                            <li>📶 Offline mode functionality</li>
+                            <li>🔐 Biometric authentication</li>
+                            <li>📍 GPS & location services</li>
+                            <li>🏪 App Store & Play Store publishing</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+            <!-- CARD 3: WEB PLATFORMS - Orange -->
             <div class="service-card" onclick="toggleDetails(this)">
-                <video src="images/capability_web_platform_1765573194485.mp4" autoplay loop muted playsinline
-                    class="service-icon-img"
-                    style="width:80px;height:80px;object-fit:cover;border-radius:10px;margin-bottom:20px;box-shadow:0 0 20px rgba(0,243,255,0.5);"></video>
-                <h3 data-i18n="svc3_title">WEB PLATFORMS</h3>
-                <p data-i18n="svc3_desc">E-commerce, dashboards, admin panels, booking engines.</p>
-                <button class="more-btn">+ MORE</button>
-                <div class="service-details">
-                    <ul>
-                        <li>🛒 E-commerce with payments (Stripe/PayPal)</li>
-                        <li>📊 Real-time analytics dashboards</li>
-                        <li>📅 Booking & reservation systems</li>
-                        <li>👤 Customer portals</li>
-                        <li>🔒 SSL & security hardened</li>
-                        <li>📱 Mobile-responsive design</li>
-                    </ul>
+                <div class="service-video-area">
+                    <video src="images/capability_web_platform_1765573194485.mp4" autoplay loop muted
+                        playsinline></video>
+                </div>
+                <div class="service-content">
+                    <h3 data-i18n="svc3_title">WEB PLATFORMS</h3>
+                    <p data-i18n="svc3_desc">E-commerce, dashboards, admin panels, booking engines.</p>
+                    <button class="more-btn neon-orange">+ MORE</button>
+                    <div class="service-details">
+                        <ul>
+                            <li>🛒 E-commerce with payments (Stripe/PayPal)</li>
+                            <li>📊 Real-time analytics dashboards</li>
+                            <li>📅 Booking & reservation systems</li>
+                            <li>👤 Customer portals</li>
+                            <li>🔒 SSL & security hardened</li>
+                            <li>📱 Mobile-responsive design</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+            <!-- CARD 4: AI INTEGRATION - Purple -->
             <div class="service-card" onclick="toggleDetails(this)">
-                <video src="images/capability_ai_brain_1765573234371.mp4" autoplay loop muted playsinline
-                    class="service-icon-img"
-                    style="width:80px;height:80px;object-fit:cover;border-radius:10px;margin-bottom:20px;box-shadow:0 0 20px rgba(188,19,254,0.5);"></video>
-                <h3 data-i18n="svc4_title">AI INTEGRATION</h3>
-                <p data-i18n="svc4_desc">GPT-4, Gemini, Claude. Vision, voice, text processing.</p>
-                <button class="more-btn">+ MORE</button>
-                <div class="service-details">
-                    <ul>
-                        <li>🧠 GPT-4, Gemini Pro, Claude 3</li>
-                        <li>👁️ Vision AI (image analysis)</li>
-                        <li>🎤 Voice recognition & synthesis</li>
-                        <li>📝 Document processing (OCR)</li>
-                        <li>🔮 Predictive analytics</li>
-                        <li>🤖 Custom model training</li>
-                    </ul>
+                <div class="service-video-area">
+                    <video src="images/capability_ai_brain_1765573234371.mp4" autoplay loop muted playsinline></video>
+                </div>
+                <div class="service-content">
+                    <h3 data-i18n="svc4_title">AI INTEGRATION</h3>
+                    <p data-i18n="svc4_desc">GPT-4, Gemini, Claude. Vision, voice, text processing.</p>
+                    <button class="more-btn neon-purple">+ MORE</button>
+                    <div class="service-details">
+                        <ul>
+                            <li>🧠 GPT-4, Gemini Pro, Claude 3</li>
+                            <li>👁️ Vision AI (image analysis)</li>
+                            <li>🎤 Voice recognition & synthesis</li>
+                            <li>📝 Document processing (OCR)</li>
+                            <li>🔮 Predictive analytics</li>
+                            <li>🤖 Custom model training</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+            <!-- CARD 5: WORKFLOW AUTOMATION - Yellow -->
             <div class="service-card" onclick="toggleDetails(this)">
-                <video src="images/capability_automation_1765573271380.mp4" autoplay loop muted playsinline
-                    class="service-icon-img"
-                    style="width:80px;height:80px;object-fit:cover;border-radius:10px;margin-bottom:20px;box-shadow:0 0 20px rgba(0,243,255,0.5);"></video>
-                <h3 data-i18n="svc5_title">WORKFLOW AUTOMATION</h3>
-                <p data-i18n="svc5_desc">Invoicing, inventory, CRM sync, email flows.</p>
-                <button class="more-btn">+ MORE</button>
-                <div class="service-details">
-                    <ul>
-                        <li>📧 Email automation & sequences</li>
-                        <li>📦 Inventory management</li>
-                        <li>💰 Automatic invoicing</li>
-                        <li>🔗 Zapier/Make integrations</li>
-                        <li>📋 Task & project automation</li>
-                        <li>📊 Report generation</li>
-                    </ul>
+                <div class="service-video-area">
+                    <video src="images/capability_automation_1765573271380.mp4" autoplay loop muted playsinline></video>
+                </div>
+                <div class="service-content">
+                    <h3 data-i18n="svc5_title">WORKFLOW AUTOMATION</h3>
+                    <p data-i18n="svc5_desc">Invoicing, inventory, CRM sync, email flows.</p>
+                    <button class="more-btn neon-yellow">+ MORE</button>
+                    <div class="service-details">
+                        <ul>
+                            <li>📧 Email automation & sequences</li>
+                            <li>📦 Inventory management</li>
+                            <li>💰 Automatic invoicing</li>
+                            <li>🔗 Zapier/Make integrations</li>
+                            <li>📋 Task & project automation</li>
+                            <li>📊 Report generation</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+            <!-- CARD 6: 24/7 OPERATIONS - Green -->
             <div class="service-card" onclick="toggleDetails(this)">
-                <video src="images/capability_247_ops_1765573285705.mp4" autoplay loop muted playsinline
-                    class="service-icon-img"
-                    style="width:80px;height:80px;object-fit:cover;border-radius:10px;margin-bottom:20px;box-shadow:0 0 20px rgba(37,211,102,0.5);"></video>
-                <h3 data-i18n="svc6_title">24/7 OPERATIONS</h3>
-                <p data-i18n="svc6_desc">Monitoring, updates, security, backups.</p>
-                <button class="more-btn">+ MORE</button>
-                <div class="service-details">
-                    <ul>
-                        <li>🖥️ 24/7 system monitoring</li>
-                        <li>🔄 Automatic updates & patches</li>
-                        <li>🛡️ Security audits & protection</li>
-                        <li>💾 Daily backups (cloud)</li>
-                        <li>📞 Priority support</li>
-                        <li>📈 Uptime guarantee 99.9%</li>
-                    </ul>
+                <div class="service-video-area">
+                    <video src="images/capability_247_ops_1765573285705.mp4" autoplay loop muted playsinline></video>
+                </div>
+                <div class="service-content">
+                    <h3 data-i18n="svc6_title">24/7 OPERATIONS</h3>
+                    <p data-i18n="svc6_desc">Monitoring, updates, security, backups.</p>
+                    <button class="more-btn neon-green">+ MORE</button>
+                    <div class="service-details">
+                        <ul>
+                            <li>🖥️ 24/7 system monitoring</li>
+                            <li>🔄 Automatic updates & patches</li>
+                            <li>🛡️ Security audits & protection</li>
+                            <li>💾 Daily backups (cloud)</li>
+                            <li>📞 Priority support</li>
+                            <li>📈 Uptime guarantee 99.9%</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
