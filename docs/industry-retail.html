@@ -311,8 +311,37 @@
             </div>
         </div>
 
-        <a href="https://wa.me/16692342444?text=I%20want%20the%20RETAIL%20package" class="cta">💬 GET STARTED</a>
+        <a href="#" onclick="openModal('RETAIL'); return false;" class="cta">💬 GET STARTED</a>
     </div>
+    <div id="leadModal"
+        style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:1000; align-items:center; justify-content:center;">
+        <div
+            style="background:#111; border:1px solid #25D366; padding:40px; width:90%; max-width:450px; position:relative;">
+            <div style="position:absolute; top:15px; right:15px; color:#888; cursor:pointer; font-size:1.5rem;"
+                onclick="closeModal()">×</div>
+            <h3 style="color:#fff; margin-bottom:10px; font-family:'Orbitron';">GET STARTED</h3>
+            <form id="leadForm" onsubmit="submitLead(event)">
+                <div style="margin-bottom:15px;"><label style="color:#25D366; font-size:0.8rem;">NAME</label><input
+                        type="text" id="leadName" required
+                        style="width:100%; background:#222; border:1px solid #333; color:#fff; padding:12px;"></div>
+                <div style="margin-bottom:25px;"><label style="color:#25D366; font-size:0.8rem;">EMAIL /
+                        PHONE</label><input type="text" id="leadContact" required
+                        style="width:100%; background:#222; border:1px solid #333; color:#fff; padding:12px;"></div>
+                <button type="submit" class="cta" style="width:100%; border:none; cursor:pointer;">SEND</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        let pkg = 'RETAIL';
+        function openModal(p) { pkg = p; document.getElementById('leadModal').style.display = 'flex'; }
+        function closeModal() { document.getElementById('leadModal').style.display = 'none'; }
+        function submitLead(e) {
+            e.preventDefault();
+            const msg = `🤖 LEAD_CAPTURE\nPackage: ${pkg}\nName: ${document.getElementById('leadName').value}\nContact: ${document.getElementById('leadContact').value}\nAction: SCHEDULE`;
+            window.location.href = `https://wa.me/16692342444?text=${encodeURIComponent(msg)}`;
+        }
+        window.onclick = function (e) { if (e.target.id === 'leadModal') closeModal(); }
+    </script>
 </body>
 
 </html>

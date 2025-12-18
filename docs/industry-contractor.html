@@ -196,7 +196,7 @@
             <h1>CONTRACTOR & PLUMBER AUTOMATION</h1>
             <p>Photo quotes in seconds. Customer sends photo → AI analyzes → instant estimate. Scheduling, invoicing,
                 follow-ups. Work more, text less.</p>
-            <a href="https://wa.me/16692342444?text=I%20need%20contractor%20bot" class="btn">💬 GET STARTED</a>
+            <a href="#" onclick="openModal('CONTRACTOR'); return false;" class="btn">💬 GET STARTED</a>
         </div>
     </section>
 
@@ -258,12 +258,41 @@
                 <li>1,000 conversations/month</li>
                 <li>30 days support</li>
             </ul>
-            <a href="https://wa.me/16692342444?text=I%20want%20contractor%20package%20$1497" class="btn">💬 ORDER
-                NOW</a>
+            <a href="#" onclick="openModal('CONTRACTOR $1,497'); return false;" class="btn">💬 ORDER NOW</a>
         </div>
     </section>
 
     <a href="orion-bots.html" class="back">← Back to ORION Tech</a>
+
+    <div id="leadModal"
+        style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:1000; align-items:center; justify-content:center;">
+        <div
+            style="background:#111; border:1px solid #ff6b35; padding:40px; width:90%; max-width:450px; position:relative;">
+            <div style="position:absolute; top:15px; right:15px; color:#888; cursor:pointer; font-size:1.5rem;"
+                onclick="closeModal()">×</div>
+            <h3 style="color:#fff; margin-bottom:10px; font-family:'Orbitron';">GET STARTED</h3>
+            <form id="leadForm" onsubmit="submitLead(event)">
+                <div style="margin-bottom:15px;"><label style="color:#ff6b35; font-size:0.8rem;">NAME</label><input
+                        type="text" id="leadName" required
+                        style="width:100%; background:#222; border:1px solid #333; color:#fff; padding:12px;"></div>
+                <div style="margin-bottom:25px;"><label style="color:#ff6b35; font-size:0.8rem;">EMAIL /
+                        PHONE</label><input type="text" id="leadContact" required
+                        style="width:100%; background:#222; border:1px solid #333; color:#fff; padding:12px;"></div>
+                <button type="submit" class="btn" style="width:100%; border:none; cursor:pointer;">SEND</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        let pkg = 'CONTRACTOR';
+        function openModal(p) { pkg = p; document.getElementById('leadModal').style.display = 'flex'; }
+        function closeModal() { document.getElementById('leadModal').style.display = 'none'; }
+        function submitLead(e) {
+            e.preventDefault();
+            const msg = `🤖 LEAD_CAPTURE\nPackage: ${pkg}\nName: ${document.getElementById('leadName').value}\nContact: ${document.getElementById('leadContact').value}\nAction: SCHEDULE`;
+            window.location.href = `https://wa.me/16692342444?text=${encodeURIComponent(msg)}`;
+        }
+        window.onclick = function (e) { if (e.target.id === 'leadModal') closeModal(); }
+    </script>
 </body>
 
 </html>

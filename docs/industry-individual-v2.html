@@ -457,7 +457,7 @@
                 <li>100 Ops/Month Capacity</li>
                 <li>Email Support Channel</li>
             </ul>
-            <a href="https://wa.me/16692342444?text=Execute%20Order%20$297" class="btn">INITIALIZE UNIT</a>
+            <a href="#" onclick="openModal('INDIVIDUAL $297'); return false;" class="btn">INITIALIZE UNIT</a>
         </div>
 
         <h2>// PERFORMANCE UPGRADES</h2>
@@ -476,6 +476,55 @@
     </section>
 
     <a href="orion-bots.html" class="back">← RETURN TO BASE</a>
+
+    <!-- LEAD CAPTURE MODAL -->
+    <div id="leadModal"
+        style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:1000; align-items:center; justify-content:center; backdrop-filter:blur(5px);">
+        <div
+            style="background:var(--bg-card); border:1px solid var(--accent-green); padding:40px; width:90%; max-width:450px; position:relative; box-shadow:0 0 30px rgba(34,197,94,0.2);">
+            <div style="position:absolute; top:15px; right:15px; color:var(--text-gray); cursor:pointer; font-size:1.5rem;"
+                onclick="closeModal()">×</div>
+            <h3 style="color:var(--text-white); margin-bottom:10px; font-family:'Orbitron';">INITIALIZE PROTOCOL</h3>
+            <p style="color:var(--text-gray); margin-bottom:25px; font-size:0.9rem;">Identity verification required.</p>
+            <form id="leadForm" onsubmit="submitLead(event)">
+                <input type="hidden" id="leadPackage" value="">
+                <div style="margin-bottom:15px;">
+                    <label
+                        style="color:var(--accent-green); font-size:0.8rem; font-weight:700; display:block; margin-bottom:5px;">NAME</label>
+                    <input type="text" id="leadName" required
+                        style="width:100%; background:rgba(255,255,255,0.05); border:1px solid var(--border); color:#fff; padding:12px; font-family:'Inter'; outline:none;">
+                </div>
+                <div style="margin-bottom:25px;">
+                    <label
+                        style="color:var(--accent-green); font-size:0.8rem; font-weight:700; display:block; margin-bottom:5px;">EMAIL
+                        / PHONE</label>
+                    <input type="text" id="leadContact" required
+                        style="width:100%; background:rgba(255,255,255,0.05); border:1px solid var(--border); color:#fff; padding:12px; font-family:'Inter'; outline:none;">
+                </div>
+                <button type="submit" class="btn" style="width:100%; border:none; cursor:pointer;">EXECUTE</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let selectedPackage = 'INDIVIDUAL';
+        function openModal(pkg) {
+            selectedPackage = pkg || 'INDIVIDUAL';
+            document.getElementById('leadModal').style.display = 'flex';
+        }
+        function closeModal() {
+            document.getElementById('leadModal').style.display = 'none';
+        }
+        function submitLead(e) {
+            e.preventDefault();
+            const name = document.getElementById('leadName').value;
+            const contact = document.getElementById('leadContact').value;
+            const message = `🤖 LEAD_CAPTURE\nPackage: ${selectedPackage}\nName: ${name}\nContact: ${contact}\nAction: SCHEDULE`;
+            window.location.href = `https://wa.me/16692342444?text=${encodeURIComponent(message)}`;
+            closeModal();
+        }
+        window.onclick = function (e) { if (e.target.id === 'leadModal') closeModal(); }
+    </script>
 </body>
 
 </html>
