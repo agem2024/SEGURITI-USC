@@ -791,6 +791,33 @@
             transition: 0.4s;
         }
 
+        /* VIDEO AREA for Industry Cards */
+        .ind-video-area {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .ind-video-area video,
+        .ind-video-area img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.75;
+            filter: brightness(1.15) contrast(1.15);
+            transition: 0.4s;
+        }
+
+        .ind-card:hover .ind-video-area video,
+        .ind-card:hover .ind-video-area img {
+            opacity: 1;
+            filter: brightness(1.25) contrast(1.2);
+            transform: scale(1.1);
+        }
+
         .ind-card::before {
             content: '';
             position: absolute;
@@ -1211,60 +1238,81 @@
             <p data-i18n="ind_desc">Specialized solutions starting from</p>
         </div>
         <div class="ind-grid">
+            <!-- INDIVIDUALS - Video Available -->
             <a href="industry-individual.html" class="ind-card" style="text-decoration:none; color:inherit;">
-                <img src="images/industry_individual.png" class="ind-card-img" alt="Individual">
+                <div class="ind-video-area">
+                    <video src="images/industry_individual_1765429956417.mp4" autoplay loop muted playsinline></video>
+                </div>
                 <div class="ind-content">
                     <h3>INDIVIDUALS</h3>
                     <div class="ind-price">$297</div>
-                    <div class="ind-more">→ DETAILS</div>
+                    <div class="ind-more neon-cyan">→ DETAILS</div>
                 </div>
             </a>
+            <!-- RESTAURANTS - Using PNG -->
             <a href="industry-restaurant.html" class="ind-card" style="text-decoration:none; color:inherit;">
-                <img src="images/industry_restaurant.png" class="ind-card-img" alt="Restaurant">
+                <div class="ind-video-area">
+                    <img src="images/industry_restaurant_1765429822997.png" alt="Restaurant">
+                </div>
                 <div class="ind-content">
                     <h3>RESTAURANTS</h3>
                     <div class="ind-price">$1,497</div>
-                    <div class="ind-more">→ DETAILS</div>
+                    <div class="ind-more neon-orange">→ DETAILS</div>
                 </div>
             </a>
+            <!-- LIQUOR STORES - Using PNG -->
             <a href="industry-liquor.html" class="ind-card" style="text-decoration:none; color:inherit;">
-                <img src="images/industry_liquor.png" class="ind-card-img" alt="Liquor Store">
+                <div class="ind-video-area">
+                    <img src="images/industry_liquor_1765429838209.png" alt="Liquor Store">
+                </div>
                 <div class="ind-content">
                     <h3>LIQUOR STORES</h3>
                     <div class="ind-price">$1,297</div>
-                    <div class="ind-more">→ DETAILS</div>
+                    <div class="ind-more neon-purple">→ DETAILS</div>
                 </div>
             </a>
+            <!-- BEAUTY SALONS - Video Available -->
             <a href="industry-salon.html" class="ind-card" style="text-decoration:none; color:inherit;">
-                <img src="images/industry_salon.png" class="ind-card-img" alt="Beauty Salon">
+                <div class="ind-video-area">
+                    <video src="images/industry_salon_1765429859260.mp4" autoplay loop muted playsinline></video>
+                </div>
                 <div class="ind-content">
                     <h3>BEAUTY SALONS</h3>
                     <div class="ind-price">$997</div>
-                    <div class="ind-more">→ DETAILS</div>
+                    <div class="ind-more neon-pink">→ DETAILS</div>
                 </div>
             </a>
+            <!-- CONTRACTORS - Video Available -->
             <a href="industry-contractor.html" class="ind-card" style="text-decoration:none; color:inherit;">
-                <img src="images/industry_contractor.png" class="ind-card-img" alt="Contractors">
+                <div class="ind-video-area">
+                    <video src="images/industry_contractor_1765429876651.mp4" autoplay loop muted playsinline></video>
+                </div>
                 <div class="ind-content">
                     <h3>CONTRACTORS</h3>
                     <div class="ind-price">$1,497</div>
-                    <div class="ind-more">→ DETAILS</div>
+                    <div class="ind-more neon-yellow">→ DETAILS</div>
                 </div>
             </a>
+            <!-- RETAIL - Video Available -->
             <a href="industry-retail.html" class="ind-card" style="text-decoration:none; color:inherit;">
-                <img src="images/industry_retail.png" class="ind-card-img" alt="Retail">
+                <div class="ind-video-area">
+                    <video src="images/retail_store.mp4" autoplay loop muted playsinline></video>
+                </div>
                 <div class="ind-content">
                     <h3>RETAIL</h3>
                     <div class="ind-price">$1,197</div>
-                    <div class="ind-more">→ DETAILS</div>
+                    <div class="ind-more neon-cyan">→ DETAILS</div>
                 </div>
             </a>
+            <!-- ENTERPRISE - Video Available -->
             <a href="industry-enterprise.html" class="ind-card" style="text-decoration:none; color:inherit;">
-                <img src="images/industry_enterprise.png" class="ind-card-img" alt="Enterprise">
+                <div class="ind-video-area">
+                    <video src="images/industrial_plant_2090.mp4" autoplay loop muted playsinline></video>
+                </div>
                 <div class="ind-content">
                     <h3>ENTERPRISE</h3>
                     <div class="ind-price">$4,997+</div>
-                    <div class="ind-more">→ DETAILS</div>
+                    <div class="ind-more neon-green">→ DETAILS</div>
                 </div>
             </a>
         </div>
