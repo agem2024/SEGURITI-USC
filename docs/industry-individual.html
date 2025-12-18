@@ -10,11 +10,14 @@
         rel="stylesheet">
     <style>
         :root {
-            --neon-green: #25D366;
+            --bg-main: #05070B;
+            --bg-card: #0B1220;
+            --border: #1F2937;
+            --accent-green: #22C55E;
+            --text-white: #E5E7EB;
+            --text-gray: #9CA3AF;
             --neon-blue: #00f3ff;
             --neon-purple: #bc13fe;
-            --dark: #000;
-            --gray: #888;
         }
 
         * {
@@ -25,9 +28,22 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--dark);
-            color: #fff;
-            line-height: 1.7;
+            font-weight: 500;
+            background: var(--bg-main);
+            color: var(--text-white);
+            line-height: 1.6;
+        }
+
+        h1,
+        h2,
+        h3,
+        .price,
+        .uc-title,
+        .badge {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
         }
 
         .hero {
@@ -38,6 +54,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            border-bottom: 1px solid var(--border);
         }
 
         .hero-video {
@@ -47,7 +64,8 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.4;
+            opacity: 0.3;
+            filter: grayscale(100%);
             z-index: 0;
         }
 
@@ -57,7 +75,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.95) 100%);
+            background: linear-gradient(180deg, rgba(5, 7, 11, 0.6) 0%, rgba(5, 7, 11, 0.95) 100%);
             z-index: 1;
         }
 
@@ -69,109 +87,115 @@
         }
 
         .badge {
-            background: rgba(188, 19, 254, 0.2);
-            border: 1px solid var(--neon-purple);
-            padding: 8px 20px;
-            font-size: 0.8rem;
-            color: var(--neon-purple);
-            margin-bottom: 20px;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid var(--accent-green);
+            padding: 6px 16px;
+            font-size: 0.75rem;
+            color: var(--accent-green);
+            margin-bottom: 24px;
             display: inline-block;
         }
 
         h1 {
-            font-family: 'Orbitron', sans-serif;
             font-size: 2.5rem;
             margin-bottom: 20px;
-            background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--text-white);
+            background: none;
+            -webkit-text-fill-color: initial;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            color: var(--gray);
-            margin-bottom: 30px;
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            margin-bottom: 32px;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .btn {
-            background: linear-gradient(135deg, var(--neon-purple), #8b00ff);
-            color: #fff;
-            padding: 15px 40px;
+            background: var(--accent-green);
+            color: #000;
+            padding: 14px 32px;
             text-decoration: none;
             font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
             display: inline-block;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
         }
 
         .section {
             padding: 80px 5%;
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
         h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
-            margin-bottom: 30px;
-            color: var(--neon-purple);
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            color: var(--text-white);
+            border-left: 3px solid var(--accent-green);
+            padding-left: 15px;
         }
 
         .use-cases {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
             gap: 20px;
-            margin-bottom: 60px;
+            margin-bottom: 80px;
         }
 
         .use-case {
-            background: linear-gradient(145deg, rgba(20, 20, 20, 0.9), rgba(10, 10, 10, 0.95));
-            border: 1px solid rgba(188, 19, 254, 0.2);
-            border-radius: 8px;
-            /* Bordes más rectos, más pro */
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 4px;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s;
             position: relative;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            box-shadow: none;
             display: flex;
             flex-direction: column;
         }
 
         .use-case:hover {
-            border-color: var(--neon-blue);
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 10px 30px rgba(0, 243, 255, 0.15);
+            border-color: var(--accent-green);
+            transform: translateY(-2px);
             z-index: 10;
         }
 
         .uc-video-wrapper {
             width: 100%;
             height: 120px;
-            /* Video más pequeño/panorámico */
             overflow: hidden;
             position: relative;
+            background: #000;
         }
 
         .uc-video {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(100%) contrast(1.2);
-            /* B/N por defecto para elegancia */
-            transition: 0.5s ease;
-            opacity: 0.7;
+            filter: grayscale(100%);
+            opacity: 0.6;
+            transition: 0.4s;
         }
 
         .use-case:hover .uc-video {
-            filter: grayscale(0%) contrast(1.1);
-            /* Color al hover */
-            transform: scale(1.1);
+            filter: grayscale(0%);
+            transform: scale(1.05);
             opacity: 1;
         }
 
         .uc-content {
             padding: 15px;
-            background: rgba(188, 19, 254, 0.03);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
             flex-grow: 1;
             display: flex;
             align-items: center;
@@ -179,23 +203,109 @@
         }
 
         .uc-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.9rem;
-            /* Letra más fina y moderna */
-            font-weight: 700;
-            color: #fff;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+            font-size: 0.85rem;
+            color: var(--text-white);
+            background: none;
+            padding: 0;
         }
 
         .uc-icon {
-            font-size: 1.2rem;
-            opacity: 0.8;
-            text-shadow: 0 0 10px var(--neon-purple);
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            text-shadow: none;
         }
 
         .use-case:hover .uc-title {
-            color: var(--neon-blue);
+            color: var(--accent-green);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 80px;
+        }
+
+        .feature {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 30px;
+            border-radius: 4px;
+        }
+
+        .feature:hover {
+            border-color: var(--text-gray);
+        }
+
+        .feature h3 {
+            color: var(--text-white);
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+
+        .feature p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        .pricing {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 50px;
+            margin: 60px 0;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        .price {
+            font-size: 3.5rem;
+            color: var(--accent-green);
+            margin-bottom: 10px;
+        }
+
+        .price-desc {
+            color: var(--text-gray);
+            margin: 0 0 40px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .includes {
+            text-align: left;
+            max-width: 450px;
+            margin: 0 auto 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px 20px;
+        }
+
+        .includes li {
+            padding: 0;
+            border: none;
+            list-style: none;
+            color: var(--text-white);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .includes li::before {
+            content: '▫';
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+
+        .back {
+            display: inline-block;
+            margin: 30px 5%;
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .back:hover {
+            color: var(--accent-green);
         }
     </style>
 </head>
@@ -302,64 +412,70 @@
             </div>
         </div>
 
-        <h2>// WHAT YOUR BOT DOES</h2>
+        <h2>// SYSTEM CAPABILITIES</h2>
         <div class="features">
             <div class="feature">
-                <h3>💬 Auto-Reply FAQs</h3>
-                <p>"What's your rate?" "Where are you located?" Bot answers instantly, 24/7.</p>
+                <h3>Auto-Reply FAQs</h3>
+                <p>Instantaneous response protocol for common queries ("Rate?", "Location?"). Zero latency 24/7
+                    availability.</p>
             </div>
             <div class="feature">
-                <h3>📋 Service Menu</h3>
-                <p>Interactive list of what you offer. Prices, descriptions, booking links.</p>
+                <h3>Service Menu Module</h3>
+                <p>Interactive catalog deployment. Displays pricing tables, technical descriptions, and direct booking
+                    vectors.</p>
             </div>
             <div class="feature">
-                <h3>📅 Calendar Link</h3>
-                <p>"Want to book a call?" Bot sends your Calendly/Google Calendar link.</p>
+                <h3>Calendar Integration</h3>
+                <p>Scheduling automation. Bot dispenses Calendly/Google Calendar synchronization links upon request.</p>
             </div>
             <div class="feature">
-                <h3>🔗 Link Hub</h3>
-                <p>All your links in one place: portfolio, socials, reviews, PayPal.</p>
+                <h3>Link Hub Node</h3>
+                <p>Centralized resource aggregation. Portfolio, social feeds, credential reviews, and payment gateways.
+                </p>
             </div>
             <div class="feature">
-                <h3>📍 Location & Hours</h3>
-                <p>Where you work, when you're available. Google Maps link included.</p>
+                <h3>Geospatial Data</h3>
+                <p>Operational window and location definition. Includes direct Google Maps plotting.</p>
             </div>
             <div class="feature">
-                <h3>📧 Lead Capture</h3>
-                <p>Bot collects name, email, project details. You follow up when ready.</p>
+                <h3>Lead Capture Protocol</h3>
+                <p>Structured data acquisition. Collects name, contact params, intent. Queues for manual follow-up
+                    sequence.</p>
             </div>
         </div>
 
         <div class="pricing">
             <div class="price">$297</div>
-            <div class="price-desc">One-time setup + $29/month hosting</div>
+            <div class="price-desc">DEPLOYMENT COST + $29/MO MAINTENANCE</div>
             <ul class="includes">
-                <li>Personal WhatsApp bot</li>
-                <li>Up to 15 auto-reply responses</li>
-                <li>Service/product menu</li>
-                <li>Calendar integration link</li>
-                <li>Link hub (up to 10 links)</li>
-                <li>Lead capture form</li>
-                <li>100 conversations/month</li>
-                <li>Email support</li>
+                <li>Personal WhatsApp Bot Unit</li>
+                <li>15 Auto-Reply Vectors</li>
+                <li>Service/Product Menu</li>
+                <li>Calendar Sync</li>
+                <li>Link Hub (10 Nodes)</li>
+                <li>Lead Capture Form</li>
+                <li>100 Ops/Month Capacity</li>
+                <li>Email Support Channel</li>
             </ul>
-            <a href="https://wa.me/16692342444?text=I%20want%20personal%20bot%20$297" class="btn">💬 ORDER NOW</a>
+            <a href="https://wa.me/16692342444?text=Execute%20Order%20$297" class="btn">INITIALIZE UNIT</a>
         </div>
 
-        <h2>// UPGRADE OPTIONS</h2>
+        <h2>// PERFORMANCE UPGRADES</h2>
         <div class="features">
             <div class="feature">
-                <h3>🚀 PRO: $497</h3>
-                <p>Everything above + AI responses (GPT-4), 500 conversations/month, priority support.</p>
+                <h3>PRO CLASS: $497</h3>
+                <p>Includes base specs + Generative AI (GPT-4) integration. Expanded capacity to 500 ops/month. Priority
+                    routing.</p>
             </div>
             <div class="feature">
-                <h3>💎 ULTRA: $797</h3>
-                <p>Everything in PRO + custom integrations, analytics dashboard, 1,000 conversations.</p>
+                <h3>ULTRA CLASS: $797</h3>
+                <p>Includes PRO specs + Custom API integrations (CRM/Database). Real-time Analytics Dashboard. 1,000
+                    ops/month.</p>
             </div>
         </div>
     </section>
 
-    <a href="orion-bots.html" class="back">← Back to ORION Tech</a>
+    <a href="orion-bots.html" class="back">← RETURN TO BASE</a>
 </body>
 
 </html>
