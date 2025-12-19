@@ -2347,7 +2347,7 @@
             recognition = new SpeechRecognition();
             recognition.continuous = false;
             recognition.interimResults = false;
-            recognition.lang = currentLang === 'es' ? 'es-MX' : 'en-US';
+            recognition.lang = currentLang === 'es' ? 'es-CO' : 'en-US';
 
             recognition.onresult = (event) => {
                 const transcript = event.results[0][0].transcript;
@@ -2401,7 +2401,7 @@
 
         function startListening() {
             isListening = true;
-            recognition.lang = currentLang === 'es' ? 'es-MX' : 'en-US';
+            recognition.lang = currentLang === 'es' ? 'es-CO' : 'en-US';
             document.getElementById('xonaMic').classList.add('listening');
             document.getElementById('xonaVoiceStatus').textContent = '🎤 Listening...';
             recognition.start();
@@ -2421,17 +2421,44 @@
                 speechSynthesis.cancel();
 
                 const utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = currentLang === 'es' ? 'es-MX' : 'en-US';
-                utterance.rate = 1.0;
-                utterance.pitch = 1.1;
 
-                // Try to find a good voice
+                // Set language and rate
+                if (currentLang === 'es') {
+                    utterance.lang = 'es-CO'; // Colombian Spanish
+                    utterance.rate = 0.95;
+                } else {
+                    utterance.lang = 'en-US'; // US English (California)
+                    utterance.rate = 1.0;
+                }
+
+                utterance.pitch = 1.2; // Slightly higher pitch for female voice
+
+                // Try to find the best voice for each language
                 const voices = speechSynthesis.getVoices();
-                const preferredVoice = voices.find(v =>
-                    (currentLang === 'es' && v.lang.includes('es')) ||
-                    (currentLang !== 'es' && v.lang.includes('en') && v.name.includes('Female'))
-                );
-                if (preferredVoice) utterance.voice = preferredVoice;
+                let selectedVoice = null;
+
+                if (currentLang === 'es') {
+                    // Priority: Colombian Spanish female voice
+                    selectedVoice = voices.find(v =>
+                        v.lang.includes('es-CO') && (v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('woman') || !v.name.toLowerCase().includes('male'))
+                    ) || voices.find(v =>
+                        v.lang.includes('es-CO')
+                    ) || voices.find(v =>
+                        v.lang.includes('es-') && (v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('paulina') || v.name.toLowerCase().includes('monica'))
+                    );
+                } else {
+                    // Priority: US English female voice (California accent)
+                    selectedVoice = voices.find(v =>
+                        v.lang === 'en-US' && (v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('samantha') || v.name.toLowerCase().includes('victoria'))
+                    ) || voices.find(v =>
+                        v.lang === 'en-US' && !v.name.toLowerCase().includes('male')
+                    );
+                }
+
+                if (selectedVoice) {
+                    utterance.voice = selectedVoice;
+                    console.log('Using voice:', selectedVoice.name, selectedVoice.lang);
+                }
 
                 speechSynthesis.speak(utterance);
             }
