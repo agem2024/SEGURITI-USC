@@ -1412,53 +1412,9 @@
         style="background: linear-gradient(180deg, rgba(0,243,255,0.05) 0%, #000 100%); padding: 60px 5%;">
         <h2 class="glow-blue" style="margin-bottom: 15px;">🤖 AI ASSISTANTS</h2>
         <p style="color: #888; margin-bottom: 40px;">Connect with our intelligent team 24/7</p>
-        <div
+        <div id="ai-assistants-container"
             style="display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; max-width: 900px; margin: 0 auto;">
-            <!-- CEO / Alex -->
-            <a href="https://wa.me/16692342444"
-                onclick="gtag('event', 'contact', {'event_category': 'AI Assistants', 'event_label': 'Alex Espinosa WhatsApp', 'value': 1});"
-                style="background: rgba(37,211,102,0.1); border: 1px solid #25D366; padding: 25px 35px; text-decoration: none; text-align: center; min-width: 200px; border-radius: 15px; transition: all 0.3s;">
-                <video src="images/alex_ceo.mp4" autoplay muted loop playsinline
-                    style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid #25D366; box-shadow: 0 0 20px rgba(37,211,102,0.5);"></video>
-                <div style="font-family: 'Orbitron'; color: #25D366; font-size: 1rem; font-weight: 700;">ALEX ESPINOSA
-                </div>
-                <div style="color: #888; font-size: 0.85rem; margin-top: 5px; letter-spacing: 1px;">CEO & FOUNDER</div>
-                <div style="color: #555; font-size: 0.7rem; margin-top: 8px;">💬 WhatsApp</div>
-            </a>
-            <!-- XONA - Voice Assistant -->
-            <a href="tel:+18312221072"
-                onclick="gtag('event', 'contact', {'event_category': 'AI Assistants', 'event_label': 'XONA Voice Call', 'value': 1});"
-                style="background: rgba(0,243,255,0.1); border: 1px solid var(--neon-blue); padding: 25px 35px; text-decoration: none; text-align: center; min-width: 200px; border-radius: 15px; transition: all 0.3s;">
-                <video src="images/xona_bot.mp4" autoplay muted loop playsinline
-                    style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid var(--neon-blue); box-shadow: 0 0 20px rgba(0,243,255,0.5);"></video>
-                <div style="font-family: 'Orbitron'; color: var(--neon-blue); font-size: 1rem; font-weight: 700;">XONA
-                </div>
-                <div style="color: #888; font-size: 0.85rem; margin-top: 5px; letter-spacing: 1px;">VOICE AI ASSISTANT
-                </div>
-                <div style="color: #555; font-size: 0.7rem; margin-top: 8px;">📞 Call Direct</div>
-            </a>
-            <!-- ORION Bot - Telegram -->
-            <a href="https://t.me/oriontechbot"
-                onclick="gtag('event', 'contact', {'event_category': 'AI Assistants', 'event_label': 'ORION Telegram Bot', 'value': 1});"
-                style="background: rgba(0,136,204,0.1); border: 1px solid #0088cc; padding: 25px 35px; text-decoration: none; text-align: center; min-width: 200px; border-radius: 15px; transition: all 0.3s;">
-                <video src="images/orion_bot.mp4" autoplay muted loop playsinline
-                    style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid #0088cc; box-shadow: 0 0 20px rgba(0,136,204,0.5);"></video>
-                <div style="font-family: 'Orbitron'; color: #0088cc; font-size: 1rem; font-weight: 700;">ORION BOT</div>
-                <div style="color: #888; font-size: 0.85rem; margin-top: 5px; letter-spacing: 1px;">CHAT MANAGER</div>
-                <div style="color: #555; font-size: 0.7rem; margin-top: 8px;">✈️ Telegram</div>
-            </a>
-            <!-- JARVIS - Email -->
-            <a href="mailto:jarvis@acwater-ai.com"
-                onclick="gtag('event', 'contact', {'event_category': 'AI Assistants', 'event_label': 'JARVIS Email', 'value': 1});"
-                style="background: rgba(188,19,254,0.1); border: 1px solid var(--neon-purple); padding: 25px 35px; text-decoration: none; text-align: center; min-width: 200px; border-radius: 15px; transition: all 0.3s;">
-                <video src="images/jarvis_email.mp4" autoplay muted loop playsinline
-                    style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid var(--neon-purple); box-shadow: 0 0 20px rgba(188,19,254,0.5);"></video>
-                <div style="font-family: 'Orbitron'; color: var(--neon-purple); font-size: 1rem; font-weight: 700;">
-                    JARVIS</div>
-                <div style="color: #888; font-size: 0.85rem; margin-top: 5px; letter-spacing: 1px;">EMAIL ASSISTANT
-                </div>
-                <div style="color: #555; font-size: 0.7rem; margin-top: 8px;">📧 Email</div>
-            </a>
+            <!-- Dynamic content will be rendered here by updateContacts() -->
         </div>
     </section>
 
@@ -1699,6 +1655,71 @@
         }
 
         // ================================================================
+        // UPDATE CONTACTS FUNCTION
+        // Dynamically renders AI Assistants based on selected country
+        // ================================================================
+        function updateContacts(countryKey) {
+            const container = document.getElementById('ai-assistants-container');
+            if (!container) return;
+
+            const country = regionalTeams[countryKey] || regionalTeams.usa;
+            let html = '';
+
+            // ALWAYS show CEO (Alex) - HQ is always visible
+            const ceoRole = headquarters.role[currentLang] || headquarters.role.en;
+            html += `
+                <a href="https://wa.me/${headquarters.whatsapp.replace(/[^0-9]/g, '')}"
+                    onclick="gtag('event', 'contact', {'event_category': 'AI Assistants', 'event_label': 'Alex Espinosa WhatsApp', 'value': 1});"
+                    style="background: rgba(37,211,102,0.1); border: 1px solid #25D366; padding: 25px 35px; text-decoration: none; text-align: center; min-width: 200px; border-radius: 15px; transition: all 0.3s;">
+                    <video src="${headquarters.video}" autoplay muted loop playsinline
+                        style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid #25D366; box-shadow: 0 0 20px rgba(37,211,102,0.5);"></video>
+                    <div style="font-family: 'Orbitron'; color: #25D366; font-size: 1rem; font-weight: 700;">${headquarters.name}</div>
+                    <div style="color: #888; font-size: 0.85rem; margin-top: 5px; letter-spacing: 1px;">${ceoRole}</div>
+                    <div style="color: #555; font-size: 0.7rem; margin-top: 8px;">💬 WhatsApp</div>
+                </a>
+            `;
+
+            // Show local director if exists (like Juan Camilo for Colombia)
+            if (country.director) {
+                const directorRole = country.director.role[currentLang] || country.director.role.en;
+                html += `
+                    <a href="https://wa.me/${country.director.whatsapp.replace(/[^0-9]/g, '')}"
+                        onclick="gtag('event', 'contact', {'event_category': 'AI Assistants', 'event_label': '${country.director.name} WhatsApp', 'value': 1});"
+                        style="background: rgba(255,140,0,0.1); border: 1px solid #FF8C00; padding: 25px 35px; text-decoration: none; text-align: center; min-width: 200px; border-radius: 15px; transition: all 0.3s;">
+                        <video src="${country.director.video}" autoplay muted loop playsinline
+                            style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid #FF8C00; box-shadow: 0 0 20px rgba(255,140,0,0.5);"></video>
+                        <div style="font-family: 'Orbitron'; color: #FF8C00; font-size: 1rem; font-weight: 700;">${country.director.name}</div>
+                        <div style="color: #888; font-size: 0.85rem; margin-top: 5px; letter-spacing: 1px;">${directorRole}</div>
+                        <div style="color: #555; font-size: 0.7rem; margin-top: 8px;">💬 WhatsApp</div>
+                    </a>
+                `;
+            }
+
+            // Show AI assistants for this country
+            if (country.assistants && country.assistants.length > 0) {
+                country.assistants.forEach(assistant => {
+                    const assistantRole = assistant.role[currentLang] || assistant.role.en;
+                    const assistantContactType = assistant.contactType[currentLang] || assistant.contactType.en;
+
+                    html += `
+                        <a href="${assistant.contact}"
+                            onclick="gtag('event', 'contact', {'event_category': 'AI Assistants', 'event_label': '${assistant.name}', 'value': 1});"
+                            style="background: ${assistant.colorRgba}; border: 1px solid ${assistant.color}; padding: 25px 35px; text-decoration: none; text-align: center; min-width: 200px; border-radius: 15px; transition: all 0.3s;">
+                            <video src="${assistant.video}" autoplay muted loop playsinline
+                                style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid ${assistant.color}; box-shadow: 0 0 20px ${assistant.colorRgba.replace('0.1', '0.5')};"></video>
+                            <div style="font-family: 'Orbitron'; color: ${assistant.color}; font-size: 1rem; font-weight: 700;">${assistant.name}</div>
+                            <div style="color: #888; font-size: 0.85rem; margin-top: 5px; letter-spacing: 1px;">${assistantRole}</div>
+                            <div style="color: #555; font-size: 0.7rem; margin-top: 8px;">${assistant.icon} ${assistantContactType}</div>
+                        </a>
+                    `;
+                });
+            }
+
+            container.innerHTML = html;
+            console.log('Contacts updated for:', countryKey);
+        }
+
+        // ================================================================
         // REGIONAL TEAMS CONFIGURATION
         // HQ (Alex CEO) is ALWAYS visible + Local team changes by country
         // ================================================================
@@ -1716,7 +1737,39 @@
                 director: null, // HQ is the director for USA
                 flag: '🇺🇸',
                 name: { en: 'USA', es: 'USA' },
-                subtitle: { en: 'Bay Area, California', es: 'Bay Area, California' }
+                subtitle: { en: 'Bay Area, California', es: 'Bay Area, California' },
+                assistants: [
+                    {
+                        name: 'XONA',
+                        role: { en: 'VOICE AI ASSISTANT', es: 'ASISTENTE DE VOZ IA' },
+                        contact: 'tel:+18312221072',
+                        icon: '📞',
+                        contactType: { en: 'Call Direct', es: 'Llamar Directo' },
+                        video: 'images/xona_bot.mp4',
+                        color: 'var(--neon-blue)',
+                        colorRgba: 'rgba(0,243,255,0.1)'
+                    },
+                    {
+                        name: 'ORION BOT',
+                        role: { en: 'CHAT MANAGER', es: 'GESTOR DE CHAT' },
+                        contact: 'https://t.me/oriontechbot',
+                        icon: '✈️',
+                        contactType: { en: 'Telegram', es: 'Telegram' },
+                        video: 'images/orion_bot.mp4',
+                        color: '#0088cc',
+                        colorRgba: 'rgba(0,136,204,0.1)'
+                    },
+                    {
+                        name: 'JARVIS',
+                        role: { en: 'EMAIL ASSISTANT', es: 'ASISTENTE DE EMAIL' },
+                        contact: 'mailto:jarvis@acwater-ai.com',
+                        icon: '📧',
+                        contactType: { en: 'Email', es: 'Email' },
+                        video: 'images/jarvis_email.mp4',
+                        color: 'var(--neon-purple)',
+                        colorRgba: 'rgba(188,19,254,0.1)'
+                    }
+                ]
             },
             colombia: {
                 director: {
@@ -1728,7 +1781,19 @@
                 },
                 flag: '🇨🇴',
                 name: { en: 'COLOMBIA', es: 'COLOMBIA' },
-                subtitle: { en: 'Coffee Axis Chapter', es: 'Capítulo Eje Cafetero' }
+                subtitle: { en: 'Coffee Axis Chapter', es: 'Capítulo Eje Cafetero' },
+                assistants: [
+                    {
+                        name: 'CRONOS',
+                        role: { en: 'AI ASSISTANT', es: 'ASISTENTE DE IA' },
+                        contact: 'https://wa.me/573245143926',
+                        icon: '💬',
+                        contactType: { en: 'WhatsApp', es: 'WhatsApp' },
+                        video: 'images/orion_bot.mp4', // Using ORION bot video as placeholder
+                        color: '#25D366',
+                        colorRgba: 'rgba(37,211,102,0.1)'
+                    }
+                ]
             },
             mexico: {
                 director: null, // No director assigned yet
@@ -1794,6 +1859,9 @@
             // ⚡ UPDATE PRICES FOR THIS REGION
             updatePrices(countryKey);
 
+            // ⚡ UPDATE CONTACTS FOR THIS REGION
+            updateContacts(countryKey);
+
             console.log('Country set to:', countryKey);
         }
 
@@ -1827,6 +1895,9 @@
             if (country) {
                 document.getElementById('current-country').textContent = country.name[lang] || country.name.en;
             }
+
+            // ⚡ UPDATE CONTACTS TO REFRESH LANGUAGE
+            updateContacts(currentCountry);
 
             document.documentElement.lang = lang;
             localStorage.setItem('orion_lang', lang);
