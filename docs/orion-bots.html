@@ -1407,6 +1407,20 @@
     </section>
 
 
+    <!-- PAYMENT METHODS -->
+    <section class="section" id="payment-methods"
+        style="background: linear-gradient(180deg, #000 0%, rgba(188,19,254,0.05) 100%);">
+        <div class="section-title">
+            <h2 class="glow-text">// PAYMENT METHODS</h2>
+            <p id="payment-desc">Flexible payment options for your region</p>
+        </div>
+        <div id="payment-methods-container"
+            style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; max-width: 1000px; margin: 0 auto;">
+            <!-- Dynamic payment methods will be rendered here -->
+        </div>
+    </section>
+
+
     <!-- AI ASSISTANTS -->
     <section class="cta-section"
         style="background: linear-gradient(180deg, rgba(0,243,255,0.05) 0%, #000 100%); padding: 60px 5%;">
@@ -1580,7 +1594,7 @@
                     liquor: '3,890,000',
                     salons: '2,990,000',
                     contractors: '4,490,000',
-                    retail: '3,590,000',
+                    retail: '2,990,000',
                     enterprise: '14,990,000+'
                 }
             },
@@ -1593,7 +1607,7 @@
                     liquor: '23,497',
                     salons: '17,997',
                     contractors: '26,997',
-                    retail: '21,597',
+                    retail: '18,000',
                     enterprise: '89,997+'
                 }
             },
@@ -1654,6 +1668,89 @@
             });
 
             console.log('Prices updated for:', countryKey, pricing.currency);
+        }
+
+        // ================================================================
+        // PAYMENT METHODS BY COUNTRY
+        // ================================================================
+        const paymentMethods = {
+            usa: [
+                { name: 'Credit/Debit Cards', icon: '💳', priority: 'high' },
+                { name: 'Apple Pay', icon: '🍎', priority: 'high' },
+                { name: 'Google Pay', icon: '🟢', priority: 'high' },
+                { name: 'ACH Bank Transfer', icon: '🏦', priority: 'medium' },
+                { name: 'Affirm / Klarna (BNPL)', icon: '📅', priority: 'medium' }
+            ],
+            mexico: [
+                { name: 'OXXO Pay (Cash)', icon: '🏪', priority: 'critical' },
+                { name: 'Credit Cards', icon: '💳', priority: 'high' },
+                { name: 'SPEI Transfer', icon: '🏦', priority: 'high' },
+                { name: 'Meses sin Intereses', icon: '📅', priority: 'high' },
+                { name: 'Kueski Pay (BNPL)', icon: '⚡', priority: 'medium' }
+            ],
+            canada: [
+                { name: 'Interac e-Transfer', icon: '🇨🇦', priority: 'critical' },
+                { name: 'Credit/Debit Cards', icon: '💳', priority: 'high' },
+                { name: 'Apple Pay', icon: '🍎', priority: 'high' },
+                { name: 'Google Pay', icon: '🟢', priority: 'medium' }
+            ],
+            peru: [
+                { name: 'Yape', icon: '📱', priority: 'critical' },
+                { name: 'PLIN', icon: '💜', priority: 'critical' },
+                { name: 'Credit Cards', icon: '💳', priority: 'high' },
+                { name: 'Cuotas (Installments)', icon: '📅', priority: 'high' },
+                { name: 'Bank Transfer (IRT)', icon: '🏦', priority: 'medium' }
+            ],
+            colombia: [
+                { name: 'Nequi', icon: '💚', priority: 'critical' },
+                { name: 'Daviplata', icon: '🔴', priority: 'critical' },
+                { name: 'PSE Transfer', icon: '🏦', priority: 'high' },
+                { name: 'Credit Cards', icon: '💳', priority: 'high' },
+                { name: 'Cuotas (Installments)', icon: '📅', priority: 'medium' }
+            ],
+            ecuador: [
+                { name: 'Credit/Debit Cards', icon: '💳', priority: 'high' },
+                { name: 'Bank Transfer', icon: '🏦', priority: 'high' },
+                { name: 'Cash Options', icon: '💵', priority: 'medium' }
+            ]
+        };
+
+        // Function to update payment methods display
+        function updatePaymentMethods(countryKey) {
+            const container = document.getElementById('payment-methods-container');
+            if (!container) return;
+
+            const methods = paymentMethods[countryKey] || paymentMethods.usa;
+            let html = '';
+
+            methods.forEach(method => {
+                const priorityColor = method.priority === 'critical' ? '#ff006e' :
+                    method.priority === 'high' ? '#00f3ff' : '#39ff14';
+                const priorityLabel = method.priority === 'critical' ? '🔥 CRITICAL' :
+                    method.priority === 'high' ? '✅ ESSENTIAL' : '⚪ AVAILABLE';
+
+                html += `
+                    <div style="
+                        background: rgba(0,0,0,0.6);
+                        border: 1px solid ${priorityColor};
+                        border-radius: 15px;
+                        padding: 20px;
+                        min-width: 200px;
+                        max-width: 250px;
+                        text-align: center;
+                        transition: all 0.3s;
+                    "
+                    onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 30px ${priorityColor}40';"
+                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+                        <div style="font-size: 3rem; margin-bottom: 10px;">${method.icon}</div>
+                        <div style="font-family: 'Orbitron', sans-serif; color: #fff; font-size: 0.9rem; margin-bottom: 8px;">${method.name}</div>
+                        <div style="font-size: 0.7rem; color: ${priorityColor}; letter-spacing: 1px;">${priorityLabel}</div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+            console.log('Payment methods updated for:', countryKey);
         }
 
         // ================================================================
@@ -1894,6 +1991,7 @@
 
             // ⚡ UPDATE PRICES FOR THIS REGION
             updatePrices(countryKey);
+            updatePaymentMethods(countryKey);
 
             // ⚡ UPDATE CONTACTS FOR THIS REGION
             updateContacts(countryKey);
@@ -1947,12 +2045,15 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            // Load saved preferences
+            // Initialize dynamic content
             const savedLang = localStorage.getItem('orion_lang') || 'en';
             const savedCountry = localStorage.getItem('orion_country') || 'usa';
 
             setLang(savedLang);
             setCountry(savedCountry);
+            updatePrices(savedCountry);
+            updatePaymentMethods(savedCountry);
+            updateContacts(savedCountry);
         });
     </script>
 
