@@ -102,18 +102,87 @@
             }
         }
 
-        /* LANGUAGE SELECTOR */
-        .lang-selector {
+        /* LANGUAGE & COUNTRY SELECTORS */
+        .global-controls {
             position: fixed;
             top: 20px;
             right: 20px;
             z-index: 1001;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .lang-selector {
             display: flex;
             gap: 5px;
             background: rgba(0, 0, 0, 0.9);
             padding: 8px 12px;
             border-radius: 30px;
             border: 1px solid rgba(0, 243, 255, 0.3);
+        }
+
+        .country-selector {
+            position: relative;
+        }
+
+        .country-btn {
+            background: rgba(37, 211, 102, 0.1);
+            border: 1px solid var(--neon-green);
+            color: var(--neon-green);
+            padding: 8px 15px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            cursor: pointer;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+
+        .country-btn:hover {
+            background: var(--neon-green);
+            color: #000;
+            box-shadow: 0 0 15px var(--neon-green);
+        }
+
+        .country-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: rgba(5, 5, 5, 0.98);
+            border: 1px solid var(--neon-green);
+            min-width: 180px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .country-dropdown.active {
+            display: block;
+        }
+
+        .country-option {
+            padding: 12px 18px;
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.2s;
+        }
+
+        .country-option:last-child {
+            border-bottom: none;
+        }
+
+        .country-option:hover {
+            background: rgba(37, 211, 102, 0.2);
+            color: var(--neon-green);
         }
 
         .lang-btn {
@@ -976,18 +1045,37 @@
 
     <div class="cyber-grid"></div>
 
-    <!-- LANGUAGE SELECTOR -->
-    <div class="lang-selector">
-        <button class="lang-btn active"
-            onclick="setLang('en'); gtag('event', 'language_change', {'event_category': 'Language', 'event_label': 'English'});">EN</button>
-        <button class="lang-btn"
-            onclick="setLang('es'); gtag('event', 'language_change', {'event_category': 'Language', 'event_label': 'Spanish'});">ES</button>
-        <button class="lang-btn"
-            onclick="setLang('zh'); gtag('event', 'language_change', {'event_category': 'Language', 'event_label': 'Chinese'});">中文</button>
-        <button class="lang-btn"
-            onclick="setLang('tl'); gtag('event', 'language_change', {'event_category': 'Language', 'event_label': 'Tagalog'});">TL</button>
-        <button class="lang-btn"
-            onclick="setLang('vi'); gtag('event', 'language_change', {'event_category': 'Language', 'event_label': 'Vietnamese'});">VI</button>
+    <!-- GLOBAL CONTROLS: Language + Country -->
+    <div class="global-controls">
+        <!-- Country Selector -->
+        <div class="country-selector">
+            <button class="country-btn" onclick="toggleCountryMenu()">
+                <span id="current-flag">🇺🇸</span>
+                <span id="current-country">USA</span>
+                <span>▼</span>
+            </button>
+            <div class="country-dropdown" id="country-dropdown">
+                <div class="country-option" onclick="setCountry('usa')">🇺🇸 USA (Bay Area)</div>
+                <div class="country-option" onclick="setCountry('colombia')">🇨🇴 Colombia</div>
+                <div class="country-option" onclick="setCountry('mexico')">🇲🇽 México</div>
+                <div class="country-option" onclick="setCountry('peru')">🇵🇪 Perú</div>
+                <div class="country-option" onclick="setCountry('ecuador')">🇪🇨 Ecuador</div>
+                <div class="country-option" onclick="setCountry('canada')">🇨🇦 Canada</div>
+            </div>
+        </div>
+        <!-- Language Selector -->
+        <div class="lang-selector">
+            <button class="lang-btn active"
+                onclick="setLang('en'); gtag('event', 'language_change', {'event_category': 'Language', 'event_label': 'English'});">EN</button>
+            <button class="lang-btn"
+                onclick="setLang('es'); gtag('event', 'language_change', {'event_category': 'Language', 'event_label': 'Spanish'});">ES</button>
+            <button class="lang-btn"
+                onclick="setLang('zh'); gtag('event', 'language_change', {'event_category': 'Language', 'event_label': 'Chinese'});">中文</button>
+            <button class="lang-btn"
+                onclick="setLang('tl'); gtag('event', 'language_change', {'event_category': 'Language', 'event_label': 'Tagalog'});">TL</button>
+            <button class="lang-btn"
+                onclick="setLang('vi'); gtag('event', 'language_change', {'event_category': 'Language', 'event_label': 'Vietnamese'});">VI</button>
+        </div>
     </div>
 
     <!-- NAV -->
@@ -1505,6 +1593,111 @@
             }
         };
         let currentLang = 'en';
+        let currentCountry = 'usa';
+
+        // ================================================================
+        // REGIONAL TEAMS CONFIGURATION
+        // HQ (Alex CEO) is ALWAYS visible + Local team changes by country
+        // ================================================================
+        const headquarters = {
+            name: 'ALEX G. ESPINOSA',
+            role: { en: 'CEO & FOUNDER', es: 'CEO & FUNDADOR' },
+            whatsapp: '+16692342444',
+            location: { en: 'Bay Area, California', es: 'Bay Area, California' },
+            video: 'images/alex_ceo.mp4',
+            isHQ: true
+        };
+
+        const regionalTeams = {
+            usa: {
+                director: null, // HQ is the director for USA
+                flag: '🇺🇸',
+                name: { en: 'USA', es: 'USA' },
+                subtitle: { en: 'Bay Area, California', es: 'Bay Area, California' }
+            },
+            colombia: {
+                director: {
+                    name: 'JUAN CAMILO E.',
+                    role: { en: 'OPERATIONS DIRECTOR', es: 'DIRECTOR OPERACIONES' },
+                    whatsapp: '+573245143926',
+                    location: { en: 'Colombia - Coffee Axis', es: 'Colombia - Eje Cafetero' },
+                    video: 'images/alex_ceo.mp4' // Placeholder until Juan Camilo has his own
+                },
+                flag: '🇨🇴',
+                name: { en: 'COLOMBIA', es: 'COLOMBIA' },
+                subtitle: { en: 'Coffee Axis Chapter', es: 'Capítulo Eje Cafetero' }
+            },
+            mexico: {
+                director: null, // No director assigned yet
+                flag: '🇲🇽',
+                name: { en: 'MEXICO', es: 'MÉXICO' },
+                subtitle: { en: 'CDMX & Guadalajara Chapter', es: 'Capítulo CDMX & Guadalajara' }
+            },
+            peru: {
+                director: null,
+                flag: '🇵🇪',
+                name: { en: 'PERU', es: 'PERÚ' },
+                subtitle: { en: 'Lima & Cusco Chapter', es: 'Capítulo Lima & Cusco' }
+            },
+            ecuador: {
+                director: null,
+                flag: '🇪🇨',
+                name: { en: 'ECUADOR', es: 'ECUADOR' },
+                subtitle: { en: 'Quito & Guayaquil Chapter', es: 'Capítulo Quito & Guayaquil' }
+            },
+            canada: {
+                director: null,
+                flag: '🇨🇦',
+                name: { en: 'CANADA', es: 'CANADÁ' },
+                subtitle: { en: 'North America Chapter', es: 'Capítulo Norte América' }
+            }
+        };
+
+        // Country selector functions
+        function toggleCountryMenu() {
+            const dropdown = document.getElementById('country-dropdown');
+            dropdown.classList.toggle('active');
+        }
+
+        function setCountry(countryKey) {
+            currentCountry = countryKey;
+            const country = regionalTeams[countryKey];
+
+            // Update selector display
+            document.getElementById('current-flag').textContent = country.flag;
+            document.getElementById('current-country').textContent = country.name[currentLang] || country.name.en;
+
+            // Close dropdown
+            document.getElementById('country-dropdown').classList.remove('active');
+
+            // Update WhatsApp float link based on country
+            const waFloat = document.querySelector('.whatsapp-float');
+            if (waFloat) {
+                if (country.director && country.director.whatsapp) {
+                    waFloat.href = 'https://wa.me/' + country.director.whatsapp.replace(/[^0-9]/g, '');
+                } else {
+                    waFloat.href = 'https://wa.me/' + headquarters.whatsapp.replace(/[^0-9]/g, '');
+                }
+            }
+
+            // Save preference
+            localStorage.setItem('orion_country', countryKey);
+
+            // Track event
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'country_change', { 'event_category': 'Region', 'event_label': countryKey });
+            }
+
+            console.log('Country set to:', countryKey);
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.country-selector')) {
+                document.getElementById('country-dropdown').classList.remove('active');
+            }
+        });
+
         function setLang(lang) {
             currentLang = lang;
             // Remove active from all buttons
@@ -1522,11 +1715,26 @@
                     el.textContent = translations[lang][key];
                 }
             });
+
+            // Update country selector text to match language
+            const country = regionalTeams[currentCountry];
+            if (country) {
+                document.getElementById('current-country').textContent = country.name[lang] || country.name.en;
+            }
+
             document.documentElement.lang = lang;
             localStorage.setItem('orion_lang', lang);
             console.log('Language set to:', lang);
         }
-        document.addEventListener('DOMContentLoaded', () => setLang(localStorage.getItem('orion_lang') || 'en'));
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load saved preferences
+            const savedLang = localStorage.getItem('orion_lang') || 'en';
+            const savedCountry = localStorage.getItem('orion_country') || 'usa';
+
+            setLang(savedLang);
+            setCountry(savedCountry);
+        });
     </script>
 
     <!-- 🤖 XONA AI CHATBOT - YEAR 2090 EDITION -->
