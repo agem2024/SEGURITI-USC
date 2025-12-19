@@ -1420,12 +1420,14 @@
 
     <!-- FOOTER -->
     <footer>
-        <p style="font-family: 'Orbitron', sans-serif; letter-spacing: 2px; margin-bottom: 10px;">ORION_TECH // SAN
-            JOSE, CA</p>
-        <p>💬 <a href="https://wa.me/16692342444" style="color: #25D366;">(669) 234-2444</a> | 📞 <a
-                href="tel:+18312221072" style="color: var(--neon-blue);">(831) 222-1072</a> | ✈️ <a
-                href="https://t.me/oriontechbot" style="color: #0088cc;">@oriontechbot</a></p>
-        <p style="margin-top: 5px;">📧 <a href="mailto:agem2013@gmail.com" style="color: #fff;">agem2013@gmail.com</a> |
+        <p id="footer-location" style="font-family: 'Orbitron', sans-serif; letter-spacing: 2px; margin-bottom: 10px;">
+            ORION_TECH // SAN JOSE, CA</p>
+        <p id="footer-contacts">💬 <a href="https://wa.me/16692342444" style="color: #25D366;">(669) 234-2444</a> | 📞
+            <a href="tel:+18312221072" style="color: var(--neon-blue);">(831) 222-1072</a> | ✈️ <a
+                href="https://t.me/oriontechbot" style="color: #0088cc;">@oriontechbot</a>
+        </p>
+        <p id="footer-person" style="margin-top: 5px;">📧 <a href="mailto:agem2013@gmail.com"
+                style="color: #fff;">agem2013@gmail.com</a> |
             <a href="https://agem2024.github.io/SEGURITI-USC/cv_pro.html" style="color: var(--neon-green);">Alex G.
                 Espinosa</a>
         </p>
@@ -1726,6 +1728,34 @@
         }
 
         // ================================================================
+        // UPDATE FOOTER FUNCTION
+        // Dynamically updates footer based on selected country
+        // ================================================================
+        function updateFooter(countryKey) {
+            const country = regionalTeams[countryKey];
+            if (!country) return;
+
+            const footerLocation = document.getElementById('footer-location');
+            const footerContacts = document.getElementById('footer-contacts');
+            const footerPerson = document.getElementById('footer-person');
+
+            if (countryKey === 'colombia') {
+                // Colombia footer
+                const directorRole = country.director.role[currentLang] || country.director.role.en;
+                footerLocation.textContent = 'ORION_TECH // COLOMBIA';
+                footerContacts.innerHTML = '💬 <a href="https://wa.me/573245143926" style="color: #25D366;">(+57) 324 514 3926</a> | 📞 <a href="tel:+18312221072" style="color: var(--neon-blue);">(831) 222-1072</a> | ✈️ <a href="https://t.me/oriontechbot" style="color: #0088cc;">@oriontechbot</a>';
+                footerPerson.innerHTML = '📧 <a href="mailto:agem2013@gmail.com" style="color: #fff;">agem2013@gmail.com</a> | <a href="https://agem2024.github.io/SEGURITI-USC/card.html" style="color: var(--neon-green);">Juan Camilo Espinosa - ' + directorRole + '</a>';
+            } else {
+                // Default footer (USA and others)
+                footerLocation.textContent = 'ORION_TECH // SAN JOSE, CA';
+                footerContacts.innerHTML = '💬 <a href="https://wa.me/16692342444" style="color: #25D366;">(669) 234-2444</a> | 📞 <a href="tel:+18312221072" style="color: var(--neon-blue);">(831) 222-1072</a> | ✈️ <a href="https://t.me/oriontechbot" style="color: #0088cc;">@oriontechbot</a>';
+                footerPerson.innerHTML = '📧 <a href="mailto:agem2013@gmail.com" style="color: #fff;">agem2013@gmail.com</a> | <a href="https://agem2024.github.io/SEGURITI-USC/cv_pro.html" style="color: var(--neon-green);">Alex G. Espinosa</a>';
+            }
+
+            console.log('Footer updated for:', countryKey);
+        }
+
+        // ================================================================
         // REGIONAL TEAMS CONFIGURATION
         // HQ (Alex CEO) is ALWAYS visible + Local team changes by country
         // ================================================================
@@ -1868,6 +1898,9 @@
             // ⚡ UPDATE CONTACTS FOR THIS REGION
             updateContacts(countryKey);
 
+            // ⚡ UPDATE FOOTER FOR THIS REGION
+            updateFooter(countryKey);
+
             console.log('Country set to:', countryKey);
         }
 
@@ -1904,6 +1937,9 @@
 
             // ⚡ UPDATE CONTACTS TO REFRESH LANGUAGE
             updateContacts(currentCountry);
+
+            // ⚡ UPDATE FOOTER TO REFRESH LANGUAGE
+            updateFooter(currentCountry);
 
             document.documentElement.lang = lang;
             localStorage.setItem('orion_lang', lang);
