@@ -1665,19 +1665,21 @@
             const country = regionalTeams[countryKey] || regionalTeams.usa;
             let html = '';
 
-            // ALWAYS show CEO (Alex) - HQ is always visible
-            const ceoRole = headquarters.role[currentLang] || headquarters.role.en;
-            html += `
-                <a href="https://wa.me/${headquarters.whatsapp.replace(/[^0-9]/g, '')}"
-                    onclick="gtag('event', 'contact', {'event_category': 'AI Assistants', 'event_label': 'Alex Espinosa WhatsApp', 'value': 1});"
-                    style="background: rgba(37,211,102,0.1); border: 1px solid #25D366; padding: 25px 35px; text-decoration: none; text-align: center; min-width: 200px; border-radius: 15px; transition: all 0.3s;">
-                    <video src="${headquarters.video}" autoplay muted loop playsinline
-                        style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid #25D366; box-shadow: 0 0 20px rgba(37,211,102,0.5);"></video>
-                    <div style="font-family: 'Orbitron'; color: #25D366; font-size: 1rem; font-weight: 700;">${headquarters.name}</div>
-                    <div style="color: #888; font-size: 0.85rem; margin-top: 5px; letter-spacing: 1px;">${ceoRole}</div>
-                    <div style="color: #555; font-size: 0.7rem; margin-top: 8px;">💬 WhatsApp</div>
-                </a>
-            `;
+            // Show CEO (Alex) for all countries EXCEPT Colombia
+            if (countryKey !== 'colombia') {
+                const ceoRole = headquarters.role[currentLang] || headquarters.role.en;
+                html += `
+                    <a href="https://wa.me/${headquarters.whatsapp.replace(/[^0-9]/g, '')}"
+                        onclick="gtag('event', 'contact', {'event_category': 'AI Assistants', 'event_label': 'Alex Espinosa WhatsApp', 'value': 1});"
+                        style="background: rgba(37,211,102,0.1); border: 1px solid #25D366; padding: 25px 35px; text-decoration: none; text-align: center; min-width: 200px; border-radius: 15px; transition: all 0.3s;">
+                        <video src="${headquarters.video}" autoplay muted loop playsinline
+                            style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid #25D366; box-shadow: 0 0 20px rgba(37,211,102,0.5);"></video>
+                        <div style="font-family: 'Orbitron'; color: #25D366; font-size: 1rem; font-weight: 700;">${headquarters.name}</div>
+                        <div style="color: #888; font-size: 0.85rem; margin-top: 5px; letter-spacing: 1px;">${ceoRole}</div>
+                        <div style="color: #555; font-size: 0.7rem; margin-top: 8px;">💬 WhatsApp</div>
+                    </a>
+                `;
+            }
 
             // Show local director if exists (like Juan Camilo for Colombia)
             if (country.director) {
@@ -1695,9 +1697,13 @@
                 `;
             }
 
-            // Show AI assistants for this country
-            if (country.assistants && country.assistants.length > 0) {
-                country.assistants.forEach(assistant => {
+            // For Colombia: show Cronos + USA assistants. For others: show their own assistants
+            const assistantsToShow = countryKey === 'colombia'
+                ? [...(country.assistants || []), ...(regionalTeams.usa.assistants || [])]
+                : (country.assistants || []);
+
+            if (assistantsToShow.length > 0) {
+                assistantsToShow.forEach(assistant => {
                     const assistantRole = assistant.role[currentLang] || assistant.role.en;
                     const assistantContactType = assistant.contactType[currentLang] || assistant.contactType.en;
 
