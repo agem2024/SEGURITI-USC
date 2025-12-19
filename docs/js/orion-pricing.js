@@ -1,16 +1,16 @@
 /**
  * ORION TECH - SHARED PRICING SCRIPT
- * Version: 1.0
+ * Version: 2.0 - Synced with orion-bots.html
  * Purpose: Sync pricing across all industry pages based on selected country
  */
 
-// Regional pricing data (synced with orion-bots.html)
+// Regional pricing data (EXACT SYNC with orion-bots.html)
 const regionalPricing = {
     usa: {
         currency: 'USD',
         symbol: '$',
         prices: {
-            individuals: '299',
+            individuals: '297',
             restaurants: '1,497',
             liquor: '1,297',
             salons: '997',
@@ -49,36 +49,36 @@ const regionalPricing = {
         currency: 'PEN',
         symbol: 'S/',
         prices: {
-            individuals: '2,397',
-            restaurants: '11,997',
-            liquor: '10,397',
-            salons: '7,997',
-            contractors: '11,997',
-            retail: '9,597',
-            enterprise: '47,997+'
+            individuals: '1,097',
+            restaurants: '5,547',
+            liquor: '4,797',
+            salons: '3,697',
+            contractors: '5,547',
+            retail: '4,437',
+            enterprise: '18,497+'
         }
     },
     ecuador: {
         currency: 'USD',
         symbol: '$',
         prices: {
-            individuals: '299',
-            restaurants: '1,497',
-            liquor: '1,297',
-            salons: '997',
-            contractors: '1,497',
-            retail: '1,197',
-            enterprise: '4,997+'
+            individuals: '247',
+            restaurants: '1,247',
+            liquor: '1,097',
+            salons: '847',
+            contractors: '1,247',
+            retail: '997',
+            enterprise: '4,197+'
         }
     },
     canada: {
         currency: 'CAD',
         symbol: '$',
         prices: {
-            individuals: '399',
+            individuals: '397',
             restaurants: '1,997',
-            liquor: '1,727',
-            salons: '1,327',
+            liquor: '1,747',
+            salons: '1,347',
             contractors: '1,997',
             retail: '1,597',
             enterprise: '6,697+'
@@ -110,6 +110,13 @@ function loadCountryPricing() {
     document.querySelectorAll('[data-currency]').forEach(el => {
         el.textContent = pricing.currency;
     });
+
+    // Show currency indicator badge if element exists
+    const currencyBadge = document.getElementById('currency-badge');
+    if (currencyBadge) {
+        currencyBadge.textContent = pricing.currency;
+        currencyBadge.style.display = 'inline-block';
+    }
 
     console.log('✅ Pricing loaded for country:', savedCountry, pricing.currency);
 }
