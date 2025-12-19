@@ -1596,6 +1596,109 @@
         let currentCountry = 'usa';
 
         // ================================================================
+        // REGIONAL PRICING CONFIGURATION
+        // Prices adjusted for each country's market
+        // ================================================================
+        const regionalPricing = {
+            usa: {
+                currency: 'USD',
+                symbol: '$',
+                prices: {
+                    individuals: 297,
+                    restaurants: 1497,
+                    liquor: 1297,
+                    salons: 997,
+                    contractors: 1497,
+                    retail: 1197,
+                    enterprise: '4,997+'
+                }
+            },
+            colombia: {
+                currency: 'COP',
+                symbol: '$',
+                prices: {
+                    individuals: '890,000',
+                    restaurants: '4,490,000',
+                    liquor: '3,890,000',
+                    salons: '2,990,000',
+                    contractors: '4,490,000',
+                    retail: '3,590,000',
+                    enterprise: '14,990,000+'
+                }
+            },
+            mexico: {
+                currency: 'MXN',
+                symbol: '$',
+                prices: {
+                    individuals: '5,297',
+                    restaurants: '26,997',
+                    liquor: '23,497',
+                    salons: '17,997',
+                    contractors: '26,997',
+                    retail: '21,597',
+                    enterprise: '89,997+'
+                }
+            },
+            peru: {
+                currency: 'PEN',
+                symbol: 'S/',
+                prices: {
+                    individuals: '1,097',
+                    restaurants: '5,547',
+                    liquor: '4,797',
+                    salons: '3,697',
+                    contractors: '5,547',
+                    retail: '4,437',
+                    enterprise: '18,497+'
+                }
+            },
+            ecuador: {
+                currency: 'USD',
+                symbol: '$',
+                prices: {
+                    individuals: 247,
+                    restaurants: 1247,
+                    liquor: 1097,
+                    salons: 847,
+                    contractors: 1247,
+                    retail: 997,
+                    enterprise: '4,197+'
+                }
+            },
+            canada: {
+                currency: 'CAD',
+                symbol: '$',
+                prices: {
+                    individuals: 397,
+                    restaurants: 1997,
+                    liquor: 1747,
+                    salons: 1347,
+                    contractors: 1997,
+                    retail: 1597,
+                    enterprise: '6,697+'
+                }
+            }
+        };
+
+        // Function to update all prices on the page
+        function updatePrices(countryKey) {
+            const pricing = regionalPricing[countryKey] || regionalPricing.usa;
+            const priceElements = document.querySelectorAll('.ind-price');
+            const priceOrder = ['individuals', 'restaurants', 'liquor', 'salons', 'contractors', 'retail', 'enterprise'];
+
+            priceElements.forEach((el, index) => {
+                if (priceOrder[index]) {
+                    const price = pricing.prices[priceOrder[index]];
+                    const formatted = typeof price === 'number' ? price.toLocaleString() : price;
+                    el.textContent = `${pricing.symbol}${formatted}`;
+                    el.setAttribute('data-currency', pricing.currency);
+                }
+            });
+
+            console.log('Prices updated for:', countryKey, pricing.currency);
+        }
+
+        // ================================================================
         // REGIONAL TEAMS CONFIGURATION
         // HQ (Alex CEO) is ALWAYS visible + Local team changes by country
         // ================================================================
@@ -1687,6 +1790,9 @@
             if (typeof gtag !== 'undefined') {
                 gtag('event', 'country_change', { 'event_category': 'Region', 'event_label': countryKey });
             }
+
+            // ⚡ UPDATE PRICES FOR THIS REGION
+            updatePrices(countryKey);
 
             console.log('Country set to:', countryKey);
         }
