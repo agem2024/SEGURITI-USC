@@ -2515,13 +2515,19 @@
             try { recognition.stop(); } catch (e) { }
         }
 
-        // Text-to-Speech for XONA responses
+        // Text-to-Speech for XONA responses - FEMALE VOICE, CHONA pronunciation
         function speakXona(text) {
             if ('speechSynthesis' in window) {
                 // Cancel any ongoing speech
                 speechSynthesis.cancel();
 
-                const utterance = new SpeechSynthesisUtterance(text);
+                // Replace XONA with CHONA for correct pronunciation in Spanish
+                let spokenText = text;
+                if (currentLang === 'es') {
+                    spokenText = text.replace(/XONA/gi, 'CHONA').replace(/xona/gi, 'chona');
+                }
+
+                const utterance = new SpeechSynthesisUtterance(spokenText);
 
                 // Set language and rate
                 if (currentLang === 'es') {
@@ -2532,33 +2538,43 @@
                     utterance.rate = 1.0;
                 }
 
-                utterance.pitch = 1.2; // Slightly higher pitch for female voice
+                utterance.pitch = 1.1; // Slightly higher pitch for female voice
 
-                // Try to find the best voice for each language
+                // Get available voices
                 const voices = speechSynthesis.getVoices();
                 let selectedVoice = null;
 
                 if (currentLang === 'es') {
-                    // Priority: Colombian Spanish female voice
+                    // Priority: Female Spanish voices (prefer Colombian, then Mexican, then any Spanish female)
+                    const femalePatterns = ['female', 'paulina', 'monica', 'amelie', 'lucia', 'elena', 'maria'];
+                    const malePatterns = ['male', 'jorge', 'diego', 'carlos', 'juan', 'daniel'];
+
                     selectedVoice = voices.find(v =>
-                        v.lang.includes('es-CO') && (v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('woman') || !v.name.toLowerCase().includes('male'))
+                        v.lang.includes('es-CO') && femalePatterns.some(p => v.name.toLowerCase().includes(p))
                     ) || voices.find(v =>
-                        v.lang.includes('es-CO')
+                        v.lang.includes('es-CO') && !malePatterns.some(p => v.name.toLowerCase().includes(p))
                     ) || voices.find(v =>
-                        v.lang.includes('es-') && (v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('paulina') || v.name.toLowerCase().includes('monica'))
+                        v.lang.includes('es-MX') && femalePatterns.some(p => v.name.toLowerCase().includes(p))
+                    ) || voices.find(v =>
+                        v.lang.includes('es') && femalePatterns.some(p => v.name.toLowerCase().includes(p))
+                    ) || voices.find(v =>
+                        v.lang.includes('es') && !malePatterns.some(p => v.name.toLowerCase().includes(p))
                     );
                 } else {
-                    // Priority: US English female voice (California accent)
+                    // Priority: Female US English voices
+                    const femalePatterns = ['female', 'samantha', 'victoria', 'karen', 'susan', 'fiona', 'ava', 'allison', 'zoe'];
+                    const malePatterns = ['male', 'alex', 'daniel', 'fred', 'tom', 'david'];
+
                     selectedVoice = voices.find(v =>
-                        v.lang === 'en-US' && (v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('samantha') || v.name.toLowerCase().includes('victoria'))
+                        v.lang === 'en-US' && femalePatterns.some(p => v.name.toLowerCase().includes(p))
                     ) || voices.find(v =>
-                        v.lang === 'en-US' && !v.name.toLowerCase().includes('male')
+                        v.lang === 'en-US' && !malePatterns.some(p => v.name.toLowerCase().includes(p))
                     );
                 }
 
                 if (selectedVoice) {
                     utterance.voice = selectedVoice;
-                    console.log('Using voice:', selectedVoice.name, selectedVoice.lang);
+                    console.log('🎤 Using voice:', selectedVoice.name, selectedVoice.lang);
                 }
 
                 speechSynthesis.speak(utterance);
