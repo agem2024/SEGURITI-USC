@@ -2521,11 +2521,9 @@
                 // Cancel any ongoing speech
                 speechSynthesis.cancel();
 
-                // Replace XONA with CHONA for correct pronunciation in Spanish
+                // Replace XONA with X for correct pronunciation
                 let spokenText = text;
-                if (currentLang === 'es') {
-                    spokenText = text.replace(/XONA/gi, 'CHONA').replace(/xona/gi, 'chona');
-                }
+                spokenText = text.replace(/XONA/gi, 'X').replace(/xona/gi, 'X').replace(/CHONA/gi, 'X');
 
                 const utterance = new SpeechSynthesisUtterance(spokenText);
 
