@@ -2537,27 +2537,26 @@
                     utterance.rate = 1.0;
                 }
 
-                utterance.pitch = 1.1; // Slightly higher pitch for female voice
+                utterance.pitch = 1.25; // Higher pitch to ensure feminine tone
 
                 // Get available voices
                 const voices = speechSynthesis.getVoices();
                 let selectedVoice = null;
 
                 if (currentLang === 'es') {
-                    // Priority: Female Spanish voices (prefer Colombian, then Mexican, then any Spanish female)
-                    const femalePatterns = ['female', 'paulina', 'monica', 'amelie', 'lucia', 'elena', 'maria'];
-                    const malePatterns = ['male', 'jorge', 'diego', 'carlos', 'juan', 'daniel'];
+                    // Priority: Specific High-Quality Female Voices
+                    // 1. Google Español (Usually female & high quality)
+                    // 2. Microsoft Sabina (Mexico - Female)
+                    // 3. Microsoft Helena (Spain - Female)
+                    // 4. Any voice with "female" in name
+
+                    const priorityVoices = ['google español', 'sabina', 'helena', 'paulina', 'monica', 'female'];
+                    const maleKeywords = ['male', 'jorge', 'pablo', 'raul', 'david', 'enrique'];
 
                     selectedVoice = voices.find(v =>
-                        v.lang.includes('es-CO') && femalePatterns.some(p => v.name.toLowerCase().includes(p))
+                        v.lang.includes('es') && priorityVoices.some(p => v.name.toLowerCase().includes(p))
                     ) || voices.find(v =>
-                        v.lang.includes('es-CO') && !malePatterns.some(p => v.name.toLowerCase().includes(p))
-                    ) || voices.find(v =>
-                        v.lang.includes('es-MX') && femalePatterns.some(p => v.name.toLowerCase().includes(p))
-                    ) || voices.find(v =>
-                        v.lang.includes('es') && femalePatterns.some(p => v.name.toLowerCase().includes(p))
-                    ) || voices.find(v =>
-                        v.lang.includes('es') && !malePatterns.some(p => v.name.toLowerCase().includes(p))
+                        v.lang.includes('es') && !maleKeywords.some(m => v.name.toLowerCase().includes(m))
                     );
                 } else {
                     // Priority: Female US English voices
