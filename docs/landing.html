@@ -1196,6 +1196,17 @@ DEFAULT REGION: Bay Area, California, USA
         // INIT
         window.addEventListener('DOMContentLoaded', detectLocation);
     </script>
+
+    <!-- 🎤 XONA Voice - OpenAI Realtime API con WebRTC -->
+    <script src="js/xona-voice.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const voiceBtn = new XonaVoiceButton({
+                tokenEndpoint: 'https://orion-cloud.onrender.com/api/realtime-token'
+            });
+            console.log('🎤 XONA Voice WebRTC initialized');
+        });
+    </script>
 </body>
 
 </html>
