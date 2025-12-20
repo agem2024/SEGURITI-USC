@@ -2469,11 +2469,11 @@
 
         // Multilingual greetings - ORION Tech Professional
         const xonaGreetings = {
-            en: "Hello! I'm X, your ORION Tech assistant. How can I help automate your business today?",
-            es: "¡Hola! Soy X, tu asistente de ORION Tech. ¿Cómo puedo ayudarte a automatizar tu negocio?",
-            zh: "您好！我是X，ORION Tech的AI助手。今天我能为您的业务自动化做什么？",
-            tl: "Kumusta! Ako si X ng ORION Tech. Paano ko makakatulong sa iyong negosyo?",
-            vi: "Xin chào! Tôi là X từ ORION Tech. Tôi có thể giúp gì cho doanh nghiệp của bạn?"
+            en: "Hello! I'm XONA, your ORION Tech AI assistant. How can I help automate your business today?",
+            es: "¡Hola! Soy CHONA, tu asistente de ORION Tech. ¿Cómo puedo ayudarte a automatizar tu negocio?",
+            zh: "您好！我是XONA，ORION Tech的AI助手。今天我能为您的业务自动化做什么？",
+            tl: "Kumusta! Ako si XONA ng ORION Tech. Paano ko makakatulong sa iyong negosyo?",
+            vi: "Xin chào! Tôi là XONA từ ORION Tech. Tôi có thể giúp gì cho doanh nghiệp của bạn?"
         };
 
         function toggleXonaChat() {
@@ -2520,9 +2520,11 @@
                 // Cancel any ongoing speech
                 speechSynthesis.cancel();
 
-                // Replace XONA with X for correct pronunciation
+                // Replace XONA with CHONA for correct Spanish pronunciation
                 let spokenText = text;
-                spokenText = text.replace(/XONA/gi, 'X').replace(/xona/gi, 'X').replace(/CHONA/gi, 'X');
+                if (currentLang === 'es') {
+                    spokenText = text.replace(/XONA/gi, 'CHONA').replace(/xona/gi, 'chona');
+                }
 
                 const utterance = new SpeechSynthesisUtterance(spokenText);
 
