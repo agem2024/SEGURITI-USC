@@ -2039,6 +2039,11 @@
             // ⚡ UPDATE FOOTER TO REFRESH LANGUAGE
             updateFooter(currentCountry);
 
+            // ⚡ UPDATE CHATBOT LANGUAGE
+            if (typeof updateInitialChatMessage === 'function') {
+                updateInitialChatMessage(lang);
+            }
+
             document.documentElement.lang = lang;
             localStorage.setItem('orion_lang', lang);
             console.log('Language set to:', lang);
@@ -2046,15 +2051,49 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             // Initialize dynamic content
-            const savedLang = localStorage.getItem('orion_lang') || 'en';
-            const savedCountry = localStorage.getItem('orion_country') || 'usa';
+            const savedLang = localStorage.getItem('orion_lang');
+            const savedCountry = localStorage.getItem('orion_country') || 'colombia';
 
-            setLang(savedLang);
+            // Auto-set language based on country if no preference saved
+            const spanishCountries = ['colombia', 'mexico', 'peru', 'ecuador'];
+            const defaultLang = savedLang || (spanishCountries.includes(savedCountry) ? 'es' : 'en');
+
+            setLang(defaultLang);
             setCountry(savedCountry);
             updatePrices(savedCountry);
             updatePaymentMethods(savedCountry);
             updateContacts(savedCountry);
+
+            // Update initial chat message based on language
+            updateInitialChatMessage(defaultLang);
         });
+
+        function updateInitialChatMessage(lang) {
+            // Update greeting message
+            const messagesDiv = document.getElementById('xonaMessages');
+            if (messagesDiv) {
+                const greeting = lang === 'es'
+                    ? '¡Hola! Soy CHONA, tu asistente de ORION Tech. ¿Cómo puedo ayudarte a automatizar tu negocio hoy?'
+                    : "Hello! I'm XONA, your ORION Tech AI assistant. How can I help automate your business today?";
+                messagesDiv.innerHTML = `<div class="xona-msg bot">${greeting}</div>`;
+            }
+
+            // Update header elements
+            const headerTitle = document.getElementById('xona-header-title');
+            const headerStatus = document.getElementById('xona-header-status');
+            if (headerTitle) {
+                headerTitle.textContent = lang === 'es' ? 'XONA // ASISTENTE IA' : 'XONA // AI ASSISTANT';
+            }
+            if (headerStatus) {
+                headerStatus.textContent = lang === 'es' ? 'ENLACE NEURAL ACTIVO' : 'NEURAL LINK ACTIVE';
+            }
+
+            // Update input placeholder
+            const inputEl = document.getElementById('xonaInput');
+            if (inputEl) {
+                inputEl.placeholder = lang === 'es' ? 'Escribe tu mensaje...' : 'Type your message...';
+            }
+        }
     </script>
 
     <!-- 🤖 XONA AI CHATBOT - YEAR 2090 EDITION -->
@@ -2357,17 +2396,17 @@
         <div class="xona-header">
             <div class="xona-avatar">🤖</div>
             <div class="xona-info">
-                <h4>XONA // AI ASSISTANT</h4>
-                <span>NEURAL LINK ACTIVE</span>
+                <h4 id="xona-header-title">XONA // ASISTENTE IA</h4>
+                <span id="xona-header-status">ENLACE NEURAL ACTIVO</span>
             </div>
         </div>
         <div class="xona-messages" id="xonaMessages">
-            <div class="xona-msg bot">Greetings, human. I am XONA, your neural interface to ORION Tech services. How may
-                I optimize your reality today?</div>
+            <div class="xona-msg bot">¡Hola! Soy CHONA, tu asistente de ORION Tech. ¿Cómo puedo ayudarte a automatizar
+                tu negocio hoy?</div>
         </div>
         <div class="xona-input-area">
             <button class="xona-mic" id="xonaMic" onclick="toggleVoiceInput()" title="Voice Input">🎤</button>
-            <input type="text" class="xona-input" id="xonaInput" placeholder="Type or speak..."
+            <input type="text" class="xona-input" id="xonaInput" placeholder="Escribe tu mensaje..."
                 onkeypress="if(event.key==='Enter')sendXonaMsg()">
             <button class="xona-send" onclick="sendXonaMsg()">➤</button>
         </div>
@@ -2503,7 +2542,7 @@
             isListening = true;
             recognition.lang = currentLang === 'es' ? 'es-CO' : 'en-US';
             document.getElementById('xonaMic').classList.add('listening');
-            document.getElementById('xonaVoiceStatus').textContent = '🎤 Listening...';
+            document.getElementById('xonaVoiceStatus').textContent = currentLang === 'es' ? '🎤 Escuchando...' : '🎤 Listening...';
             recognition.start();
         }
 
@@ -2593,7 +2632,8 @@
 
             // Add typing indicator
             const typingId = 'typing-' + Date.now();
-            messagesDiv.innerHTML += `<div class="xona-msg bot typing" id="${typingId}">Processing</div>`;
+            const typingText = currentLang === 'es' ? 'Procesando' : 'Processing';
+            messagesDiv.innerHTML += `<div class="xona-msg bot typing" id="${typingId}">${typingText}</div>`;
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
 
             try {
@@ -2610,14 +2650,17 @@
                     messagesDiv.innerHTML += `<div class="xona-msg bot">${data.response}</div>`;
                     speakXona(data.response); // Speak the response!
                 } else {
-                    const errMsg = '⚠️ Neural link interrupted. Please contact via WhatsApp.';
+                    const errMsg = currentLang === 'es'
+                        ? '⚠️ Conexión interrumpida. Por favor contacta por WhatsApp.'
+                        : '⚠️ Neural link interrupted. Please contact via WhatsApp.';
                     messagesDiv.innerHTML += `<div class="xona-msg bot">${errMsg}</div>`;
-                    speakXona('Neural link interrupted. Contact via WhatsApp.');
+                    speakXona(currentLang === 'es' ? 'Conexión interrumpida. Contacta por WhatsApp.' : 'Neural link interrupted. Contact via WhatsApp.');
                 }
             } catch (e) {
-                document.getElementById(typingId).remove();
-                messagesDiv.innerHTML += `<div class="xona-msg bot">⚠️ ORION offline. <a href="https://wa.me/16692342444" style="color:#25D366;">Contact via WhatsApp</a></div>`;
-                speakXona('ORION is offline. Please contact via WhatsApp.');
+                const errMsgEs = '⚠️ ORION offline. <a href="https://wa.me/16692342444" style="color:#25D366;">Contactar por WhatsApp</a>';
+                const errMsgEn = '⚠️ ORION offline. <a href="https://wa.me/16692342444" style="color:#25D366;">Contact via WhatsApp</a>';
+                messagesDiv.innerHTML += `<div class="xona-msg bot">${currentLang === 'es' ? errMsgEs : errMsgEn}</div>`;
+                speakXona(currentLang === 'es' ? 'ORION está offline. Contacta por WhatsApp.' : 'ORION is offline. Please contact via WhatsApp.');
             }
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
         }
