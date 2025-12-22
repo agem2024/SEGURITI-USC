@@ -28,6 +28,71 @@
         });
     </script>
 
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // Firebase Configuration - ORION Tech
+        const firebaseConfig = {
+            apiKey: "AIzaSyBJducUOcsPnNEtYOFI3sF60AfHUXMkXBo",
+            authDomain: "orion-tech-6d893.firebaseapp.com",
+            projectId: "orion-tech-6d893",
+            storageBucket: "orion-tech-6d893.firebasestorage.app",
+            messagingSenderId: "360237212144",
+            appId: "1:360237212144:web:956c881d0231f2a3ecfd35",
+            measurementId: "G-W87J0KK9SK"
+        };
+
+        // Initialize Firebase
+        const firebaseApp = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(firebaseApp);
+        const db = getFirestore(firebaseApp);
+
+        // Log page visit
+        logEvent(analytics, 'page_view', {
+            page_title: document.title,
+            page_location: window.location.href,
+            page_path: window.location.pathname
+        });
+
+        // Track visit in Firestore
+        async function trackVisit() {
+            try {
+                await addDoc(collection(db, "visits"), {
+                    timestamp: serverTimestamp(),
+                    page: window.location.pathname,
+                    referrer: document.referrer || 'direct',
+                    userAgent: navigator.userAgent,
+                    language: navigator.language,
+                    country: localStorage.getItem('orion_country') || 'usa',
+                    screenWidth: window.screen.width,
+                    screenHeight: window.screen.height
+                });
+            } catch (e) { console.log('Visit tracking:', e); }
+        }
+        trackVisit();
+
+        // Make saveLead available globally
+        window.saveLead = async function (leadData) {
+            try {
+                const docRef = await addDoc(collection(db, "leads"), {
+                    ...leadData,
+                    timestamp: serverTimestamp(),
+                    source: window.location.pathname,
+                    country: localStorage.getItem('orion_country') || 'usa',
+                    language: localStorage.getItem('orion_lang') || 'en'
+                });
+                logEvent(analytics, 'lead_captured', { lead_id: docRef.id });
+                return docRef.id;
+            } catch (e) {
+                console.error('Lead save error:', e);
+                return null;
+            }
+        };
+    </script>
+
     <title>ORION Tech | AI Automation & Custom Apps | Bay Area</title>
     <meta name="description"
         content="Futuristic AI automation: WhatsApp bots, custom apps, enterprise solutions. Bay Area's top AI agency.">
@@ -1105,6 +1170,11 @@
                     onclick="gtag('event', 'click', {'event_category': 'CTA', 'event_label': 'Hero Deploy Now - WhatsApp', 'value': 1});">
                     💬 <span data-i18n="hero_cta1">DEPLOY NOW</span>
                 </a>
+                <button
+                    onclick="openLeadModal(); gtag('event', 'click', {'event_category': 'CTA', 'event_label': 'Hero Get Quote'});"
+                    class="btn-secondary" style="cursor:pointer;">
+                    📩 GET QUOTE
+                </button>
                 <a href="#demos" class="btn-secondary" data-i18n="hero_cta2"
                     onclick="gtag('event', 'click', {'event_category': 'Navigation', 'event_label': 'Hero View Demos'});">VIEW
                     DEMOS</a>
@@ -1316,6 +1386,44 @@
                         Request Demo</a>
                 </div>
             </div>
+            <!-- NEW: MP PRO - AI Studio App -->
+            <div class="demo-card">
+                <img class="demo-video" src="images/plumbing_estimator_app.png" alt="MP PRO - Professional AI Diagnosis"
+                    style="object-fit: cover;">
+                <div class="demo-content">
+                    <span class="demo-badge" style="background: #39ff14;">AI App Mode</span>
+                    <h3>MP PRO</h3>
+                    <p style="font-size: 0.75rem; color: #00f3ff; margin-bottom: 5px;">Professional AI Diagnosis &
+                        Estimation</p>
+                    <p>🔧 Un Plomero en tu Bolsillo. Get instant plumbing estimates, DIY solutions, and professional
+                        guidance.</p>
+                    <button class="more-btn neon-green" onclick="toggleDemoDetails(this); event.stopPropagation();">+
+                        MORE</button>
+                    <div class="demo-details"
+                        style="display:none; margin-top:12px; padding-top:12px; border-top:1px solid rgba(57,255,20,0.3);">
+                        <ul style="list-style:none; padding:0; margin:0 0 15px 0;">
+                            <li style="color:#888; font-size:0.85rem; padding:5px 0;">👥 <strong>For:</strong>
+                                Homeowners, Renters, Property Managers, Anyone!</li>
+                            <li style="color:#888; font-size:0.85rem; padding:5px 0;">📸 <strong>Feature:</strong> Send
+                                a photo → AI diagnoses the issue</li>
+                            <li style="color:#888; font-size:0.85rem; padding:5px 0;">💰 <strong>Output:</strong>
+                                Instant cost estimate + repair options</li>
+                            <li style="color:#888; font-size:0.85rem; padding:5px 0;">🛠️ <strong>DIY Tips:</strong>
+                                Basic fixes you can do yourself</li>
+                            <li style="color:#888; font-size:0.85rem; padding:5px 0;">🤖 <strong>Powered by:</strong>
+                                Gemini 2.0 Vision AI</li>
+                            <li style="color:#888; font-size:0.85rem; padding:5px 0;">📊 <strong>Price Book:</strong>
+                                200+ plumbing services</li>
+                            <li style="color:#888; font-size:0.85rem; padding:5px 0;">🌎 <strong>Languages:</strong>
+                                English, Spanish</li>
+                        </ul>
+                    </div>
+                    <a href="https://ai.studio/apps/drive/1bMGhzGDqLL_aDfnSC78Ie_HnsF7b691I?fullscreenApplet=true"
+                        class="demo-link" target="_blank"
+                        onclick="gtag('event', 'demo_request', {'event_category': 'Demos', 'event_label': 'MP PRO - AI Studio'});">
+                        → TRY LIVE APP</a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1431,6 +1539,45 @@
             <!-- Dynamic content will be rendered here by updateContacts() -->
         </div>
     </section>
+
+    <!-- LEAD CAPTURE MODAL -->
+    <div id="lead-modal"
+        style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:2000; justify-content:center; align-items:center;">
+        <div
+            style="background:#0a0a0a; border:1px solid #00f3ff; border-radius:15px; padding:40px; max-width:450px; width:90%; position:relative; box-shadow:0 0 50px rgba(0,243,255,0.3);">
+            <button onclick="closeLeadModal()"
+                style="position:absolute; top:15px; right:15px; background:none; border:none; color:#888; font-size:1.5rem; cursor:pointer;">✕</button>
+            <h3 style="font-family:'Orbitron',sans-serif; color:#00f3ff; margin-bottom:20px; text-align:center;">🚀 GET
+                STARTED</h3>
+            <form id="lead-form" onsubmit="submitLead(event)">
+                <input type="text" id="lead-name" placeholder="Your Name" required
+                    style="width:100%; padding:15px; margin-bottom:15px; background:#111; border:1px solid #333; border-radius:8px; color:#fff; font-size:1rem;">
+                <input type="tel" id="lead-phone" placeholder="Phone / WhatsApp" required
+                    style="width:100%; padding:15px; margin-bottom:15px; background:#111; border:1px solid #333; border-radius:8px; color:#fff; font-size:1rem;">
+                <input type="email" id="lead-email" placeholder="Email (optional)"
+                    style="width:100%; padding:15px; margin-bottom:15px; background:#111; border:1px solid #333; border-radius:8px; color:#fff; font-size:1rem;">
+                <select id="lead-industry" required
+                    style="width:100%; padding:15px; margin-bottom:15px; background:#111; border:1px solid #333; border-radius:8px; color:#fff; font-size:1rem;">
+                    <option value="">Select Industry</option>
+                    <option value="restaurant">Restaurant</option>
+                    <option value="salon">Salon / Spa</option>
+                    <option value="contractor">Contractor / Plumber</option>
+                    <option value="retail">Retail Store</option>
+                    <option value="liquor">Liquor Store</option>
+                    <option value="individual">Individual / Freelancer</option>
+                    <option value="enterprise">Enterprise</option>
+                    <option value="other">Other</option>
+                </select>
+                <textarea id="lead-message" placeholder="Tell us about your project..." rows="3"
+                    style="width:100%; padding:15px; margin-bottom:20px; background:#111; border:1px solid #333; border-radius:8px; color:#fff; font-size:1rem; resize:none;"></textarea>
+                <button type="submit"
+                    style="width:100%; padding:18px; background:linear-gradient(135deg, #25D366, #128C7E); border:none; border-radius:8px; color:#000; font-family:'Orbitron',sans-serif; font-weight:700; font-size:1rem; cursor:pointer; text-transform:uppercase; letter-spacing:2px;">
+                    📩 SEND REQUEST
+                </button>
+            </form>
+            <p id="lead-status" style="text-align:center; margin-top:15px; color:#888; font-size:0.85rem;"></p>
+        </div>
+    </div>
 
     <!-- FOOTER -->
     <footer>
@@ -2559,62 +2706,67 @@
                 // Cancel any ongoing speech
                 speechSynthesis.cancel();
 
-                // Replace XONA with CHONA for correct Spanish pronunciation
-                let spokenText = text;
-                if (currentLang === 'es') {
-                    spokenText = text.replace(/XONA/gi, 'CHONA').replace(/xona/gi, 'chona');
-                }
+                // Replace XONA/xona with phonetic "Chona" (lowercase to avoid spelling)
+                let spokenText = text
+                    .replace(/XONA/g, 'Chona')
+                    .replace(/Xona/g, 'Chona')
+                    .replace(/xona/g, 'chona');
 
                 const utterance = new SpeechSynthesisUtterance(spokenText);
 
                 // Set language and rate
                 if (currentLang === 'es') {
-                    utterance.lang = 'es-CO'; // Colombian Spanish
+                    utterance.lang = 'es-MX'; // Mexican Spanish (better voices)
+                    utterance.rate = 0.9;
+                } else {
+                    utterance.lang = 'en-US';
                     utterance.rate = 0.95;
+                }
+
+                utterance.pitch = 1.3; // Higher pitch for feminine voice
+                utterance.volume = 1.0;
+
+                // Wait for voices to load, then select female voice
+                const setVoice = () => {
+                    const voices = speechSynthesis.getVoices();
+                    let selectedVoice = null;
+
+                    if (currentLang === 'es') {
+                        // Spanish female voices priority
+                        const femaleES = ['paulina', 'monica', 'sabina', 'helena', 'lucia', 'female', 'google'];
+                        const maleES = ['jorge', 'pablo', 'diego', 'enrique', 'male'];
+
+                        selectedVoice = voices.find(v =>
+                            v.lang.includes('es') && femaleES.some(f => v.name.toLowerCase().includes(f))
+                        ) || voices.find(v =>
+                            v.lang.includes('es') && !maleES.some(m => v.name.toLowerCase().includes(m))
+                        );
+                    } else {
+                        // English female voices priority
+                        const femaleEN = ['samantha', 'victoria', 'karen', 'susan', 'fiona', 'ava', 'allison', 'zoe', 'female'];
+                        const maleEN = ['alex', 'daniel', 'fred', 'tom', 'david', 'male'];
+
+                        selectedVoice = voices.find(v =>
+                            v.lang.includes('en-US') && femaleEN.some(f => v.name.toLowerCase().includes(f))
+                        ) || voices.find(v =>
+                            v.lang.includes('en') && !maleEN.some(m => v.name.toLowerCase().includes(m))
+                        );
+                    }
+
+                    if (selectedVoice) {
+                        utterance.voice = selectedVoice;
+                        console.log('🎤 XONA Voice:', selectedVoice.name);
+                    }
+
+                    speechSynthesis.speak(utterance);
+                };
+
+                // If voices are ready, use them; otherwise wait for them
+                if (speechSynthesis.getVoices().length > 0) {
+                    setVoice();
                 } else {
-                    utterance.lang = 'en-US'; // US English (California)
-                    utterance.rate = 1.0;
+                    speechSynthesis.onvoiceschanged = setVoice;
                 }
-
-                utterance.pitch = 1.25; // Higher pitch to ensure feminine tone
-
-                // Get available voices
-                const voices = speechSynthesis.getVoices();
-                let selectedVoice = null;
-
-                if (currentLang === 'es') {
-                    // Priority: Specific High-Quality Female Voices
-                    // 1. Google Español (Usually female & high quality)
-                    // 2. Microsoft Sabina (Mexico - Female)
-                    // 3. Microsoft Helena (Spain - Female)
-                    // 4. Any voice with "female" in name
-
-                    const priorityVoices = ['google español', 'sabina', 'helena', 'paulina', 'monica', 'female'];
-                    const maleKeywords = ['male', 'jorge', 'pablo', 'raul', 'david', 'enrique'];
-
-                    selectedVoice = voices.find(v =>
-                        v.lang.includes('es') && priorityVoices.some(p => v.name.toLowerCase().includes(p))
-                    ) || voices.find(v =>
-                        v.lang.includes('es') && !maleKeywords.some(m => v.name.toLowerCase().includes(m))
-                    );
-                } else {
-                    // Priority: Female US English voices
-                    const femalePatterns = ['female', 'samantha', 'victoria', 'karen', 'susan', 'fiona', 'ava', 'allison', 'zoe'];
-                    const malePatterns = ['male', 'alex', 'daniel', 'fred', 'tom', 'david'];
-
-                    selectedVoice = voices.find(v =>
-                        v.lang === 'en-US' && femalePatterns.some(p => v.name.toLowerCase().includes(p))
-                    ) || voices.find(v =>
-                        v.lang === 'en-US' && !malePatterns.some(p => v.name.toLowerCase().includes(p))
-                    );
-                }
-
-                if (selectedVoice) {
-                    utterance.voice = selectedVoice;
-                    console.log('🎤 Using voice:', selectedVoice.name, selectedVoice.lang);
-                }
-
-                speechSynthesis.speak(utterance);
             }
         }
 
@@ -2673,6 +2825,70 @@
     <script>
         // Version 3.1 Boost
         console.log("ORION TECH v3.1 Loaded");
+
+        // Toggle demo details for live examples
+        function toggleDemoDetails(btn) {
+            const details = btn.nextElementSibling;
+            if (details.style.display === 'none') {
+                details.style.display = 'block';
+                btn.textContent = '- LESS';
+            } else {
+                details.style.display = 'none';
+                btn.textContent = '+ MORE';
+            }
+        }
+
+        // Lead Modal Functions
+        function openLeadModal() {
+            document.getElementById('lead-modal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLeadModal() {
+            document.getElementById('lead-modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        async function submitLead(e) {
+            e.preventDefault();
+            const status = document.getElementById('lead-status');
+            status.textContent = '⏳ Sending...';
+            status.style.color = '#00f3ff';
+
+            const leadData = {
+                name: document.getElementById('lead-name').value,
+                phone: document.getElementById('lead-phone').value,
+                email: document.getElementById('lead-email').value || null,
+                industry: document.getElementById('lead-industry').value,
+                message: document.getElementById('lead-message').value || null,
+                status: 'new'
+            };
+
+            // Wait for Firebase to be ready
+            if (typeof window.saveLead === 'function') {
+                const leadId = await window.saveLead(leadData);
+                if (leadId) {
+                    status.textContent = '✅ Request sent! We\'ll contact you soon.';
+                    status.style.color = '#39ff14';
+                    document.getElementById('lead-form').reset();
+                    gtag('event', 'lead_form_submit', { 'event_category': 'Leads', 'event_label': leadData.industry });
+                    setTimeout(closeLeadModal, 2500);
+                } else {
+                    status.textContent = '⚠️ Error. Try WhatsApp instead.';
+                    status.style.color = '#ff006e';
+                }
+            } else {
+                // Fallback: redirect to WhatsApp
+                const msg = encodeURIComponent(`Hi! I'm ${leadData.name} (${leadData.industry}). ${leadData.message || ''}`);
+                window.open(`https://wa.me/16692342444?text=${msg}`, '_blank');
+                closeLeadModal();
+            }
+        }
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLeadModal();
+        });
     </script>
 </body>
 
