@@ -190,6 +190,20 @@
             </div>
         </div>
 
+        <!-- Neural Authorization Status -->
+        <div class="stat-card"
+            style="grid-column: span 4; display: flex; justify-content: space-between; align-items: center; border-color: var(--neon-blue); background: rgba(0, 243, 255, 0.05);">
+            <div style="text-align: left;">
+                <span class="stat-label">Neural Authorization Status</span>
+                <span id="auth-status-text" class="stat-val" style="font-size: 1.2rem; margin-top: 5px;">AWAITING
+                    APPLICATION</span>
+            </div>
+            <button id="btn-training" onclick="checkApproval()" class="tool-link"
+                style="background: var(--neon-blue); color: #000; padding: 10px 20px; border: none; font-family: 'Orbitron'; cursor: pointer; display: none;">
+                ACCESS TRAINING MODULES
+            </button>
+        </div>
+
         <h2 style="font-family:'Orbitron'; margin-bottom:40px;">SELECT RECRUITMENT THEME</h2>
 
         <div class="selector-grid">
@@ -253,11 +267,40 @@
     </div>
 
     <script>
+        // Check Status on Load
+        document.addEventListener('DOMContentLoaded', () => {
+            const status = sessionStorage.getItem("orion_application_status");
+            const program = sessionStorage.getItem("orion_applied_to");
+            const progress = getProgress();
+
+            const statusText = document.getElementById('auth-status-text');
+            const trainingBtn = document.getElementById('btn-training');
+
+            if (status === "approved") {
+                const completed = progress.completedModules?.length || 0;
+                statusText.innerText = `ACCESS GRANTED // ${completed}/4 MODULES DONE`;
+                statusText.style.color = "#39ff14";
+                trainingBtn.style.display = "block";
+                trainingBtn.innerText = "CONTINUE TRAINING";
+            } else if (status === "pending") {
+                statusText.innerText = `PENDING APPROVAL // ${program}`;
+                statusText.style.color = "var(--neon-purple)";
+                trainingBtn.style.display = "block";
+                trainingBtn.innerText = "CHECK APPROVAL / ADMIN OVERRIDE";
+            } else {
+                statusText.innerText = "AWAITING APPLICATION";
+                trainingBtn.style.display = "none";
+            }
+        });
+
         // Simulate live data
         setInterval(() => {
             const lc = document.getElementById('leads-count');
             const cc = document.getElementById('comm-count');
-            lc.innerText = (parseInt(lc.innerText.replace(',', '')) + Math.floor(Math.random() * 2)).toLocaleString();
+            if (lc) {
+                const current = parseInt(lc.innerText.replace(',', '')) || 1204;
+                lc.innerText = (current + Math.floor(Math.random() * 2)).toLocaleString();
+            }
         }, 3000);
     </script>
 </body>

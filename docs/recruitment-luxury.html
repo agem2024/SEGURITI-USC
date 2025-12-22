@@ -171,8 +171,15 @@
     </div>
 
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                speakOrion("Welcome to the Elite Circle. I am ATLAS. We authorize a limited number of high-net-worth partnerships. Shall we proceed with the handshake?", "ATLAS", "en");
+            }, 2000);
+        });
+
         function requestEntry() {
-            window.location.href = "https://wa.me/16692342444?text=ELITE%20CIRCLE:%20Requesting%20private%20handshake%20protocol";
+            logTrainingAction('click', 'elite_request');
+            enrollInTraining("ELITE");
         }
     </script>
 </body>

@@ -58,6 +58,122 @@ window.verifyPin = function () {
     }
 }
 
+// Training Enrollment Logic
+window.enrollInTraining = function (program) {
+    console.log(`[ORION] Enrolling in ${program}`);
+    logTrainingAction('enroll', program);
+
+    // Simulate Application
+    sessionStorage.setItem("orion_application_status", "pending");
+    sessionStorage.setItem("orion_applied_to", program);
+
+    alert("APLICACIÓN ENVIADA: Tu perfil está siendo analizado por el sistema central. Por favor contacta al administrador por WhatsApp para la aprobación final.");
+
+    // Redirect to whatsapp with context
+    const msg = `Hola! He aplicado al Programa ${program} en el Recruitment Command Center. Solicito aprobación para iniciar las capacitaciones.`;
+    window.location.href = `https://wa.me/16692342444?text=${encodeURIComponent(msg)}`;
+}
+
+window.checkApproval = function () {
+    const status = sessionStorage.getItem("orion_application_status");
+    if (status === "approved") {
+        window.location.href = "training-dashboard.html";
+    } else {
+        // Admin override for testing/demo
+        const override = confirm("ACCESO RESTRINGIDO: Tu aplicación está PENDIENTE. ¿Eres el ADMINISTRADOR para forzar la aprobación?");
+        if (override) {
+            const pass = prompt("INTRODUCE EL PIN DE ADMINISTRADOR:");
+            if (pass === "2025") {
+                sessionStorage.setItem("orion_application_status", "approved");
+                window.location.href = "training-dashboard.html";
+            } else {
+                alert("PIN INCORRECTO.");
+            }
+        }
+    }
+}
+
+// Text-to-Speech Core Logic - Hybrid (OpenAI API -> Browser Fallback)
+async function speakOrion(text, agentName = "System", lang = "es") {
+    console.log(`[ORION VOICE] Speaking as ${agentName}: ${text.substring(0, 30)}...`);
+
+    // 1. Try Natural OpenAI Voice via Local API
+    try {
+        const response = await fetch('http://localhost:3030/api/tts', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text, lang })
+        });
+
+        if (response.ok) {
+            const blob = await response.blob();
+            const audioUrl = URL.createObjectURL(blob);
+            const audio = new Audio(audioUrl);
+            audio.play();
+            return;
+        }
+    } catch (e) {
+        console.warn('⚠️ TTS API unavailable, using browser fallback');
+    }
+
+    // 2. Fallback: Browser Built-in TTS
+    if ('speechSynthesis' in window) {
+        speechSynthesis.cancel();
+
+        // Clean text for pronunciation (xona -> chona)
+        let spokenText = text.replace(/xona/gi, 'Chona')
+            .replace(/orion/gi, 'Orión');
+
+        const utterance = new SpeechSynthesisUtterance(spokenText);
+        utterance.lang = lang === 'es' ? 'es-MX' : 'en-US';
+        utterance.rate = 0.95;
+        utterance.pitch = (agentName === 'FLASH' || agentName === 'KAI') ? 1.4 : 1.0;
+
+        const setVoice = () => {
+            const voices = speechSynthesis.getVoices();
+            let selectedVoice = null;
+
+            if (lang === 'es') {
+                const femaleKeywords = ['paulina', 'monica', 'sabina', 'helena', 'lucia', 'laura', 'female'];
+                selectedVoice = voices.find(v => v.lang.includes('es') && femaleKeywords.some(sw => v.name.toLowerCase().includes(sw)));
+            } else {
+                const femaleKeywords = ['samantha', 'victoria', 'karen', 'zira', 'female'];
+                selectedVoice = voices.find(v => v.lang.includes('en') && femaleKeywords.some(sw => v.name.toLowerCase().includes(sw)));
+            }
+
+            if (selectedVoice) utterance.voice = selectedVoice;
+            speechSynthesis.speak(utterance);
+        };
+
+        if (speechSynthesis.getVoices().length > 0) setVoice();
+        else speechSynthesis.onvoiceschanged = setVoice;
+    }
+}
+
+// User Identity & Training Progress Persistence
+const PROGRESS_KEY = "orion_user_progress";
+
+window.saveProgress = function (data) {
+    let current = JSON.parse(localStorage.getItem(PROGRESS_KEY) || "{}");
+    let updated = { ...current, ...data, lastUpdate: new Date().toISOString() };
+    localStorage.setItem(PROGRESS_KEY, JSON.stringify(updated));
+    console.log("[ORION] Progress saved:", updated);
+}
+
+window.getProgress = function () {
+    return JSON.parse(localStorage.getItem(PROGRESS_KEY) || "{}");
+}
+
+window.completeModule = function (moduleId) {
+    let progress = getProgress();
+    if (!progress.completedModules) progress.completedModules = [];
+    if (!progress.completedModules.includes(moduleId)) {
+        progress.completedModules.push(moduleId);
+        saveProgress(progress);
+        speakOrion(`¡Felicidades! Has completado el módulo ${moduleId}. Tu progreso ha sido guardado en la red neuronal.`, "System");
+    }
+}
+
 // Auto-run security
 document.addEventListener("DOMContentLoaded", initSecurity);
 

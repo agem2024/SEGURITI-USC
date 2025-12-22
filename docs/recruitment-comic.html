@@ -225,9 +225,15 @@
     </div>
 
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                speakOrion("¡HEY! Soy FLASH. ¡Bienvenido al Squad! ¿Estás listo para correr por el dinero?", "FLASH", "es");
+            }, 1000);
+        });
+
         function joinHunter() {
             logTrainingAction('click', 'hunter_squad_join');
-            window.location.href = "https://wa.me/16692342444?text=BOOM!%20Quiero%20entrar%20al%20Squad%20HUNTER";
+            enrollInTraining("HUNTER");
         }
 
         function flashTalk(e) {
@@ -239,8 +245,17 @@
                 box.innerHTML += `<div style="color:#000; text-align:right;">TU: ${val}</div>`;
                 inp.value = '';
                 setTimeout(() => {
-                    box.innerHTML += `<div style="color:var(--comic-red);">[FLASH]: ¡FÁCIL! Cierras una PYME, cobras $270K hoy mismo. Repites. ¡Es una máquina de hacer BILLETES! 💸</div>`;
+                    let response = "¡FÁCIL! Cierras una PYME, cobras $270K hoy mismo. ¡K-CHING! Repites el proceso y creas tu propia manada de lobos. ¡Es una máquina de hacer BILLETES! 💸";
+
+                    if (msg.toLowerCase().includes('miedo') || msg.toLowerCase().includes('difícil')) {
+                        response = "¡EL MIEDO NO PAGA RENTA! En el Squad te damos el 'The Demo Tool'. Si sabes usar un celular, sabes cerrar ventas con IA. ¡PUM! ¡Vendido!";
+                    } else if (msg.toLowerCase().includes('pago') || msg.toLowerCase().includes('cuanto')) {
+                        response = "¡Hablamos de billetes grandes! Tenemos el setup de $270K y un residual del 7%. Si haces 10 cierres al mes, ya estás por encima del promedio nacional. ¡BOOM!";
+                    }
+
+                    box.innerHTML += `<div style="color:var(--comic-red);">[FLASH]: ${response}</div>`;
                     box.scrollTop = box.scrollHeight;
+                    speakOrion(response, "FLASH", "es");
                 }, 800);
             }
         }

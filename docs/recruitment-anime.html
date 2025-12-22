@@ -364,9 +364,15 @@
     </div>
 
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                speakOrion("Hola recluta. Soy KAI. El sistema tradicional está roto. ¿Vienes a repararlo o a ganar con él?", "KAI", "es");
+            }, 2000);
+        });
+
         function initiateUplink() {
             logTrainingAction('click', 'protocol_akira_start');
-            window.location.href = "https://wa.me/16692342444?text=Protocolo%20AKIRA:%20Solicito%20entrevista";
+            enrollInTraining("AKIRA");
         }
 
         function handleChat(e) {
@@ -379,14 +385,19 @@
                 box.innerHTML += `<div style="text-align:right; margin-bottom:10px; color:#fff;">[YOU]: ${msg}</div>`;
                 input.value = '';
 
-                // Simple simulated response
+                // Personalidad KAI: Directa, tech-rebelde
                 setTimeout(() => {
-                    let response = "[KAI]: Analizando datos... Para entrar necesitas completar los 4 módulos de entrenamiento. Cada venta de Tier 2 te da $270K COP de entrada. ¿Quieres que te envíe el PDF del plan maestro?";
-                    if (msg.toLowerCase().includes('comision')) {
-                        response = "[KAI]: Las comisiones son agresivas. Setup Fee del 25-30% más un 5% recurrente mensual. Nadie más en el mercado te da residuales de por vida.";
+                    let response = "Analizando tu perfil... El sistema tradicional está diseñado para consumirte. En ORION, hackeamos esa realidad. Necesitas pasar por los 4 nodos de entrenamiento AKIRA. ¿Listo para el 'uplink' emocional?";
+
+                    if (msg.toLowerCase().includes('comision') || msg.toLowerCase().includes('dinero') || msg.toLowerCase().includes('pago')) {
+                        response = "Hablemos de créditos, samurai. El cierre PYME te da una inyección inmediata de $270K COP. Pero el verdadero hack es el 5% recurrente. Dinero que fluye mientras duermes.";
+                    } else if (msg.toLowerCase().includes('entrenamiento') || msg.toLowerCase().includes('curso')) {
+                        response = "El entrenamiento es un bootcamp de ingeniería social e IA. 4 módulos: Mentalidad, Detección, Arsenal y Ejecución. Una vez el Admin te valide, el tablero se desbloqueará.";
                     }
+
                     box.innerHTML += `<div style="margin-bottom:10px; color:var(--neon-blue);">[KAI]: ${response}</div>`;
                     box.scrollTop = box.scrollHeight;
+                    speakOrion(response, "KAI", "es");
                 }, 1000);
             }
         }

@@ -219,9 +219,15 @@
     </div>
 
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                speakOrion("Good day. I am EVA. How can I assist your scalability today?", "EVA", "en");
+            }, 1500);
+        });
+
         function contactEva() {
             logTrainingAction('click', 'partner_deck_request');
-            window.location.href = "https://wa.me/16692342444?text=Interested%20in%20Partner%20Program%20Details";
+            enrollInTraining("PARTNER");
         }
 
         function evaAsk(e) {
@@ -233,8 +239,17 @@
                 box.innerHTML += `<div style="text-align:right; margin-bottom:20px; font-weight:bold;">${msg}</div>`;
                 inp.value = '';
                 setTimeout(() => {
-                    box.innerHTML += `<div>[EVA]: Understood. Our revenue model allows for up to 30% margin on localized setup services. I will notify the human team to provide the full PDF brochure to your terminal.</div>`;
+                    let response = "Understood. Our revenue model allows for up to 30% margin on localized setup services. I will notify the human team to provide the full PDF brochure to your terminal.";
+
+                    if (msg.toLowerCase().includes('scale') || msg.toLowerCase().includes('roi')) {
+                        response = "Our ROI metrics show a 4.5x multiplier on client LTV for partners who implement full automation nodes. It's about infrastructure, not just sales.";
+                    } else if (msg.toLowerCase().includes('training') || msg.toLowerCase().includes('module')) {
+                        response = "The training syllabus is institutional grade. Once your application is reviewed by our operations director, you will gain access to the secure learning dashboard.";
+                    }
+
+                    box.innerHTML += `<div>[EVA]: ${response}</div>`;
                     box.scrollTop = box.scrollHeight;
+                    speakOrion(response, "EVA", "en");
                 }, 1000);
             }
         }

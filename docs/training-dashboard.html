@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORION TECH // TRAINING DASHBOARD</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --neon-blue: #00f3ff;
+            --neon-green: #39ff14;
+            --bg-black: #05050b;
+            --panel: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            background-color: var(--bg-black);
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--neon-blue);
+            padding-bottom: 20px;
+            margin-bottom: 50px;
+        }
+
+        .logo {
+            font-family: 'Orbitron';
+            font-weight: 900;
+            font-size: 1.5rem;
+        }
+
+        /* Progress Ring */
+        .progress-box {
+            background: var(--panel);
+            padding: 30px;
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .user-info h2 {
+            margin: 0;
+            color: var(--neon-blue);
+            font-family: 'Orbitron';
+        }
+
+        /* Modules Grid */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .module-card {
+            background: rgba(10, 10, 20, 0.8);
+            border: 1px solid #333;
+            padding: 25px;
+            position: relative;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .module-card.locked {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .module-card.completed {
+            border-color: var(--neon-green);
+        }
+
+        .module-card:hover:not(.locked) {
+            transform: translateY(-5px);
+            border-color: var(--neon-blue);
+        }
+
+        .status-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 0.7rem;
+            padding: 4px 10px;
+            border-radius: 10px;
+            background: #444;
+        }
+
+        .completed .status-badge {
+            background: var(--neon-green);
+            color: #000;
+            font-weight: bold;
+        }
+
+        .btn-start {
+            background: var(--neon-blue);
+            color: #000;
+            border: none;
+            padding: 12px 24px;
+            font-family: 'Orbitron';
+            font-weight: bold;
+            margin-top: 20px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        /* Video / Content Modal */
+        #content-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script src="js/recruitment-common.js"></script>
+
+    <div class="container">
+
+        <header>
+            <div class="logo">ORION // <span style="color:var(--neon-blue)">ACADEMY</span></div>
+            <div id="user-status" style="font-family:'Orbitron'; font-size:0.8rem;">RECRUIT ID: <span
+                    id="recruit-id">LADING...</span></div>
+        </header>
+
+        <div class="progress-box">
+            <div style="font-size: 3rem; font-family:'Orbitron'; color:var(--neon-green);" id="progress-percent">0%
+            </div>
+            <div class="user-info">
+                <h2 id="welcome-msg">Cargando perfil neuronal...</h2>
+                <p style="margin:5px 0 0 0; color:#888;">Nivel de Acceso: Agente en Entrenamiento</p>
+            </div>
+        </div>
+
+        <h3 style="font-family:'Orbitron'; margin-bottom:20px;">MÓDULOS DE CAPACITACIÓN</h3>
+        <div class="modules-grid" id="modules-list">
+            <!-- Module 1 -->
+            <div class="module-card" id="mod-01" onclick="openModule('01')">
+                <span class="status-badge" id="status-01">PENDIENTE</span>
+                <span style="color:var(--neon-blue); font-weight:bold;">MOD_01</span>
+                <h4>Mentalidad & Pitch de Alto Impacto</h4>
+                <p style="font-size:0.8rem; color:#aaa;">Domina la psicología del cierre y el valor del tiempo para el
+                    cliente.</p>
+                <button class="btn-start">INICIAR</button>
+            </div>
+
+            <!-- Module 2 -->
+            <div class="module-card locked" id="mod-02" onclick="openModule('02')">
+                <span class="status-badge" id="status-02">BLOQUEADO</span>
+                <span style="color:var(--neon-blue); font-weight:bold;">MOD_02</span>
+                <h4>Detección Geográfica de Negocios</h4>
+                <p style="font-size:0.8rem; color:#aaa;">Cómo identificar Droguerías, Glampings y PYMEs con GAP digital.
+                </p>
+                <button class="btn-start">BLOQUEADO</button>
+            </div>
+
+            <!-- Module 3 -->
+            <div class="module-card locked" id="mod-03" onclick="openModule('03')">
+                <span class="status-badge" id="status-03">BLOQUEADO</span>
+                <span style="color:var(--neon-blue); font-weight:bold;">MOD_03</span>
+                <h4>Herramientas: XONA, CRONOS & CRM</h4>
+                <p style="font-size:0.8rem; color:#aaa;">Uso técnico de las herramientas para demostraciones en vivo.
+                </p>
+                <button class="btn-start">BLOQUEADO</button>
+            </div>
+
+            <!-- Module 4 -->
+            <div class="module-card locked" id="mod-04" onclick="openModule('04')">
+                <span class="status-badge" id="status-04">BLOQUEADO</span>
+                <span style="color:var(--neon-blue); font-weight:bold;">MOD_04</span>
+                <h4>Cierre de Venta & Pagos (Colombia/US)</h4>
+                <p style="font-size:0.8rem; color:#aaa;">Manejo de Wompi, Stripe y radicación de contratos.</p>
+                <button class="btn-start">BLOQUEADO</button>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px; text-align: center;">
+            <button onclick="window.location.href='recruitment-hub.html'"
+                style="background:transparent; border:1px solid #333; color:#888; padding:10px 20px; cursor:pointer; font-family:'Orbitron';">VOLVER
+                AL CENTRO DE MANDO</button>
+        </div>
+
+    </div>
+
+    <div id="content-modal">
+        <div style="width: 80%; max-width: 800px; background: #111; padding: 40px; border: 1px solid var(--neon-blue);">
+            <h2 id="modal-title" style="font-family:'Orbitron'; color:var(--neon-blue);"></h2>
+            <div id="modal-body" style="margin: 20px 0; line-height:1.6;"></div>
+            <div id="modal-video" style="margin-bottom:20px;"></div>
+            <button onclick="finishModule()"
+                style="background:var(--neon-green); color:#000; border:none; padding:15px; font-weight:bold; width:100%; cursor:pointer;">COMPLETAR
+                MÓDULO Y GUARDAR PROGRESO</button>
+            <button onclick="closeModule()"
+                style="background:transparent; color:#888; border:none; padding:10px; width:100%; cursor:pointer; margin-top:10px;">Cerrar
+                sin guardar</button>
+        </div>
+    </div>
+
+    <script>
+        let activeMod = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const progress = getProgress();
+            const program = sessionStorage.getItem("orion_applied_to") || "EXTERNO";
+
+            document.getElementById('recruit-id').innerText = `RECRUIT-${Math.floor(Math.random() * 10000)}`;
+            document.getElementById('welcome-msg').innerText = `BIENVENIDO AL PROGRAMA ${program}`;
+
+            updateUI();
+
+            speakOrion(`Bienvenido a la Academia Orión. Tienes ${progress.completedModules?.length || 0} módulos completados de 4.`, "System");
+        });
+
+        function updateUI() {
+            const progress = getProgress();
+            const completed = progress.completedModules || [];
+
+            const total = 4;
+            const percent = (completed.length / total) * 100;
+            document.getElementById('progress-percent').innerText = `${percent}%`;
+
+            // Update Cards
+            completed.forEach(id => {
+                const card = document.getElementById(`mod-${id}`);
+                const status = document.getElementById(`status-${id}`);
+                card.classList.add('completed');
+                card.classList.remove('locked');
+                status.innerText = "COMPLETADO";
+            });
+
+            // Unlock next
+            if (completed.length < 4) {
+                const nextId = (completed.length + 1).toString().padStart(2, '0');
+                const nextCard = document.getElementById(`mod-${nextId}`);
+                nextCard.classList.remove('locked');
+                nextCard.querySelector('button').innerText = "INICIAR";
+            }
+        }
+
+        const moduleData = {
+            "01": {
+                title: "Módulo 1: Mentalidad Cyber-Hunter",
+                body: "En este módulo aprenderás el 'Elevator Pitch' de 60 segundos. No vendemos bots, vendemos la recuperación de ventas perdidas. 'Págueme con el sueldo de un empleado que usted ya no tendrá que contratar'.",
+                video: "P10Ox11R_eE"
+            },
+            "02": {
+                title: "Módulo 2: Detección de GAP Digital",
+                body: "Aprenderás a usar Google Maps y Redes Sociales para encontrar negocios 'Zombies'. Aquellos que tienen 2000 seguidores pero no responden comentarios en 48 horas.",
+                video: "v=dQw4w9WgXcQ" // Placeholder
+            },
+            "03": {
+                title: "Módulo 3: Arsenal Tecnológico",
+                body: "Demostración de XONA. Cómo configurar un bot de prueba para el cliente en menos de 5 minutos usando plantillas por industria.",
+                video: "dQw4w9WgXcQ"
+            },
+            "04": {
+                title: "Módulo 4: Ejecución del Contrato",
+                body: "Proceso de cobro. Uso de Wompi para Colombia y Stripe para USA. Cómo radicar la venta para recibir tu comisión de $270K COP en 24 horas.",
+                video: "dQw4w9WgXcQ"
+            }
+        };
+
+        function openModule(id) {
+            const progress = getProgress();
+            const completed = progress.completedModules || [];
+            const idx = parseInt(id);
+
+            if (idx > 1 && !completed.includes((idx - 1).toString().padStart(2, '0'))) {
+                speakOrion("Error. Debes completar los módulos anteriores antes de desbloquear este nivel.", "System");
+                return;
+            }
+
+            activeMod = id;
+            const data = moduleData[id];
+            document.getElementById('modal-title').innerText = data.title;
+            document.getElementById('modal-body').innerText = data.body;
+            document.getElementById('modal-video').innerHTML = `<iframe width="100%" height="315" src="https://www.youtube.com/embed/${data.video}" frameborder="0" allowfullscreen></iframe>`;
+            document.getElementById('content-modal').style.display = 'flex';
+
+            speakOrion(`Iniciando ${data.title}`, "System");
+        }
+
+        function finishModule() {
+            completeModule(activeMod);
+            closeModule();
+            updateUI();
+        }
+
+        function closeModule() {
+            document.getElementById('content-modal').style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>
