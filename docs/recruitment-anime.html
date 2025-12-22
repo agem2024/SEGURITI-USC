@@ -199,17 +199,17 @@
             box-shadow: 0 0 30px var(--neon-pink);
         }
 
-        /* Floating Brain - KAI */
         .chat-widget {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 350px;
+            bottom: 20px;
+            right: 20px;
+            width: 280px;
             background: rgba(10, 10, 15, 0.95);
             border: 1px solid var(--neon-purple);
-            box-shadow: 0 0 30px rgba(188, 19, 254, 0.3);
-            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(188, 19, 254, 0.3);
+            border-radius: 8px;
             z-index: 100;
+            transition: 0.3s;
         }
 
         .chat-header {
@@ -223,10 +223,10 @@
         }
 
         .chat-body {
-            height: 250px;
-            padding: 15px;
+            height: 180px;
+            padding: 10px;
             overflow-y: auto;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #ccc;
         }
 
@@ -347,26 +347,25 @@
 
     </div>
 
-    <!-- Chat Brain -->
-    <div class="chat-widget">
-        <div class="chat-header">
-            <span>NEURAL LINK: KAI</span>
-            <span style="font-size:0.7rem; color:#39ff14;">● ONLINE</span>
+    <!-- Chat Brain (Collapsible) -->
+    <div class="chat-widget" id="kai-chat">
+        <div class="chat-header" onclick="toggleChat('kai-chat')" style="cursor:pointer;">
+            <span>🧠 KAI</span>
+            <span style="font-size:0.7rem;">▼ CLICK</span>
         </div>
         <div class="chat-body" id="chat-box">
-            <div style="margin-bottom:10px; color:var(--neon-blue);">[KAI]: Hola recluta. Soy el cerebro de
-                entrenamiento AKIRA. ¿Estás listo para dejar de perder el tiempo y empezar a ganar de verdad? Pregúntame
-                sobre las comisiones o el entrenamiento.</div>
+            <div style="margin-bottom:10px; color:var(--neon-blue);">[KAI]: Hey recruit! I'm the AKIRA brain. Ready to
+                stop wasting time? // ¡Hola recluta! ¿Listo?</div>
         </div>
         <div class="chat-input">
-            <input type="text" placeholder="Transmite tu pregunta..." id="user-input" onkeypress="handleChat(event)">
+            <input type="text" placeholder="Ask me..." id="user-input" onkeypress="handleChat(event)">
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
-                speakOrion("Hola recluta. Soy KAI. El sistema tradicional está roto. ¿Vienes a repararlo o a ganar con él?", "KAI", "es");
+                speakOrion("Welcome recruit. I'm KAI. The system is broken. Are you here to fix it or exploit it?", "KAI");
             }, 2000);
         });
 
@@ -382,23 +381,36 @@
                 const msg = input.value;
                 if (!msg) return;
 
-                box.innerHTML += `<div style="text-align:right; margin-bottom:10px; color:#fff;">[YOU]: ${msg}</div>`;
+                // Detect language from user input
+                const lang = detectLanguage(msg);
+                setLanguage(lang);
+
+                box.innerHTML += `<div style="text-align:right; margin-bottom:10px; color:#fff;">${msg}</div>`;
                 input.value = '';
 
-                // Personalidad KAI: Directa, tech-rebelde
                 setTimeout(() => {
-                    let response = "Analizando tu perfil... El sistema tradicional está diseñado para consumirte. En ORION, hackeamos esa realidad. Necesitas pasar por los 4 nodos de entrenamiento AKIRA. ¿Listo para el 'uplink' emocional?";
+                    let response;
 
-                    if (msg.toLowerCase().includes('comision') || msg.toLowerCase().includes('dinero') || msg.toLowerCase().includes('pago')) {
-                        response = "Hablemos de créditos, samurai. El cierre PYME te da una inyección inmediata de $270K COP. Pero el verdadero hack es el 5% recurrente. Dinero que fluye mientras duermes.";
-                    } else if (msg.toLowerCase().includes('entrenamiento') || msg.toLowerCase().includes('curso')) {
-                        response = "El entrenamiento es un bootcamp de ingeniería social e IA. 4 módulos: Mentalidad, Detección, Arsenal y Ejecución. Una vez el Admin te valide, el tablero se desbloqueará.";
+                    if (lang === 'es') {
+                        response = "Analizando tu perfil... En ORION, hackeamos el sistema tradicional. 4 módulos de entrenamiento te esperan. ¿Listo?";
+                        if (msg.toLowerCase().includes('comision') || msg.toLowerCase().includes('dinero')) {
+                            response = "El cierre PYME te da $270K COP. Más el 5% recurrente. Dinero que fluye mientras duermes.";
+                        } else if (msg.toLowerCase().includes('entrenamiento')) {
+                            response = "Bootcamp de 4 módulos: Mentalidad, Detección, Arsenal y Ejecución. El Admin te autorizará.";
+                        }
+                    } else {
+                        response = "Analyzing your profile... At ORION, we hack the traditional system. 4 training nodes await. Ready?";
+                        if (msg.toLowerCase().includes('commission') || msg.toLowerCase().includes('money')) {
+                            response = "Each PYME close gives you $270K COP. Plus 5% recurring. Money that flows while you sleep.";
+                        } else if (msg.toLowerCase().includes('training')) {
+                            response = "Bootcamp of 4 modules: Mindset, Detection, Arsenal and Execution. Admin will authorize you.";
+                        }
                     }
 
                     box.innerHTML += `<div style="margin-bottom:10px; color:var(--neon-blue);">[KAI]: ${response}</div>`;
                     box.scrollTop = box.scrollHeight;
-                    speakOrion(response, "KAI", "es");
-                }, 1000);
+                    speakOrion(response, "KAI", lang);
+                }, 800);
             }
         }
     </script>

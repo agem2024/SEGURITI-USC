@@ -117,13 +117,13 @@
         /* EVA Chat */
         .eva-chat {
             position: fixed;
-            bottom: 40px;
-            right: 40px;
-            width: 350px;
+            bottom: 20px;
+            right: 20px;
+            width: 280px;
             background: #fff;
             color: #000;
-            border-radius: 12px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
             overflow: hidden;
             z-index: 1000;
         }
@@ -131,17 +131,18 @@
         .chat-top {
             background: #000;
             color: #fff;
-            padding: 15px;
+            padding: 10px;
             font-weight: bold;
             display: flex;
             align-items: center;
+            cursor: pointer;
         }
 
         .avatar-small {
-            width: 30px;
-            height: 30px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
-            margin-right: 10px;
+            margin-right: 8px;
             background: var(--pro-blue);
         }
     </style>
@@ -201,27 +202,26 @@
 
     </div>
 
-    <!-- EVA Chat -->
-    <div class="eva-chat">
-        <div class="chat-top">
+    <!-- EVA Chat (Collapsible) -->
+    <div class="eva-chat" id="eva-chat">
+        <div class="chat-top" onclick="toggleChat('eva-chat')">
             <div class="avatar-small"></div>
-            <span>EVA // Director of Alliances</span>
+            <span>EVA ▼</span>
         </div>
-        <div id="c-box" style="height: 250px; padding: 20px; overflow-y: auto; font-size: 0.95rem; line-height: 1.5;">
-            <div style="color: #666; margin-bottom: 20px;">[EVA]: Good day. I am the intelligence coordinator for the
-                Partner Program. Our goal is to augment your agency's capabilities without adding technical debt. How
-                can I assist your scalability today?</div>
+        <div id="c-box" style="height: 160px; padding: 12px; overflow-y: auto; font-size: 0.85rem; line-height: 1.4;">
+            <div style="color: #666;">[EVA]: Good day. // Buenos días. How can I assist? // ¿Cómo puedo ayudar?</div>
         </div>
-        <div style="padding: 15px; border-top: 1px solid #eee;">
-            <input type="text" id="c-in" placeholder="Querying scalability models..."
-                style="width: 100%; border: none; outline: none; font-family: 'Inter';" onkeypress="evaAsk(event)">
+        <div style="padding: 10px; border-top: 1px solid #eee;">
+            <input type="text" id="c-in" placeholder="Ask about ROI..."
+                style="width: 100%; border: none; outline: none; font-family: 'Inter'; font-size: 0.9rem;"
+                onkeypress="evaAsk(event)">
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
-                speakOrion("Good day. I am EVA. How can I assist your scalability today?", "EVA", "en");
+                speakOrion("Good day. I am EVA. How can I assist your scalability?", "EVA");
             }, 1500);
         });
 
@@ -236,21 +236,29 @@
                 const inp = document.getElementById('c-in');
                 const msg = inp.value;
                 if (!msg) return;
-                box.innerHTML += `<div style="text-align:right; margin-bottom:20px; font-weight:bold;">${msg}</div>`;
-                inp.value = '';
-                setTimeout(() => {
-                    let response = "Understood. Our revenue model allows for up to 30% margin on localized setup services. I will notify the human team to provide the full PDF brochure to your terminal.";
 
-                    if (msg.toLowerCase().includes('scale') || msg.toLowerCase().includes('roi')) {
-                        response = "Our ROI metrics show a 4.5x multiplier on client LTV for partners who implement full automation nodes. It's about infrastructure, not just sales.";
-                    } else if (msg.toLowerCase().includes('training') || msg.toLowerCase().includes('module')) {
-                        response = "The training syllabus is institutional grade. Once your application is reviewed by our operations director, you will gain access to the secure learning dashboard.";
+                const lang = detectLanguage(msg);
+                setLanguage(lang);
+
+                box.innerHTML += `<div style="text-align:right; margin-bottom:15px; font-weight:bold;">${msg}</div>`;
+                inp.value = '';
+
+                setTimeout(() => {
+                    let response;
+                    if (lang === 'es') {
+                        response = "Entendido. Nuestro modelo permite hasta 30% de margen. El equipo te enviará el PDF.";
+                        if (msg.toLowerCase().includes('roi')) response = "ROI de 4.5x en LTV. Infraestructura, no solo ventas.";
+                        else if (msg.toLowerCase().includes('entrenamiento')) response = "El syllabus es institucional. Una vez aprobado, accederás al dashboard.";
+                    } else {
+                        response = "Understood. Our model allows up to 30% margin. Team will send the PDF.";
+                        if (msg.toLowerCase().includes('roi')) response = "4.5x ROI on LTV. It's about infrastructure, not just sales.";
+                        else if (msg.toLowerCase().includes('training')) response = "Institutional syllabus. Once approved, you'll access the dashboard.";
                     }
 
-                    box.innerHTML += `<div>[EVA]: ${response}</div>`;
+                    box.innerHTML += `<div style="color:#333;">[EVA]: ${response}</div>`;
                     box.scrollTop = box.scrollHeight;
-                    speakOrion(response, "EVA", "en");
-                }, 1000);
+                    speakOrion(response, "EVA", lang);
+                }, 800);
             }
         }
     </script>

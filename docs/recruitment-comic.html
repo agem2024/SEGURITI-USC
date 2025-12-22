@@ -130,24 +130,24 @@
             box-shadow: 2px 2px 0 #000;
         }
 
-        /* Agent Chat FLASH */
         .flash-chat {
             position: fixed;
             bottom: 20px;
             left: 20px;
-            width: 320px;
+            width: 260px;
             background: #fff;
-            border: 5px solid var(--comic-black);
+            border: 4px solid var(--comic-black);
             z-index: 1000;
-            box-shadow: 10px 10px 0 var(--comic-black);
+            box-shadow: 8px 8px 0 var(--comic-black);
         }
 
         .chat-title {
             background: var(--comic-red);
             color: #fff;
-            padding: 10px;
+            padding: 8px;
             font-family: 'Bangers';
-            font-size: 1.5rem;
+            font-size: 1.2rem;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -209,17 +209,16 @@
 
     </div>
 
-    <!-- FLASH Chat -->
-    <div class="flash-chat">
-        <div class="chat-title">⚡ AGENT FLASH</div>
+    <!-- FLASH Chat (Collapsible) -->
+    <div class="flash-chat" id="flash-chat">
+        <div class="chat-title" onclick="toggleChat('flash-chat')">⚡ FLASH ▼</div>
         <div id="chat-box"
-            style="height: 200px; padding: 10px; overflow-y: auto; font-family:'Permanent Marker'; color: var(--comic-red);">
-            [FLASH]: ¡HEY! ¿Qué esperas? Cada minuto que no estás en el Squad es dinero que ALGUIEN MÁS está ganando.
-            ¡Pregúntame lo que sea!
+            style="height: 150px; padding: 8px; overflow-y: auto; font-family:'Permanent Marker'; color: var(--comic-red); font-size: 0.9rem;">
+            [FLASH]: HEY! Each minute you wait = money someone else is making! // ¡Cada minuto es dinero perdido!
         </div>
-        <div style="padding:10px; border-top:3px solid #000;">
-            <input type="text" id="chat-in" placeholder="¿DINERO?"
-                style="width:100%; border:none; outline:none; font-family:'Bangers'; font-size:1.2rem;"
+        <div style="padding:8px; border-top:3px solid #000;">
+            <input type="text" id="chat-in" placeholder="$$$?"
+                style="width:100%; border:none; outline:none; font-family:'Bangers'; font-size:1rem;"
                 onkeypress="flashTalk(event)">
         </div>
     </div>
@@ -227,7 +226,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
-                speakOrion("¡HEY! Soy FLASH. ¡Bienvenido al Squad! ¿Estás listo para correr por el dinero?", "FLASH", "es");
+                speakOrion("HEY! I'm FLASH. Welcome to the Squad! Ready to chase money?", "FLASH");
             }, 1000);
         });
 
@@ -242,21 +241,29 @@
                 const inp = document.getElementById('chat-in');
                 const val = inp.value;
                 if (!val) return;
-                box.innerHTML += `<div style="color:#000; text-align:right;">TU: ${val}</div>`;
-                inp.value = '';
-                setTimeout(() => {
-                    let response = "¡FÁCIL! Cierras una PYME, cobras $270K hoy mismo. ¡K-CHING! Repites el proceso y creas tu propia manada de lobos. ¡Es una máquina de hacer BILLETES! 💸";
 
-                    if (msg.toLowerCase().includes('miedo') || msg.toLowerCase().includes('difícil')) {
-                        response = "¡EL MIEDO NO PAGA RENTA! En el Squad te damos el 'The Demo Tool'. Si sabes usar un celular, sabes cerrar ventas con IA. ¡PUM! ¡Vendido!";
-                    } else if (msg.toLowerCase().includes('pago') || msg.toLowerCase().includes('cuanto')) {
-                        response = "¡Hablamos de billetes grandes! Tenemos el setup de $270K y un residual del 7%. Si haces 10 cierres al mes, ya estás por encima del promedio nacional. ¡BOOM!";
+                const lang = detectLanguage(val);
+                setLanguage(lang);
+
+                box.innerHTML += `<div style="color:#000; text-align:right;">${val}</div>`;
+                inp.value = '';
+
+                setTimeout(() => {
+                    let response;
+                    if (lang === 'es') {
+                        response = "¡FÁCIL! Cierras PYME, cobras $270K. K-CHING! 💸";
+                        if (val.toLowerCase().includes('miedo')) response = "¡EL MIEDO NO PAGA RENTA! ¡PUM!";
+                        else if (val.toLowerCase().includes('pago')) response = "$270K setup + 7% residual. ¡BOOM!";
+                    } else {
+                        response = "EASY! Close a PYME, get $270K. K-CHING! 💸";
+                        if (val.toLowerCase().includes('scared')) response = "FEAR DOESN'T PAY RENT! POW!";
+                        else if (val.toLowerCase().includes('pay')) response = "$270K setup + 7% residual. BOOM!";
                     }
 
                     box.innerHTML += `<div style="color:var(--comic-red);">[FLASH]: ${response}</div>`;
                     box.scrollTop = box.scrollHeight;
-                    speakOrion(response, "FLASH", "es");
-                }, 800);
+                    speakOrion(response, "FLASH", lang);
+                }, 600);
             }
         }
     </script>
