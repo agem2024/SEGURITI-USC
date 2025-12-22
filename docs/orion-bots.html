@@ -2701,82 +2701,76 @@
         }
 
         // Text-to-Speech for XONA responses - FEMALE VOICE, CHONA pronunciation
-        // Text-to-Speech for XONA responses - FEMALE VOICE, CHONA pronunciation
-        function speakXona(text) {
+        // Text-to-Speech for XONA responses - HYBRID (OpenAI API -> Browser Fallback)
+        async function speakXona(text) {
+            // 1. Try Natural OpenAI Voice via Local API
+            try {
+                // Determine language
+                const lang = currentLang || 'es';
+
+                // Call local backend (orion-clean)
+                const response = await fetch('http://localhost:3030/api/tts', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ text, lang })
+                });
+
+                if (response.ok) {
+                    const blob = await response.blob();
+                    const audioUrl = URL.createObjectURL(blob);
+                    const audio = new Audio(audioUrl);
+                    audio.play();
+                    console.log('🎤 XONA Voice: OpenAI Natural (via API)');
+                    return; // Success, exit function
+                } else {
+                    console.warn('⚠️ Local API TTS failed, using browser fallback');
+                }
+            } catch (e) {
+                console.warn('⚠️ API unavailable (server offline?), using browser fallback:', e.message);
+            }
+
+            // 2. Fallback: Browser Built-in TTS (Legacy Logic)
             if ('speechSynthesis' in window) {
-                // Cancel any ongoing speech
                 speechSynthesis.cancel();
 
-                // Robust replacement: any case of "xona" -> "Chona" for pronunciation
+                // Robust replacement: "xona" -> "Chona"
                 let spokenText = text.replace(/xona/gi, 'Chona');
 
                 const utterance = new SpeechSynthesisUtterance(spokenText);
 
-                // Set language and rate
                 if (currentLang === 'es') {
-                    utterance.lang = 'es-MX'; // Mexican Spanish usually has good female voices
+                    utterance.lang = 'es-MX';
                     utterance.rate = 0.9;
                 } else {
                     utterance.lang = 'en-US';
                     utterance.rate = 0.95;
                 }
-
-                utterance.pitch = 1.3; // Higher pitch for feminine tone
+                utterance.pitch = 1.3;
                 utterance.volume = 1.0;
 
-                // Function to set voice
                 const setVoice = () => {
                     const voices = speechSynthesis.getVoices();
                     let selectedVoice = null;
 
                     if (currentLang === 'es') {
-                        // Strict Spanish Female Priority
                         const femaleKeywords = ['paulina', 'monica', 'sabina', 'helena', 'lucia', 'laura', 'female', 'google español'];
-
-                        selectedVoice = voices.find(v =>
-                            v.lang.includes('es') && femaleKeywords.some(sw => v.name.toLowerCase().includes(sw))
-                        );
-
-                        // Fallback: any Spanish voice that IS NOT male
-                        if (!selectedVoice) {
-                            selectedVoice = voices.find(v =>
-                                v.lang.includes('es') && !v.name.toLowerCase().includes('male') && !v.name.toLowerCase().includes('jorge') && !v.name.toLowerCase().includes('pablo')
-                            );
-                        }
+                        selectedVoice = voices.find(v => v.lang.includes('es') && femaleKeywords.some(sw => v.name.toLowerCase().includes(sw)));
+                        if (!selectedVoice) selectedVoice = voices.find(v => v.lang.includes('es') && !v.name.toLowerCase().includes('male'));
                     } else {
-                        // Strict English Female Priority
                         const femaleKeywords = ['samantha', 'victoria', 'karen', 'google us english', 'zira', 'female'];
-
-                        selectedVoice = voices.find(v =>
-                            v.lang.includes('en') && femaleKeywords.some(sw => v.name.toLowerCase().includes(sw))
-                        );
-
-                        // Fallback: any English voice that IS NOT male
-                        if (!selectedVoice) {
-                            selectedVoice = voices.find(v =>
-                                v.lang.includes('en') && !v.name.toLowerCase().includes('male') && !v.name.toLowerCase().includes('david') && !v.name.toLowerCase().includes('mark')
-                            );
-                        }
+                        selectedVoice = voices.find(v => v.lang.includes('en') && femaleKeywords.some(sw => v.name.toLowerCase().includes(sw)));
+                        if (!selectedVoice) selectedVoice = voices.find(v => v.lang.includes('en') && !v.name.toLowerCase().includes('male'));
                     }
 
                     if (selectedVoice) {
                         utterance.voice = selectedVoice;
-                        console.log('🎤 XONA Voice Selected:', selectedVoice.name);
+                        console.log('🎤 XONA Voice: Browser Fallback -', selectedVoice.name);
                     }
-
                     speechSynthesis.speak(utterance);
                 };
 
-                // Ensure voices are loaded
-                if (speechSynthesis.getVoices().length > 0) {
-                    setVoice();
-                } else {
-                    speechSynthesis.onvoiceschanged = () => {
-                        setVoice();
-                        // Remove listener to prevent multiple triggers
-                        speechSynthesis.onvoiceschanged = null;
-                    };
-                }
+                if (speechSynthesis.getVoices().length > 0) setVoice();
+                else speechSynthesis.onvoiceschanged = () => { setVoice(); speechSynthesis.onvoiceschanged = null; };
             }
         }
 
