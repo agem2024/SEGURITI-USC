@@ -24,61 +24,96 @@
             overflow-x: hidden;
         }
 
-        .luxury-bg {
+        /* Video Background */
+        .video-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 50% 50%, #151515 0%, #080808 100%);
+            z-index: -2;
+            object-fit: cover;
+            filter: brightness(0.2) sepia(0.3);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, transparent 0%, var(--obsidian) 70%);
             z-index: -1;
         }
 
         .luxury-container {
-            max-width: 1000px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 100px 20px;
+            padding: 80px 20px;
             text-align: center;
+        }
+
+        /* Back Button */
+        .back-btn {
+            position: fixed;
+            top: 25px;
+            left: 25px;
+            background: transparent;
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            color: var(--gold);
+            padding: 10px 25px;
+            font-family: 'Cinzel';
+            font-size: 0.8rem;
+            cursor: pointer;
+            z-index: 1000;
+            text-decoration: none;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: var(--gold);
+            color: #000;
         }
 
         header {
             border-bottom: 1px solid rgba(197, 160, 89, 0.2);
-            padding-bottom: 40px;
-            margin-bottom: 80px;
+            padding-bottom: 30px;
+            margin-bottom: 60px;
         }
 
         h1 {
             font-family: 'Cinzel', serif;
-            font-size: 3.5rem;
+            font-size: 3rem;
             color: var(--gold);
-            letter-spacing: 12px;
+            letter-spacing: 10px;
             margin: 0;
-            text-shadow: 0 0 20px rgba(197, 160, 89, 0.3);
+            text-shadow: 0 0 30px rgba(197, 160, 89, 0.3);
         }
 
         .tagline {
             text-transform: uppercase;
-            font-size: 0.7rem;
-            letter-spacing: 6px;
-            color: #888;
-            margin-top: 20px;
+            font-size: 0.65rem;
+            letter-spacing: 5px;
+            color: #666;
+            margin-top: 15px;
         }
 
         .elite-card {
             background: var(--charcoal);
             border: 1px solid rgba(197, 160, 89, 0.3);
-            padding: 60px;
+            padding: 50px;
             position: relative;
-            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.7);
         }
 
         .elite-card::before {
             content: "";
             position: absolute;
-            top: 10px;
-            left: 10px;
-            right: 10px;
-            bottom: 10px;
+            top: 8px;
+            left: 8px;
+            right: 8px;
+            bottom: 8px;
             border: 1px solid rgba(197, 160, 89, 0.1);
             pointer-events: none;
         }
@@ -86,55 +121,171 @@
         .gold-title {
             font-family: 'Cinzel';
             color: var(--gold);
-            font-size: 2rem;
-            margin-bottom: 30px;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
         }
 
         .btn-luxury {
             background: linear-gradient(45deg, var(--gold), var(--gold-light));
             color: #000;
-            padding: 20px 50px;
+            padding: 18px 45px;
             font-family: 'Cinzel';
             font-weight: 900;
             letter-spacing: 3px;
             border: none;
             cursor: pointer;
             transition: 0.5s;
-            margin-top: 40px;
+            margin-top: 35px;
         }
 
         .btn-luxury:hover {
             transform: scale(1.05);
             filter: brightness(1.2);
-            box-shadow: 0 0 40px rgba(197, 160, 89, 0.4);
+            box-shadow: 0 0 50px rgba(197, 160, 89, 0.5);
         }
 
         .footer-logo {
             font-family: 'Cinzel';
-            font-size: 0.8rem;
-            color: #555;
-            letter-spacing: 5px;
-            margin-top: 100px;
+            font-size: 0.7rem;
+            color: #444;
+            letter-spacing: 4px;
+            margin-top: 80px;
         }
 
-        /* ATLAS Agent */
-        .atlas-avatar {
-            width: 120px;
-            height: 120px;
+        /* Floating AI Icon - Gold Theme */
+        .ai-icon {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
             border: 2px solid var(--gold);
-            margin: 0 auto 30px;
-            overflow: hidden;
-            background: #000;
+            cursor: pointer;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 0 30px rgba(197, 160, 89, 0.4);
+            animation: goldPulse 3s infinite;
+            transition: 0.3s;
+        }
+
+        .ai-icon:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes goldPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(197, 160, 89, 0.3);
+            }
+
+            50% {
+                box-shadow: 0 0 50px rgba(197, 160, 89, 0.6);
+            }
+        }
+
+        .voice-status {
+            position: fixed;
+            bottom: 100px;
+            right: 35px;
+            background: var(--obsidian);
+            border: 1px solid var(--gold);
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-family: 'Cinzel';
+            font-size: 0.7rem;
+            color: var(--gold);
+            display: none;
+            z-index: 1001;
+        }
+
+        .voice-status.active {
+            display: block;
+        }
+
+        .chat-panel {
+            position: fixed;
+            bottom: 105px;
+            right: 30px;
+            width: 300px;
+            max-height: 320px;
+            background: var(--charcoal);
+            border: 1px solid var(--gold);
+            z-index: 999;
+            display: none;
+            flex-direction: column;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        .chat-panel.open {
+            display: flex;
+        }
+
+        .chat-header {
+            background: linear-gradient(90deg, var(--gold), var(--gold-light));
+            color: #000;
+            padding: 12px;
+            font-family: 'Cinzel';
+            font-weight: bold;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 12px;
+            overflow-y: auto;
+            font-size: 0.85rem;
+            max-height: 160px;
+            color: #aaa;
+        }
+
+        .chat-messages .bot {
+            color: var(--gold);
+        }
+
+        .chat-input-area {
+            padding: 12px;
+            border-top: 1px solid #333;
+            display: flex;
+            gap: 8px;
+        }
+
+        .chat-input-area input {
+            flex: 1;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            padding: 10px;
+            color: #fff;
+            font-family: 'Montserrat';
+        }
+
+        .chat-input-area button {
+            background: var(--gold);
+            border: none;
+            padding: 10px 18px;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
         }
     </style>
 </head>
 
 <body>
 
-    <script src="js/recruitment-common.js"></script>
+    <a href="recruitment-hub.html" class="back-btn">◄ RETURN</a>
 
-    <div class="luxury-bg"></div>
+    <!-- Luxury Video Background -->
+    <iframe class="video-bg"
+        src="https://www.youtube.com/embed/5qap5aO4i9A?autoplay=1&mute=1&controls=0&loop=1&playlist=5qap5aO4i9A&playsinline=1"
+        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+    </iframe>
+    <div class="overlay"></div>
+
+    <script src="js/recruitment-common.js"></script>
 
     <div class="luxury-container">
 
@@ -144,10 +295,6 @@
         </header>
 
         <div class="elite-card">
-            <div class="atlas-avatar">
-                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=200"
-                    style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) contrast(1.2);">
-            </div>
             <div class="gold-title">BY INVITATION ONLY</div>
             <p style="font-weight: 200; line-height: 2; letter-spacing: 1px;">
                 You have reached the secure terminal for the Orion Elite program. <br>
@@ -155,7 +302,7 @@
                 Minimum deployment thresholds apply.
             </p>
             <div
-                style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; text-align: left; border-top: 1px solid #333; padding-top: 40px;">
+                style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 35px; text-align: left; border-top: 1px solid #333; padding-top: 30px;">
                 <div>
                     <h5 style="color:var(--gold); margin:0;">PRECISION</h5>
                     <p style="font-size:0.8rem;">Dedicated cloud infrastructure with zero-latency priority routing.</p>
@@ -169,20 +316,73 @@
         </div>
 
         <div class="footer-logo">ORION TECHNOLOGIES // GLOBAL MMXIV</div>
+    </div>
 
+    <div class="voice-status" id="voice-status">🔊 ATLAS Speaking...</div>
+    <div class="ai-icon" id="ai-icon" onclick="toggleChat()">👑</div>
+
+    <div class="chat-panel" id="chat-panel">
+        <div class="chat-header">ATLAS // Elite Concierge</div>
+        <div class="chat-messages" id="chat-messages">
+            <div class="bot">[ATLAS]: Welcome to the Elite Circle. How may I be of service?</div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Inquire..." onkeypress="if(event.key==='Enter')sendMsg()">
+            <button onclick="sendMsg()">→</button>
+        </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                speakOrion("Welcome to the Elite Circle. I am ATLAS. We authorize a limited number of high-net-worth partnerships. Shall we proceed with the handshake?", "ATLAS", "en");
-            }, 2000);
-        });
+        let chatOpen = false;
+
+        function toggleChat() {
+            chatOpen = !chatOpen;
+            document.getElementById('chat-panel').classList.toggle('open', chatOpen);
+            if (chatOpen) speakOrion("Welcome. I am ATLAS. How may I assist you today?", "ATLAS");
+        }
+
+        function showVoice() {
+            document.getElementById('voice-status').classList.add('active');
+            setTimeout(() => document.getElementById('voice-status').classList.remove('active'), 3000);
+        }
 
         function requestEntry() {
             logTrainingAction('click', 'elite_request');
             enrollInTraining("ELITE");
         }
+
+        function sendMsg() {
+            const input = document.getElementById('chat-input');
+            const msgs = document.getElementById('chat-messages');
+            const val = input.value.trim();
+            if (!val) return;
+
+            const lang = detectLanguage(val);
+            setLanguage(lang);
+
+            msgs.innerHTML += `<div style="text-align:right; margin-bottom:12px;">${val}</div>`;
+            input.value = '';
+
+            setTimeout(() => {
+                let resp = lang === 'es'
+                    ? "Entendido. El programa Elite requiere un depósito mínimo de $10,000 USD. Procedamos con discreción."
+                    : "Understood. The Elite program requires a minimum deployment of $10,000 USD. Let us proceed with discretion.";
+                if (val.toLowerCase().includes('invest')) {
+                    resp = "Our institutional partners see 4-8x returns over 18 months. Would you like the private memorandum?";
+                }
+                msgs.innerHTML += `<div class="bot">[ATLAS]: ${resp}</div>`;
+                msgs.scrollTop = msgs.scrollHeight;
+                showVoice();
+                speakOrion(resp, "ATLAS", lang);
+            }, 800);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                showVoice();
+                speakOrion("Welcome to the Elite Circle. I am ATLAS, your concierge.", "ATLAS");
+            }, 2500);
+        });
     </script>
 </body>
 

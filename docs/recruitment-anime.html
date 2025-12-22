@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ORION TECH // PROJECT AKIRA</title>
-    <!-- Premium Fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Noto+Sans+JP:wght@900&display=swap"
         rel="stylesheet">
@@ -14,8 +13,12 @@
             --neon-pink: #ff00ff;
             --neon-blue: #00f3ff;
             --neon-purple: #bc13fe;
+            --neon-green: #39ff14;
             --bg-black: #050508;
-            --glass: rgba(255, 255, 255, 0.03);
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         body {
@@ -26,7 +29,7 @@
             overflow-x: hidden;
         }
 
-        /* Video Background Overlay */
+        /* Video Background */
         .video-bg {
             position: fixed;
             top: 0;
@@ -35,7 +38,7 @@
             height: 100%;
             z-index: -2;
             object-fit: cover;
-            filter: brightness(0.3) saturate(1.5);
+            filter: brightness(0.25) saturate(1.5);
         }
 
         .scanline {
@@ -51,9 +54,31 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 30px 20px;
+        }
+
+        /* Back Button */
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid var(--neon-blue);
+            color: var(--neon-blue);
+            padding: 10px 20px;
+            font-family: 'Orbitron';
+            font-size: 0.8rem;
+            cursor: pointer;
+            z-index: 1000;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: var(--neon-blue);
+            color: #000;
         }
 
         /* Header */
@@ -61,105 +86,108 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
+            padding: 15px;
             border: 1px solid var(--neon-blue);
             background: rgba(0, 243, 255, 0.05);
             backdrop-filter: blur(10px);
-            margin-bottom: 60px;
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
+            margin-bottom: 40px;
         }
 
         .logo-text {
             font-family: 'Orbitron';
             font-weight: 900;
-            font-size: 1.5rem;
-            letter-spacing: 2px;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background: #39ff14;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 10px;
-            box-shadow: 0 0 10px #39ff14;
+            font-size: 1.3rem;
         }
 
         /* Hero */
         .hero {
             display: grid;
             grid-template-columns: 1.2fr 1fr;
-            gap: 40px;
+            gap: 30px;
             align-items: center;
-            min-height: 60vh;
+            min-height: 50vh;
+        }
+
+        @media(max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
         }
 
         .glitch-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 4.5rem;
+            font-family: 'Orbitron';
+            font-size: 3.5rem;
             font-weight: 900;
-            line-height: 0.9;
+            line-height: 0.95;
             margin: 0;
             text-shadow: 2px 2px var(--neon-pink), -2px -2px var(--neon-blue);
         }
 
         .jap-text {
-            font-family: 'Noto Sans JP', sans-serif;
+            font-family: 'Noto Sans JP';
             color: var(--neon-pink);
-            font-size: 1.2rem;
+            font-size: 1rem;
             display: block;
             margin-bottom: 10px;
         }
 
         /* Glass Card */
         .glass-card {
-            background: var(---glass);
+            background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 30px;
-            margin: 20px 0;
-            position: relative;
-            overflow: hidden;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 4px solid var(--neon-blue);
         }
 
-        .glass-card::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: var(--neon-blue);
-        }
-
-        /* Offers & Payouts */
         .payout-box {
             display: flex;
             justify-content: space-between;
-            padding: 15px;
+            padding: 12px;
             background: rgba(255, 0, 255, 0.1);
             border: 1px solid var(--neon-pink);
-            margin-top: 10px;
+            margin-top: 8px;
+            font-size: 0.9rem;
         }
 
         .payout-val {
             font-family: 'Orbitron';
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             color: var(--neon-blue);
         }
 
-        /* Training Syllabus */
+        .btn-call {
+            background: var(--neon-blue);
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            font-family: 'Orbitron';
+            font-weight: 900;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%);
+            transition: 0.3s;
+        }
+
+        .btn-call:hover {
+            background: var(--neon-pink);
+            color: #fff;
+        }
+
+        /* Syllabus */
         .syllabus {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
         }
 
         .module {
-            padding: 20px;
+            padding: 15px;
             background: rgba(0, 0, 0, 0.5);
             border: 1px solid #333;
             transition: 0.3s;
@@ -173,98 +201,173 @@
         .mod-num {
             color: var(--neon-pink);
             font-family: 'Orbitron';
-            margin-bottom: 10px;
-            display: block;
+            font-size: 0.8rem;
         }
 
-        .btn-call {
-            background: var(--neon-blue);
-            color: #000;
-            border: none;
-            padding: 20px 40px;
-            font-family: 'Orbitron';
-            font-weight: 900;
-            font-size: 1.2rem;
-            cursor: pointer;
-            text-transform: uppercase;
-            width: 100%;
-            margin-top: 30px;
-            clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%);
-            transition: 0.3s;
-        }
-
-        .btn-call:hover {
-            background: var(--neon-pink);
-            color: #fff;
-            box-shadow: 0 0 30px var(--neon-pink);
-        }
-
-        .chat-widget {
+        /* ============================================
+           FLOATING AI ICON SYSTEM
+           ============================================ */
+        .ai-icon {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 280px;
-            background: rgba(10, 10, 15, 0.95);
-            border: 1px solid var(--neon-purple);
-            box-shadow: 0 0 20px rgba(188, 19, 254, 0.3);
-            border-radius: 8px;
-            z-index: 100;
+            bottom: 25px;
+            right: 25px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-blue));
+            border: 2px solid var(--neon-blue);
+            cursor: pointer;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 0 20px var(--neon-purple), 0 0 40px rgba(188, 19, 254, 0.3);
+            animation: iconPulse 2s infinite;
             transition: 0.3s;
         }
 
-        .chat-header {
-            padding: 15px;
-            background: var(--neon-purple);
-            color: #fff;
-            font-family: 'Orbitron';
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .ai-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px var(--neon-blue);
         }
 
-        .chat-body {
-            height: 180px;
-            padding: 10px;
-            overflow-y: auto;
-            font-size: 0.85rem;
-            color: #ccc;
-        }
+        @keyframes iconPulse {
 
-        .chat-input {
-            padding: 15px;
-            border-top: 1px solid #333;
-            display: flex;
-        }
-
-        .chat-input input {
-            flex: 1;
-            background: transparent;
-            border: none;
-            color: #fff;
-            outline: none;
-        }
-
-        @keyframes pulse {
-            0% {
-                opacity: 0.5;
+            0%,
+            100% {
+                box-shadow: 0 0 20px var(--neon-purple);
             }
 
             50% {
+                box-shadow: 0 0 40px var(--neon-blue), 0 0 60px var(--neon-purple);
+            }
+        }
+
+        /* Voice Status Indicator */
+        .voice-status {
+            position: fixed;
+            bottom: 95px;
+            right: 30px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid var(--neon-green);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-family: 'Orbitron';
+            font-size: 0.7rem;
+            color: var(--neon-green);
+            display: none;
+            z-index: 1001;
+            animation: statusFlash 0.5s infinite;
+        }
+
+        .voice-status.active {
+            display: block;
+        }
+
+        .voice-status.speaking {
+            border-color: var(--neon-blue);
+            color: var(--neon-blue);
+        }
+
+        @keyframes statusFlash {
+
+            0%,
+            100% {
                 opacity: 1;
             }
 
-            100% {
-                opacity: 0.5;
+            50% {
+                opacity: 0.6;
             }
+        }
+
+        /* Expanded Chat Panel */
+        .chat-panel {
+            position: fixed;
+            bottom: 100px;
+            right: 25px;
+            width: 300px;
+            max-height: 350px;
+            background: rgba(10, 10, 20, 0.95);
+            border: 1px solid var(--neon-purple);
+            border-radius: 10px;
+            z-index: 999;
+            display: none;
+            flex-direction: column;
+            box-shadow: 0 0 30px rgba(188, 19, 254, 0.4);
+        }
+
+        .chat-panel.open {
+            display: flex;
+        }
+
+        .chat-header {
+            padding: 12px;
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue));
+            color: #fff;
+            font-family: 'Orbitron';
+            font-size: 0.9rem;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            font-size: 0.85rem;
+            max-height: 200px;
+        }
+
+        .chat-messages .msg {
+            margin-bottom: 10px;
+        }
+
+        .chat-messages .msg.user {
+            text-align: right;
+            color: #aaa;
+        }
+
+        .chat-messages .msg.bot {
+            color: var(--neon-blue);
+        }
+
+        .chat-input-area {
+            padding: 10px;
+            border-top: 1px solid #333;
+            display: flex;
+            gap: 8px;
+        }
+
+        .chat-input-area input {
+            flex: 1;
+            background: transparent;
+            border: 1px solid #444;
+            padding: 8px;
+            color: #fff;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .chat-input-area button {
+            background: var(--neon-blue);
+            border: none;
+            padding: 8px 15px;
+            color: #000;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
         }
     </style>
 </head>
 
 <body>
 
+    <a href="recruitment-hub.html" class="back-btn">◄ COMMAND CENTER</a>
+
     <iframe class="video-bg"
-        src="https://www.youtube.com/embed/P10Ox11R_eE?autoplay=1&mute=1&controls=0&loop=1&playlist=P10Ox11R_eE"
-        frameborder="0" allow="autoplay">
+        src="https://www.youtube.com/embed/P10Ox11R_eE?autoplay=1&mute=1&controls=0&loop=1&playlist=P10Ox11R_eE&playsinline=1"
+        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
     </iframe>
     <div class="scanline"></div>
 
@@ -274,145 +377,151 @@
 
         <header>
             <div class="logo-text">ORION // <span style="color:var(--neon-pink)">AKIRA</span></div>
-            <div>
-                <span class="status-dot"></span>
-                <span style="font-family:'Orbitron'; font-size:0.8rem; letter-spacing:1px;">UPLINK SECURE // 2025</span>
-            </div>
+            <div style="font-family:'Orbitron'; font-size:0.7rem; color:var(--neon-green);">● UPLINK ACTIVE</div>
         </header>
 
         <section class="hero">
             <div>
                 <span class="jap-text">ネオ・サイバー・セールス</span>
                 <h1 class="glitch-title">WAKE UP,<br>SAMURAI.</h1>
-                <p style="font-size: 1.4rem; color: #aaa; margin: 30px 0;">
-                    El sistema tradicional te quiere pobre y atado a un horario. Nosotros te damos el código para
-                    hackear tu economía.
+                <p style="font-size: 1.2rem; color: #aaa; margin: 20px 0;">
+                    El sistema tradicional te quiere pobre. Nosotros te damos el código para hackear tu economía.
                 </p>
                 <div class="glass-card">
-                    <h3 style="margin-top:0; color:var(--neon-blue); font-family:'Orbitron';">OFERTA DE RECLUTAMIENTO:
+                    <h3 style="margin:0 0 10px 0; color:var(--neon-blue); font-family:'Orbitron'; font-size:1rem;">
                         AGENTE TIER 1</h3>
-                    <p>Gana comisiones de alto impacto vendiendo automatización IA a negocios reales. Trabajo 100%
-                        remoto.</p>
+                    <p style="margin:0; font-size:0.9rem;">Comisiones de alto impacto. Trabajo 100% remoto.</p>
                     <div class="payout-box">
-                        <span>PAGO POR CIERRE (SETUP):</span>
-                        <span class="payout-val">$250,000 COP</span>
+                        <span>SETUP:</span>
+                        <span class="payout-val">$250K COP</span>
                     </div>
-                    <div class="payout-box" style="border-color: #39ff14; background: rgba(57, 255, 20, 0.05);">
-                        <span>RENTA RECURRENTE (MENSUAL):</span>
-                        <span class="payout-val" style="color:#39ff14;">5% LIFETIME</span>
+                    <div class="payout-box" style="border-color: var(--neon-green);">
+                        <span>RESIDUAL:</span>
+                        <span class="payout-val" style="color:var(--neon-green);">5% LIFETIME</span>
                     </div>
                 </div>
-                <button class="btn-call" onclick="initiateUplink()">INICIAR PROTOCOLO DE INGRESO</button>
+                <button class="btn-call" onclick="initiateUplink()">INICIAR PROTOCOLO</button>
             </div>
 
-            <div style="position: relative;">
-                <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=800"
+            <div>
+                <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=600"
                     style="width: 100%; border: 1px solid var(--neon-pink); filter: hue-rotate(280deg) contrast(1.2);">
-                <div
-                    style="position:absolute; top:-20px; right:-20px; background:var(--neon-pink); padding:5px 15px; font-family:'Orbitron'; font-weight:900; transform:rotate(5deg);">
-                    LIVE FEED: KAI
-                </div>
             </div>
         </section>
 
-        <section style="margin-top: 100px;">
-            <h2 style="font-family:'Orbitron'; text-align:center; font-size:2.5rem;">CEREBRO DE ENTRENAMIENTO // <span
-                    style="color:var(--neon-blue)">SYLLABUS</span></h2>
+        <section style="margin-top: 60px;">
+            <h2 style="font-family:'Orbitron'; text-align:center; font-size:1.8rem;">SYLLABUS <span
+                    style="color:var(--neon-blue)">AKIRA</span></h2>
             <div class="syllabus">
                 <div class="module">
                     <span class="mod-num">MOD_01</span>
-                    <h3>Mentalidad Cyber-Hunter</h3>
-                    <p>Dominio del Pitch: "No vendemos bits, vendemos TIEMPO". Cómo ahorrarle el sueldo de una
-                        recepcionista a tu cliente.</p>
+                    <h4 style="margin:8px 0;">Mentalidad Cyber-Hunter</h4>
+                    <p style="font-size:0.8rem; color:#888;">Pitch de alto impacto. Ahorra sueldos a tu cliente.</p>
                 </div>
                 <div class="module">
                     <span class="mod-num">MOD_02</span>
-                    <h3>Ingeniería de Detección</h3>
-                    <p>Identificar negocios zombies (Instagams muertos, WhatsApps que no responden). Detección de puntos
-                        de dolor.</p>
+                    <h4 style="margin:8px 0;">Detección de GAP</h4>
+                    <p style="font-size:0.8rem; color:#888;">Encuentra negocios "zombies" con brecha digital.</p>
                 </div>
                 <div class="module">
                     <span class="mod-num">MOD_03</span>
-                    <h3>Demo-Strike</h3>
-                    <p>Uso de XONA/CRONOS en vivo para cerrar ventas en menos de 5 minutos. Magia visual de IA.</p>
+                    <h4 style="margin:8px 0;">Demo-Strike</h4>
+                    <p style="font-size:0.8rem; color:#888;">Cierra ventas con XONA en 5 minutos.</p>
                 </div>
                 <div class="module">
                     <span class="mod-num">MOD_04</span>
-                    <h3>Extracción de Comisiones</h3>
-                    <p>Pasarelas de pago, gestión de contratos digitales y plan de carrera hacia Tier 3 (Enterprise).
-                    </p>
+                    <h4 style="margin:8px 0;">Extracción $$$</h4>
+                    <p style="font-size:0.8rem; color:#888;">Pasarelas y contratos digitales.</p>
                 </div>
             </div>
         </section>
-
     </div>
 
-    <!-- Chat Brain (Collapsible) -->
-    <div class="chat-widget" id="kai-chat">
-        <div class="chat-header" onclick="toggleChat('kai-chat')" style="cursor:pointer;">
-            <span>🧠 KAI</span>
-            <span style="font-size:0.7rem;">▼ CLICK</span>
+    <!-- Voice Status Indicator -->
+    <div class="voice-status" id="voice-status">🔊 SPEAKING...</div>
+
+    <!-- Floating AI Icon -->
+    <div class="ai-icon" id="ai-icon" onclick="toggleChat()">🧠</div>
+
+    <!-- Chat Panel -->
+    <div class="chat-panel" id="chat-panel">
+        <div class="chat-header">NEURAL LINK: KAI</div>
+        <div class="chat-messages" id="chat-messages">
+            <div class="msg bot">[KAI]: Hey! Ready to hack the system? // ¿Listo para hackear el sistema?</div>
         </div>
-        <div class="chat-body" id="chat-box">
-            <div style="margin-bottom:10px; color:var(--neon-blue);">[KAI]: Hey recruit! I'm the AKIRA brain. Ready to
-                stop wasting time? // ¡Hola recluta! ¿Listo?</div>
-        </div>
-        <div class="chat-input">
-            <input type="text" placeholder="Ask me..." id="user-input" onkeypress="handleChat(event)">
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Ask KAI..."
+                onkeypress="if(event.key==='Enter')sendMessage()">
+            <button onclick="sendMessage()">→</button>
         </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                speakOrion("Welcome recruit. I'm KAI. The system is broken. Are you here to fix it or exploit it?", "KAI");
-            }, 2000);
-        });
+        let chatOpen = false;
+
+        function toggleChat() {
+            chatOpen = !chatOpen;
+            document.getElementById('chat-panel').classList.toggle('open', chatOpen);
+            if (chatOpen) {
+                speakOrion("Hey! I'm KAI. What do you want to know?", "KAI");
+            }
+        }
+
+        function showVoiceStatus(type) {
+            const status = document.getElementById('voice-status');
+            status.className = 'voice-status active' + (type === 'speaking' ? ' speaking' : '');
+            status.innerHTML = type === 'speaking' ? '🔊 SPEAKING...' : '🎤 LISTENING...';
+        }
+
+        function hideVoiceStatus() {
+            document.getElementById('voice-status').classList.remove('active');
+        }
 
         function initiateUplink() {
             logTrainingAction('click', 'protocol_akira_start');
             enrollInTraining("AKIRA");
         }
 
-        function handleChat(e) {
-            if (e.key === 'Enter') {
-                const input = document.getElementById('user-input');
-                const box = document.getElementById('chat-box');
-                const msg = input.value;
-                if (!msg) return;
+        function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const messages = document.getElementById('chat-messages');
+            const msg = input.value.trim();
+            if (!msg) return;
 
-                // Detect language from user input
-                const lang = detectLanguage(msg);
-                setLanguage(lang);
+            const lang = detectLanguage(msg);
+            setLanguage(lang);
 
-                box.innerHTML += `<div style="text-align:right; margin-bottom:10px; color:#fff;">${msg}</div>`;
-                input.value = '';
+            messages.innerHTML += `<div class="msg user">${msg}</div>`;
+            input.value = '';
+            messages.scrollTop = messages.scrollHeight;
 
-                setTimeout(() => {
-                    let response;
+            setTimeout(() => {
+                let response;
+                if (lang === 'es') {
+                    response = "Analizando... En ORION, vendemos TIEMPO, no bots. $270K por cierre. ¿Interesado?";
+                    if (msg.toLowerCase().includes('comision')) response = "Setup: $270K. Residual: 5%. ¿Quieres entrar?";
+                } else {
+                    response = "Analyzing... At ORION, we sell TIME, not bots. $270K per close. Interested?";
+                    if (msg.toLowerCase().includes('commission')) response = "Setup: $270K. Residual: 5%. Want in?";
+                }
 
-                    if (lang === 'es') {
-                        response = "Analizando tu perfil... En ORION, hackeamos el sistema tradicional. 4 módulos de entrenamiento te esperan. ¿Listo?";
-                        if (msg.toLowerCase().includes('comision') || msg.toLowerCase().includes('dinero')) {
-                            response = "El cierre PYME te da $270K COP. Más el 5% recurrente. Dinero que fluye mientras duermes.";
-                        } else if (msg.toLowerCase().includes('entrenamiento')) {
-                            response = "Bootcamp de 4 módulos: Mentalidad, Detección, Arsenal y Ejecución. El Admin te autorizará.";
-                        }
-                    } else {
-                        response = "Analyzing your profile... At ORION, we hack the traditional system. 4 training nodes await. Ready?";
-                        if (msg.toLowerCase().includes('commission') || msg.toLowerCase().includes('money')) {
-                            response = "Each PYME close gives you $270K COP. Plus 5% recurring. Money that flows while you sleep.";
-                        } else if (msg.toLowerCase().includes('training')) {
-                            response = "Bootcamp of 4 modules: Mindset, Detection, Arsenal and Execution. Admin will authorize you.";
-                        }
-                    }
+                messages.innerHTML += `<div class="msg bot">[KAI]: ${response}</div>`;
+                messages.scrollTop = messages.scrollHeight;
 
-                    box.innerHTML += `<div style="margin-bottom:10px; color:var(--neon-blue);">[KAI]: ${response}</div>`;
-                    box.scrollTop = box.scrollHeight;
-                    speakOrion(response, "KAI", lang);
-                }, 800);
-            }
+                showVoiceStatus('speaking');
+                speakOrion(response, "KAI", lang);
+                setTimeout(hideVoiceStatus, 3000);
+            }, 600);
         }
+
+        // Initial greeting with voice after page load
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                showVoiceStatus('speaking');
+                speakOrion("Welcome, recruit. Click my icon to chat.", "KAI");
+                setTimeout(hideVoiceStatus, 3000);
+            }, 2500);
+        });
     </script>
 </body>
 

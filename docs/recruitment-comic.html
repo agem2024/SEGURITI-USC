@@ -4,149 +4,256 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ORION TECH // SQUAD HUNTER</title>
-    <!-- Comic Fonts -->
+    <title>SQUAD HUNTER // RECLUTAMIENTO</title>
     <link
-        href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&family=Permanent+Marker&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@700&family=Permanent+Marker&display=swap"
         rel="stylesheet">
     <style>
         :root {
-            --comic-yellow: #ffde03;
-            --comic-red: #e63946;
-            --comic-blue: #1d3557;
-            --comic-black: #000;
+            --comic-red: #ff3333;
+            --comic-yellow: #ffcc00;
+            --comic-blue: #0066ff;
+            --comic-black: #111;
         }
 
         body {
-            background-color: var(--comic-yellow);
+            background: linear-gradient(135deg, var(--comic-yellow) 0%, #fff 50%, var(--comic-yellow) 100%);
             color: var(--comic-black);
             font-family: 'Comic Neue', cursive;
             margin: 0;
-            overflow-x: hidden;
-            background-image: radial-gradient(var(--comic-black) 1px, transparent 1px);
-            background-size: 25px 25px;
+            min-height: 100vh;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 30px 20px;
         }
 
-        /* Comic Panel Decorations */
-        .panel {
-            background: #fff;
-            border: 5px solid var(--comic-black);
-            padding: 30px;
-            box-shadow: 15px 15px 0 var(--comic-black);
-            margin-bottom: 50px;
-            position: relative;
+        /* Back Button */
+        .back-btn {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            background: var(--comic-red);
+            color: #fff;
+            padding: 10px 20px;
+            font-family: 'Bangers';
+            font-size: 1rem;
+            cursor: pointer;
+            z-index: 1000;
+            text-decoration: none;
+            border: 3px solid #000;
+            box-shadow: 4px 4px 0 #000;
         }
 
-        .boom-text {
-            font-family: 'Bangers', cursive;
-            font-size: 6rem;
-            color: var(--comic-red);
-            text-shadow: 5px 5px 0 var(--comic-black);
-            transform: rotate(-5deg);
-            margin: 0;
-            display: inline-block;
+        .back-btn:hover {
+            background: var(--comic-blue);
         }
 
         header {
-            background: var(--comic-blue);
+            background: var(--comic-red);
             color: #fff;
             padding: 20px;
-            border: 5px solid var(--comic-black);
-            transform: rotate(1deg);
-            box-shadow: 10px 10px 0 var(--comic-black);
-            margin-bottom: 60px;
             text-align: center;
+            border: 5px solid #000;
+            box-shadow: 10px 10px 0 #000;
+            margin-bottom: 30px;
         }
 
-        h1 {
+        header h1 {
             font-family: 'Bangers';
-            font-size: 4rem;
+            font-size: 3rem;
             margin: 0;
-            letter-spacing: 5px;
+            letter-spacing: 3px;
         }
 
-        /* Speech Bubble */
-        .speech {
-            position: relative;
+        .panel {
             background: #fff;
-            border: 4px solid #000;
-            border-radius: 50%;
-            padding: 40px;
-            font-family: 'Permanent Marker';
+            border: 5px solid #000;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 8px 8px 0 #000;
+        }
+
+        .speech {
+            background: #fff;
+            border: 3px solid #000;
+            border-radius: 20px;
+            padding: 20px;
+            position: relative;
+            font-family: 'Bangers';
             font-size: 1.5rem;
-            text-align: center;
-            max-width: 400px;
-            box-shadow: 5px 5px 0 #000;
+            margin-bottom: 20px;
         }
 
         .speech::after {
-            content: '';
+            content: "";
             position: absolute;
-            bottom: -30px;
-            left: 50px;
-            border: 20px solid transparent;
+            bottom: -15px;
+            left: 30px;
+            border: 15px solid transparent;
             border-top-color: #000;
         }
 
-        .job-offer {
-            background: #fff;
-            padding: 20px;
-            border: 3px solid #000;
-            margin-top: 20px;
+        .money {
+            color: var(--comic-red);
+            font-family: 'Bangers';
+            font-size: 1.5rem;
         }
 
-        .money {
-            color: #00bb00;
+        .boom-text {
             font-family: 'Bangers';
-            font-size: 2.5rem;
+            font-size: 5rem;
+            color: var(--comic-red);
+            text-shadow: 4px 4px 0 #000, -2px -2px 0 var(--comic-yellow);
+            animation: boom 0.5s infinite alternate;
+        }
+
+        @keyframes boom {
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(1.05);
+            }
         }
 
         .btn-boom {
-            background: var(--comic-red);
-            color: #fff;
+            background: var(--comic-yellow);
+            color: #000;
+            border: 4px solid #000;
+            padding: 15px 40px;
             font-family: 'Bangers';
-            font-size: 3rem;
-            padding: 20px 60px;
-            border: 5px solid #000;
-            box-shadow: 8px 8px 0 #000;
+            font-size: 1.5rem;
             cursor: pointer;
-            width: 100%;
+            box-shadow: 5px 5px 0 #000;
             transition: 0.1s;
         }
 
         .btn-boom:hover {
-            transform: scale(1.02);
             background: var(--comic-blue);
+            color: #fff;
         }
 
-        .btn-boom:active {
-            transform: scale(0.95);
-            box-shadow: 2px 2px 0 #000;
-        }
-
-        .flash-chat {
+        /* Floating AI Icon */
+        .ai-icon {
             position: fixed;
-            bottom: 20px;
-            left: 20px;
-            width: 260px;
-            background: #fff;
-            border: 4px solid var(--comic-black);
+            bottom: 25px;
+            left: 25px;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: var(--comic-red);
+            border: 4px solid #000;
+            cursor: pointer;
             z-index: 1000;
-            box-shadow: 8px 8px 0 var(--comic-black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 5px 5px 0 #000;
+            animation: iconBounce 0.6s infinite alternate;
         }
 
-        .chat-title {
+        @keyframes iconBounce {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .voice-status {
+            position: fixed;
+            bottom: 100px;
+            left: 25px;
+            background: var(--comic-blue);
+            color: #fff;
+            padding: 8px 15px;
+            border: 3px solid #000;
+            font-family: 'Bangers';
+            font-size: 0.9rem;
+            display: none;
+            z-index: 1001;
+        }
+
+        .voice-status.active {
+            display: block;
+            animation: statusPop 0.3s;
+        }
+
+        @keyframes statusPop {
+            0% {
+                transform: scale(0);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .chat-panel {
+            position: fixed;
+            bottom: 100px;
+            left: 25px;
+            width: 280px;
+            max-height: 300px;
+            background: #fff;
+            border: 4px solid #000;
+            box-shadow: 8px 8px 0 #000;
+            z-index: 999;
+            display: none;
+            flex-direction: column;
+        }
+
+        .chat-panel.open {
+            display: flex;
+        }
+
+        .chat-header {
             background: var(--comic-red);
             color: #fff;
-            padding: 8px;
+            padding: 10px;
             font-family: 'Bangers';
             font-size: 1.2rem;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            font-family: 'Permanent Marker';
+            font-size: 0.9rem;
+            max-height: 150px;
+        }
+
+        .chat-messages .bot {
+            color: var(--comic-red);
+        }
+
+        .chat-input-area {
+            padding: 10px;
+            border-top: 3px solid #000;
+            display: flex;
+            gap: 5px;
+        }
+
+        .chat-input-area input {
+            flex: 1;
+            border: 2px solid #000;
+            padding: 8px;
+            font-family: 'Comic Neue';
+        }
+
+        .chat-input-area button {
+            background: var(--comic-yellow);
+            border: 2px solid #000;
+            padding: 8px 15px;
+            font-family: 'Bangers';
             cursor: pointer;
         }
     </style>
@@ -154,118 +261,121 @@
 
 <body>
 
+    <a href="recruitment-hub.html" class="back-btn">◄ HQ</a>
+
     <script src="js/recruitment-common.js"></script>
 
     <div class="container">
 
         <header>
-            <h1>SQUAD HUNTER // RECLUTAMIENTO</h1>
+            <h1>SQUAD HUNTER</h1>
+            <p style="margin:5px 0 0 0; font-family:'Bangers'; letter-spacing:2px;">RECLUTAMIENTO AGRESIVO</p>
         </header>
 
-        <div class="panel" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+        <div class="panel" style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
             <div>
-                <img src="https://images.unsplash.com/photo-1546512565-39d4dc75e556?auto=format&fit=crop&q=80&w=800"
-                    style="width:100%; border:5px solid #000; filter: contrast(1.2) saturation(1.8);">
+                <img src="https://images.unsplash.com/photo-1546512565-39d4dc75e556?auto=format&fit=crop&q=80&w=600"
+                    style="width:100%; border:4px solid #000; filter: contrast(1.2) saturate(1.8);">
             </div>
             <div>
-                <div class="speech">"¿QUIERES VER TODO EN COLOR DINERO? ¡ÚNETE AL SQUAD!"</div>
-                <div class="job-offer">
-                    <h2 style="font-family:'Bangers'; margin:0;">OFERTA: SALES HUNTER</h2>
-                    <p>No buscamos empleados. Buscamos lobos. Cierra tratos con IA y quédate con la tajada más grande
-                        del mercado.</p>
-                    <div
-                        style="font-size: 1.2rem; font-weight: bold; border-left: 5px solid var(--comic-red); padding-left: 10px;">
-                        CIERRE PYME: <span class="money">$270,000 COP</span> CASH!<br>
-                        RESIDUAL: <span class="money">7% MES TRAS MES</span>
-                    </div>
+                <div class="speech">"¡TODO EN COLOR DINERO! ¡ÚNETE AL SQUAD!"</div>
+                <h2 style="font-family:'Bangers'; margin:0;">OFERTA: SALES HUNTER</h2>
+                <p>No buscamos empleados. Buscamos lobos. Cierra tratos con IA.</p>
+                <div style="font-size: 1.1rem; border-left: 5px solid var(--comic-red); padding-left: 15px;">
+                    CIERRE PYME: <span class="money">$270,000 COP</span> CASH!<br>
+                    RESIDUAL: <span class="money">7% MES TRAS MES</span>
                 </div>
             </div>
         </div>
 
         <div class="panel" style="text-align: center; background: var(--comic-blue); color: #fff;">
             <p class="boom-text">¡BOOM!</p>
-            <h2 style="font-family:'Bangers'; font-size:3rem; margin:0;">ESTRATEGIA "WOLFPACK"</h2>
-            <p style="font-size: 1.5rem;">Ventas rápidas. Demos que venden solos. Soporte 24/7 para tus clientes.</p>
+            <h2 style="font-family:'Bangers'; font-size:2.5rem; margin:0;">ESTRATEGIA "WOLFPACK"</h2>
+            <p style="font-size: 1.3rem;">Ventas rápidas. Demos que venden solos. Soporte 24/7.</p>
             <button class="btn-boom" onclick="joinHunter()">¡LO QUIERO TODO!</button>
         </div>
 
         <div class="panel">
-            <h2 style="font-family:'Bangers'; font-size:2.5rem;">CONTENIDO DE ENTRENAMIENTO (ACADEMY)</h2>
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-                <div style="border:3px solid #000; padding:15px; background:#f0f0f0;">
+            <h2 style="font-family:'Bangers'; font-size:2rem;">ACADEMY</h2>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;">
+                <div style="border:3px solid #000; padding:15px; background:#f9f9f9;">
                     <h4 style="font-family:'Bangers'; margin:0;">PHASE 1: ATTACK</h4>
-                    <p>Cómo encontrar los negocios que se están desangrando por falta de atención.</p>
+                    <p style="font-size:0.85rem;">Encuentra negocios sangrando.</p>
                 </div>
-                <div style="border:3px solid #000; padding:15px; background:#f0f0f0;">
-                    <h4 style="font-family:'Bangers'; margin:0;">PHASE 2: THE DEMO</h4>
-                    <p>El arma secreta: Cómo mostrar a XONA y cerrar en caliente.</p>
+                <div style="border:3px solid #000; padding:15px; background:#f9f9f9;">
+                    <h4 style="font-family:'Bangers'; margin:0;">PHASE 2: DEMO</h4>
+                    <p style="font-size:0.85rem;">Muestra XONA y cierra en caliente.</p>
                 </div>
-                <div style="border:3px solid #000; padding:15px; background:#f0f0f0;">
+                <div style="border:3px solid #000; padding:15px; background:#f9f9f9;">
                     <h4 style="font-family:'Bangers'; margin:0;">PHASE 3: SCALE</h4>
-                    <p>De vendedor a Líder de Squad. Crea tu propia manada y gana por sus ventas.</p>
+                    <p style="font-size:0.85rem;">Crea tu propia manada.</p>
                 </div>
             </div>
         </div>
-
     </div>
 
-    <!-- FLASH Chat (Collapsible) -->
-    <div class="flash-chat" id="flash-chat">
-        <div class="chat-title" onclick="toggleChat('flash-chat')">⚡ FLASH ▼</div>
-        <div id="chat-box"
-            style="height: 150px; padding: 8px; overflow-y: auto; font-family:'Permanent Marker'; color: var(--comic-red); font-size: 0.9rem;">
-            [FLASH]: HEY! Each minute you wait = money someone else is making! // ¡Cada minuto es dinero perdido!
+    <div class="voice-status" id="voice-status">💬 HABLANDO...</div>
+    <div class="ai-icon" id="ai-icon" onclick="toggleChat()">⚡</div>
+
+    <div class="chat-panel" id="chat-panel">
+        <div class="chat-header">AGENT FLASH</div>
+        <div class="chat-messages" id="chat-messages">
+            <div class="bot">[FLASH]: ¡HEY! ¿Listo para ganar? // Ready to earn?</div>
         </div>
-        <div style="padding:8px; border-top:3px solid #000;">
-            <input type="text" id="chat-in" placeholder="$$$?"
-                style="width:100%; border:none; outline:none; font-family:'Bangers'; font-size:1rem;"
-                onkeypress="flashTalk(event)">
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="$$$?" onkeypress="if(event.key==='Enter')sendMsg()">
+            <button onclick="sendMsg()">GO!</button>
         </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                speakOrion("HEY! I'm FLASH. Welcome to the Squad! Ready to chase money?", "FLASH");
-            }, 1000);
-        });
+        let chatOpen = false;
+
+        function toggleChat() {
+            chatOpen = !chatOpen;
+            document.getElementById('chat-panel').classList.toggle('open', chatOpen);
+            if (chatOpen) speakOrion("HEY! What's up? Ready to chase money?", "FLASH");
+        }
+
+        function showVoice() {
+            document.getElementById('voice-status').classList.add('active');
+            setTimeout(() => document.getElementById('voice-status').classList.remove('active'), 2500);
+        }
 
         function joinHunter() {
-            logTrainingAction('click', 'hunter_squad_join');
+            logTrainingAction('click', 'hunter_join');
             enrollInTraining("HUNTER");
         }
 
-        function flashTalk(e) {
-            if (e.key === 'Enter') {
-                const box = document.getElementById('chat-box');
-                const inp = document.getElementById('chat-in');
-                const val = inp.value;
-                if (!val) return;
+        function sendMsg() {
+            const input = document.getElementById('chat-input');
+            const msgs = document.getElementById('chat-messages');
+            const val = input.value.trim();
+            if (!val) return;
 
-                const lang = detectLanguage(val);
-                setLanguage(lang);
+            const lang = detectLanguage(val);
+            setLanguage(lang);
 
-                box.innerHTML += `<div style="color:#000; text-align:right;">${val}</div>`;
-                inp.value = '';
+            msgs.innerHTML += `<div style="text-align:right;">${val}</div>`;
+            input.value = '';
 
-                setTimeout(() => {
-                    let response;
-                    if (lang === 'es') {
-                        response = "¡FÁCIL! Cierras PYME, cobras $270K. K-CHING! 💸";
-                        if (val.toLowerCase().includes('miedo')) response = "¡EL MIEDO NO PAGA RENTA! ¡PUM!";
-                        else if (val.toLowerCase().includes('pago')) response = "$270K setup + 7% residual. ¡BOOM!";
-                    } else {
-                        response = "EASY! Close a PYME, get $270K. K-CHING! 💸";
-                        if (val.toLowerCase().includes('scared')) response = "FEAR DOESN'T PAY RENT! POW!";
-                        else if (val.toLowerCase().includes('pay')) response = "$270K setup + 7% residual. BOOM!";
-                    }
-
-                    box.innerHTML += `<div style="color:var(--comic-red);">[FLASH]: ${response}</div>`;
-                    box.scrollTop = box.scrollHeight;
-                    speakOrion(response, "FLASH", lang);
-                }, 600);
-            }
+            setTimeout(() => {
+                let resp = lang === 'es'
+                    ? "¡FÁCIL! Cierra PYME = $270K. ¡BOOM! 💸"
+                    : "EASY! Close PYME = $270K. BOOM! 💸";
+                msgs.innerHTML += `<div class="bot">[FLASH]: ${resp}</div>`;
+                msgs.scrollTop = msgs.scrollHeight;
+                showVoice();
+                speakOrion(resp, "FLASH", lang);
+            }, 500);
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                showVoice();
+                speakOrion("¡HEY! Click my icon!", "FLASH");
+            }, 2000);
+        });
     </script>
 </body>
 
