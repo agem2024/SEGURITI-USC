@@ -2701,71 +2701,81 @@
         }
 
         // Text-to-Speech for XONA responses - FEMALE VOICE, CHONA pronunciation
+        // Text-to-Speech for XONA responses - FEMALE VOICE, CHONA pronunciation
         function speakXona(text) {
             if ('speechSynthesis' in window) {
                 // Cancel any ongoing speech
                 speechSynthesis.cancel();
 
-                // Replace XONA/xona with phonetic "Chona" (lowercase to avoid spelling)
-                let spokenText = text
-                    .replace(/XONA/g, 'Chona')
-                    .replace(/Xona/g, 'Chona')
-                    .replace(/xona/g, 'chona');
+                // Robust replacement: any case of "xona" -> "Chona" for pronunciation
+                let spokenText = text.replace(/xona/gi, 'Chona');
 
                 const utterance = new SpeechSynthesisUtterance(spokenText);
 
                 // Set language and rate
                 if (currentLang === 'es') {
-                    utterance.lang = 'es-MX'; // Mexican Spanish (better voices)
+                    utterance.lang = 'es-MX'; // Mexican Spanish usually has good female voices
                     utterance.rate = 0.9;
                 } else {
                     utterance.lang = 'en-US';
                     utterance.rate = 0.95;
                 }
 
-                utterance.pitch = 1.3; // Higher pitch for feminine voice
+                utterance.pitch = 1.3; // Higher pitch for feminine tone
                 utterance.volume = 1.0;
 
-                // Wait for voices to load, then select female voice
+                // Function to set voice
                 const setVoice = () => {
                     const voices = speechSynthesis.getVoices();
                     let selectedVoice = null;
 
                     if (currentLang === 'es') {
-                        // Spanish female voices priority
-                        const femaleES = ['paulina', 'monica', 'sabina', 'helena', 'lucia', 'female', 'google'];
-                        const maleES = ['jorge', 'pablo', 'diego', 'enrique', 'male'];
+                        // Strict Spanish Female Priority
+                        const femaleKeywords = ['paulina', 'monica', 'sabina', 'helena', 'lucia', 'laura', 'female', 'google español'];
 
                         selectedVoice = voices.find(v =>
-                            v.lang.includes('es') && femaleES.some(f => v.name.toLowerCase().includes(f))
-                        ) || voices.find(v =>
-                            v.lang.includes('es') && !maleES.some(m => v.name.toLowerCase().includes(m))
+                            v.lang.includes('es') && femaleKeywords.some(sw => v.name.toLowerCase().includes(sw))
                         );
+
+                        // Fallback: any Spanish voice that IS NOT male
+                        if (!selectedVoice) {
+                            selectedVoice = voices.find(v =>
+                                v.lang.includes('es') && !v.name.toLowerCase().includes('male') && !v.name.toLowerCase().includes('jorge') && !v.name.toLowerCase().includes('pablo')
+                            );
+                        }
                     } else {
-                        // English female voices priority
-                        const femaleEN = ['samantha', 'victoria', 'karen', 'susan', 'fiona', 'ava', 'allison', 'zoe', 'female'];
-                        const maleEN = ['alex', 'daniel', 'fred', 'tom', 'david', 'male'];
+                        // Strict English Female Priority
+                        const femaleKeywords = ['samantha', 'victoria', 'karen', 'google us english', 'zira', 'female'];
 
                         selectedVoice = voices.find(v =>
-                            v.lang.includes('en-US') && femaleEN.some(f => v.name.toLowerCase().includes(f))
-                        ) || voices.find(v =>
-                            v.lang.includes('en') && !maleEN.some(m => v.name.toLowerCase().includes(m))
+                            v.lang.includes('en') && femaleKeywords.some(sw => v.name.toLowerCase().includes(sw))
                         );
+
+                        // Fallback: any English voice that IS NOT male
+                        if (!selectedVoice) {
+                            selectedVoice = voices.find(v =>
+                                v.lang.includes('en') && !v.name.toLowerCase().includes('male') && !v.name.toLowerCase().includes('david') && !v.name.toLowerCase().includes('mark')
+                            );
+                        }
                     }
 
                     if (selectedVoice) {
                         utterance.voice = selectedVoice;
-                        console.log('🎤 XONA Voice:', selectedVoice.name);
+                        console.log('🎤 XONA Voice Selected:', selectedVoice.name);
                     }
 
                     speechSynthesis.speak(utterance);
                 };
 
-                // If voices are ready, use them; otherwise wait for them
+                // Ensure voices are loaded
                 if (speechSynthesis.getVoices().length > 0) {
                     setVoice();
                 } else {
-                    speechSynthesis.onvoiceschanged = setVoice;
+                    speechSynthesis.onvoiceschanged = () => {
+                        setVoice();
+                        // Remove listener to prevent multiple triggers
+                        speechSynthesis.onvoiceschanged = null;
+                    };
                 }
             }
         }
