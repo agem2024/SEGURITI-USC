@@ -1,181 +1,178 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ORION ELITE // EXCLUSIVE ACCESS</title>
+    <title>ORION ELITE // INVITE ONLY</title>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@200;400;700&display=swap"
         rel="stylesheet">
     <style>
         :root {
-            --gold: #d4af37;
-            --dark-bg: #050505;
+            --gold: #c5a059;
+            --gold-light: #e6c891;
+            --obsidian: #080808;
             --charcoal: #121212;
         }
 
         body {
-            background-color: var(--dark-bg);
-            color: #e0e0e0;
+            background-color: var(--obsidian);
+            color: #d4d4d4;
             font-family: 'Montserrat', sans-serif;
             margin: 0;
+            overflow-x: hidden;
+        }
+
+        .luxury-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, #151515 0%, #080808 100%);
+            z-index: -1;
         }
 
         .luxury-container {
             max-width: 1000px;
             margin: 0 auto;
-            border-left: 1px solid rgba(212, 175, 55, 0.2);
-            border-right: 1px solid rgba(212, 175, 55, 0.2);
-            min-height: 100vh;
+            padding: 100px 20px;
+            text-align: center;
         }
 
         header {
-            text-align: center;
-            padding: 60px 20px;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            padding-bottom: 40px;
+            margin-bottom: 80px;
         }
 
         h1 {
             font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
             color: var(--gold);
-            font-size: 3rem;
-            margin: 0 0 10px 0;
-            letter-spacing: 5px;
-        }
-
-        .subtitle {
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 0.8rem;
-            color: #888;
-        }
-
-        .gold-divider {
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            margin: 40px auto;
-            width: 100px;
-        }
-
-        .value-prop {
-            padding: 60px 40px;
-            text-align: center;
-        }
-
-        .stat-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin: 50px 0;
-            border-top: 1px solid #333;
-            border-bottom: 1px solid #333;
-            padding: 30px 0;
-        }
-
-        .stat-item h2 {
-            font-family: 'Cinzel', serif;
-            color: var(--gold);
-            font-size: 2.5rem;
+            letter-spacing: 12px;
             margin: 0;
+            text-shadow: 0 0 20px rgba(197, 160, 89, 0.3);
         }
 
-        .stat-item p {
-            font-size: 0.8rem;
+        .tagline {
             text-transform: uppercase;
-            letter-spacing: 1px;
+            font-size: 0.7rem;
+            letter-spacing: 6px;
+            color: #888;
+            margin-top: 20px;
+        }
+
+        .elite-card {
+            background: var(--charcoal);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            padding: 60px;
+            position: relative;
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8);
+        }
+
+        .elite-card::before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid rgba(197, 160, 89, 0.1);
+            pointer-events: none;
+        }
+
+        .gold-title {
+            font-family: 'Cinzel';
+            color: var(--gold);
+            font-size: 2rem;
+            margin-bottom: 30px;
         }
 
         .btn-luxury {
-            background: transparent;
-            color: var(--gold);
-            border: 1px solid var(--gold);
-            padding: 15px 40px;
-            font-family: 'Montserrat', sans-serif;
-            letter-spacing: 2px;
+            background: linear-gradient(45deg, var(--gold), var(--gold-light));
+            color: #000;
+            padding: 20px 50px;
+            font-family: 'Cinzel';
+            font-weight: 900;
+            letter-spacing: 3px;
+            border: none;
             cursor: pointer;
             transition: 0.5s;
-            text-transform: uppercase;
-            font-size: 0.8rem;
+            margin-top: 40px;
         }
 
         .btn-luxury:hover {
-            background: var(--gold);
-            color: #000;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            transform: scale(1.05);
+            filter: brightness(1.2);
+            box-shadow: 0 0 40px rgba(197, 160, 89, 0.4);
         }
 
-        .agent-section {
-            background: var(--charcoal);
-            padding: 40px;
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            border-top: 1px solid #333;
+        .footer-logo {
+            font-family: 'Cinzel';
+            font-size: 0.8rem;
+            color: #555;
+            letter-spacing: 5px;
+            margin-top: 100px;
         }
 
-        .signature {
-            font-family: 'Cinzel', serif;
-            color: var(--gold);
-            font-size: 1.5rem;
+        /* ATLAS Agent */
+        .atlas-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            margin: 0 auto 30px;
+            overflow: hidden;
+            background: #000;
         }
     </style>
 </head>
 
 <body>
 
-    <script src="js/recruitment-common.js"></script>
-    <script src="js/firebase-orion.js"></script>
+    <div class="luxury-bg"></div>
 
     <div class="luxury-container">
+
         <header>
-            <div class="subtitle">Orion Technologies</div>
-            <h1>THE ELITE CIRCLE</h1>
-            <div class="gold-divider"></div>
-            <p style="max-width:600px; margin:0 auto; line-height:1.8; color:#aaa;">
-                An invitation-only program for high-net-worth consultants and enterprise integrators.
-                Access exclusive AI architecture unavailable to the general public.
-            </p>
+            <h1>ELITE CIRCLE</h1>
+            <div class="tagline">The pinnacle of institutional AI integration.</div>
         </header>
 
-        <section class="value-prop">
-            <div class="stat-grid">
-                <div class="stat-item">
-                    <h2>$14M+</h2>
-                    <p>Potential TAM</p>
+        <div class="elite-card">
+            <div class="atlas-avatar">
+                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=200"
+                    style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) contrast(1.2);">
+            </div>
+            <div class="gold-title">BY INVITATION ONLY</div>
+            <p style="font-weight: 200; line-height: 2; letter-spacing: 1px;">
+                You have reached the secure terminal for the Orion Elite program. <br>
+                We authorize a limited number of high-net-worth partnerships quarterly. <br>
+                Minimum deployment thresholds apply.
+            </p>
+            <div
+                style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; text-align: left; border-top: 1px solid #333; padding-top: 40px;">
+                <div>
+                    <h5 style="color:var(--gold); margin:0;">PRECISION</h5>
+                    <p style="font-size:0.8rem;">Dedicated cloud infrastructure with zero-latency priority routing.</p>
                 </div>
-                <div class="stat-item">
-                    <h2>40%</h2>
-                    <p>Margin Protection</p>
-                </div>
-                <div class="stat-item">
-                    <h2>24/7</h2>
-                    <p>Priority Concierge</p>
+                <div>
+                    <h5 style="color:var(--gold); margin:0;">DISCRETION</h5>
+                    <p style="font-size:0.8rem;">Custom NDAs and private-label exclusivity for defined territories.</p>
                 </div>
             </div>
+            <button class="btn-luxury" onclick="requestEntry()">INITIATE HANDSHAKE</button>
+        </div>
 
-            <button class="btn-luxury" onclick="requestAccess()">Request Private Access</button>
-        </section>
+        <div class="footer-logo">ORION TECHNOLOGIES // GLOBAL MMXIV</div>
 
-        <section class="agent-section">
-            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=200"
-                style="width:80px; height:80px; border-radius:50%; filter:grayscale(100%);">
-            <div>
-                <div class="signature">Atlas</div>
-                <p style="margin:0; font-size:0.8rem; letter-spacing:1px; color:#888;">HEAD OF INSTITUTIONAL SALES</p>
-                <p style="font-style:italic; font-size:0.9rem; margin-top:10px;">"Precision. Privacy. Performance."</p>
-            </div>
-        </section>
-
-        <footer style="text-align:center; padding:30px; font-size:0.7rem; color:#444;">
-            <a href="recruitment-hub.html" style="color:#666; text-decoration:none;">RETURN TO MAIN HUB</a>
-        </footer>
     </div>
 
     <script>
-        function requestAccess() {
-            logTrainingAction('click', 'elite_access_request');
-            window.location.href = "https://wa.me/16692342444?text=Requesting%20Elite%20Access%20Protocol";
+        function requestEntry() {
+            window.location.href = "https://wa.me/16692342444?text=ELITE%20CIRCLE:%20Requesting%20private%20handshake%20protocol";
         }
     </script>
 </body>

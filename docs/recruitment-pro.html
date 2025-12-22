@@ -4,123 +4,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ORION PARTNERS | Strategic Alliance</title>
+    <title>ORION CORP // PARTNER PROGRAM</title>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Playfair+Display:wght@700&display=swap"
         rel="stylesheet">
     <style>
         :root {
-            --primary: #0044cc;
-            --secondary: #f0f2f5;
-            --text-dark: #1a1a1a;
-            --text-light: #666;
+            --pro-blue: #0066ff;
+            --pro-dark: #0a0a0b;
+            --gray: #202022;
         }
 
         body {
-            background-color: #fff;
-            color: var(--text-dark);
+            background-color: var(--pro-dark);
+            color: #fff;
             font-family: 'Inter', sans-serif;
             margin: 0;
-            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        .navbar {
-            padding: 20px 40px;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #eee;
-        }
-
-        .logo {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--primary);
-            letter-spacing: 1px;
-        }
-
-        .hero {
-            padding: 80px 20px;
-            text-align: center;
-            background: linear-gradient(180deg, #f9fafb 0%, #fff 100%);
+            padding: 20px 0;
+            border-bottom: 1px solid #333;
+            margin-bottom: 60px;
         }
 
         h1 {
-            font-family: 'Inter', sans-serif;
-            font-weight: 800;
-            font-size: 3.5rem;
-            letter-spacing: -1px;
-            margin-bottom: 20px;
-            color: #111;
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            line-height: 1;
+            margin: 0;
         }
 
-        p.lead {
-            font-size: 1.25rem;
-            color: var(--text-light);
-            max-width: 700px;
-            margin: 0 auto 40px;
+        .tag {
+            background: var(--pro-blue);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .hero-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .pro-card {
+            background: var(--gray);
+            border: 1px solid #333;
+            padding: 40px;
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .pro-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--pro-blue);
         }
 
         .btn-pro {
-            background: var(--primary);
-            color: white;
-            padding: 15px 35px;
-            border-radius: 5px;
+            background: #fff;
+            color: #000;
+            padding: 20px 40px;
+            font-weight: 900;
             text-decoration: none;
-            font-weight: 600;
-            transition: 0.3s;
             display: inline-block;
+            margin-top: 30px;
+            transition: 0.3s;
         }
 
         .btn-pro:hover {
-            background: #003399;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 68, 204, 0.15);
+            background: var(--pro-blue);
+            color: #fff;
         }
 
-        .features-grid {
+        .metric-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 80px 20px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 60px;
         }
 
-        .feature-item {
-            padding: 30px;
-            border-radius: 10px;
-            background: white;
-            border: 1px solid #eee;
-            transition: 0.3s;
+        .metric-item {
+            border-left: 2px solid var(--pro-blue);
+            padding-left: 20px;
         }
 
-        .feature-item:hover {
-            border-color: var(--primary);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+        .metric-val {
+            font-size: 2.5rem;
+            font-weight: 900;
+            display: block;
         }
 
-        .feature-icon {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: var(--primary);
+        /* EVA Chat */
+        .eva-chat {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 350px;
+            background: #fff;
+            color: #000;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            z-index: 1000;
         }
 
-        .agent-profile {
-            background: #0a0a0a;
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-            margin-top: 80px;
+        .chat-top {
+            background: #000;
+            color: #fff;
+            padding: 15px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
         }
 
-        .agent-avatar {
-            width: 100px;
-            height: 100px;
+        .avatar-small {
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 20px;
-            border: 3px solid var(--primary);
+            margin-right: 10px;
+            background: var(--pro-blue);
         }
     </style>
 </head>
@@ -128,63 +150,93 @@
 <body>
 
     <script src="js/recruitment-common.js"></script>
-    <script src="js/firebase-orion.js"></script>
 
-    <nav class="navbar">
-        <div class="logo">ORION CORP</div>
-        <div style="font-size:0.9rem; color:#666;">PARTNER PROGRAM</div>
-    </nav>
+    <div class="container">
 
-    <section class="hero">
-        <h1>Scalable Growth for Agile Agencies.</h1>
-        <p class="lead">
-            Expand your service portfolio with White-Label AI Solutions.
-            Zero technical debt. 100% recurring revenue retention.
-        </p>
-        <a href="javascript:void(0)" onclick="contactCorporate()" class="btn-pro">SCHEDULE DISCOVERY CALL</a>
-    </section>
+        <header>
+            <div style="font-weight: 900; font-size: 1.2rem;">ORION STRATEGIC ALLIANCES</div>
+            <div class="tag">B2B NETWORK ENABLED</div>
+        </header>
 
-    <section class="features-grid">
-        <div class="feature-item">
-            <div class="feature-icon">📈</div>
-            <h3>Revenue Share Model</h3>
-            <p style="color:#666; font-size:0.95rem;">Earn 20% commission on setup fees and 5% recurring lifetime value
-                on every referred client.</p>
+        <section class="hero-split">
+            <div>
+                <h1>Infrastructure for the AI Era.</h1>
+                <p style="font-size: 1.4rem; color: #888; margin: 30px 0;">
+                    Scale your agency with our white-label AI ecosystem. We provide the neural nodes; you provide the
+                    vision.
+                </p>
+                <div class="pro-card">
+                    <h3>PROGRAM: STRATEGIC PARTNER</h3>
+                    <p>Designed for marketing agencies, business consultants, and tech integrators.</p>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 15px;">✅ <strong>White Label:</strong> Your brand, our technology.
+                        </li>
+                        <li style="margin-bottom: 15px;">✅ <strong>RevShare:</strong> 20% Referral fee + 5-10%
+                            Recurring.</li>
+                        <li style="margin-bottom: 15px;">✅ <strong>Priority API:</strong> Early access to XONA-v4.</li>
+                    </ul>
+                    <a href="javascript:void(0)" onclick="contactEva()" class="btn-pro">REQUEST PARTNER DECK</a>
+                </div>
+            </div>
+            <div>
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800"
+                    style="width: 100%; opacity: 0.8;">
+            </div>
+        </section>
+
+        <section class="metric-grid">
+            <div class="metric-item">
+                <span class="metric-val">24hr</span>
+                <p>Deployment Latency</p>
+            </div>
+            <div class="metric-item">
+                <span class="metric-val">85%</span>
+                <p>Gross Profit Margin</p>
+            </div>
+            <div class="metric-item">
+                <span class="metric-val">4.5x</span>
+                <p>Client LTV Multiplier</p>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- EVA Chat -->
+    <div class="eva-chat">
+        <div class="chat-top">
+            <div class="avatar-small"></div>
+            <span>EVA // Director of Alliances</span>
         </div>
-        <div class="feature-item">
-            <div class="feature-icon">🔒</div>
-            <h3>White Label Ready</h3>
-            <p style="color:#666; font-size:0.95rem;">Deploy our bots under your brand. We remain invisible while you
-                take the credit and the margins.</p>
+        <div id="c-box" style="height: 250px; padding: 20px; overflow-y: auto; font-size: 0.95rem; line-height: 1.5;">
+            <div style="color: #666; margin-bottom: 20px;">[EVA]: Good day. I am the intelligence coordinator for the
+                Partner Program. Our goal is to augment your agency's capabilities without adding technical debt. How
+                can I assist your scalability today?</div>
         </div>
-        <div class="feature-item">
-            <div class="feature-icon">⚡</div>
-            <h3>Rapid Deployment</h3>
-            <p style="color:#666; font-size:0.95rem;">Go from contract to live deployment in under 48 hours for standard
-                restaurant and retail packages.</p>
+        <div style="padding: 15px; border-top: 1px solid #eee;">
+            <input type="text" id="c-in" placeholder="Querying scalability models..."
+                style="width: 100%; border: none; outline: none; font-family: 'Inter';" onkeypress="evaAsk(event)">
         </div>
-    </section>
-
-    <section class="agent-profile">
-        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200"
-            class="agent-avatar" alt="Eva Agent">
-        <h3>Primary Contact: EVA</h3>
-        <p style="opacity:0.7;">Director of Strategic Alliances</p>
-        <div style="max-width:600px; margin:20px auto; font-style:italic;">
-            "We don't just sell software; we provide the infrastructure for agencies to scale without increasing
-            headcount."
-        </div>
-    </section>
-
-    <footer style="text-align:center; padding:40px; border-top:1px solid #eee; font-size:0.8rem; color:#888;">
-        &copy; 2024 ORION Technologies LLC. San Jose, CA.<br>
-        <a href="recruitment-hub.html" style="color:var(--primary); text-decoration:none;">Back to Hub</a>
-    </footer>
+    </div>
 
     <script>
-        function contactCorporate() {
-            logTrainingAction('click', 'contact_corporate_partner');
-            window.location.href = "https://wa.me/16692342444?text=Interested%20in%20Partner%20Program";
+        function contactEva() {
+            logTrainingAction('click', 'partner_deck_request');
+            window.location.href = "https://wa.me/16692342444?text=Interested%20in%20Partner%20Program%20Details";
+        }
+
+        function evaAsk(e) {
+            if (e.key === 'Enter') {
+                const box = document.getElementById('c-box');
+                const inp = document.getElementById('c-in');
+                const msg = inp.value;
+                if (!msg) return;
+                box.innerHTML += `<div style="text-align:right; margin-bottom:20px; font-weight:bold;">${msg}</div>`;
+                inp.value = '';
+                setTimeout(() => {
+                    box.innerHTML += `<div>[EVA]: Understood. Our revenue model allows for up to 30% margin on localized setup services. I will notify the human team to provide the full PDF brochure to your terminal.</div>`;
+                    box.scrollTop = box.scrollHeight;
+                }, 1000);
+            }
         }
     </script>
 </body>
