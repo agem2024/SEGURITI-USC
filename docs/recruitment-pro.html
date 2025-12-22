@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORION PARTNERS | Strategic Alliance</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0044cc;
+            --secondary: #f0f2f5;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+        }
+
+        body {
+            background-color: #fff;
+            color: var(--text-dark);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+
+        .hero {
+            padding: 80px 20px;
+            text-align: center;
+            background: linear-gradient(180deg, #f9fafb 0%, #fff 100%);
+        }
+
+        h1 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 3.5rem;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+            color: #111;
+        }
+
+        p.lead {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .btn-pro {
+            background: var(--primary);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .btn-pro:hover {
+            background: #003399;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 68, 204, 0.15);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .feature-item {
+            padding: 30px;
+            border-radius: 10px;
+            background: white;
+            border: 1px solid #eee;
+            transition: 0.3s;
+        }
+
+        .feature-item:hover {
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .agent-profile {
+            background: #0a0a0a;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .agent-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid var(--primary);
+        }
+    </style>
+</head>
+
+<body>
+
+    <script src="js/recruitment-common.js"></script>
+    <script src="js/firebase-orion.js"></script>
+
+    <nav class="navbar">
+        <div class="logo">ORION CORP</div>
+        <div style="font-size:0.9rem; color:#666;">PARTNER PROGRAM</div>
+    </nav>
+
+    <section class="hero">
+        <h1>Scalable Growth for Agile Agencies.</h1>
+        <p class="lead">
+            Expand your service portfolio with White-Label AI Solutions.
+            Zero technical debt. 100% recurring revenue retention.
+        </p>
+        <a href="javascript:void(0)" onclick="contactCorporate()" class="btn-pro">SCHEDULE DISCOVERY CALL</a>
+    </section>
+
+    <section class="features-grid">
+        <div class="feature-item">
+            <div class="feature-icon">📈</div>
+            <h3>Revenue Share Model</h3>
+            <p style="color:#666; font-size:0.95rem;">Earn 20% commission on setup fees and 5% recurring lifetime value
+                on every referred client.</p>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">🔒</div>
+            <h3>White Label Ready</h3>
+            <p style="color:#666; font-size:0.95rem;">Deploy our bots under your brand. We remain invisible while you
+                take the credit and the margins.</p>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">⚡</div>
+            <h3>Rapid Deployment</h3>
+            <p style="color:#666; font-size:0.95rem;">Go from contract to live deployment in under 48 hours for standard
+                restaurant and retail packages.</p>
+        </div>
+    </section>
+
+    <section class="agent-profile">
+        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200"
+            class="agent-avatar" alt="Eva Agent">
+        <h3>Primary Contact: EVA</h3>
+        <p style="opacity:0.7;">Director of Strategic Alliances</p>
+        <div style="max-width:600px; margin:20px auto; font-style:italic;">
+            "We don't just sell software; we provide the infrastructure for agencies to scale without increasing
+            headcount."
+        </div>
+    </section>
+
+    <footer style="text-align:center; padding:40px; border-top:1px solid #eee; font-size:0.8rem; color:#888;">
+        &copy; 2024 ORION Technologies LLC. San Jose, CA.<br>
+        <a href="recruitment-hub.html" style="color:var(--primary); text-decoration:none;">Back to Hub</a>
+    </footer>
+
+    <script>
+        function contactCorporate() {
+            logTrainingAction('click', 'contact_corporate_partner');
+            window.location.href = "https://wa.me/16692342444?text=Interested%20in%20Partner%20Program";
+        }
+    </script>
+</body>
+
+</html>

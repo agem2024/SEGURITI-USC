@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORION TECH | Capacitación y Reclutamiento</title>
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <!-- Local CSS -->
+    <link rel="stylesheet" href="css/estilos2.css">
+    <style>
+        :root {
+            --neon-blue: #00f3ff;
+            --neon-purple: #bc13fe;
+            --neon-green: #25D366;
+        }
+
+        body {
+            background-color: #050505;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .hub-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .hub-header {
+            margin-bottom: 60px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hub-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            background: linear-gradient(90deg, #fff, var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+            margin-bottom: 10px;
+        }
+
+        .hub-subtitle {
+            color: #888;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+
+        .strategies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .strategy-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 0;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            cursor: pointer;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+        }
+
+        .strategy-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 30px rgba(var(--card-rgb), 0.4);
+            border-color: var(--card-color);
+        }
+
+        .card-image-area {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-overlay {
+            background: rgba(0, 0, 0, 0.6);
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-icon {
+            font-size: 4rem;
+            filter: drop-shadow(0 0 10px var(--card-color));
+        }
+
+        .card-content {
+            padding: 30px;
+            text-align: left;
+            flex-grow: 1;
+            color: #ccc;
+        }
+
+        .card-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: var(--card-color);
+            margin-bottom: 15px;
+            margin-top: 0;
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .card-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            border: 1px solid var(--card-color);
+            color: var(--card-color);
+            font-weight: bold;
+            border-radius: 5px;
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .card-btn:hover {
+            background: var(--card-color);
+            color: #000;
+            box-shadow: 0 0 20px var(--card-color);
+        }
+
+        /* Styles Specific to Cards */
+        .style-anime {
+            --card-color: #bc13fe;
+            /* Neon Purple */
+            --card-rgb: 188, 19, 254;
+            border-top: 3px solid #bc13fe;
+        }
+
+        .style-comic {
+            --card-color: #ffdd00;
+            /* Yellow */
+            --card-rgb: 255, 221, 0;
+            border-top: 3px solid #ffdd00;
+        }
+
+        .style-pro {
+            --card-color: #00f3ff;
+            /* Neon Blue */
+            --card-rgb: 0, 243, 255;
+            border-top: 3px solid #00f3ff;
+        }
+
+        .style-luxury {
+            --card-color: #d4af37;
+            /* Gold */
+            --card-rgb: 212, 175, 55;
+            border-top: 3px solid #d4af37;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 80px;
+            padding: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Shared Security Module will lock screen automatically -->
+    <script src="js/recruitment-common.js"></script>
+
+    <div class="hub-container">
+        <header class="hub-header">
+            <img src="images/orion_logo.png" alt="ORION TECH" style="width: 120px; margin-bottom: 20px; opacity: 0.9;">
+            <h1 class="hub-title">CENTRO DE RECLUTAMIENTO</h1>
+            <p class="hub-subtitle">SISTEMA INTEGRAL DE CAPACITACIÓN Y ACCESO</p>
+        </header>
+
+        <div class="strategies-grid">
+
+            <!-- ANIME STYLE: Estudiantes / Tech -->
+            <a href="recruitment-anime.html" class="style-anime strategy-card">
+                <div class="card-image-area" style="background: linear-gradient(45deg, #2a0a38, #000);">
+                    <div class="card-overlay">
+                        <span class="card-icon">⚡</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">PROGRAMA "AKIRA"</h3>
+                    <p class="card-desc">
+                        Para: <strong>Estudiantes & Gamers.</strong><br>
+                        Entra al mundo del Cyberpunk Sales. Gana experiencia en IA y comisiones agresivas. Estética
+                        Anime.
+                    </p>
+                    <span class="card-btn">INICIAR MISIÓN &rarr;</span>
+                </div>
+            </a>
+
+            <!-- COMIC STYLE: Vendedores / Hunters -->
+            <a href="recruitment-comic.html" class="style-comic strategy-card">
+                <div class="card-image-area" style="background: linear-gradient(135deg, #aa0000, #ff8800);">
+                    <div class="card-overlay">
+                        <span class="card-icon">💥</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">SQUAD "HUNTER"</h3>
+                    <p class="card-desc">
+                        Para: <strong>Vendedores Pura Sangre.</strong><br>
+                        Alta energía. Estilo Cómic. Maximiza tus ingresos con nuestro modelo de comisiones rápidas en
+                        USD.
+                    </p>
+                    <span class="card-btn">UNIRSE AL SQUAD &rarr;</span>
+                </div>
+            </a>
+
+            <!-- PROFESIONAL: Partners / Socios -->
+            <a href="recruitment-pro.html" class="style-pro strategy-card">
+                <div class="card-image-area" style="background: linear-gradient(to bottom, #001122, #002244);">
+                    <div class="card-overlay">
+                        <span class="card-icon">💎</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">SOCIOS CORPORATIVOS</h3>
+                    <p class="card-desc">
+                        Para: <strong>Agencias & Consultores.</strong><br>
+                        Modelo White Label. Escale su portafolio con tecnología de punta bajo un marco moderno.
+                    </p>
+                    <span class="card-btn">VER PROPUESTA &rarr;</span>
+                </div>
+            </a>
+
+            <!-- LUXURY: Elite / High Ticket -->
+            <a href="recruitment-luxury.html" class="style-luxury strategy-card">
+                <div class="card-image-area" style="background: #000;">
+                    <div class="card-overlay">
+                        <span class="card-icon" style="color:#d4af37 !important;">👑</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title" style="color:#d4af37;">ORION ELITE</h3>
+                    <p class="card-desc">
+                        Para: <strong>Inversionistas & Enterprise.</strong><br>
+                        Acceso exclusivo a arquitectura IA de alto nivel. Solo por invitación privada.
+                    </p>
+                    <span class="card-btn" style="border-color:#d4af37; color:#d4af37;">REQUEST ACCESS &rarr;</span>
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2024-2025 ORION TECH. Todos los derechos reservados.</p>
+        <p>Acceso Restringido. PIN de Seguridad Requerido.</p>
+        <br>
+        <p>
+            <a href="#" style="color:#666; text-decoration:none; margin:0 10px;">Política de Privacidad</a> |
+            <a href="#" style="color:#666; text-decoration:none; margin:0 10px;">Términos de Servicio</a> |
+            <a href="#" style="color:#666; text-decoration:none; margin:0 10px;">Soporte Técnico</a>
+        </p>
+    </footer>
+
+    <!-- Firebase Logging -->
+    <script src="js/firebase-orion.js"></script>
+
+</body>
+
+</html>

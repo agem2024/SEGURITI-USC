@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORION ELITE // EXCLUSIVE ACCESS</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4af37;
+            --dark-bg: #050505;
+            --charcoal: #121212;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: #e0e0e0;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+        }
+
+        .luxury-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            border-left: 1px solid rgba(212, 175, 55, 0.2);
+            border-right: 1px solid rgba(212, 175, 55, 0.2);
+            min-height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 3rem;
+            margin: 0 0 10px 0;
+            letter-spacing: 5px;
+        }
+
+        .subtitle {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .gold-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 40px auto;
+            width: 100px;
+        }
+
+        .value-prop {
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 50px 0;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+            padding: 30px 0;
+        }
+
+        .stat-item h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        .stat-item p {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-luxury {
+            background: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            padding: 15px 40px;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: 0.5s;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        .btn-luxury:hover {
+            background: var(--gold);
+            color: #000;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .agent-section {
+            background: var(--charcoal);
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            border-top: 1px solid #333;
+        }
+
+        .signature {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script src="js/recruitment-common.js"></script>
+    <script src="js/firebase-orion.js"></script>
+
+    <div class="luxury-container">
+        <header>
+            <div class="subtitle">Orion Technologies</div>
+            <h1>THE ELITE CIRCLE</h1>
+            <div class="gold-divider"></div>
+            <p style="max-width:600px; margin:0 auto; line-height:1.8; color:#aaa;">
+                An invitation-only program for high-net-worth consultants and enterprise integrators.
+                Access exclusive AI architecture unavailable to the general public.
+            </p>
+        </header>
+
+        <section class="value-prop">
+            <div class="stat-grid">
+                <div class="stat-item">
+                    <h2>$14M+</h2>
+                    <p>Potential TAM</p>
+                </div>
+                <div class="stat-item">
+                    <h2>40%</h2>
+                    <p>Margin Protection</p>
+                </div>
+                <div class="stat-item">
+                    <h2>24/7</h2>
+                    <p>Priority Concierge</p>
+                </div>
+            </div>
+
+            <button class="btn-luxury" onclick="requestAccess()">Request Private Access</button>
+        </section>
+
+        <section class="agent-section">
+            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=200"
+                style="width:80px; height:80px; border-radius:50%; filter:grayscale(100%);">
+            <div>
+                <div class="signature">Atlas</div>
+                <p style="margin:0; font-size:0.8rem; letter-spacing:1px; color:#888;">HEAD OF INSTITUTIONAL SALES</p>
+                <p style="font-style:italic; font-size:0.9rem; margin-top:10px;">"Precision. Privacy. Performance."</p>
+            </div>
+        </section>
+
+        <footer style="text-align:center; padding:30px; font-size:0.7rem; color:#444;">
+            <a href="recruitment-hub.html" style="color:#666; text-decoration:none;">RETURN TO MAIN HUB</a>
+        </footer>
+    </div>
+
+    <script>
+        function requestAccess() {
+            logTrainingAction('click', 'elite_access_request');
+            window.location.href = "https://wa.me/16692342444?text=Requesting%20Elite%20Access%20Protocol";
+        }
+    </script>
+</body>
+
+</html>
