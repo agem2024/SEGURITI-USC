@@ -2726,8 +2726,8 @@
                 // Determine language
                 const lang = currentLang || 'es';
 
-                // Call local backend (orion-clean)
-                const response = await fetch('http://localhost:3030/api/tts', {
+                // Call cloud backend (Render) - works on all devices
+                const response = await fetch('https://orion-cloud.onrender.com/api/tts', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ text, lang })
