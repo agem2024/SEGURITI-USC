@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORION Academy | Reclutamiento</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00f3ff;
+            --secondary: #bc13fe;
+            --accent: #25D366;
+            --dark: #0a0a0f;
+            --darker: #050508;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--darker);
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background:
+                radial-gradient(ellipse at 20% 80%, rgba(188, 19, 254, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(0, 243, 255, 0.15) 0%, transparent 50%),
+                var(--darker);
+        }
+
+        .lang-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            padding: 8px 16px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            color: #fff;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .lang-btn:hover,
+        .lang-btn.active {
+            background: var(--primary);
+            color: #000;
+            border-color: var(--primary);
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: linear-gradient(180deg, rgba(5, 5, 8, 0.95) 0%, transparent 100%);
+            backdrop-filter: blur(20px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: #fff;
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.5);
+        }
+
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 150px 20px 80px;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+        }
+
+        /* POSITIONS SECTION */
+        .positions {
+            padding: 80px 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.1rem;
+        }
+
+        .positions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .position-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.4s;
+        }
+
+        .position-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 60px rgba(37, 211, 102, 0.15);
+        }
+
+        .position-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .position-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .position-badge {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .badge-hiring {
+            background: var(--accent);
+            color: #000;
+        }
+
+        .badge-soon {
+            background: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+            border: 1px solid #ffc107;
+        }
+
+        .position-location {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .position-desc {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .position-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .detail-label {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .detail-value {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 30px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+            width: 100%;
+        }
+
+        .btn-apply {
+            background: linear-gradient(135deg, var(--accent), #1fa855);
+            color: #000;
+        }
+
+        .btn-apply:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        /* CAREER PATH */
+        .career-path {
+            padding: 80px 50px;
+            background: linear-gradient(180deg, transparent, rgba(0, 243, 255, 0.03), transparent);
+        }
+
+        .path-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .path-timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .path-timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: linear-gradient(180deg, var(--primary), var(--secondary), var(--accent));
+            border-radius: 2px;
+        }
+
+        .path-step {
+            position: relative;
+            margin-bottom: 40px;
+            padding: 25px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+        }
+
+        .path-step::before {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 30px;
+            width: 16px;
+            height: 16px;
+            background: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+        }
+
+        .path-step h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .path-step p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 15px;
+        }
+
+        .path-step .salary {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        /* BENEFITS */
+        .benefits {
+            padding: 80px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .benefit-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--secondary);
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .benefit-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .benefit-card p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* PROCESS */
+        .process {
+            padding: 80px 50px;
+            background: linear-gradient(180deg, transparent, rgba(188, 19, 254, 0.03), transparent);
+        }
+
+        .process-steps {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 50px auto 0;
+        }
+
+        .process-step {
+            flex: 1;
+            min-width: 200px;
+            max-width: 250px;
+            text-align: center;
+            position: relative;
+        }
+
+        .process-step::after {
+            content: '→';
+            position: absolute;
+            right: -20px;
+            top: 40px;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .process-step:last-child::after {
+            display: none;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin: 0 auto 20px;
+        }
+
+        .process-step h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .process-step p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+        }
+
+        /* NAV */
+        .page-nav {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            padding: 15px 25px;
+            background: rgba(10, 10, 15, 0.9);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+        }
+
+        .page-nav a {
+            padding: 10px 20px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border-radius: 25px;
+            transition: all 0.3s;
+        }
+
+        .page-nav a:hover,
+        .page-nav a.active {
+            background: var(--primary);
+            color: #000;
+        }
+
+        footer {
+            padding: 50px;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .positions,
+            .career-path,
+            .benefits,
+            .process {
+                padding: 60px 20px;
+            }
+
+            .page-nav {
+                bottom: 10px;
+                padding: 10px 15px;
+                gap: 5px;
+            }
+
+            .page-nav a {
+                padding: 8px 12px;
+                font-size: 0.75rem;
+            }
+
+            .process-step::after {
+                display: none;
+            }
+        }
+
+        [data-lang-es] {
+            display: block;
+        }
+
+        [data-lang-en] {
+            display: none;
+        }
+
+        body.lang-en [data-lang-es] {
+            display: none;
+        }
+
+        body.lang-en [data-lang-en] {
+            display: block;
+        }
+    </style>
+<link rel="stylesheet" href="orion-responsive.css"></head>
+
+<body>
+    <div class="bg-animation"></div>
+
+    <!-- LANGUAGE SELECTOR -->
+    <div class="lang-selector">
+        <button class="lang-btn active" onclick="setLang('es')">🇪🇸 ES</button>
+        <button class="lang-btn" onclick="setLang('en')">🇺🇸 EN</button>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <a href="orion-academy.html" class="logo">
+            <img src="images/orion_logo.png" alt="ORION Tech" class="logo-img"
+                style="height: 50px; border-radius: 12px; box-shadow: 0 0 30px rgba(0, 243, 255, 0.5);">
+            <span class="logo-text">Academy</span>
+        </a>
+        <nav class="nav-links">
+            <a href="orion-academy.html" data-lang-es>Inicio</a>
+            <a href="orion-academy.html" data-lang-en>Home</a>
+            <a href="#posiciones" data-lang-es>Posiciones</a>
+            <a href="#posiciones" data-lang-en>Positions</a>
+            <a href="#carrera" data-lang-es>Plan de Carrera</a>
+            <a href="#carrera" data-lang-en>Career Path</a>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <h1 data-lang-es>Únete al Equipo <span class="gradient-text">ORION</span></h1>
+        <h1 data-lang-en>Join the <span class="gradient-text">ORION</span> Team</h1>
+        <p data-lang-es>Buscamos personas apasionadas por la tecnología y las ventas para crecer juntos.</p>
+        <p data-lang-en>We're looking for people passionate about technology and sales to grow together.</p>
+    </section>
+
+    <!-- POSITIONS -->
+    <section class="positions" id="posiciones">
+        <div class="section-header">
+            <h2 data-lang-es>Posiciones <span class="gradient-text">Abiertas</span></h2>
+            <h2 data-lang-en>Open <span class="gradient-text">Positions</span></h2>
+            <p data-lang-es>Oportunidades en diferentes países y niveles</p>
+            <p data-lang-en>Opportunities in different countries and levels</p>
+        </div>
+
+        <div class="positions-grid">
+            <!-- SDR Colombia -->
+            <div class="position-card">
+                <div class="position-header">
+                    <div>
+                        <div class="position-title">SDR (Sales Development Rep)</div>
+                    </div>
+                    <span class="position-badge badge-hiring" data-lang-es>Contratando</span>
+                    <span class="position-badge badge-hiring" data-lang-en>Hiring</span>
+                </div>
+                <div class="position-location">🇨🇴 Colombia (Remoto)</div>
+                <p class="position-desc" data-lang-es>Prospección de clientes, llamadas en frío, calificación de leads y
+                    agendamiento de demos para el equipo de ventas.</p>
+                <p class="position-desc" data-lang-en>Client prospecting, cold calling, lead qualification and demo
+                    scheduling for the sales team.</p>
+                <div class="position-details">
+                    <div class="detail-item">
+                        <span class="detail-label" data-lang-es>Salario Base</span>
+                        <span class="detail-label" data-lang-en>Base Salary</span>
+                        <span class="detail-value">$800-1,200 USD</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label" data-lang-es>Comisiones</span>
+                        <span class="detail-label" data-lang-en>Commissions</span>
+                        <span class="detail-value">5-7%</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label" data-lang-es>Modalidad</span>
+                        <span class="detail-label" data-lang-en>Type</span>
+                        <span class="detail-value">100% Remoto</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label" data-lang-es>Experiencia</span>
+                        <span class="detail-label" data-lang-en>Experience</span>
+                        <span class="detail-value">0-2 años</span>
+                    </div>
+                </div>
+                <a href="https://wa.me/14086608541?text=Hola!%20Me%20interesa%20la%20posición%20de%20SDR%20en%20Colombia"
+                    class="btn btn-apply" data-lang-es>Aplicar Ahora</a>
+                <a href="https://wa.me/14086608541?text=Hello!%20I'm%20interested%20in%20the%20SDR%20position%20in%20Colombia"
+                    class="btn btn-apply" data-lang-en>Apply Now</a>
+            </div>
+
+            <!-- SDR México -->
+            <div class="position-card">
+                <div class="position-header">
+                    <div>
+                        <div class="position-title">SDR (Sales Development Rep)</div>
+                    </div>
+                    <span class="position-badge badge-hiring" data-lang-es>Contratando</span>
+                    <span class="position-badge badge-hiring" data-lang-en>Hiring</span>
+                </div>
+                <div class="position-location">🇲🇽 México (Remoto)</div>
+                <p class="position-desc" data-lang-es>Mismas funciones que SDR Colombia pero enfocado en el mercado
+                    mexicano.</p>
+                <p class="position-desc" data-lang-en>Same functions as SDR Colombia but focused on the Mexican market.
+                </p>
+                <div class="position-details">
+                    <div class="detail-item">
+                        <span class="detail-label" data-lang-es>Salario Base</span>
+                        <span class="detail-label" data-lang-en>Base Salary</span>
+                        <span class="detail-value">$1,000-1,500 USD</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label" data-lang-es>Comisiones</span>
+                        <span class="detail-label" data-lang-en>Commissions</span>
+                        <span class="detail-value">5-7%</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label" data-lang-es>Modalidad</span>
+                        <span class="detail-label" data-lang-en>Type</span>
+                        <span class="detail-value">100% Remoto</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label" data-lang-es>Experiencia</span>
+                        <span class="detail-label" data-lang-en>Experience</span>
+                        <span class="detail-value">0-2 años</span>
+                    </div>
+                </div>
+                <a href="https://wa.me/14086608541?text=Hola!%20Me%20interesa%20la%20posición%20de%20SDR%20en%20México"
+                    class="btn btn-apply" data-lang-es>Aplicar Ahora</a>
+                <a href="https://wa.me/14086608541?text=Hello!%20I'm%20interested%20in%20the%20SDR%20position%20in%20Mexico"
+                    class="btn btn-apply" data-lang-en>Apply Now</a>
+            </div>
+
+            <!-- SDR USA -->
+            <div class="position-card">
+                <div class="position-header">
+                    <div>
+                        <div class="position-title">SDR Bilingüe (ES/EN)</div>
+                    </div>
+                    <span class="position-badge badge-hiring" data-lang-es>Contratando</span>
+                    <span class="position-badge badge-hiring" data-lang-en>Hiring</span>
+                </div>
+                <div class="position-location">🇺🇸 USA (Remoto)</div>
+                <p class="position-desc" data-lang-es>Enfocado en negocios hispanos en USA. Requiere inglés fluido y
+                    español nativo.</p>
+                <p class="position-desc" data-lang-en>Focused on Hispanic businesses in USA. Requires fluent English and
+                    native Spanish.</p>
+                <div class="position-details">
+                    <div class="detail-item">
+                        <span class="detail-label" data-lang-es>Salario Base</span>
+                        <span class="detail-label" data-lang-en>Base Salary</span>
+                        <span class="detail-value">$2,500-3,500 USD</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label" data-lang-es>Comisiones</span>
+                        <span class="detail-label" data-lang-en>Commissions</span>
+                        <span class="detail-value">5-7%</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label" data-lang-es>Modalidad</span>
+                        <span class="detail-label" data-lang-en>Type</span>
+                        <span class="detail-value">100% Remoto</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label" data-lang-es>Experiencia</span>
+                        <span class="detail-label" data-lang-en>Experience</span>
+                        <span class="detail-value">1-3 años</span>
+                    </div>
+                </div>
+                <a href="https://wa.me/14086608541?text=Hello!%20I'm%20interested%20in%20the%20Bilingual%20SDR%20position%20in%20USA"
+                    class="btn btn-apply" data-lang-es>Aplicar Ahora</a>
+                <a href="https://wa.me/14086608541?text=Hello!%20I'm%20interested%20in%20the%20Bilingual%20SDR%20position%20in%20USA"
+                    class="btn btn-apply" data-lang-en>Apply Now</a>
+            </div>
+
+            <!-- Developer -->
+            <div class="position-card">
+                <div class="position-header">
+                    <div>
+                        <div class="position-title">Full Stack Developer</div>
+                    </div>
+                    <span class="position-badge badge-hiring" data-lang-es>Contratando</span>
+                    <span class="position-badge badge-hiring" data-lang-en>Hiring</span>
+                </div>
+                <div class="position-location">🌍 LATAM (Remoto)</div>
+                <p class="position-desc" data-lang-es>Desarrollo de bots de IA, integraciones con WhatsApp/Telegram,
+                    APIs y dashboards.</p>
+                <p class="position-desc" data-lang-en>AI bot development, WhatsApp/Telegram integrations, APIs and
+                    dashboards.</p>
+                <div class="position-details">
+                    <div class="detail-item">
+                        <span class="detail-label" data-lang-es>Salario</span>
+                        <span class="detail-label" data-lang-en>Salary</span>
+                        <span class="detail-value">$1,500-3,000 USD</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Stack</span>
+                        <span class="detail-value">Node.js, Python, React</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label" data-lang-es>Modalidad</span>
+                        <span class="detail-label" data-lang-en>Type</span>
+                        <span class="detail-value">100% Remoto</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label" data-lang-es>Experiencia</span>
+                        <span class="detail-label" data-lang-en>Experience</span>
+                        <span class="detail-value">2-5 años</span>
+                    </div>
+                </div>
+                <a href="https://wa.me/14086608541?text=Hola!%20Me%20interesa%20la%20posición%20de%20Developer"
+                    class="btn btn-apply" data-lang-es>Aplicar Ahora</a>
+                <a href="https://wa.me/14086608541?text=Hello!%20I'm%20interested%20in%20the%20Developer%20position"
+                    class="btn btn-apply" data-lang-en>Apply Now</a>
+            </div>
+
+            <!-- Customer Success -->
+            <div class="position-card">
+                <div class="position-header">
+                    <div>
+                        <div class="position-title">Customer Success Manager</div>
+                    </div>
+                    <span class="position-badge badge-soon" data-lang-es>Próximamente</span>
+                    <span class="position-badge badge-soon" data-lang-en>Coming Soon</span>
+                </div>
+                <div class="position-location">🇨🇴 Colombia (Remoto)</div>
+                <p class="position-desc" data-lang-es>Onboarding de clientes, soporte, retención y upselling de cuentas
+                    existentes.</p>
+                <p class="position-desc" data-lang-en>Client onboarding, support, retention and upselling of existing
+                    accounts.</p>
+                <div class="position-details">
+                    <div class="detail-item">
+                        <span class="detail-label" data-lang-es>Salario</span>
+                        <span class="detail-label" data-lang-en>Salary</span>
+                        <span class="detail-value">$1,200-1,800 USD</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label" data-lang-es>Bonus</span>
+                        <span class="detail-label" data-lang-en>Bonus</span>
+                        <span class="detail-value">Por retención</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label" data-lang-es>Modalidad</span>
+                        <span class="detail-label" data-lang-en>Type</span>
+                        <span class="detail-value">100% Remoto</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label" data-lang-es>Experiencia</span>
+                        <span class="detail-label" data-lang-en>Experience</span>
+                        <span class="detail-value">1-3 años</span>
+                    </div>
+                </div>
+                <button class="btn btn-apply" disabled style="opacity: 0.5; cursor: not-allowed;"
+                    data-lang-es>Próximamente</button>
+                <button class="btn btn-apply" disabled style="opacity: 0.5; cursor: not-allowed;" data-lang-en>Coming
+                    Soon</button>
+            </div>
+
+            <!-- Team Lead -->
+            <div class="position-card">
+                <div class="position-header">
+                    <div>
+                        <div class="position-title">Sales Team Lead</div>
+                    </div>
+                    <span class="position-badge badge-soon" data-lang-es>Próximamente</span>
+                    <span class="position-badge badge-soon" data-lang-en>Coming Soon</span>
+                </div>
+                <div class="position-location">🌍 Remoto Global</div>
+                <p class="position-desc" data-lang-es>Liderazgo de equipo de SDRs, coaching, métricas y desarrollo del
+                    equipo.</p>
+                <p class="position-desc" data-lang-en>SDR team leadership, coaching, metrics and team development.</p>
+                <div class="position-details">
+                    <div class="detail-item">
+                        <span class="detail-label" data-lang-es>Salario</span>
+                        <span class="detail-label" data-lang-en>Salary</span>
+                        <span class="detail-value">$2,000-3,000 USD</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label" data-lang-es>Comisiones</span>
+                        <span class="detail-label" data-lang-en>Commissions</span>
+                        <span class="detail-value">10% del equipo</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label" data-lang-es>Modalidad</span>
+                        <span class="detail-label" data-lang-en>Type</span>
+                        <span class="detail-value">100% Remoto</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label" data-lang-es>Experiencia</span>
+                        <span class="detail-label" data-lang-en>Experience</span>
+                        <span class="detail-value">3+ años ventas</span>
+                    </div>
+                </div>
+                <button class="btn btn-apply" disabled style="opacity: 0.5; cursor: not-allowed;"
+                    data-lang-es>Próximamente</button>
+                <button class="btn btn-apply" disabled style="opacity: 0.5; cursor: not-allowed;" data-lang-en>Coming
+                    Soon</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CAREER PATH -->
+    <section class="career-path" id="carrera">
+        <div class="path-container">
+            <div class="section-header">
+                <h2 data-lang-es>Plan de <span class="gradient-text">Carrera</span></h2>
+                <h2 data-lang-en">Career <span class="gradient-text">Path</span></h2>
+                <p data-lang-es>Crece con nosotros - desde SDR hasta Director</p>
+                <p data-lang-en>Grow with us - from SDR to Director</p>
+            </div>
+
+            <div class="path-timeline">
+                <div class="path-step">
+                    <h3>1️⃣ SDR Junior</h3>
+                    <p data-lang-es>Inicio de carrera. Aprende el producto, prospección básica, 60-80 llamadas/día.</p>
+                    <p data-lang-en>Career start. Learn the product, basic prospecting, 60-80 calls/day.</p>
+                    <span class="salary" data-lang-es>$800-1,200 USD + 5% comisiones</span>
+                    <span class="salary" data-lang-en>$800-1,200 USD + 5% commissions</span>
+                </div>
+                <div class="path-step">
+                    <h3>2️⃣ SDR Senior</h3>
+                    <p data-lang-es>6-12 meses. Consistencia en métricas, manejo autónomo del pipeline.</p>
+                    <p data-lang-en>6-12 months. Consistency in metrics, autonomous pipeline management.</p>
+                    <span class="salary" data-lang-es>$1,200-1,800 USD + 7% comisiones</span>
+                    <span class="salary" data-lang-en>$1,200-1,800 USD + 7% commissions</span>
+                </div>
+                <div class="path-step">
+                    <h3>3️⃣ Team Lead</h3>
+                    <p data-lang-es>12-24 meses. Lideras 3-5 SDRs, coaching, desarrollo de equipo.</p>
+                    <p data-lang-en>12-24 months. Lead 3-5 SDRs, coaching, team development.</p>
+                    <span class="salary" data-lang-es>$2,000-3,000 USD + 10% del equipo</span>
+                    <span class="salary" data-lang-en>$2,000-3,000 USD + 10% team override</span>
+                </div>
+                <div class="path-step">
+                    <h3>4️⃣ Director Regional</h3>
+                    <p data-lang-es>24-36 meses. Diriges el capítulo de un país completo.</p>
+                    <p data-lang-en>24-36 months. Direct the chapter of an entire country.</p>
+                    <span class="salary" data-lang-es>$4,000-6,000 USD + 15% del capítulo</span>
+                    <span class="salary" data-lang-en>$4,000-6,000 USD + 15% chapter override</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFITS -->
+    <section class="benefits">
+        <div class="section-header">
+            <h2 data-lang-es>Beneficios <span class="gradient-text">ORION</span></h2>
+            <h2 data-lang-en><span class="gradient-text">ORION</span> Benefits</h2>
+        </div>
+
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">🏠</div>
+                <h3 data-lang-es>100% Remoto</h3>
+                <h3 data-lang-en>100% Remote</h3>
+                <p data-lang-es>Trabaja desde cualquier lugar del mundo</p>
+                <p data-lang-en>Work from anywhere in the world</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">💰</div>
+                <h3 data-lang-es>Comisiones Sin Tope</h3>
+                <h3 data-lang-en>Uncapped Commissions</h3>
+                <p data-lang-es>Gana tanto como vendas, sin límites</p>
+                <p data-lang-en">Earn as much as you sell, no limits</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">📚</div>
+                <h3 data-lang-es>Capacitación Pagada</h3>
+                <h3 data-lang-en>Paid Training</h3>
+                <p data-lang-es>4 semanas de training con salario</p>
+                <p data-lang-en>4 weeks of training with salary</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🚀</div>
+                <h3 data-lang-es>Crecimiento Rápido</h3>
+                <h3 data-lang-en>Fast Growth</h3>
+                <p data-lang-es>Promociones basadas en resultados</p>
+                <p data-lang-en>Promotions based on results</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🌍</div>
+                <h3 data-lang-es>Equipo Global</h3>
+                <h3 data-lang-en>Global Team</h3>
+                <p data-lang-es">Colegas en USA, Colombia, México, España</p>
+                <p data-lang-en>Colleagues in USA, Colombia, Mexico, Spain</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🎯</div>
+                <h3 data-lang-es>Tecnología Punta</h3>
+                <h3 data-lang-en>Cutting-Edge Tech</h3>
+                <p data-lang-es>Trabaja con IA, bots y automatización</p>
+                <p data-lang-en>Work with AI, bots and automation</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="process">
+        <div class="section-header">
+            <h2 data-lang-es>Proceso de <span class="gradient-text">Selección</span></h2>
+            <h2 data-lang-en>Selection <span class="gradient-text">Process</span></h2>
+        </div>
+
+        <div class="process-steps">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <h3 data-lang-es>Aplicación</h3>
+                <h3 data-lang-en>Application</h3>
+                <p data-lang-es>Envía tu CV por WhatsApp</p>
+                <p data-lang-en>Send your CV via WhatsApp</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <h3>Screening</h3>
+                <p data-lang-es>Llamada de 15-20 min</p>
+                <p data-lang-en>15-20 min call</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <h3 data-lang-es>Entrevista</h3>
+                <h3 data-lang-en>Interview</h3>
+                <p data-lang-es">Video llamada 45-60 min</p>
+                <p data-lang-en>Video call 45-60 min</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <h3>Role-Play</h3>
+                <p data-lang-es>Prueba práctica de venta</p>
+                <p data-lang-en">Practical sales test</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">5</div>
+                <h3 data-lang-es>Oferta</h3>
+                <h3 data-lang-en">Offer</h3>
+                <p data-lang-es">¡Bienvenido al equipo!</p>
+                <p data-lang-en">Welcome to the team!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOTTOM NAV -->
+    <nav class="page-nav">
+        <a href="orion-academy.html" data-lang-es>Inicio</a>
+        <a href="orion-academy.html" data-lang-en>Home</a>
+        <a href="orion-academy-reclutamiento.html" class="active" data-lang-es>Reclutamiento</a>
+        <a href="orion-academy-reclutamiento.html" class="active" data-lang-en>Recruitment</a>
+        <a href="orion-academy-recursos.html" data-lang-es>Recursos</a>
+        <a href="orion-academy-recursos.html" data-lang-en>Resources</a>
+        <a href="orion-bots.html" data-lang-es>ORION Tech</a>
+        <a href="orion-bots.html" data-lang-en>ORION Tech</a>
+    </nav>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2024 ORION Tech. All rights reserved.</p>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        function setLang(lang) {
+            document.body.classList.remove('lang-es', 'lang-en');
+            if (lang === 'en') document.body.classList.add('lang-en');
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+            localStorage.setItem('orion-lang', lang);
+        }
+        const savedLang = localStorage.getItem('orion-lang') || 'es';
+        setLang(savedLang);
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 1: Conoce ORION Tech | ORION Academy</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00f3ff;
+            --secondary: #bc13fe;
+            --accent: #25D366;
+            --dark: #0a0a0f;
+            --darker: #050508;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--darker);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: radial-gradient(ellipse at 20% 80%, rgba(0, 243, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(188, 19, 254, 0.1) 0%, transparent 50%), var(--darker);
+        }
+
+        .lang-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            padding: 8px 16px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            color: #fff;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .lang-btn:hover,
+        .lang-btn.active {
+            background: var(--primary);
+            color: #000;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: linear-gradient(180deg, rgba(5, 5, 8, 0.95) 0%, transparent 100%);
+            backdrop-filter: blur(20px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .back-btn {
+            padding: 10px 25px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            background: var(--primary);
+            color: #000;
+        }
+
+        .module-hero {
+            padding: 150px 50px 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .module-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 25px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .module-hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .module-hero p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 700px;
+            line-height: 1.8;
+        }
+
+        .content {
+            padding: 0 50px 100px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .video-section {
+            margin-bottom: 60px;
+        }
+
+        .video-container {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .video-container video {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 30px;
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .content-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .content-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .content-card p,
+        .content-card ul {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+
+        .content-card ul {
+            padding-left: 20px;
+        }
+
+        .content-card li {
+            margin-bottom: 8px;
+        }
+
+        .org-chart {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 50px;
+        }
+
+        .org-chart pre {
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: var(--primary);
+            overflow-x: auto;
+            white-space: pre;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .value-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .value-card:hover {
+            transform: scale(1.05);
+            border-color: var(--accent);
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .value-card h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .value-card p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .nav-btn {
+            padding: 15px 30px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s;
+        }
+
+        .nav-btn.prev {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            color: #fff;
+        }
+
+        .nav-btn.next {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #000;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        footer {
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            .module-hero,
+            .content {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+        }
+
+        [data-lang-es] {
+            display: block;
+        }
+
+        [data-lang-en] {
+            display: none;
+        }
+
+        body.lang-en [data-lang-es] {
+            display: none;
+        }
+
+        body.lang-en [data-lang-en] {
+            display: block;
+        }
+    </style>
+<link rel="stylesheet" href="orion-responsive.css"></head>
+
+<body>
+    <div class="bg-animation"></div>
+    <div class="lang-selector">
+        <button class="lang-btn active" onclick="setLang('es')">🇪🇸 ES</button>
+        <button class="lang-btn" onclick="setLang('en')">🇺🇸 EN</button>
+    </div>
+
+    <header>
+        <a href="orion-academy.html" class="logo">
+            <div class="logo-icon">O</div>
+            <span class="logo-text">Academy</span>
+        </a>
+        <a href="orion-academy.html#modulos" class="back-btn" data-lang-es>← Volver a Módulos</a>
+        <a href="orion-academy.html#modulos" class="back-btn" data-lang-en>← Back to Modules</a>
+    </header>
+
+    <section class="module-hero">
+        <span class="module-badge">MÓDULO 01 | SEMANA 1</span>
+        <h1 data-lang-es>Conoce <span class="gradient-text">ORION Tech</span></h1>
+        <h1 data-lang-en>Know <span class="gradient-text">ORION Tech</span></h1>
+        <p data-lang-es>Misión, visión, valores, estructura organizacional y cultura de la empresa. Este módulo te dará
+            las bases para entender quiénes somos y hacia dónde vamos.</p>
+        <p data-lang-en>Mission, vision, values, organizational structure and company culture. This module will give you
+            the foundation to understand who we are and where we're going.</p>
+    </section>
+
+    <div class="content">
+        <!-- Video Section -->
+        <div class="video-section">
+            <h2 class="section-title" data-lang-es>Video: Estructura Organizacional</h2>
+            <h2 class="section-title" data-lang-en>Video: Organizational Structure</h2>
+            <div class="video-container">
+                <video controls poster="training_images/org_chart_orion_1766437576986.png">
+                    <source src="training_images/org_chart_orion_1766437576986.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+
+        <!-- Mission & Vision -->
+        <h2 class="section-title" data-lang-es>Misión y Visión</h2>
+        <h2 class="section-title" data-lang-en>Mission & Vision</h2>
+        <div class="content-grid">
+            <div class="content-card">
+                <h3 data-lang-es>🎯 Nuestra Misión</h3>
+                <h3 data-lang-en>🎯 Our Mission</h3>
+                <p data-lang-es>Democratizar la automatización inteligente para pequeños y medianos negocios,
+                    permitiéndoles competir con grandes empresas usando tecnología de punta.</p>
+                <p data-lang-en>Democratize intelligent automation for small and medium businesses, allowing them to
+                    compete with large companies using cutting-edge technology.</p>
+            </div>
+            <div class="content-card">
+                <h3 data-lang-es>🔮 Nuestra Visión</h3>
+                <h3 data-lang-en>🔮 Our Vision</h3>
+                <p data-lang-es">Ser la plataforma líder de automatización con IA para negocios hispanohablantes en todo
+                    el mundo para 2028.</p>
+                <p data-lang-en>Be the leading AI automation platform for Spanish-speaking businesses worldwide by 2028.
+                </p>
+            </div>
+            <div class="content-card">
+                <h3 data-lang-es">💡 Qué Hacemos</h3>
+                <h3 data-lang-en">💡 What We Do</h3>
+                <p data-lang-es">Creamos asistentes de IA que responden mensajes 24/7 en WhatsApp, Instagram, Facebook,
+                    Telegram y más. Automatizamos reservas, citas, ventas y atención al cliente.</p>
+                <p data-lang-en">We create AI assistants that respond to messages 24/7 on WhatsApp, Instagram, Facebook,
+                    Telegram and more. We automate reservations, appointments, sales and customer service.</p>
+            </div>
+        </div>
+
+        <!-- Org Chart -->
+        <h2 class="section-title" data-lang-es>Estructura Organizacional</h2>
+        <h2 class="section-title" data-lang-en>Organizational Structure</h2>
+        <div class="org-chart">
+            <pre>
+                      ┌────────────────────────────────────┐
+                      │         CEO / FUNDADOR             │
+                      │      Alexander G. Espinosa         │
+                      │         San José, CA               │
+                      └────────────────┬───────────────────┘
+                                       │
+            ┌──────────────────────────┼──────────────────────────────┐
+            │                          │                              │
+  ┌─────────┴─────────┐     ┌──────────┴──────────┐        ┌─────────┴─────────┐
+  │  VENTAS & BD      │     │   OPERACIONES       │        │   TECNOLOGÍA      │
+  │  (Revenue)        │     │   (Delivery)        │        │   (Product)       │
+  └─────────┬─────────┘     └──────────┬──────────┘        └─────────┬─────────┘
+            │                          │                              │
+  ┌─────────┼─────────┐     ┌──────────┼──────────┐        ┌─────────┼─────────┐
+  │         │         │     │          │          │        │         │         │
+SDRs    Closers   Account  CS Mgr  Onboarding  Support   Dev Lead  DevOps   QA/Test
+               Managers
+            </pre>
+        </div>
+
+        <!-- Values -->
+        <h2 class="section-title" data-lang-es>Nuestros Valores</h2>
+        <h2 class="section-title" data-lang-en>Our Values</h2>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">🚀</div>
+                <h4 data-lang-es>Innovación</h4>
+                <h4 data-lang-en>Innovation</h4>
+                <p data-lang-es>Buscamos nuevas formas de resolver problemas</p>
+                <p data-lang-en>We seek new ways to solve problems</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🤝</div>
+                <h4 data-lang-es>Confianza</h4>
+                <h4 data-lang-en>Trust</h4>
+                <p data-lang-es">Hacemos lo que decimos</p>
+                <p data-lang-en">We do what we say</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">💪</div>
+                <h4 data-lang-es">Resiliencia</h4>
+                <h4 data-lang-en">Resilience</h4>
+                <p data-lang-es">No nos rendimos ante rechazos</p>
+                <p data-lang-en">We don't give up on rejections</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🌍</div>
+                <h4 data-lang-es">Impacto</h4>
+                <h4 data-lang-en">Impact</h4>
+                <p data-lang-es">Medimos resultados reales</p>
+                <p data-lang-en">We measure real results</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🎯</div>
+                <h4 data-lang-es">Excelencia</h4>
+                <h4 data-lang-en">Excellence</h4>
+                <p data-lang-es">Calidad sobre cantidad</p>
+                <p data-lang-en">Quality over quantity</p>
+            </div>
+        </div>
+
+        <!-- Countries -->
+        <h2 class="section-title" data-lang-es>Presencia Global</h2>
+        <h2 class="section-title" data-lang-en>Global Presence</h2>
+        <div class="content-grid">
+            <div class="content-card">
+                <h3>🇺🇸 USA (Headquarters)</h3>
+                <ul>
+                    <li>San José, California</li>
+                    <li data-lang-es>CEO + Liderazgo ejecutivo</li>
+                    <li data-lang-en>CEO + Executive leadership</li>
+                    <li data-lang-es>Mercado principal</li>
+                    <li data-lang-en>Primary market</li>
+                </ul>
+            </div>
+            <div class="content-card">
+                <h3>🇨🇴 Colombia (LATAM Hub)</h3>
+                <ul>
+                    <li>Medellín</li>
+                    <li data-lang-es>Director de Operaciones</li>
+                    <li data-lang-en>Operations Director</li>
+                    <li data-lang-es>Equipo de SDRs y Developers</li>
+                    <li data-lang-en>SDRs and Developers team</li>
+                </ul>
+            </div>
+            <div class="content-card">
+                <h3>🇲🇽 México</h3>
+                <ul>
+                    <li data-lang-es>Ciudad de México</li>
+                    <li data-lang-en>Mexico City</li>
+                    <li data-lang-es>En desarrollo - 2025</li>
+                    <li data-lang-en>In development - 2025</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav-buttons">
+            <a href="orion-academy.html#modulos" class="nav-btn prev" data-lang-es>← Todos los Módulos</a>
+            <a href="orion-academy.html#modulos" class="nav-btn prev" data-lang-en>← All Modules</a>
+            <a href="orion-academy-modulo2.html" class="nav-btn next" data-lang-es>Módulo 2: Producto →</a>
+            <a href="orion-academy-modulo2.html" class="nav-btn next" data-lang-en>Module 2: Product →</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 ORION Tech Academy. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function setLang(lang) {
+            document.body.classList.remove('lang-es', 'lang-en');
+            if (lang === 'en') document.body.classList.add('lang-en');
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+            localStorage.setItem('orion-lang', lang);
+        }
+        const savedLang = localStorage.getItem('orion-lang') || 'es';
+        setLang(savedLang);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORION Academy | Certificaciones</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00f3ff;
+            --secondary: #bc13fe;
+            --accent: #39ff14;
+            --dark: #0a0a0f;
+            --darker: #050508;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--darker);
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background:
+                radial-gradient(ellipse at 20% 80%, rgba(57, 255, 20, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(188, 19, 254, 0.1) 0%, transparent 50%),
+                var(--darker);
+        }
+
+        .lang-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            padding: 8px 16px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            color: #fff;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .lang-btn:hover,
+        .lang-btn.active {
+            background: var(--primary);
+            color: #000;
+            border-color: var(--primary);
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: linear-gradient(180deg, rgba(5, 5, 8, 0.95) 0%, transparent 100%);
+            backdrop-filter: blur(20px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: #fff;
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.5);
+        }
+
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero {
+            min-height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 150px 20px 60px;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 700px;
+        }
+
+        /* SECTION */
+        .section {
+            padding: 60px 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        /* LEVEL CARDS */
+        .levels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .level-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .level-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .level-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 25px 60px rgba(57, 255, 20, 0.15);
+        }
+
+        .level-badge {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0, 243, 255, 0.3);
+        }
+
+        .level-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .level-card .level-name {
+            font-size: 0.9rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .level-reqs {
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .level-reqs li {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .level-reqs li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* BENEFITS TABLE */
+        .benefits-section {
+            background: linear-gradient(180deg, transparent, rgba(57, 255, 20, 0.03), transparent);
+            padding: 80px 50px;
+        }
+
+        .benefits-table-container {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 40px;
+        }
+
+        .benefits-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .benefits-table th,
+        .benefits-table td {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .benefits-table th {
+            background: rgba(0, 243, 255, 0.1);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            color: var(--primary);
+        }
+
+        .benefits-table td {
+            font-size: 0.95rem;
+        }
+
+        .benefits-table tr:hover td {
+            background: rgba(57, 255, 20, 0.05);
+        }
+
+        .benefit-amount {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* PROCESS */
+        .process {
+            padding: 80px 50px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .process-step {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+            padding: 30px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .process-step:hover {
+            border-color: var(--primary);
+            transform: translateX(10px);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #000;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .step-content ul {
+            list-style: none;
+        }
+
+        .step-content li {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .step-content li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        /* NAV */
+        .page-nav {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            padding: 15px 25px;
+            background: rgba(10, 10, 15, 0.9);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+        }
+
+        .page-nav a {
+            padding: 10px 20px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border-radius: 25px;
+            transition: all 0.3s;
+        }
+
+        .page-nav a:hover,
+        .page-nav a.active {
+            background: var(--accent);
+            color: #000;
+        }
+
+        footer {
+            padding: 50px;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+            margin-bottom: 80px;
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            .section,
+            .process,
+            .benefits-section {
+                padding: 40px 20px;
+            }
+
+            .page-nav {
+                bottom: 10px;
+                padding: 10px 15px;
+                gap: 5px;
+            }
+
+            .page-nav a {
+                padding: 8px 12px;
+                font-size: 0.75rem;
+            }
+        }
+
+        [data-lang-es] {
+            display: block;
+        }
+
+        [data-lang-en] {
+            display: none;
+        }
+
+        body.lang-en [data-lang-es] {
+            display: none;
+        }
+
+        body.lang-en [data-lang-en] {
+            display: block;
+        }
+    </style>
+<link rel="stylesheet" href="orion-responsive.css"></head>
+
+<body>
+    <div class="bg-animation"></div>
+
+    <!-- LANGUAGE SELECTOR -->
+    <div class="lang-selector">
+        <button class="lang-btn active" onclick="setLang('es')">🇪🇸 ES</button>
+        <button class="lang-btn" onclick="setLang('en')">🇺🇸 EN</button>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <a href="orion-academy.html" class="logo">
+            <img src="images/orion_logo.png" alt="ORION Tech" class="logo-img"
+                style="height: 50px; border-radius: 12px; box-shadow: 0 0 30px rgba(0, 243, 255, 0.5);">
+            <span class="logo-text">Academy</span>
+        </a>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <h1 data-lang-es>Certificaciones <span class="gradient-text">Internas</span></h1>
+        <h1 data-lang-en>Internal <span class="gradient-text">Certifications</span></h1>
+        <p data-lang-es>Crece profesionalmente y aumenta tu salario con certificaciones que validan tu expertise</p>
+        <p data-lang-en>Grow professionally and increase your salary with certifications that validate your expertise
+        </p>
+    </section>
+
+    <!-- LEVELS -->
+    <section class="section">
+        <div class="section-header">
+            <h2 data-lang-es>Niveles de <span class="gradient-text">Certificación</span></h2>
+            <h2 data-lang-en>Certification <span class="gradient-text">Levels</span></h2>
+        </div>
+
+        <div class="levels-grid">
+            <!-- Level 1 -->
+            <div class="level-card">
+                <div class="level-badge">🌱</div>
+                <h3>Nivel 1</h3>
+                <div class="level-name">TRAINEE</div>
+                <ul class="level-reqs">
+                    <li data-lang-es>Completar onboarding</li>
+                    <li data-lang-en>Complete onboarding</li>
+                    <li data-lang-es>Aprobar quiz básico (≥70%)</li>
+                    <li data-lang-en>Pass basic quiz (≥70%)</li>
+                    <li data-lang-es>Experiencia: 0-30 días</li>
+                    <li data-lang-en>Experience: 0-30 days</li>
+                </ul>
+            </div>
+
+            <!-- Level 2 -->
+            <div class="level-card">
+                <div class="level-badge">⭐</div>
+                <h3>Nivel 2</h3>
+                <div class="level-name">CERTIFIED</div>
+                <ul class="level-reqs">
+                    <li data-lang-es>3 meses en la empresa</li>
+                    <li data-lang-en>3 months at company</li>
+                    <li data-lang-es>Aprobar todos los quizzes (≥80%)</li>
+                    <li data-lang-en>Pass all quizzes (≥80%)</li>
+                    <li data-lang-es>KPIs cumplidos 2 meses</li>
+                    <li data-lang-en>KPIs met 2 months</li>
+                </ul>
+            </div>
+
+            <!-- Level 3 -->
+            <div class="level-card">
+                <div class="level-badge">🚀</div>
+                <h3>Nivel 3</h3>
+                <div class="level-name">SENIOR</div>
+                <ul class="level-reqs">
+                    <li data-lang-es>12+ meses en la empresa</li>
+                    <li data-lang-en>12+ months at company</li>
+                    <li data-lang-es>Quiz avanzado (≥85%)</li>
+                    <li data-lang-en>Advanced quiz (≥85%)</li>
+                    <li data-lang-es>KPIs "Excelente" 6 meses</li>
+                    <li data-lang-en>KPIs "Excellent" 6 months</li>
+                    <li data-lang-es>Mentoría 2+ personas</li>
+                    <li data-lang-en>Mentored 2+ people</li>
+                </ul>
+            </div>
+
+            <!-- Level 4 -->
+            <div class="level-card">
+                <div class="level-badge">👑</div>
+                <h3>Nivel 4</h3>
+                <div class="level-name">SPECIALIST</div>
+                <ul class="level-reqs">
+                    <li data-lang-es>24+ meses en la empresa</li>
+                    <li data-lang-en>24+ months at company</li>
+                    <li data-lang-es>Contribución a procesos</li>
+                    <li data-lang-en>Process contribution</li>
+                    <li data-lang-es>Liderazgo demostrado</li>
+                    <li data-lang-en>Demonstrated leadership</li>
+                    <li data-lang-es>Evaluación 360° positiva</li>
+                    <li data-lang-en>Positive 360° evaluation</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFITS -->
+    <section class="benefits-section">
+        <div class="section-header">
+            <h2 data-lang-es>Beneficios por <span class="gradient-text">Certificación</span></h2>
+            <h2 data-lang-en>Certification <span class="gradient-text">Benefits</span></h2>
+        </div>
+
+        <div class="benefits-table-container">
+            <table class="benefits-table">
+                <thead>
+                    <tr>
+                        <th data-lang-es>Certificación</th>
+                        <th data-lang-en>Certification</th>
+                        <th data-lang-es>Requisitos</th>
+                        <th data-lang-en>Requirements</th>
+                        <th data-lang-es>Beneficio</th>
+                        <th data-lang-en>Benefit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ORION SDR Certified</td>
+                        <td data-lang-es>3 meses + quizzes + 2 cierres asistidos</td>
+                        <td data-lang-en>3 months + quizzes + 2 assisted closings</td>
+                        <td class="benefit-amount">+$50 USD/mes</td>
+                    </tr>
+                    <tr>
+                        <td>ORION SDR Senior</td>
+                        <td data-lang-es>12 meses + SDR del mes 3 veces</td>
+                        <td data-lang-en>12 months + SDR of month 3 times</td>
+                        <td class="benefit-amount">+$150 USD/mes</td>
+                    </tr>
+                    <tr>
+                        <td>ORION SDR Specialist</td>
+                        <td data-lang-es>24 meses + capacitar nuevos SDRs</td>
+                        <td data-lang-en>24 months + train new SDRs</td>
+                        <td class="benefit-amount">+$300 USD/mes</td>
+                    </tr>
+                    <tr>
+                        <td>ORION Dev Certified</td>
+                        <td data-lang-es>3 meses + deploy exitoso + code review</td>
+                        <td data-lang-en>3 months + successful deploy + code review</td>
+                        <td class="benefit-amount">+$100 USD/mes</td>
+                    </tr>
+                    <tr>
+                        <td>ORION Dev Senior</td>
+                        <td data-lang-es>12 meses + arquitectura aprobada</td>
+                        <td data-lang-en>12 months + approved architecture</td>
+                        <td class="benefit-amount">+$300 USD/mes</td>
+                    </tr>
+                    <tr>
+                        <td>ORION Tech Lead</td>
+                        <td data-lang-es>24 meses + liderar proyecto + mentorías</td>
+                        <td data-lang-en>24 months + lead project + mentoring</td>
+                        <td class="benefit-amount">+$500 USD/mes</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="process">
+        <div class="section-header">
+            <h2 data-lang-es>Proceso de <span class="gradient-text">Certificación</span></h2>
+            <h2 data-lang-en>Certification <span class="gradient-text">Process</span></h2>
+        </div>
+
+        <div class="process-steps">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4 data-lang-es>Solicitud</h4>
+                    <h4 data-lang-en>Application</h4>
+                    <ul>
+                        <li data-lang-es>Cumplir tiempo mínimo</li>
+                        <li data-lang-en>Meet minimum time requirement</li>
+                        <li data-lang-es>Llenar formulario de certificación</li>
+                        <li data-lang-en>Fill certification form</li>
+                        <li data-lang-es>Enviar a manager para revisión</li>
+                        <li data-lang-en>Submit to manager for review</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4 data-lang-es>Evaluación</h4>
+                    <h4 data-lang-en>Evaluation</h4>
+                    <ul>
+                        <li data-lang-es>Verificar KPIs históricos</li>
+                        <li data-lang-en>Verify historical KPIs</li>
+                        <li data-lang-es>Tomar quiz de certificación</li>
+                        <li data-lang-en>Take certification quiz</li>
+                        <li data-lang-es>Evaluación práctica (si aplica)</li>
+                        <li data-lang-en>Practical evaluation (if applicable)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4 data-lang-es>Revisión (5 días hábiles)</h4>
+                    <h4 data-lang-en>Review (5 business days)</h4>
+                    <ul>
+                        <li data-lang-es>Comité revisa resultados</li>
+                        <li data-lang-en>Committee reviews results</li>
+                        <li data-lang-es>Entrevista de validación (Nivel 3+)</li>
+                        <li data-lang-en>Validation interview (Level 3+)</li>
+                        <li data-lang-es>Decisión final</li>
+                        <li data-lang-en>Final decision</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h4 data-lang-es>Otorgamiento</h4>
+                    <h4 data-lang-en>Awarding</h4>
+                    <ul>
+                        <li data-lang-es>Actualización de título en sistemas</li>
+                        <li data-lang-en>Title update in systems</li>
+                        <li data-lang-es>Ajuste salarial efectivo siguiente mes</li>
+                        <li data-lang-en>Salary adjustment next month</li>
+                        <li data-lang-es>Badge digital + certificado PDF</li>
+                        <li data-lang-en>Digital badge + PDF certificate</li>
+                        <li data-lang-es>Anuncio en #📢-anuncios</li>
+                        <li data-lang-en>Announcement in #📢-announcements</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOTTOM NAV -->
+    <nav class="page-nav">
+        <a href="orion-academy.html" data-lang-es>Inicio</a>
+        <a href="orion-academy.html" data-lang-en>Home</a>
+        <a href="orion-academy-reclutamiento.html" data-lang-es>Reclutamiento</a>
+        <a href="orion-academy-reclutamiento.html" data-lang-en>Recruitment</a>
+        <a href="orion-academy-quizzes.html" data-lang-es>Quizzes</a>
+        <a href="orion-academy-quizzes.html" data-lang-en>Quizzes</a>
+        <a href="orion-academy-certificaciones.html" class="active" data-lang-es>Certificaciones</a>
+        <a href="orion-academy-certificaciones.html" class="active" data-lang-en>Certifications</a>
+        <a href="orion-academy-recursos.html" data-lang-es>Recursos</a>
+        <a href="orion-academy-recursos.html" data-lang-en>Resources</a>
+    </nav>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2024 ORION Tech. All rights reserved.</p>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        function setLang(lang) {
+            document.body.classList.remove('lang-es', 'lang-en');
+            if (lang === 'en') document.body.classList.add('lang-en');
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+            localStorage.setItem('orion-lang', lang);
+        }
+        const savedLang = localStorage.getItem('orion-lang') || 'es';
+        setLang(savedLang);
+    </script>
+</body>
+
+</html>

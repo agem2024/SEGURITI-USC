@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 5: Herramientas CRM | ORION Academy</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00f3ff;
+            --secondary: #bc13fe;
+            --accent: #25D366;
+            --darker: #050508;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--darker);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: radial-gradient(ellipse at 80% 20%, rgba(0, 243, 255, 0.1) 0%, transparent 50%), var(--darker);
+        }
+
+        .lang-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            padding: 8px 16px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: #000;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            z-index: 1000;
+            background: linear-gradient(180deg, rgba(5, 5, 8, 0.95), transparent);
+            backdrop-filter: blur(20px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron';
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .logo-text {
+            font-family: 'Orbitron';
+            font-size: 1.5rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .back-btn {
+            padding: 10px 25px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .module-hero {
+            padding: 150px 50px 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .module-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 25px;
+            font-family: 'Orbitron';
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .module-hero h1 {
+            font-family: 'Orbitron';
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 20px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .module-hero p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 700px;
+            line-height: 1.8;
+        }
+
+        .content {
+            padding: 0 50px 100px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Orbitron';
+            font-size: 1.8rem;
+            margin: 40px 0 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 30px;
+            background: linear-gradient(var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .tool-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.3s;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+        }
+
+        .tool-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .tool-card h3 {
+            font-family: 'Orbitron';
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .tool-card p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .tool-card ul {
+            padding-left: 20px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .tool-card li {
+            margin-bottom: 8px;
+        }
+
+        .workflow-box {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 30px;
+        }
+
+        .workflow-box h3 {
+            font-family: 'Orbitron';
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .workflow-steps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .workflow-step {
+            flex: 1;
+            min-width: 150px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .workflow-step::after {
+            content: '→';
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .workflow-step:last-child::after {
+            display: none;
+        }
+
+        .step-num {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron';
+            font-weight: 700;
+            margin: 0 auto 10px;
+        }
+
+        .workflow-step p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .nav-btn {
+            padding: 15px 30px;
+            font-family: 'Orbitron';
+            text-decoration: none;
+            border-radius: 30px;
+        }
+
+        .nav-btn.prev {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            color: #fff;
+        }
+
+        .nav-btn.next {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #000;
+        }
+
+        footer {
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        [data-lang-es] {
+            display: block;
+        }
+
+        [data-lang-en] {
+            display: none;
+        }
+
+        body.lang-en [data-lang-es] {
+            display: none;
+        }
+
+        body.lang-en [data-lang-en] {
+            display: block;
+        }
+    </style>
+<link rel="stylesheet" href="orion-responsive.css"></head>
+
+<body>
+    <div class="bg-animation"></div>
+    <div class="lang-selector">
+        <button class="lang-btn active" onclick="setLang('es')">🇪🇸 ES</button>
+        <button class="lang-btn" onclick="setLang('en')">🇺🇸 EN</button>
+    </div>
+    <header>
+        <a href="orion-academy.html" class="logo">
+            <div class="logo-icon">O</div><span class="logo-text">Academy</span>
+        </a>
+        <a href="orion-academy.html#modulos" class="back-btn">← Módulos</a>
+    </header>
+
+    <section class="module-hero">
+        <span class="module-badge">MÓDULO 05 | SEMANA 3</span>
+        <h1 data-lang-es>Herramientas <span class="gradient-text">CRM</span></h1>
+        <h1 data-lang-en><span class="gradient-text">CRM</span> Tools</h1>
+        <p data-lang-es>Domina HubSpot, Slack, WhatsApp Business y todas las herramientas del equipo. La tecnología es
+            tu aliado.</p>
+        <p data-lang-en>Master HubSpot, Slack, WhatsApp Business and all team tools. Technology is your ally.</p>
+    </section>
+
+    <div class="content">
+        <h2 class="section-title" data-lang-es>Herramientas Principales</h2>
+        <h2 class="section-title" data-lang-en>Main Tools</h2>
+
+        <div class="tools-grid">
+            <div class="tool-card">
+                <div class="tool-icon">📊</div>
+                <h3>HubSpot / Kommo</h3>
+                <p data-lang-es">CRM principal para gestionar leads y pipeline de ventas.</p>
+                <p data-lang-en">Main CRM to manage leads and sales pipeline.</p>
+                <ul>
+                    <li data-lang-es">Registrar cada lead</li>
+                    <li data-lang-en">Register every lead</li>
+                    <li data-lang-es">Mover por etapas</li>
+                    <li data-lang-en">Move through stages</li>
+                    <li data-lang-es">Notas y seguimiento</li>
+                    <li data-lang-en">Notes and follow-up</li>
+                </ul>
+            </div>
+            <div class="tool-card">
+                <div class="tool-icon">💬</div>
+                <h3>Slack</h3>
+                <p data-lang-es">Comunicación interna del equipo.</p>
+                <p data-lang-en">Internal team communication.</p>
+                <ul>
+                    <li data-lang-es">Canales por equipo</li>
+                    <li data-lang-en">Team channels</li>
+                    <li data-lang-es">Responder en < 4 horas</li>
+                    <li data-lang-en">Respond in < 4 hours</li>
+                    <li data-lang-es">Usar threads</li>
+                    <li data-lang-en">Use threads</li>
+                </ul>
+            </div>
+            <div class="tool-card">
+                <div class="tool-icon">📱</div>
+                <h3>WhatsApp Business</h3>
+                <p data-lang-es">Comunicación con prospectos y clientes.</p>
+                <p data-lang-en">Communication with prospects and clients.</p>
+                <ul>
+                    <li data-lang-es">Respuestas rápidas</li>
+                    <li data-lang-en">Quick replies</li>
+                    <li data-lang-es">Etiquetas de estado</li>
+                    <li data-lang-en">Status labels</li>
+                    <li data-lang-es">Catálogo de precios</li>
+                    <li data-lang-en">Price catalog</li>
+                </ul>
+            </div>
+            <div class="tool-card">
+                <div class="tool-icon">📅</div>
+                <h3>Google Calendar</h3>
+                <p data-lang-es">Agendamiento de demos y reuniones.</p>
+                <p data-lang-en">Scheduling demos and meetings.</p>
+                <ul>
+                    <li data-lang-es">Link de calendario público</li>
+                    <li data-lang-en">Public calendar link</li>
+                    <li data-lang-es">Recordatorios</li>
+                    <li data-lang-en">Reminders</li>
+                    <li data-lang-es">Slots disponibles</li>
+                    <li data-lang-en">Available slots</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 class="section-title" data-lang-es">Flujo de Trabajo Diario</h2>
+        <h2 class="section-title" data-lang-en">Daily Workflow</h2>
+
+        <div class="workflow-box">
+            <h3 data-lang-es">Proceso de Lead a Cierre</h3>
+            <h3 data-lang-en">Lead to Close Process</h3>
+            <div class="workflow-steps">
+                <div class="workflow-step">
+                    <div class="step-num">1</div>
+                    <p data-lang-es">Lead entra</p>
+                    <p data-lang-en">Lead comes in</p>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-num">2</div>
+                    <p data-lang-es">Registrar en CRM</p>
+                    <p data-lang-en">Register in CRM</p>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-num">3</div>
+                    <p data-lang-es">Llamar/WhatsApp</p>
+                    <p data-lang-en">Call/WhatsApp</p>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-num">4</div>
+                    <p data-lang-es">Agendar demo</p>
+                    <p data-lang-en">Schedule demo</p>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-num">5</div>
+                    <p data-lang-es">Cerrar venta</p>
+                    <p data-lang-en">Close sale</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="orion-academy-modulo4.html" class="nav-btn prev">← Módulo 4: Role-Play</a>
+            <a href="orion-academy-modulo6.html" class="nav-btn next">Módulo 6: KPIs →</a>
+        </div>
+    </div>
+    <footer>
+        <p>© 2024 ORION Tech Academy</p>
+    </footer>
+    <script>
+        function setLang(lang) { document.body.classList.remove('lang-es', 'lang-en'); if (lang === 'en') document.body.classList.add('lang-en'); document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active')); document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active'); localStorage.setItem('orion-lang', lang); }
+        setLang(localStorage.getItem('orion-lang') || 'es');
+    </script>
+</body>
+
+</html>

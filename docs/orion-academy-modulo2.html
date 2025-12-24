@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: Nuestro Producto | ORION Academy</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00f3ff;
+            --secondary: #bc13fe;
+            --accent: #25D366;
+            --dark: #0a0a0f;
+            --darker: #050508;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--darker);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: radial-gradient(ellipse at 20% 80%, rgba(0, 243, 255, 0.1) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(188, 19, 254, 0.1) 0%, transparent 50%), var(--darker);
+        }
+
+        .lang-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            padding: 8px 16px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            color: #fff;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .lang-btn:hover,
+        .lang-btn.active {
+            background: var(--primary);
+            color: #000;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: linear-gradient(180deg, rgba(5, 5, 8, 0.95) 0%, transparent 100%);
+            backdrop-filter: blur(20px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .back-btn {
+            padding: 10px 25px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            background: var(--primary);
+            color: #000;
+        }
+
+        .module-hero {
+            padding: 150px 50px 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .module-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 25px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .module-hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .module-hero p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 700px;
+            line-height: 1.8;
+        }
+
+        .content {
+            padding: 0 50px 100px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .video-section {
+            margin-bottom: 60px;
+        }
+
+        .video-container {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .video-container video {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 30px;
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .content-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .content-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .content-card p,
+        .content-card ul {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+
+        .content-card ul {
+            padding-left: 20px;
+        }
+
+        .content-card li {
+            margin-bottom: 8px;
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .package-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 35px;
+            text-align: center;
+            transition: all 0.4s;
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+        }
+
+        .package-card.popular {
+            border-color: var(--accent);
+            box-shadow: 0 0 30px rgba(37, 211, 102, 0.2);
+        }
+
+        .package-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .package-price {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .package-period {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+        }
+
+        .package-features {
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .package-features li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+            color: rgba(255, 255, 255, 0.7);
+            list-style: none;
+        }
+
+        .package-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .channel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .channel-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .channel-card:hover {
+            transform: scale(1.05);
+        }
+
+        .channel-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .channel-card h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.95rem;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .nav-btn {
+            padding: 15px 30px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s;
+        }
+
+        .nav-btn.prev {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            color: #fff;
+        }
+
+        .nav-btn.next {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #000;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        footer {
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            .module-hero,
+            .content {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+        }
+
+        [data-lang-es] {
+            display: block;
+        }
+
+        [data-lang-en] {
+            display: none;
+        }
+
+        body.lang-en [data-lang-es] {
+            display: none;
+        }
+
+        body.lang-en [data-lang-en] {
+            display: block;
+        }
+    </style>
+<link rel="stylesheet" href="orion-responsive.css"></head>
+
+<body>
+    <div class="bg-animation"></div>
+    <div class="lang-selector">
+        <button class="lang-btn active" onclick="setLang('es')">🇪🇸 ES</button>
+        <button class="lang-btn" onclick="setLang('en')">🇺🇸 EN</button>
+    </div>
+    <header>
+        <a href="orion-academy.html" class="logo">
+            <div class="logo-icon">O</div><span class="logo-text">Academy</span>
+        </a>
+        <a href="orion-academy.html#modulos" class="back-btn" data-lang-es>← Volver a Módulos</a>
+        <a href="orion-academy.html#modulos" class="back-btn" data-lang-en>← Back to Modules</a>
+    </header>
+
+    <section class="module-hero">
+        <span class="module-badge">MÓDULO 02 | SEMANA 1</span>
+        <h1 data-lang-es>Nuestro <span class="gradient-text">Producto</span></h1>
+        <h1 data-lang-en>Our <span class="gradient-text">Product</span></h1>
+        <p data-lang-es>Domina cada feature del producto: bots de IA, canales de comunicación, integraciones y casos de
+            uso reales. Conocer el producto es clave para venderlo.</p>
+        <p data-lang-en>Master every product feature: AI bots, communication channels, integrations and real use cases.
+            Knowing the product is key to selling it.</p>
+    </section>
+
+    <div class="content">
+        <!-- Video -->
+        <div class="video-section">
+            <h2 class="section-title" data-lang-es>Video: Bot XONA en Acción</h2>
+            <h2 class="section-title" data-lang-en>Video: XONA Bot in Action</h2>
+            <div class="video-container">
+                <video controls poster="training_images/ai_bot_xona_1766437698692.png">
+                    <source src="training_images/ai_bot_xona_1766437698692.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+
+        <!-- What is XONA -->
+        <h2 class="section-title" data-lang-es>¿Qué es XONA?</h2>
+        <h2 class="section-title" data-lang-en>What is XONA?</h2>
+        <div class="content-grid">
+            <div class="content-card">
+                <h3 data-lang-es>🤖 Asistente de IA</h3>
+                <h3 data-lang-en>🤖 AI Assistant</h3>
+                <p data-lang-es">XONA es un asistente virtual con inteligencia artificial que responde mensajes
+                    automáticamente 24/7. Entiende el contexto, responde preguntas y puede agendar citas.</p>
+                <p data-lang-en">XONA is a virtual assistant with artificial intelligence that responds to messages
+                    automatically 24/7. It understands context, answers questions and can schedule appointments.</p>
+            </div>
+            <div class="content-card">
+                <h3 data-lang-es">⚡ Multi-Canal</h3>
+                <h3 data-lang-en">⚡ Multi-Channel</h3>
+                <p data-lang-es">Funciona en WhatsApp, Instagram DM, Facebook Messenger, Telegram, Web Chat y llamadas
+                    telefónicas. Un solo bot para todos los canales.</p>
+                <p data-lang-en">Works on WhatsApp, Instagram DM, Facebook Messenger, Telegram, Web Chat and phone
+                    calls. One bot for all channels.</p>
+            </div>
+            <div class="content-card">
+                <h3 data-lang-es">🎯 Personalizable</h3>
+                <h3 data-lang-en">🎯 Customizable</h3>
+                <p data-lang-es">Se entrena con la información del negocio del cliente: precios, horarios, servicios,
+                    ubicación. Responde como si fuera un empleado del negocio.</p>
+                <p data-lang-en">Trained with the client's business information: prices, hours, services, location.
+                    Responds as if it were a business employee.</p>
+            </div>
+        </div>
+
+        <!-- Channels -->
+        <h2 class="section-title" data-lang-es>Canales Soportados</h2>
+        <h2 class="section-title" data-lang-en>Supported Channels</h2>
+        <div class="channel-grid">
+            <div class="channel-card" style="border-color: #25D366;">
+                <div class="channel-icon">📱</div>
+                <h4>WhatsApp</h4>
+            </div>
+            <div class="channel-card" style="border-color: #E4405F;">
+                <div class="channel-icon">📸</div>
+                <h4>Instagram</h4>
+            </div>
+            <div class="channel-card" style="border-color: #1877F2;">
+                <div class="channel-icon">👤</div>
+                <h4>Facebook</h4>
+            </div>
+            <div class="channel-card" style="border-color: #0088cc;">
+                <div class="channel-icon">✈️</div>
+                <h4>Telegram</h4>
+            </div>
+            <div class="channel-card" style="border-color: #00f3ff;">
+                <div class="channel-icon">💬</div>
+                <h4>Web Chat</h4>
+            </div>
+            <div class="channel-card" style="border-color: #bc13fe;">
+                <div class="channel-icon">📞</div>
+                <h4 data-lang-es">Teléfono</h4>
+                <h4 data-lang-en">Phone</h4>
+            </div>
+        </div>
+
+        <!-- Packages -->
+        <h2 class="section-title" data-lang-es>Paquetes y Precios</h2>
+        <h2 class="section-title" data-lang-en>Packages and Pricing</h2>
+        <div class="packages-grid">
+            <div class="package-card">
+                <div class="package-name">Starter</div>
+                <div class="package-price">$97</div>
+                <div class="package-period" data-lang-es>/mes</div>
+                <div class="package-period" data-lang-en>/month</div>
+                <ul class="package-features">
+                    <li data-lang-es">1 canal (WhatsApp)</li>
+                    <li data-lang-en">1 channel (WhatsApp)</li>
+                    <li data-lang-es">1,000 mensajes/mes</li>
+                    <li data-lang-en">1,000 messages/month</li>
+                    <li data-lang-es">Horario limitado</li>
+                    <li data-lang-en">Limited hours</li>
+                </ul>
+            </div>
+            <div class="package-card popular">
+                <div class="package-name">Pro ⭐</div>
+                <div class="package-price">$197</div>
+                <div class="package-period" data-lang-es>/mes</div>
+                <div class="package-period" data-lang-en>/month</div>
+                <ul class="package-features">
+                    <li data-lang-es">3 canales</li>
+                    <li data-lang-en">3 channels</li>
+                    <li data-lang-es">5,000 mensajes/mes</li>
+                    <li data-lang-en">5,000 messages/month</li>
+                    <li>24/7</li>
+                    <li data-lang-es">Integraciones CRM</li>
+                    <li data-lang-en">CRM integrations</li>
+                </ul>
+            </div>
+            <div class="package-card">
+                <div class="package-name">Enterprise</div>
+                <div class="package-price">$497</div>
+                <div class="package-period" data-lang-es>/mes</div>
+                <div class="package-period" data-lang-en>/month</div>
+                <ul class="package-features">
+                    <li data-lang-es">Todos los canales</li>
+                    <li data-lang-en">All channels</li>
+                    <li data-lang-es">Mensajes ilimitados</li>
+                    <li data-lang-en">Unlimited messages</li>
+                    <li data-lang-es">Voz + Teléfono</li>
+                    <li data-lang-en">Voice + Phone</li>
+                    <li data-lang-es">Soporte prioritario</li>
+                    <li data-lang-en">Priority support</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Use Cases -->
+        <h2 class="section-title" data-lang-es>Casos de Uso</h2>
+        <h2 class="section-title" data-lang-en>Use Cases</h2>
+        <div class="content-grid">
+            <div class="content-card">
+                <h3>🍽️ Restaurantes</h3>
+                <ul>
+                    <li data-lang-es">Reservas automáticas</li>
+                    <li data-lang-en">Automatic reservations</li>
+                    <li data-lang-es">Menú y precios</li>
+                    <li data-lang-en">Menu and prices</li>
+                    <li data-lang-es">Horarios y ubicación</li>
+                    <li data-lang-en">Hours and location</li>
+                </ul>
+            </div>
+            <div class="content-card">
+                <h3>🏥 Clínicas</h3>
+                <ul>
+                    <li data-lang-es">Agendar citas</li>
+                    <li data-lang-en">Schedule appointments</li>
+                    <li data-lang-es">Recordatorios</li>
+                    <li data-lang-en">Reminders</li>
+                    <li data-lang-es">Info de servicios</li>
+                    <li data-lang-en">Service info</li>
+                </ul>
+            </div>
+            <div class="content-card">
+                <h3>💇 Salones de Belleza</h3>
+                <ul>
+                    <li data-lang-es">Reservar turnos</li>
+                    <li data-lang-en">Book appointments</li>
+                    <li data-lang-es">Catálogo de servicios</li>
+                    <li data-lang-en">Service catalog</li>
+                    <li data-lang-es">Confirmaciones</li>
+                    <li data-lang-en">Confirmations</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="orion-academy-modulo1.html" class="nav-btn prev" data-lang-es">← Módulo 1: Conoce ORION</a>
+            <a href="orion-academy-modulo1.html" class="nav-btn prev" data-lang-en">← Module 1: Know ORION</a>
+            <a href="orion-academy-modulo3.html" class="nav-btn next" data-lang-es">Módulo 3: Ventas →</a>
+            <a href="orion-academy-modulo3.html" class="nav-btn next" data-lang-en">Module 3: Sales →</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 ORION Tech Academy. All rights reserved.</p>
+    </footer>
+    <script>
+        function setLang(lang) { document.body.classList.remove('lang-es', 'lang-en'); if (lang === 'en') document.body.classList.add('lang-en'); document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active')); document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active'); localStorage.setItem('orion-lang', lang); }
+        const savedLang = localStorage.getItem('orion-lang') || 'es'; setLang(savedLang);
+    </script>
+</body>
+
+</html>

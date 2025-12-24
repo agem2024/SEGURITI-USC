@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORION Academy | Centro de Capacitación</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00f3ff;
+            --secondary: #bc13fe;
+            --accent: #25D366;
+            --dark: #0a0a0f;
+            --darker: #050508;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--darker);
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* ANIMATED BACKGROUND */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background:
+                radial-gradient(ellipse at 20% 80%, rgba(0, 243, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(188, 19, 254, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(37, 211, 102, 0.05) 0%, transparent 70%),
+                var(--darker);
+        }
+
+        /* FLOATING PARTICLES */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: float 15s infinite ease-in-out;
+            opacity: 0.5;
+        }
+
+        .particle:nth-child(2n) {
+            background: var(--secondary);
+            animation-delay: -2s;
+        }
+
+        .particle:nth-child(3n) {
+            background: var(--accent);
+            animation-delay: -4s;
+        }
+
+        .particle:nth-child(4n) {
+            animation-duration: 20s;
+        }
+
+        .particle:nth-child(5n) {
+            animation-duration: 25s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.5;
+            }
+
+            90% {
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* LANGUAGE SELECTOR */
+        .lang-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            padding: 8px 16px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            color: #fff;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .lang-btn:hover,
+        .lang-btn.active {
+            background: var(--primary);
+            color: #000;
+            border-color: var(--primary);
+        }
+
+        /* HEADER */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: linear-gradient(180deg, rgba(5, 5, 8, 0.95) 0%, transparent 100%);
+            backdrop-filter: blur(20px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: #fff;
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 30px rgba(0, 243, 255, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 0 50px rgba(0, 243, 255, 0.8), 0 0 80px rgba(188, 19, 254, 0.3);
+            }
+        }
+
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 20px 80px;
+            position: relative;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60%;
+            max-width: 800px;
+            border-radius: 20px;
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 25px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 30px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero-badge::before {
+            content: '🎓';
+            font-size: 1.2rem;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        @keyframes gradientShift {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 700px;
+            line-height: 1.8;
+            margin-bottom: 50px;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .btn {
+            padding: 18px 40px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #000;
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(0, 243, 255, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: #000;
+            transform: translateY(-3px);
+        }
+
+        /* STATS SECTION */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 80px;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 5px;
+        }
+
+        /* VIDEO SHOWCASE */
+        .video-showcase {
+            padding: 80px 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .video-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s;
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 60px rgba(0, 243, 255, 0.2);
+        }
+
+        .video-card video {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .video-card-content {
+            padding: 25px;
+        }
+
+        .video-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .video-card p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* MODULES SECTION */
+        .modules {
+            padding: 100px 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .module-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .module-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s;
+        }
+
+        .module-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .module-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 60px rgba(0, 243, 255, 0.15);
+        }
+
+        .module-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 25px;
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
+        }
+
+        .module-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            color: var(--primary);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .module-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .module-card p {
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .module-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .topic-tag {
+            padding: 6px 14px;
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--primary);
+        }
+
+        /* TEAM SECTION */
+        .team-section {
+            padding: 100px 50px;
+            background: linear-gradient(180deg, transparent, rgba(188, 19, 254, 0.05), transparent);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 50px auto 0;
+        }
+
+        .team-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.4s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--secondary);
+        }
+
+        .team-flag {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .team-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .team-card p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* CTA SECTION */
+        .cta {
+            padding: 100px 50px;
+            text-align: center;
+        }
+
+        .cta-card {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px;
+            background: linear-gradient(135deg, rgba(0, 243, 255, 0.1), rgba(188, 19, 254, 0.1));
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.03) 50%, transparent 60%);
+            animation: shine 4s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%) rotate(45deg);
+            }
+
+            100% {
+                transform: translateX(100%) rotate(45deg);
+            }
+        }
+
+        .cta h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        /* NAVIGATION MENU */
+        .page-nav {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            padding: 15px 25px;
+            background: rgba(10, 10, 15, 0.9);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+        }
+
+        .page-nav a {
+            padding: 10px 20px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border-radius: 25px;
+            transition: all 0.3s;
+        }
+
+        .page-nav a:hover,
+        .page-nav a.active {
+            background: var(--primary);
+            color: #000;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 50px;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 100px 20px 60px;
+            }
+
+            .modules,
+            .video-showcase,
+            .team-section {
+                padding: 60px 20px;
+            }
+
+            .cta {
+                padding: 60px 20px;
+            }
+
+            .stats {
+                gap: 30px;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .page-nav {
+                bottom: 10px;
+                padding: 10px 15px;
+                gap: 5px;
+            }
+
+            .page-nav a {
+                padding: 8px 12px;
+                font-size: 0.75rem;
+            }
+
+            .lang-selector {
+                top: 10px;
+                right: 10px;
+            }
+        }
+
+        /* HIDE BY LANGUAGE */
+        [data-lang-es] {
+            display: block;
+        }
+
+        [data-lang-en] {
+            display: none;
+        }
+
+        body.lang-en [data-lang-es] {
+            display: none;
+        }
+
+        body.lang-en [data-lang-en] {
+            display: block;
+        }
+
+        /* PODCASTS SECTION */
+        .podcasts-section {
+            padding: 80px 50px;
+            background: linear-gradient(180deg, transparent, rgba(188, 19, 254, 0.03), transparent);
+        }
+
+        .podcasts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 50px auto 0;
+        }
+
+        .podcast-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 25px;
+            display: flex;
+            gap: 20px;
+            transition: all 0.3s;
+        }
+
+        .podcast-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--secondary);
+        }
+
+        .podcast-icon {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .podcast-info h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+
+        .podcast-info p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+
+        .podcast-info audio {
+            width: 100%;
+            height: 35px;
+            border-radius: 20px;
+        }
+
+        /* RECRUITMENT SECTION */
+        .recruitment-section {
+            padding: 80px 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .country-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 40px 0;
+        }
+
+        .country-btn {
+            padding: 12px 25px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            color: #fff;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .country-btn:hover,
+        .country-btn.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-color: var(--primary);
+            color: #000;
+            transform: scale(1.05);
+        }
+
+        .country-content {
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .country-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .country-header h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .country-header p {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .recruitment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .job-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s;
+        }
+
+        .job-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 50px rgba(37, 211, 102, 0.15);
+        }
+
+        .job-tag {
+            display: inline-block;
+            padding: 5px 15px;
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            border-radius: 15px;
+            font-size: 0.75rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .job-card h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .job-card p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .salary {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .requirements {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.8rem;
+        }
+
+        .population-groups {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        .population-groups h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .groups-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .group-tag {
+            padding: 8px 15px;
+            background: rgba(188, 19, 254, 0.1);
+            border: 1px solid rgba(188, 19, 254, 0.3);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--secondary);
+        }
+    </style>
+<link rel="stylesheet" href="orion-responsive.css"></head>
+
+<body>
+    <!-- ANIMATED BACKGROUND -->
+    <div class="bg-animation"></div>
+
+    <!-- FLOATING PARTICLES -->
+    <div class="particles">
+        <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="particle" style="left: 20%; animation-delay: 1s;"></div>
+        <div class="particle" style="left: 30%; animation-delay: 2s;"></div>
+        <div class="particle" style="left: 40%; animation-delay: 3s;"></div>
+        <div class="particle" style="left: 50%; animation-delay: 4s;"></div>
+        <div class="particle" style="left: 60%; animation-delay: 5s;"></div>
+        <div class="particle" style="left: 70%; animation-delay: 6s;"></div>
+        <div class="particle" style="left: 80%; animation-delay: 7s;"></div>
+        <div class="particle" style="left: 90%; animation-delay: 8s;"></div>
+    </div>
+
+    <!-- LANGUAGE SELECTOR -->
+    <div class="lang-selector">
+        <button class="lang-btn active" onclick="setLang('es')">🇪🇸 ES</button>
+        <button class="lang-btn" onclick="setLang('en')">🇺🇸 EN</button>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <a href="#" class="logo">
+            <img src="images/orion_logo.png" alt="ORION Tech" class="logo-img"
+                style="height: 50px; border-radius: 12px; box-shadow: 0 0 30px rgba(0, 243, 255, 0.5);">
+            <span class="logo-text">Academy</span>
+        </a>
+        <nav class="nav-links">
+            <a href="#modulos" data-lang-es>Módulos</a>
+            <a href="#modulos" data-lang-en>Modules</a>
+            <a href="#videos" data-lang-es>Videos</a>
+            <a href="#videos" data-lang-en>Videos</a>
+            <a href="#equipo" data-lang-es>Equipo</a>
+            <a href="#equipo" data-lang-en>Team</a>
+            <a href="orion-academy-reclutamiento.html" data-lang-es>Reclutamiento</a>
+            <a href="orion-academy-reclutamiento.html" data-lang-en>Recruitment</a>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <!-- Background Video -->
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="training_images/values_orion_1766437670871.mp4" type="video/mp4">
+        </video>
+
+        <span class="hero-badge" data-lang-es>Centro de Capacitación</span>
+        <span class="hero-badge" data-lang-en>Training Center</span>
+
+        <h1>
+            <span class="gradient-text">ORION</span> Academy
+        </h1>
+
+        <p class="hero-subtitle" data-lang-es>
+            Conviértete en un experto en ventas de tecnología.
+            Aprende, practica y certifícate con nuestro programa de capacitación de clase mundial.
+        </p>
+        <p class="hero-subtitle" data-lang-en>
+            Become a tech sales expert.
+            Learn, practice and get certified with our world-class training program.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#modulos" class="btn btn-primary" data-lang-es>Comenzar Ahora</a>
+            <a href="#modulos" class="btn btn-primary" data-lang-en>Start Now</a>
+            <a href="#videos" class="btn btn-secondary" data-lang-es>Ver Videos</a>
+            <a href="#videos" class="btn btn-secondary" data-lang-en>Watch Videos</a>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number">7</div>
+                <div class="stat-label" data-lang-es>Módulos</div>
+                <div class="stat-label" data-lang-en>Modules</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">15+</div>
+                <div class="stat-label" data-lang-es>Videos</div>
+                <div class="stat-label" data-lang-en>Videos</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">5</div>
+                <div class="stat-label" data-lang-es>Países</div>
+                <div class="stat-label" data-lang-en>Countries</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label" data-lang-es>Acceso</div>
+                <div class="stat-label" data-lang-en>Access</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIDEO SHOWCASE -->
+    <section class="video-showcase" id="videos">
+        <div class="section-header">
+            <h2 data-lang-es>Videos de <span class="gradient-text">Capacitación</span></h2>
+            <h2 data-lang-en>Training <span class="gradient-text">Videos</span></h2>
+            <p data-lang-es>Material audiovisual profesional para tu formación</p>
+            <p data-lang-en>Professional audiovisual materials for your training</p>
+        </div>
+
+        <div class="video-grid">
+            <!-- Video 1: Sales Funnel -->
+            <div class="video-card">
+                <video controls poster="training_images/sales_funnel_orion_1766437559543.png">
+                    <source src="training_images/sales_funnel_orion_1766437559543.mp4" type="video/mp4">
+                </video>
+                <div class="video-card-content">
+                    <h3 data-lang-es>Embudo de Ventas</h3>
+                    <h3 data-lang-en>Sales Funnel</h3>
+                    <p data-lang-es>Aprende el proceso completo desde prospección hasta cierre.</p>
+                    <p data-lang-en>Learn the complete process from prospecting to closing.</p>
+                </div>
+            </div>
+
+            <!-- Video 2: Org Chart -->
+            <div class="video-card">
+                <video controls poster="training_images/org_chart_orion_1766437576986.png">
+                    <source src="training_images/org_chart_orion_1766437576986.mp4" type="video/mp4">
+                </video>
+                <div class="video-card-content">
+                    <h3 data-lang-es>Estructura Organizacional</h3>
+                    <h3 data-lang-en>Organizational Structure</h3>
+                    <p data-lang-es>Conoce los departamentos y tu lugar en el equipo.</p>
+                    <p data-lang-en>Know the departments and your place in the team.</p>
+                </div>
+            </div>
+
+            <!-- Video 3: Values -->
+            <div class="video-card">
+                <video controls poster="training_images/values_orion_1766437670871.png">
+                    <source src="training_images/values_orion_1766437670871.mp4" type="video/mp4">
+                </video>
+                <div class="video-card-content">
+                    <h3 data-lang-es>Valores ORION</h3>
+                    <h3 data-lang-en>ORION Values</h3>
+                    <p data-lang-es>Innovación, confianza, resiliencia, impacto y excelencia.</p>
+                    <p data-lang-en>Innovation, trust, resilience, impact and excellence.</p>
+                </div>
+            </div>
+
+            <!-- Video 4: KPIs -->
+            <div class="video-card">
+                <video controls poster="training_images/kpi_dashboard_sales_1766437634642.png">
+                    <source src="training_images/kpi_dashboard_sales_1766437634642.mp4" type="video/mp4">
+                </video>
+                <div class="video-card-content">
+                    <h3 data-lang-es>Dashboard de KPIs</h3>
+                    <h3 data-lang-en>KPI Dashboard</h3>
+                    <p data-lang-es>Métricas clave que debes dominar como SDR.</p>
+                    <p data-lang-en>Key metrics you must master as an SDR.</p>
+                </div>
+            </div>
+
+            <!-- Video 5: Communication -->
+            <div class="video-card">
+                <video controls poster="training_images/communication_channels_1766437687232.png">
+                    <source src="training_images/communication_channels_1766437687232.mp4" type="video/mp4">
+                </video>
+                <div class="video-card-content">
+                    <h3 data-lang-es>Canales de Comunicación</h3>
+                    <h3 data-lang-en>Communication Channels</h3>
+                    <p data-lang-es>WhatsApp, Telegram, Instagram, Facebook y más.</p>
+                    <p data-lang-en>WhatsApp, Telegram, Instagram, Facebook and more.</p>
+                </div>
+            </div>
+
+            <!-- Video 6: Bot XONA -->
+            <div class="video-card">
+                <video controls poster="training_images/ai_bot_xona_1766437698692.png">
+                    <source src="training_images/ai_bot_xona_1766437698692.mp4" type="video/mp4">
+                </video>
+                <div class="video-card-content">
+                    <h3 data-lang-es>Bot XONA en Acción</h3>
+                    <h3 data-lang-en>XONA Bot in Action</h3>
+                    <p data-lang-es>Demo del asistente de IA que vendemos.</p>
+                    <p data-lang-en>Demo of the AI assistant we sell.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODULES SECTION -->
+    <section class="modules" id="modulos">
+        <div class="section-header">
+            <h2 data-lang-es>Módulos de <span class="gradient-text">Capacitación</span></h2>
+            <h2 data-lang-en>Training <span class="gradient-text">Modules</span></h2>
+            <p data-lang-es>Programa estructurado de 4 semanas para convertirte en un vendedor de élite</p>
+            <p data-lang-en>4-week structured program to become an elite seller</p>
+        </div>
+
+        <div class="modules-grid">
+            <!-- Module 1 -->
+            <div class="module-card" onclick="location.href='orion-academy-modulo1.html'">
+                <div class="module-icon">🏢</div>
+                <div class="module-number">MÓDULO 01 | SEMANA 1</div>
+                <h3 data-lang-es>Conoce ORION Tech</h3>
+                <h3 data-lang-en>Know ORION Tech</h3>
+                <p data-lang-es>Misión, visión, valores, estructura organizacional y cultura de la empresa.</p>
+                <p data-lang-en>Mission, vision, values, organizational structure and company culture.</p>
+                <div class="module-topics">
+                    <span class="topic-tag">Historia</span>
+                    <span class="topic-tag">Valores</span>
+                    <span class="topic-tag">Cultura</span>
+                    <span class="topic-tag">Organigrama</span>
+                </div>
+            </div>
+
+            <!-- Module 2 -->
+            <div class="module-card" onclick="location.href='orion-academy-modulo2.html'">
+                <div class="module-icon">🤖</div>
+                <div class="module-number">MÓDULO 02 | SEMANA 1</div>
+                <h3 data-lang-es>Nuestro Producto</h3>
+                <h3 data-lang-en>Our Product</h3>
+                <p data-lang-es>Domina cada feature: bots de IA, canales, integraciones y casos de uso reales.</p>
+                <p data-lang-en>Master every feature: AI bots, channels, integrations and real use cases.</p>
+                <div class="module-topics">
+                    <span class="topic-tag">Bots IA</span>
+                    <span class="topic-tag">WhatsApp</span>
+                    <span class="topic-tag">Telegram</span>
+                    <span class="topic-tag">Integraciones</span>
+                </div>
+            </div>
+
+            <!-- Module 3 -->
+            <div class="module-card" onclick="location.href='orion-academy-modulo3.html'">
+                <div class="module-icon">🎯</div>
+                <div class="module-number">MÓDULO 03 | SEMANA 2</div>
+                <h3 data-lang-es>Técnicas de Venta</h3>
+                <h3 data-lang-en>Sales Techniques</h3>
+                <p data-lang-es>Embudo de ventas, calificación BANT, manejo de objeciones y técnicas de cierre.</p>
+                <p data-lang-en>Sales funnel, BANT qualification, objection handling and closing techniques.</p>
+                <div class="module-topics">
+                    <span class="topic-tag">SPIN Selling</span>
+                    <span class="topic-tag">BANT</span>
+                    <span class="topic-tag">Objeciones</span>
+                    <span class="topic-tag">Cierre</span>
+                </div>
+            </div>
+
+            <!-- Module 4 -->
+            <div class="module-card" onclick="location.href='orion-academy-modulo4.html'">
+                <div class="module-icon">📞</div>
+                <div class="module-number">MÓDULO 04 | SEMANA 2-3</div>
+                <h3 data-lang-es>Role-Play Práctico</h3>
+                <h3 data-lang-en>Practical Role-Play</h3>
+                <p data-lang-es>Practica llamadas reales con escenarios simulados y feedback instantáneo.</p>
+                <p data-lang-en>Practice real calls with simulated scenarios and instant feedback.</p>
+                <div class="module-topics">
+                    <span class="topic-tag">Llamadas</span>
+                    <span class="topic-tag">Scripts</span>
+                    <span class="topic-tag">Demos</span>
+                    <span class="topic-tag">Feedback</span>
+                </div>
+            </div>
+
+            <!-- Module 5 -->
+            <div class="module-card" onclick="location.href='orion-academy-modulo5.html'">
+                <div class="module-icon">💼</div>
+                <div class="module-number">MÓDULO 05 | SEMANA 3</div>
+                <h3 data-lang-es>Herramientas CRM</h3>
+                <h3 data-lang-en>CRM Tools</h3>
+                <p data-lang-es>Domina HubSpot/Kommo, WhatsApp Business, Slack y todas las herramientas.</p>
+                <p data-lang-en>Master HubSpot/Kommo, WhatsApp Business, Slack and all tools.</p>
+                <div class="module-topics">
+                    <span class="topic-tag">HubSpot</span>
+                    <span class="topic-tag">Slack</span>
+                    <span class="topic-tag">Calendar</span>
+                    <span class="topic-tag">Kommo</span>
+                </div>
+            </div>
+
+            <!-- Module 6 -->
+            <div class="module-card" onclick="location.href='orion-academy-modulo6.html'">
+                <div class="module-icon">📊</div>
+                <div class="module-number">MÓDULO 06 | SEMANA 3-4</div>
+                <h3 data-lang-es>KPIs y Métricas</h3>
+                <h3 data-lang-en>KPIs and Metrics</h3>
+                <p data-lang-es>Entiende las métricas que te evalúan: llamadas, demos, cierres, conversión.</p>
+                <p data-lang-en>Understand the metrics you're evaluated on: calls, demos, closes, conversion.</p>
+                <div class="module-topics">
+                    <span class="topic-tag">Llamadas/día</span>
+                    <span class="topic-tag">Demos/semana</span>
+                    <span class="topic-tag">Tasa cierre</span>
+                    <span class="topic-tag">Revenue</span>
+                </div>
+            </div>
+
+            <!-- Module 7 -->
+            <div class="module-card" onclick="location.href='orion-academy-modulo7.html'">
+                <div class="module-icon">🏆</div>
+                <div class="module-number">MÓDULO 07 | SEMANA 4</div>
+                <h3 data-lang-es>Certificación Final</h3>
+                <h3 data-lang-en>Final Certification</h3>
+                <p data-lang-es>Examen final, role-play evaluado y certificación oficial "ORION Certified Seller".</p>
+                <p data-lang-en>Final exam, evaluated role-play and official "ORION Certified Seller" certification.</p>
+                <div class="module-topics">
+                    <span class="topic-tag">Examen</span>
+                    <span class="topic-tag">Role-play</span>
+                    <span class="topic-tag">Evaluación</span>
+                    <span class="topic-tag">Certificado</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM SECTION -->
+    <section class="team-section" id="equipo">
+        <div class="section-header">
+            <h2 data-lang-es>Equipo <span class="gradient-text">Global</span></h2>
+            <h2 data-lang-en>Global <span class="gradient-text">Team</span></h2>
+            <p data-lang-es>Presencia en 5 países con equipos locales</p>
+            <p data-lang-en>Presence in 5 countries with local teams</p>
+        </div>
+
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-flag">🇺🇸</div>
+                <h3>USA (HQ)</h3>
+                <p data-lang-es>San José, California - Sede Principal</p>
+                <p data-lang-en>San José, California - Headquarters</p>
+            </div>
+            <div class="team-card">
+                <div class="team-flag">🇨🇴</div>
+                <h3>Colombia</h3>
+                <p data-lang-es>Medellín - Hub LATAM</p>
+                <p data-lang-en>Medellín - LATAM Hub</p>
+            </div>
+            <div class="team-card">
+                <div class="team-flag">🇲🇽</div>
+                <h3>México</h3>
+                <p data-lang-es>Ciudad de México - En desarrollo</p>
+                <p data-lang-en>Mexico City - In development</p>
+            </div>
+            <div class="team-card">
+                <div class="team-flag">🇪🇸</div>
+                <h3>España</h3>
+                <p data-lang-es>Madrid - Mercado Europeo</p>
+                <p data-lang-en>Madrid - European Market</p>
+            </div>
+            <div class="team-card">
+                <div class="team-flag">🇨🇦</div>
+                <h3>Canadá</h3>
+                <p data-lang-es>Toronto - Planificado 2025</p>
+                <p data-lang-en>Toronto - Planned 2025</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PODCASTS SECTION -->
+    <section class="podcasts-section" id="podcasts">
+        <div class="section-header">
+            <h2 data-lang-es>🎙️ <span class="gradient-text">Podcasts</span> de Capacitación</h2>
+            <h2 data-lang-en>🎙️ Training <span class="gradient-text">Podcasts</span></h2>
+            <p data-lang-es>Escucha mientras trabajas - Contenido de audio para tu formación</p>
+            <p data-lang-en>Listen while you work - Audio content for your training</p>
+        </div>
+
+        <div class="podcasts-grid">
+            <div class="podcast-card">
+                <div class="podcast-icon">🎧</div>
+                <div class="podcast-info">
+                    <h4 data-lang-es>El plomero que creó una IA para PyMEs</h4>
+                    <h4 data-lang-en>The Plumber Who Created AI for SMBs</h4>
+                    <p data-lang-es>Historia del fundador Alex Espinosa</p>
+                    <p data-lang-en>Founder Alex Espinosa's story</p>
+                    <audio controls>
+                        <source src="training_images/El_plomero_que_creó_una_IA_para_pymes.m4a" type="audio/mp4">
+                    </audio>
+                </div>
+            </div>
+
+            <div class="podcast-card">
+                <div class="podcast-icon">💰</div>
+                <div class="podcast-info">
+                    <h4 data-lang-es>Ahorra el sueldo con bots multilingües</h4>
+                    <h4 data-lang-en>Save salary costs with multilingual bots</h4>
+                    <p data-lang-es>ROI y propuesta de valor</p>
+                    <p data-lang-en>ROI and value proposition</p>
+                    <audio controls>
+                        <source src="training_images/Ahorra_el_sueldo_con_bots_multilingües.m4a" type="audio/mp4">
+                    </audio>
+                </div>
+            </div>
+
+            <div class="podcast-card">
+                <div class="podcast-icon">🔧</div>
+                <div class="podcast-info">
+                    <h4 data-lang-es>Automatización IA para plomeros y salones</h4>
+                    <h4 data-lang-en>AI Automation for plumbers and salons</h4>
+                    <p data-lang-es>Casos de uso por industria</p>
+                    <p data-lang-en>Industry use cases</p>
+                    <audio controls>
+                        <source src="training_images/Automatización_IA_para_plomeros_y_salones.m4a" type="audio/mp4">
+                    </audio>
+                </div>
+            </div>
+
+            <div class="podcast-card">
+                <div class="podcast-icon">🇺🇸</div>
+                <div class="podcast-info">
+                    <h4>Plumber-Turned-CEO Democratizes AI</h4>
+                    <p>English version - Full story</p>
+                    <audio controls>
+                        <source src="training_images/Plumber-Turned-CEO_Democratizes_AI_for_Small_Business.m4a"
+                            type="audio/mp4">
+                    </audio>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RECRUITMENT BY COUNTRY -->
+    <section class="recruitment-section" id="reclutamiento-pais">
+        <div class="section-header">
+            <h2 data-lang-es>🌍 Reclutamiento por <span class="gradient-text">País</span></h2>
+            <h2 data-lang-en>🌍 Recruitment by <span class="gradient-text">Country</span></h2>
+            <p data-lang-es>Oportunidades adaptadas a cada mercado y grupo poblacional</p>
+            <p data-lang-en>Opportunities adapted to each market and population group</p>
+        </div>
+
+        <!-- Country Selector -->
+        <div class="country-selector">
+            <button class="country-btn active" onclick="showCountry('usa')">🇺🇸 USA</button>
+            <button class="country-btn" onclick="showCountry('colombia')">🇨🇴 Colombia</button>
+            <button class="country-btn" onclick="showCountry('mexico')">🇲🇽 México</button>
+            <button class="country-btn" onclick="showCountry('peru')">🇵🇪 Perú</button>
+            <button class="country-btn" onclick="showCountry('canada')">🇨🇦 Canadá</button>
+        </div>
+
+        <!-- USA -->
+        <div class="country-content" id="country-usa">
+            <div class="country-header">
+                <h3>🇺🇸 USA - Bay Area Headquarters</h3>
+                <p data-lang-es>Mercado principal, salarios en USD, equipos bilingües</p>
+                <p data-lang-en>Primary market, USD salaries, bilingual teams</p>
+            </div>
+            <div class="recruitment-grid">
+                <div class="job-card">
+                    <span class="job-tag">Remote + Hybrid</span>
+                    <h4>SDR (Sales Development Rep)</h4>
+                    <p data-lang-es>Generación de leads, llamadas en frío, prospección</p>
+                    <p data-lang-en>Lead generation, cold calling, prospecting</p>
+                    <div class="salary">$2,500 - $4,000 USD/mo + Comisiones</div>
+                    <div class="requirements">
+                        <span data-lang-es>Bilingüe EN/ES requerido</span>
+                        <span data-lang-en>Bilingual EN/ES required</span>
+                    </div>
+                </div>
+                <div class="job-card">
+                    <span class="job-tag">Remote</span>
+                    <h4>Closer / Account Executive</h4>
+                    <p data-lang-es>Demos, negociación, cierre de ventas</p>
+                    <p data-lang-en>Demos, negotiation, sales closing</p>
+                    <div class="salary">$3,500 - $6,000 USD/mo + Comisiones</div>
+                </div>
+            </div>
+            <div class="population-groups">
+                <h4 data-lang-es>👥 Grupos Poblacionales Objetivo</h4>
+                <h4 data-lang-en>👥 Target Population Groups</h4>
+                <div class="groups-grid">
+                    <span class="group-tag">🇲🇽 Latinos Bay Area</span>
+                    <span class="group-tag">🇨🇳 Comunidad China</span>
+                    <span class="group-tag">🇵🇭 Filipinos (Tagalo)</span>
+                    <span class="group-tag">🇻🇳 Vietnamitas</span>
+                    <span class="group-tag">🎓 Recién graduados Tech</span>
+                    <span class="group-tag">👷 Ex-trabajadores oficios</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Colombia -->
+        <div class="country-content" id="country-colombia" style="display:none;">
+            <div class="country-header">
+                <h3>🇨🇴 Colombia - Hub LATAM</h3>
+                <p data-lang-es>Centro de operaciones para América Latina, salarios competitivos en COP</p>
+                <p data-lang-en>Operations center for Latin America, competitive salaries in COP</p>
+            </div>
+            <div class="recruitment-grid">
+                <div class="job-card">
+                    <span class="job-tag">Remoto 100%</span>
+                    <h4>SDR Colombia</h4>
+                    <p data-lang-es>Prospección mercado colombiano y LATAM</p>
+                    <p data-lang-en>Colombian and LATAM market prospecting</p>
+                    <div class="salary">$2.5M - $4.5M COP/mes + Comisiones</div>
+                </div>
+                <div class="job-card">
+                    <span class="job-tag">Híbrido Medellín</span>
+                    <h4>Customer Success Manager</h4>
+                    <p data-lang-es>Onboarding clientes, retención, soporte</p>
+                    <p data-lang-en>Client onboarding, retention, support</p>
+                    <div class="salary">$3M - $5M COP/mes</div>
+                </div>
+                <div class="job-card">
+                    <span class="job-tag">Remoto</span>
+                    <h4>Developer Full Stack</h4>
+                    <p data-lang-es>Node.js, React, APIs, IA</p>
+                    <p data-lang-en>Node.js, React, APIs, AI</p>
+                    <div class="salary">$4M - $8M COP/mes</div>
+                </div>
+            </div>
+            <div class="population-groups">
+                <h4 data-lang-es>👥 Grupos Poblacionales Objetivo</h4>
+                <h4 data-lang-en>👥 Target Population Groups</h4>
+                <div class="groups-grid">
+                    <span class="group-tag">🌆 Profesionales Medellín</span>
+                    <span class="group-tag">🏙️ Bogotá Tech</span>
+                    <span class="group-tag">☕ Eje Cafetero</span>
+                    <span class="group-tag">🎓 Egresados universidades</span>
+                    <span class="group-tag">🔄 Trabajadores call centers</span>
+                    <span class="group-tag">💻 Freelancers tech</span>
+                    <span class="group-tag">🌾 Regiones rurales (remoto)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mexico -->
+        <div class="country-content" id="country-mexico" style="display:none;">
+            <div class="country-header">
+                <h3>🇲🇽 México - Expansión 2025</h3>
+                <p data-lang-es>Mercado en desarrollo, buscando líderes regionales</p>
+                <p data-lang-en>Developing market, seeking regional leaders</p>
+            </div>
+            <div class="recruitment-grid">
+                <div class="job-card">
+                    <span class="job-tag">🚀 Fundador Capítulo</span>
+                    <h4>Director México</h4>
+                    <p data-lang-es>Liderar lanzamiento y expansión en México</p>
+                    <p data-lang-en>Lead launch and expansion in Mexico</p>
+                    <div class="salary">$40,000 - $80,000 MXN/mes + Equity</div>
+                </div>
+                <div class="job-card">
+                    <span class="job-tag">Remoto</span>
+                    <h4>SDR México</h4>
+                    <p data-lang-es>Prospección CDMX, MTY, GDL</p>
+                    <p data-lang-en>CDMX, MTY, GDL prospecting</p>
+                    <div class="salary">$18,000 - $30,000 MXN/mes + Comisiones</div>
+                </div>
+            </div>
+            <div class="population-groups">
+                <h4 data-lang-es>👥 Grupos Poblacionales Objetivo</h4>
+                <h4 data-lang-en>👥 Target Population Groups</h4>
+                <div class="groups-grid">
+                    <span class="group-tag">🏙️ CDMX Startups</span>
+                    <span class="group-tag">🏭 Monterrey Industrial</span>
+                    <span class="group-tag">🌴 Guadalajara Tech</span>
+                    <span class="group-tag">🎓 Estudiantes UNAM/TEC</span>
+                    <span class="group-tag">🗣️ Bilingües EN/ES</span>
+                    <span class="group-tag">🌮 PyMEs locales</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Peru -->
+        <div class="country-content" id="country-peru" style="display:none;">
+            <div class="country-header">
+                <h3>🇵🇪 Perú - Próximamente</h3>
+                <p data-lang-es>Mercado andino, oportunidades en Lima y regiones</p>
+                <p data-lang-en>Andean market, opportunities in Lima and regions</p>
+            </div>
+            <div class="recruitment-grid">
+                <div class="job-card">
+                    <span class="job-tag">🚀 Fundador Capítulo</span>
+                    <h4>Director Perú</h4>
+                    <p data-lang-es>Liderar lanzamiento en Perú</p>
+                    <p data-lang-en">Lead launch in Peru</p>
+                    <div class="salary">S/ 8,000 - S/ 15,000/mes + Equity</div>
+                </div>
+            </div>
+            <div class="population-groups">
+                <h4 data-lang-es>👥 Grupos Poblacionales Objetivo</h4>
+                <h4 data-lang-en>👥 Target Population Groups</h4>
+                <div class="groups-grid">
+                    <span class="group-tag">🏙️ Lima Metropolitana</span>
+                    <span class="group-tag">📱 Usuarios Yape/Plin</span>
+                    <span class="group-tag">🎓 Egresados PUCP/UPC</span>
+                    <span class="group-tag">🌿 Quechuahablantes</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Canada -->
+        <div class="country-content" id="country-canada" style="display:none;">
+            <div class="country-header">
+                <h3>🇨🇦 Canadá - Planificado 2025</h3>
+                <p data-lang-es>Mercado bilingüe EN/FR, Toronto y Vancouver</p>
+                <p data-lang-en>Bilingual EN/FR market, Toronto and Vancouver</p>
+            </div>
+            <div class="recruitment-grid">
+                <div class="job-card">
+                    <span class="job-tag">🚀 Fundador Capítulo</span>
+                    <h4>Director Canada</h4>
+                    <p data-lang-es>Liderar expansión canadiense</p>
+                    <p data-lang-en>Lead Canadian expansion</p>
+                    <div class="salary">$6,000 - $10,000 CAD/mo + Equity</div>
+                </div>
+            </div>
+            <div class="population-groups">
+                <h4 data-lang-es>👥 Grupos Poblacionales Objetivo</h4>
+                <h4 data-lang-en>👥 Target Population Groups</h4>
+                <div class="groups-grid">
+                    <span class="group-tag">🍁 Toronto Tech</span>
+                    <span class="group-tag">🏔️ Vancouver</span>
+                    <span class="group-tag">⚜️ Montreal (FR)</span>
+                    <span class="group-tag">🌐 Inmigrantes LATAM</span>
+                    <span class="group-tag">🇮🇳 Comunidad India</span>
+                    <span class="group-tag">🇨🇳 Comunidad China</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="cta">
+        <div class="cta-card">
+            <h2 data-lang-es>¿Listo para <span class="gradient-text">comenzar</span>?</h2>
+            <h2 data-lang-en>Ready to <span class="gradient-text">start</span>?</h2>
+            <p data-lang-es>Únete al programa de capacitación más avanzado para vendedores de tecnología.</p>
+            <p data-lang-en>Join the most advanced training program for tech sellers.</p>
+            <a href="orion-academy-reclutamiento.html" class="btn btn-primary" data-lang-es>Ver Oportunidades</a>
+            <a href="orion-academy-reclutamiento.html" class="btn btn-primary" data-lang-en>View Opportunities</a>
+        </div>
+    </section>
+
+    <!-- BOTTOM NAVIGATION -->
+    <nav class="page-nav">
+        <a href="orion-academy.html" class="active" data-lang-es>Inicio</a>
+        <a href="orion-academy.html" class="active" data-lang-en>Home</a>
+        <a href="orion-academy-reclutamiento.html" data-lang-es>Reclutamiento</a>
+        <a href="orion-academy-reclutamiento.html" data-lang-en>Recruitment</a>
+        <a href="orion-academy-quizzes.html" data-lang-es>Quizzes</a>
+        <a href="orion-academy-quizzes.html" data-lang-en>Quizzes</a>
+        <a href="orion-academy-certificaciones.html" data-lang-es>Certificaciones</a>
+        <a href="orion-academy-certificaciones.html" data-lang-en>Certifications</a>
+        <a href="orion-academy-recursos.html" data-lang-es>Recursos</a>
+        <a href="orion-academy-recursos.html" data-lang-en>Resources</a>
+    </nav>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2024 ORION Tech. All rights reserved.</p>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Language System
+        function setLang(lang) {
+            document.body.classList.remove('lang-es', 'lang-en');
+            if (lang === 'en') {
+                document.body.classList.add('lang-en');
+            }
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+            localStorage.setItem('orion-lang', lang);
+        }
+
+        // Load saved language
+        const savedLang = localStorage.getItem('orion-lang') || 'es';
+        setLang(savedLang);
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Parallax effect
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            document.querySelector('.bg-animation').style.transform = `translateY(${scrollY * 0.3}px)`;
+        });
+
+        // Module cards 3D effect
+        document.querySelectorAll('.module-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+            });
+        });
+
+        // Country Selector
+        function showCountry(country) {
+            // Hide all country content
+            document.querySelectorAll('.country-content').forEach(content => {
+                content.style.display = 'none';
+            });
+            // Show selected country
+            const selectedContent = document.getElementById('country-' + country);
+            if (selectedContent) {
+                selectedContent.style.display = 'block';
+            }
+            // Update button states
+            document.querySelectorAll('.country-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+
+</html>

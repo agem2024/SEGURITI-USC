@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 3: Técnicas de Venta | ORION Academy</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00f3ff;
+            --secondary: #bc13fe;
+            --accent: #25D366;
+            --darker: #050508;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--darker);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: radial-gradient(ellipse at 20% 80%, rgba(0, 243, 255, 0.1) 0%, transparent 50%), var(--darker);
+        }
+
+        .lang-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            padding: 8px 16px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            color: #fff;
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: #000;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            z-index: 1000;
+            background: linear-gradient(180deg, rgba(5, 5, 8, 0.95), transparent);
+            backdrop-filter: blur(20px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron';
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .logo-text {
+            font-family: 'Orbitron';
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .back-btn {
+            padding: 10px 25px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .module-hero {
+            padding: 150px 50px 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .module-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 25px;
+            font-family: 'Orbitron';
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .module-hero h1 {
+            font-family: 'Orbitron';
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .module-hero p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 700px;
+            line-height: 1.8;
+        }
+
+        .content {
+            padding: 0 50px 100px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .video-container {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 50px;
+        }
+
+        .video-container video {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+        }
+
+        .section-title {
+            font-family: 'Orbitron';
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 30px;
+            background: linear-gradient(var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .content-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 30px;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            transition: all 0.3s;
+        }
+
+        .content-card h3 {
+            font-family: 'Orbitron';
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .content-card p,
+        .content-card ul {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+
+        .content-card ul {
+            padding-left: 20px;
+        }
+
+        .content-card li {
+            margin-bottom: 8px;
+        }
+
+        .funnel-step {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .funnel-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron';
+            font-weight: 900;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .funnel-content h4 {
+            font-family: 'Orbitron';
+            margin-bottom: 8px;
+        }
+
+        .funnel-content p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .nav-btn {
+            padding: 15px 30px;
+            font-family: 'Orbitron';
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 30px;
+        }
+
+        .nav-btn.prev {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            color: #fff;
+        }
+
+        .nav-btn.next {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #000;
+        }
+
+        footer {
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        [data-lang-es] {
+            display: block;
+        }
+
+        [data-lang-en] {
+            display: none;
+        }
+
+        body.lang-en [data-lang-es] {
+            display: none;
+        }
+
+        body.lang-en [data-lang-en] {
+            display: block;
+        }
+    </style>
+<link rel="stylesheet" href="orion-responsive.css"></head>
+
+<body>
+    <div class="bg-animation"></div>
+    <div class="lang-selector">
+        <button class="lang-btn active" onclick="setLang('es')">🇪🇸 ES</button>
+        <button class="lang-btn" onclick="setLang('en')">🇺🇸 EN</button>
+    </div>
+    <header>
+        <a href="orion-academy.html" class="logo">
+            <div class="logo-icon">O</div><span class="logo-text">Academy</span>
+        </a>
+        <a href="orion-academy.html#modulos" class="back-btn">← Módulos</a>
+    </header>
+
+    <section class="module-hero">
+        <span class="module-badge">MÓDULO 03 | SEMANA 2</span>
+        <h1 data-lang-es>Técnicas de <span class="gradient-text">Venta</span></h1>
+        <h1 data-lang-en>Sales <span class="gradient-text">Techniques</span></h1>
+        <p data-lang-es>Embudo de ventas, calificación de leads, manejo de objeciones y técnicas de cierre. Aprende a
+            convertir prospectos en clientes.</p>
+        <p data-lang-en>Sales funnel, lead qualification, objection handling and closing techniques. Learn to convert
+            prospects into customers.</p>
+    </section>
+
+    <div class="content">
+        <div class="video-container">
+            <video controls poster="training_images/sales_funnel_orion_1766437559543.png">
+                <source src="training_images/sales_funnel_orion_1766437559543.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <h2 class="section-title" data-lang-es>Embudo de Ventas</h2>
+        <h2 class="section-title" data-lang-en>Sales Funnel</h2>
+
+        <div class="funnel-step">
+            <div class="funnel-number">1</div>
+            <div class="funnel-content">
+                <h4>Awareness</h4>
+                <p data-lang-es>El prospecto conoce ORION por primera vez (redes, referidos, llamada)</p>
+                <p data-lang-en>Prospect learns about ORION for the first time (social, referrals, call)</p>
+            </div>
+        </div>
+        <div class="funnel-step">
+            <div class="funnel-number">2</div>
+            <div class="funnel-content">
+                <h4>Interest</h4>
+                <p data-lang-es>Muestra interés, hace preguntas, quiere saber más</p>
+                <p data-lang-en>Shows interest, asks questions, wants to know more</p>
+            </div>
+        </div>
+        <div class="funnel-step">
+            <div class="funnel-number">3</div>
+            <div class="funnel-content">
+                <h4>Consideration</h4>
+                <p data-lang-es">Evalúa opciones, compara con competidores</p>
+                <p data-lang-en">Evaluates options, compares with competitors</p>
+            </div>
+        </div>
+        <div class="funnel-step">
+            <div class="funnel-number">4</div>
+            <div class="funnel-content">
+                <h4>Decision</h4>
+                <p data-lang-es">Listo para comprar, solo necesita el empujón final</p>
+                <p data-lang-en">Ready to buy, just needs the final push</p>
+            </div>
+        </div>
+        <div class="funnel-step">
+            <div class="funnel-number">5</div>
+            <div class="funnel-content">
+                <h4>Purchase</h4>
+                <p data-lang-es">¡Cierre! El cliente compra y comienza el onboarding</p>
+                <p data-lang-en">Close! Customer buys and onboarding begins</p>
+            </div>
+        </div>
+
+        <h2 class="section-title" data-lang-es>Calificación BANT</h2>
+        <h2 class="section-title" data-lang-en>BANT Qualification</h2>
+        <div class="content-grid">
+            <div class="content-card">
+                <h3>💰 Budget</h3>
+                <p data-lang-es">¿Tiene presupuesto para invertir? ¿Cuánto puede pagar mensualmente?</p>
+                <p data-lang-en">Do they have budget to invest? How much can they pay monthly?</p>
+            </div>
+            <div class="content-card">
+                <h3>👤 Authority</h3>
+                <p data-lang-es">¿Es quien toma la decisión? ¿Quién más necesita aprobar?</p>
+                <p data-lang-en">Are they the decision maker? Who else needs to approve?</p>
+            </div>
+            <div class="content-card">
+                <h3>✅ Need</h3>
+                <p data-lang-es">¿Tiene el problema que resolvemos? ¿Pierde clientes por no responder?</p>
+                <p data-lang-en">Do they have the problem we solve? Are they losing customers?</p>
+            </div>
+            <div class="content-card">
+                <h3>⏰ Timeline</h3>
+                <p data-lang-es">¿Cuándo necesita implementar la solución? ¿Es urgente?</p>
+                <p data-lang-en">When do they need to implement? Is it urgent?</p>
+            </div>
+        </div>
+
+        <h2 class="section-title" data-lang-es>Manejo de Objeciones</h2>
+        <h2 class="section-title" data-lang-en>Objection Handling</h2>
+        <div class="content-grid">
+            <div class="content-card">
+                <h3 data-lang-es">"Es muy caro"</h3>
+                <h3 data-lang-en">"It's too expensive"</h3>
+                <p data-lang-es">Respuesta: "¿Cuánto le cuesta perder un cliente por no responder? Con ORION tiene un
+                    empleado 24/7 por menos del costo de un café al día."</p>
+                <p data-lang-en">Response: "How much does it cost you to lose a customer for not responding? With ORION
+                    you have a 24/7 employee for less than a coffee a day."</p>
+            </div>
+            <div class="content-card">
+                <h3 data-lang-es">"Lo tengo que pensar"</h3>
+                <h3 data-lang-en">"I need to think about it"</h3>
+                <p data-lang-es">Respuesta: "Entiendo. ¿Qué es específicamente lo que le gustaría evaluar? Quizá puedo
+                    ayudarle con más información."</p>
+                <p data-lang-en">Response: "I understand. What specifically would you like to evaluate? Maybe I can help
+                    with more information."</p>
+            </div>
+            <div class="content-card">
+                <h3 data-lang-es">"Ya tengo algo similar"</h3>
+                <h3 data-lang-en">"I already have something similar"</h3>
+                <p data-lang-es">Respuesta: "Interesante. ¿Con qué plataforma trabaja? ¿Puede responder en todos los
+                    canales y agendar citas automáticamente?"</p>
+                <p data-lang-en">Response: "Interesting. What platform are you using? Can it respond on all channels and
+                    schedule appointments automatically?"</p>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="orion-academy-modulo2.html" class="nav-btn prev">← Módulo 2: Producto</a>
+            <a href="orion-academy-modulo4.html" class="nav-btn next">Módulo 4: Role-Play →</a>
+        </div>
+    </div>
+    <footer>
+        <p>© 2024 ORION Tech Academy</p>
+    </footer>
+    <script>
+        function setLang(lang) { document.body.classList.remove('lang-es', 'lang-en'); if (lang === 'en') document.body.classList.add('lang-en'); document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active')); document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active'); localStorage.setItem('orion-lang', lang); }
+        setLang(localStorage.getItem('orion-lang') || 'es');
+    </script>
+</body>
+
+</html>

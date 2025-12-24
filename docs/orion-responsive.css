@@ -1,0 +1,152 @@
+/**
+ * ORION Tech - Mobile Responsive CSS
+ * Include this file in all HTML pages for consistent mobile experience
+ */
+
+/* ==== MOBILE FIRST: All Phones (< 480px) ==== */
+@media (max-width: 480px) {
+    /* Global Controls */
+    .global-controls {
+        position: relative !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        padding: 10px !important;
+        z-index: 100 !important;
+    }
+    
+    .country-selector {
+        position: relative !important;
+        top: auto !important;
+        right: auto !important;
+    }
+    
+    .lang-selector {
+        display: none !important;
+    }
+    
+    /* Chat Buttons */
+    .xona-chat-btn,
+    .joe-toggle {
+        bottom: 15px !important;
+        right: 15px !important;
+        width: 55px !important;
+        height: 55px !important;
+    }
+    
+    .xona-chat-container,
+    .joe-chat {
+        width: calc(100% - 30px) !important;
+        right: 15px !important;
+        left: 15px !important;
+        bottom: 80px !important;
+        max-height: 60vh !important;
+    }
+    
+    /* Floating Buttons */
+    .whatsapp-float {
+        bottom: 15px !important;
+        left: 15px !important;
+        right: auto !important;
+        width: 50px !important;
+        height: 50px !important;
+    }
+    
+    .telegram-float {
+        display: none !important;
+    }
+    
+    /* Typography */
+    h1 {
+        font-size: 1.4rem !important;
+    }
+    
+    h2 {
+        font-size: 1.2rem !important;
+    }
+    
+    h3 {
+        font-size: 1rem !important;
+    }
+    
+    p, li {
+        font-size: 0.9rem !important;
+    }
+    
+    /* Cards and Grids */
+    .services-grid,
+    .features-grid,
+    .pricing-grid,
+    .team-grid,
+    .industries-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+    }
+    
+    /* Sections */
+    section {
+        padding: 30px 15px !important;
+    }
+    
+    /* Buttons */
+    .btn, button {
+        padding: 10px 20px !important;
+        font-size: 0.85rem !important;
+    }
+}
+
+/* ==== TABLETS (481px - 768px) ==== */
+@media (min-width: 481px) and (max-width: 768px) {
+    .global-controls {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 10px !important;
+        padding: 15px 10px !important;
+    }
+    
+    .country-selector {
+        position: relative !important;
+    }
+    
+    .lang-selector {
+        position: relative !important;
+        top: auto !important;
+        right: auto !important;
+        flex-direction: row !important;
+        gap: 5px !important;
+    }
+    
+    .lang-btn {
+        font-size: 0.7rem !important;
+        padding: 6px 10px !important;
+    }
+    
+    .xona-chat-btn,
+    .joe-toggle {
+        bottom: 80px !important;
+        right: 20px !important;
+    }
+    
+    /* Cards and Grids */
+    .services-grid,
+    .features-grid,
+    .pricing-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    h1 {
+        font-size: 1.6rem !important;
+    }
+}
+
+/* ==== SMALL LAPTOPS (769px - 1024px) ==== */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .services-grid,
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    .pricing-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}

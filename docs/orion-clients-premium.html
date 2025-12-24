@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORION Tech | Automatización IA para tu Negocio</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00f3ff;
+            --secondary: #bc13fe;
+            --accent: #25D366;
+            --gold: #ffd700;
+            --dark: #0a0a0f;
+            --darker: #050508;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--darker);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* CYBERPUNK GRID BACKGROUND */
+        .cyber-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background:
+                linear-gradient(180deg, transparent 0%, var(--darker) 100%),
+                repeating-linear-gradient(0deg,
+                    transparent 0px,
+                    transparent 49px,
+                    rgba(0, 243, 255, 0.03) 50px),
+                repeating-linear-gradient(90deg,
+                    transparent 0px,
+                    transparent 49px,
+                    rgba(0, 243, 255, 0.03) 50px);
+            animation: gridPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes gridPulse {
+
+            0%,
+            100% {
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* GLOWING ORB */
+        .orb {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: -1;
+            animation: orbFloat 20s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            top: -200px;
+            right: -200px;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+        }
+
+        .orb-2 {
+            bottom: -200px;
+            left: -200px;
+            background: radial-gradient(circle, var(--secondary) 0%, transparent 70%);
+            animation-delay: -10s;
+        }
+
+        @keyframes orbFloat {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            33% {
+                transform: translate(50px, -30px) scale(1.1);
+            }
+
+            66% {
+                transform: translate(-30px, 50px) scale(0.9);
+            }
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(5, 5, 8, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-symbol {
+            width: 45px;
+            height: 45px;
+            background: conic-gradient(from 0deg, var(--primary), var(--secondary), var(--accent), var(--primary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 1.3rem;
+            color: var(--darker);
+            animation: logoSpin 10s linear infinite;
+        }
+
+        @keyframes logoSpin {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        .logo-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: #fff;
+        }
+
+        .nav-cta {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--accent), #1db954);
+            border: none;
+            border-radius: 30px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #000;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(37, 211, 102, 0.5);
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 50px;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero-tag::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            animation: fadeIn 1s ease-out 0.2s both;
+        }
+
+        .hero h1 .line-1 {
+            display: block;
+            color: #fff;
+        }
+
+        .hero h1 .line-2 {
+            display: block;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 100%;
+            animation: gradientFlow 3s ease infinite;
+        }
+
+        @keyframes gradientFlow {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .hero-description {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease-out 0.4s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeIn 1s ease-out 0.6s both;
+        }
+
+        .btn-hero-primary {
+            padding: 20px 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 50px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #000;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-hero-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-hero-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-hero-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 243, 255, 0.4);
+        }
+
+        .btn-hero-secondary {
+            padding: 20px 50px;
+            background: transparent;
+            border: 2px solid var(--primary);
+            border-radius: 50px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-hero-secondary:hover {
+            background: var(--primary);
+            color: #000;
+            transform: translateY(-5px);
+        }
+
+        /* FLOATING DEMO PHONE */
+        .demo-phone {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 280px;
+            height: 560px;
+            background: linear-gradient(145deg, #1a1a2e, #0f0f1a);
+            border-radius: 40px;
+            border: 3px solid rgba(0, 243, 255, 0.3);
+            padding: 15px;
+            box-shadow:
+                0 50px 100px rgba(0, 0, 0, 0.5),
+                0 0 50px rgba(0, 243, 255, 0.2),
+                inset 0 0 30px rgba(0, 243, 255, 0.05);
+            animation: phoneFloat 6s ease-in-out infinite;
+            display: none;
+        }
+
+        @media (min-width: 1200px) {
+            .demo-phone {
+                display: block;
+            }
+
+            .hero-content {
+                text-align: left;
+                max-width: 600px;
+                margin-right: auto;
+            }
+
+            .hero-buttons {
+                justify-content: flex-start;
+            }
+        }
+
+        @keyframes phoneFloat {
+
+            0%,
+            100% {
+                transform: translateY(-50%) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-55%) rotate(2deg);
+            }
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: #0a0f0a;
+            border-radius: 28px;
+            padding: 20px 15px;
+            overflow: hidden;
+        }
+
+        .phone-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .phone-avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .phone-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .phone-status {
+            font-size: 0.7rem;
+            color: var(--accent);
+        }
+
+        .chat-messages {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .msg {
+            max-width: 85%;
+            padding: 12px 15px;
+            border-radius: 18px;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            animation: msgAppear 0.5s ease-out both;
+        }
+
+        .msg-bot {
+            background: rgba(0, 243, 255, 0.15);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+
+        .msg-user {
+            background: var(--accent);
+            color: #000;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        @keyframes msgAppear {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .msg:nth-child(1) {
+            animation-delay: 0.5s;
+        }
+
+        .msg:nth-child(2) {
+            animation-delay: 1.5s;
+        }
+
+        .msg:nth-child(3) {
+            animation-delay: 2.5s;
+        }
+
+        .msg:nth-child(4) {
+            animation-delay: 3.5s;
+        }
+
+        /* FEATURES SECTION */
+        .features {
+            padding: 100px 50px;
+            position: relative;
+        }
+
+        .features-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .features-header h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 40px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 243, 255, 0.1), transparent, rgba(188, 19, 254, 0.1));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: var(--primary);
+            box-shadow:
+                0 30px 60px rgba(0, 0, 0, 0.3),
+                0 0 30px rgba(0, 243, 255, 0.1);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .feature-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.7;
+        }
+
+        /* PRICING SECTION */
+        .pricing {
+            padding: 100px 50px;
+            background: linear-gradient(180deg, transparent, rgba(0, 243, 255, 0.02), transparent);
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .pricing-header h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .price-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+            transition: all 0.4s;
+        }
+
+        .price-card.featured {
+            background: linear-gradient(145deg, rgba(0, 243, 255, 0.1), rgba(188, 19, 254, 0.05));
+            border: 2px solid var(--primary);
+            transform: scale(1.05);
+        }
+
+        .price-card.featured::before {
+            content: 'MÁS POPULAR';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            padding: 8px 25px;
+            border-radius: 20px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #000;
+            letter-spacing: 1px;
+        }
+
+        .price-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+
+        .price-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .price-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .price-amount {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .price-amount span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .price-period {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 30px;
+        }
+
+        .price-features {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .price-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .price-features li::before {
+            content: '✓';
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .price-cta {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 15px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #000;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .price-cta:hover {
+            box-shadow: 0 10px 30px rgba(0, 243, 255, 0.4);
+            transform: translateY(-3px);
+        }
+
+        /* CTA FINAL */
+        .final-cta {
+            padding: 120px 50px;
+            text-align: center;
+            position: relative;
+        }
+
+        .final-cta h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .final-cta p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 50px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* FLOATING WHATSAPP */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 65px;
+            height: 65px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #fff;
+            text-decoration: none;
+            box-shadow: 0 5px 30px rgba(37, 211, 102, 0.5);
+            z-index: 999;
+            animation: whatsappPulse 2s infinite;
+        }
+
+        @keyframes whatsappPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.15);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+            }
+
+            .hero {
+                padding: 100px 20px;
+            }
+
+            .features {
+                padding: 60px 20px;
+            }
+
+            .pricing {
+                padding: 60px 20px;
+            }
+
+            .final-cta {
+                padding: 80px 20px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-hero-primary,
+            .btn-hero-secondary {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+<link rel="stylesheet" href="orion-responsive.css"></head>
+
+<body>
+    <!-- BACKGROUND EFFECTS -->
+    <div class="cyber-bg"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <!-- NAVBAR -->
+    <nav>
+        <a href="#" class="logo">
+            <div class="logo-symbol">O</div>
+            <span class="logo-name">ORION</span>
+        </a>
+        <a href="https://wa.me/18312221072" class="nav-cta">
+            <span>💬</span> Hablar con XONA
+        </a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-tag">Automatización con IA</span>
+            <h1>
+                <span class="line-1">Nunca más pierdas</span>
+                <span class="line-2">un cliente por no responder</span>
+            </h1>
+            <p class="hero-description">
+                Bots de WhatsApp con inteligencia artificial que responden, agendan y venden
+                por ti las 24 horas, los 7 días de la semana.
+            </p>
+            <div class="hero-buttons">
+                <a href="https://wa.me/18312221072" class="btn-hero-primary">Probar Gratis</a>
+                <a href="#pricing" class="btn-hero-secondary">Ver Precios</a>
+            </div>
+        </div>
+
+        <!-- FLOATING PHONE DEMO -->
+        <div class="demo-phone">
+            <div class="phone-screen">
+                <div class="phone-header">
+                    <div class="phone-avatar">🤖</div>
+                    <div>
+                        <div class="phone-name">XONA - Tu Negocio</div>
+                        <div class="phone-status">● En línea</div>
+                    </div>
+                </div>
+                <div class="chat-messages">
+                    <div class="msg msg-bot">¡Hola! 👋 Soy XONA, el asistente de Tu Negocio. ¿En qué te puedo ayudar?
+                    </div>
+                    <div class="msg msg-user">Quiero reservar una cita para mañana</div>
+                    <div class="msg msg-bot">¡Perfecto! 📅 Tenemos disponibilidad a las 10am, 2pm y 5pm. ¿Cuál
+                        prefieres?</div>
+                    <div class="msg msg-user">Las 2pm está bien</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features">
+        <div class="features-header">
+            <h2>¿Qué puede hacer <span style="color: var(--primary);">XONA</span> por ti?</h2>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">💬</div>
+                <h3>Respuestas Automáticas</h3>
+                <p>Responde mensajes de WhatsApp, Instagram y Facebook al instante, las 24 horas del día.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📅</div>
+                <h3>Agenda Citas</h3>
+                <p>Tus clientes pueden reservar directamente en tu calendario sin intervención humana.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💳</div>
+                <h3>Cobra Pagos</h3>
+                <p>Integración con Stripe y otros métodos de pago para cobrar directamente desde el chat.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h3>Inteligencia Artificial</h3>
+                <p>Entiende el contexto y responde como un humano, no como un bot típico.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Reportes en Tiempo Real</h3>
+                <p>Dashboard con métricas de conversaciones, leads y ventas generadas.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌐</div>
+                <h3>Multicanal</h3>
+                <p>Un solo bot para WhatsApp, Instagram, Facebook Messenger y tu sitio web.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="pricing" id="pricing">
+        <div class="pricing-header">
+            <h2>Planes que <span style="color: var(--primary);">crecen contigo</span></h2>
+        </div>
+        <div class="pricing-grid">
+            <div class="price-card">
+                <div class="price-name">STARTER</div>
+                <div class="price-amount">$99<span>/mes</span></div>
+                <div class="price-period">+ $997 setup único</div>
+                <ul class="price-features">
+                    <li>1 número de WhatsApp</li>
+                    <li>500 conversaciones/mes</li>
+                    <li>Bot con IA básica</li>
+                    <li>Respuestas automáticas</li>
+                    <li>Soporte por email</li>
+                </ul>
+                <a href="https://wa.me/18312221072?text=Quiero%20el%20plan%20Starter" class="price-cta">Comenzar</a>
+            </div>
+            <div class="price-card featured">
+                <div class="price-name">BUSINESS</div>
+                <div class="price-amount">$199<span>/mes</span></div>
+                <div class="price-period">+ $1,997 setup único</div>
+                <ul class="price-features">
+                    <li>3 números de WhatsApp</li>
+                    <li>2,000 conversaciones/mes</li>
+                    <li>Bot con IA avanzada</li>
+                    <li>Agendamiento integrado</li>
+                    <li>Integración pagos</li>
+                    <li>Soporte prioritario</li>
+                </ul>
+                <a href="https://wa.me/18312221072?text=Quiero%20el%20plan%20Business" class="price-cta">Comenzar</a>
+            </div>
+            <div class="price-card">
+                <div class="price-name">ENTERPRISE</div>
+                <div class="price-amount">$499<span>/mes</span></div>
+                <div class="price-period">+ setup personalizado</div>
+                <ul class="price-features">
+                    <li>Números ilimitados</li>
+                    <li>Conversaciones ilimitadas</li>
+                    <li>IA personalizada</li>
+                    <li>Integraciones custom</li>
+                    <li>API completa</li>
+                    <li>Account Manager dedicado</li>
+                </ul>
+                <a href="https://wa.me/18312221072?text=Quiero%20el%20plan%20Enterprise" class="price-cta">Contactar</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta">
+        <h2>¿Listo para <span style="color: var(--primary);">automatizar</span>?</h2>
+        <p>Únete a cientos de negocios que ya están ahorrando tiempo y vendiendo más con ORION Tech.</p>
+        <a href="https://wa.me/18312221072" class="btn-hero-primary">Hablar con un Asesor</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2024 ORION Tech. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- WHATSAPP FLOAT -->
+    <a href="https://wa.me/18312221072" class="whatsapp-float">💬</a>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Parallax orbs
+        window.addEventListener('mousemove', (e) => {
+            const orbs = document.querySelectorAll('.orb');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+
+            orbs.forEach((orb, i) => {
+                const speed = i === 0 ? 30 : -30;
+                orb.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+            });
+        });
+    </script>
+</body>
+
+</html>

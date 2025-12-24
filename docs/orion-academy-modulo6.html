@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 6: KPIs y Métricas | ORION Academy</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00f3ff;
+            --secondary: #bc13fe;
+            --accent: #25D366;
+            --darker: #050508;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--darker);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: radial-gradient(ellipse at 50% 50%, rgba(37, 211, 102, 0.08) 0%, transparent 50%), var(--darker);
+        }
+
+        .lang-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            padding: 8px 16px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: #000;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            z-index: 1000;
+            background: linear-gradient(180deg, rgba(5, 5, 8, 0.95), transparent);
+            backdrop-filter: blur(20px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron';
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .logo-text {
+            font-family: 'Orbitron';
+            font-size: 1.5rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .back-btn {
+            padding: 10px 25px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .module-hero {
+            padding: 150px 50px 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .module-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 25px;
+            font-family: 'Orbitron';
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .module-hero h1 {
+            font-family: 'Orbitron';
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 20px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .module-hero p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 700px;
+            line-height: 1.8;
+        }
+
+        .content {
+            padding: 0 50px 100px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .video-container {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 50px;
+        }
+
+        .video-container video {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+        }
+
+        .section-title {
+            font-family: 'Orbitron';
+            font-size: 1.8rem;
+            margin: 40px 0 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 30px;
+            background: linear-gradient(var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .kpi-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+        }
+
+        .kpi-value {
+            font-family: 'Orbitron';
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .kpi-label {
+            font-family: 'Orbitron';
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 10px;
+        }
+
+        .kpi-desc {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+        }
+
+        .table-container {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 50px;
+            overflow-x: auto;
+        }
+
+        .table-container table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table-container th,
+        .table-container td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .table-container th {
+            font-family: 'Orbitron';
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        .table-container td {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .status-green {
+            color: var(--accent);
+        }
+
+        .status-yellow {
+            color: #ffc107;
+        }
+
+        .status-red {
+            color: #ff4444;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .nav-btn {
+            padding: 15px 30px;
+            font-family: 'Orbitron';
+            text-decoration: none;
+            border-radius: 30px;
+        }
+
+        .nav-btn.prev {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            color: #fff;
+        }
+
+        .nav-btn.next {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #000;
+        }
+
+        footer {
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        [data-lang-es] {
+            display: block;
+        }
+
+        [data-lang-en] {
+            display: none;
+        }
+
+        body.lang-en [data-lang-es] {
+            display: none;
+        }
+
+        body.lang-en [data-lang-en] {
+            display: block;
+        }
+    </style>
+<link rel="stylesheet" href="orion-responsive.css"></head>
+
+<body>
+    <div class="bg-animation"></div>
+    <div class="lang-selector">
+        <button class="lang-btn active" onclick="setLang('es')">🇪🇸 ES</button>
+        <button class="lang-btn" onclick="setLang('en')">🇺🇸 EN</button>
+    </div>
+    <header>
+        <a href="orion-academy.html" class="logo">
+            <div class="logo-icon">O</div><span class="logo-text">Academy</span>
+        </a>
+        <a href="orion-academy.html#modulos" class="back-btn">← Módulos</a>
+    </header>
+
+    <section class="module-hero">
+        <span class="module-badge">MÓDULO 06 | SEMANA 3-4</span>
+        <h1 data-lang-es>KPIs y <span class="gradient-text">Métricas</span></h1>
+        <h1 data-lang-en>KPIs and <span class="gradient-text">Metrics</span></h1>
+        <p data-lang-es>Entiende las métricas que te evalúan. Lo que se mide, se mejora. Domina tus números para dominar
+            tu carrera.</p>
+        <p data-lang-en>Understand the metrics you're evaluated on. What gets measured, gets improved. Master your
+            numbers to master your career.</p>
+    </section>
+
+    <div class="content">
+        <div class="video-container">
+            <video controls poster="training_images/kpi_dashboard_sales_1766437634642.png">
+                <source src="training_images/kpi_dashboard_sales_1766437634642.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <h2 class="section-title" data-lang-es>KPIs para SDR</h2>
+        <h2 class="section-title" data-lang-en>SDR KPIs</h2>
+
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-value">80+</div>
+                <div class="kpi-label" data-lang-es>Llamadas / Día</div>
+                <div class="kpi-label" data-lang-en">Calls / Day</div>
+                <div class="kpi-desc" data-lang-es">Meta mínima diaria</div>
+                <div class="kpi-desc" data-lang-en">Daily minimum target</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value">15%</div>
+                <div class="kpi-label" data-lang-es">Tasa Conexión</div>
+                <div class="kpi-label" data-lang-en">Connection Rate</div>
+                <div class="kpi-desc" data-lang-es">Llamadas que conectan</div>
+                <div class="kpi-desc" data-lang-en">Calls that connect</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value">5+</div>
+                <div class="kpi-label" data-lang-es">Demos / Semana</div>
+                <div class="kpi-label" data-lang-en">Demos / Week</div>
+                <div class="kpi-desc" data-lang-es">Reuniones agendadas</div>
+                <div class="kpi-desc" data-lang-en">Scheduled meetings</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value">25%</div>
+                <div class="kpi-label" data-lang-es">Tasa Cierre</div>
+                <div class="kpi-label" data-lang-en">Close Rate</div>
+                <div class="kpi-desc" data-lang-es">Demos que cierran</div>
+                <div class="kpi-desc" data-lang-en">Demos that close</div>
+            </div>
+        </div>
+
+        <h2 class="section-title" data-lang-es">Tabla de Rendimiento</h2>
+        <h2 class="section-title" data-lang-en">Performance Table</h2>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th data-lang-es">Métrica</th>
+                        <th data-lang-en">Metric</th>
+                        <th class="status-red" data-lang-es">Bajo</th>
+                        <th class="status-red" data-lang-en">Low</th>
+                        <th class="status-yellow" data-lang-es">Aceptable</th>
+                        <th class="status-yellow" data-lang-en">Acceptable</th>
+                        <th class="status-green" data-lang-es">Excelente</th>
+                        <th class="status-green" data-lang-en">Excellent</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-lang-es">Llamadas/día</td>
+                        <td data-lang-en">Calls/day</td>
+                        <td class="status-red">
+                            < 50</td>
+                        <td class="status-yellow">50-80</td>
+                        <td class="status-green">80+</td>
+                    </tr>
+                    <tr>
+                        <td data-lang-es">Demos/semana</td>
+                        <td data-lang-en">Demos/week</td>
+                        <td class="status-red">
+                            < 3</td>
+                        <td class="status-yellow">3-5</td>
+                        <td class="status-green">5+</td>
+                    </tr>
+                    <tr>
+                        <td data-lang-es">Tasa cierre</td>
+                        <td data-lang-en">Close rate</td>
+                        <td class="status-red">
+                            < 15%</td>
+                        <td class="status-yellow">15-25%</td>
+                        <td class="status-green">25%+</td>
+                    </tr>
+                    <tr>
+                        <td data-lang-es">Revenue mensual</td>
+                        <td data-lang-en">Monthly revenue</td>
+                        <td class="status-red">
+                            < $3K</td>
+                        <td class="status-yellow">$3-6K</td>
+                        <td class="status-green">$6K+</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="orion-academy-modulo5.html" class="nav-btn prev">← Módulo 5: CRM</a>
+            <a href="orion-academy-modulo7.html" class="nav-btn next">Módulo 7: Certificación →</a>
+        </div>
+    </div>
+    <footer>
+        <p>© 2024 ORION Tech Academy</p>
+    </footer>
+    <script>
+        function setLang(lang) { document.body.classList.remove('lang-es', 'lang-en'); if (lang === 'en') document.body.classList.add('lang-en'); document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active')); document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active'); localStorage.setItem('orion-lang', lang); }
+        setLang(localStorage.getItem('orion-lang') || 'es');
+    </script>
+</body>
+
+</html>
