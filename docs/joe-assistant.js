@@ -316,6 +316,31 @@ class JoeAssistant {
                 this.currentAudio = null;
             }
 
+            // OPTION 1: Try Render Cloud TTS (works on all devices)
+            try {
+                console.log('[JOE TTS] 🌐 Trying Render Cloud TTS...');
+                const cloudResponse = await fetch('https://orion-cloud.onrender.com/api/tts', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ text: text.substring(0, 500), lang: this.currentLang })
+                });
+
+                if (cloudResponse.ok) {
+                    const blob = await cloudResponse.blob();
+                    if (blob.size > 0) {
+                        const audioUrl = URL.createObjectURL(blob);
+                        this.currentAudio = new Audio(audioUrl);
+                        await this.currentAudio.play();
+                        console.log('[JOE TTS] ✅ Render Cloud TTS success!');
+                        return;
+                    }
+                }
+                console.warn('[JOE TTS] Cloud TTS empty or failed, trying OpenAI...');
+            } catch (cloudError) {
+                console.warn('[JOE TTS] Cloud TTS error:', cloudError.message);
+            }
+
+            // OPTION 2: Try OpenAI TTS directly
             const apiKey = JOE_CONFIG.apis.openai.keys[0];
             console.log('[JOE TTS] API Key length:', apiKey ? apiKey.length : 0);
             console.log('[JOE TTS] Text to speak:', text.substring(0, 100));
