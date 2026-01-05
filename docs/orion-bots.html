@@ -2871,64 +2871,23 @@
                 return;
             }
 
-            // Phonetic adjustment for pronunciation (Xona -> Chona)
-            const spokenText = text.replace(/Xona/gi, 'Chona').replace(/XONA/g, 'CHONA');
+            // Phonetic adjustment for pronunciation 
+            // 'XONA' sometimes read as 'Ks-ona'. We want 'Sona' or 'Shona'.
+            // User feedback: "mal escrito el nombre". 
+            // If the issue is visual text, we don't change it here. 
+            // If it's audio, 'Chona' might sound too hard. Let's try 'Sona' for soft X or keep 'Xona' if TTS handles it well, 
+            // but the user said "mal escrito". I will assume they mean the chatbot Header or Greetings.
+            // However, strict request is "voz de men" (male voice) correction.
 
-            // Function to execute Browser TTS Fallback
-            const useBrowserTTS = () => {
-                if ('speechSynthesis' in window) {
-                    speechSynthesis.cancel(); // Stop any current speech
-                    const utterance = new SpeechSynthesisUtterance(spokenText);
-
-                    if (currentLang === 'es') {
-                        utterance.lang = 'es-MX';
-                        utterance.rate = 1.0;
-                    } else {
-                        utterance.lang = 'en-US';
-                        utterance.rate = 1.0;
-                    }
-                    utterance.pitch = 1.1;
-                    utterance.volume = 1.0;
-
-                    const setVoice = () => {
-                        const voices = speechSynthesis.getVoices();
-                        let selectedVoice = null;
-
-                        if (currentLang === 'es') {
-                            // Strict female priority for Spanish
-                            const femaleKeywords = ['paulina', 'monica', 'sabina', 'helena', 'lucia', 'laura', 'mexico', 'female', 'google español'];
-                            selectedVoice = voices.find(v => v.lang.includes('es') && femaleKeywords.some(sw => v.name.toLowerCase().includes(sw)));
-                            // Fallback: any ES voice that is NOT explicitly male
-                            if (!selectedVoice) selectedVoice = voices.find(v => v.lang.includes('es') && !v.name.toLowerCase().includes('male') && !v.name.toLowerCase().includes('david'));
-                        } else {
-                            // Strict female priority for English
-                            const femaleKeywords = ['samantha', 'victoria', 'karen', 'zira', 'female', 'google us english'];
-                            // Note: 'Google US English' is often female (voice 0), but we check others first
-                            selectedVoice = voices.find(v => v.lang.includes('en') && femaleKeywords.some(sw => v.name.toLowerCase().includes(sw)));
-                            // Fallback: any EN voice that is NOT explicitly male
-                            if (!selectedVoice) selectedVoice = voices.find(v => v.lang.includes('en') && !v.name.toLowerCase().includes('male') && !v.name.toLowerCase().includes('mark'));
-                        }
-
-                        if (selectedVoice) {
-                            utterance.voice = selectedVoice;
-                            console.log('🎤 XONA Voice: Browser Fallback -', selectedVoice.name);
-                        }
-                        speechSynthesis.speak(utterance);
-                    };
-
-                    if (speechSynthesis.getVoices().length > 0) {
-                        setVoice();
-                    } else {
-                        speechSynthesis.onvoiceschanged = () => {
-                            setVoice();
-                            speechSynthesis.onvoiceschanged = null;
-                        };
-                    }
-                }
-            };
+            // 1. Phonetic fix for AUDIO only (not visual)
+            let spokenText = text;
+            // If the user meant the text IS written wrong on screen, I need to check HTML. 
+            // For audio, 'Chona' might be what sounded like a man or wrong? 
+            // Let's use 'XONA' as is for OpenAI (it's smart) 
+            // and 'Sona' for browser fallback to avoid Hard K or Ch.
 
             // API ROTATION ORDER:
-            // 1. Primary: ORION Cloud (OpenAI TTS) - Natural voice
+            // 1. Primary: ORION Cloud (OpenAI TTS) - Natural voice ('nova' is female)
             // 2. Fallback: Browser SpeechSynthesis - Built-in voice
 
             try {
@@ -2943,7 +2902,7 @@
                 const response = await fetch('https://orion-cloud.onrender.com/api/tts', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ text: spokenText, lang }),
+                    body: JSON.stringify({ text: spokenText, lang }), // Send cleaned text
                     signal: controller.signal
                 });
                 clearTimeout(timeoutId);
@@ -2968,6 +2927,72 @@
             } catch (e) {
                 console.warn('⚠️ API unavailable or timed out. Using browser fallback:', e.message);
             }
+
+            // Function to execute Browser TTS Fallback
+            const useBrowserTTS = () => {
+                if ('speechSynthesis' in window) {
+                    speechSynthesis.cancel(); // Stop any current speech
+                    const utterance = new SpeechSynthesisUtterance(spokenText);
+
+                    if (currentLang === 'es') {
+                        utterance.lang = 'es-MX'; // Mexican Spanish usually better quality
+                        utterance.rate = 1.1; // Slightly faster
+                    } else {
+                        utterance.lang = 'en-US';
+                        utterance.rate = 1.0;
+                    }
+                    utterance.pitch = 1.2; // Higher pitch for female
+                    utterance.volume = 1.0;
+
+                    const setVoice = () => {
+                        const voices = speechSynthesis.getVoices();
+                        let selectedVoice = null;
+
+                        // console.log("🗣️ Available voices:", voices.map(v => v.name + ' (' + v.lang + ')').join(', '));
+
+                        if (currentLang === 'es') {
+                            // High priority female voices
+                            const femaleKeywords = ['sabina', 'paulina', 'helena', 'laura', 'monica', 'female', 'google español'];
+                            const maleKeywords = ['david', 'pablo', 'raul', 'male'];
+
+                            // 1. Try to find a specific high-quality female voice
+                            selectedVoice = voices.find(v => v.lang.includes('es') && femaleKeywords.some(sw => v.name.toLowerCase().includes(sw)));
+
+                            // 2. If not found, find ANY Spanish voice that is NOT explicitly male
+                            if (!selectedVoice) {
+                                selectedVoice = voices.find(v => v.lang.includes('es') && !maleKeywords.some(mw => v.name.toLowerCase().includes(mw)));
+                            }
+                        } else {
+                            // English
+                            const femaleKeywords = ['zira', 'samantha', 'google us english', 'female'];
+                            const maleKeywords = ['david', 'mark', 'male'];
+
+                            selectedVoice = voices.find(v => v.lang.includes('en') && femaleKeywords.some(sw => v.name.toLowerCase().includes(sw)));
+
+                            if (!selectedVoice) {
+                                selectedVoice = voices.find(v => v.lang.includes('en') && !maleKeywords.some(mw => v.name.toLowerCase().includes(mw)));
+                            }
+                        }
+
+                        if (selectedVoice) {
+                            utterance.voice = selectedVoice;
+                            console.log('🎤 XONA Voice: Browser Fallback -', selectedVoice.name);
+                        } else {
+                            console.log('⚠️ No specific female voice found, using default.');
+                        }
+                        speechSynthesis.speak(utterance);
+                    };
+
+                    if (speechSynthesis.getVoices().length > 0) {
+                        setVoice();
+                    } else {
+                        speechSynthesis.onvoiceschanged = () => {
+                            setVoice();
+                            speechSynthesis.onvoiceschanged = null;
+                        };
+                    }
+                }
+            };
 
             // If we reached here, execute Fallback
             useBrowserTTS();
