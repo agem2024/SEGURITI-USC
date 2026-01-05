@@ -1100,7 +1100,8 @@
             }
         }
     </style>
-<link rel="stylesheet" href="orion-responsive.css"></head>
+    <link rel="stylesheet" href="orion-responsive.css">
+</head>
 
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -2636,7 +2637,7 @@
             </div>
         </div>
         <div class="xona-messages" id="xonaMessages">
-            <div class="xona-msg bot">¡Hola! Soy CHONA, tu asistente de ORION Tech. ¿Cómo puedo ayudarte a automatizar
+            <div class="xona-msg bot">¡Hola! Soy XONA, tu asistente de ORION Tech. ¿Cómo puedo ayudarte a automatizar
                 tu negocio hoy?</div>
         </div>
         <div class="xona-input-area">
@@ -2744,7 +2745,7 @@
         // Multilingual greetings - ORION Tech Professional
         const xonaGreetings = {
             en: "Hello! I'm XONA, your ORION Tech AI assistant. How can I help automate your business today?",
-            es: "¡Hola! Soy CHONA, tu asistente de ORION Tech. ¿Cómo puedo ayudarte a automatizar tu negocio?",
+            es: "¡Hola! Soy XONA, tu asistente de ORION Tech. ¿Cómo puedo ayudarte a automatizar tu negocio?",
             zh: "您好！我是XONA，ORION Tech的AI助手。今天我能为您的业务自动化做什么？",
             tl: "Kumusta! Ako si XONA ng ORION Tech. Paano ko makakatulong sa iyong negosyo?",
             vi: "Xin chào! Tôi là XONA từ ORION Tech. Tôi có thể giúp gì cho doanh nghiệp của bạn?"
@@ -2791,6 +2792,10 @@
         // Text-to-Speech for XONA responses - FEMALE VOICE, CHONA pronunciation
         // Text-to-Speech for XONA responses - HYBRID (OpenAI API -> Browser Fallback)
         async function speakXona(text) {
+            // Phonetic adjustment for pronunciation (Xona -> Chona)
+            // This ensures it sounds like "Chona" but we display "XONA"
+            const spokenText = text.replace(/Xona/gi, 'Chona').replace(/XONA/g, 'CHONA');
+
             // 1. Try Natural OpenAI Voice via Local API
             try {
                 // Determine language
@@ -2800,14 +2805,21 @@
                 const response = await fetch('https://orion-cloud.onrender.com/api/tts', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ text, lang })
+                    body: JSON.stringify({ text: spokenText, lang }) // Send phonetic text
                 });
 
                 if (response.ok) {
                     const blob = await response.blob();
                     const audioUrl = URL.createObjectURL(blob);
                     const audio = new Audio(audioUrl);
-                    audio.play();
+
+                    // Critical: Handle Promise for Autoplay policies
+                    const playPromise = audio.play();
+                    if (playPromise !== undefined) {
+                        playPromise.catch(error => {
+                            console.warn('⚠️ Autoplay prevented. User interaction needed.', error);
+                        });
+                    }
                     console.log('🎤 XONA Voice: OpenAI Natural (via API)');
                     return; // Success, exit function
                 } else {
@@ -2820,10 +2832,7 @@
             // 2. Fallback: Browser Built-in TTS (Legacy Logic)
             if ('speechSynthesis' in window) {
                 speechSynthesis.cancel();
-
-                // Robust replacement: "xona" -> "Chona"
-                let spokenText = text.replace(/xona/gi, 'Chona');
-
+                // spokenText is already defined above with substitutions
                 const utterance = new SpeechSynthesisUtterance(spokenText);
 
                 if (currentLang === 'es') {
