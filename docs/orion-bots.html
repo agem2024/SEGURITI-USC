@@ -2270,31 +2270,39 @@
             right: 25px;
             width: 70px;
             height: 70px;
-            background: linear-gradient(135deg, #00f3ff 0%, #bc13fe 100%);
+            background: #000;
+            /* Dark background to make neon pop */
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             z-index: 9999;
-            box-shadow: 0 0 30px rgba(0, 243, 255, 0.6), 0 0 60px rgba(188, 19, 254, 0.3);
-            animation: xonaPulse 2s infinite;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            /* Intense initial shadow */
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.8), 0 0 60px rgba(188, 19, 254, 0.6);
+            animation: xonaNeonFlash 1.5s infinite alternate;
+            /* Faster, alternating flash */
+            border: 3px solid #00f3ff;
+            /* Thicker border */
+            overflow: hidden;
+            /* Keep video contained */
         }
 
         /* .xona-chat-btn::before removed to allow video content */
 
-        @keyframes xonaPulse {
-
-            0%,
-            100% {
+        @keyframes xonaNeonFlash {
+            0% {
                 transform: scale(1);
-                box-shadow: 0 0 30px rgba(0, 243, 255, 0.6);
+                box-shadow: 0 0 20px rgba(0, 243, 255, 0.6), 0 0 40px rgba(188, 19, 254, 0.4);
+                border-color: #00f3ff;
             }
 
-            50% {
+            100% {
                 transform: scale(1.1);
-                box-shadow: 0 0 50px rgba(188, 19, 254, 0.8);
+                /* Super intense flash shadow */
+                box-shadow: 0 0 50px rgba(0, 243, 255, 1), 0 0 80px rgba(188, 19, 254, 0.9), 0 0 100px rgba(255, 255, 255, 0.4);
+                border-color: #fff;
+                /* Border flashes white */
             }
         }
 
