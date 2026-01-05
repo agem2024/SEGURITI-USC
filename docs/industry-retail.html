@@ -29,7 +29,7 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 80px 20px;
         }
@@ -55,38 +55,6 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .price {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
-            color: var(--neon-green);
-            margin-bottom: 30px;
-        }
-
-        .desc {
-            color: #888;
-            font-size: 1.1rem;
-            line-height: 1.7;
-            margin-bottom: 40px;
-        }
-
-        .features {
-            list-style: none;
-            margin-bottom: 40px;
-        }
-
-        .features li {
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 1rem;
-            color: #ccc;
-        }
-
-        .features li::before {
-            content: '✓ ';
-            color: var(--neon-green);
-            font-weight: bold;
-        }
-
         .cta {
             display: inline-block;
             background: linear-gradient(135deg, var(--neon-green), var(--neon-blue));
@@ -98,6 +66,8 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             transition: 0.3s;
+            text-align: center;
+            width: 100%;
         }
 
         .cta:hover {
@@ -177,8 +147,20 @@
             z-index: 2;
             padding: 60px 20px;
         }
+
+        /* PRICING STYLES */
+        .btn {
+            background: linear-gradient(135deg, var(--neon-purple), #8a2be2);
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            border-radius: 5px;
+        }
     </style>
-<link rel="stylesheet" href="orion-responsive.css"></head>
+    <link rel="stylesheet" href="orion-responsive.css">
+</head>
 
 <body>
     <!-- HERO WITH EYE VIDEO -->
@@ -189,152 +171,179 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <a href="orion-bots.html" class="back">← Back to Packages</a>
-            <h1>RETAIL PACKAGE</h1>
-            <div class="price"><span data-price="retail">$1,197</span> <span style="font-size:1rem;color:#888;">/setup +
-                    $97/mo</span></div>
-            <p class="desc">Complete AI automation solution for retail stores, boutiques, and shops. Increase sales,
-                reduce staff workload, and provide 24/7 customer support.</p>
+            <h1>RETAIL & E-COMMERCE</h1>
+            <p style="font-size: 1.2rem; color: #ccc; max-width: 700px; margin: 0 auto 30px;">
+                Complete AI automation for physical stores and online shops. Sync inventory, automate customer service,
+                and boost sales 24/7.
+            </p>
+            <a href="#" onclick="openModal('RETAIL'); return false;" class="btn">GET STARTED</a>
         </div>
     </section>
+
+    <div class="container">
+
+        <!-- SECTORS GRID -->
+        <h2
+            style="font-family:'Orbitron';color:var(--neon-purple);text-align:center;margin:30px 0 15px;font-size:1.5rem;">
+            // SUPPORTED SECTORS</h2>
+
+        <div
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 60px;">
+            <!-- Retail Minorista -->
+            <div
+                style="background:rgba(188,19,254,0.1); border:1px solid rgba(188,19,254,0.4); padding:20px; border-radius:10px;">
+                <h3 style="font-family:'Orbitron'; color:#bc13fe; margin-bottom:10px;">🏪 RETAIL STORES</h3>
+                <p style="color:#aaa; font-size:0.9rem;">Clothing, Jewelry, Electronics, General Stores.</p>
+                <ul style="color:#888; font-size:0.85rem; margin-top:10px; padding-left:20px;">
+                    <li>In-store pickup coordination</li>
+                    <li>Stock checks via WhatsApp</li>
+                    <li>New arrival notifications</li>
+                </ul>
+            </div>
+
+            <!-- Wholesale -->
+            <div
+                style="background:rgba(0,243,255,0.1); border:1px solid rgba(0,243,255,0.4); padding:20px; border-radius:10px;">
+                <h3 style="font-family:'Orbitron'; color:#00f3ff; margin-bottom:10px;">📦 WHOLESALE</h3>
+                <p style="color:#aaa; font-size:0.9rem;">Distributors selling to other businesses (B2B).</p>
+                <ul style="color:#888; font-size:0.85rem; margin-top:10px; padding-left:20px;">
+                    <li>Bulk order taking</li>
+                    <li>Catalog with tiered pricing</li>
+                    <li>Re-order automation</li>
+                </ul>
+            </div>
+
+            <!-- E-commerce -->
+            <div
+                style="background:rgba(37,211,102,0.1); border:1px solid rgba(37,211,102,0.4); padding:20px; border-radius:10px;">
+                <h3 style="font-family:'Orbitron'; color:#25D366; margin-bottom:10px;">🌐 E-COMMERCE</h3>
+                <p style="color:#aaa; font-size:0.9rem;">Shopify, WooCommerce, Marketplace sellers.</p>
+                <ul style="color:#888; font-size:0.85rem; margin-top:10px; padding-left:20px;">
+                    <li>Order status tracking</li>
+                    <li>Abandoned cart recovery</li>
+                    <li>AI Product recommendations</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- NEW PRICING SECTION V4.0 -->
+        <div class="pricing">
+            <h3 style="font-family: 'Orbitron'; color: #fff; margin-bottom: 30px; text-align: center;">// CHOOSE YOUR
+                PLAN</h3>
+
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 40px;">
+
+                <!-- STARTER PLAN -->
+                <div
+                    style="background: rgba(188,19,254,0.05); border: 1px solid rgba(188,19,254,0.2); padding: 30px; border-radius: 12px; display: flex; flex-direction: column;">
+                    <div class="plan-name-starter"
+                        style="color: #bc13fe; font-size: 0.9rem; font-weight: 700; letter-spacing: 2px; margin-bottom: 10px;">
+                        STARTER</div>
+                    <div style="font-family: 'Orbitron'; font-size: 2.5rem; color: #fff; margin-bottom: 5px;"><span
+                            data-price="monthly_starter">$197</span><span
+                            style="font-size: 1rem; color: #888;">/mo</span></div>
+                    <div style="color: #888; font-size: 0.9rem; margin-bottom: 20px;">+ <span
+                            data-price="setup_starter">$997</span> Setup Fee</div>
+
+                    <ul
+                        style="text-align: left; color: #ccc; font-size: 0.9rem; list-style: none; padding: 0; margin-bottom: 20px; flex-grow: 1;">
+                        <li style="margin-bottom: 8px;">✓ WhatsApp Customer Bot</li>
+                        <li style="margin-bottom: 8px;">✓ Basic Product FAQ</li>
+                        <li style="margin-bottom: 8px;">✓ Store Hours & Location</li>
+                        <li style="margin-bottom: 8px;">✓ Manual Order Taking</li>
+                    </ul>
+                    <a href="#" onclick="openModal('RETAIL STARTER'); return false;" class="btn"
+                        style="width: 100%; text-align: center; background: transparent; border: 1px solid #bc13fe; color: #bc13fe;">SELECT
+                        STARTER</a>
+                </div>
+
+                <!-- GROWTH PLAN (Highlighted) -->
+                <div
+                    style="background: rgba(188,19,254,0.15); border: 2px solid #bc13fe; padding: 30px; border-radius: 12px; transform: scale(1.02); position: relative; display: flex; flex-direction: column; box-shadow: 0 0 20px rgba(188,19,254,0.2);">
+                    <div
+                        style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #bc13fe; color: #fff; padding: 4px 15px; font-size: 0.75rem; font-weight: 800; border-radius: 20px;">
+                        MOST POPULAR</div>
+                    <div class="plan-name-growth"
+                        style="color: #bc13fe; font-size: 0.9rem; font-weight: 700; letter-spacing: 2px; margin-bottom: 10px;">
+                        GROWTH</div>
+                    <div style="font-family: 'Orbitron'; font-size: 2.5rem; color: #fff; margin-bottom: 5px;"><span
+                            data-price="monthly_growth">$397</span><span
+                            style="font-size: 1rem; color: #888;">/mo</span></div>
+                    <div style="color: #fff; font-size: 0.9rem; margin-bottom: 20px; font-weight: 500;">+ <span
+                            data-price="setup_growth">$1,997</span> Setup Fee</div>
+
+                    <ul
+                        style="text-align: left; color: #fff; font-size: 0.9rem; list-style: none; padding: 0; margin-bottom: 20px; flex-grow: 1;">
+                        <li style="margin-bottom: 8px;">✓ Shopify/Woo Integration</li>
+                        <li style="margin-bottom: 8px;">✓ Order Status Tracking</li>
+                        <li style="margin-bottom: 8px;">✓ Abandoned Cart Recovery</li>
+                        <li style="margin-bottom: 8px;">✓ Product Catalog Sync</li>
+                        <li style="margin-bottom: 8px;">✓ Customer Database</li>
+                    </ul>
+                    <a href="#" onclick="openModal('RETAIL GROWTH'); return false;" class="btn"
+                        style="width: 100%; text-align: center;">SELECT GROWTH</a>
+                </div>
+
+                <!-- PRO PLAN -->
+                <div
+                    style="background: rgba(188,19,254,0.05); border: 1px solid rgba(188,19,254,0.2); padding: 30px; border-radius: 12px; display: flex; flex-direction: column;">
+                    <div class="plan-name-pro"
+                        style="color: #bc13fe; font-size: 0.9rem; font-weight: 700; letter-spacing: 2px; margin-bottom: 10px;">
+                        PRO</div>
+                    <div style="font-family: 'Orbitron'; font-size: 2.5rem; color: #fff; margin-bottom: 5px;"><span
+                            data-price="monthly_pro">$697</span><span style="font-size: 1rem; color: #888;">/mo</span>
+                    </div>
+                    <div style="color: #888; font-size: 0.9rem; margin-bottom: 20px;">+ <span
+                            data-price="setup_pro">$3,997</span> Setup Fee</div>
+
+                    <ul
+                        style="text-align: left; color: #ccc; font-size: 0.9rem; list-style: none; padding: 0; margin-bottom: 20px; flex-grow: 1;">
+                        <li style="margin-bottom: 8px;">✓ Multi-Store / Omni-channel</li>
+                        <li style="margin-bottom: 8px;">✓ Wholesale B2B Portal</li>
+                        <li style="margin-bottom: 8px;">✓ Advanced Inventory AI</li>
+                        <li style="margin-bottom: 8px;">✓ Custom Loyalty App</li>
+                    </ul>
+                    <a href="#" onclick="openModal('RETAIL PRO'); return false;" class="btn"
+                        style="width: 100%; text-align: center; background: transparent; border: 1px solid #bc13fe; color: #bc13fe;">SELECT
+                        PRO</a>
+                </div>
+
+            </div>
+
+            <p style="color: #666; font-size: 0.8rem; margin-top: 10px; text-align: center;">* Yearly contracts get 20%
+                OFF Setup & Monthly Fees.</p>
+
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="#" onclick="openModal('RETAIL CUSTOM'); return false;" class="btn"
+                    style="background: transparent; border: 1px solid #666; color: #888; padding: 10px 20px; font-size: 0.8rem;">NEED
+                    A CUSTOM SOLUTION?</a>
+            </div>
+        </div>
+
+    </div>
 
     <!-- Load Shared Pricing Script -->
     <script src="js/orion-pricing.js"></script>
 
-    <div class="container">
-
-        <!-- RETAIL SUBDIVISIONS HEADER -->
-        <h2
-            style="font-family:'Orbitron';color:var(--neon-blue);text-align:center;margin:30px 0 15px;font-size:1.3rem;">
-            // MERCADO COMERCIAL - SUBDIVISIONES</h2>
-        <p style="text-align:center;color:#888;margin-bottom:40px;">Clasificación basada en SCIAN. Transacciones B2C
-            directas al consumidor final.</p>
-
-        <!-- RETAIL MINORISTA -->
-        <div
-            style="background:rgba(188,19,254,0.08);border:1px solid rgba(188,19,254,0.4);padding:30px;margin-bottom:25px;border-radius:10px;">
-            <div style="display:flex;gap:25px;align-items:flex-start;flex-wrap:wrap;">
-                <video src="images/retail_store.mp4" autoplay loop muted playsinline></video>
-                style="width:180px;height:180px;object-fit:cover;border-radius:10px;box-shadow:0 0 20px
-                rgba(188,19,254,0.4);"
-                alt="Retail Store">
-                <div style="flex:1;min-width:280px;">
-                    <h3 style="font-family:'Orbitron';color:#bc13fe;margin-bottom:15px;font-size:1.3rem;">🏪 RETAIL
-                        MINORISTA</h3>
-                    <p style="color:#aaa;margin-bottom:15px;">Tiendas físicas y boutiques que venden directamente al
-                        público final. Alto volumen de transacciones.</p>
-                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;">
-                        <div style="background:rgba(0,0,0,0.4);padding:12px;border-radius:5px;"><strong
-                                style="color:#bc13fe;">Clothing Store</strong><br><span
-                                style="color:#00f3ff;">$2,497</span> + $89/mo</div>
-                        <div style="background:rgba(0,0,0,0.4);padding:12px;border-radius:5px;"><strong
-                                style="color:#bc13fe;">Jewelry</strong><br><span style="color:#00f3ff;">$3,997</span> +
-                            $129/mo</div>
-                        <div style="background:rgba(0,0,0,0.4);padding:12px;border-radius:5px;"><strong
-                                style="color:#bc13fe;">Electronics</strong><br><span
-                                style="color:#00f3ff;">$3,497</span> + $119/mo</div>
-                        <div style="background:rgba(0,0,0,0.4);padding:12px;border-radius:5px;"><strong
-                                style="color:#bc13fe;">General Store</strong><br><span
-                                style="color:#00f3ff;">$1,997</span> + $79/mo</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- WHOLESALE -->
-        <div
-            style="background:rgba(0,243,255,0.08);border:1px solid rgba(0,243,255,0.4);padding:30px;margin-bottom:25px;border-radius:10px;">
-            <div style="display:flex;gap:25px;align-items:flex-start;flex-wrap:wrap;">
-                <img src="images/industry_liquor.png"
-                    style="width:180px;height:180px;object-fit:cover;border-radius:10px;box-shadow:0 0 20px rgba(0,243,255,0.4);"
-                    alt="Wholesale">
-                <div style="flex:1;min-width:280px;">
-                    <h3 style="font-family:'Orbitron';color:#00f3ff;margin-bottom:15px;font-size:1.3rem;">📦 WHOLESALE
-                        (MAYORISTA)</h3>
-                    <p style="color:#aaa;margin-bottom:15px;">Distribuidores que venden en volumen a otros negocios.
-                        Logística y precios competitivos.</p>
-                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;">
-                        <div style="background:rgba(0,0,0,0.4);padding:12px;border-radius:5px;"><strong
-                                style="color:#00f3ff;">Liquor Store</strong><br><span
-                                style="color:#25D366;">$2,997</span> + $99/mo</div>
-                        <div style="background:rgba(0,0,0,0.4);padding:12px;border-radius:5px;"><strong
-                                style="color:#00f3ff;">Pharmacy</strong><br><span style="color:#25D366;">$4,997</span> +
-                            $149/mo</div>
-                        <div style="background:rgba(0,0,0,0.4);padding:12px;border-radius:5px;"><strong
-                                style="color:#00f3ff;">Grocery</strong><br><span style="color:#25D366;">$2,497</span> +
-                            $89/mo</div>
-                        <div style="background:rgba(0,0,0,0.4);padding:12px;border-radius:5px;"><strong
-                                style="color:#00f3ff;">Convenience</strong><br><span
-                                style="color:#25D366;">$1,497</span> + $69/mo</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- E-COMMERCE -->
-        <div
-            style="background:rgba(37,211,102,0.08);border:1px solid rgba(37,211,102,0.4);padding:30px;margin-bottom:25px;border-radius:10px;">
-            <div style="display:flex;gap:25px;align-items:flex-start;flex-wrap:wrap;">
-                <video src="images/retail_ecommerce.mp4" autoplay loop muted playsinline></video>
-                style="width:180px;height:180px;object-fit:cover;border-radius:10px;box-shadow:0 0 20px
-                rgba(37,211,102,0.4);"
-                alt="E-commerce">
-                <div style="flex:1;min-width:280px;">
-                    <h3 style="font-family:'Orbitron';color:#25D366;margin-bottom:15px;font-size:1.3rem;">🌐 E-COMMERCE
-                    </h3>
-                    <p style="color:#aaa;margin-bottom:15px;">Tiendas online. Automatización de pedidos, chatbots de
-                        soporte, analítica de clientes.</p>
-                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;">
-                        <div style="background:rgba(0,0,0,0.4);padding:12px;border-radius:5px;"><strong
-                                style="color:#25D366;">Shopify/WooC</strong><br><span
-                                style="color:#00f3ff;">$2,997</span> + $99/mo</div>
-                        <div style="background:rgba(0,0,0,0.4);padding:12px;border-radius:5px;"><strong
-                                style="color:#25D366;">Marketplace</strong><br><span
-                                style="color:#00f3ff;">$3,997</span> + $129/mo</div>
-                        <div style="background:rgba(0,0,0,0.4);padding:12px;border-radius:5px;"><strong
-                                style="color:#25D366;">Dropshipping</strong><br><span
-                                style="color:#00f3ff;">$1,997</span> + $79/mo</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- FEATURES LIST -->
-        <div
-            style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:25px;margin-bottom:25px;border-radius:10px;">
-            <h3 style="font-family:'Orbitron';color:#fff;margin-bottom:15px;text-align:center;">✅ INCLUDED IN ALL RETAIL
-                PACKAGES</h3>
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;color:#aaa;">
-                <div>🛒 Inventory Bot - Real-time stock tracking</div>
-                <div>💬 24/7 WhatsApp Customer Service</div>
-                <div>🏷️ Automated Promotions & Loyalty</div>
-                <div>📊 Sales Analytics Dashboard</div>
-                <div>💳 Payment Link Generation</div>
-                <div>🌐 Bilingual Support (EN/ES)</div>
-                <div>📅 Weekly Performance Reports</div>
-                <div>🔧 30-Day Free Adjustments</div>
-            </div>
-        </div>
-
-        <a href="#" onclick="openModal('RETAIL'); return false;" class="cta">💬 GET STARTED</a>
-    </div>
     <!-- Firebase Tracking -->
     <script type="module" src="js/firebase-orion.js"></script>
 
     <div id="leadModal"
         style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:1000; align-items:center; justify-content:center;">
         <div
-            style="background:#111; border:1px solid #25D366; padding:40px; width:90%; max-width:450px; position:relative;">
+            style="background:#111; border:1px solid #bc13fe; padding:40px; width:90%; max-width:450px; position:relative;">
             <div style="position:absolute; top:15px; right:15px; color:#888; cursor:pointer; font-size:1.5rem;"
                 onclick="closeModal()">×</div>
             <h3 style="color:#fff; margin-bottom:10px; font-family:'Orbitron';">GET STARTED</h3>
             <form id="leadForm" onsubmit="submitLead(event)">
-                <div style="margin-bottom:15px;"><label style="color:#25D366; font-size:0.8rem;">NAME</label><input
+                <div style="margin-bottom:15px;"><label style="color:#bc13fe; font-size:0.8rem;">NAME</label><input
                         type="text" id="leadName" required
                         style="width:100%; background:#222; border:1px solid #333; color:#fff; padding:12px;"></div>
-                <div style="margin-bottom:25px;"><label style="color:#25D366; font-size:0.8rem;">EMAIL /
+                <div style="margin-bottom:25px;"><label style="color:#bc13fe; font-size:0.8rem;">EMAIL /
                         PHONE</label><input type="text" id="leadContact" required
                         style="width:100%; background:#222; border:1px solid #333; color:#fff; padding:12px;"></div>
-                <button type="submit" class="cta" style="width:100%; border:none; cursor:pointer;">SEND</button>
+                <button type="submit" class="btn" style="width:100%; border:none; cursor:pointer;">SEND</button>
             </form>
         </div>
     </div>

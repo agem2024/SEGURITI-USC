@@ -146,35 +146,6 @@
             text-align: center;
         }
 
-        .price {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 4rem;
-            color: var(--neon-orange);
-        }
-
-        .price-desc {
-            color: var(--gray);
-            margin: 10px 0 30px;
-        }
-
-        .includes {
-            text-align: left;
-            max-width: 400px;
-            margin: 0 auto 30px;
-        }
-
-        .includes li {
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            list-style: none;
-        }
-
-        .includes li::before {
-            content: '✓';
-            color: var(--neon-green);
-            margin-right: 10px;
-        }
-
         .back {
             display: inline-block;
             margin: 30px 5%;
@@ -182,7 +153,8 @@
             text-decoration: none;
         }
     </style>
-<link rel="stylesheet" href="orion-responsive.css"></head>
+    <link rel="stylesheet" href="orion-responsive.css">
+</head>
 
 <body>
     <section class="hero">
@@ -245,20 +217,96 @@
             </div>
         </div>
 
+        <!-- NEW PRICING SECTION V4.0 -->
         <div class="pricing">
-            <div class="price"><span data-price="contractors">$1,497</span></div>
-            <div class="price-desc">One-time setup + $79/month hosting</div>
-            <ul class="includes">
-                <li>Full service bot configuration</li>
-                <li>AI photo analysis integration</li>
-                <li>Scheduling system</li>
-                <li>Service area verification</li>
-                <li>Invoice generation</li>
-                <li>Review request automation</li>
-                <li>1,000 conversations/month</li>
-                <li>30 days support</li>
-            </ul>
-            <a href="#" onclick="openModal('CONTRACTOR $1,497'); return false;" class="btn">💬 ORDER NOW</a>
+            <h3 style="font-family: 'Orbitron'; color: #fff; margin-bottom: 30px;">// CHOOSE YOUR PLAN</h3>
+
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 40px;">
+
+                <!-- STARTER PLAN -->
+                <div
+                    style="background: rgba(255,107,53,0.05); border: 1px solid rgba(255,107,53,0.2); padding: 30px; border-radius: 12px; display: flex; flex-direction: column;">
+                    <div class="plan-name-starter"
+                        style="color: #ff6b35; font-size: 0.9rem; font-weight: 700; letter-spacing: 2px; margin-bottom: 10px;">
+                        STARTER</div>
+                    <div style="font-family: 'Orbitron'; font-size: 2.5rem; color: #fff; margin-bottom: 5px;"><span
+                            data-price="monthly_starter">$197</span><span
+                            style="font-size: 1rem; color: #888;">/mo</span></div>
+                    <div style="color: #888; font-size: 0.9rem; margin-bottom: 20px;">+ <span
+                            data-price="setup_starter">$997</span> Setup Fee</div>
+
+                    <ul
+                        style="text-align: left; color: #ccc; font-size: 0.9rem; list-style: none; padding: 0; margin-bottom: 20px; flex-grow: 1;">
+                        <li style="margin-bottom: 8px;">✓ WhatsApp Quote Bot</li>
+                        <li style="margin-bottom: 8px;">✓ Basic Service Menu</li>
+                        <li style="margin-bottom: 8px;">✓ Scheduling Link</li>
+                        <li style="margin-bottom: 8px;">✓ Lead Capture</li>
+                    </ul>
+                    <a href="#" onclick="openModal('CONTRACTOR STARTER'); return false;" class="btn"
+                        style="width: 100%; text-align: center; background: transparent; border: 1px solid #ff6b35; color: #ff6b35;">SELECT
+                        STARTER</a>
+                </div>
+
+                <!-- GROWTH PLAN (Highlighted) -->
+                <div
+                    style="background: rgba(255,107,53,0.15); border: 2px solid #ff6b35; padding: 30px; border-radius: 12px; transform: scale(1.02); position: relative; display: flex; flex-direction: column; box-shadow: 0 0 20px rgba(255,107,53,0.2);">
+                    <div
+                        style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #ff6b35; color: #000; padding: 4px 15px; font-size: 0.75rem; font-weight: 800; border-radius: 20px;">
+                        MOST POPULAR</div>
+                    <div class="plan-name-growth"
+                        style="color: #ff6b35; font-size: 0.9rem; font-weight: 700; letter-spacing: 2px; margin-bottom: 10px;">
+                        GROWTH</div>
+                    <div style="font-family: 'Orbitron'; font-size: 2.5rem; color: #fff; margin-bottom: 5px;"><span
+                            data-price="monthly_growth">$397</span><span
+                            style="font-size: 1rem; color: #888;">/mo</span></div>
+                    <div style="color: #fff; font-size: 0.9rem; margin-bottom: 20px; font-weight: 500;">+ <span
+                            data-price="setup_growth">$1,997</span> Setup Fee</div>
+
+                    <ul
+                        style="text-align: left; color: #fff; font-size: 0.9rem; list-style: none; padding: 0; margin-bottom: 20px; flex-grow: 1;">
+                        <li style="margin-bottom: 8px;">✓ Photo Estimates AI</li>
+                        <li style="margin-bottom: 8px;">✓ CRM Integration</li>
+                        <li style="margin-bottom: 8px;">✓ Auto Follow-ups</li>
+                        <li style="margin-bottom: 8px;">✓ Google Reviews Auto</li>
+                        <li style="margin-bottom: 8px;">✓ Service Area Check</li>
+                    </ul>
+                    <a href="#" onclick="openModal('CONTRACTOR GROWTH'); return false;" class="btn"
+                        style="width: 100%; text-align: center;">SELECT GROWTH</a>
+                </div>
+
+                <!-- PRO PLAN -->
+                <div
+                    style="background: rgba(255,107,53,0.05); border: 1px solid rgba(255,107,53,0.2); padding: 30px; border-radius: 12px; display: flex; flex-direction: column;">
+                    <div class="plan-name-pro"
+                        style="color: #ff6b35; font-size: 0.9rem; font-weight: 700; letter-spacing: 2px; margin-bottom: 10px;">
+                        PRO</div>
+                    <div style="font-family: 'Orbitron'; font-size: 2.5rem; color: #fff; margin-bottom: 5px;"><span
+                            data-price="monthly_pro">$697</span><span style="font-size: 1rem; color: #888;">/mo</span>
+                    </div>
+                    <div style="color: #888; font-size: 0.9rem; margin-bottom: 20px;">+ <span
+                            data-price="setup_pro">$3,997</span> Setup Fee</div>
+
+                    <ul
+                        style="text-align: left; color: #ccc; font-size: 0.9rem; list-style: none; padding: 0; margin-bottom: 20px; flex-grow: 1;">
+                        <li style="margin-bottom: 8px;">✓ Multi-Truck Dispatch</li>
+                        <li style="margin-bottom: 8px;">✓ Auto-Invoicing per Job</li>
+                        <li style="margin-bottom: 8px;">✓ Inventory Sync</li>
+                        <li style="margin-bottom: 8px;">✓ Advanced Reporting</li>
+                    </ul>
+                    <a href="#" onclick="openModal('CONTRACTOR PRO'); return false;" class="btn"
+                        style="width: 100%; text-align: center; background: transparent; border: 1px solid #ff6b35; color: #ff6b35;">SELECT
+                        PRO</a>
+                </div>
+
+            </div>
+
+            <p style="color: #666; font-size: 0.8rem; margin-top: 10px;">* Yearly contracts get 20% OFF Setup & Monthly
+                Fees.</p>
+
+            <a href="#" onclick="openModal('CONTRACTOR CUSTOM'); return false;" class="btn"
+                style="margin-top: 20px; background: transparent; border: 1px solid #666; color: #888; padding: 10px 20px; font-size: 0.8rem;">NEED
+                A CUSTOM SOLUTION?</a>
         </div>
     </section>
 

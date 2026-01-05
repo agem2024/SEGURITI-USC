@@ -1,10 +1,11 @@
 /**
- * ORION TECH - PRICING ENGINE v3.0
- * Structure: Setup Fee + Monthly + Discounts + Add-ons
- * Last Updated: January 2026
+ * ORION TECH - PRICING ENGINE v4.0 (SIMPLIFIED & PROFITABLE)
+ * Structure: Flat Pricing (Starter, Growth, Pro)
+ * Margin Target: >70%
+ * Last Updated: January 5 2026
  */
 
-// Exchange rates (updated periodically)
+// Exchange rates (Updated Weekly)
 const exchangeRates = {
     usa: 1,
     colombia: 4000,    // 1 USD = 4000 COP
@@ -14,79 +15,74 @@ const exchangeRates = {
     canada: 1.35       // 1 USD = 1.35 CAD
 };
 
-// Complete pricing structure by industry
-const pricingStructure = {
-    individuals: {
-        name: 'Individuals / Freelancers',
-        setup: 497,
-        monthly: { base: 197, premium: 297, enterprise: null },
-        includes: ['WhatsApp Bot', 'FAQ (50 Q)', 'Service Menu', '24/7 Responses', 'Email Support']
+// Standardized Packages (Applied to all industries)
+const standardPackages = {
+    starter: {
+        setup: 997,
+        monthly: 197,
+        name: 'STARTER'
     },
-    salons: {
-        name: 'Beauty Salons / Spas',
-        setup: 1497,
-        monthly: { base: 497, premium: 697, enterprise: 997 },
-        includes: ['WhatsApp + Web', 'Smart Booking', 'Auto Reminders', 'Service Catalog', 'Up to 5 Staff']
-    },
-    restaurants: {
-        name: 'Restaurants / Cafés',
+    growth: {
         setup: 1997,
-        monthly: { base: 697, premium: 997, enterprise: 1497 },
-        includes: ['WhatsApp + Web', 'Digital Menu + Photos', 'Reservations', 'Pickup Orders', 'Daily Promos']
+        monthly: 397,
+        name: 'GROWTH'
     },
-    liquor: {
-        name: 'Liquor Stores / Wine Shops',
-        setup: 1797,
-        monthly: { base: 597, premium: 897, enterprise: 1297 },
-        includes: ['WhatsApp + Web', 'Product Catalog (200 SKU)', 'Age Verification', 'Weekly Promos', 'Recommendations']
-    },
-    contractors: {
-        name: 'Contractors / Trades',
-        setup: 2497,
-        monthly: { base: 797, premium: 1197, enterprise: 1497 },
-        includes: ['WhatsApp + Web', 'Quote System (G/B/B)', 'Price Book', 'Appointment Scheduling', 'Lead Capture']
-    },
-    retail: {
-        name: 'Retail Stores',
-        setup: 1697,
-        monthly: { base: 597, premium: 897, enterprise: 1197 },
-        includes: ['WhatsApp + Web', 'Product Catalog (100)', 'Stock Check', 'Store Info', 'Active Promos']
-    },
-    enterprise: {
-        name: 'Enterprise / Custom',
-        setup: 4997, // Starting from
-        monthly: { base: 2997, premium: 4997, enterprise: 9997 },
-        includes: ['Everything Custom', 'Multi-location', 'ERP/CRM Integration', 'SLA 99.5%', 'Dedicated Support']
+    pro: {
+        setup: 3997,
+        monthly: 697,
+        name: 'PRO'
     }
 };
 
-// Loyalty discounts by contract length
-const contractDiscounts = {
-    1: { monthly: 0, setup: 0 },       // Month to month
-    6: { monthly: 0.10, setup: 0 },    // 10% off monthly
-    12: { monthly: 0.20, setup: 0.25 }, // 20% monthly, 25% setup
-    24: { monthly: 0.30, setup: 0.50 }  // 30% monthly, 50% setup
+// Industry Configuration mapping to Standard Packages
+const pricingStructure = {
+    individuals: standardPackages,
+    salons: standardPackages,
+    restaurants: standardPackages,
+    liquor: standardPackages,
+    contractors: standardPackages,
+    retail: standardPackages,
+    enterprise: {
+        starter: standardPackages.pro, // Enterprise starts at Pro level
+        growth: { setup: 9997, monthly: 1497, name: 'CORP' },
+        pro: { setup: 24997, monthly: 4997, name: 'CUSTOM' }
+    }
 };
 
-// Regional pricing (calculated from USD base)
+// Regional pricing strings (Pre-formatted for display)
 const regionalPricing = {
     usa: {
         currency: 'USD',
         symbol: '$',
         prices: {
-            // For backward compatibility with existing pages
-            individuals: '197-297',
-            restaurants: '697-1,497',
-            liquor: '597-1,297',
-            salons: '497-997',
-            contractors: '797-1,497',
-            retail: '597-1,197',
-            enterprise: '2,997+',
-            hosting: 'Included',
-            setup_individuals: '497',
-            setup_salons: '1,497',
+            // Standard Tiers - Setup
+            setup_starter: '997',
+            setup_growth: '1,997',
+            setup_pro: '3,997',
+
+            // Standard Tiers - Monthly
+            monthly_starter: '197',
+            monthly_growth: '397',
+            monthly_pro: '697',
+
+            // Special Industry Defaults (Usually Growth Tier)
+            individuals: '197',     // Starts at Starter
+            salons: '397',          // Starts at Growth
+            restaurants: '397',
+            liquor: '397',
+            contractors: '397',
+            retail: '397',
+            enterprise: '697+',
+
+            // Legacy keys override (mapped to Growth tier for single-price display)
+            setup_salons: '1,997',
             setup_restaurants: '1,997',
-            setup_contractors: '2,497',
+            setup_liquor: '1,997',
+            setup_contractors: '1,997',
+            setup_retail: '1,997',
+            setup_individuals: '997',
+
+            hosting: 'Included',
             labor_rate: '185'
         }
     },
@@ -95,15 +91,28 @@ const regionalPricing = {
         symbol: '$',
         multiplier: 4000,
         prices: {
-            individuals: '790,000-1,190,000',
-            restaurants: '2,790,000-5,990,000',
-            liquor: '2,390,000-5,190,000',
-            salons: '1,990,000-3,990,000',
-            contractors: '3,190,000-5,990,000',
-            retail: '2,390,000-4,790,000',
-            enterprise: '11,990,000+',
-            hosting: 'Incluido',
-            setup_salons: '5,990,000'
+            setup_starter: '3,990,000',
+            setup_growth: '7,990,000',
+            setup_pro: '15,990,000',
+
+            monthly_starter: '790,000',
+            monthly_growth: '1,590,000',
+            monthly_pro: '2,790,000',
+
+            individuals: '790,000',
+            salons: '1,590,000',
+            restaurants: '1,590,000',
+            liquor: '1,590,000',
+            contractors: '1,590,000',
+            retail: '1,590,000',
+
+            setup_salons: '7,990,000',
+            setup_restaurants: '7,990,000',
+            setup_liquor: '7,990,000',
+            setup_contractors: '7,990,000',
+            setup_retail: '7,990,000',
+
+            hosting: 'Incluido'
         }
     },
     mexico: {
@@ -111,40 +120,31 @@ const regionalPricing = {
         symbol: '$',
         multiplier: 18,
         prices: {
-            individuals: '3,550-5,350',
-            restaurants: '12,550-26,950',
-            liquor: '10,750-23,350',
-            salons: '8,950-17,950',
-            contractors: '14,350-26,950',
-            retail: '10,750-21,550',
-            enterprise: '53,950+',
+            setup_starter: '17,997',
+            setup_growth: '35,997',
+            setup_pro: '71,997',
+
+            monthly_starter: '3,550',
+            monthly_growth: '7,150',
+            monthly_pro: '12,550',
+
+            individuals: '3,550',
+            salons: '7,150',
+            restaurants: '7,150',
+            liquor: '7,150',
+            contractors: '7,150',
+            retail: '7,150',
+
+            setup_salons: '35,997',
+            setup_restaurants: '35,997',
+            setup_liquor: '35,997',
+            setup_contractors: '35,997',
+            setup_retail: '35,997',
+
             hosting: 'Incluido'
         }
     }
 };
-
-/**
- * Calculate price with discounts
- */
-function calculatePrice(industry, tier, contractMonths, country = 'usa') {
-    const pkg = pricingStructure[industry];
-    if (!pkg) return null;
-
-    const baseMonthly = pkg.monthly[tier] || pkg.monthly.base;
-    const baseSetup = pkg.setup;
-    const discounts = contractDiscounts[contractMonths] || contractDiscounts[1];
-
-    const rate = exchangeRates[country] || 1;
-
-    return {
-        setup: Math.round(baseSetup * (1 - discounts.setup) * rate),
-        monthly: Math.round(baseMonthly * (1 - discounts.monthly) * rate),
-        savings: {
-            setup: Math.round(baseSetup * discounts.setup * rate),
-            monthly: Math.round(baseMonthly * discounts.monthly * rate)
-        }
-    };
-}
 
 /**
  * Load country from localStorage and update page pricing
@@ -156,6 +156,7 @@ function loadCountryPricing() {
     // Update all elements with data-price attribute  
     document.querySelectorAll('[data-price]').forEach(el => {
         const priceKey = el.getAttribute('data-price');
+        // Handle generic keys if specific ones don't exist
         if (pricing.prices[priceKey]) {
             el.textContent = `${pricing.symbol}${pricing.prices[priceKey]}`;
         }
@@ -166,16 +167,22 @@ function loadCountryPricing() {
         el.textContent = pricing.currency;
     });
 
-    console.log('✅ ORION Pricing Engine v3.0 Loaded:', savedCountry, pricing.currency);
+    // Update plan names if elements exist
+    if (savedCountry !== 'usa') {
+        document.querySelectorAll('.plan-name-starter').forEach(el => el.textContent = 'INICIAL');
+        document.querySelectorAll('.plan-name-growth').forEach(el => el.textContent = 'CRECIMIENTO');
+        document.querySelectorAll('.plan-name-pro').forEach(el => el.textContent = 'PROFESIONAL');
+    }
+
+    console.log('✅ ORION Pricing Engine v4.0 (Profitable) Loaded:', savedCountry, pricing.currency);
 }
 
 // Export for use in other scripts
 if (typeof window !== 'undefined') {
     window.orionPricing = {
         structure: pricingStructure,
-        discounts: contractDiscounts,
         regional: regionalPricing,
-        calculate: calculatePrice
+        load: loadCountryPricing
     };
 }
 
@@ -185,4 +192,3 @@ if (document.readyState === 'loading') {
 } else {
     loadCountryPricing();
 }
-
