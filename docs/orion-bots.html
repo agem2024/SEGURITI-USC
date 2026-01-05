@@ -2262,6 +2262,37 @@
                 }
             });
 
+            // ⚡ UPDATE DEMO CARD TRANSLATIONS (Special HTML Handling)
+            const t = translations[lang];
+
+            // MP PRO
+            const mpFor = document.querySelector('[data-i18n="mp_for"]');
+            if (mpFor) mpFor.innerHTML = t.mp_for.replace('For:', '<strong>For:</strong>').replace('Para:', '<strong>Para:</strong>');
+            const mpFeature = document.querySelector('[data-i18n="mp_feature"]');
+            if (mpFeature) mpFeature.innerHTML = t.mp_feature.replace('Feature:', '<strong>Feature:</strong>').replace('Función:', '<strong>Función:</strong>');
+            const mpOutput = document.querySelector('[data-i18n="mp_output"]');
+            if (mpOutput) mpOutput.innerHTML = t.mp_output.replace('Output:', '<strong>Output:</strong>').replace('Salida:', '<strong>Salida:</strong>');
+            const mpDiy = document.querySelector('[data-i18n="mp_diy"]');
+            if (mpDiy) mpDiy.innerHTML = t.mp_diy.replace('DIY Tips:', '<strong>DIY Tips:</strong>').replace('DIY Tips:', '<strong>DIY Tips:</strong>');
+            const mpPowered = document.querySelector('[data-i18n="mp_powered"]');
+            if (mpPowered) mpPowered.innerHTML = t.mp_powered.replace('Powered by:', '<strong>Powered by:</strong>').replace('Potenciado por:', '<strong>Potenciado por:</strong>');
+            const mpPricebook = document.querySelector('[data-i18n="mp_pricebook"]');
+            if (mpPricebook) mpPricebook.innerHTML = t.mp_pricebook.replace('Price Book:', '<strong>Price Book:</strong>').replace('Libro de Precios:', '<strong>Libro de Precios:</strong>');
+            const mpLang = document.querySelector('[data-i18n="mp_lang"]');
+            if (mpLang) mpLang.innerHTML = t.mp_lang.replace('Languages:', '<strong>Languages:</strong>').replace('Idiomas:', '<strong>Idiomas:</strong>');
+
+            // InvAI Inventory
+            const invaiFeature = document.querySelector('[data-i18n="invai_feature"]');
+            if (invaiFeature) invaiFeature.innerHTML = t.invai_feature.replace('Feature:', '<strong>Feature:</strong>').replace('Función:', '<strong>Función:</strong>');
+            const invaiOutput = document.querySelector('[data-i18n="invai_output"]');
+            if (invaiOutput) invaiOutput.innerHTML = t.invai_output.replace('Output:', '<strong>Output:</strong>').replace('Salida:', '<strong>Salida:</strong>');
+
+            // EP PRO Estimator
+            const epproFeature = document.querySelector('[data-i18n="eppro_feature"]');
+            if (epproFeature) epproFeature.innerHTML = t.eppro_feature.replace('Feature:', '<strong>Feature:</strong>').replace('Función:', '<strong>Función:</strong>');
+            const epproOutput = document.querySelector('[data-i18n="eppro_output"]');
+            if (epproOutput) epproOutput.innerHTML = t.eppro_output.replace('Output:', '<strong>Output:</strong>').replace('Salida:', '<strong>Salida:</strong>');
+
             // Update country selector text to match language
             const country = regionalTeams[currentCountry];
             if (country) {
