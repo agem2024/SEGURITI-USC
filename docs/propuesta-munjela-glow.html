@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORION Tech Proposal | Munjela Glow Salon</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #030303;
+            --bg-card: #0a0a0a;
+            --accent-pink: #d4a5c9;
+            --accent-gold: #c9a962;
+            --accent-cyan: #7ec8c8;
+            --accent-green: #4caf50;
+            --accent-red: #ff6b6b;
+            --text-white: #f5f5f5;
+            --text-gray: #999;
+            --gradient-primary: linear-gradient(135deg, #d4a5c9 0%, #c9a962 100%);
+            --gradient-luxury: linear-gradient(135deg, #c9a962 0%, #f0d78c 50%, #c9a962 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-white);
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        h1,
+        h2,
+        h3,
+        .btn,
+        .stat-number,
+        .plan-name {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* PROMO BANNER */
+        .promo-banner {
+            background: var(--gradient-luxury);
+            color: #000;
+            text-align: center;
+            padding: 12px 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1001;
+        }
+
+        .promo-banner strong {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* LANGUAGE TOGGLE */
+        .lang-toggle {
+            position: fixed;
+            top: 55px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 5px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 8px 12px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-gray);
+            cursor: pointer;
+            padding: 5px 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .lang-btn.active {
+            color: var(--accent-gold);
+            background: rgba(201, 169, 98, 0.1);
+            border-radius: 20px;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 140px 20px 60px;
+            background: linear-gradient(180deg, rgba(212, 165, 201, 0.08) 0%, transparent 40%),
+                linear-gradient(0deg, rgba(201, 169, 98, 0.05) 0%, transparent 40%),
+                var(--bg-dark);
+        }
+
+        .hero-badge {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            color: var(--accent-gold);
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-gray);
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+
+        .hero p {
+            max-width: 650px;
+            color: var(--text-gray);
+            font-size: 1rem;
+            margin-bottom: 50px;
+            font-weight: 300;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 700px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        /* SECTIONS */
+        .section {
+            padding: 100px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            color: var(--text-white);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .section-header p {
+            color: var(--text-gray);
+            font-size: 1rem;
+        }
+
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: var(--gradient-primary);
+            margin: 0 auto 20px;
+        }
+
+        /* FEATURES GRID */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 40px 30px;
+            border-radius: 16px;
+            text-align: center;
+            transition: 0.4s;
+        }
+
+        .feature-card:hover {
+            border-color: rgba(201, 169, 98, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(201, 169, 98, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 1.4rem;
+            color: var(--accent-gold);
+        }
+
+        .feature-card h3 {
+            font-size: 0.9rem;
+            color: var(--text-white);
+            margin-bottom: 12px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .feature-card p {
+            color: var(--text-gray);
+            font-size: 0.85rem;
+            font-weight: 300;
+        }
+
+        /* SERVICES SHOWCASE */
+        .services-row {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 60px;
+            align-items: center;
+        }
+
+        .services-row.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .service-image {
+            flex: 1;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .service-image img {
+            width: 100%;
+            display: block;
+        }
+
+        .service-content {
+            flex: 1;
+        }
+
+        .service-content h3 {
+            font-size: 1.5rem;
+            color: var(--text-white);
+            margin-bottom: 15px;
+        }
+
+        .service-content p {
+            color: var(--text-gray);
+            margin-bottom: 20px;
+        }
+
+        .service-list {
+            list-style: none;
+        }
+
+        .service-list li {
+            padding: 10px 0;
+            color: var(--text-gray);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .service-list li i {
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+        }
+
+        /* COMPARISON TABLE */
+        .comparison-section {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 80px 5%;
+        }
+
+        .comparison-table {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 18px 15px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .comparison-table th {
+            background: var(--bg-card);
+            color: var(--accent-gold);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .comparison-table td {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .comparison-table td:first-child {
+            text-align: left;
+            color: var(--text-white);
+            font-weight: 500;
+        }
+
+        .comparison-table .check {
+            color: var(--accent-green);
+            font-size: 1.2rem;
+        }
+
+        .comparison-table .cross {
+            color: var(--accent-red);
+            font-size: 1rem;
+        }
+
+        .comparison-table .highlight {
+            background: rgba(201, 169, 98, 0.08);
+        }
+
+        .comparison-table .orion-col {
+            background: rgba(201, 169, 98, 0.1);
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        /* ROI SECTION */
+        .roi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .roi-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .roi-number {
+            font-size: 2.5rem;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--accent-gold);
+            margin-bottom: 10px;
+        }
+
+        .roi-label {
+            color: var(--text-gray);
+            font-size: 0.85rem;
+        }
+
+        /* PRICING */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .pricing-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 35px 25px;
+            position: relative;
+            transition: 0.4s;
+        }
+
+        .pricing-card:hover {
+            border-color: rgba(201, 169, 98, 0.4);
+        }
+
+        .pricing-card.featured {
+            border: 2px solid var(--accent-gold);
+            box-shadow: 0 0 60px rgba(201, 169, 98, 0.15);
+        }
+
+        .pricing-card.luxury {
+            border: 2px solid;
+            border-image: var(--gradient-luxury) 1;
+            box-shadow: 0 0 80px rgba(201, 169, 98, 0.2);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient-primary);
+            color: #000;
+            padding: 6px 16px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        .pricing-badge.luxury-badge {
+            background: var(--gradient-luxury);
+        }
+
+        .plan-name {
+            font-size: 1rem;
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .plan-price {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .plan-price span {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            font-weight: 300;
+        }
+
+        .plan-price .original {
+            text-decoration: line-through;
+            color: var(--text-gray);
+            font-size: 1rem;
+            margin-right: 8px;
+        }
+
+        .plan-setup {
+            color: var(--text-gray);
+            font-size: 0.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .plan-setup .promo {
+            color: var(--accent-green);
+            font-weight: 500;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .plan-features li {
+            padding: 8px 0;
+            color: var(--text-gray);
+            font-size: 0.8rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .plan-features li i {
+            color: var(--accent-gold);
+            margin-top: 3px;
+            font-size: 0.75rem;
+        }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 25px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: 0.3s;
+            cursor: pointer;
+            border: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 10px 30px rgba(201, 169, 98, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-white);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+
+        .btn-luxury {
+            background: var(--gradient-luxury);
+            color: #000;
+            font-weight: 700;
+        }
+
+        /* CTA */
+        .cta-section {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(180deg, var(--bg-dark) 0%, rgba(201, 169, 98, 0.05) 100%);
+        }
+
+        .cta-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            color: var(--text-gray);
+            margin-bottom: 40px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-buttons .btn {
+            width: auto;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 50px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-gray);
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1100px) {
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .roi-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .services-row,
+            .services-row.reverse {
+                flex-direction: column;
+            }
+
+            .comparison-table {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .features-grid,
+            .pricing-grid,
+            .roi-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 60px 5%;
+            }
+        }
+
+        /* LANGUAGE SWITCH */
+        [data-lang="es"] {
+            display: none;
+        }
+
+        body.lang-es [data-lang="en"] {
+            display: none;
+        }
+
+        body.lang-es [data-lang="es"] {
+            display: block;
+        }
+
+        body.lang-es [data-lang="es"].inline {
+            display: inline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- PROMO BANNER -->
+    <div class="promo-banner">
+        <span data-lang="en"><strong>NEW YEAR SPECIAL:</strong> 25% OFF Setup on ELITE & LUXURY — Valid until Jan 31,
+            2026</span>
+        <span data-lang="es"><strong>ESPECIAL AÑO NUEVO:</strong> 25% OFF en Setup para ELITE y LUXURY — Válido hasta 31
+            Ene, 2026</span>
+    </div>
+
+    <!-- LANGUAGE TOGGLE -->
+    <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('es')">ES</button>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-badge">EXCLUSIVE PROPOSAL</div>
+        <h1>MUNJELA GLOW</h1>
+        <p class="hero-subtitle" data-lang="en">Complete Digital Transformation</p>
+        <p class="hero-subtitle" data-lang="es">Transformación Digital Completa</p>
+        <p data-lang="en">From AI booking assistants to complete business management systems. Everything your premium
+            salon needs to dominate the digital landscape.</p>
+        <p data-lang="es">Desde asistentes de reservas con IA hasta sistemas completos de gestión empresarial. Todo lo
+            que tu salón premium necesita para dominar el panorama digital.</p>
+        <video src="img_automation.mp4" autoplay loop muted playsinline class="hero-image"></video>
+    </section>
+
+    <!-- SERVICES: 5 ROWS -->
+    <section class="section">
+        <div class="services-row">
+            <div class="service-image"><video src="img_automation.mp4" autoplay loop muted playsinline
+                    style="width:100%; display:block;"></video></div>
+            <div class="service-content">
+                <h3 data-lang="en">Intelligent Automation</h3>
+                <h3 data-lang="es">Automatización Inteligente</h3>
+                <p data-lang="en">Let AI handle your bookings, reminders, and client communications while you focus on
+                    creating beautiful transformations.</p>
+                <p data-lang="es">Deja que la IA maneje tus reservas, recordatorios y comunicaciones con clientes
+                    mientras te enfocas en crear transformaciones hermosas.</p>
+                <ul class="service-list">
+                    <li><i class="fas fa-check"></i> <span data-lang="en">WhatsApp Booking Bot</span><span
+                            data-lang="es">Bot de Reservas WhatsApp</span></li>
+                    <li><i class="fas fa-check"></i> <span data-lang="en">Automated Reminders</span><span
+                            data-lang="es">Recordatorios Automáticos</span></li>
+                    <li><i class="fas fa-check"></i> <span data-lang="en">Google Calendar Sync</span><span
+                            data-lang="es">Sincronización Google Calendar</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="services-row reverse">
+            <div class="service-image"><img src="img_social.png" alt="Social Media"></div>
+            <div class="service-content">
+                <h3 data-lang="en">Social Media Management</h3>
+                <h3 data-lang="es">Gestión de Redes Sociales</h3>
+                <p data-lang="en">Professional content creation for Instagram and Facebook. Grow your presence without
+                    lifting a finger.</p>
+                <p data-lang="es">Creación de contenido profesional para Instagram y Facebook. Crece tu presencia sin
+                    mover un dedo.</p>
+                <ul class="service-list">
+                    <li><i class="fas fa-check"></i> <span data-lang="en">12+ Posts/Month</span><span data-lang="es">12+
+                            Posts/Mes</span></li>
+                    <li><i class="fas fa-check"></i> <span data-lang="en">Stories & Reels</span><span
+                            data-lang="es">Stories y Reels</span></li>
+                    <li><i class="fas fa-check"></i> <span data-lang="en">Analytics Reports</span><span
+                            data-lang="es">Reportes Analíticos</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="services-row">
+            <div class="service-image"><img src="img_website.png" alt="Custom Website"></div>
+            <div class="service-content">
+                <h3 data-lang="en">Custom Website Development</h3>
+                <h3 data-lang="es">Desarrollo de Sitio Web</h3>
+                <p data-lang="en">A stunning, mobile-optimized website that reflects your premium brand.</p>
+                <p data-lang="es">Un sitio web impresionante, optimizado para móviles, que refleja tu marca premium.</p>
+                <ul class="service-list">
+                    <li><i class="fas fa-check"></i> <span data-lang="en">Custom Design</span><span
+                            data-lang="es">Diseño Personalizado</span></li>
+                    <li><i class="fas fa-check"></i> <span data-lang="en">Online Booking</span><span
+                            data-lang="es">Reservas Online</span></li>
+                    <li><i class="fas fa-check"></i> <span data-lang="en">SEO Optimized</span><span
+                            data-lang="es">Optimizado SEO</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="services-row reverse">
+            <div class="service-image"><video src="img_ai_app.mp4" autoplay loop muted playsinline
+                    style="width:100%; display:block;"></video></div>
+            <div class="service-content">
+                <h3 data-lang="en">AI Image Consultation App</h3>
+                <h3 data-lang="es">App de Consulta de Imagen con IA</h3>
+                <p data-lang="en">Let clients visualize their transformation before the appointment. Virtual try-on for
+                    colors, extensions, and styles.</p>
+                <p data-lang="es">Permite a los clientes visualizar su transformación antes de la cita. Prueba virtual
+                    de colores, extensiones y estilos.</p>
+                <ul class="service-list">
+                    <li><i class="fas fa-check"></i> <span data-lang="en">Virtual Hair Color Try-On</span><span
+                            data-lang="es">Prueba Virtual de Color</span></li>
+                    <li><i class="fas fa-check"></i> <span data-lang="en">Extension Preview</span><span
+                            data-lang="es">Vista Previa de Extensiones</span></li>
+                    <li><i class="fas fa-check"></i> <span data-lang="en">Before/After Simulation</span><span
+                            data-lang="es">Simulación Antes/Después</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="services-row">
+            <div class="service-image"><img src="img_pos.png" alt="POS System"></div>
+            <div class="service-content">
+                <h3 data-lang="en">Full Business Management System</h3>
+                <h3 data-lang="es">Sistema Completo de Gestión</h3>
+                <p data-lang="en">100% paperless operations. Inventory, invoicing, payroll, cash control — all
+                    automated.</p>
+                <p data-lang="es">Operaciones 100% sin papel. Inventario, facturación, nómina, control de caja — todo
+                    automatizado.</p>
+                <ul class="service-list">
+                    <li><i class="fas fa-check"></i> <span data-lang="en">Inventory Management</span><span
+                            data-lang="es">Control de Inventario</span></li>
+                    <li><i class="fas fa-check"></i> <span data-lang="en">Automated Invoicing</span><span
+                            data-lang="es">Facturación Automática</span></li>
+                    <li><i class="fas fa-check"></i> <span data-lang="en">Cash & POS Control</span><span
+                            data-lang="es">Control de Caja y POS</span></li>
+                    <li><i class="fas fa-check"></i> <span data-lang="en">Supplier Orders</span><span
+                            data-lang="es">Pedidos a Proveedores</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPETITIVE ANALYSIS -->
+    <section class="comparison-section">
+        <div class="section-header">
+            <div class="divider"></div>
+            <h2 data-lang="en">Why Choose ORION Tech?</h2>
+            <h2 data-lang="es">¿Por Qué Elegir ORION Tech?</h2>
+            <p data-lang="en">Competitive analysis vs. traditional solutions</p>
+            <p data-lang="es">Análisis competitivo vs. soluciones tradicionales</p>
+        </div>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th data-lang="en">Feature</th>
+                    <th data-lang="es">Característica</th>
+                    <th class="orion-col">ORION Tech</th>
+                    <th>Fresha/Vagaro</th>
+                    <th>Generic Agency</th>
+                    <th>DIY / In-House</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-lang="en">WhatsApp AI Bot</td>
+                    <td data-lang="es">Bot IA WhatsApp</td>
+                    <td class="highlight"><i class="fas fa-check check"></i></td>
+                    <td><i class="fas fa-times cross"></i></td>
+                    <td><i class="fas fa-times cross"></i></td>
+                    <td><i class="fas fa-times cross"></i></td>
+                </tr>
+                <tr>
+                    <td data-lang="en">Bilingual Support (EN/ES)</td>
+                    <td data-lang="es">Soporte Bilingüe</td>
+                    <td class="highlight"><i class="fas fa-check check"></i></td>
+                    <td><i class="fas fa-times cross"></i></td>
+                    <td><i class="fas fa-check check"></i></td>
+                    <td><i class="fas fa-times cross"></i></td>
+                </tr>
+                <tr>
+                    <td data-lang="en">Social Media Management</td>
+                    <td data-lang="es">Gestión Redes Sociales</td>
+                    <td class="highlight"><i class="fas fa-check check"></i></td>
+                    <td><i class="fas fa-times cross"></i></td>
+                    <td><i class="fas fa-check check"></i></td>
+                    <td><i class="fas fa-times cross"></i></td>
+                </tr>
+                <tr>
+                    <td data-lang="en">Custom Website</td>
+                    <td data-lang="es">Sitio Web Personalizado</td>
+                    <td class="highlight"><i class="fas fa-check check"></i></td>
+                    <td>Template</td>
+                    <td><i class="fas fa-check check"></i></td>
+                    <td><i class="fas fa-check check"></i></td>
+                </tr>
+                <tr>
+                    <td data-lang="en">AI Image Consultation</td>
+                    <td data-lang="es">Consulta Imagen IA</td>
+                    <td class="highlight"><i class="fas fa-check check"></i></td>
+                    <td><i class="fas fa-times cross"></i></td>
+                    <td><i class="fas fa-times cross"></i></td>
+                    <td><i class="fas fa-times cross"></i></td>
+                </tr>
+                <tr>
+                    <td data-lang="en">Full POS/Inventory System</td>
+                    <td data-lang="es">Sistema POS/Inventario</td>
+                    <td class="highlight"><i class="fas fa-check check"></i></td>
+                    <td>Basic</td>
+                    <td><i class="fas fa-times cross"></i></td>
+                    <td>+$300/mo</td>
+                </tr>
+                <tr>
+                    <td data-lang="en">Dedicated Account Manager</td>
+                    <td data-lang="es">Gerente de Cuenta</td>
+                    <td class="highlight"><i class="fas fa-check check"></i></td>
+                    <td><i class="fas fa-times cross"></i></td>
+                    <td><i class="fas fa-check check"></i></td>
+                    <td><i class="fas fa-times cross"></i></td>
+                </tr>
+                <tr>
+                    <td data-lang="en">Monthly Cost (Comparable)</td>
+                    <td data-lang="es">Costo Mensual (Comparable)</td>
+                    <td class="highlight orion-col">$397-$1,497</td>
+                    <td>$100-300</td>
+                    <td>$2,000-5,000</td>
+                    <td>$1,500+ (time)</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- ROI / BENEFITS -->
+    <section class="section">
+        <div class="section-header">
+            <div class="divider"></div>
+            <h2 data-lang="en">Your Expected ROI</h2>
+            <h2 data-lang="es">Tu ROI Esperado</h2>
+            <p data-lang="en">Tangible benefits for Munjela Glow</p>
+            <p data-lang="es">Beneficios tangibles para Munjela Glow</p>
+        </div>
+        <div class="roi-grid">
+            <div class="roi-card">
+                <div class="roi-number">+40%</div>
+                <div class="roi-label" data-lang="en">More Bookings</div>
+                <div class="roi-label" data-lang="es">Más Reservas</div>
+            </div>
+            <div class="roi-card">
+                <div class="roi-number">-85%</div>
+                <div class="roi-label" data-lang="en">Less No-Shows</div>
+                <div class="roi-label" data-lang="es">Menos No-Shows</div>
+            </div>
+            <div class="roi-card">
+                <div class="roi-number">15h</div>
+                <div class="roi-label" data-lang="en">Saved Weekly</div>
+                <div class="roi-label" data-lang="es">Ahorro Semanal</div>
+            </div>
+            <div class="roi-card">
+                <div class="roi-number">$4K+</div>
+                <div class="roi-label" data-lang="en">Extra Revenue/Mo</div>
+                <div class="roi-label" data-lang="es">Ingreso Extra/Mes</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING - 4 PLANS -->
+    <section class="section">
+        <div class="section-header">
+            <div class="divider"></div>
+            <h2 data-lang="en">Investment Options</h2>
+            <h2 data-lang="es">Opciones de Inversión</h2>
+            <p data-lang="en">Choose the package that fits your vision</p>
+            <p data-lang="es">Elige el paquete que se ajusta a tu visión</p>
+        </div>
+
+        <div class="pricing-grid">
+            <!-- GROWTH -->
+            <div class="pricing-card">
+                <div class="plan-name">GROWTH</div>
+                <div class="plan-price">$397<span>/mo</span></div>
+                <div class="plan-setup">
+                    <span data-lang="en">+ $1,997 one-time setup</span>
+                    <span data-lang="es">+ $1,997 configuración única</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> <span data-lang="en">WhatsApp AI Bot</span><span data-lang="es">Bot
+                            IA WhatsApp</span></li>
+                    <li><i class="fas fa-check"></i> <span data-lang="en">Calendar Integration</span><span
+                            data-lang="es">Integración Calendario</span></li>
+                    <li><i class="fas fa-check"></i> <span data-lang="en">Automated Reminders</span><span
+                            data-lang="es">Recordatorios Auto</span></li>
+                    <li><i class="fas fa-check"></i> <span data-lang="en">1,000 conversations/mo</span><span
+                            data-lang="es">1,000 conv/mes</span></li>
+                </ul>
+                <a href="https://wa.me/16692342444?text=Hi!%20I'm%20from%20Munjela%20Glow.%20GROWTH%20plan%20please%20($397/mo)"
+                    class="btn btn-secondary" data-lang="en"><i class="fab fa-whatsapp"></i> SELECT</a>
+                <a href="https://wa.me/16692342444?text=Hola!%20Soy%20de%20Munjela%20Glow.%20Plan%20GROWTH%20por%20favor%20($397/mes)"
+                    class="btn btn-secondary" data-lang="es"><i class="fab fa-whatsapp"></i> SELECCIONAR</a>
+            </div>
+
+            <!-- PREMIUM -->
+            <div class="pricing-card featured">
+                <span class="pricing-badge" data-lang="en">POPULAR</span>
+                <span class="pricing-badge" data-lang="es">POPULAR</span>
+                <div class="plan-name">PREMIUM</div>
+                <div class="plan-price">$697<span>/mo</span></div>
+                <div class="plan-setup">
+                    <span data-lang="en">+ $4,997 one-time setup</span>
+                    <span data-lang="es">+ $4,997 configuración única</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> <span data-lang="en">Everything in GROWTH</span><span
+                            data-lang="es">Todo en GROWTH</span></li>
+                    <li><i class="fas fa-check"></i> <span data-lang="en">Custom Website</span><span
+                            data-lang="es">Sitio Web</span></li>
+                    <li><i class="fas fa-check"></i> <span data-lang="en">Social Media (12 posts)</span><span
+                            data-lang="es">Redes (12 posts)</span></li>
+                    <li><i class="fas fa-check"></i> <span data-lang="en">2,500 conversations/mo</span><span
+                            data-lang="es">2,500 conv/mes</span></li>
+                </ul>
+                <a href="https://wa.me/16692342444?text=Hi!%20Munjela%20Glow%20here.%20PREMIUM%20plan%20($697/mo)%20with%20website%20%26%20social"
+                    class="btn btn-primary" data-lang="en"><i class="fab fa-whatsapp"></i> SELECT</a>
+                <a href="https://wa.me/16692342444?text=Hola!%20De%20Munjela%20Glow.%20Plan%20PREMIUM%20($697/mes)%20con%20web%20y%20redes"
+                    class="btn btn-primary" data-lang="es"><i class="fab fa-whatsapp"></i> SELECCIONAR</a>
+            </div>
+
+            <!-- ELITE -->
+            <div class="pricing-card">
+                <div class="plan-name">ELITE</div>
+                <div class="plan-price">$997<span>/mo</span></div>
+                <div class="plan-setup">
+                    <span data-lang="en"><span class="original">$7,997</span> $5,998 setup</span>
+                    <span data-lang="es"><span class="original">$7,997</span> $5,998 setup</span>
+                    <span class="promo" data-lang="en">25% OFF New Year</span>
+                    <span class="promo" data-lang="es">25% OFF Año Nuevo</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> <span data-lang="en">Everything in PREMIUM</span><span
+                            data-lang="es">Todo en PREMIUM</span></li>
+                    <li><i class="fas fa-check"></i> <span data-lang="en">AI Image Consultation App</span><span
+                            data-lang="es">App Consulta Imagen IA</span></li>
+                    <li><i class="fas fa-check"></i> <span data-lang="en">Virtual Try-On Tech</span><span
+                            data-lang="es">Prueba Virtual</span></li>
+                    <li><i class="fas fa-check"></i> <span data-lang="en">5,000 conversations/mo</span><span
+                            data-lang="es">5,000 conv/mes</span></li>
+                </ul>
+                <a href="https://wa.me/16692342444?text=Hi!%20Munjela%20Glow.%20ELITE%20plan%20($997/mo)%20with%20AI%20Image%20App"
+                    class="btn btn-secondary" data-lang="en"><i class="fab fa-whatsapp"></i> SELECT</a>
+                <a href="https://wa.me/16692342444?text=Hola!%20Munjela%20Glow.%20Plan%20ELITE%20($997/mes)%20con%20App%20Imagen%20IA"
+                    class="btn btn-secondary" data-lang="es"><i class="fab fa-whatsapp"></i> SELECCIONAR</a>
+            </div>
+
+            <!-- LUXURY -->
+            <div class="pricing-card luxury">
+                <span class="pricing-badge luxury-badge" data-lang="en">FULL AUTOMATION</span>
+                <span class="pricing-badge luxury-badge" data-lang="es">AUTOMATIZACIÓN TOTAL</span>
+                <div class="plan-name">LUXURY</div>
+                <div class="plan-price">$1,497<span>/mo</span></div>
+                <div class="plan-setup">
+                    <span data-lang="en"><span class="original">$14,997</span> $11,248 setup</span>
+                    <span data-lang="es"><span class="original">$14,997</span> $11,248 setup</span>
+                    <span class="promo" data-lang="en">25% OFF New Year</span>
+                    <span class="promo" data-lang="es">25% OFF Año Nuevo</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> <span data-lang="en">Everything in ELITE</span><span
+                            data-lang="es">Todo en ELITE</span></li>
+                    <li><i class="fas fa-check"></i> <span data-lang="en">Full POS System</span><span
+                            data-lang="es">Sistema POS Completo</span></li>
+                    <li><i class="fas fa-check"></i> <span data-lang="en">Inventory Control</span><span
+                            data-lang="es">Control Inventario</span></li>
+                    <li><i class="fas fa-check"></i> <span data-lang="en">Auto Invoicing</span><span
+                            data-lang="es">Facturación Auto</span></li>
+                    <li><i class="fas fa-check"></i> <span data-lang="en">Supplier Orders</span><span
+                            data-lang="es">Pedidos Proveedores</span></li>
+                    <li><i class="fas fa-check"></i> <span data-lang="en">100% Paperless</span><span data-lang="es">100%
+                            Sin Papel</span></li>
+                    <li><i class="fas fa-check"></i> <span data-lang="en">Unlimited conversations</span><span
+                            data-lang="es">Conv. ilimitadas</span></li>
+                </ul>
+                <a href="https://wa.me/16692342444?text=Hi!%20Munjela%20Glow.%20LUXURY%20plan%20($1,497/mo)%20-%20Full%20automation%20package"
+                    class="btn btn-luxury" data-lang="en"><i class="fab fa-whatsapp"></i> SELECT LUXURY</a>
+                <a href="https://wa.me/16692342444?text=Hola!%20Munjela%20Glow.%20Plan%20LUXURY%20($1,497/mes)%20-%20Automatización%20total"
+                    class="btn btn-luxury" data-lang="es"><i class="fab fa-whatsapp"></i> SELECCIONAR LUXURY</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2 data-lang="en">Ready to Transform Munjela Glow?</h2>
+        <h2 data-lang="es">¿Lista para Transformar Munjela Glow?</h2>
+        <p data-lang="en">Schedule a personalized 15-minute demo. No commitment required.</p>
+        <p data-lang="es">Agenda una demo personalizada de 15 minutos. Sin compromiso.</p>
+        <div class="cta-buttons">
+            <a href="https://wa.me/16692342444?text=Hi!%20Munjela%20Glow%20here.%20I'd%20like%20a%20demo%20please"
+                class="btn btn-primary" data-lang="en"><i class="fab fa-whatsapp"></i> SCHEDULE DEMO</a>
+            <a href="https://wa.me/16692342444?text=Hola!%20Soy%20de%20Munjela%20Glow.%20Quisiera%20agendar%20una%20demo"
+                class="btn btn-primary" data-lang="es"><i class="fab fa-whatsapp"></i> AGENDAR DEMO</a>
+            <a href="tel:+16692342444" class="btn btn-secondary"><i class="fas fa-phone"></i> (669) 234-2444</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p data-lang="en">Proposal prepared exclusively for <strong>Munjela Glow Salon</strong></p>
+        <p data-lang="es">Propuesta preparada exclusivamente para <strong>Munjela Glow Salon</strong></p>
+        <p style="margin-top: 15px;">ORION Tech | <a
+                href="https://agem2024.github.io/SEGURITI-USC/orion-bots.html">orion-tech.com</a></p>
+        <p style="margin-top: 20px; font-size: 0.75rem;" data-lang="en">© 2026 ORION Tech. Proposal valid for 30 days.
+            New Year promo expires Jan 31, 2026.</p>
+        <p style="margin-top: 20px; font-size: 0.75rem;" data-lang="es">© 2026 ORION Tech. Propuesta válida por 30 días.
+            Promo Año Nuevo expira 31 Ene, 2026.</p>
+    </footer>
+
+    <script>
+        function setLang(lang) {
+            document.body.classList.remove('lang-en', 'lang-es');
+            if (lang === 'es') document.body.classList.add('lang-es');
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent === lang.toUpperCase()) btn.classList.add('active');
+            });
+        }
+    </script>
+
+</body>
+
+</html>
