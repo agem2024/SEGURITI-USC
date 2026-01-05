@@ -2427,6 +2427,31 @@
             animation: blink 1s infinite;
         }
 
+        .xona-voice-toggle {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #25D366, #00f3ff);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            margin-left: auto;
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.4);
+        }
+
+        .xona-voice-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(37, 211, 102, 0.6);
+        }
+
+        .xona-voice-toggle:active {
+            transform: scale(0.95);
+        }
+
         @keyframes blink {
             50% {
                 opacity: 0.3;
@@ -2643,10 +2668,11 @@
                 <h4 id="xona-header-title">XONA // ASISTENTE IA</h4>
                 <span id="xona-header-status">ENLACE NEURAL ACTIVO</span>
             </div>
+            <button class="xona-voice-toggle" id="xonaVoiceToggle" onclick="toggleXonaVoice()"
+                title="Voz activada (clic para desactivar)">🔊</button>
         </div>
         <div class="xona-messages" id="xonaMessages">
-            <div class="xona-msg bot">¡Hola! Soy XONA, tu asistente de ORION Tech. ¿Cómo puedo ayudarte a automatizar
-                tu negocio hoy?</div>
+            <div class="xona-msg bot">¡Hola! Soy XONA. ¿En qué puedo ayudarte?</div>
         </div>
         <div class="xona-input-area">
             <button class="xona-mic" id="xonaMic" onclick="toggleVoiceInput()" title="Voice Input">🎤</button>
@@ -2750,13 +2776,16 @@
             recognition.onend = () => stopListening();
         }
 
-        // Multilingual greetings - ORION Tech Professional
+        // Voice control state (enabled by default)
+        let xonaVoiceEnabled = true;
+
+        // Multilingual SHORT greetings - ORION Tech Professional
         const xonaGreetings = {
-            en: "Hello! I'm XONA, your ORION Tech AI assistant. How can I help automate your business today?",
-            es: "¡Hola! Soy XONA, tu asistente de ORION Tech. ¿Cómo puedo ayudarte a automatizar tu negocio?",
-            zh: "您好！我是XONA，ORION Tech的AI助手。今天我能为您的业务自动化做什么？",
-            tl: "Kumusta! Ako si XONA ng ORION Tech. Paano ko makakatulong sa iyong negosyo?",
-            vi: "Xin chào! Tôi là XONA từ ORION Tech. Tôi có thể giúp gì cho doanh nghiệp của bạn?"
+            en: "Hi! I'm XONA. How can I help?",
+            es: "¡Hola! Soy XONA. ¿En qué puedo ayudarte?",
+            zh: "您好！我是XONA。",
+            tl: "Hi! Ako si XONA.",
+            vi: "Xin chào! Tôi là XONA."
         };
 
         function toggleXonaChat() {
@@ -2764,11 +2793,42 @@
             document.getElementById('xonaChat').classList.toggle('active', xonaChatOpen);
             if (xonaChatOpen) {
                 document.getElementById('xonaInput').focus();
-                // Speak greeting in current language
-                const greeting = xonaGreetings[currentLang] || xonaGreetings.en;
-                speakXona(greeting);
+                // Only speak greeting if voice is enabled and it's the first time opening
+                if (xonaVoiceEnabled) {
+                    const greeting = xonaGreetings[currentLang] || xonaGreetings.en;
+                    speakXona(greeting);
+                }
             }
         }
+
+        function toggleXonaVoice() {
+            xonaVoiceEnabled = !xonaVoiceEnabled;
+            const btn = document.getElementById('xonaVoiceToggle');
+            if (xonaVoiceEnabled) {
+                btn.textContent = '🔊';
+                btn.title = currentLang === 'es' ? 'Voz activada (clic para desactivar)' : 'Voice ON (click to disable)';
+                btn.style.background = 'linear-gradient(135deg, #25D366, #00f3ff)';
+            } else {
+                btn.textContent = '🔇';
+                btn.title = currentLang === 'es' ? 'Voz desactivada (clic para activar)' : 'Voice OFF (click to enable)';
+                btn.style.background = 'rgba(255, 255, 255, 0.1)';
+            }
+            // Save preference
+            localStorage.setItem('xona_voice_enabled', xonaVoiceEnabled);
+        }
+
+        // Load voice preference on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedVoicePref = localStorage.getItem('xona_voice_enabled');
+            if (savedVoicePref === 'false') {
+                xonaVoiceEnabled = false;
+                const btn = document.getElementById('xonaVoiceToggle');
+                if (btn) {
+                    btn.textContent = '🔇';
+                    btn.style.background = 'rgba(255, 255, 255, 0.1)';
+                }
+            }
+        });
 
         function toggleVoiceInput() {
             if (!recognition) {
@@ -2797,19 +2857,26 @@
             try { recognition.stop(); } catch (e) { }
         }
 
-        // Text-to-Speech for XONA responses - FEMALE VOICE, CHONA pronunciation
         // Text-to-Speech for XONA responses - HYBRID (OpenAI API -> Browser Fallback)
         async function speakXona(text) {
+            // Check if voice is enabled
+            if (!xonaVoiceEnabled) {
+                console.log('🔇 Voice disabled by user');
+                return;
+            }
+
             // Phonetic adjustment for pronunciation (Xona -> Chona)
-            // This ensures it sounds like "Chona" but we display "XONA"
             const spokenText = text.replace(/Xona/gi, 'Chona').replace(/XONA/g, 'CHONA');
 
-            // 1. Try Natural OpenAI Voice via Local API
+            // API ROTATION ORDER:
+            // 1. Primary: ORION Cloud (OpenAI TTS) - Natural voice
+            // 2. Fallback: Browser SpeechSynthesis - Built-in voice
+
             try {
                 // Determine language
                 const lang = currentLang || 'es';
 
-                // Call cloud backend (Render) - works on all devices
+                // PRIMARY API: ORION Cloud (Render) with OpenAI TTS
                 const response = await fetch('https://orion-cloud.onrender.com/api/tts', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
