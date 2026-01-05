@@ -2895,13 +2895,18 @@
                         let selectedVoice = null;
 
                         if (currentLang === 'es') {
+                            // Strict female priority for Spanish
                             const femaleKeywords = ['paulina', 'monica', 'sabina', 'helena', 'lucia', 'laura', 'mexico', 'female', 'google español'];
                             selectedVoice = voices.find(v => v.lang.includes('es') && femaleKeywords.some(sw => v.name.toLowerCase().includes(sw)));
-                            if (!selectedVoice) selectedVoice = voices.find(v => v.lang.includes('es') && !v.name.toLowerCase().includes('male'));
+                            // Fallback: any ES voice that is NOT explicitly male
+                            if (!selectedVoice) selectedVoice = voices.find(v => v.lang.includes('es') && !v.name.toLowerCase().includes('male') && !v.name.toLowerCase().includes('david'));
                         } else {
-                            const femaleKeywords = ['samantha', 'victoria', 'karen', 'google us english', 'zira', 'female'];
+                            // Strict female priority for English
+                            const femaleKeywords = ['samantha', 'victoria', 'karen', 'zira', 'female', 'google us english'];
+                            // Note: 'Google US English' is often female (voice 0), but we check others first
                             selectedVoice = voices.find(v => v.lang.includes('en') && femaleKeywords.some(sw => v.name.toLowerCase().includes(sw)));
-                            if (!selectedVoice) selectedVoice = voices.find(v => v.lang.includes('en') && !v.name.toLowerCase().includes('male'));
+                            // Fallback: any EN voice that is NOT explicitly male
+                            if (!selectedVoice) selectedVoice = voices.find(v => v.lang.includes('en') && !v.name.toLowerCase().includes('male') && !v.name.toLowerCase().includes('mark'));
                         }
 
                         if (selectedVoice) {
