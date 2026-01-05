@@ -227,9 +227,11 @@
                         <li style="margin-bottom: 8px;">✓ Google Calendar Sync</li>
                         <li style="margin-bottom: 8px;">✓ 1 Staff Member</li>
                     </ul>
-                    <a href="#" onclick="openModal('SALON STARTER'); return false;" class="btn"
-                        style="width: 100%; text-align: center; background: transparent; border: 1px solid #ff6ec7; color: #ff6ec7;">SELECT
-                        STARTER</a>
+                    <a href="#" onclick="openPayment('starter', 'setup'); return false;" class="btn"
+                        style="width: 100%; text-align: center; margin-bottom: 8px;">💳 PAY SETUP</a>
+                    <a href="#" onclick="openModal('SALON STARTER'); return false;"
+                        style="width: 100%; text-align: center; color: #888; font-size: 0.8rem; text-decoration: underline;">or
+                        contact us first</a>
                 </div>
 
                 <!-- GROWTH PLAN (Highlighted) -->
@@ -255,8 +257,11 @@
                         <li style="margin-bottom: 8px;">✓ Up to 5 Staff Members</li>
                         <li style="margin-bottom: 8px;">✓ Client History</li>
                     </ul>
-                    <a href="#" onclick="openModal('SALON GROWTH'); return false;" class="btn"
-                        style="width: 100%; text-align: center;">SELECT GROWTH</a>
+                    <a href="#" onclick="openPayment('growth', 'setup'); return false;" class="btn"
+                        style="width: 100%; text-align: center; margin-bottom: 8px;">💳 PAY SETUP</a>
+                    <a href="#" onclick="openModal('SALON GROWTH'); return false;"
+                        style="width: 100%; text-align: center; color: #fff; font-size: 0.8rem; text-decoration: underline;">or
+                        contact us first</a>
                 </div>
 
                 <!-- PRO PLAN -->
@@ -278,9 +283,11 @@
                         <li style="margin-bottom: 8px;">✓ Marketing Broadcasts</li>
                         <li style="margin-bottom: 8px;">✓ Unlimited Staff</li>
                     </ul>
-                    <a href="#" onclick="openModal('SALON PRO'); return false;" class="btn"
-                        style="width: 100%; text-align: center; background: transparent; border: 1px solid #ff6ec7; color: #ff6ec7;">SELECT
-                        PRO</a>
+                    <a href="#" onclick="openPayment('pro', 'setup'); return false;" class="btn"
+                        style="width: 100%; text-align: center; margin-bottom: 8px;">💳 PAY SETUP</a>
+                    <a href="#" onclick="openModal('SALON PRO'); return false;"
+                        style="width: 100%; text-align: center; color: #888; font-size: 0.8rem; text-decoration: underline;">or
+                        contact us first</a>
                 </div>
 
             </div>
@@ -330,6 +337,8 @@
         }
         window.onclick = function (e) { if (e.target.id === 'leadModal') closeModal(); }
     </script>
+    <!-- Payment Links Integration -->
+    <script src="js/payment-links.js"></script>
 </body>
 
 </html>

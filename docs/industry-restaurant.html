@@ -230,9 +230,11 @@
                         <li style="margin-bottom: 8px;">✓ Manual Payment Links</li>
                         <li style="margin-bottom: 8px;">✓ 500 Conversations</li>
                     </ul>
-                    <a href="#" onclick="openModal('RESTAURANT STARTER'); return false;" class="btn"
-                        style="width: 100%; text-align: center; background: transparent; border: 1px solid #25D366; color: #25D366;">SELECT
-                        STARTER</a>
+                    <a href="#" onclick="openPayment('starter', 'setup'); return false;" class="btn"
+                        style="width: 100%; text-align: center; margin-bottom: 8px;">💳 PAY SETUP</a>
+                    <a href="#" onclick="openModal('RESTAURANT STARTER'); return false;"
+                        style="width: 100%; text-align: center; color: #888; font-size: 0.8rem; text-decoration: underline;">or
+                        contact us first</a>
                 </div>
 
                 <!-- GROWTH PLAN (Highlighted) -->
@@ -258,8 +260,11 @@
                         <li style="margin-bottom: 8px;">✓ 1,000 Conversations</li>
                         <li style="margin-bottom: 8px;">✓ Marketing Broadcasts</li>
                     </ul>
-                    <a href="#" onclick="openModal('RESTAURANT GROWTH'); return false;" class="btn"
-                        style="width: 100%; text-align: center;">SELECT GROWTH</a>
+                    <a href="#" onclick="openPayment('growth', 'setup'); return false;" class="btn"
+                        style="width: 100%; text-align: center; margin-bottom: 8px;">💳 PAY SETUP</a>
+                    <a href="#" onclick="openModal('RESTAURANT GROWTH'); return false;"
+                        style="width: 100%; text-align: center; color: #fff; font-size: 0.8rem; text-decoration: underline;">or
+                        contact us first</a>
                 </div>
 
                 <!-- PRO PLAN -->
@@ -281,9 +286,11 @@
                         <li style="margin-bottom: 8px;">✓ AI Upselling</li>
                         <li style="margin-bottom: 8px;">✓ 2,500 Conversations</li>
                     </ul>
-                    <a href="#" onclick="openModal('RESTAURANT PRO'); return false;" class="btn"
-                        style="width: 100%; text-align: center; background: transparent; border: 1px solid #25D366; color: #25D366;">SELECT
-                        PRO</a>
+                    <a href="#" onclick="openPayment('pro', 'setup'); return false;" class="btn"
+                        style="width: 100%; text-align: center; margin-bottom: 8px;">💳 PAY SETUP</a>
+                    <a href="#" onclick="openModal('RESTAURANT PRO'); return false;"
+                        style="width: 100%; text-align: center; color: #888; font-size: 0.8rem; text-decoration: underline;">or
+                        contact us first</a>
                 </div>
 
             </div>
@@ -350,6 +357,8 @@
         }
         window.onclick = function (e) { if (e.target.id === 'leadModal') closeModal(); }
     </script>
+    <!-- Payment Links Integration -->
+    <script src="js/payment-links.js"></script>
 </body>
 
 </html>
