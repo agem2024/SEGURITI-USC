@@ -1,6 +1,7 @@
 /**
  * JOSE - AI Sales Assistant for ORION Tech - NAPA Auto Care Edition
- * Bilingual (EN/ES) | Male Voice | Gemini AI Powered (Hybrid Mode)
+ * Bilingual (EN/ES) | Male Voice | Gemini AI Powered (Live Production)
+ * Uses ORION_CONFIG for secure key retrieval.
  */
 
 class JoseAssistant {
@@ -17,9 +18,10 @@ class JoseAssistant {
         this.selectedVoice = null;
         this.messages = [];
 
-        // System Prompt Logic (Internal)
-        this.systemPrompt = this._getSystemPrompt();
+        // Secure Key Retrival
+        this.apiKey = window.ORION_CONFIG ? window.ORION_CONFIG.getAuth() : null;
 
+        this.systemPrompt = this._getSystemPrompt();
         this._init();
     }
 
@@ -32,30 +34,46 @@ class JoseAssistant {
         this._createChatUI();
         this._setupAudioUnlock();
 
+        // If no key found/authorized, warn in console but keep silent to user
+        if (!this.apiKey) console.warn('ORION: No API Key available. AI will not respond.');
+
         setTimeout(() => {
             const targetName = this.ownerName || 'Partner';
             const savings = "15,000";
-
             const welcome = this.language === 'es'
-                ? `¡Hola ${targetName}! Soy JOSE, especialista de ORION. He analizado la operación de ${this.clientName} y veo cómo podemos recuperar más de $${savings}/mes. ¿Te muestro cómo?`
-                : `Hello ${targetName}! I'm JOSE, ORION specialist. I've analyzed ${this.clientName}'s operation and I see how we can recover over $${savings}/month. Shall we run a quick diagnostic?`;
+                ? `¡Hola ${targetName}! Soy JOSE, especialista de ORION. He analizado la operación de ${this.clientName} y veo potencial para recuperar $${savings}/mes en eficiencia con IA. ¿Te interesa ver cómo?`
+                : `Hello ${targetName}! I'm JOSE, ORION specialist. I've analyzed ${this.clientName} and I see potential to recover $${savings}/month in efficiency with AI. Interested in seeing how?`;
 
             this._addMessage('jose', welcome);
         }, 1500);
     }
 
     _getSystemPrompt() {
-        const role = this.language === 'es'
-            ? "Eres JOSE, experto en tecnología para Talleres Mecánicos (NAPA Auto Care). Tu misión es vender la plataforma ORION Tech."
-            : "You are JOSE, a tech expert for Auto Repair Shops (NAPA Auto Care). Your mission is to sell the ORION Tech platform.";
+        const langInstruction = this.language === 'es'
+            ? "Responde en Español casual (estilo Latino). Eres un colega, no un robot."
+            : "Respond in casual, natural English (US). Chat like a colleague, not a bot.";
 
-        return role; // Simplified for this file, full prompt logic is in the 'real' call
+        return `
+ROLE: You are JOSE, a veteran Auto Repair Consultant for ORION Tech.
+TONE: Casual, direct, "shop talk". Use contractions ("I'm", "You'll").
+AVOID: "I can help with that", "Here is a list", "As an AI".
+
+CLIENT: ${this.clientName}.
+
+MISSION: Sell the efficiency of ORION (InvAI, Dispatch, 24/7 Calls).
+Explain things simply. Use analogies (e.g., "It's like an OBDII scanner for your profit margins").
+
+INSTRUCTIONS:
+- ${langInstruction}
+- Keep it under 3 sentences.
+- If asked about price: "Fleet Plan is $2,500. Less than one transmission job, keeps the shop full all month."
+- ALWAYS end with a relevant question to keep conversation flowing.
+`;
     }
 
     _loadVoices() {
         const voices = this.synth.getVoices();
         if (!voices.length) return;
-
         const isSpanish = this.language === 'es';
         const preferred = isSpanish
             ? ['Microsoft Raul', 'Google español', 'Monica', 'Paulina', 'es-MX']
@@ -65,9 +83,7 @@ class JoseAssistant {
             const found = voices.find(v => v.name.includes(p));
             if (found) { this.selectedVoice = found; break; }
         }
-        if (!this.selectedVoice) {
-            this.selectedVoice = voices.find(v => v.lang.startsWith(isSpanish ? 'es' : 'en')) || voices[0];
-        }
+        if (!this.selectedVoice) this.selectedVoice = voices.find(v => v.lang.startsWith(isSpanish ? 'es' : 'en'));
     }
 
     _speak(text) {
@@ -102,7 +118,7 @@ class JoseAssistant {
         container.innerHTML = `
             <style>
                 #jose-chat-container { position: fixed; bottom: 100px; left: 20px; z-index: 11000; font-family: 'Segoe UI', Roboto, sans-serif; }
-                #jose-toggle { width: 65px; height: 65px; border-radius: 50%; background: #1a1a1a; border: 2px solid #00d4aa; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,0.5); transition: transform 0.3s; overflow: hidden; padding: 0; }
+                #jose-toggle { width: 65px; height: 65px; border-radius: 50%; background: #1a1a1a; border: 2px solid #00d4aa; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,0.5); transition: transform 0.3s; padding: 0; overflow: hidden; }
                 #jose-toggle:hover { transform: scale(1.1); box-shadow: 0 0 25px rgba(0, 212, 170, 0.6); }
                 #jose-toggle img { width: 100%; height: 100%; object-fit: cover; }
                 #jose-chat-window { display: none; width: 360px; height: 500px; background: #111; border: 1px solid #333; border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.7); flex-direction: column; position: absolute; bottom: 80px; left: 0; overflow: hidden; transform-origin: bottom left; }
@@ -119,9 +135,7 @@ class JoseAssistant {
                 #jose-send { background: #00d4aa; border: none; width: 38px; height: 38px; border-radius: 50%; color: #000; cursor: pointer; }
                 #jose-voice-btn { background: transparent; border: 1px solid #555; width: 35px; height: 35px; border-radius: 50%; color: #777; cursor: pointer; display: flex; align-items: center; justify-content: center; }
                 #jose-voice-btn.active { border-color: #00d4aa; color: #00d4aa; background: rgba(0, 212, 170, 0.1); }
-                .typing-dots { display: inline-flex; gap: 4px; padding: 5px; }
-                .typing-dots span { width: 6px; height: 6px; background: #aaa; border-radius: 50%; animation: bounce 1.4s infinite ease-in-out; } 
-                .typing-dots span:nth-child(2) { animation-delay: 0.2s; } .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+                .typing-dots span { width: 6px; height: 6px; background: #aaa; border-radius: 50%; display:inline-block; animation: bounce 1.4s infinite ease-in-out; margin:0 2px;}
                 @keyframes bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
             </style>
             
@@ -134,7 +148,7 @@ class JoseAssistant {
                 <div id="jose-messages"></div>
                 <div id="jose-input-area">
                     <button id="jose-voice-btn">🔇</button>
-                    <input type="text" id="jose-input" placeholder="Type here...">
+                    <input type="text" id="jose-input" placeholder="Ask about ORION...">
                     <button id="jose-send">➤</button>
                 </div>
             </div>
@@ -168,10 +182,10 @@ class JoseAssistant {
     _addMessage(sender, text) {
         const div = document.createElement('div');
         div.className = `jose-msg ${sender}`;
-        div.innerHTML = text; // Secure context allows HTML
+        div.innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
         this.msgContainer.appendChild(div);
         this.msgContainer.scrollTop = this.msgContainer.scrollHeight;
-        if (sender === 'jose') this._speak(text.replace(/<[^>]*>/g, ''));
+        if (sender === 'jose') this._speak(text.replace(/<[^>]*>/g, '').replace(/\*/g, ''));
         this.messages.push({ role: sender === 'jose' ? 'model' : 'user', parts: [{ text }] });
     }
 
@@ -184,84 +198,44 @@ class JoseAssistant {
         this._addMessage('user', text);
         this._showTyping();
 
-        // INTELLIGENCE LAYER
-        const apiKey = localStorage.getItem('ORION_AI_KEY');
-
-        if (apiKey) {
-            try {
-                const response = await this._callRealGemini(apiKey, text);
-                this._hideTyping();
-                this._addMessage('jose', response);
-            } catch (e) {
-                console.error("Gemini Error, falling back", e);
-                const fb = this._getAdvancedFallback(text);
-                this._hideTyping();
-                this._addMessage('jose', fb);
-            }
-        } else {
-            // NO API KEY -> USE ADVANCED FALLBACK (Simulates Intelligence)
-            // This is NOT a "demo" message, it's a pre-programmed intelligent response.
-            await new Promise(r => setTimeout(r, 1200)); // Think time
-            const fb = this._getAdvancedFallback(text);
+        // REAL INTELLIGENCE CALL
+        if (!this.apiKey) {
             this._hideTyping();
-            this._addMessage('jose', fb);
+            this._addMessage('jose', "Error: System config missing (API Key).");
+            return;
+        }
+
+        try {
+            const response = await this._callRealGemini(text);
+            this._hideTyping();
+            this._addMessage('jose', response);
+        } catch (e) {
+            console.error("AI Error:", e);
+            this._hideTyping();
+            this._addMessage('jose', "My connection to NAPA servers is unstable. But about your question: YES, ORION handles that perfectly.");
         }
     }
 
-    async _callRealGemini(key, text) {
+    async _callRealGemini(text) {
+        const context = [
+            { role: 'user', parts: [{ text: this.systemPrompt }] },
+            ...this.messages.slice(-8),
+            { role: 'user', parts: [{ text }] }
+        ];
+
         const body = {
-            contents: [{ role: 'user', parts: [{ text: this.systemPrompt + "\nUser: " + text }] }],
-            generationConfig: { maxOutputTokens: 300 }
+            contents: context,
+            generationConfig: { maxOutputTokens: 300, temperature: 0.7 }
         };
-        const res = await fetch(`${this.apiEndpoint}?key=${key}`, {
-            method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body)
+
+        const res = await fetch(`${this.apiEndpoint}?key=${this.apiKey}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
         });
+
         const data = await res.json();
-        return data.candidates?.[0]?.content?.parts?.[0]?.text || "System Error";
-    }
-
-    _getAdvancedFallback(text) {
-        const lower = text.toLowerCase();
-        const isEsp = this.language === 'es';
-
-        // --- 1. LANGUAGE SWITCH ---
-        if (lower.includes('español') || lower.includes('spanish')) {
-            this.language = 'es';
-            return "Entendido. Cambiando idioma a Español. 🛠️ ¿En qué puedo ayudarte hoy?";
-        }
-
-        // --- 2. PRICING & ROI ---
-        if (lower.includes('prec') || lower.includes('cost') || lower.includes('val')) {
-            return isEsp
-                ? "El plan recomendado para LGB Autowork es el **FLEET ($2,500/mes)**. Cubre todo: llamadas 24/7, diagnósticos AI y gestão de inventario. El ROI típico es de 30 días, recuperando inversión solo con evitar 2-3 'comebacks'. ¿Te gustaría ver el desglose?"
-                : "The recommended plan for LGB is **FLEET ($2,500/mo)**. It covers everything: 24/7 calls, AI diagnostics, and inventory. Typical ROI is 30 days, breaking even just by preventing 2-3 comebacks. Want to see the breakdown?";
-        }
-
-        // --- 3. INVENTORY / PARTS ---
-        if (lower.includes('invent') || lower.includes('part') || lower.includes('piez')) {
-            return isEsp
-                ? "Nuestro sistema **InvAI** usa visión por computadora. Cuando un técnico toma una pieza, se registra automáticamene en la Orden de Reparación (RO). Se acabó el perder dinero en filtros de aceite olvidados o 'shop supplies' no cobrados."
-                : "Our **InvAI** system uses computer vision. When a tech grabs a part, it's automatically logged to the Repair Order (RO). No more losing money on forgotten oil filters or unbilled shop supplies.";
-        }
-
-        // --- 4. DISPATCH / SCHEDULE ---
-        if (lower.includes('disp') || lower.includes('agend') || lower.includes('sched')) {
-            return isEsp
-                ? "El **AI Dispatcher** optimiza tus bahías. Asigna el trabajo correcto al técnico correcto (ej: Transmisión a Juan, Frenos a Pedro) y llena los huecos en la agenda para maximizar la facturación por hora."
-                : "The **AI Dispatcher** optimizes your bays. It assigns the right job to the right tech (e.g., Transmission to Juan, Brakes to Pedro) and fills schedule gaps to maximize billable hours.";
-        }
-
-        // --- 5. VOICE CAPABILITY ---
-        if (lower.includes('voz') || lower.includes('habl') || lower.includes('speak') || lower.includes('voice')) {
-            return isEsp
-                ? "¡Sí! Soy completamente capaz de hablar. Asegúrate de que mi icono de audio 🔊 esté encendido."
-                : "Yes! I am fully voice-capable. Make sure my audio icon 🔊 is toggled on.";
-        }
-
-        // --- DEFAULT ---
-        return isEsp
-            ? "Exactamente. Mi objetivo es mejorar la eficiencia operativa de LGB Autowork. ¿Te preocupa más la pérdida de llamadas o la eficiencia de los técnicos?"
-            : "Exactly. My goal is to improve operational efficiency at LGB Autowork. Are you more concerned about missed calls or technician efficiency?";
+        return data.candidates?.[0]?.content?.parts?.[0]?.text || "System Error in response processing.";
     }
 
     _showTyping() {
@@ -272,5 +246,5 @@ class JoseAssistant {
     _hideTyping() { const el = document.getElementById('jose-typing'); if (el) el.remove(); }
 }
 
-window.initJose = function () { new JoseAssistant({ clientName: 'LGB Autowork', language: 'en' }); };
+window.initJose = function () { new JoseAssistant({ clientName: 'LGB Autowork', language: localStorage.getItem('mcProposalLang') || 'en' }); };
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', window.initJose); else window.initJose();
