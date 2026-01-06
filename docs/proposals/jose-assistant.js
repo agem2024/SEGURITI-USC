@@ -295,5 +295,12 @@ INSTRUCTIONS:
     _hideTyping() { const el = document.getElementById('jose-typing'); if (el) el.remove(); }
 }
 
-window.initJose = function () { new JoseAssistant({ clientName: 'LGB Autowork', language: localStorage.getItem('mcProposalLang') || 'en' }); };
+window.initJose = function () {
+    const config = window.JOSE_CONFIG || { clientName: 'LGB Autowork' };
+    // Prioritize localStorage language, fallback to config.language, then 'en'
+    config.language = localStorage.getItem('mcProposalLang') || config.language || 'en';
+
+    console.log('🚀 JOSE Initializing for:', config.clientName);
+    new JoseAssistant(config);
+};
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', window.initJose); else window.initJose();
