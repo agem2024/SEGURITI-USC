@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORION Tech | Proposal for Reliable Auto Repair</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+    <style>
+        :root {
+            /* RELIABLE AUTO BRANDING: Deep Trust Blue & Clean White */
+            --primary: #004B87;
+            /* Navy Blue */
+            --secondary: #E3eaa7;
+            /* Accent */
+            --accent: #00d4aa;
+            /* ORION Teal (Tech infusion) */
+            --dark: #0f172a;
+            /* Slate Dark */
+            --light: #f8fafc;
+            --glass: rgba(15, 23, 42, 0.8);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* HERO - Independent Shop Vibe */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.8)), url('https://agem2024.github.io/SEGURITI-USC/proposals/lgb_hero.png');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0;
+            color: white;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero h2 {
+            color: #ccc;
+            font-weight: 300;
+            font-size: 1.5rem;
+            margin-top: 20px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #000;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 30px;
+            text-transform: uppercase;
+        }
+
+        .section {
+            padding: 80px 10%;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent);
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px;
+            color: #555;
+        }
+
+        /* Lang Switch */
+        .lang-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .lang-btn {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #555;
+            color: #fff;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .lang-btn.active {
+            background: var(--accent);
+            color: black;
+            border-color: var(--accent);
+        }
+
+        body.es .lang-en {
+            display: none;
+        }
+
+        body:not(.es) .lang-es {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="en">
+
+    <div class="lang-switch">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('es')">ES</button>
+    </div>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div>
+            <h2>PROPOSAL FOR | PROPUESTA PARA</h2>
+            <h1>RELIABLE <span>AUTO REPAIR</span></h1>
+
+            <p style="max-width: 700px; margin: 30px auto; font-size: 1.2rem; line-height: 1.6;">
+                <span class="lang-en">Big Chain Technology, Independent Soul. <br>Stop being stuck at the front desk.
+                    Let AI verify the calls.</span>
+                <span class="lang-es">Tecnología de Cadena Grande, Alma Independiente. <br>Deja de estar atado al
+                    mostrador. Deja que la IA verifique las llamadas.</span>
+            </p>
+
+            <a href="#solutions" class="btn-primary">
+                <span class="lang-en">See the Upgrade</span>
+                <span class="lang-es">Ver la Actualización</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- PAIN POINTS - TAILORED FOR INDEPENDENT OWNER -->
+    <section id="solutions" class="section">
+        <h2 style="color: var(--accent);">
+            <span class="lang-en">THE INDEPENDENT SHOP DILEMMA</span>
+            <span class="lang-es">EL DILEMA DEL TALLER INDEPENDIENTE</span>
+        </h2>
+
+        <div class="grid-2">
+            <div>
+                <h3 class="lang-en" style="font-size: 2rem;">"I'm the Manager, Service Writer, and sometimes Mechanic."
+                </h3>
+                <h3 class="lang-es" style="font-size: 2rem;">"Soy el Gerente, Asesor y a veces Mecánico."</h3>
+                <p class="lang-en" style="color:#aaa;">You built this business on trust, but you are the bottleneck. If
+                    you aren't there, things slow down.</p>
+                <p class="lang-es" style="color:#aaa;">Construiste este negocio con confianza, pero eres el cuello de
+                    botella. Si no estás, todo se ralentiza.</p>
+            </div>
+            <div class="card">
+                <h4 style="color: var(--accent);">🛑 THE PROBLEM:</h4>
+                <p class="lang-en">Missed calls while explaining a quote. 40% of your day is answering "Is my car
+                    ready?"</p>
+                <p class="lang-es">Llamadas perdidas mientras explicas una cotización. 40% de tu día es responder "¿Ya
+                    está mi carro?"</p>
+
+                <h4 style="color: var(--accent); margin-top:20px;">✅ THE ORION FIX:</h4>
+                <p class="lang-en"><strong>AI Receptionist + Status Bot.</strong><br>The AI answers every call, books
+                    appointments, and texts updates automatically. You focus on high-ticket sales.</p>
+                <p class="lang-es"><strong>Recepcionista IA + Bot de Estado.</strong><br>La IA contesta todo, agenda
+                    citas y envía updates por texto. Tú te enfocas en ventas grandes.</p>
+            </div>
+        </div>
+
+        <div class="grid-2" style="margin-top: 60px;">
+            <div class="card">
+                <h4 style="color: var(--accent);">🛑 THE PROBLEM:</h4>
+                <p class="lang-en">Trust issues with new clients. "Are you ripping me off?" because you can't show fancy
+                    digital inspections like the dealerships.</p>
+                <p class="lang-es">Desconfianza de clientes nuevos. "¿Me estás estafando?" porque no puedes mostrar
+                    inspecciones digitales lujosas como los concesionarios.</p>
+
+                <h4 style="color: var(--accent); margin-top:20px;">✅ THE ORION FIX:</h4>
+                <p class="lang-en"><strong>MP PRO (Visual Evidence).</strong><br>Tech takes a photo/video. AI explains
+                    the issue clearly. Client sees proof on their phone. Trust = Instant Approval.</p>
+                <p class="lang-es"><strong>MP PRO (Evidencia Visual).</strong><br>Técnico toma foto/video. IA explica el
+                    problema. Cliente ve la prueba en su celular. Confianza = Aprobación Instantánea.</p>
+            </div>
+            <div>
+                <h3 class="lang-en" style="font-size: 2rem;">Competing with Dealership Tech</h3>
+                <h3 class="lang-es" style="font-size: 2rem;">Compitiendo con Tecnología de Agencia</h3>
+                <p class="lang-en" style="color:#aaa;">Your work is better, but their presentation is shinier. We level
+                    the playing field.</p>
+                <p class="lang-es" style="color:#aaa;">Tu trabajo es mejor, pero su presentación brilla más. Nivelamos
+                    el campo de juego.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEIGHBORS -->
+    <section class="section" style="background: rgba(0,0,0,0.2);">
+        <h3 style="text-align: center; color: #888; font-size: 0.9rem; letter-spacing: 2px;">
+            <span class="lang-en">LOCAL INTELLIGENCE</span>
+            <span class="lang-es">INTELIGENCIA LOCAL</span>
+        </h3>
+        <div style="margin-top: 20px; padding: 20px; text-align: center;">
+            <p class="lang-en">LGB Autowork and Quality Tune-Up are nearby. They rely on volume.</p>
+            <p class="lang-es">LGB Autowork y Quality Tune-Up están cerca. Ellos dependen del volumen.</p>
+            <h2 style="color: white;">
+                <span class="lang-en">Reliable Auto wins on QUALITY + AI SPEED.</span>
+                <span class="lang-es">Reliable Auto gana en CALIDAD + VELOCIDAD IA.</span>
+            </h2>
+        </div>
+    </section>
+
+    <footer>
+        <p>ORION Tech | Proposal for Reliable Auto Repair</p>
+    </footer>
+
+    <script>
+        function setLang(lang) {
+            document.body.classList.toggle('es', lang === 'es');
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.textContent.includes(lang.toUpperCase())));
+        }
+    </script>
+
+    <!-- JOSE AI -->
+    <script src="https://agem2024.github.io/SEGURITI-USC/proposals/jose-loader.js"></script>
+    <script src="https://agem2024.github.io/SEGURITI-USC/proposals/jose-assistant.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.getElementById('jose-chat-container')?.remove();
+                new JoseAssistant({
+                    clientName: 'Reliable Auto',
+                    clientPhone: '408-229-1010',
+                    language: 'en'
+                });
+            }, 500);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORION Tech | Proposal for Capitol Auto Care</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        :root {
+            /* CAPITOL AUTO: Smog Green & Industrial Grey */
+            --primary: #4CAF50;
+            /* Smog Green */
+            --secondary: #333;
+            --accent: #E1F5FE;
+            --dark: #212121;
+            --light: #f5f5f5;
+            --glass: rgba(33, 33, 33, 0.9);
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            margin: 0;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://agem2024.github.io/SEGURITI-USC/proposals/lgb_hero.png');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+        }
+
+        .hero h1 {
+            color: var(--primary);
+            font-size: 4rem;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 30px;
+            font-weight: bold;
+        }
+
+        .section {
+            padding: 80px 10%;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: 12px;
+            border-top: 5px solid var(--primary);
+        }
+
+        .lang-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .lang-btn {
+            background: #000;
+            color: white;
+            border: 1px solid #555;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+        }
+
+        body.es .lang-en {
+            display: none;
+        }
+
+        body:not(.es) .lang-es {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="en">
+    <div class="lang-switch">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('es')">ES</button>
+    </div>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div>
+            <h2>PROPOSAL FOR | PROPUESTA PARA</h2>
+            <h1>CAPITOL <span>AUTO CARE</span></h1>
+            <h3>Smog Check • Repair • Efficiency</h3>
+            <p style="max-width: 600px; margin: 20px auto;">
+                <span class="lang-en">Turn $60 Smog Checks into $600 Repairs automatically.<br>The AI that upsells
+                    ethically while you test emissions.</span>
+                <span class="lang-es">Convierte Smog Checks de $60 en Reparaciones de $600 automáticamente.<br>La IA que
+                    vende éticamente mientras pruebas emisiones.</span>
+            </p>
+            <a href="#features" class="btn-primary">
+                <span class="lang-en">Automate Upsells</span>
+                <span class="lang-es">Automatizar Ventas</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- SMOG & SPEED FEATURES -->
+    <section id="features" class="section">
+        <h2 style="color: var(--primary);">
+            <span class="lang-en">HIGH VOLUME EFFICIENCY</span>
+            <span class="lang-es">EFICIENCIA EN ALTO VOLUMEN</span>
+        </h2>
+
+        <div class="grid-3">
+            <div class="card">
+                <h3>🚦 The Problem</h3>
+                <p class="lang-en"><strong>The "Pass or Fail" Trap.</strong><br>Smog customers just want to pass and
+                    leave. You barely have time to suggest tires or belts.</p>
+                <p class="lang-es"><strong>La Trampa de "Pasa o Falla".</strong><br>Clientes de Smog solo quieren pasar
+                    e irse. Apenas tienes tiempo de sugerir llantas o correas.</p>
+            </div>
+
+            <div class="card">
+                <h3>🤖 The Solution</h3>
+                <p class="lang-en"><strong>Silent Partner AI.</strong><br>While you run the test, AI scans history and
+                    mileage. It texts the client: "Since you're here, tires are 40% worn. Promo today?"</p>
+                <p class="lang-es"><strong>Socio Silencioso IA.</strong><br>Mientras haces el test, la IA escanea
+                    historial y millaje. Envía texto: "Ya que estás aquí, llantas al 40%. ¿Promo hoy?"</p>
+            </div>
+
+            <div class="card">
+                <h3>💰 The Result</h3>
+                <p class="lang-en"><strong>30% Higher Ticket.</strong><br>Capture the maintenance work they usually take
+                    elsewhere. Convert "Passers" into "Regulars".</p>
+                <p class="lang-es"><strong>Ticket 30% Más Alto.</strong><br>Captura el mantenimiento que usualmente
+                    llevan a otro lado. Convierte "Pasajeros" en "Regulares".</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPETITION -->
+    <section class="section" style="background: #1a1a1a;">
+        <h3 class="lang-en" style="color: #888;">NEIGHBORHOOD WATCH:</h3>
+        <h3 class="lang-es" style="color: #888;">VIGILANCIA VECINAL:</h3>
+        <p class="lang-en">Quality Tune-Up & LGB depend on "big repair" scheduling. Capitol can win on SPEED.</p>
+        <p class="lang-es">Quality Tune-Up y LGB dependen de agendar "grandes reparaciones". Capitol puede ganar en
+            VELOCIDAD.</p>
+    </section>
+
+    <footer>
+        <p>ORION Tech | San Jose</p>
+    </footer>
+
+    <script>
+        function setLang(lang) {
+            document.body.classList.toggle('es', lang === 'es');
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.textContent.includes(lang.toUpperCase())));
+        }
+        // Patch JOSE
+        setTimeout(() => {
+            // We won't re-init fully to avoid complex DOM manipulation on simple pages, 
+            // but strictly speaking, the jose-loader injects default. 
+            // The user should see the 'Capitol' name if we re-init.
+        }, 1000);
+    </script>
+
+    <script src="https://agem2024.github.io/SEGURITI-USC/proposals/jose-loader.js"></script>
+    <script src="https://agem2024.github.io/SEGURITI-USC/proposals/jose-assistant.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.getElementById('jose-chat-container')?.remove();
+                new JoseAssistant({ clientName: 'Capitol Auto Care', clientPhone: '(408) 251-1040', language: 'en' });
+            }, 500);
+        });
+    </script>
+</body>
+
+</html>

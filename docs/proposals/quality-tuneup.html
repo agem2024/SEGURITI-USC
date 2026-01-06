@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORION Tech | Proposal for Quality Tune-Up</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+    <style>
+        :root {
+            /* Quality Tune-Up Branding */
+            --primary: #D71920;
+            /* Red */
+            --secondary: #0033A0;
+            /* Blue */
+            --accent: #FFC72C;
+            /* Yellow/Gold */
+            --dark: #0a0a0a;
+            --light: #f4f4f4;
+            --glass: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* Reusing core styles from ORION framework */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://agem2024.github.io/SEGURITI-USC/proposals/lgb_hero.png');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0;
+            background: linear-gradient(90deg, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero h2 {
+            color: var(--accent);
+            font-weight: 400;
+            margin-top: 10px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(215, 25, 32, 0.4);
+        }
+
+        .section {
+            padding: 80px 10%;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 30px;
+            border-radius: 16px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            border-color: var(--primary);
+        }
+
+        .price-card {
+            background: linear-gradient(145deg, #111, #1a1a1a);
+            border: 1px solid #333;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .price-card.featured {
+            border: 2px solid var(--primary);
+            transform: scale(1.05);
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: white;
+            margin: 20px 0;
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: #888;
+            font-weight: 400;
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px;
+            border-top: 1px solid #333;
+            color: #666;
+        }
+
+        /* Language Toggle */
+        .lang-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .lang-btn {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #555;
+            color: #fff;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        /* Language Content Control */
+        body.es .lang-en {
+            display: none;
+        }
+
+        body:not(.es) .lang-es {
+            display: none;
+        }
+
+        /* Competitor Table */
+        .comp-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .comp-table th,
+        .comp-table td {
+            padding: 15px;
+            border-bottom: 1px solid #333;
+            text-align: left;
+        }
+
+        .comp-table th {
+            color: var(--accent);
+        }
+    </style>
+</head>
+
+<body class="en"> <!-- Default English -->
+
+    <div class="lang-switch">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('es')">ES</button>
+    </div>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div>
+            <h2>PROPOSAL FOR | PROPUESTA PARA</h2>
+            <h1>QUALITY TUNE-UP</h1>
+            <h3>San Jose / South Bascom</h3>
+            <p style="max-width: 600px; margin: 20px auto; line-height: 1.6;">
+                <span class="lang-en">Bring your shop into the AI Era. Eliminate callbacks, automate diagnostics, and
+                    dominate the local market.</span>
+                <span class="lang-es">Lleva tu taller a la Era de la IA. Elimina callbacks, automatiza diagnósticos y
+                    domina el mercado local.</span>
+            </p>
+            <a href="#pricing" class="btn-primary">
+                <span class="lang-en">View Usage Plans</span>
+                <span class="lang-es">Ver Planes de Uso</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- ANALYSIS -->
+    <section class="section">
+        <h2 style="color: var(--primary);">
+            <span class="lang-en">MARKET ANALYSIS</span>
+            <span class="lang-es">ANÁLISIS DE MERCADO</span>
+        </h2>
+        <div class="grid-3">
+            <div class="card">
+                <h3><i class="fas fa-map-marker-alt" style="color:var(--accent)"></i> Location</h3>
+                <p><strong>3146 South Bascom Ave</strong></p>
+                <p>High traffic area, intense competition from NAPA & Independents.</p>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-chart-line" style="color:var(--accent)"></i> The Challenge</h3>
+                <p>High volume demands speed. Manual dispatch creates bottlenecks.</p>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-robot" style="color:var(--accent)"></i> ORION Solution</h3>
+                <p>AI Dispatcher optimizes technician flow. 20% more billable hours.</p>
+            </div>
+        </div>
+
+        <!-- NEIGHBOR ANALYSIS (Dynamic Insert) -->
+        <div style="margin-top: 60px; background: rgba(255,255,255,0.03); padding: 30px; border-radius: 12px;">
+            <h3>
+                <span class="lang-en">LOCAL COMPETITIVE LANDSCAPE</span>
+                <span class="lang-es">PANORAMA COMPETITIVO LOCAL</span>
+            </h3>
+            <table class="comp-table">
+                <thead>
+                    <tr>
+                        <th>Competitor</th>
+                        <th>Type</th>
+                        <th>Strategy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>LGB Autowork (Foxworthy)</td>
+                        <td>NAPA Care</td>
+                        <td>Quality Focused / Slow</td>
+                    </tr>
+                    <tr>
+                        <td>Reliable Auto Repair</td>
+                        <td>Independent</td>
+                        <td>General Service</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Quality Tune-Up</strong></td>
+                        <td><strong>Franchise</strong></td>
+                        <td><strong>Speed & Efficiency (ORION Optimized)</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" class="section">
+        <h2 style="text-align: center; margin-bottom: 50px;">
+            <span class="lang-en">SCALE YOUR EFFICIENCY</span>
+            <span class="lang-es">ESCALA TU EFICIENCIA</span>
+        </h2>
+        <div class="grid-3">
+            <!-- TIER 1 -->
+            <div class="price-card">
+                <h3>Tune-Up Starter</h3>
+                <div class="price">$1,500<span>/mo</span></div>
+                <ul style="list-style: none; padding: 0; text-align: left; line-height: 2;">
+                    <li>✅ AI Receptionist (24/7)</li>
+                    <li>✅ Smart Scheduling</li>
+                    <li>✅ 500 Calls/mo included</li>
+                </ul>
+            </div>
+            <!-- TIER 2 -->
+            <div class="price-card featured">
+                <div
+                    style="position: absolute; top:0; left:0; width:100%; background:var(--primary); color:white; font-size:0.8rem; padding:5px 0; border-radius: 20px 20px 0 0;">
+                    RECOMMENDED</div>
+                <h3>Franchise Pro</h3>
+                <div class="price">$2,900<span>/mo</span></div>
+                <ul style="list-style: none; padding: 0; text-align: left; line-height: 2;">
+                    <li>✅ <strong>Everything in Starter</strong></li>
+                    <li>✅ AI Mechanic Dispatch</li>
+                    <li>✅ InvAI (Parts Theft Cam)</li>
+                    <li>✅ <strong>Unlimited Calls</strong></li>
+                </ul>
+                <a href="#" class="btn-primary" style="width: 100%; box-sizing: border-box;">Start Demo</a>
+            </div>
+            <!-- TIER 3 -->
+            <div class="price-card">
+                <h3>Multi-Shop</h3>
+                <div class="price">$4,500<span>/mo</span></div>
+                <ul style="list-style: none; padding: 0; text-align: left; line-height: 2;">
+                    <li>✅ Multi-Location Mgmt</li>
+                    <li>✅ Fleet Accounts AI</li>
+                    <li>✅ Custom Integrations</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>ORION Tech | San Jose, CA | (669) 234-2444</p>
+    </footer>
+
+    <script>
+        function setLang(lang) {
+            document.body.classList.toggle('es', lang === 'es');
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.textContent.includes(lang.toUpperCase()));
+            });
+            localStorage.setItem('proposalLang', lang);
+        }
+    </script>
+
+    <!-- JOSE AI LOADER -->
+    <script src="https://agem2024.github.io/SEGURITI-USC/proposals/jose-loader.js"></script>
+    <script src="https://agem2024.github.io/SEGURITI-USC/proposals/jose-assistant.js"></script>
+    <script>
+        // Override JOSE Config for Quality Tune-Up
+        window.addEventListener('DOMContentLoaded', () => {
+            // Wait for class to load then re-init if needed or overwrite
+            // Actually jose-assistant automatically inits. 
+            // We can prevent auto-init by editing jose-assistant, OR we can hack it by clearing the previous instance.
+            // But better: jose-assistant uses 'LGB Autowork' as default. 
+            // We will instruct the user to refresh or rely on standard JOSE for now.
+            // *Wait*, I should modify jose-assistant to accept a global config object if present.
+
+            // For now, I'll rely on JOSE's generic "Orion Tech" aspect, 
+            // but ideally I should pass "Quality Tune-Up" dynamically.
+            // The current jose-assistant.js has:
+            // window.initJose = function() { new JoseAssistant({ clientName: 'LGB Autowork'... }); };
+
+            // To fix this without editing JS:
+            // I will overwrite initJose before the script loads? No, script is async/defer.
+            // I will overwrite initJose AFTER script loads, then re-run it?
+
+            // Dirty fix: Re-run Init with new params
+            setTimeout(() => {
+                document.getElementById('jose-chat-container')?.remove(); // Remove old
+                new JoseAssistant({
+                    clientName: 'Quality Tune-Up',
+                    clientPhone: '(408) 340-7720',
+                    language: 'en'
+                });
+            }, 500);
+        });
+    </script>
+
+</body>
+
+</html>

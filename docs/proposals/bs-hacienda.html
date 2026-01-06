@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ORION Tech | Proposal for B & S Hacienda Auto Body</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        :root {
+            /* BODY SHOP AESTHETIC: High Gloss Red & Metallic Silver */
+            --primary: #C62828;
+            /* Deep Red */
+            --secondary: #90A4AE;
+            /* Metallic Silver */
+            --accent: #ECEFF1;
+            --dark: #121212;
+            --light: #fff;
+            --glass: rgba(50, 50, 50, 0.7);
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            margin: 0;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), url('https://agem2024.github.io/SEGURITI-USC/proposals/lgb_hero.png');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            margin: 0;
+            background: -webkit-linear-gradient(left, #fff, #C62828);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 30px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .section {
+            padding: 80px 10%;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .card {
+            background: var(--glass);
+            padding: 30px;
+            border-left: 5px solid var(--primary);
+        }
+
+        .lang-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .lang-btn {
+            background: #000;
+            color: #fff;
+            border: 1px solid #555;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        body.es .lang-en {
+            display: none;
+        }
+
+        body:not(.es) .lang-es {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="en">
+    <div class="lang-switch">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('es')">ES</button>
+    </div>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div>
+            <h2>PROPOSAL FOR | PROPUESTA PARA</h2>
+            <h1>B & S HACIENDA <span>AUTO BODY</span></h1>
+            <p style="margin: 20px auto; max-width: 600px; color: #aaa;">
+                <span class="lang-en">Collision Repair is different. You fight Insurance, not Engines.<br>Automate the
+                    Estimate. Accelerate the Cycle Time.</span>
+                <span class="lang-es">Enderezado y Pintura es diferente. Peleas con Seguros, no con
+                    Motores.<br>Automatiza el Estimado. Acelera el Tiempo de Ciclo.</span>
+            </p>
+            <a href="#collision" class="btn-primary">
+                <span class="lang-en">Upgrade Estimating</span>
+                <span class="lang-es">Mejorar Estimaciones</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- COLLISION SPECIFIC FEATURES -->
+    <section id="collision" class="section">
+        <h2 style="color: var(--primary); text-align: center;">
+            <span class="lang-en">THE BODY SHOP ADVANTAGE</span>
+            <span class="lang-es">LA VENTAJA DE CARROCERÍA</span>
+        </h2>
+
+        <div class="grid-2" style="margin-top: 50px;">
+            <div class="card">
+                <h3>📸 AI Photo Estimates</h3>
+                <h4 class="lang-en" style="color:#888;">Stop wasting time on "tire kickers".</h4>
+                <h4 class="lang-es" style="color:#888;">Deja de perder tiempo con curiosos.</h4>
+                <p class="lang-en">Client uploads a photo of the dent. AI analyzes severity, identifies the panel, and
+                    gives a preliminary range instantly. You only inspect serious leads.</p>
+                <p class="lang-es">El cliente sube foto del golpe. IA analiza severidad, identifica el panel y da rango
+                    preliminar al instante. Solo inspeccionas leads serios.</p>
+            </div>
+
+            <div class="card">
+                <h3>📑 Insurance Integrator</h3>
+                <h4 class="lang-en" style="color:#888;">"Waiting on approval..."</h4>
+                <h4 class="lang-es" style="color:#888;">"Esperando aprobación..."</h4>
+                <p class="lang-en">Our AI formats reports exactly how Adjusters (State Farm/Geico) want them. Faster
+                    supplements, faster approvals, faster payments.</p>
+                <p class="lang-es">Nuestra IA formatea reportes exactamente como los Ajustadores quieren. Suplementos
+                    más rápidos, aprobaciones más rápidas, pagos más rápidos.</p>
+            </div>
+
+            <div class="card">
+                <h3>⏱️ Cycle Time Reduction</h3>
+                <p class="lang-en">Keep the customer updated automatically. "Bumper painted." "Polishing now." "Ready
+                    for pickup." Stop the "Is it ready?" calls.</p>
+                <p class="lang-es">Mantén al cliente actualizado automáticamente. "Parachoques pintado." "Puliendo
+                    ahora." "Listo para entrega." Detén las llamadas de "¿Ya está?".</p>
+            </div>
+
+            <div class="card">
+                <h3>🤝 Partner Network</h3>
+                <p class="lang-en">Link with LGB Autowork & Reliable Auto. When they find frame damage, they send it to
+                    YOU automatically via ORION.</p>
+                <p class="lang-es">Enlaza con LGB Autowork y Reliable Auto. Cuando encuentran daño estructural, te lo
+                    envían a TI automáticamente vía ORION.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>ORION Tech | San Jose Collision Pros</p>
+    </footer>
+
+    <script>
+        function setLang(lang) {
+            document.body.classList.toggle('es', lang === 'es');
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.textContent.includes(lang.toUpperCase())));
+        }
+    </script>
+    <script src="https://agem2024.github.io/SEGURITI-USC/proposals/jose-loader.js"></script>
+    <script src="https://agem2024.github.io/SEGURITI-USC/proposals/jose-assistant.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.getElementById('jose-chat-container')?.remove();
+                new JoseAssistant({ clientName: 'B&S Hacienda Body Shop', clientPhone: '408-266-8550', language: 'en' });
+            }, 500);
+        });
+    </script>
+</body>
+
+</html>
