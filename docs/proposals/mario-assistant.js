@@ -470,12 +470,11 @@ Responde de manera conversacional, como si estuvieras tomando un café con el du
                         height: 60vh;
                         left: -10px;
                     }
-                }
             </style>
             
             <div id="mario-chat-window">
                 <div id="mario-header">
-                    <img src="../mario_icon.png" alt="MARIO" id="mario-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'50\' fill=\'%2300d4aa\'/%3E%3Ctext x=\'50\' y=\'65\' text-anchor=\'middle\' font-size=\'40\' fill=\'white\'%3E🔧%3C/text%3E%3C/svg%3E'">
+                    <img src="https://agem2024.github.io/SEGURITI-USC/proposals/mario_icon.png" alt="MARIO" id="mario-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'50\' fill=\'%2300d4aa\'/%3E%3Ctext x=\'50\' y=\'65\' text-anchor=\'middle\' font-size=\'40\' fill=\'white\'%3E🔧%3C/text%3E%3C/svg%3E'">
                     <div id="mario-header-info">
                         <h3>MARIO</h3>
                         <span>AI Sales Assistant • ORION Tech</span>
@@ -491,7 +490,7 @@ Responde de manera conversacional, como si estuvieras tomando un café con el du
             </div>
             
             <button id="mario-toggle">
-                <img src="../mario_icon.png" alt="Chat with MARIO" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'50\' fill=\'%2300d4aa\'/%3E%3Ctext x=\'50\' y=\'65\' text-anchor=\'middle\' font-size=\'40\' fill=\'white\'%3E🔧%3C/text%3E%3C/svg%3E'">
+                <img src="https://agem2024.github.io/SEGURITI-USC/proposals/mario_icon.png" alt="Chat with MARIO" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'50\' fill=\'%2300d4aa\'/%3E%3Ctext x=\'50\' y=\'65\' text-anchor=\'middle\' font-size=\'40\' fill=\'white\'%3E🔧%3C/text%3E%3C/svg%3E'">
             </button>
         `;
 
