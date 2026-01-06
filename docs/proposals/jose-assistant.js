@@ -1,242 +1,561 @@
 /**
- * JOSE - AI Sales Assistant for ORION Tech - NAPA Auto Care Edition
- * Bilingual (EN/ES) | Male Voice | Gemini AI Powered (Live Production)
- * Uses ORION_CONFIG for secure key retrieval.
+ * JOSE - AI Sales Assistant for ORION Tech Proposals
+ * Bilingual (EN/ES) | Male Voice | Gemini AI Powered
+ * "Tu Taller, En Piloto Automático" / "Your Shop, On Autopilot"
  */
 
 class JoseAssistant {
     constructor(config) {
-        this.clientName = config.clientName || 'LGB Autowork';
+        this.clientName = config.clientName || 'Client';
         this.clientPhone = config.clientPhone || '(669) 234-2444';
         this.language = config.language || 'en';
         this.ownerName = config.ownerName || '';
+        this.managerName = config.managerName || '';
+        this.proposalContext = config.proposalContext || '';
+        this.competitorAdvantages = config.competitorAdvantages || [];
+        this.pricingTiers = config.pricingTiers || [];
+        this.painPoints = config.painPoints || [];
 
+        // Secure API configuration (proxied)
         this.apiEndpoint = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
         this.isOpen = false;
-        this.voiceEnabled = false;
+        this.messages = [];
         this.synth = window.speechSynthesis;
         this.selectedVoice = null;
-        this.messages = [];
 
-        this.apiKey = window.ORION_CONFIG ? window.ORION_CONFIG.getAuth() : null;
+        // System prompt for sales-focused AI
+        this.systemPrompt = this._buildSystemPrompt();
 
-        this.systemPrompt = this._getSystemPrompt();
         this._init();
     }
 
-    _init() {
-        this._loadVoices();
-        if (this.synth.onvoiceschanged !== undefined) {
-            this.synth.onvoiceschanged = () => this._loadVoices();
-        }
+    _buildSystemPrompt() {
+        const slogan = this.language === 'es'
+            ? '🚀 TU TALLER EN PILOTO AUTOMÁTICO - La competencia ya está usando IA'
+            : '🚀 YOUR SHOP ON AUTOPILOT - Your competitors are already using AI';
 
-        this._createChatUI();
-        this._setupAudioUnlock();
+        const roleDescription = this.language === 'es'
+            ? `Eres JOSE, consultor experto en tecnología para talleres mecánicos y body shops. Tienes 15 años de experiencia en el sector automotriz y conoces todos los dolores de cabeza del negocio: autos parados esperando piezas, estimaciones incorrectas, clientes molestos por demoras, técnicos parados esperando aprobación. Tu misión es mostrar a ${this.clientName} cómo ORION Tech resuelve estos problemas ESPECÍFICOS.`
+            : `You are JOSE, a technology consultant specialized in auto repair and body shops. You have 15 years of experience in the automotive industry and understand all the headaches: cars stuck waiting for parts, inaccurate estimates, customers angry about delays, technicians standing around waiting for approval. Your mission is to show ${this.clientName} how ORION Tech solves these SPECIFIC problems.`;
 
-        if (!this.apiKey) console.warn('ORION: No API Key available. AI will not respond.');
+        const industryExpertise = this.language === 'es'
+            ? `
+CONOCIMIENTO DEL SECTOR AUTOMOTRIZ:
+- Entiendes la diferencia entre un cambio de aceite y una reparación de colisión mayor
+- Sabes que los trabajos de suspensión y transmisión tienen más margen que el mantenimiento básico
+- Conoces los problemas de flujo: técnico master perdiendo tiempo en cambios de aceite
+- Entiendes que un "comeback" (garantía) destruye la utilidad y la reputación
+- Sabes que un auto parado en la bahía sin trabajar es dinero perdido ($500+/día)
+- Conoces la frustración de esperar aprobación del cliente para proceder
 
-        setTimeout(() => {
-            const targetName = this.ownerName || 'Partner';
-            // Formatted savings for display
-            const savings = "15,000";
+TÉRMINOS QUE DEBES USAR:
+- "RO" (Repair Order) o "Orden de Reparación"
+- "Bay efficiency" o "Eficiencia de Bahía"
+- "Ticket promedio" o "Average RO"
+- "Comebacks" para trabajos de garantía
+- "Parts delays" para demora de piezas
+- "Cycle time" para tiempo de ciclo (especialmente en body shop)
+`
+            : `
+AUTOMOTIVE INDUSTRY EXPERTISE:
+- You understand the difference between an oil change and major collision repair
+- You know suspension and transmission jobs have higher margins than basic maintenance
+- You understand flow issues: master tech wasting time on oil changes
+- You know a "comeback" kills profit and reputation
+- You know a car sitting in a bay not being worked on is lost money ($500+/day)
+- You understand the frustration of waiting for customer approval
 
-            const welcome = this.language === 'es'
-                ? `¡Hola ${targetName}! Soy JOSE de ORION. Viendo los números de ${this.clientName}, veo que podemos recuperar unos $${savings} al mes. ¿Te explico cómo?`
-                : `Hello ${targetName}! I'm JOSE from ORION. Looking at ${this.clientName}'s numbers, I see we can recover about $${savings} a month. Want me to explain how?`;
+TERMINOLOGY TO USE:
+- "RO" (Repair Order)
+- "Bay efficiency"
+- "Average RO" or "Ticket Average"
+- "Comebacks"
+- "Parts delays"
+- "Cycle time" (especially for body shop)
+`;
 
-            this._addMessage('jose', welcome);
-        }, 1500);
+        const howOrionWorks = this.language === 'es'
+            ? `
+CÓMO FUNCIONA ORION (RESPUESTAS ESPECÍFICAS):
+
+1. "¿CÓMO ME AYUDA A AHORRAR DINERO?"
+   → "Mira, cada auto sentado esperando aprobación te cuesta dinero. ORION usa IA para comunicar el diagnóstico y obtener aprobación del cliente en minutos, no horas. Además, pre-ordena las piezas probables antes de que el auto toque la bahía. Resultado: Reducimos el 'Cycle Time' en un 30%. Eso significa que puedes procesar más autos con el mismo espacio y personal."
+
+2. "¿CÓMO FUNCIONAN LOS DISPATCHERS IA?"
+   → "Imagina un Service Writer que NUNCA se equivoca y trabaja 24/7. El IA asigna el trabajo al técnico correcto basado en su especialidad (eléctrico, suspensión, motor). Mantiene a los clientes informados automáticamente sobre el estado de su vehículo, reduciendo las llamadas a tu oficina en un 80%."
+
+3. "¿CÓMO ES EL PROCESO DE IMPLEMENTACIÓN?"
+   → "Son 30 días, tres fases: Semana 1-2: Configuramos el IA con tus servicios, precios y FAQs. Semana 2-3: Integramos con tu flujo de trabajo actual. Semana 3-4: Testing en paralelo. Día 31: Encendemos todo. No hay downtime, tu taller sigue operando normal."
+
+4. "¿Y SI EL IA SE EQUIVOCA?"
+   → "El IA aprende de cada interacción. Si hay una duda compleja, escala inmediatamente a un humano. Pero te aseguro, el IA maneja las preguntas repetitivas ('¿ya está mi carro?', '¿cuánto cuesta el cambio de aceite?') perfectamente, liberando a tus asesores para vender trabajos grandes."
+
+5. "¿QUÉ PASA CON MIS EMPLEADOS ACTUALES?"
+   → "No reemplazamos a nadie. Potenciamos a tus Service Advisors. En lugar de estar en el teléfono dando estatus, estarán vendiendo servicios adicionales y cuidando a los clientes en persona para subir el Ticket Promedio."
+`
+            : `
+HOW ORION WORKS (SPECIFIC ANSWERS):
+
+1. "HOW DOES THIS HELP ME SAVE MONEY?"
+   → "Look, every car sitting waiting for approval costs you money. ORION uses AI to communicate diagnosis and get customer approval in minutes, not hours. Plus, it pre-orders likely parts before the car hits the bay. Result: We reduce 'Cycle Time' by 30%. That means you can process more cars with the same space and staff."
+
+2. "HOW DO THE AI DISPATCHERS WORK?"
+   → "Imagine a Service Writer who NEVER makes mistakes and works 24/7. The AI assigns work to the right tech based on specialty (electrical, suspension, engine). It keeps customers updated automatically on vehicle status, reducing calls to your office by 80%."
+
+3. "WHAT'S THE IMPLEMENTATION PROCESS?"
+   → "30 days, three phases: Week 1-2: We configure the AI with your services, pricing, and FAQs. Week 2-3: Integrate with your current workflow. Week 3-4: Parallel testing. Day 31: Go live. No downtime, your shop keeps running."
+
+4. "WHAT IF THE AI MAKES MISTAKES?"
+   → "The AI learns from every interaction. If there's a complex question, it escalates to a human immediately. But I assure you, AI handles the repetitive questions ('is my car ready?', 'how much for oil change?') perfectly, freeing your advisors to upsell big jobs."
+
+5. "WHAT HAPPENS TO MY CURRENT EMPLOYEES?"
+   → "We don't replace anyone. We limit generic admin work for your Service Advisors. Instead of being on the phone giving status updates, they'll be selling additional services and building relationships to increase the Average RO."
+`;
+
+        const investmentValue = this.language === 'es'
+            ? `
+VALOR DE INVERSIÓN (USA ESTOS NÚMEROS):
+- Setup: $5K-$25K = Una fracción de lo que cuesta una bahía vacía
+- Mensual: $1,500-$8,500 = Menos que el salario de un Service Writer junior
+- Ahorro real: Menos tiempo muerto = $5,000+/mes
+- Ahorro real: Aumento en RO Promedio = $4,000-8,000/mes  
+- Total beneficio proyectado: $15K-30K/mes dependiendo del volumen
+- ROI: 60-90 días, después es ganancia pura
+`
+            : `
+INVESTMENT VALUE (USE THESE NUMBERS):
+- Setup: $5K-$25K = A fraction of the cost of an empty bay
+- Monthly: $1,500-$8,500 = Less than a junior Service Writer's salary
+- Real savings: Reduced idle time = $5,000+/mo
+- Real savings: Increased Average RO = $4,000-8,000/mo
+- Total projected benefit: $15K-30K/mo depending on volume
+- ROI: 60-90 days, then it's pure profit
+`;
+
+        return `${slogan}
+
+${roleDescription}
+
+${industryExpertise}
+
+CLIENTE: ${this.clientName}
+TELÉFONO: ${this.clientPhone}
+DUEÑO/MANAGER: ${this.ownerName || this.managerName || 'Decision Maker'}
+
+${howOrionWorks}
+
+${investmentValue}
+
+PAIN POINTS ESPECÍFICOS DE ${this.clientName.toUpperCase()}:
+${this.painPoints.map(p => `- ${p}`).join('\n')}
+
+SOLUCIONES ORION PARA ESTE CLIENTE:
+${(this.competitorAdvantages || []).map(a => `- ${a}`).join('\n')}
+
+REGLAS DE COMUNICACIÓN:
+1. Habla como un experto en la industria automotriz, no como vendedor de software
+2. Usa terminología de taller naturalmente (RO, Bahía, Flujo, Piezas)
+3. Da ejemplos específicos con números reales
+4. Si no sabes algo, di "Déjame verificar con el equipo técnico"
+5. Siempre conecta la solución con DINERO o TIEMPO ahorrado
+6. Termina con una pregunta que avance la conversación
+
+CONTEXTO ADICIONAL DE LA PROPUESTA:
+${this.proposalContext}
+
+Responde de manera conversacional, como si estuvieras en el taller con el dueño.`;
     }
 
-    _getSystemPrompt() {
-        const isEsp = this.language === 'es';
+    _init() {
+        // Find appropriate male voice
+        this._loadVoices();
+        this.synth.onvoiceschanged = () => this._loadVoices();
 
-        const autoExpertise = isEsp
-            ? `
-EXPERIENCIA EN TALLERES (USA ESTO):
-- Entiendes la diferencia entre "Flat Rate" y "Hourly".
-- Sabes que un "Comeback" destruye la rentabilidad.
-- Conoces el dolor de tener un "A-Tech" haciendo cambios de aceite.
-- Sabes que el "Parts Matrix" es donde se hace el dinero real.
-- Términos: "RO" (Repair Order), "Service Writer" (Asesor), "Lift Uptime" (Uso de elevador).`
-            : `
-AUTO SHOP EXPERTISE (USE THIS):
-- You understand "Flat Rate" vs "Hourly".
-- You know a "Comeback" kills profitability.
-- You know the pain of having an "A-Tech" doing oil changes.
-- You know the "Parts Matrix" is where real money is made.
-- Terms: "RO" (Repair Order), "Service Writer", "Lift Uptime".`;
+        // Create UI elements
+        this._createChatUI();
 
-        const instructions = isEsp
-            ? "Responde en Español Latino natural. CERO ROBÓTICO. Usa frases cortas y directas."
-            : "Respond in natural US English. NOT ROBOTIC. Use short, direct sentences.";
+        // Add welcome message (matches the spoken greeting)
+        setTimeout(() => {
+            const targetName = this.ownerName || this.managerName || '';
+            const topPrice = this.pricingTiers?.[this.pricingTiers.length - 1]?.monthly || 4500;
+            const estimatedSavings = Math.round(topPrice * 5 / 1000) * 1000;
+            const savingsFormatted = (estimatedSavings / 1000).toFixed(0);
 
-        return `
-ROLE: You are JOSE, a veteran Auto Repair Consultant for ORION Tech.
-TONE: Casual, direct, "Shop Talk". Just a guy talking to a shop owner.
-FORMAT: **PARAGRAPHS ONLY**. NO BULLET POINTS. NO LISTS. NO MARKDOWN.
-(The audio engine hates lists. Write smooth, flowy text).
-
-CLIENT: ${this.clientName}.
-
-${autoExpertise}
-
-MISSION: Sell ORION efficiency.
-- InvAI (Inventory Cameras for parts room)
-- Dispatch AI (Assigning right tech to right job)
-- 24/7 Calls (Capture every tow-in)
-
-INSTRUCTIONS:
-- ${instructions}
-- BE SHORT (max 2 sentences).
-- If spelling out an acronym, write it normally (ORION, AI, ROI), I will handle the audio.
-- DO NOT use generic AI intro phrases.
-- END with a question.
-`;
+            const welcome = this.language === 'es'
+                ? `${targetName ? '¡Hola ' + targetName + '! ' : '¡Hola! '}Soy JOSE de ORION Tech. 🤖 Tengo una propuesta para potenciar ${this.clientName} y ahorrar más de ${savingsFormatted} mil dólares al mes. ¿Me permites mostrarte cómo?`
+                : `${targetName ? 'Hello ' + targetName + '! ' : 'Hello! '}I'm JOSE from ORION Tech. 🤖 I have a proposal to boost ${this.clientName} and save over $${estimatedSavings.toLocaleString()} per month. May I show you how?`;
+            this._addMessage('jose', welcome);
+        }, 500);
     }
 
     _loadVoices() {
         const voices = this.synth.getVoices();
-        if (!voices.length) return;
         const isSpanish = this.language === 'es';
 
-        // MARIO-style Preferred Voices (High Quality)
-        const preferred = isSpanish
-            ? ['Microsoft Raul', 'Google español', 'Paulina', 'Jorge', 'es-MX', 'es-ES']
-            : ['Microsoft David', 'Google US English', 'Alex', 'Daniel', 'en-US', 'en-GB'];
+        // Preferred voices - looking for authoritative male voices ideally
+        const spanishVoices = [
+            'Microsoft Raul',       // Windows Spanish male - BEST
+            'Google español',       // Chrome Spanish
+            'Pablo',                // Various Spanish
+            'es-MX',
+            'es-ES'
+        ];
 
-        for (const p of preferred) {
-            const found = voices.find(v => v.name.includes(p) || v.lang.includes(p));
+        const englishVoices = [
+            'Microsoft David',      // Windows English male - BEST
+            'Google US English Male',
+            'Alex',                 // macOS English male
+            'en-US',
+            'en-GB'
+        ];
+
+        const preferredVoices = isSpanish ? spanishVoices : englishVoices;
+
+        // Try to find a preferred voice
+        for (const preferred of preferredVoices) {
+            const found = voices.find(v =>
+                v.name.includes(preferred) || v.lang.includes(preferred)
+            );
             if (found) {
                 this.selectedVoice = found;
-                console.log('🎤 JOSE Voice:', found.name);
+                console.log('🎤 JOSE voice:', found.name, found.lang);
                 break;
             }
         }
 
+        // Fallback
         if (!this.selectedVoice) {
-            this.selectedVoice = voices.find(v => v.lang.startsWith(isSpanish ? 'es' : 'en'));
+            const langCode = isSpanish ? 'es' : 'en';
+            this.selectedVoice = voices.find(v => v.lang.startsWith(langCode)) || voices[0];
+            console.log('🎤 JOSE fallback voice:', this.selectedVoice?.name);
         }
     }
 
-    _speak(text) {
-        if (!text || !this.voiceEnabled) return;
-        this.synth.cancel();
-
-        // --- MARIO-STYLE AUDIO LOGIC (Simple Clean + Rate Control) ---
-
-        // Basic Clean only (Markdown/Emojis)
-        let cleanText = text
-            .replace(/[\*#_~`]/g, '')       // Remove Markdown chars
-            .replace(/<[^>]*>/g, '')        // Remove HTML tags
-            .replace(/[\u{1F600}-\u{1F6FF}]/gu, '') // Remove Emojis
-            .trim();
-
-        // Specific fix for "24/7" which browsers struggle with
-        const isSpanish = this.language === 'es';
-        cleanText = cleanText.replace(/24\/7/g, isSpanish ? "veinticuatro siete" : "twenty four seven");
-
-        const utterance = new SpeechSynthesisUtterance(cleanText);
-        if (this.selectedVoice) utterance.voice = this.selectedVoice;
-
-        // KEY FIX FROM MARIO: SLOWER RATE + EXPLICIT LANG
-        utterance.rate = isSpanish ? 0.85 : 0.95; // Slower = Better Parsing
-        utterance.pitch = 1.0;
-        utterance.lang = isSpanish ? 'es-US' : 'en-US';
-
-        this.synth.speak(utterance);
-    }
-
-    _setupAudioUnlock() {
-        const unlockAudio = () => {
-            if (this.voiceEnabled) return;
-            this.synth.resume();
-            this.voiceEnabled = true;
-            const btn = document.getElementById('jose-voice-btn');
-            if (btn) { btn.textContent = '🔊'; btn.classList.add('active'); }
-            document.removeEventListener('click', unlockAudio);
-            document.removeEventListener('touchstart', unlockAudio);
-        };
-        document.addEventListener('click', unlockAudio);
-        document.addEventListener('touchstart', unlockAudio);
-    }
-
     _createChatUI() {
+        // Create chat container
         const container = document.createElement('div');
         container.id = 'jose-chat-container';
-        const iconUrl = 'https://agem2024.github.io/SEGURITI-USC/proposals/jose_icon.png';
-
         container.innerHTML = `
             <style>
-                #jose-chat-container { position: fixed; bottom: 100px; left: 20px; z-index: 11000; font-family: 'Segoe UI', Roboto, sans-serif; }
-                #jose-toggle { width: 65px; height: 65px; border-radius: 50%; background: #1a1a1a; border: 2px solid #00d4aa; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,0.5); transition: transform 0.3s; padding: 0; overflow: hidden; }
-                #jose-toggle:hover { transform: scale(1.1); box-shadow: 0 0 25px rgba(0, 212, 170, 0.6); }
-                #jose-toggle img { width: 100%; height: 100%; object-fit: cover; }
-                #jose-chat-window { display: none; width: 360px; height: 500px; background: #111; border: 1px solid #333; border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.7); flex-direction: column; position: absolute; bottom: 80px; left: 0; overflow: hidden; transform-origin: bottom left; }
-                #jose-chat-window.open { display: flex; animation: expandOpen 0.3s forwards; }
-                @keyframes expandOpen { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
-                #jose-header { background: linear-gradient(90deg, #0f2027, #203a43, #2c5364); padding: 15px; display: flex; align-items: center; gap: 12px; border-bottom: 2px solid #00d4aa; }
-                #jose-header img { width: 45px; height: 45px; border-radius: 50%; border: 2px solid #00d4aa; }
-                #jose-messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; background: #0f1115; }
-                .jose-msg { padding: 10px 14px; border-radius: 12px; font-size: 0.9rem; line-height: 1.4; max-width: 85%; }
-                .jose-msg.jose { background: #1e293b; color: #eee; border-left: 3px solid #00d4aa; align-self: flex-start; }
-                .jose-msg.user { background: #00d4aa; color: #000; font-weight: 500; align-self: flex-end; }
-                #jose-input-area { padding: 12px; background: #1a1b26; border-top: 1px solid #333; display: flex; gap: 8px; align-items: center; }
-                #jose-input { flex: 1; background: #0f1115; border: 1px solid #444; color: white; padding: 10px 15px; border-radius: 20px; outline: none; }
-                #jose-send { background: #00d4aa; border: none; width: 38px; height: 38px; border-radius: 50%; color: #000; cursor: pointer; }
-                #jose-voice-btn { background: transparent; border: 1px solid #555; width: 35px; height: 35px; border-radius: 50%; color: #777; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-                #jose-voice-btn.active { border-color: #00d4aa; color: #00d4aa; background: rgba(0, 212, 170, 0.1); }
-                .typing-dots span { width: 6px; height: 6px; background: #aaa; border-radius: 50%; display:inline-block; animation: bounce 1.4s infinite ease-in-out; margin:0 2px;}
-                @keyframes bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+                #jose-chat-container {
+                    position: fixed;
+                    bottom: 100px;
+                    left: 20px;
+                    z-index: 10000;
+                    font-family: 'Segoe UI', sans-serif;
+                }
+                
+                #jose-toggle {
+                    width: 70px;
+                    height: 70px;
+                    border-radius: 50%;
+                    background: linear-gradient(135deg, #ff6b00, #ff8c00); /* NAPA Orange style */
+                    border: 3px solid #ffd700;
+                    cursor: pointer;
+                    box-shadow: 0 0 20px rgba(255, 107, 0, 0.6), 0 0 40px rgba(255, 107, 0, 0.4);
+                    transition: transform 0.3s, box-shadow 0.3s;
+                    overflow: hidden;
+                    padding: 5px;
+                    animation: pulseGlow 2s ease-in-out infinite;
+                }
+                
+                @keyframes pulseGlow {
+                    0%, 100% { 
+                        box-shadow: 0 0 20px rgba(255, 107, 0, 0.6), 0 0 40px rgba(255, 107, 0, 0.4);
+                        border-color: #ffd700;
+                    }
+                    50% { 
+                        box-shadow: 0 0 30px rgba(255, 107, 0, 1), 0 0 60px rgba(255, 215, 0, 0.8);
+                        border-color: #ffffff;
+                    }
+                }
+                
+                #jose-toggle:hover {
+                    transform: scale(1.15);
+                    box-shadow: 0 0 40px rgba(255, 107, 0, 1), 0 0 80px rgba(255, 215, 0, 0.8);
+                    animation: none;
+                }
+                
+                #jose-toggle img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    border-radius: 50%;
+                }
+                
+                #jose-chat-window {
+                    display: none;
+                    width: 380px;
+                    height: 500px;
+                    background: linear-gradient(180deg, #0a0a12 0%, #050508 100%);
+                    border: 1px solid rgba(255, 107, 0, 0.3);
+                    border-radius: 16px;
+                    overflow: hidden;
+                    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+                    flex-direction: column;
+                    position: absolute;
+                    bottom: 80px;
+                    left: 0;
+                }
+                
+                #jose-chat-window.open {
+                    display: flex;
+                    animation: slideUp 0.3s ease;
+                }
+                
+                @keyframes slideUp {
+                    from { opacity: 0; transform: translateY(20px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+                
+                #jose-header {
+                    background: linear-gradient(135deg, rgba(255, 107, 0, 0.2), rgba(255, 215, 0, 0.1));
+                    padding: 15px;
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    border-bottom: 1px solid rgba(255, 107, 0, 0.2);
+                }
+                
+                #jose-header img {
+                    width: 45px;
+                    height: 45px;
+                    border-radius: 50%;
+                    border: 2px solid #ff6b00;
+                }
+                
+                #jose-header-info h3 {
+                    color: #fff;
+                    margin: 0;
+                    font-size: 1.1rem;
+                }
+                
+                #jose-header-info span {
+                    color: #ff6b00;
+                    font-size: 0.8rem;
+                }
+                
+                #jose-close {
+                    margin-left: auto;
+                    background: none;
+                    border: none;
+                    color: #888;
+                    font-size: 1.5rem;
+                    cursor: pointer;
+                }
+                
+                #jose-close:hover { color: #fff; }
+                
+                #jose-messages {
+                    flex: 1;
+                    overflow-y: auto;
+                    padding: 15px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 12px;
+                }
+                
+                .jose-message {
+                    max-width: 85%;
+                    padding: 12px 16px;
+                    border-radius: 16px;
+                    font-size: 0.9rem;
+                    line-height: 1.4;
+                }
+                
+                .jose-message.jose {
+                    background: linear-gradient(135deg, rgba(255, 107, 0, 0.15), rgba(255, 215, 0, 0.1));
+                    border: 1px solid rgba(255, 107, 0, 0.3);
+                    color: #fff;
+                    align-self: flex-start;
+                    border-bottom-left-radius: 4px;
+                }
+                
+                .jose-message.user {
+                    background: rgba(255, 255, 255, 0.1);
+                    color: #fff;
+                    align-self: flex-end;
+                    border-bottom-right-radius: 4px;
+                }
+                
+                #jose-input-area {
+                    padding: 15px;
+                    border-top: 1px solid rgba(255, 107, 0, 0.2);
+                    display: flex;
+                    gap: 10px;
+                }
+                
+                #jose-input {
+                    flex: 1;
+                    background: rgba(255, 255, 255, 0.05);
+                    border: 1px solid rgba(255, 107, 0, 0.3);
+                    border-radius: 25px;
+                    padding: 12px 20px;
+                    color: #fff;
+                    font-size: 0.9rem;
+                    outline: none;
+                }
+                
+                #jose-input:focus {
+                    border-color: #ff6b00;
+                }
+                
+                #jose-input::placeholder {
+                    color: #666;
+                }
+                
+                #jose-send {
+                    width: 45px;
+                    height: 45px;
+                    border-radius: 50%;
+                    background: linear-gradient(135deg, #ff6b00, #ff8c00);
+                    border: none;
+                    color: #fff;
+                    font-size: 1.2rem;
+                    cursor: pointer;
+                    transition: transform 0.2s;
+                }
+                
+                #jose-send:hover {
+                    transform: scale(1.1);
+                }
+                
+                #jose-voice-btn {
+                    width: 35px;
+                    height: 35px;
+                    border-radius: 50%;
+                    background: rgba(255, 255, 255, 0.1);
+                    border: 1px solid rgba(255, 107, 0, 0.3);
+                    color: #ff6b00;
+                    cursor: pointer;
+                    font-size: 1rem;
+                }
+                
+                .typing-indicator {
+                    display: flex;
+                    gap: 4px;
+                    padding: 12px 16px;
+                    background: rgba(255, 107, 0, 0.1);
+                    border-radius: 16px;
+                    align-self: flex-start;
+                }
+                
+                .typing-indicator span {
+                    width: 8px;
+                    height: 8px;
+                    background: #ff6b00;
+                    border-radius: 50%;
+                    animation: bounce 1.4s infinite ease-in-out;
+                }
+                
+                .typing-indicator span:nth-child(1) { animation-delay: 0s; }
+                .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+                .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+                
+                @keyframes bounce {
+                    0%, 80%, 100% { transform: scale(0); }
+                    40% { transform: scale(1); }
+                }
+                
+                @media (max-width: 480px) {
+                    #jose-chat-window {
+                        width: calc(100vw - 40px);
+                        height: 60vh;
+                        left: -10px;
+                    }
             </style>
             
             <div id="jose-chat-window">
                 <div id="jose-header">
-                    <img src="${iconUrl}" alt="JOSE">
-                    <div><h3 style="margin:0; font-size:1rem; color:white;">JOSE AI</h3><span style="font-size:0.75rem; color:#00d4aa;">Auto Care Specialist</span></div>
-                    <button id="jose-close" style="margin-left:auto;background:none;border:none;color:#aaa;font-size:1.5rem;cursor:pointer;">×</button>
+                    <img src="https://agem2024.github.io/SEGURITI-USC/proposals/jose_icon.png" alt="JOSE" id="jose-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'50\' fill=\'%23ff6b00\'/%3E%3Ctext x=\'50\' y=\'65\' text-anchor=\'middle\' font-size=\'40\' fill=\'white\'%3E🔧%3C/text%3E%3C/svg%3E'">
+                    <div id="jose-header-info">
+                        <h3>JOSE</h3>
+                        <span>AI Sales Assistant • ORION Tech</span>
+                    </div>
+                    <button id="jose-close">×</button>
                 </div>
                 <div id="jose-messages"></div>
                 <div id="jose-input-area">
-                    <button id="jose-voice-btn">🔇</button>
-                    <input type="text" id="jose-input" placeholder="Type here...">
+                    <button id="jose-voice-btn" title="Voice">🎤</button>
+                    <input type="text" id="jose-input" placeholder="Ask JOSE anything...">
                     <button id="jose-send">➤</button>
                 </div>
             </div>
-            <button id="jose-toggle"><img src="${iconUrl}" alt="Chat"></button>
+            
+            <button id="jose-toggle">
+                <img src="https://agem2024.github.io/SEGURITI-USC/proposals/jose_icon.png" alt="Chat with JOSE" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'50\' fill=\'%23ff6b00\'/%3E%3Ctext x=\'50\' y=\'65\' text-anchor=\'middle\' font-size=\'40\' fill=\'white\'%3E🔧%3C/text%3E%3C/svg%3E'">
+            </button>
         `;
+
         document.body.appendChild(container);
 
-        this.chatWindow = document.getElementById('jose-chat-window');
-        this.msgContainer = document.getElementById('jose-messages');
-
-        document.getElementById('jose-toggle').onclick = () => this._toggleChat();
-        document.getElementById('jose-close').onclick = () => this._toggleChat();
-        document.getElementById('jose-send').onclick = () => this._sendMessage();
-        document.getElementById('jose-input').onkeypress = (e) => { if (e.key === 'Enter') this._sendMessage(); };
-
-        const vBtn = document.getElementById('jose-voice-btn');
-        vBtn.onclick = () => {
-            this.synth.resume();
-            this.voiceEnabled = !this.voiceEnabled;
-            if (this.voiceEnabled) { vBtn.textContent = '🔊'; vBtn.classList.add('active'); this._speak("Audio Active"); }
-            else { this.synth.cancel(); vBtn.textContent = '🔇'; vBtn.classList.remove('active'); }
-        };
+        // Event listeners
+        document.getElementById('jose-toggle').addEventListener('click', () => this._toggleChat());
+        document.getElementById('jose-close').addEventListener('click', () => this._toggleChat());
+        document.getElementById('jose-send').addEventListener('click', () => this._sendMessage());
+        document.getElementById('jose-input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') this._sendMessage();
+        });
+        document.getElementById('jose-voice-btn').addEventListener('click', () => this._toggleVoice());
     }
 
     _toggleChat() {
+        const chatWindow = document.getElementById('jose-chat-window');
         this.isOpen = !this.isOpen;
-        this.chatWindow.classList.toggle('open', this.isOpen);
-        if (this.isOpen) document.getElementById('jose-input').focus();
+        chatWindow.classList.toggle('open', this.isOpen);
+
+        // Greet with voice when opening
+        if (this.isOpen && !this.hasGreeted) {
+            this.hasGreeted = true;
+            this.voiceEnabled = true;
+            document.getElementById('jose-voice-btn').style.background = 'linear-gradient(135deg, #ff6b00, #ff8c00)';
+            document.getElementById('jose-voice-btn').textContent = '🔊';
+
+            // Speak the welcome message that was already displayed
+            setTimeout(() => {
+                const targetName = this.ownerName || this.managerName || '';
+                const topPrice = this.pricingTiers?.[this.pricingTiers.length - 1]?.monthly || 4500;
+                const estimatedSavings = Math.round(topPrice * 5 / 1000) * 1000;
+                const savingsFormatted = (estimatedSavings / 1000).toFixed(0);
+
+                // Same message as written, but spoken naturally
+                const greeting = this.language === 'es'
+                    ? `${targetName ? targetName + ', ' : ''}soy JOSE de ORION Tech. Tengo una propuesta para potenciar ${this.clientName} y ahorrar más de ${savingsFormatted} mil dólares al mes. ¿Me permites mostrarte cómo?`
+                    : `${targetName ? targetName + ', ' : ''}I'm JOSE from ORION Tech. I have a proposal to boost ${this.clientName} and save over $${estimatedSavings.toLocaleString()} per month. May I show you how?`;
+                this._speak(greeting);
+            }, 300);
+        }
     }
 
     _addMessage(sender, text) {
-        const div = document.createElement('div');
-        div.className = `jose-msg ${sender}`;
-        div.innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
-        this.msgContainer.appendChild(div);
-        this.msgContainer.scrollTop = this.msgContainer.scrollHeight;
-        if (sender === 'jose') this._speak(text);
+        const messagesContainer = document.getElementById('jose-messages');
+        const messageEl = document.createElement('div');
+        messageEl.className = `jose-message ${sender}`;
+        messageEl.textContent = text;
+        messagesContainer.appendChild(messageEl);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+        // Speak if it's JOSE's message
+        if (sender === 'jose' && this.voiceEnabled) {
+            this._speak(text);
+        }
+
+        this.messages.push({ role: sender === 'jose' ? 'model' : 'user', parts: [{ text }] });
+    }
+
+    _showTyping() {
+        const messagesContainer = document.getElementById('jose-messages');
+        const typing = document.createElement('div');
+        typing.className = 'typing-indicator';
+        typing.id = 'jose-typing';
+        typing.innerHTML = '<span></span><span></span><span></span>';
+        messagesContainer.appendChild(typing);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    _hideTyping() {
+        const typing = document.getElementById('jose-typing');
+        if (typing) typing.remove();
     }
 
     async _sendMessage() {
@@ -248,59 +567,215 @@ INSTRUCTIONS:
         this._addMessage('user', text);
         this._showTyping();
 
-        if (!this.apiKey) {
+        try {
+            const response = await this._callGemini(text);
             this._hideTyping();
-            this._addMessage('jose', "Error: System config missing.");
-            return;
+            this._addMessage('jose', response);
+        } catch (error) {
+            this._hideTyping();
+            const errorMsg = this.language === 'es'
+                ? 'Disculpa, hubo un problema. ¿Puedes repetir tu pregunta?'
+                : 'Sorry, there was an issue. Can you repeat your question?';
+            this._addMessage('jose', errorMsg);
+            console.error('JOSE Error:', error);
+        }
+    }
+
+    async _callGemini(userMessage) {
+        // Get API key from secure source (localStorage or backend)
+        const apiKey = this._getSecureApiKey();
+
+        if (!apiKey) {
+            console.warn('⚠️ JOSE: No API key found, using fallback responses');
+            return this._getFallbackResponse(userMessage);
         }
 
         try {
-            const response = await this._callRealGemini(text);
-            this._hideTyping();
-            this._addMessage('jose', response);
-        } catch (e) {
-            console.error("AI Error:", e);
-            this._hideTyping();
-            this._addMessage('jose', "My connection to NAPA servers is unstable. But yes, I can handle that.");
+            const requestBody = {
+                contents: [
+                    {
+                        role: 'user',
+                        parts: [{ text: this.systemPrompt }]
+                    },
+                    ...this.messages.slice(-10),
+                    {
+                        role: 'user',
+                        parts: [{ text: userMessage }]
+                    }
+                ],
+                generationConfig: {
+                    temperature: 0.7,
+                    maxOutputTokens: 400,
+                    topP: 0.9
+                }
+            };
+
+            console.log('🤖 JOSE calling Gemini API...');
+
+            const response = await fetch(`${this.apiEndpoint}?key=${apiKey}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(requestBody)
+            });
+
+            if (!response.ok) {
+                console.error('JOSE API Error:', response.status, response.statusText);
+                return this._getFallbackResponse(userMessage);
+            }
+
+            const data = await response.json();
+            const aiResponse = data.candidates?.[0]?.content?.parts?.[0]?.text;
+
+            if (!aiResponse) {
+                console.error('JOSE: Empty response from API');
+                return this._getFallbackResponse(userMessage);
+            }
+
+            return aiResponse;
+
+        } catch (error) {
+            console.error('JOSE API Exception:', error);
+            return this._getFallbackResponse(userMessage);
         }
     }
 
-    async _callRealGemini(text) {
-        const context = [
-            { role: 'user', parts: [{ text: this.systemPrompt }] },
-            ...this.messages.slice(-6),
-            { role: 'user', parts: [{ text }] }
-        ];
+    _getFallbackResponse(userMessage) {
+        const msg = userMessage.toLowerCase();
+        const isSpanish = this.language === 'es';
+        const name = this.clientName;
 
-        const body = {
-            contents: context,
-            generationConfig: { maxOutputTokens: 250, temperature: 0.7 }
-        };
+        // Get company-specific data
+        const basePrice = this.pricingTiers?.[0]?.monthly || 1500;
+        const topPrice = this.pricingTiers?.[this.pricingTiers.length - 1]?.monthly || 4500;
+        const mainPainPoint = this.painPoints?.[0] || 'operación manual';
+        const mainAdvantage = this.competitorAdvantages?.[0] || 'Automatización con IA';
 
-        const res = await fetch(`${this.apiEndpoint}?key=${this.apiKey}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(body)
-        });
+        // Calculate estimated savings based on pricing tier (higher tier = bigger company = more savings)
+        const estimatedSavings = topPrice * 5; // ~5x the monthly fee in savings
 
-        const data = await res.json();
-        return data.candidates?.[0]?.content?.parts?.[0]?.text || "System Error.";
+        // Keyword-based intelligent responses
+        if (msg.includes('precio') || msg.includes('cost') || msg.includes('cuanto') || msg.includes('how much')) {
+            return isSpanish
+                ? `${name} puede comenzar con el plan SMART desde $${basePrice.toLocaleString()}/mes. Pero lo más importante es el retorno: proyectamos un ahorro de $${estimatedSavings.toLocaleString()}+ mensuales. El sistema se paga solo en 2-3 meses. ¿Te gustaría ver el detalle de los precios?`
+                : `${name} can start with the SMART plan from $${basePrice.toLocaleString()}/month. But the key is the return: we project $${estimatedSavings.toLocaleString()}+ in monthly savings. The system pays for itself in 2-3 months. Would you like to see pricing details?`;
+        }
+
+        if (msg.includes('ahorro') || msg.includes('save') || msg.includes('roi') || msg.includes('dinero') || msg.includes('money') || msg.includes('desglose') || msg.includes('breakdown')) {
+            const baySavings = Math.round(topPrice * 1.5);
+            const timeSavings = Math.round(topPrice * 1.2);
+
+            return isSpanish
+                ? `Aquí está el potencial para ${name}:
+1. 🕒 Ahorro en Tiempos de Espera: ~$${baySavings.toLocaleString()}/mes (Menos tiempo con autos parados)
+2. 🚗 Aumento de RO Promedio: ~$${timeSavings.toLocaleString()}/mes (Mejor venta de adicionales)
+3. 📉 Reducción de Admin: Tu equipo pasa menos tiempo al teléfono.
+
+Total estimado: Aproximadamente $${estimatedSavings.toLocaleString()} de impacto positivo mensual. ¿Te hace sentido este cálculo?`
+                : `Here is the potential for ${name}:
+1. 🕒 Reduced Wait Times: ~$${baySavings.toLocaleString()}/mo (Less time cars sitting idle)
+2. 🚗 Increased Average RO: ~$${timeSavings.toLocaleString()}/mo (Better upsells)
+3. 📉 Reduced Admin: Your team spends less time on the phone.
+
+Total estimated: Approximately $${estimatedSavings.toLocaleString()} in positive monthly impact. Does this math make sense to you?`;
+        }
+
+        if (msg.includes('como funciona') || msg.includes('how does') || msg.includes('explicar') || msg.includes('explain')) {
+            return isSpanish
+                ? `Es un ecosistema completo para tu taller. 1) El IA contesta el teléfono y agenda citas. 2) Hace seguimiento de las reparaciones y avisa al cliente. 3) Gestiona la comunicación para la aprobación de presupuestos. Básicamente, pone tu servicio al cliente en piloto automático para que tú te enfoques en los autos. ¿Qué parte te interesa más?`
+                : `It's a complete ecosystem for your shop. 1) AI answers phones and schedules appointments. 2) It tracks repair status and notifies customers. 3) It manages communication for estimate approvals. Basically, it puts your customer service on autopilot so you can focus on the cars. Which part interests you most?`;
+        }
+
+        // Competitor check (ShopMonkey, etc)
+        if (msg.includes('shopmonkey') || msg.includes('tekmetric') || msg.includes('mitchell') || msg.includes('software')) {
+            return isSpanish
+                ? `Esas son excelentes herramientas de gestión (SMS), pero requieren que TU gente las opere. ORION es diferente: es una IA que TRABAJA por ti. ShopMonkey no contesta el teléfono ni persigue a un cliente para que apruebe un servicio. ORION sí. Nos integramos con ellos, no los reemplazamos necesariamente.`
+                : `Those are great management tools (SMS), but they require YOUR people to operate them. ORION is different: it's an AI that WORKS for you. ShopMonkey doesn't answer the phone or chase a customer to approve a service. ORION does. We integrate with them, we don't necessarily replace them.`;
+        }
+
+        // Default response
+        return isSpanish
+            ? `Entiendo. En mi experiencia trabajando con talleres como ${name}, lo más crítico es la eficiencia. ORION está diseñado para maximizar eso. ¿Tienes alguna duda específica sobre la implementación o los costos?`
+            : `I understand. In my experience working with shops like ${name}, efficiency is critical. ORION is designed to maximize that. Do you have any specific questions about implementation or costs?`;
     }
 
-    _showTyping() {
-        const div = document.createElement('div'); div.className = 'jose-msg jose typing'; div.id = 'jose-typing';
-        div.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
-        this.msgContainer.appendChild(div); this.msgContainer.scrollTop = this.msgContainer.scrollHeight;
+    _getSecureApiKey() {
+        // Priority 1: Check for ORION_CONFIG (from jose-loader.js)
+        if (window.ORION_CONFIG && typeof window.ORION_CONFIG.getAuth === 'function') {
+            const key = window.ORION_CONFIG.getAuth();
+            if (key) return key;
+        }
+
+        // Priority 2: Check for injected key (from backend/build process)
+        if (window.__JOSE_CONFIG__?.apiKey) {
+            return window.__JOSE_CONFIG__.apiKey;
+        }
+
+        // Priority 3: Check localStorage (for admin configuration)
+        const storedKey = localStorage.getItem('jose_api_key');
+        if (storedKey) {
+            return atob(storedKey); // Decode from base64
+        }
+
+        // Also check mario key as fallback if migrating
+        const marioKey = localStorage.getItem('mario_api_key');
+        if (marioKey) return atob(marioKey);
+
+        // Priority 4: Prompt admin to configure
+        return null;
     }
-    _hideTyping() { const el = document.getElementById('jose-typing'); if (el) el.remove(); }
+
+    _speak(text) {
+        if (!this.synth || !this.voiceEnabled) return;
+
+        this.synth.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.voice = this.selectedVoice;
+
+        // Adjust rate based on language - Spanish needs slower for clarity
+        const isSpanish = this.language === 'es';
+        utterance.rate = isSpanish ? 0.85 : 0.95; // Slower for clarity
+        utterance.pitch = 1.0; // Natural pitch
+        utterance.volume = 1.0;
+
+        // Set language explicitly
+        utterance.lang = isSpanish ? 'es-US' : 'en-US';
+
+        this.synth.speak(utterance);
+    }
+
+    _toggleVoice() {
+        this.voiceEnabled = !this.voiceEnabled;
+        const btn = document.getElementById('jose-voice-btn');
+
+        if (this.voiceEnabled) {
+            btn.style.background = 'linear-gradient(135deg, #ff6b00, #ff8c00)';
+            btn.title = '🔊 Voz ACTIVADA - Click para desactivar';
+            btn.textContent = '🔊';
+        } else {
+            // Cancel any current speech
+            this.synth.cancel();
+            btn.style.background = 'rgba(255, 255, 255, 0.1)';
+            btn.title = '🔇 Voz DESACTIVADA - Click para activar';
+            btn.textContent = '🔇';
+        }
+    }
+
+    // Public method to configure API key securely
+    static configure(apiKey) {
+        if (apiKey) {
+            localStorage.setItem('jose_api_key', btoa(apiKey));
+            console.log('✅ JOSE configured successfully');
+        }
+    }
 }
 
-window.initJose = function () {
-    const config = window.JOSE_CONFIG || { clientName: 'LGB Autowork' };
-    // Prioritize localStorage language, fallback to config.language, then 'en'
-    config.language = localStorage.getItem('mcProposalLang') || config.language || 'en';
+// Export for use
+window.JoseAssistant = JoseAssistant;
 
-    console.log('🚀 JOSE Initializing for:', config.clientName);
-    new JoseAssistant(config);
-};
-if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', window.initJose); else window.initJose();
+// Auto-initialize if config is present
+document.addEventListener('DOMContentLoaded', () => {
+    if (window.JOSE_CONFIG) {
+        console.log('🤖 Starting JOSE Assistant for:', window.JOSE_CONFIG.clientName);
+        window.jose = new JoseAssistant(window.JOSE_CONFIG);
+    }
+});

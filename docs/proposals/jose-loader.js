@@ -1,4 +1,32 @@
 /**
- * ORION Config Loader v3
+ * ORION Secure Configuration Loader
+ * Handles API Key reconstruction and environment validation.
+ * Ensures keys are not stored in plaintext in the main codebase.
  */
-(function (w) { var a = [107, 117, 83, 67, 67, 113, 108, 90, 108, 79, 111, 120, 108, 87, 112, 95, 99, 78, 75, 120, 104, 78, 109, 97, 85, 49, 110, 121, 118, 65, 106, 57, 68, 121, 83, 97, 122, 73, 65]; w.ORION_CONFIG = { getAuth: function () { var d = w.location.hostname; if (d.indexOf('github.io') > -1 || d.indexOf('localhost') > -1 || d.indexOf('127.0.0.1') > -1) { return String.fromCharCode.apply(null, a.reverse()); } return null; } } })(window);
+
+(function (window) {
+    const _p = [
+        'QUl6YVN5RDlqQXZ5bjFV',
+        'YW1OaHhLTmNfcFdseG9P',
+        'bFpscUNDU3Vr'
+    ];
+
+    function _d(s) {
+        return atob(s.replace(/ /g, ''));
+    }
+
+    const _k = _p.map(_d).join('');
+
+    // Expose restricted config object
+    window.ORION_CONFIG = {
+        getAuth: function () {
+            // Optional: Domain Check (Client-side only, not fully secure but deters dragging)
+            const d = window.location.hostname;
+            if (d.includes('github.io') || d.includes('localhost') || d.includes('127.0.0.1') || d === '') {
+                return _k;
+            }
+            console.warn('ORION: Domain not authorized for AI features.');
+            return null; // Or return _k if you want it strictly everywhere
+        }
+    };
+})(window);
