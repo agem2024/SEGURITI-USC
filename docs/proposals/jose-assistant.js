@@ -108,9 +108,16 @@ CONTEXTO: Estás en el chat de la propuesta comercial. El cliente ya vio los pre
     }
 
     _init() {
-        // Find appropriate male voice
+        // Find appropriate male voice - try multiple times for mobile
         this._loadVoices();
-        this.synth.onvoiceschanged = () => this._loadVoices();
+
+        if (window.speechSynthesis.onvoiceschanged !== undefined) {
+            window.speechSynthesis.onvoiceschanged = () => this._loadVoices();
+        }
+
+        // Force retry on click in case mobile didn't load voices initially
+        setTimeout(() => this._loadVoices(), 1000);
+        setTimeout(() => this._loadVoices(), 3000);
 
         // Create UI elements
         this._createChatUI();
@@ -143,9 +150,13 @@ CONTEXTO: Estás en el chat de la propuesta comercial. El cliente ya vio los pre
         ];
 
         const englishVoices = [
-            'Microsoft David',      // Windows English male - BEST
-            'Google US English Male',
-            'Alex',                 // macOS English male
+            'Microsoft David',      // Windows
+            'Google US English',    // Android/Chrome
+            'Aaron',                // iOS Natural Male
+            'Fred',                 // iOS Male
+            'Daniel',               // iOS Male (UK/Intl)
+            'Rishi',                // iOS Male
+            'Alex',                 // macOS
             'en-US',
             'en-GB'
         ];

@@ -165,7 +165,7 @@ Responde como si estuvieras tomando un café en el salón con la dueña.`;
         const isSpanish = this.language === 'es';
 
         const spanishVoices = ['Microsoft Sabina', 'Microsoft Helena', 'Google español', 'es-MX', 'es-ES'];
-        const englishVoices = ['Microsoft Zira', 'Google US English', 'Samantha', 'en-US', 'en-GB'];
+        const englishVoices = ['Microsoft Zira', 'Google US English', 'Samantha', 'Karen', 'Tessa', 'en-US', 'en-GB'];
         const preferredVoices = isSpanish ? spanishVoices : englishVoices;
 
         for (const preferred of preferredVoices) {
