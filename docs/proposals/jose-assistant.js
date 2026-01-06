@@ -18,7 +18,6 @@ class JoseAssistant {
         this.selectedVoice = null;
         this.messages = [];
 
-        // Secure Key Retrival
         this.apiKey = window.ORION_CONFIG ? window.ORION_CONFIG.getAuth() : null;
 
         this.systemPrompt = this._getSystemPrompt();
@@ -34,15 +33,14 @@ class JoseAssistant {
         this._createChatUI();
         this._setupAudioUnlock();
 
-        // If no key found/authorized, warn in console but keep silent to user
         if (!this.apiKey) console.warn('ORION: No API Key available. AI will not respond.');
 
         setTimeout(() => {
             const targetName = this.ownerName || 'Partner';
             const savings = "15,000";
             const welcome = this.language === 'es'
-                ? `¡Hola ${targetName}! Soy JOSE, especialista de ORION. He analizado la operación de ${this.clientName} y veo potencial para recuperar $${savings}/mes en eficiencia con IA. ¿Te interesa ver cómo?`
-                : `Hello ${targetName}! I'm JOSE, ORION specialist. I've analyzed ${this.clientName} and I see potential to recover $${savings}/month in efficiency with AI. Interested in seeing how?`;
+                ? `¡Hola ${targetName}! Soy JOSE de ORION. Viendo los números de ${this.clientName}, veo que podemos recuperar unos $${savings} al mes. ¿Te explico cómo?`
+                : `Hello ${targetName}! I'm JOSE from ORION. Looking at ${this.clientName}'s numbers, I see we can recover about $${savings} a month. Want me to explain how?`;
 
             this._addMessage('jose', welcome);
         }, 1500);
@@ -50,24 +48,28 @@ class JoseAssistant {
 
     _getSystemPrompt() {
         const langInstruction = this.language === 'es'
-            ? "Responde en Español casual (estilo Latino). Eres un colega, no un robot."
-            : "Respond in casual, natural English (US). Chat like a colleague, not a bot.";
+            ? "Responde en Español Latino muy natural. Habla como una persona, usa frases cortas."
+            : "Respond in natural US English. Speak like a human, use short sentences.";
 
         return `
 ROLE: You are JOSE, a veteran Auto Repair Consultant for ORION Tech.
-TONE: Casual, direct, "shop talk". Use contractions ("I'm", "You'll").
-AVOID: "I can help with that", "Here is a list", "As an AI".
+TONE: Casual, direct, "Shop Talk". Just a guy talking to a shop owner.
+FORMAT: **PARAGRAPHS ONLY**. NO BULLET POINTS. NO LISTS. NO MARKDOWN.
+(The audio engine hates lists. Write smooth, flowy text).
 
 CLIENT: ${this.clientName}.
 
-MISSION: Sell the efficiency of ORION (InvAI, Dispatch, 24/7 Calls).
-Explain things simply. Use analogies (e.g., "It's like an OBDII scanner for your profit margins").
+MISSION: Sell ORION efficiency.
+- InvAI (Inventory Cameras)
+- Dispatch AI (Tech efficiency)
+- 24/7 Calls.
 
 INSTRUCTIONS:
 - ${langInstruction}
-- Keep it under 3 sentences.
-- If asked about price: "Fleet Plan is $2,500. Less than one transmission job, keeps the shop full all month."
-- ALWAYS end with a relevant question to keep conversation flowing.
+- BE SHORT (max 2 sentences).
+- If spelling out an acronym, write it normally (ORION, AI, ROI), I will handle the audio.
+- DO NOT use generic AI intro phrases like "I can certainly help". Just answer.
+- END with a question.
 `;
     }
 
@@ -89,7 +91,22 @@ INSTRUCTIONS:
     _speak(text) {
         if (!text || !this.voiceEnabled) return;
         this.synth.cancel();
-        const utterance = new SpeechSynthesisUtterance(text);
+
+        // --- TEXT CLEANER FOR NATURAL TTS ---
+        // 1. Remove Markdown (*, #, _, ~)
+        // 2. Remove emojis (TTS often chokes on them)
+        // 3. Fix acronyms if needed (replace 'AI' with 'A.I.' only if critical, but modern TTS is ok usually)
+        // 4. Collapse spaces
+
+        let cleanText = text
+            .replace(/[\*#_~`]/g, '')       // Markdown chars
+            .replace(/-/g, ', ')            // Lists become pauses
+            .replace(/<[^>]*>/g, '')        // HTML tags
+            .replace(/[\u{1F600}-\u{1F6FF}]/gu, '') // Emojis
+            .replace(/\s+/g, ' ')           // Collapse whitespace
+            .trim();
+
+        const utterance = new SpeechSynthesisUtterance(cleanText);
         if (this.selectedVoice) utterance.voice = this.selectedVoice;
         utterance.rate = 1.05;
         utterance.pitch = 0.95;
@@ -148,7 +165,7 @@ INSTRUCTIONS:
                 <div id="jose-messages"></div>
                 <div id="jose-input-area">
                     <button id="jose-voice-btn">🔇</button>
-                    <input type="text" id="jose-input" placeholder="Ask about ORION...">
+                    <input type="text" id="jose-input" placeholder="Type here...">
                     <button id="jose-send">➤</button>
                 </div>
             </div>
@@ -185,8 +202,7 @@ INSTRUCTIONS:
         div.innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
         this.msgContainer.appendChild(div);
         this.msgContainer.scrollTop = this.msgContainer.scrollHeight;
-        if (sender === 'jose') this._speak(text.replace(/<[^>]*>/g, '').replace(/\*/g, ''));
-        this.messages.push({ role: sender === 'jose' ? 'model' : 'user', parts: [{ text }] });
+        if (sender === 'jose') this._speak(text);
     }
 
     async _sendMessage() {
@@ -198,10 +214,9 @@ INSTRUCTIONS:
         this._addMessage('user', text);
         this._showTyping();
 
-        // REAL INTELLIGENCE CALL
         if (!this.apiKey) {
             this._hideTyping();
-            this._addMessage('jose', "Error: System config missing (API Key).");
+            this._addMessage('jose', "Error: System config missing.");
             return;
         }
 
@@ -212,20 +227,20 @@ INSTRUCTIONS:
         } catch (e) {
             console.error("AI Error:", e);
             this._hideTyping();
-            this._addMessage('jose', "My connection to NAPA servers is unstable. But about your question: YES, ORION handles that perfectly.");
+            this._addMessage('jose', "My connection to NAPA servers is unstable. But yes, I can handle that.");
         }
     }
 
     async _callRealGemini(text) {
         const context = [
             { role: 'user', parts: [{ text: this.systemPrompt }] },
-            ...this.messages.slice(-8),
+            ...this.messages.slice(-6),
             { role: 'user', parts: [{ text }] }
         ];
 
         const body = {
             contents: context,
-            generationConfig: { maxOutputTokens: 300, temperature: 0.7 }
+            generationConfig: { maxOutputTokens: 250, temperature: 0.7 }
         };
 
         const res = await fetch(`${this.apiEndpoint}?key=${this.apiKey}`, {
@@ -235,7 +250,7 @@ INSTRUCTIONS:
         });
 
         const data = await res.json();
-        return data.candidates?.[0]?.content?.parts?.[0]?.text || "System Error in response processing.";
+        return data.candidates?.[0]?.content?.parts?.[0]?.text || "System Error.";
     }
 
     _showTyping() {
