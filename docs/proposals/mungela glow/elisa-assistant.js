@@ -25,20 +25,37 @@ class ElisaAssistant {
         this.hasGreeted = false;
         this.voiceEnabled = false;
 
-        // System prompt for sales-focused AI
-        this.systemPrompt = this._buildSystemPrompt();
-
         // Configuration for UI
         this.uiConfig = {
             primaryColor: '#c9a962', // Gold
             gradient: 'linear-gradient(135deg, #d4a5c9 0%, #c9a962 100%)',
-            iconUrl: 'https://agem2024.github.io/SEGURITI-USC/proposals/mungela glow/elisa_avatar.png'
+            iconUrl: 'https://agem2024.github.io/SEGURITI-USC/proposals/mungela%20glow/elisa_avatar.png'
         };
+
+        // Initialize System Prompt AFTER config is set
+        this.systemPrompt = this._buildSystemPrompt();
 
         this._init();
     }
 
     _buildSystemPrompt() {
+        // DEFINE MISSING VARIABLES
+        const costJustification = this.language === 'es'
+            ? `JUSTIFICACIÓN DE COSTO:
+               - "Piensa en esto: ORION cuesta menos que lo que generas en UN solo servicio de color completo. Pero te ahorra el sueldo de una recepcionista ($2,500/mes) y recupera miles en citas perdidas."`
+            : `COST JUSTIFICATION:
+               - "Think about this: ORION costs less than what you generate in ONE full color service. But it saves you a receptionist's salary ($2,500/mo) and recovers thousands in lost appointments."`;
+
+        const closingStrategy = this.language === 'es'
+            ? `ESTRATEGIA DE CIERRE:
+               - Tu objetivo final es agendar una DEMOSTRACIÓN.
+               - No des precios sueltos sin justificar el valor.
+               - Frase de cierre: "¿Te parece si te enseño en 10 minutos cómo funciona tu propia app?"`
+            : `CLOSING STRATEGY:
+               - Your ultimate goal is to schedule a DEMO into.
+               - Do not give bare prices without justifying value.
+               - Closing phrase: "Shall I show you in 10 minutes how your own app works?"`;
+
         const slogan = this.language === 'es'
             ? '✨ TU SALÓN EN PILOTO AUTOMÁTICO - Maximiza cada cita'
             : '✨ YOUR SALON ON AUTOPILOT - Maximize every appointment';
@@ -48,43 +65,21 @@ class ElisaAssistant {
             : `You are ELISA, an expert beauty business consultant. You are sophisticated, empathetic but business-focused. Your goal is to schedule a DEMO. You know salon pain points: No-shows, stylists with idle time, lost product inventory, difficulty rebooking. Your vibe is professional, chic, and efficient.`;
 
         const industryExpertise = this.language === 'es'
-            ? `
-EXPERIENCIA EN INDUSTRIA DE BELLEZA:
+            ? `EXPERIENCIA EN INDUSTRIA DE BELLEZA:
 - Sabes que un "No-show" cuesta $100-$300 directos.
 - Entiendes que el dinero real está en el "Rebooking" y el "Upsell" de productos (Shampoo, Tratamientos).
 - Conoces el caos de gestionar citas por WhatsApp mientras atiendes a un cliente.
 - Sabes que una silla vacía es el activo más caro del salón.
-- Entiendes la importancia de la "Consulta de Imagen" antes de la cita para evitar correcciones largas.
-
-TÉRMINOS QUE DEBES USAR:
-- "Ticket Promedio" (Average Ticket)
-- "Rebooking Rate" (Tasa de Re-agendamiento)
-- "Retail Sales" (Venta de producto)
-- "Chair Utilization" (Ocupación de silla)
-- "Client Retention" (Retención de clientes)
-- "Visual Consultation" (Consulta Visual IA)
-`
-            : `
-BEAUTY INDUSTRY EXPERTISE:
+- Entiendes la importancia de la "Consulta de Imagen" antes de la cita para evitar correcciones largas.`
+            : `BEAUTY INDUSTRY EXPERTISE:
 - You know a "No-show" costs $100-$300 directly.
 - You understand the real money is in "Rebooking" and Product "Upsells".
 - You know the chaos of managing WhatsApp bookings while working on a client.
 - You know an empty chair is the most expensive asset in the salon.
-- You understand the importance of "Image Consultation" before the appointment to avoid long corrections.
-
-TERMINOLOGY TO USE:
-- "Average Ticket"
-- "Rebooking Rate"
-- "Retail Sales"
-- "Chair Utilization"
-- "Client Retention"
-- "Visual Consultation"
-`;
+- You understand the importance of "Image Consultation" before the appointment to avoid long corrections.`;
 
         const howOrionWorks = this.language === 'es'
-            ? `
-CÓMO FUNCIONA ORION (RESPUESTAS ESPECÍFICAS):
-
+            ? `CÓMO FUNCIONA ORION (RESPUESTAS ESPECÍFICAS):
 1. "¿CÓMO ME AHORRA DINERO?"
    → "Mira, la silla vacía es tu mayor gasto. Si tienes 5 estilistas y cada uno tiene 2 huecos a la semana por cancelaciones, pierdes $12,000/mes. ORION llena esos huecos automáticamente contactando a clientes pasados y lista de espera. Convertimos tiempo muerto en dinero."
 
@@ -95,11 +90,8 @@ CÓMO FUNCIONA ORION (RESPUESTAS ESPECÍFICAS):
    → "Es tu arma secreta para vender servicios caros. La cliente sube su foto y 'se prueba' el balayage o el corte antes de venir. Esto elimina el miedo al cambio, justifica precios más altos y reduce el tiempo de consulta en la silla a la mitad."
 
 4. "¿Y SI LA IA SE EQUIVOCA?"
-   → "La IA aprende tu menú de servicios perfectamente. Maneja preguntas repetitivas ('¿cuánto cuesta el tinte?', '¿tienen cita el sábado?') con 100% de precisión. Si algo se complica, transfiere la conversación a un humano inmediatamente."
-`
-            : `
-HOW ORION WORKS (SPECIFIC ANSWERS):
-
+   → "La IA aprende tu menú de servicios perfectamente. Maneja preguntas repetitivas ('¿cuánto cuesta el tinte?', '¿tienen cita el sábado?') con 100% de precisión. Si algo se complica, transfiere la conversación a un humano inmediatamente."`
+            : `HOW ORION WORKS (SPECIFIC ANSWERS):
 1. "HOW DOES IT SAVE ME MONEY?"
    → "Look, an empty chair is your biggest expense. If you have 5 stylists and each has 2 gaps a week due to cancellations, you lose $12,000/mo. ORION fills those gaps automatically by contacting past clients and waitlists. We turn idle time into cash."
 
@@ -110,8 +102,7 @@ HOW ORION WORKS (SPECIFIC ANSWERS):
    → "It's your secret weapon for selling high-ticket services. The client uploads a photo and 'tries on' the balayage or cut before coming in. This eliminates fear of change, justifies higher prices, and cuts in-chair consultation time in half."
 
 4. "WHAT IF THE AI MAKES A MISTAKE?"
-   → "The AI learns your service menu perfectly. It handles repetitive Qs ('how much is color?', 'any slots Saturday?') with 100% accuracy. If it gets tricky, it transfers to a human immediately."
-`;
+   → "The AI learns your service menu perfectly. It handles repetitive Qs ('how much is color?', 'any slots Saturday?') with 100% accuracy. If it gets tricky, it transfers to a human immediately."`;
 
         return `${slogan}
 
@@ -148,14 +139,13 @@ Responde como si estuvieras tomando un café en el salón con la dueña.`;
     }
 
     _init() {
-        // Find appropriate female voice
         this._loadVoices();
-        this.synth.onvoiceschanged = () => this._loadVoices();
-
-        // Create UI elements
+        if (this.synth) {
+            this.synth.onvoiceschanged = () => this._loadVoices();
+        }
         this._createChatUI();
 
-        // Add welcome message
+        // Greeting
         setTimeout(() => {
             const targetName = this.ownerName || this.managerName || '';
             const topPrice = this.pricingTiers?.[this.pricingTiers.length - 1]?.monthly || 4500;
@@ -166,312 +156,125 @@ Responde como si estuvieras tomando un café en el salón con la dueña.`;
                 ? `${targetName ? '¡Hola ' + targetName + '! ' : '¡Hola! '}Soy ELISA de ORION Tech. ✨ Tengo una propuesta para elevar la experiencia en ${this.clientName} y generar más de ${savingsFormatted}k extra al mes. ¿Te muestro cómo?`
                 : `${targetName ? 'Hello ' + targetName + '! ' : 'Hello! '}I'm ELISA from ORION Tech. ✨ I have a proposal to elevate the experience at ${this.clientName} and generate over $${estimatedSavings.toLocaleString()} extra per month. Shall I show you how?`;
             this._addMessage('elisa', welcome);
-        }, 500);
+        }, 1000);
     }
 
     _loadVoices() {
+        if (!this.synth) return;
         const voices = this.synth.getVoices();
         const isSpanish = this.language === 'es';
 
-        // Preferred voices - looking for female, clear, pleasant voices
-        const spanishVoices = [
-            'Microsoft Sabina',     // Mexican Spanish Female
-            'Microsoft Helena',     // Spanish Female
-            'Google español',       // Often female default
-            'es-MX',
-            'es-ES'
-        ];
-
-        const englishVoices = [
-            'Microsoft Zira',       // US English Female
-            'Google US English',    // Often female
-            'Samantha',             // macOS
-            'en-US',
-            'en-GB'
-        ];
-
+        const spanishVoices = ['Microsoft Sabina', 'Microsoft Helena', 'Google español', 'es-MX', 'es-ES'];
+        const englishVoices = ['Microsoft Zira', 'Google US English', 'Samantha', 'en-US', 'en-GB'];
         const preferredVoices = isSpanish ? spanishVoices : englishVoices;
 
-        // Try to find a preferred voice
         for (const preferred of preferredVoices) {
-            const found = voices.find(v =>
-                (v.name.includes(preferred) || v.lang.includes(preferred)) &&
-                !v.name.includes('David') && !v.name.includes('Raul') && !v.name.includes('Mark') // Exclude males explicitly if generic name match
-            );
+            const found = voices.find(v => (v.name.includes(preferred) || v.lang.includes(preferred)) && !v.name.match(/David|Raul|Mark|Pablo/i));
             if (found) {
                 this.selectedVoice = found;
-                console.log('🎤 ELISA voice:', found.name, found.lang);
                 break;
             }
         }
-
-        // Fallback
         if (!this.selectedVoice) {
             const langCode = isSpanish ? 'es' : 'en';
             this.selectedVoice = voices.find(v => v.lang.startsWith(langCode)) || voices[0];
-            console.log('🎤 ELISA fallback voice:', this.selectedVoice?.name);
         }
     }
 
     _createChatUI() {
-        // Create chat container
         const container = document.createElement('div');
         container.id = 'elisa-chat-container';
         container.innerHTML = `
             <style>
-                #elisa-chat-container {
-                    position: fixed;
-                    bottom: 100px;
-                    left: 20px;
-                    z-index: 10000;
-                    font-family: 'Inter', sans-serif;
-                }
-                
-                #elisa-toggle {
-                    width: 70px;
-                    height: 70px;
-                    border-radius: 50%;
-                    background: ${this.uiConfig.gradient};
-                    border: 3px solid #fff;
-                    cursor: pointer;
-                    box-shadow: 0 0 20px rgba(212, 165, 201, 0.6);
-                    transition: transform 0.3s, box-shadow 0.3s;
-                    overflow: hidden;
-                    padding: 0;
-                    animation: pulseGlow 2s ease-in-out infinite;
-                }
-                
-                @keyframes pulseGlow {
-                    0%, 100% { box-shadow: 0 0 20px rgba(212, 165, 201, 0.6); border-color: #fff; }
-                    50% { box-shadow: 0 0 30px rgba(201, 169, 98, 0.8); border-color: #f0f0f0; }
-                }
-                
-                #elisa-toggle:hover {
-                    transform: scale(1.1);
-                    box-shadow: 0 0 40px rgba(212, 165, 201, 0.8);
-                }
-                
-                #elisa-chat-window {
-                    display: none;
-                    width: 380px;
-                    height: 550px;
-                    background: #1a1a1a;
-                    border: 1px solid #333;
-                    border-radius: 20px;
-                    overflow: hidden;
-                    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-                    flex-direction: column;
-                    position: absolute;
-                    bottom: 90px;
-                    left: 0;
-                }
-                
-                #elisa-chat-window.open {
-                    display: flex;
-                    animation: slideUp 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-                }
-                
-                @keyframes slideUp {
-                    from { opacity: 0; transform: translateY(20px); }
-                    to { opacity: 1; transform: translateY(0); }
-                }
-                
-                #elisa-header {
-                    background: linear-gradient(90deg, #1a1a1a 0%, #2a2a2a 100%);
-                    padding: 20px;
-                    display: flex;
-                    align-items: center;
-                    gap: 15px;
-                    border-bottom: 1px solid #333;
-                }
-                
-                #elisa-header img {
-                    width: 50px;
-                    height: 50px;
-                    border-radius: 50%;
-                    border: 2px solid ${this.uiConfig.primaryColor};
-                    object-fit: cover;
-                }
-                
-                #elisa-header-info h3 {
-                    color: #fff;
-                    margin: 0;
-                    font-size: 1.1rem;
-                    font-family: 'Orbitron', sans-serif;
-                }
-                
-                #elisa-header-info span {
-                    color: ${this.uiConfig.primaryColor};
-                    font-size: 0.8rem;
-                }
-                
-                #elisa-close {
-                    margin-left: auto;
-                    background: none;
-                    border: none;
-                    color: #888;
-                    font-size: 1.5rem;
-                    cursor: pointer;
-                }
-                
-                #elisa-messages {
-                    flex: 1;
-                    overflow-y: auto;
-                    padding: 20px;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 15px;
-                    background: #121212;
-                }
-                
-                .elisa-message {
-                    max-width: 80%;
-                    padding: 14px 18px;
-                    border-radius: 18px;
-                    font-size: 0.95rem;
-                    line-height: 1.5;
-                }
-                
-                .elisa-message.elisa {
-                    background: linear-gradient(135deg, rgba(212, 165, 201, 0.1), rgba(201, 169, 98, 0.1));
-                    border: 1px solid rgba(201, 169, 98, 0.2);
-                    color: #fff;
-                    align-self: flex-start;
-                    border-bottom-left-radius: 4px;
-                }
-                
-                .elisa-message.user {
-                    background: rgba(255, 255, 255, 0.1);
-                    color: #fff;
-                    align-self: flex-end;
-                    border-bottom-right-radius: 4px;
-                }
-                
-                #elisa-input-area {
-                    padding: 20px;
-                    border-top: 1px solid #333;
-                    display: flex;
-                    gap: 10px;
-                    background: #1a1a1a;
-                }
-                
-                #elisa-input {
-                    flex: 1;
-                    background: #252525;
-                    border: 1px solid #444;
-                    border-radius: 30px;
-                    padding: 12px 20px;
-                    color: #fff;
-                    outline: none;
-                    transition: border-color 0.3s;
-                }
-                
-                #elisa-input:focus {
-                    border-color: ${this.uiConfig.primaryColor};
-                }
-                
-                #elisa-send {
-                    width: 45px;
-                    height: 45px;
-                    border-radius: 50%;
-                    background: ${this.uiConfig.gradient};
-                    border: none;
-                    color: #000;
-                    font-size: 1.2rem;
-                    cursor: pointer;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                }
-                
-                 #elisa-voice-btn {
-                    width: 45px;
-                    height: 45px;
-                    border-radius: 50%;
-                    background: rgba(255,255,255,0.05);
-                    border: 1px solid #444;
-                    color: ${this.uiConfig.primaryColor};
-                    cursor: pointer;
-                    font-size: 1.1rem;
-                }
+                #elisa-chat-container { position: fixed; bottom: 80px; left: 20px; z-index: 9999; font-family: 'Inter', sans-serif; }
+                #elisa-toggle { width: 65px; height: 65px; border-radius: 50%; background: ${this.uiConfig.gradient}; border: 3px solid #fff; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: transform 0.3s; padding: 0; overflow: hidden; animation: pulse 2s infinite; }
+                @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(212, 165, 201, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(212, 165, 201, 0); } 100% { box-shadow: 0 0 0 0 rgba(212, 165, 201, 0); } }
+                #elisa-toggle:hover { transform: scale(1.05); }
+                #elisa-chat-window { display: none; width: 350px; height: 500px; background: #1a1a1a; border: 1px solid #333; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); flex-direction: column; position: absolute; bottom: 80px; left: 0; }
+                #elisa-chat-window.open { display: flex; animation: slideUp 0.3s ease-out; }
+                @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+                #elisa-header { background: #222; padding: 15px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #333; }
+                #elisa-header img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid ${this.uiConfig.primaryColor}; object-fit: cover; }
+                #elisa-header h3 { margin: 0; color: #fff; font-size: 1rem; }
+                #elisa-header span { font-size: 0.75rem; color: ${this.uiConfig.primaryColor}; display: block; }
+                #elisa-close { margin-left: auto; background: none; border: none; color: #aaa; font-size: 1.5rem; cursor: pointer; }
+                #elisa-messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; background: #121212; }
+                .elisa-message { max-width: 85%; padding: 10px 15px; border-radius: 15px; font-size: 0.9rem; line-height: 1.4; color: #fff; }
+                .elisa-message.elisa { background: rgba(201, 169, 98, 0.15); align-self: flex-start; border-bottom-left-radius: 2px; border: 1px solid rgba(201, 169, 98, 0.3); }
+                .elisa-message.user { background: #333; align-self: flex-end; border-bottom-right-radius: 2px; }
+                #elisa-input-area { padding: 15px; border-top: 1px solid #333; display: flex; gap: 8px; background: #222; }
+                #elisa-input { flex: 1; background: #111; border: 1px solid #444; border-radius: 20px; padding: 10px 15px; color: #fff; outline: none; }
+                #elisa-input:focus { border-color: ${this.uiConfig.primaryColor}; }
+                #elisa-send, #elisa-voice-btn { width: 40px; height: 40px; border-radius: 50%; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: all 0.2s; }
+                #elisa-send { background: ${this.uiConfig.primaryColor}; color: #000; }
+                #elisa-voice-btn { background: rgba(255,255,255,0.1); color: ${this.uiConfig.primaryColor}; border: 1px solid #444; }
+                #elisa-voice-btn.active { background: ${this.uiConfig.primaryColor}; color: #000; }
             </style>
-            
             <div id="elisa-chat-window">
                 <div id="elisa-header">
-                    <img src="https://agem2024.github.io/SEGURITI-USC/proposals/mungela glow/elisa_avatar.png" 
-                         alt="ELISA" 
-                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'50\' fill=\'%23d4a5c9\'/%3E%3Ctext x=\'50\' y=\'65\' text-anchor=\'middle\' font-size=\'40\' fill=\'white\'%3E✨%3C/text%3E%3C/svg%3E'">
-                    <div id="elisa-header-info">
+                    <img src="${this.uiConfig.iconUrl}" onerror="this.src='https://ui-avatars.com/api/?name=Elisa&background=c9a962&color=fff'">
+                    <div>
                         <h3>ELISA</h3>
-                        <span>AI Beauty Consultant</span>
+                        <span>AI Consultant</span>
                     </div>
                     <button id="elisa-close">×</button>
                 </div>
                 <div id="elisa-messages"></div>
                 <div id="elisa-input-area">
-                    <button id="elisa-voice-btn" title="Voice">🎤</button>
-                    <input type="text" id="elisa-input" placeholder="Ask Elisa...">
+                    <button id="elisa-voice-btn" title="Voice Response">🔇</button>
+                    <input type="text" id="elisa-input" placeholder="Type here...">
                     <button id="elisa-send">➤</button>
                 </div>
             </div>
-            
             <button id="elisa-toggle">
-               <img src="https://agem2024.github.io/SEGURITI-USC/proposals/mungela glow/elisa_avatar.png" 
-                         alt="Chat" 
-                         style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;"
-                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'50\' fill=\'%23d4a5c9\'/%3E%3Ctext x=\'50\' y=\'65\' text-anchor=\'middle\' font-size=\'40\' fill=\'white\'%3E✨%3C/text%3E%3C/svg%3E'">
+                <img src="${this.uiConfig.iconUrl}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">
             </button>
         `;
-
         document.body.appendChild(container);
 
-        // Event listeners
-        document.getElementById('elisa-toggle').addEventListener('click', () => this._toggleChat());
-        document.getElementById('elisa-close').addEventListener('click', () => this._toggleChat());
-        document.getElementById('elisa-send').addEventListener('click', () => this._sendMessage());
-        document.getElementById('elisa-input').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') this._sendMessage();
-        });
-        document.getElementById('elisa-voice-btn').addEventListener('click', () => this._toggleVoice());
+        document.getElementById('elisa-toggle').onclick = () => this._toggleChat();
+        document.getElementById('elisa-close').onclick = () => this._toggleChat();
+        document.getElementById('elisa-send').onclick = () => this._sendMessage();
+        document.getElementById('elisa-input').onkeypress = (e) => e.key === 'Enter' && this._sendMessage();
+        document.getElementById('elisa-voice-btn').onclick = () => this._toggleVoice();
     }
 
     _toggleChat() {
-        const chatWindow = document.getElementById('elisa-chat-window');
         this.isOpen = !this.isOpen;
-        chatWindow.classList.toggle('open', this.isOpen);
-
+        document.getElementById('elisa-chat-window').classList.toggle('open', this.isOpen);
         if (this.isOpen && !this.hasGreeted) {
             this.hasGreeted = true;
-            this.voiceEnabled = true;
-            // UI update for voice button
-            const btn = document.getElementById('elisa-voice-btn');
-            btn.style.background = this.uiConfig.gradient;
-            btn.style.color = '#000';
-            btn.textContent = '🔊';
-
-            setTimeout(() => {
-                const targetName = this.ownerName || this.managerName || '';
-                const greeting = this.language === 'es'
-                    ? `${targetName ? targetName + ', ' : ''}soy ELISA de ORION Tech. Míra esto: Puedo llenar tu agenda y vender más productos mientras tú duermes. ¿Te cuento cómo?`
-                    : `${targetName ? targetName + ', ' : ''}I'm ELISA from ORION Tech. Look at this: I can fill your calendar and sell more products while you sleep. Shall I tell you how?`;
-                this._speak(greeting);
-            }, 500);
+            this.voiceEnabled = true; // Auto-enable voice on first open
+            this._updateVoiceBtn();
+            const greetings = this.messages.filter(m => m.role === 'model');
+            if (greetings.length > 0) this._speak(greetings[0].parts[0].text);
         }
     }
 
-    _addMessage(sender, text) {
-        const messagesContainer = document.getElementById('elisa-messages');
-        const messageEl = document.createElement('div');
-        messageEl.className = `elisa-message ${sender}`;
-        messageEl.textContent = text;
-        messagesContainer.appendChild(messageEl);
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    _toggleVoice() {
+        this.voiceEnabled = !this.voiceEnabled;
+        if (!this.voiceEnabled && this.synth) this.synth.cancel();
+        this._updateVoiceBtn();
+    }
 
-        if (sender === 'elisa' && this.voiceEnabled) {
-            this._speak(text);
+    _updateVoiceBtn() {
+        const btn = document.getElementById('elisa-voice-btn');
+        if (this.voiceEnabled) {
+            btn.textContent = '🔊';
+            btn.classList.add('active');
+        } else {
+            btn.textContent = '🔇';
+            btn.classList.remove('active');
         }
+    }
 
-        this.messages.push({ role: sender === 'elisa' ? 'model' : 'user', parts: [{ text }] });
+    _speak(text) {
+        if (!this.synth || !this.voiceEnabled) return;
+        this.synth.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        if (this.selectedVoice) utterance.voice = this.selectedVoice;
+        utterance.rate = this.language === 'es' ? 0.95 : 1.0;
+        this.synth.speak(utterance);
     }
 
     async _sendMessage() {
@@ -482,24 +285,34 @@ Responde como si estuvieras tomando un café en el salón con la dueña.`;
         input.value = '';
         this._addMessage('user', text);
 
-        // Typing indicator
-        const messagesContainer = document.getElementById('elisa-messages');
+        // Typing UI
+        const msgContainer = document.getElementById('elisa-messages');
         const typing = document.createElement('div');
-        typing.innerHTML = '...';
         typing.className = 'elisa-message elisa';
         typing.id = 'elisa-typing';
-        messagesContainer.appendChild(typing);
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        typing.textContent = '...';
+        msgContainer.appendChild(typing);
+        msgContainer.scrollTop = msgContainer.scrollHeight;
 
-        try {
-            const response = await this._callGemini(text);
-            document.getElementById('elisa-typing').remove();
-            this._addMessage('elisa', response);
-        } catch (error) {
-            if (document.getElementById('elisa-typing')) document.getElementById('elisa-typing').remove();
-            const errorMsg = this.language === 'es' ? 'Un momento, estoy pensando...' : 'One moment, I am thinking...';
-            this._addMessage('elisa', errorMsg);
-        }
+        const response = await this._callGemini(text);
+
+        const typeEl = document.getElementById('elisa-typing');
+        if (typeEl) typeEl.remove();
+
+        this._addMessage('elisa', response);
+    }
+
+    _addMessage(sender, text) {
+        const container = document.getElementById('elisa-messages');
+        const msg = document.createElement('div');
+        msg.className = `elisa-message ${sender}`;
+        msg.innerText = text; // innerText for safety
+        container.appendChild(msg);
+        container.scrollTop = container.scrollHeight;
+
+        this.messages.push({ role: sender === 'elisa' ? 'model' : 'user', parts: [{ text }] });
+
+        if (sender === 'elisa' && this.voiceEnabled) this._speak(text);
     }
 
     async _callGemini(userMessage) {
@@ -507,543 +320,76 @@ Responde como si estuvieras tomando un café en el salón con la dueña.`;
         if (!apiKey) return this._getFallbackResponse(userMessage);
 
         try {
-            const requestBody = {
+            const body = {
                 contents: [
                     { role: 'user', parts: [{ text: this.systemPrompt }] },
-                    ...this.messages.slice(-10),
+                    ...this.messages.slice(-10), // Context window
                     { role: 'user', parts: [{ text: userMessage }] }
                 ],
-                generationConfig: { temperature: 0.7, maxOutputTokens: 300 }
+                generationConfig: { maxOutputTokens: 300, temperature: 0.7 }
             };
 
-            const response = await fetch(`${this.apiEndpoint}?key=${apiKey}`, {
+            const resp = await fetch(`${this.apiEndpoint}?key=${apiKey}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(requestBody)
+                body: JSON.stringify(body)
             });
 
-            if (!response.ok) return this._getFallbackResponse(userMessage);
-            const data = await response.json();
-            return data.candidates?.[0]?.content?.parts?.[0]?.text || this._getFallbackResponse(userMessage);
-
-        } catch (error) {
+            if (!resp.ok) throw new Error('API Error');
+            const data = await resp.json();
+            return data.candidates[0].content.parts[0].text;
+        } catch (e) {
+            console.error(e);
             return this._getFallbackResponse(userMessage);
         }
     }
 
-    _getFallbackResponse(userMessage) {
-        const msg = userMessage.toLowerCase();
+    _getSecureApiKey() {
+        if (window.ORION_CONFIG && typeof window.ORION_CONFIG.getAuth === 'function') return window.ORION_CONFIG.getAuth();
+        if (window.__JOSE_CONFIG__?.apiKey) return window.__JOSE_CONFIG__.apiKey;
+        const joseKey = localStorage.getItem('jose_api_key');
+        if (joseKey) return atob(joseKey);
+        return null;
+    }
+
+    _getFallbackResponse(msg) {
+        msg = msg.toLowerCase();
         const isSpanish = this.language === 'es';
-        const name = this.clientName;
-        const topPrice = this.pricingTiers?.[this.pricingTiers.length - 1]?.monthly || 4500;
-        const estimatedSavings = Math.round(topPrice * 6 / 1000) * 1000;
 
-        if (msg.includes('precio') || msg.includes('price') || msg.includes('cost') || msg.includes('how much')) {
-            return isSpanish
-                ? `El dinero es obvio: ORION cuesta $${topPrice}/mes, pero recuperas más de $${estimatedSavings.toLocaleString()} previniendo citas perdidas. Mi pregunta es: ¿Prefieres seguir perdiendo dinero con sillas vacías o invertir en tecnología?`
-                : `The money is obvious: ORION costs $${topPrice}/mo, but you recover over $${estimatedSavings.toLocaleString()} by preventing lost appointments. My question is: Do you prefer to keep losing money on empty chairs or invest in technology?`;
+        if (msg.includes('precio') || msg.includes('price') || msg.includes('cost')) {
+            return isSpanish ?
+                "ORION se paga solo evitando 1 o 2 'no-shows' al mes. ¿Quieres ver los números para tu salón?" :
+                "ORION pays for itself by preventing just 1 or 2 no-shows per month. Want to see the numbers for your salon?";
         }
-
-        if (msg.includes('ahorro') || msg.includes('save') || msg.includes('roi') || msg.includes('money')) {
-            return isSpanish
-                ? `Matemáticas simples para ${name}:\n1. 🚫 No-Shows ELIMINADOS: ~$3,000/mes\n2. 💄 Venta de Producto: ~$2,000/mes\n3. 📅 Rebooking Automático: ~$4,000/mes\n\nTotal extra: $${estimatedSavings.toLocaleString()}/mes. ¿Te muestro cómo se ve en tu cuenta bancaria?`
-                : `Simple math for ${name}:\n1. 🚫 No-Shows ELIMINATED: ~$3,000/mo\n2. 💄 Retail Sales: ~$2,000/mo\n3. 📅 Auto Rebooking: ~$4,000/mo\n\nTotal extra: $${estimatedSavings.toLocaleString()}/mo. Want to see what that looks like in your bank account?`;
+        if (msg.includes('agenda') || msg.includes('book') || msg.includes('cita')) {
+            return isSpanish ?
+                "Soy experta en llenar agendas. Puedo manejar tus citas 24/7. ¿Hacemos una prueba?" :
+                "I'm an expert at filling calendars. I can manage your bookings 24/7. Shall we test it?";
         }
-
-        if (msg.includes('agenda') || msg.includes('booking') || msg.includes('reserv') || msg.includes('how does')) {
-            return isSpanish
-                ? `Soy tu asistente personal 24/7. Manejo tu agenda, cobro depósitos y recuerdo a tus clientes que vuelvan. Tú solo preocúpate por hacerlas ver hermosas. ¿Quieres ver una demo?`
-                : `I am your 24/7 personal assistant. I manage your calendar, collect deposits, and remind clients to return. You just worry about making them look beautiful. Want a demo?`;
-        }
-
-        // Competitor check (Fresha, Vagaro)
-        if (msg.includes('fresha') || msg.includes('vagaro') || msg.includes('booksy') || msg.includes('software')) {
-            return isSpanish
-                ? `Ellos son excelentes agendas digitales, pero NO vendem. Elisa (yo) es una VENDEDORA activa. Yo busco al cliente para que vuelva. Fresha espera sentado. ¿Quieres que tu software espere o que venda?`
-                : `They are great digital calendars, but they DON'T sell. Elisa (me) is an active SALESPERSON. I chase the client to come back. Fresha just sits there. Do you want your software to wait or to sell?`;
-        }
-
-        return isSpanish
-            ? `Entiendo. Pero ${name} merece ser el líder del mercado. Si pudieras eliminar los espacios vacíos en tu agenda mañana mismo, ¿lo harías? Tengo un espacio para una demo rápida el Jueves.`
-            : `I understand. But ${name} deserves to be the market leader. If you could eliminate empty slots in your calendar tomorrow, would you? I have a slot for a quick demo on Thursday.`;
-    }
-    CLIENTE: ${ this.clientName }
-TELÉFONO: ${ this.clientPhone }
-DUEÑO / MANAGER: ${ this.ownerName || this.managerName || 'Owner' }
-
-PAIN POINTS DE ${ this.clientName.toUpperCase() }:
-${ this.painPoints.join(', ') }
-
-SOLUCIONES ORION:
-${ (this.competitorAdvantages || []).map(a => `- ${a}`).join('\n') }
-
-REGLAS DE COMUNICACIÓN:
-1. Tono: Sofisticado, Amable, Profesional. (No "Bro", No "Amigo", usa "Estimado/a", "Querida").
-2. Enfatiza la EXPERIENCIA DEL CLIENTE(Customer Experience).
-3. Siempre conecta la solución con AUMENTO DE TICKET y RETENCIÓN.
-4. Siempre termina con una pregunta para avanzar.
-
-CONTEXTO ADICIONAL:
-${ this.proposalContext }
-
-Responde como si estuvieras tomando un café en el salón con la dueña.`;
+        return isSpanish ?
+            "Entiendo. Mi objetivo es que tu negocio crezca en automático. ¿Te puedo mostrar una demo rápida?" :
+            "I understand. My goal is for your business to grow on autopilot. Can I show you a quick demo?";
     }
 
-    _init() {
-        // Find appropriate female voice
-        this._loadVoices();
-        this.synth.onvoiceschanged = () => this._loadVoices();
-
-        // Create UI elements
-        this._createChatUI();
-
-        // Add welcome message
-        setTimeout(() => {
-            const targetName = this.ownerName || this.managerName || '';
-            const topPrice = this.pricingTiers?.[this.pricingTiers.length - 1]?.monthly || 4500;
-            const estimatedSavings = Math.round(topPrice * 6 / 1000) * 1000; // Checking salons often have higher margins on retail
-            const savingsFormatted = (estimatedSavings / 1000).toFixed(0);
-
-            const welcome = this.language === 'es'
-                ? `${ targetName ? '¡Hola ' + targetName + '! ' : '¡Hola! ' }Soy ELISA de ORION Tech. ✨ Tengo una propuesta para elevar la experiencia en ${ this.clientName } y generar más de ${ savingsFormatted }k extra al mes. ¿Te muestro cómo ? `
-                : `${ targetName ? 'Hello ' + targetName + '! ' : 'Hello! ' }I'm ELISA from ORION Tech. ✨ I have a proposal to elevate the experience at ${this.clientName} and generate over $${estimatedSavings.toLocaleString()} extra per month. Shall I show you how?`;
-this._addMessage('elisa', welcome);
-        }, 500);
-    }
-
-_loadVoices() {
-    const voices = this.synth.getVoices();
-    const isSpanish = this.language === 'es';
-
-    // Preferred voices - looking for female, clear, pleasant voices
-    const spanishVoices = [
-        'Microsoft Sabina',     // Mexican Spanish Female
-        'Microsoft Helena',     // Spanish Female
-        'Google español',       // Often female default
-        'es-MX',
-        'es-ES'
-    ];
-
-    const englishVoices = [
-        'Microsoft Zira',       // US English Female
-        'Google US English',    // Often female
-        'Samantha',             // macOS
-        'en-US',
-        'en-GB'
-    ];
-
-    const preferredVoices = isSpanish ? spanishVoices : englishVoices;
-
-    // Try to find a preferred voice
-    for (const preferred of preferredVoices) {
-        const found = voices.find(v =>
-            (v.name.includes(preferred) || v.lang.includes(preferred)) &&
-            !v.name.includes('David') && !v.name.includes('Raul') && !v.name.includes('Mark') // Exclude males explicitly if generic name match
-        );
-        if (found) {
-            this.selectedVoice = found;
-            console.log('🎤 ELISA voice:', found.name, found.lang);
-            break;
-        }
-    }
-
-    // Fallback
-    if (!this.selectedVoice) {
-        const langCode = isSpanish ? 'es' : 'en';
-        this.selectedVoice = voices.find(v => v.lang.startsWith(langCode)) || voices[0];
-        console.log('🎤 ELISA fallback voice:', this.selectedVoice?.name);
+    setLanguage(lang) {
+        if (this.language === lang) return;
+        this.language = lang;
+        this.systemPrompt = this._buildSystemPrompt();
+        const msg = lang === 'es' ? "Idioma cambiado a Español 🇪🇸" : "Language switched to English 🇺🇸";
+        this._addMessage('elisa', msg);
     }
 }
 
-_createChatUI() {
-    // Create chat container
-    const container = document.createElement('div');
-    container.id = 'elisa-chat-container';
-    container.innerHTML = `
-            <style>
-                #elisa-chat-container {
-                    position: fixed;
-                    bottom: 100px;
-                    left: 20px;
-                    z-index: 10000;
-                    font-family: 'Inter', sans-serif;
-                }
-                
-                #elisa-toggle {
-                    width: 70px;
-                    height: 70px;
-                    border-radius: 50%;
-                    background: ${this.uiConfig.gradient};
-                    border: 3px solid #fff;
-                    cursor: pointer;
-                    box-shadow: 0 0 20px rgba(212, 165, 201, 0.6);
-                    transition: transform 0.3s, box-shadow 0.3s;
-                    overflow: hidden;
-                    padding: 0;
-                    animation: pulseGlow 2s ease-in-out infinite;
-                }
-                
-                @keyframes pulseGlow {
-                    0%, 100% { box-shadow: 0 0 20px rgba(212, 165, 201, 0.6); border-color: #fff; }
-                    50% { box-shadow: 0 0 30px rgba(201, 169, 98, 0.8); border-color: #f0f0f0; }
-                }
-                
-                #elisa-toggle:hover {
-                    transform: scale(1.1);
-                    box-shadow: 0 0 40px rgba(212, 165, 201, 0.8);
-                }
-                
-                #elisa-chat-window {
-                    display: none;
-                    width: 380px;
-                    height: 550px;
-                    background: #1a1a1a;
-                    border: 1px solid #333;
-                    border-radius: 20px;
-                    overflow: hidden;
-                    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-                    flex-direction: column;
-                    position: absolute;
-                    bottom: 90px;
-                    left: 0;
-                }
-                
-                #elisa-chat-window.open {
-                    display: flex;
-                    animation: slideUp 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-                }
-                
-                @keyframes slideUp {
-                    from { opacity: 0; transform: translateY(20px); }
-                    to { opacity: 1; transform: translateY(0); }
-                }
-                
-                #elisa-header {
-                    background: linear-gradient(90deg, #1a1a1a 0%, #2a2a2a 100%);
-                    padding: 20px;
-                    display: flex;
-                    align-items: center;
-                    gap: 15px;
-                    border-bottom: 1px solid #333;
-                }
-                
-                #elisa-header img {
-                    width: 50px;
-                    height: 50px;
-                    border-radius: 50%;
-                    border: 2px solid ${this.uiConfig.primaryColor};
-                    object-fit: cover;
-                }
-                
-                #elisa-header-info h3 {
-                    color: #fff;
-                    margin: 0;
-                    font-size: 1.1rem;
-                    font-family: 'Orbitron', sans-serif;
-                }
-                
-                #elisa-header-info span {
-                    color: ${this.uiConfig.primaryColor};
-                    font-size: 0.8rem;
-                }
-                
-                #elisa-close {
-                    margin-left: auto;
-                    background: none;
-                    border: none;
-                    color: #888;
-                    font-size: 1.5rem;
-                    cursor: pointer;
-                }
-                
-                #elisa-messages {
-                    flex: 1;
-                    overflow-y: auto;
-                    padding: 20px;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 15px;
-                    background: #121212;
-                }
-                
-                .elisa-message {
-                    max-width: 80%;
-                    padding: 14px 18px;
-                    border-radius: 18px;
-                    font-size: 0.95rem;
-                    line-height: 1.5;
-                }
-                
-                .elisa-message.elisa {
-                    background: linear-gradient(135deg, rgba(212, 165, 201, 0.1), rgba(201, 169, 98, 0.1));
-                    border: 1px solid rgba(201, 169, 98, 0.2);
-                    color: #fff;
-                    align-self: flex-start;
-                    border-bottom-left-radius: 4px;
-                }
-                
-                .elisa-message.user {
-                    background: rgba(255, 255, 255, 0.1);
-                    color: #fff;
-                    align-self: flex-end;
-                    border-bottom-right-radius: 4px;
-                }
-                
-                #elisa-input-area {
-                    padding: 20px;
-                    border-top: 1px solid #333;
-                    display: flex;
-                    gap: 10px;
-                    background: #1a1a1a;
-                }
-                
-                #elisa-input {
-                    flex: 1;
-                    background: #252525;
-                    border: 1px solid #444;
-                    border-radius: 30px;
-                    padding: 12px 20px;
-                    color: #fff;
-                    outline: none;
-                    transition: border-color 0.3s;
-                }
-                
-                #elisa-input:focus {
-                    border-color: ${this.uiConfig.primaryColor};
-                }
-                
-                #elisa-send {
-                    width: 45px;
-                    height: 45px;
-                    border-radius: 50%;
-                    background: ${this.uiConfig.gradient};
-                    border: none;
-                    color: #000;
-                    font-size: 1.2rem;
-                    cursor: pointer;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                }
-                
-                 #elisa-voice-btn {
-                    width: 45px;
-                    height: 45px;
-                    border-radius: 50%;
-                    background: rgba(255,255,255,0.05);
-                    border: 1px solid #444;
-                    color: ${this.uiConfig.primaryColor};
-                    cursor: pointer;
-                    font-size: 1.1rem;
-                }
-            </style>
-            
-            <div id="elisa-chat-window">
-                <div id="elisa-header">
-                    <img src="https://agem2024.github.io/SEGURITI-USC/proposals/mungela glow/elisa_avatar.png" 
-                         alt="ELISA" 
-                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'50\' fill=\'%23d4a5c9\'/%3E%3Ctext x=\'50\' y=\'65\' text-anchor=\'middle\' font-size=\'40\' fill=\'white\'%3E✨%3C/text%3E%3C/svg%3E'">
-                    <div id="elisa-header-info">
-                        <h3>ELISA</h3>
-                        <span>AI Beauty Consultant</span>
-                    </div>
-                    <button id="elisa-close">×</button>
-                </div>
-                <div id="elisa-messages"></div>
-                <div id="elisa-input-area">
-                    <button id="elisa-voice-btn" title="Voice">🎤</button>
-                    <input type="text" id="elisa-input" placeholder="Ask Elisa...">
-                    <button id="elisa-send">➤</button>
-                </div>
-            </div>
-            
-            <button id="elisa-toggle">
-               <img src="https://agem2024.github.io/SEGURITI-USC/proposals/mungela glow/elisa_avatar.png" 
-                         alt="Chat" 
-                         style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;"
-                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'50\' fill=\'%23d4a5c9\'/%3E%3Ctext x=\'50\' y=\'65\' text-anchor=\'middle\' font-size=\'40\' fill=\'white\'%3E✨%3C/text%3E%3C/svg%3E'">
-            </button>
-        `;
-
-    document.body.appendChild(container);
-
-    // Event listeners
-    document.getElementById('elisa-toggle').addEventListener('click', () => this._toggleChat());
-    document.getElementById('elisa-close').addEventListener('click', () => this._toggleChat());
-    document.getElementById('elisa-send').addEventListener('click', () => this._sendMessage());
-    document.getElementById('elisa-input').addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') this._sendMessage();
-    });
-    document.getElementById('elisa-voice-btn').addEventListener('click', () => this._toggleVoice());
-}
-
-_toggleChat() {
-    const chatWindow = document.getElementById('elisa-chat-window');
-    this.isOpen = !this.isOpen;
-    chatWindow.classList.toggle('open', this.isOpen);
-
-    if (this.isOpen && !this.hasGreeted) {
-        this.hasGreeted = true;
-        this.voiceEnabled = true;
-        // UI update for voice button
-        const btn = document.getElementById('elisa-voice-btn');
-        btn.style.background = this.uiConfig.gradient;
-        btn.style.color = '#000';
-        btn.textContent = '🔊';
-
-        setTimeout(() => {
-            const targetName = this.ownerName || this.managerName || '';
-            const greeting = this.language === 'es'
-                ? `${targetName ? targetName + ', ' : ''}soy ELISA de ORION Tech. Míra esto: Puedo llenar tu agenda y vender más productos mientras tú duermes. ¿Te cuento cómo?`
-                : `${targetName ? targetName + ', ' : ''}I'm ELISA from ORION Tech. Look at this: I can fill your calendar and sell more products while you sleep. Shall I tell you how?`;
-            this._speak(greeting);
-        }, 500);
-    }
-}
-
-_addMessage(sender, text) {
-    const messagesContainer = document.getElementById('elisa-messages');
-    const messageEl = document.createElement('div');
-    messageEl.className = `elisa-message ${sender}`;
-    messageEl.textContent = text;
-    messagesContainer.appendChild(messageEl);
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
-    if (sender === 'elisa' && this.voiceEnabled) {
-        this._speak(text);
-    }
-
-    this.messages.push({ role: sender === 'elisa' ? 'model' : 'user', parts: [{ text }] });
-}
-
-    async _sendMessage() {
-    const input = document.getElementById('elisa-input');
-    const text = input.value.trim();
-    if (!text) return;
-
-    input.value = '';
-    this._addMessage('user', text);
-
-    // Typing indicator
-    const messagesContainer = document.getElementById('elisa-messages');
-    const typing = document.createElement('div');
-    typing.innerHTML = '...';
-    typing.className = 'elisa-message elisa';
-    typing.id = 'elisa-typing';
-    messagesContainer.appendChild(typing);
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
-    try {
-        const response = await this._callGemini(text);
-        document.getElementById('elisa-typing').remove();
-        this._addMessage('elisa', response);
-    } catch (error) {
-        if (document.getElementById('elisa-typing')) document.getElementById('elisa-typing').remove();
-        const errorMsg = this.language === 'es' ? 'Un momento, estoy pensando...' : 'One moment, I am thinking...';
-        this._addMessage('elisa', errorMsg);
-    }
-}
-
-    async _callGemini(userMessage) {
-    const apiKey = this._getSecureApiKey();
-    if (!apiKey) return this._getFallbackResponse(userMessage);
-
-    try {
-        const requestBody = {
-            contents: [
-                { role: 'user', parts: [{ text: this.systemPrompt }] },
-                ...this.messages.slice(-10),
-                { role: 'user', parts: [{ text: userMessage }] }
-            ],
-            generationConfig: { temperature: 0.7, maxOutputTokens: 300 }
-        };
-
-        const response = await fetch(`${this.apiEndpoint}?key=${apiKey}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(requestBody)
-        });
-
-        if (!response.ok) return this._getFallbackResponse(userMessage);
-        const data = await response.json();
-        return data.candidates?.[0]?.content?.parts?.[0]?.text || this._getFallbackResponse(userMessage);
-
-    } catch (error) {
-        return this._getFallbackResponse(userMessage);
-    }
-}
-
-_getFallbackResponse(userMessage) {
-    const msg = userMessage.toLowerCase();
-    const isSpanish = this.language === 'es';
-
-    if (msg.includes('precio') || msg.includes('price') || msg.includes('cost')) {
-        return isSpanish
-            ? "La inversión es mínima comparada con el costo de una 'silla vacía'. Nuestros planes comienzan donde termina el sueldo de una recepcionista, pero trabajan 24/7. ¿Te interesaría ver el ROI proyectado para Munjela?"
-            : "The investment is minimal compared to the cost of an 'empty chair'. Our plans start where a receptionist's salary ends, but work 24/7. Would you like to see the projected ROI for Munjela?";
-    }
-
-    if (msg.includes('agenda') || msg.includes('booking') || msg.includes('reserv')) {
-        return isSpanish
-            ? "Elisa (mi sistema IA) maneja toda tu agenda. Sincroniza con Google y envía recordatorios automáticos. Si una clienta cancela, Elisa contacta a la lista de espera automáticamente para llenar ese hueco. ¿Cuánto dinero pierdes hoy por cancelaciones?"
-            : "Elisa (my AI system) handles your entire calendar. Syncs with Google and sends auto-reminders. If a client cancels, Elisa automatically contacts the waitlist to fill that gap. How much money do you lose today on cancellations?";
-    }
-
-    return isSpanish
-        ? "¿Te cuento un secreto? Los salones top no venden cortes, venden experiencias y productos. ORION automatiza esa experiencia para que tú te enfoques en el arte. ¿Quieres ver cómo funciona la consulta virtual?"
-        : "Can I tell you a secret? Top salons don't sell cuts, they sell experiences and products. ORION automates that experience so you can focus on the art. Want to see how the virtual consultation works?";
-}
-
-_getSecureApiKey() {
-    if (window.ORION_CONFIG && typeof window.ORION_CONFIG.getAuth === 'function') return window.ORION_CONFIG.getAuth();
-    if (window.__JOSE_CONFIG__?.apiKey) return window.__JOSE_CONFIG__.apiKey;
-    const joseKey = localStorage.getItem('jose_api_key');
-    if (joseKey) return atob(joseKey);
-    return null;
-}
-
-_speak(text) {
-    if (!this.synth || !this.voiceEnabled) return;
-    this.synth.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.voice = this.selectedVoice;
-    utterance.rate = this.language === 'es' ? 0.9 : 1.0;
-    utterance.pitch = 1.1; // Slightly higher pitch for female voice
-    this.synth.speak(utterance);
-}
-
-_toggleVoice() {
-    this.voiceEnabled = !this.voiceEnabled;
-    const btn = document.getElementById('elisa-voice-btn');
-    if (this.voiceEnabled) {
-        btn.style.background = this.uiConfig.gradient;
-        btn.style.color = '#000';
-        btn.textContent = '🔊';
-    } else {
-        this.synth.cancel();
-        btn.style.background = 'rgba(255,255,255,0.05)';
-        btn.style.color = this.uiConfig.primaryColor;
-        btn.textContent = '🔇';
-    }
-}
-
-setLanguage(lang) {
-    if (this.language === lang) return;
-    this.language = lang;
-    this.systemPrompt = this._buildSystemPrompt();
-    this._loadVoices();
-    if (this.isOpen) {
-        const switchMsg = lang === 'es' ? "Cambiando a Español. ✨" : "Switching to English. ✨";
-        this._addMessage('elisa', switchMsg);
-    }
-}
-}
-
-// Export and Auto-init
+// Global Init
 window.ElisaAssistant = ElisaAssistant;
 document.addEventListener('DOMContentLoaded', () => {
-    if (window.ELISA_CONFIG) {
-        console.log('✨ Starting ELISA Assistant for:', window.ELISA_CONFIG.clientName);
-        window.elisa = new ElisaAssistant(window.ELISA_CONFIG);
+    // Determine Config
+    const config = window.ELISA_CONFIG || window.JOSE_CONFIG;
+    if (config) {
+        console.log('✨ Starting ELISA Assistant V2');
+        window.elisa = new ElisaAssistant(config);
+        window.jose = window.elisa; // Compatibility alias
+    } else {
+        console.warn('⚠️ No ELISA/JOSE Config found.');
     }
 });
