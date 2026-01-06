@@ -155,19 +155,40 @@ CONTEXTO: Estás en el chat de la propuesta comercial. El cliente ya vio los pre
         // Try to find a preferred voice
         for (const preferred of preferredVoices) {
             const found = voices.find(v =>
-                v.name.includes(preferred) || v.lang.includes(preferred)
+                (v.name.includes(preferred) || v.lang.includes(preferred))
             );
             if (found) {
                 this.selectedVoice = found;
-                console.log('🎤 JOSE voice:', found.name, found.lang);
+                console.log('🎤 JOSE voice selected:', found.name);
                 break;
             }
         }
 
-        // Fallback
+        // Fallback - Try to find ANY male voice before defaulting
         if (!this.selectedVoice) {
             const langCode = isSpanish ? 'es' : 'en';
-            this.selectedVoice = voices.find(v => v.lang.startsWith(langCode)) || voices[0];
+            const maleKeywords = ['Male', 'David', 'Raul', 'Pablo', 'Mark', 'Stefan', 'George'];
+            const femaleKeywords = ['Female', 'Zira', 'Sabina', 'Helena', 'Hazel', 'Susan'];
+
+            // 1. Try any voice with male keywords
+            this.selectedVoice = voices.find(v =>
+                v.lang.startsWith(langCode) &&
+                maleKeywords.some(k => v.name.includes(k))
+            );
+
+            // 2. If still none, try any voice that DOESN'T have female keywords
+            if (!this.selectedVoice) {
+                this.selectedVoice = voices.find(v =>
+                    v.lang.startsWith(langCode) &&
+                    !femaleKeywords.some(k => v.name.includes(k))
+                );
+            }
+
+            // 3. Absolute fallback
+            if (!this.selectedVoice) {
+                this.selectedVoice = voices.find(v => v.lang.startsWith(langCode)) || voices[0];
+            }
+
             console.log('🎤 JOSE fallback voice:', this.selectedVoice?.name);
         }
     }
