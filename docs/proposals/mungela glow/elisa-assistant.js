@@ -272,7 +272,13 @@ Responde como si estuvieras tomando un café en el salón con la dueña.`;
         if (!this.synth || !this.voiceEnabled) return;
         this.synth.cancel();
         const utterance = new SpeechSynthesisUtterance(text);
-        if (this.selectedVoice) utterance.voice = this.selectedVoice;
+        if (this.selectedVoice) {
+            utterance.voice = this.selectedVoice;
+            // Force voice's lang if available, otherwise fallback
+            utterance.lang = this.selectedVoice.lang || (this.language === 'es' ? 'es-MX' : 'en-US');
+        } else {
+            utterance.lang = this.language === 'es' ? 'es-MX' : 'en-US';
+        }
         utterance.rate = this.language === 'es' ? 0.95 : 1.0;
         this.synth.speak(utterance);
     }

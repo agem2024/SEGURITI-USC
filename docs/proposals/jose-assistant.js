@@ -692,8 +692,11 @@ CONTEXTO: Estás en el chat de la propuesta comercial. El cliente ya vio los pre
 
         // Adjust rate based on language - Spanish needs slower for clarity
         const isSpanish = this.language === 'es';
-        utterance.rate = isSpanish ? 0.85 : 0.95; // Slower for clarity
-        utterance.pitch = 1.0; // Natural pitch
+        utterance.rate = isSpanish ? 0.9 : 1.0;
+        utterance.pitch = 1.0;
+
+        // CRITICAL: Force language locale to prevent "spelling out"
+        utterance.lang = isSpanish ? 'es-MX' : 'en-US';
         utterance.volume = 1.0;
 
         // Set language explicitly
