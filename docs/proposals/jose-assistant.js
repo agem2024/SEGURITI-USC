@@ -17,7 +17,7 @@ class JoseAssistant {
         this.painPoints = config.painPoints || [];
 
         // Secure API configuration (proxied)
-        this.apiEndpoint = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
+        this.apiEndpoint = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
         this.isOpen = false;
         this.messages = [];
         this.synth = window.speechSynthesis;
@@ -108,16 +108,9 @@ CONTEXTO: Estás en el chat de la propuesta comercial. El cliente ya vio los pre
     }
 
     _init() {
-        // Find appropriate male voice - try multiple times for mobile
+        // Find appropriate male voice
         this._loadVoices();
-
-        if (window.speechSynthesis.onvoiceschanged !== undefined) {
-            window.speechSynthesis.onvoiceschanged = () => this._loadVoices();
-        }
-
-        // Force retry on click in case mobile didn't load voices initially
-        setTimeout(() => this._loadVoices(), 1000);
-        setTimeout(() => this._loadVoices(), 3000);
+        this.synth.onvoiceschanged = () => this._loadVoices();
 
         // Create UI elements
         this._createChatUI();
@@ -150,13 +143,9 @@ CONTEXTO: Estás en el chat de la propuesta comercial. El cliente ya vio los pre
         ];
 
         const englishVoices = [
-            'Microsoft David',      // Windows
-            'Google US English',    // Android/Chrome
-            'Aaron',                // iOS Natural Male
-            'Fred',                 // iOS Male
-            'Daniel',               // iOS Male (UK/Intl)
-            'Rishi',                // iOS Male
-            'Alex',                 // macOS
+            'Microsoft David',      // Windows English male - BEST
+            'Google US English Male',
+            'Alex',                 // macOS English male
             'en-US',
             'en-GB'
         ];
@@ -166,40 +155,19 @@ CONTEXTO: Estás en el chat de la propuesta comercial. El cliente ya vio los pre
         // Try to find a preferred voice
         for (const preferred of preferredVoices) {
             const found = voices.find(v =>
-                (v.name.includes(preferred) || v.lang.includes(preferred))
+                v.name.includes(preferred) || v.lang.includes(preferred)
             );
             if (found) {
                 this.selectedVoice = found;
-                console.log('🎤 JOSE voice selected:', found.name);
+                console.log('🎤 JOSE voice:', found.name, found.lang);
                 break;
             }
         }
 
-        // Fallback - Try to find ANY male voice before defaulting
+        // Fallback
         if (!this.selectedVoice) {
             const langCode = isSpanish ? 'es' : 'en';
-            const maleKeywords = ['Male', 'David', 'Raul', 'Pablo', 'Mark', 'Stefan', 'George'];
-            const femaleKeywords = ['Female', 'Zira', 'Sabina', 'Helena', 'Hazel', 'Susan'];
-
-            // 1. Try any voice with male keywords
-            this.selectedVoice = voices.find(v =>
-                v.lang.startsWith(langCode) &&
-                maleKeywords.some(k => v.name.includes(k))
-            );
-
-            // 2. If still none, try any voice that DOESN'T have female keywords
-            if (!this.selectedVoice) {
-                this.selectedVoice = voices.find(v =>
-                    v.lang.startsWith(langCode) &&
-                    !femaleKeywords.some(k => v.name.includes(k))
-                );
-            }
-
-            // 3. Absolute fallback
-            if (!this.selectedVoice) {
-                this.selectedVoice = voices.find(v => v.lang.startsWith(langCode)) || voices[0];
-            }
-
+            this.selectedVoice = voices.find(v => v.lang.startsWith(langCode)) || voices[0];
             console.log('🎤 JOSE fallback voice:', this.selectedVoice?.name);
         }
     }
@@ -570,7 +538,11 @@ CONTEXTO: Estás en el chat de la propuesta comercial. El cliente ya vio los pre
                         role: 'user',
                         parts: [{ text: this.systemPrompt }]
                     },
-                    ...this.messages.slice(-10)
+                    ...this.messages.slice(-10),
+                    {
+                        role: 'user',
+                        parts: [{ text: userMessage }]
+                    }
                 ],
                 generationConfig: {
                     temperature: 0.7,
@@ -692,11 +664,8 @@ CONTEXTO: Estás en el chat de la propuesta comercial. El cliente ya vio los pre
 
         // Adjust rate based on language - Spanish needs slower for clarity
         const isSpanish = this.language === 'es';
-        utterance.rate = isSpanish ? 0.9 : 1.0;
-        utterance.pitch = 1.0;
-
-        // CRITICAL: Force language locale to prevent "spelling out"
-        utterance.lang = isSpanish ? 'es-MX' : 'en-US';
+        utterance.rate = isSpanish ? 0.85 : 0.95; // Slower for clarity
+        utterance.pitch = 1.0; // Natural pitch
         utterance.volume = 1.0;
 
         // Set language explicitly
