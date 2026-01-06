@@ -17,7 +17,7 @@ class ElisaAssistant {
         this.painPoints = config.painPoints || [];
 
         // Secure API configuration (proxied)
-        this.apiEndpoint = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
+        this.apiEndpoint = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
         this.isOpen = false;
         this.messages = [];
         this.synth = window.speechSynthesis;
@@ -323,8 +323,8 @@ Responde como si estuvieras tomando un café en el salón con la dueña.`;
             const body = {
                 contents: [
                     { role: 'user', parts: [{ text: this.systemPrompt }] },
-                    ...this.messages.slice(-10), // Context window
-                    { role: 'user', parts: [{ text: userMessage }] }
+                    ...this.messages.slice(-10)
+                    // userMessage is ALREADY in this.messages via _addMessage
                 ],
                 generationConfig: { maxOutputTokens: 300, temperature: 0.7 }
             };

@@ -17,7 +17,7 @@ class JoseAssistant {
         this.painPoints = config.painPoints || [];
 
         // Secure API configuration (proxied)
-        this.apiEndpoint = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
+        this.apiEndpoint = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
         this.isOpen = false;
         this.messages = [];
         this.synth = window.speechSynthesis;
@@ -559,11 +559,7 @@ CONTEXTO: Estás en el chat de la propuesta comercial. El cliente ya vio los pre
                         role: 'user',
                         parts: [{ text: this.systemPrompt }]
                     },
-                    ...this.messages.slice(-10),
-                    {
-                        role: 'user',
-                        parts: [{ text: userMessage }]
-                    }
+                    ...this.messages.slice(-10)
                 ],
                 generationConfig: {
                     temperature: 0.7,
