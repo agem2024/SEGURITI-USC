@@ -37,7 +37,9 @@ class JoseAssistant {
 
         setTimeout(() => {
             const targetName = this.ownerName || 'Partner';
+            // Formatted savings for display
             const savings = "15,000";
+
             const welcome = this.language === 'es'
                 ? `¡Hola ${targetName}! Soy JOSE de ORION. Viendo los números de ${this.clientName}, veo que podemos recuperar unos $${savings} al mes. ¿Te explico cómo?`
                 : `Hello ${targetName}! I'm JOSE from ORION. Looking at ${this.clientName}'s numbers, I see we can recover about $${savings} a month. Want me to explain how?`;
@@ -47,9 +49,27 @@ class JoseAssistant {
     }
 
     _getSystemPrompt() {
-        const langInstruction = this.language === 'es'
-            ? "Responde en Español Latino muy natural. Habla como una persona, usa frases cortas."
-            : "Respond in natural US English. Speak like a human, use short sentences.";
+        const isEsp = this.language === 'es';
+
+        const autoExpertise = isEsp
+            ? `
+EXPERIENCIA EN TALLERES (USA ESTO):
+- Entiendes la diferencia entre "Flat Rate" y "Hourly".
+- Sabes que un "Comeback" destruye la rentabilidad.
+- Conoces el dolor de tener un "A-Tech" haciendo cambios de aceite.
+- Sabes que el "Parts Matrix" es donde se hace el dinero real.
+- Términos: "RO" (Repair Order), "Service Writer" (Asesor), "Lift Uptime" (Uso de elevador).`
+            : `
+AUTO SHOP EXPERTISE (USE THIS):
+- You understand "Flat Rate" vs "Hourly".
+- You know a "Comeback" kills profitability.
+- You know the pain of having an "A-Tech" doing oil changes.
+- You know the "Parts Matrix" is where real money is made.
+- Terms: "RO" (Repair Order), "Service Writer", "Lift Uptime".`;
+
+        const instructions = isEsp
+            ? "Responde en Español Latino natural. CERO ROBÓTICO. Usa frases cortas y directas."
+            : "Respond in natural US English. NOT ROBOTIC. Use short, direct sentences.";
 
         return `
 ROLE: You are JOSE, a veteran Auto Repair Consultant for ORION Tech.
@@ -59,16 +79,18 @@ FORMAT: **PARAGRAPHS ONLY**. NO BULLET POINTS. NO LISTS. NO MARKDOWN.
 
 CLIENT: ${this.clientName}.
 
+${autoExpertise}
+
 MISSION: Sell ORION efficiency.
-- InvAI (Inventory Cameras)
-- Dispatch AI (Tech efficiency)
-- 24/7 Calls.
+- InvAI (Inventory Cameras for parts room)
+- Dispatch AI (Assigning right tech to right job)
+- 24/7 Calls (Capture every tow-in)
 
 INSTRUCTIONS:
-- ${langInstruction}
+- ${instructions}
 - BE SHORT (max 2 sentences).
 - If spelling out an acronym, write it normally (ORION, AI, ROI), I will handle the audio.
-- DO NOT use generic AI intro phrases like "I can certainly help". Just answer.
+- DO NOT use generic AI intro phrases.
 - END with a question.
 `;
     }
@@ -77,39 +99,51 @@ INSTRUCTIONS:
         const voices = this.synth.getVoices();
         if (!voices.length) return;
         const isSpanish = this.language === 'es';
+
+        // MARIO-style Preferred Voices (High Quality)
         const preferred = isSpanish
-            ? ['Microsoft Raul', 'Google español', 'Monica', 'Paulina', 'es-MX']
-            : ['Microsoft David', 'Google US English', 'Samantha', 'Daniel', 'en-US'];
+            ? ['Microsoft Raul', 'Google español', 'Paulina', 'Jorge', 'es-MX', 'es-ES']
+            : ['Microsoft David', 'Google US English', 'Alex', 'Daniel', 'en-US', 'en-GB'];
 
         for (const p of preferred) {
-            const found = voices.find(v => v.name.includes(p));
-            if (found) { this.selectedVoice = found; break; }
+            const found = voices.find(v => v.name.includes(p) || v.lang.includes(p));
+            if (found) {
+                this.selectedVoice = found;
+                console.log('🎤 JOSE Voice:', found.name);
+                break;
+            }
         }
-        if (!this.selectedVoice) this.selectedVoice = voices.find(v => v.lang.startsWith(isSpanish ? 'es' : 'en'));
+
+        if (!this.selectedVoice) {
+            this.selectedVoice = voices.find(v => v.lang.startsWith(isSpanish ? 'es' : 'en'));
+        }
     }
 
     _speak(text) {
         if (!text || !this.voiceEnabled) return;
         this.synth.cancel();
 
-        // --- TEXT CLEANER FOR NATURAL TTS ---
-        // 1. Remove Markdown (*, #, _, ~)
-        // 2. Remove emojis (TTS often chokes on them)
-        // 3. Fix acronyms if needed (replace 'AI' with 'A.I.' only if critical, but modern TTS is ok usually)
-        // 4. Collapse spaces
+        // --- MARIO-STYLE AUDIO LOGIC (Simple Clean + Rate Control) ---
 
+        // Basic Clean only (Markdown/Emojis)
         let cleanText = text
-            .replace(/[\*#_~`]/g, '')       // Markdown chars
-            .replace(/-/g, ', ')            // Lists become pauses
-            .replace(/<[^>]*>/g, '')        // HTML tags
-            .replace(/[\u{1F600}-\u{1F6FF}]/gu, '') // Emojis
-            .replace(/\s+/g, ' ')           // Collapse whitespace
+            .replace(/[\*#_~`]/g, '')       // Remove Markdown chars
+            .replace(/<[^>]*>/g, '')        // Remove HTML tags
+            .replace(/[\u{1F600}-\u{1F6FF}]/gu, '') // Remove Emojis
             .trim();
+
+        // Specific fix for "24/7" which browsers struggle with
+        const isSpanish = this.language === 'es';
+        cleanText = cleanText.replace(/24\/7/g, isSpanish ? "veinticuatro siete" : "twenty four seven");
 
         const utterance = new SpeechSynthesisUtterance(cleanText);
         if (this.selectedVoice) utterance.voice = this.selectedVoice;
-        utterance.rate = 1.05;
-        utterance.pitch = 0.95;
+
+        // KEY FIX FROM MARIO: SLOWER RATE + EXPLICIT LANG
+        utterance.rate = isSpanish ? 0.85 : 0.95; // Slower = Better Parsing
+        utterance.pitch = 1.0;
+        utterance.lang = isSpanish ? 'es-US' : 'en-US';
+
         this.synth.speak(utterance);
     }
 
