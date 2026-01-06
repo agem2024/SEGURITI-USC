@@ -767,6 +767,27 @@ Total estimated: Approximately $${estimatedSavings.toLocaleString()} in positive
             console.log('✅ JOSE configured successfully');
         }
     }
+    // Public method to switch language dynamically
+    setLanguage(lang) {
+        if (this.language === lang) return;
+
+        console.log('🔄 JOSE switching language to:', lang);
+        this.language = lang;
+
+        // Rebuild system prompt with new language
+        this.systemPrompt = this._buildSystemPrompt();
+
+        // Reload voices to ensure correct accent
+        this._loadVoices();
+
+        // If chat is open, announce the change (optional)
+        if (this.isOpen) {
+            const switchMsg = lang === 'es'
+                ? "Entendido. Cambiando a Español. ¿En qué más puedo ayudarte?"
+                : "Got it. Switching to English. How else can I help you?";
+            this._addMessage('jose', switchMsg);
+        }
+    }
 }
 
 // Export for use
