@@ -15,6 +15,7 @@ class JoseAssistant {
         this.competitorAdvantages = config.competitorAdvantages || [];
         this.pricingTiers = config.pricingTiers || [];
         this.painPoints = config.painPoints || [];
+        this.customSavings = config.customSavings || null;
 
         // Secure API configuration (proxied)
         this.apiEndpoint = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
@@ -68,19 +69,32 @@ IDIOMA DE RESPUESTA: ${lang}
         }
         this._createChatUI();
 
+        // Safe delay for Voice Init & Autoplay
         setTimeout(() => {
             const targetName = this.ownerName || this.managerName || '';
-            const topPrice = this.pricingTiers?.[this.pricingTiers.length - 1]?.monthly || 4500;
-            const estimatedSavings = Math.round(topPrice * 5 / 1000) * 1000;
-            const savingsFormatted = (estimatedSavings / 1000).toFixed(0);
+            let savingsMsgEs = "";
+            let savingsMsgEn = "";
+
+            if (this.customSavings) {
+                savingsMsgEs = `ahorrar más de ${this.customSavings} dólares al mes`;
+                savingsMsgEn = `save over $${this.customSavings} per month`;
+            } else {
+                const topPrice = this.pricingTiers?.[this.pricingTiers.length - 1]?.monthly || 4500;
+                const estimatedSavings = Math.round(topPrice * 5 / 1000) * 1000;
+                savingsMsgEs = `ahorrar más de ${(estimatedSavings / 1000).toFixed(0)} mil dólares al mes`;
+                savingsMsgEn = `save over $${(estimatedSavings / 1000).toFixed(0)}k per month`;
+            }
 
             const welcome = this.language === 'es'
-                ? `${targetName ? 'Hola ' + targetName + '. ' : 'Hola. '}Soy JOSE de ORION Tech. Tengo una propuesta para potenciar ${this.clientName} y ahorrar mas de ${savingsFormatted} mil dolares al mes. Me permites mostrarte como?`
-                : `${targetName ? 'Hello ' + targetName + '. ' : 'Hello. '}I'm JOSE from ORION Tech. I have a proposal to boost ${this.clientName} and save over $${estimatedSavings.toLocaleString()} per month. May I show you how?`;
+                ? `${targetName ? 'Hola ' + targetName + '. ' : 'Hola. '}Soy JOSE de ORION Tech. Tengo una propuesta para ${savingsMsgEs} en ${this.clientName}. ¿Te explico cómo?`
+                : `${targetName ? 'Hello ' + targetName + '. ' : 'Hello. '}I'm JOSE from ORION Tech. I have a proposal to ${savingsMsgEn} for ${this.clientName}. Shall I explain?`;
 
-            // AUTO SPEAK ON LOAD (Like Elisa)
+            // ONE-TIME CLICK RESUME (Fix "Ya no hablan")
+            const resumeAudio = () => { if (this.synth.paused) this.synth.resume(); };
+            document.body.addEventListener('click', resumeAudio, { once: true, capture: true });
+
             this._addMessage('jose', welcome);
-        }, 1000); // 1s delay to safely load voices
+        }, 2000);
     }
 
     _loadVoices() {
