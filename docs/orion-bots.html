@@ -2358,6 +2358,7 @@
 
             document.documentElement.lang = lang;
             localStorage.setItem('orion_lang', lang);
+            window.currentLang = lang; // Ensure global consistency
             console.log('Language set to:', lang);
         }
 
@@ -2369,6 +2370,9 @@
             // Auto-set language based on country if no preference saved
             const spanishCountries = ['colombia', 'mexico', 'peru', 'ecuador'];
             const defaultLang = savedLang || (spanishCountries.includes(savedCountry) ? 'es' : 'en');
+
+            // Set global currentLang immediately
+            window.currentLang = defaultLang;
 
             setLang(defaultLang);
             setCountry(savedCountry);
@@ -2385,7 +2389,7 @@
             const messagesDiv = document.getElementById('xonaMessages');
             if (messagesDiv) {
                 const greeting = lang === 'es'
-                    ? '¡Hola! Soy CHONA, tu asistente de ORION Tech. ¿Cómo puedo ayudarte a automatizar tu negocio hoy?'
+                    ? '¡Hola! Soy XONA, tu asistente de ORION Tech. ¿Cómo puedo ayudarte a automatizar tu negocio hoy?'
                     : "Hello! I'm XONA, your ORION Tech AI assistant. How can I help automate your business today?";
                 messagesDiv.innerHTML = `<div class="xona-msg bot">${greeting}</div>`;
             }
