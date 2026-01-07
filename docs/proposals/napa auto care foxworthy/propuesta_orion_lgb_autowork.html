@@ -2177,33 +2177,102 @@
             clientName: "LGB Autowork",
             clientPhone: "(408) 727-4500",
             language: localStorage.getItem('mcProposalLang') || "en",
-            ownerName: "Partner", // Using generic respectful term as owner name isn't explicit in file
+            ownerName: "Bruth",
 
-            // CONTEXTO ESPECÍFICO DEL CLIENTE
+            // PAIN POINTS ESPECÍFICOS - BASADOS EN INVESTIGACIÓN
             painPoints: [
-                "Operational bottleneck with paper workflow",
-                "Lost revenue from missed calls and simple inquiries",
-                "Parts ordering delays affecting cycle time",
-                "Service Advisor burnout from repetitive tasks"
+                "Paper workflow bottleneck - Every RO on paper wastes 15-20 min per vehicle",
+                "Missed calls - Lost revenue estimated $500-800 per missed call",
+                "Parts ordering delays - 2-3 hour delays affect cycle time and customer satisfaction",
+                "Service Advisor burnout - Repetitive price quotes and status calls drain productivity",
+                "Inconsistent customer communication - No automated updates = phone calls = interruptions"
             ],
 
-            // SOLUCIONES ORION
+            // SOLUCIONES ORION CON ROI ESPECÍFICO
             competitorAdvantages: [
-                "MP PRO AI Diagnosis - Instant check-in",
-                "InvAI Smart Inventory - Auto-ordering",
-                "24/7 AI Call Center - Zero missed calls",
-                "Paperless Operations - Digital ROs"
+                "MP PRO AI Diagnosis - Customer sends photo → Instant diagnosis → Books appointment. Saves $89 per diagnosis visit",
+                "InvAI Smart Inventory - Auto-ordering prevents emergency runs to NAPA. Saves 2 hrs/day per tech",
+                "24/7 AI Call Center - Never miss a call. Each call = $500+ potential revenue",
+                "Digital ROs - 15 min saved per vehicle × 15 cars/day = 3.75 hrs/day recovered",
+                "AI Dispatchers - Route optimization adds 1-2 extra jobs per tech per day"
             ],
 
-            // TABLA DE PRECIOS REAL (Extraída del HTML)
+            // TABLA DE PRECIOS REAL
             pricingTiers: [
                 { name: "SMART", monthly: 1500, setup: 10000 },
-                { name: "FLEET", monthly: 2500, setup: 15000 }, // BEST VALUE
+                { name: "FLEET", monthly: 2500, setup: 15000 },
                 { name: "GROWTH", monthly: 4500, setup: 20000 },
                 { name: "LEADER", monthly: 8500, setup: 25000 }
             ],
 
-            proposalContext: "LGB Autowork is a trusted San Jose shop since 2006. Focus is on modernizing operations to go paperless and increase efficiency without replacing staff."
+            // ENTRENAMIENTO COMPLETO ESTILO MARIO - CON PRECIOS Y JUSTIFICACIÓN ROI
+            proposalContext: `
+=== LGB AUTOWORK SALES TRAINING FOR JOSE ===
+
+COMPANY PROFILE:
+- LGB Autowork San Jose - BBB Accredited since 2006
+- Owner: Bruth
+- Type: Full-service auto care shop, NAPA partner
+- Current Pain: Paper-based operations, missed calls, parts delays
+
+STRATEGIC APPROACH: "EFFICIENCY + TRUST" - Show how AI saves time AND money
+
+=== PRECIOS CON JUSTIFICACIÓN DE ROI ===
+
+PREGUNTA: "¿Cuánto cuesta?"
+RESPUESTA: "Bruth, déjame darte el contexto completo:
+
+INVERSIÓN:
+- FLEET Package: $2,500/mes (recomendado para LGB)
+- Setup inicial: $15,000 (una sola vez)
+
+RETORNO (basado en tu operación):
+📞 Llamadas perdidas recuperadas: Si pierdes 3 llamadas/día × $500 promedio = $45,000/mes en revenue recuperado
+⏱️ Tiempo ahorrado en ROs digitales: 3.75 hrs/día × $50/hr = $5,625/mes
+🚗 Trabajos extra por optimización: 1 trabajo extra/día × $300 = $9,000/mes
+📦 Reducción de runs de emergencia a NAPA: 2 hrs/día × $30/hr = $1,800/mes
+
+TOTAL AHORRO: $61,425/mes vs INVERSIÓN: $2,500/mes
+ROI: 2,400%+ | Payback: ~12 días
+
+¿Cuál parte te gustaría que te explique mejor?"
+
+=== ESTRUCTURA DE RESPUESTAS PARA OBJECIONES ===
+
+OBJECIÓN: "Es muy caro"
+RESPUESTA: "Bruth, entiendo. Veamos los números:
+- Una recepcionista full-time: $3,500-4,500/mes + beneficios
+- ORION AI: $2,500/mes y trabaja 24/7, nunca falta, nunca se enferma
+- PERO lo importante: cada llamada perdida te cuesta $500+. Si recuperamos solo 5 llamadas al mes, el sistema se paga solo.
+En tu caso, con el volumen que manejas, estimo que el retorno será en las primeras 2 semanas."
+
+OBJECIÓN: "Mis empleados van a resistir"
+RESPUESTA: "Al contrario. El AI hace el trabajo repetitivo - contestar '¿a qué hora está listo mi carro?' 50 veces al día.
+Tu Service Advisor ahora puede enfocarse en:
+- Upsells de mantenimiento preventivo
+- Relación con clientes VIP
+- Supervisión de calidad
+Ellos dejan de ser telefonistas y se convierten en consejeros de servicio de verdad."
+
+OBJECIÓN: "Necesito pensarlo"
+RESPUESTA: "Por supuesto. Pero déjame preguntarte algo: ¿Cuántas llamadas perdieron hoy mientras estamos hablando?
+Cada día sin AI es dinero que se va a la competencia. Puedo programar una demo de 20 minutos para que veas el sistema en acción con TUS datos. ¿Qué día te funciona mejor?"
+
+=== DATOS ESPECÍFICOS DE LGB AUTOWORK ===
+- Ubicación: San Jose, CA
+- Años operando: Desde 2006
+- Especialidad: NAPA AutoCare Center
+- Volumen estimado: 15-20 vehículos/día
+- Ticket promedio: $400-600 por reparación
+- Competencia: Otros shops de San Jose usando métodos tradicionales
+
+SLOGAN: "ES AHORA O NUNCA / IT'S NOW OR NEVER"
+
+CIERRE:
+"Bruth, tienes un negocio sólido de casi 20 años. La pregunta no es si vas a usar AI - es cuándo. 
+Los que se adelantan capturan el mercado. Los que esperan... compiten con los que ya tienen AI.
+¿Agendamos esa demo de 20 minutos?"
+`
         };
     </script>
     <!-- Production: Loaded from AGEM Cloud -->

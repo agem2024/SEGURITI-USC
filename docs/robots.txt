@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://agem2024.github.io/SEGURITI-USC/sitemap.xml
