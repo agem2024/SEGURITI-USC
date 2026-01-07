@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="es">
 
 <head>
     <meta charset="UTF-8">
@@ -10,21 +10,19 @@
         rel="stylesheet">
     <style>
         :root {
-            /* OBANDO PALETTE: Verde, Blanco, Rojo (Acentos) */
             --bg-dark: #050805;
-            /* Verde muy oscuro casi negro */
             --bg-card: #0a120a;
-            /* Verde bosque muy oscuro */
-            --accent-green: #2E8B57;
-            /* SeaGreen - Institucional */
-            --accent-teal: #00A86B;
-            /* Jade - Innovación */
-            --accent-gold: #FFD700;
-            /* Amarillo Bandera */
-            --accent-red: #DC143C;
+            --accent-blue: #2E8B57;
+            /* Verde Institucional Obando */
+            --accent-teal: #d32f2f;
             /* Rojo Bandera */
+            --accent-gold: #ffd700;
+            /* Amarillo Bandera */
+            --accent-purple: #2E8B57;
+            --accent-red: #d32f2f;
+            --accent-orange: #ffd700;
             --text-white: #ffffff;
-            --text-gray: #b0c4b1;
+            --text-gray: #888;
         }
 
         * {
@@ -45,9 +43,7 @@
         h2,
         h3,
         .btn,
-        .stat-number,
-        .pricing-name,
-        .pricing-price {
+        .stat-number {
             font-family: 'Orbitron', sans-serif;
         }
 
@@ -60,59 +56,73 @@
             align-items: center;
             text-align: center;
             padding: 60px 20px;
-            /* REAL IMAGE BACKGROUND */
-            background: linear-gradient(rgba(5, 8, 5, 0.7), rgba(5, 8, 5, 0.9)),
-                url('assets/obando_real.png') center/cover no-repeat;
+            background: linear-gradient(rgba(5, 8, 5, 0.85), rgba(5, 8, 5, 0.9)), url('assets/obando_real.png') center/cover no-repeat fixed;
             position: relative;
-            background-attachment: fixed;
-            /* Parallax effect */
         }
 
+        .badge {
+            background: rgba(46, 139, 87, 0.2);
+            border: 1px solid var(--accent-blue);
+            padding: 8px 25px;
+            font-size: 0.8rem;
+            color: var(--accent-gold);
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+        }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 20px;
-            background: linear-gradient(135deg, var(--text-white), var(--accent-green));
+            background: linear-gradient(135deg, white, var(--accent-gold));
             -webkit-background-clip: text;
-            background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(46, 139, 87, 0.5);
         }
 
         .hero h1 span {
             display: block;
-            font-size: 1.4rem;
-            color: var(--accent-gold);
-            -webkit-text-fill-color: var(--accent-gold);
+            font-size: 1.5rem;
+            color: var(--accent-blue);
+            -webkit-text-fill-color: var(--accent-blue);
             margin-top: 10px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 5px;
         }
 
         .hero p {
             max-width: 800px;
-            color: var(--text-gray);
-            font-size: 1.15rem;
+            color: #ccc;
+            font-size: 1.2rem;
             margin-bottom: 40px;
         }
 
-        .badge {
-            background: rgba(46, 139, 87, 0.15);
-            border: 1px solid var(--accent-green);
-            padding: 8px 25px;
-            font-size: 0.8rem;
-            color: var(--accent-green);
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-            font-family: 'Orbitron', sans-serif;
-            border-radius: 20px;
+        /* SECTIONS */
+        .section {
+            padding: 80px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
-        /* CAPACITY BANNER */
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--accent-blue);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .section-title p {
+            color: var(--text-gray);
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        /* CAPACITY GRID */
         .capacity-banner {
-            background: linear-gradient(135deg, rgba(46, 139, 87, 0.1), rgba(0, 0, 0, 0.1));
-            border-top: 1px solid rgba(46, 139, 87, 0.3);
-            border-bottom: 1px solid rgba(46, 139, 87, 0.3);
-            padding: 60px 20px;
+            background: rgba(10, 20, 10, 0.8);
+            border-top: 1px solid var(--accent-blue);
+            border-bottom: 1px solid var(--accent-blue);
+            padding: 60px 0;
         }
 
         .capacity-grid {
@@ -121,52 +131,81 @@
             gap: 30px;
             max-width: 1400px;
             margin: 0 auto;
-        }
-
-        .capacity-item {
             text-align: center;
-            padding: 30px;
-            background: rgba(10, 18, 10, 0.6);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .capacity-item .number {
-            font-size: 3.5rem;
-            font-family: 'Orbitron';
+        .stat-number {
+            font-size: 3rem;
             color: var(--accent-gold);
             display: block;
         }
 
-        /* FEATURES */
-        .section {
-            padding: 80px 5%;
-            max-width: 1400px;
+        .stat-label {
+            color: #888;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* COMPARISON */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 80px 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .comparison-box {
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid #333;
+        }
+
+        .comparison-box.old {
+            border-color: var(--accent-red);
+        }
+
+        .comparison-box.new {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 30px rgba(46, 139, 87, 0.2);
+        }
+
+        .vs-badge {
+            background: var(--accent-gold);
+            color: black;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: bold;
             margin: 0 auto;
         }
 
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
+        ul {
+            list-style: none;
+            text-align: left;
+            margin-top: 20px;
         }
 
-        .feature-card {
-            background: var(--bg-card);
-            border: 1px solid #222;
-            padding: 30px;
-            border-radius: 16px;
-            position: relative;
+        .old ul li::before {
+            content: "✕ ";
+            color: var(--accent-red);
         }
 
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--accent-green);
+        .new ul li::before {
+            content: "✓ ";
+            color: var(--accent-blue);
+        }
+
+        li {
+            padding: 8px 0;
+            color: #aaa;
+            border-bottom: 1px solid #222;
         }
 
         /* PRICING */
@@ -179,42 +218,86 @@
 
         .pricing-card {
             background: var(--bg-card);
-            border: 1px solid #333;
-            border-radius: 20px;
             padding: 40px;
+            border: 1px solid #333;
             text-align: center;
+            transition: 0.3s;
             position: relative;
         }
 
+        .pricing-card:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-5px);
+        }
+
         .pricing-card.featured {
-            border: 2px solid var(--accent-gold);
-            background: rgba(255, 215, 0, 0.05);
-            transform: scale(1.05);
+            border-color: var(--accent-blue);
+            background: linear-gradient(rgba(46, 139, 87, 0.1), transparent);
+        }
+
+        .price {
+            font-size: 2.5rem;
+            color: white;
+            margin: 20px 0;
+            font-family: 'Orbitron';
+        }
+
+        /* FLOATING BUTTONS */
+        .floating-buttons {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .float-btn {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s;
+            color: white;
+            font-size: 24px;
+            text-decoration: none;
+        }
+
+        .float-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp {
+            background: #25D366;
+        }
+
+        .phone {
+            background: var(--accent-gold);
+            color: black;
         }
 
         /* FOOTER */
         footer {
-            text-align: center;
-            padding: 50px 20px;
-            color: var(--text-gray);
             border-top: 1px solid #222;
+            padding: 50px;
+            text-align: center;
+            color: #666;
             font-size: 0.9rem;
+            margin-top: 100px;
         }
 
-        .btn {
-            display: inline-block;
-            padding: 14px 30px;
-            text-decoration: none;
-            border-radius: 4px;
-            background: var(--accent-green);
-            color: white;
-            font-weight: bold;
-            transition: 0.3s;
-        }
+        @media(max-width: 900px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
 
-        .btn:hover {
-            background: var(--accent-teal);
-            transform: translateY(-2px);
+            .vs-badge {
+                margin: 20px auto;
+            }
         }
     </style>
 </head>
@@ -223,219 +306,174 @@
 
     <!-- HERO -->
     <section class="hero">
-        <div class="badge">GOBIERNO DIGITAL • 2024-2027</div>
-        <h1>ALCALDÍA DE OBANDO<br><span>"AMOR POR LO NUESTRO"</span></h1>
-        <p>Transformación Digital para un Gobierno Transparente, Eficiente y Cercano.<br>
-            La Alcaldía en el WhatsApp de cada ciudadano.</p>
-        <a href="#demo" class="btn">VER DEMOSTRACIÓN</a>
+        <div class="badge">ALCALDÍA DE OBANDO 2024-2027</div>
+        <h1>GOBIERNO DIGITAL<br><span>AMOR POR LO NUESTRO</span></h1>
+        <p>Llevando la administración del Dr. Diego Ortiz al futuro. Transparencia total, cero filas y atención
+            ciudadana 24/7 con Inteligencia Artificial.</p>
+        <a href="#demo" class="btn"
+            style="background: var(--accent-blue); padding: 15px 40px; color: white; text-decoration: none; font-weight: bold; border-radius: 5px;">VER
+            PROPUESTA</a>
     </section>
 
     <!-- CAPACITY -->
-    <div class="capacity-banner">
+    <section class="capacity-banner">
         <div class="capacity-grid">
-            <div class="capacity-item">
-                <span class="number">15k</span>
-                <div class="label">Ciudadanos Conectados</div>
+            <div>
+                <span class="stat-number">24/7</span>
+                <span class="stat-label">ATENCIÓN CIUDADANA</span>
             </div>
-            <div class="capacity-item">
-                <span class="number">24/7</span>
-                <div class="label">Atención Permanente</div>
+            <div>
+                <span class="stat-number">0</span>
+                <span class="stat-label">FILAS FÍSICAS</span>
             </div>
-            <div class="capacity-item">
-                <span class="number">100%</span>
-                <div class="label">Transparencia</div>
+            <div>
+                <span class="stat-number">100%</span>
+                <span class="stat-label">TRANSPARENCIA</span>
             </div>
-        </div>
-    </div>
-
-    <!-- PROBLEMS -->
-    <section class="section">
-        <div style="text-align: center; margin-bottom: 50px;">
-            <h2 style="color: var(--accent-white); font-family: 'Orbitron';">// DESAFÍOS ACTUALES</h2>
-            <p style="color: var(--text-gray);">Detectados en el diagnóstico estratégico</p>
-        </div>
-        <div class="feature-grid">
-            <div class="feature-card">
-                <h3 style="color: var(--accent-red); font-family: 'Orbitron'; margin-bottom: 10px;">DESCONFIANZA
-                    CIUDADANA</h3>
-                <p>El ciudadano de a pie no cree en las cifras oficiales porque no tiene acceso fácil a ellas. El SECOP
-                    es demasiado complejo.</p>
-                <div
-                    style="margin-top: 20px; padding: 15px; background: rgba(46, 139, 87, 0.1); border-radius: 8px; border: 1px solid var(--accent-green);">
-                    <strong style="color: var(--accent-green);">SOLUCIÓN ORION:</strong>
-                    <p style="font-size: 0.9rem;">Chatbot de Transparencia. "¿Cuánto costó la obra del parque?" ->
-                        Respuesta inmediata con foto y contrato.</p>
-                </div>
-            </div>
-            <div class="feature-card">
-                <h3 style="color: var(--accent-red); font-family: 'Orbitron'; margin-bottom: 10px;">BARRERAS DE ACCESO
-                </h3>
-                <p>Adultos mayores y campesinos excluidos de la oferta institucional porque no saben usar la web o no
-                    pueden ir al centro.</p>
-                <div
-                    style="margin-top: 20px; padding: 15px; background: rgba(46, 139, 87, 0.1); border-radius: 8px; border: 1px solid var(--accent-green);">
-                    <strong style="color: var(--accent-green);">SOLUCIÓN ORION:</strong>
-                    <p style="font-size: 0.9rem;">Ventanilla Única WhatsApp. Trámites de Sisbén, Citas y PQRSD en el
-                        canal que ya saben usar.</p>
-                </div>
-            </div>
-            <!-- PROBLEM 3 (UPDATED) -->
-            <div class="feature-card">
-                <h3 style="color: var(--accent-red); font-family: 'Orbitron'; margin-bottom: 10px;">INSEGURIDAD Y
-                    SILENCIO</h3>
-                <p>El ciudadano teme denunciar fallas o riesgos (lotes, luminarias) presencialmente por el contexto de
-                    seguridad histórico.</p>
-                <div
-                    style="margin-top: 20px; padding: 15px; background: rgba(46, 139, 87, 0.1); border-radius: 8px; border: 1px solid var(--accent-green);">
-                    <strong style="color: var(--accent-green);">SOLUCIÓN ORION:</strong>
-                    <p style="font-size: 0.9rem;">Reporte Anónimo Geo-referenciado. El ciudadano envía foto y ubicación
-                        por WhatsApp sin exponer su identidad. "Seguridad Pasiva".</p>
-                </div>
+            <div>
+                <span class="stat-number">∞</span>
+                <span class="stat-label">DENUNCIAS SEGURAS</span>
             </div>
         </div>
     </section>
 
-    <!-- COMPETITION BENCHMARK -->
+    <!-- PROBLEM VS SOLUTION -->
     <section class="section">
-        <div style="text-align: center; margin-bottom: 40px;">
-            <h2 style="color: var(--accent-gold); font-family: 'Orbitron';">// BENCHMARK REGIONAL</h2>
-            <p style="color: grey;">¿Cómo está Obando frente a sus vecinos?</p>
+        <div class="section-title">
+            <h2>// BUROCRACIA VS EFICIENCIA</h2>
+            <p>El ciudadano de hoy no quiere hacer filas. Quiere soluciones en su celular.</p>
         </div>
-        <div
-            style="background: rgba(10, 20, 10, 0.8); padding: 20px; border-radius: 12px; border: 1px solid #333; overflow-x: auto;">
-            <table style="width: 100%; border-collapse: collapse; min-width: 600px; text-align: left;">
-                <thead>
-                    <tr style="border-bottom: 2px solid var(--accent-green);">
-                        <th style="padding: 15px; color: var(--accent-green);">Municipio</th>
-                        <th style="padding: 15px; color: var(--accent-green);">Estado Digital</th>
-                        <th style="padding: 15px; color: var(--accent-green);">Acceso Ciudadano</th>
-                    </tr>
-                </thead>
-                <tbody style="color: #ccc;">
-                    <tr style="border-bottom: 1px solid #333;">
-                        <td style="padding: 15px;"><strong>Cartago (Valle Innovador)</strong></td>
-                        <td style="padding: 15px;">Avanzado (MinTIC)</td>
-                        <td style="padding: 15px;">Apps Web Complejas</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid #333;">
-                        <td style="padding: 15px;"><strong>La Unión / Toro</strong></td>
-                        <td style="padding: 15px;">Básico / Nulo</td>
-                        <td style="padding: 15px;">Presencial / Papel</td>
-                    </tr>
-                    <tr style="background: rgba(46, 139, 87, 0.1);">
-                        <td style="padding: 15px; color: var(--accent-gold);"><strong>OBANDO (Modelo ORION)</strong>
-                        </td>
-                        <td style="padding: 15px; color: var(--accent-green);"><strong>LÍDER EN IA</strong></td>
-                        <td style="padding: 15px; color: var(--accent-green);"><strong>WhatsApp (100%
-                                Cobertura)</strong></td>
-                    </tr>
-                </tbody>
+        <div class="comparison-grid">
+            <div class="comparison-box old">
+                <h3 style="color: var(--accent-red)">MODELO TRADICIONAL</h3>
+                <div class="price" style="color: var(--accent-red); font-size: 1.5rem;">"VUELVA MAÑANA"</div>
+                <ul>
+                    <li>Filas desde las 5:00 AM para citas</li>
+                    <li>Pérdida de documentos físicos</li>
+                    <li>Ciudadano no sabe estado de su trámite</li>
+                    <li>Percepción de "abandono" estatal</li>
+                    <li>Denuncias ignoradas por miedo</li>
+                </ul>
+            </div>
+            <div class="vs-badge">VS</div>
+            <div class="comparison-box new">
+                <h3 style="color: var(--accent-blue)">ORION TECH (CHELA AI)</h3>
+                <div class="price" style="color: var(--accent-blue); font-size: 1.5rem;">RESPUESTA YA</div>
+                <ul>
+                    <li>Atención inmediata por WhatsApp Oficial</li>
+                    <li>Cero papel - Todo digitalizado</li>
+                    <li>Trazabilidad total del trámite</li>
+                    <li>Canal de Denuncia Anónima Encriptada</li>
+                    <li>Imagen política moderna y eficiente</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPETITION / BENCHMARK -->
+    <section class="section">
+        <div class="section-title">
+            <h2>// LIDERAZGO REGIONAL</h2>
+            <p>Obando como referente tecnológico frente a sus vecinos.</p>
+        </div>
+        <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                <tr style="border-bottom: 2px solid #333;">
+                    <th style="padding: 15px; color: var(--accent-gold);">MUNICIPIO</th>
+                    <th style="padding: 15px; color: var(--accent-gold);">MODELO ACTUAL</th>
+                    <th style="padding: 15px; color: var(--accent-gold);">TIEMPO RESPUESTA</th>
+                </tr>
+                <tr style="border-bottom: 1px solid #222;">
+                    <td style="padding: 15px;">Cartago</td>
+                    <td style="padding: 15px;">Presencial / Web Básica</td>
+                    <td style="padding: 15px;">24-72 Horas</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #222;">
+                    <td style="padding: 15px;">La Unión</td>
+                    <td style="padding: 15px;">Presencial</td>
+                    <td style="padding: 15px;">Días hábiles</td>
+                </tr>
+                <tr style="background: rgba(46, 139, 87, 0.1); border: 1px solid var(--accent-blue);">
+                    <td style="padding: 15px; font-weight: bold; color: var(--accent-blue);">OBANDO (ORION)</td>
+                    <td style="padding: 15px; font-weight: bold; color: white;">IA WHATSAPP 24/7</td>
+                    <td style="padding: 15px; font-weight: bold; color: var(--accent-gold);">INMEDIATO</td>
+                </tr>
             </table>
         </div>
     </section>
 
-    <!-- STRATEGIC PARTNERS (GOV) -->
-    <section class="section" style="text-align: center; opacity: 0.7;">
-        <h3 style="color: #666; margin-bottom: 20px; font-size: 0.9rem; letter-spacing: 2px;">ALIADOS ESTRATÉGICOS</h3>
-        <div style="display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; filter: grayscale(100%);">
-            <div style="font-weight: bold; font-size: 1.2rem; color: #888;">GOV.CO</div>
-            <div style="font-weight: bold; font-size: 1.2rem; color: #888;">MINTIC</div>
-            <div style="font-weight: bold; font-size: 1.2rem; color: #888;">COLOMBIA COMPRA EFICIENTE</div>
-            <div style="font-weight: bold; font-size: 1.2rem; color: #888;">FEDEMUNICIPIOS</div>
+    <!-- PRICING / MINIMA CUANTIA -->
+    <section class="section" id="demo">
+        <div class="section-title">
+            <h2>// INVERSIÓN PÚBLICA TRANSPARENTE</h2>
+            <p>Diseñado para contratación directa o mínima cuantía.</p>
         </div>
-    </section>
-
-    <!-- VIDEO GALLERY (REAL EVIDENCE) -->
-    <section class="section" style="text-align: center;">
-        <h2 style="color: var(--accent-gold); font-family: 'Orbitron'; margin-bottom: 20px;">// REGISTRO FÍLMICO</h2>
-        <p style="color: #999; margin-bottom: 30px;">Evidencia del compromiso "Amor por lo Nuestro"</p>
-
-        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-            <!-- Placeholder for Possession Video -->
-            <div style="max-width: 560px; width: 100%;">
-                <div
-                    style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; border: 1px solid var(--accent-green);">
-                    <!-- Using a Search Link as backup since specific Embed ID can vary -->
-                    <iframe width="100%" height="100%"
-                        src="https://www.youtube.com/embed/videoseries?list=PL_playlist_id_here"
-                        title="Alcaldía Obando Video" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen style="position: absolute; top:0; left: 0; background: black;"></iframe>
-                    <div
-                        style="position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; flex-direction: column;">
-                        <h3 style="color: white; margin-bottom: 10px;">ACTO DE POSESIÓN 2024</h3>
-                        <a href="https://www.youtube.com/results?search_query=Acto+de+posesi%C3%B3n+Alcalde+electo+Diego+Armando+Ortiz+Buitrago"
-                            target="_blank" class="btn" style="background: red; color: white;">▶ VER EN YOUTUBE</a>
-                    </div>
-                </div>
-                <p style="color: #666; font-size: 0.8rem; margin-top: 10px;">Fuente: Archivo Oficial Alcaldía</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- PRICING -->
-    <section class="section" id="pricing">
-        <div style="text-align: center; margin-bottom: 50px;">
-            <h2 style="color: var(--accent-gold); font-family: 'Orbitron';">// PROPUESTA DE INVERSIÓN</h2>
-            <p>Modalidad: Mínima Cuantía (Ley 1150 de 2007)</p>
-        </div>
-        <div class="pricing-grid" style="justify-content: center; display: flex;">
-            <div class="pricing-card featured" style="max-width: 500px; width: 100%;">
-                <div
-                    style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--accent-gold); color: black; padding: 5px 20px; font-weight: bold; border-radius: 20px;">
-                    RECOMENDADO</div>
-                <h3 class="pricing-name" style="font-size: 1.5rem; color: var(--accent-green);">KIT OBANDO TRANSPARENTE
-                </h3>
-                <div class="pricing-price" style="font-size: 3.5rem; color: white;">$35'000.000 <span
-                        style="font-size: 1rem; color: gray;">COP</span></div>
-                <p style="color: gray; margin-bottom: 30px;">Implementación Total + 6 Meses de Soporte<br><span
-                        style="font-size: 0.8rem; color: #777;">(Incluye IVA y Estampillas Pro-Cultura/Adulto
-                        Mayor)</span></p>
-
-                <ul style="text-align: left; list-style: none; color: #ccc; margin-bottom: 30px;">
-                    <li style="padding: 10px 0; border-bottom: 1px solid #333;">✅ <strong>ORION Bot WhatsApp</strong>
-                        (Ventanilla Única)</li>
-                    <li style="padding: 10px 0; border-bottom: 1px solid #333;">✅ <strong>Módulo Transparencia</strong>
-                        (Consulta SECOP Simplificada)</li>
-                    <li style="padding: 10px 0; border-bottom: 1px solid #333;">✅ <strong>Personalización
-                            "Obando"</strong> (Identidad Local)</li>
-                    <li style="padding: 10px 0; border-bottom: 1px solid #333;">✅ <strong>Capacitación
-                            Funcionarios</strong> (Gestión del Cambio)</li>
-                    <li style="padding: 10px 0; border-bottom: 1px solid #333;">✅ <strong>Infraestructura Cloud
-                            Segura</strong></li>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>PLAN PILOTO</h3>
+                <div class="price">$15'000.000 <span style="font-size: 1rem; color: #888;">COP</span></div>
+                <p style="color: #aaa; font-size: 0.9rem;">Ideal para Secretaría Específica (Ej: Salud o Hacienda)</p>
+                <ul>
+                    <li>1 Agente IA (Chela)</li>
+                    <li>Gestión de Citas</li>
+                    <li>Respuestas Frecuentes</li>
+                    <li>Reporte Mensual</li>
                 </ul>
-
-                <a href="https://wa.me/573000000000?text=Alcalde,%20me%20interesa%20el%20Kit%20Obando" class="btn"
-                    style="width: 100%;">VALIDAR JURÍDICAMENTE</a>
             </div>
+            <div class="pricing-card featured">
+                <div
+                    style="position: absolute; top: 0; left: 0; width: 100%; background: var(--accent-blue); padding: 5px; font-size: 0.8rem; font-weight: bold;">
+                    RECOMENDADO ALCALDÍA</div>
+                <h3 style="margin-top: 15px;">MUNICIPIO DIGITAL</h3>
+                <div class="price">$35'000.000 <span style="font-size: 1rem; color: #888;">COP</span></div>
+                <p style="color: #aaa; font-size: 0.9rem;">Mínima Cuantía - Cobertura Total</p>
+                <ul>
+                    <li>Agente IA Centralizado (Chela Omnicanal)</li>
+                    <li>Integración Ventanilla Única</li>
+                    <li>Módulo Denuncia Segura</li>
+                    <li>Dashboard Alcalde (Tiempo Real)</li>
+                    <li>Campañas de Difusión WhatsApp</li>
+                </ul>
+                <a href="#" class="btn"
+                    style="background: var(--accent-blue); color: white; display: block; margin-top: 20px; text-decoration: none; padding: 10px;">INICIAR
+                    PROCESO</a>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 20px; font-size: 0.8rem; color: #666;">* Precios incluyen IVA y
+            proyecciones de estampillas municipales.</p>
+    </section>
+
+    <!-- PARTNERS -->
+    <section class="section" style="text-align: center; opacity: 0.6;">
+        <h3 style="margin-bottom: 30px; letter-spacing: 2px; font-size: 0.9rem;">ALIADOS TECNOLÓGICOS Y GUBERNAMENTALES
+        </h3>
+        <div style="display: flex; gap: 40px; justify-content: center; flex-wrap: wrap;">
+            <h3>GOV.CO</h3>
+            <h3>MINTIC</h3>
+            <h3>COLOMBIA COMPRA EFICIENTE</h3>
+            <h3>FEDEMUNICIPIOS</h3>
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer>
-        <p><strong>ORION Technology for Government</strong></p>
-        <p>Propuesta confidencial diseñada para la Alcaldía de Obando, Valle del Cauca.</p>
-        <p>© 2026 ORION Tech.</p>
+        <p>ORION TECH GOBIERNO • 2026</p>
+        <p>Transparencia - Eficiencia - Cercanía</p>
     </footer>
 
-    <!-- FLOATING CONTACT BUTTONS (Left Side) -->
-    <div
-        style="position: fixed; bottom: 30px; left: 30px; z-index: 999; display: flex; flex-direction: column; gap: 15px;">
-        <a href="https://wa.me/573108884014?text=Hola%20Alcaldía%20Obando" target="_blank" title="WhatsApp Oficial"
-            style="width: 55px; height: 55px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.4); transition: transform 0.3s;"
-            onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+    <!-- FLOATING CONTACT -->
+    <div class="floating-buttons">
+        <a href="https://wa.me/573108884014?text=Alcalde,%20me%20interesa%20la%20propuesta" class="float-btn whatsapp"
+            target="_blank" title="Contactar Asesor">
             <svg viewBox="0 0 24 24" width="30" height="30" fill="white">
                 <path
                     d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.997.551 2.013.88 3.096.88 3.182 0 5.768-2.587 5.768-5.767s-2.586-5.766-5.768-5.766zM13 13h-2v-2h2v2zm0-4h-2V8h2v1z" />
             </svg>
         </a>
-        <a href="tel:+573108884014" title="Llamar"
-            style="width: 55px; height: 55px; background: var(--accent-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.4); color: black; font-size: 24px; text-decoration: none; transition: transform 0.3s;"
-            onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
-            📞
-        </a>
+        <a href="tel:+573108884014" class="float-btn phone" title="Llamar">📞</a>
     </div>
 
-    <!-- OBANDO AI ASSISTANT -->
+    <!-- SCRIPT CHELA -->
     <script src="assets/js/obando-assistant.js"></script>
 </body>
 

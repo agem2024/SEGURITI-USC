@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ORION Tech | Daniel's Exclusive Enterprise</title>
+    <title>ORION Tech | Daniel's Enterprise Proposal</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap"
         rel="stylesheet">
@@ -52,11 +52,10 @@
             align-items: center;
             text-align: center;
             padding: 20px;
-            /* REAL LUXURY BG */
-            background: linear-gradient(rgba(5, 5, 5, 0.5), rgba(0, 0, 0, 0.9)),
-                url('assets/bg_luxury.png') center/cover no-repeat;
+            /* Real Luxury BG */
+            background: linear-gradient(rgba(5, 5, 5, 0.6), rgba(0, 0, 0, 1)),
+                url('assets/bg_luxury.png') center/cover no-repeat fixed;
             position: relative;
-            background-attachment: fixed;
         }
 
         .hero h1 {
@@ -239,34 +238,35 @@
 
 <body>
 
-    <!-- 1. HERO -->
+    <!-- LANGUAGE SWITCHER -->
+    <div
+        style="position: fixed; top: 20px; right: 20px; z-index: 1000; background: rgba(0,0,0,0.8); padding: 5px 10px; border-radius: 20px; border: 1px solid #333;">
+        <span style="color: #666; font-size: 0.8rem; cursor: pointer;">EN</span> <span style="color: #333;">|</span>
+        <span style="color: #666; font-size: 0.8rem; cursor: pointer;">ES</span>
+    </div>
+
+    <!-- HERO -->
     <section class="hero">
         <div style="font-size: 0.9rem; color: var(--accent-purple); letter-spacing: 5px; margin-bottom: 20px;">DANIEL'S
             ENTERPRISE</div>
         <h1>The Art of<br>Automation</h1>
         <p style="color: #aaa; font-size: 1.2rem; margin-bottom: 40px;">Where luxury service meets infinite scalability.
-        </p>
+            Exclusive Access Only.</p>
         <a href="#experience" class="cta-btn">ENTER THE VORTEX</a>
     </section>
 
     <!-- CINEMATIC VIDEO SECTION -->
     <div
-        style="position: relative; height: 400px; overflow: hidden; border-top: 1px solid #333; border-bottom: 1px solid #333;">
-        <iframe width="100%" height="150%"
-            src="https://www.youtube.com/embed/5K9j1aZ5f4w?autoplay=1&mute=1&controls=0&start=10&loop=1" frameborder="0"
-            style="position: absolute; top: -25%; left: 0; filter: grayscale(50%) brightness(0.6);"></iframe>
-        <div
-            style="position: absolute; top:0; left:0; width:100%; height:100%; display: flex; align-items: center; justify-content: center;">
-            <h2 style="color: white; font-size: 3rem; text-shadow: 0 0 20px black;">SILENT LUXURY</h2>
-        </div>
+        style="position: relative; height: 300px; overflow: hidden; border-top: 1px solid #333; border-bottom: 1px solid #333; display: flex; align-items: center; justify-content: center;">
+        <h2 style="color: white; font-size: 3rem; text-transform: uppercase;">Silence is the New Luxury</h2>
     </div>
 
-    <!-- 2. CAPACITY BANNER -->
+    <!-- CAPACITY BANNER -->
     <div class="capacity-banner">
         <div class="capacity-grid">
             <div>
                 <span class="stat-number">∞</span>
-                <span class="stat-label">CONCURRENT GUESTS</span>
+                <span class="stat-label">VIP CONCURRENT GUESTS</span>
             </div>
             <div>
                 <span class="stat-number">0s</span>
@@ -274,12 +274,12 @@
             </div>
             <div>
                 <span class="stat-number">24/7</span>
-                <span class="stat-label">WHITE GLOVE SERVICE</span>
+                <span class="stat-label">WHITE GLOVE CONCIERGE</span>
             </div>
         </div>
     </div>
 
-    <!-- 3. PROBLEMS & SOLUTIONS -->
+    <!-- PROBLEMS & SOLUTIONS -->
     <section class="section" id="experience">
         <div class="section-title" style="text-align: center; margin-bottom: 60px;">
             <h2 style="color: #666; font-size: 1rem; letter-spacing: 3px;">THE PARADIGM SHIFT</h2>
@@ -288,53 +288,91 @@
             <div class="card">
                 <div class="icon">⌛</div>
                 <h3>The Wait</h3>
-                <p style="color: grey;">Traditional concierge misses calls. Delays responses. In luxury, waiting is the
-                    ultimate sin.</p>
+                <p style="color: grey;">Traditional concierge puts you on hold. In luxury, waiting is the ultimate
+                    insult.</p>
                 <div style="margin-top: 20px; border-left: 2px solid var(--accent-purple); padding-left: 15px;">
-                    <strong style="color: var(--accent-purple);">KARLA AI:</strong> Instant response. Zero latency.
+                    <strong style="color: var(--accent-purple);">KARLA AI:</strong> Instant gratification. Zero latency.
                 </div>
             </div>
             <div class="card">
                 <div class="icon">👁️</div>
                 <h3>The Blind Spot</h3>
-                <p style="color: grey;">You don't know what your clients want until they ask. That's reactive.</p>
+                <p style="color: grey;">You don't know what your VIP clients want until they ask. Reactive is too slow.
+                </p>
                 <div style="margin-top: 20px; border-left: 2px solid var(--accent-purple); padding-left: 15px;">
-                    <strong style="color: var(--accent-purple);">KARLA AI:</strong> Predictive analytics. Anticipate
-                    desire.
+                    <strong style="color: var(--accent-purple);">KARLA AI:</strong> Predictive desire. She knows before
+                    they ask.
                 </div>
             </div>
             <div class="card">
                 <div class="icon">📉</div>
                 <h3>The Human Limit</h3>
-                <p style="color: grey;">Humans sleep. Humans forget. Humans have bad days.</p>
+                <p style="color: grey;">Humans sleep. Humans have bad days. Humans forget details.</p>
                 <div style="margin-top: 20px; border-left: 2px solid var(--accent-purple); padding-left: 15px;">
-                    <strong style="color: var(--accent-purple);">KARLA AI:</strong> Perfection, 24/7/365.
+                    <strong style="color: var(--accent-purple);">KARLA AI:</strong> Perfection, 24/7/365. Total Recall.
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 4. COMPETITION BENCHMARK -->
+    <!-- CURRENT CHALLENGES GRID (MATCHING FULL TEMPLATE) -->
+    <section class="section">
+        <div class="section-title" style="text-align: center; margin-bottom: 50px;">
+            <h2 style="color: var(--accent-purple); font-size: 1.5rem;">// THE LUXURY GAP ANALYSIS</h2>
+            <p style="color: #666;">Why traditional concierge services fail the modern elite.</p>
+        </div>
+        <div class="grid">
+            <div class="card" style="border-color: rgba(168, 85, 247, 0.3);">
+                <div class="icon">⛔</div>
+                <h3>THE "NO" FACTOR</h3>
+                <p style="color: grey;">Human staff are trained to follow rules. Rules are friction.</p>
+                <div style="margin-top: 15px; padding: 10px; background: rgba(168, 85, 247, 0.1); border-radius: 5px;">
+                    <strong style="color: var(--accent-purple);">KARLA SOLUTION:</strong> She finds a way. Or she
+                    creates one. No friction.
+                </div>
+            </div>
+            <div class="card" style="border-color: rgba(168, 85, 247, 0.3);">
+                <div class="icon">🐌</div>
+                <h3>LATENCY</h3>
+                <p style="color: grey;">"I'll get back to you." - The sentence that kills desire.</p>
+                <div style="margin-top: 15px; padding: 10px; background: rgba(168, 85, 247, 0.1); border-radius: 5px;">
+                    <strong style="color: var(--accent-purple);">KARLA SOLUTION:</strong> Instant execution. Booking
+                    confirmed before you put the phone down.
+                </div>
+            </div>
+            <div class="card" style="border-color: rgba(168, 85, 247, 0.3);">
+                <div class="icon">🧠</div>
+                <h3>MEMORY LOSS</h3>
+                <p style="color: grey;">New staff doesn't know your preferences. You have to repeat yourself.</p>
+                <div style="margin-top: 15px; padding: 10px; background: rgba(168, 85, 247, 0.1); border-radius: 5px;">
+                    <strong style="color: var(--accent-purple);">KARLA SOLUTION:</strong> Infinite context window. She
+                    remembers the wine you drank in Paris in 2024.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPETITION BENCHMARK -->
     <section class="section">
         <h2 style="text-align: center; color: var(--accent-gold); margin-bottom: 40px;">// MARKET DOMINANCE</h2>
         <table class="comp-table">
             <thead>
                 <tr>
                     <th>FEATURE</th>
-                    <th>OLD LUXURY</th>
+                    <th>OLD LUXURY (Traditional)</th>
                     <th style="color: var(--accent-purple);">DANIEL'S ENTERPRISE</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>Availability</td>
-                    <td>9am - 10pm (Maybe)</td>
-                    <td style="color: white;">24/7 Instant</td>
+                    <td>9am - 10pm (Limited)</td>
+                    <td style="color: white;">24/7 Instant Global Access</td>
                 </tr>
                 <tr>
-                    <td>Knowledge Base</td>
-                    <td>Limited to memory</td>
-                    <td style="color: white;">Infinite Access</td>
+                    <td>Personalization</td>
+                    <td>"What is your customer number?"</td>
+                    <td style="color: white;">Recognized instantly by Voice/Text</td>
                 </tr>
                 <tr class="orion">
                     <td>Response Time</td>
@@ -345,7 +383,7 @@
         </table>
     </section>
 
-    <!-- 5. MODULES (Karla Demo) -->
+    <!-- MODULES (Karla Demo) -->
     <section class="section" style="background: rgba(10,10,10,0.5);">
         <div style="text-align: center; margin-bottom: 50px;">
             <h2 style="color: var(--accent-purple);">THE SYSTEM CORE</h2>
@@ -356,22 +394,23 @@
                     style="position: absolute; top: 20px; right: 20px; background: var(--accent-purple); color: black; padding: 2px 10px; font-size: 0.7rem; font-weight: bold; border-radius: 10px;">LIVE</span>
                 <h3>KARLA AI CONCIERGE</h3>
                 <p style="color: #aaa; margin-bottom: 20px;">The voice of your brand. Seductive, intelligent, and
-                    relentlessly efficient.</p>
-                <button class="cta-btn" style="padding: 10px 20px; font-size: 0.8rem;">CHAT NOW</button>
+                    relentlessly efficient. Handles bookings, payments, and lifestyle requests.</p>
+                <button class="cta-btn" style="padding: 10px 20px; font-size: 0.8rem;">ACTIVATE DEMO</button>
             </div>
             <div class="card">
                 <h3>CRM SYNCHRONIZATION</h3>
                 <p style="color: #aaa; margin-bottom: 20px;">Every conversation logged. Every preference saved. Total
-                    recall of client history.</p>
+                    recall of client history to hyper-personalize the next interaction.</p>
             </div>
             <div class="card">
                 <h3>PRIORITY BOOKING</h3>
-                <p style="color: #aaa; margin-bottom: 20px;">Direct integration with calendar and payment gateways.</p>
+                <p style="color: #aaa; margin-bottom: 20px;">Direct integration with calendar and payment gateways. "I
+                    want it" translates instantly to "It is done."</p>
             </div>
         </div>
     </section>
 
-    <!-- 6. PARTNERS -->
+    <!-- PARTNERS -->
     <section class="section" style="text-align: center; opacity: 0.6;">
         <h3 style="color: #666; margin-bottom: 30px; font-size: 0.8rem; letter-spacing: 5px;">TRUSTED BY THE ELITE</h3>
         <div
@@ -379,20 +418,21 @@
             <div>AMEX BLACK</div>
             <div>ROLLS ROYCE</div>
             <div>FOUR SEASONS</div>
+            <div>PRIVATE AVIATION</div>
         </div>
     </section>
 
-    <!-- 7. ROI -->
+    <!-- ROI SECTION -->
     <section class="section" style="text-align: center; background: linear-gradient(to bottom, #050505, #111);">
         <h2 style="color: var(--accent-gold); margin-bottom: 20px;">RETURN ON EXCELLENCE</h2>
         <div style="font-size: 4rem; color: var(--accent-purple); font-family: 'Orbitron'; margin-bottom: 10px;">$250k+
         </div>
-        <p style="color: #888;">Projected Annual Revenue Increase via Automation</p>
+        <p style="color: #888;">Projected Annual Value of Time Saved & Opportunities Captured</p>
     </section>
 
-    <!-- 8. PRICING -->
+    <!-- PRICING -->
     <section class="section pricing-section">
-        <h2 style="color: grey; margin-bottom: 50px; font-size: 1rem; letter-spacing: 5px;">INVESTMENT TIER</h2>
+        <h2 style="color: grey; margin-bottom: 50px; font-size: 1rem; letter-spacing: 5px;">YOUR INVESTMENT</h2>
         <div class="price-card">
             <h3 style="color: var(--accent-purple); font-size: 1.5rem;">BLACK CARD ACCESS</h3>
             <div class="price-tag">$5,000 <span>/ mo</span></div>
@@ -401,9 +441,9 @@
                 <li>✓ <strong>Karla AI Persona</strong> (Custom Trained)</li>
                 <li>✓ <strong>Unlimited</strong> Concurrent Conversations</li>
                 <li>✓ <strong>CRM Deep Integration</strong></li>
-                <li>✓ <strong>Voice & Chat</strong> Interfaces</li>
+                <li>✓ <strong>Voice & Chat</strong> Interfaces (WhatsApp/Web)</li>
             </ul>
-            <a href="#" class="cta-btn" style="width: 100%; display: inline-block;">ACTIVATE</a>
+            <a href="#" class="cta-btn" style="width: 100%; display: inline-block;">REQUEST INVITE</a>
         </div>
     </section>
 
@@ -415,7 +455,7 @@
 
     <!-- FLOAT BUTTONS -->
     <div class="floating-buttons">
-        <a href="https://wa.me/16692342444" class="float-btn" style="background: #25D366;">
+        <a href="https://wa.me/16692342444" class="float-btn" style="background: #25D366;" target="_blank">
             <svg viewBox="0 0 24 24" width="30" height="30" fill="white">
                 <path
                     d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.997.551 2.013.88 3.096.88 3.182 0 5.768-2.587 5.768-5.767s-2.586-5.766-5.768-5.766zM13 13h-2v-2h2v2zm0-4h-2V8h2v1z" />
