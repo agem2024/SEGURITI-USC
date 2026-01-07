@@ -3,7 +3,7 @@
  * TRILINGUAL: Español | English | Embera Chamí (indigenous language of Obando)
  * Female Voice | Gemini AI Powered
  * "Conectando ciudadanos, construyendo legado"
- * VERSION: FIXED 2026-01-07 - IMAGE UI RESTORED
+ * VERSION: FIXED 2026-01-07 - ROBUST VOICE & IMAGE UI
  */
 
 class KarlaAssistant {
@@ -19,7 +19,9 @@ class KarlaAssistant {
             hello: 'Mabae',           // Hola
             howAreYou: 'Sakabuma',    // ¿Cómo estás?
             goodMorning: 'Saka ewarisma', // Buenos días
-            thanks: 'Arakiruma'      // Gracias
+            thanks: 'Arakiruma',      // Gracias
+            yes: 'Chiboro',           // Sí
+            ourTerritory: 'Dachidrua' // Nuestro territorio
         };
 
         // Secure API configuration
@@ -32,7 +34,7 @@ class KarlaAssistant {
 
         this.systemPrompt = this._buildSystemPrompt();
 
-        // UI Config - Political blue/gold
+        // UI Config
         this.uiConfig = {
             primaryColor: '#00b894',
             gradient: 'linear-gradient(135deg, #0984e3 0%, #00b894 100%)'
@@ -64,46 +66,64 @@ PRECIOS (COP):
 - ALCALDE DIGITAL: $3M/mes + $5M Setup (Recomendado)
 - LEGADO POLÍTICO: $8M/mes + $12M Setup
 
-DICCIONARIO EMBERA CHAMÍ (Úsalo para mostrar respeto cultural):
+DICCIONARIO EMBERA CHAMÍ (Respeto cultural):
 - Mabae = Hola
-- Arakiruma = Gracias (Úsalo al confirmar citas)
+- Arakiruma = Gracias
 - Sakabuma = ¿Cómo estás?
-- Dachidrua = Nuestro territorio (Obando)
-- Chiboro = Sí
 `;
         return `${slogan}\n\n${roleDescription}\n\n${context}\n\nResponde en máximo 3 oraciones.`;
     }
 
     _init() {
         this._loadVoices();
-        this.synth.onvoiceschanged = () => this._loadVoices();
+
+        // Ensure voice loading even if event missed
+        if (this.synth.onvoiceschanged !== undefined) {
+            this.synth.onvoiceschanged = () => this._loadVoices();
+        }
+
         this._createChatUI();
 
-        // Auto-greet after delay
+        // Auto-greet visual cue
         setTimeout(() => {
             if (!this.isOpen) {
-                // Optional: visual cue to open
                 const toggle = document.getElementById('karla-toggle');
-                if (toggle) toggle.style.transform = 'scale(1.2)';
-                setTimeout(() => toggle.style.transform = 'scale(1)', 500);
+                if (toggle) {
+                    toggle.style.transform = 'scale(1.1)';
+                    setTimeout(() => toggle.style.transform = 'scale(1)', 300);
+                }
             }
         }, 3000);
     }
 
     _loadVoices() {
-        const voices = this.synth.getVoices();
+        let voices = this.synth.getVoices();
+
+        // RETRY MECHANISM: Chrome returns empty array initially
+        if (voices.length === 0) {
+            setTimeout(() => this._loadVoices(), 100);
+            return;
+        }
+
         const isSpanish = this.language === 'es';
 
-        // Robust voice selection
-        const spanishVoices = ['Microsoft Sabina', 'Microsoft Helena', 'Google español', 'es-MX', 'es-ES'];
+        // Expanded list of female Spanish voices
+        const spanishVoices = [
+            'Microsoft Sabina', 'Microsoft Helena', 'Google español',
+            'es-MX', 'es-ES', 'Paulina', 'Hilda', 'Laura', 'Helena'
+        ];
+
         const englishVoices = ['Microsoft Zira', 'Google US English', 'Samantha', 'en-US'];
         const preferred = isSpanish ? spanishVoices : englishVoices;
 
+        // Try to find exact match -> then startsWith lang -> then any lang match
         this.selectedVoice = voices.find(v =>
             preferred.some(p => v.name.includes(p) || v.lang.includes(p))
         ) || voices.find(v => v.lang.startsWith(isSpanish ? 'es' : 'en')) || voices[0];
 
-        console.log('🎤 KARLA Voice:', this.selectedVoice?.name);
+        if (this.selectedVoice) {
+            console.log('✅ KARLA VOICE READY:', this.selectedVoice.name);
+        }
     }
 
     _createChatUI() {
@@ -140,7 +160,7 @@ DICCIONARIO EMBERA CHAMÍ (Úsalo para mostrar respeto cultural):
             
             <div id="karla-chat-window">
                 <div id="karla-header">
-                    <img src="assets/karla.png" style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid #fff;">
+                    <img src="assets/karla.png" style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid #fff;" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI1MCIgZmlsbD0iIzAwYjg5NCIvPjx0ZXh0IHg9IjUwIiB5PSI2NSIgZm9udC1zaXplPSI0MCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPu🏛️PC90ZXh0Pjwvc3ZnPg=='">
                     <div><h3 style="color:white; font-size:1rem; margin:0;">KARLA</h3><span style="color:rgba(255,255,255,0.8); font-size:0.7rem;">ORION Tech Sales Consultant</span></div>
                     <button id="karla-close" style="margin-left:auto; background:none; border:none; color:#fff; cursor:pointer; font-size:1.5rem;">×</button>
                 </div>
@@ -153,7 +173,7 @@ DICCIONARIO EMBERA CHAMÍ (Úsalo para mostrar respeto cultural):
             </div>
             
             <button id="karla-toggle">
-                <img src="assets/karla.png" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">
+                <img src="assets/karla.png" style="width:100%; height:100%; object-fit:cover; border-radius:50%;" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI1MCIgZmlsbD0iIzAwYjg5NCIvPjx0ZXh0IHg9IjUwIiB5PSI2NSIgZm9udC1zaXplPSI0MCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPu🏛️PC90ZXh0Pjwvc3ZnPg=='">
             </button>
         `;
 
@@ -167,13 +187,16 @@ DICCIONARIO EMBERA CHAMÍ (Úsalo para mostrar respeto cultural):
     }
 
     _toggleChat() {
+        // Must interact to unlock audio context in some browsers
+        if (this.synth.resume) this.synth.resume();
+
         const win = document.getElementById('karla-chat-window');
         this.isOpen = !this.isOpen;
         win.classList.toggle('open', this.isOpen);
 
         if (this.isOpen && this.messages.length === 0) {
             this.voiceEnabled = true;
-            this._toggleVoiceUI(true); // Update UI
+            this._toggleVoiceUI(true);
 
             const welcome = this.language === 'es'
                 ? `¡${this.emberaPhrases.hello}! 🏛️ Soy Karla de ORION Tech. Tengo una propuesta para modernizar la comunicación del Alcalde Diego con los ciudadanos. ¿Se la presento?`
@@ -189,7 +212,6 @@ DICCIONARIO EMBERA CHAMÍ (Úsalo para mostrar respeto cultural):
         div.textContent = text;
         document.getElementById('karla-messages').appendChild(div);
 
-        // Configurar mensaje para historia (evitar duplicados en prompt si es muy largo)
         this.messages.push({ role: sender === 'karla' ? 'model' : 'user', parts: [{ text }] });
 
         if (sender === 'karla' && this.voiceEnabled) this._speak(text);
@@ -206,7 +228,6 @@ DICCIONARIO EMBERA CHAMÍ (Úsalo para mostrar respeto cultural):
         this._addMessage('user', text);
         input.value = '';
 
-        // Typing indicator
         const typing = document.createElement('div');
         typing.className = 'karla-message karla';
         typing.id = 'karla-typing';
@@ -223,7 +244,7 @@ DICCIONARIO EMBERA CHAMÍ (Úsalo para mostrar respeto cultural):
                 body: JSON.stringify({
                     contents: [
                         { role: 'user', parts: [{ text: this.systemPrompt }] },
-                        ...this.messages.slice(-10) // Contexto limitado
+                        ...this.messages.slice(-10)
                     ],
                     generationConfig: { temperature: 0.7, maxOutputTokens: 300 }
                 })
@@ -269,8 +290,9 @@ DICCIONARIO EMBERA CHAMÍ (Úsalo para mostrar respeto cultural):
         this.synth.cancel();
         const u = new SpeechSynthesisUtterance(text);
         u.voice = this.selectedVoice;
-        u.lang = this.language === 'es' ? 'es-MX' : 'en-US'; // FORCE LANG for pronunciation
-        u.pitch = 1.1; // Female tone
+        // FORCE SPANISH LOCALE: 'es-MX' works best for neutral female voices in most browsers
+        u.lang = this.language === 'es' ? 'es-MX' : 'en-US';
+        u.pitch = 1.1;
         u.rate = 0.9;
         this.synth.speak(u);
     }
@@ -304,10 +326,8 @@ DICCIONARIO EMBERA CHAMÍ (Úsalo para mostrar respeto cultural):
 window.KarlaAssistant = KarlaAssistant;
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Config via window.KARLA_CONFIG or defaults
     const savedLang = localStorage.getItem('mcProposalLang') || 'es';
     const config = window.KARLA_CONFIG || { language: savedLang };
-    config.language = savedLang; // Ensure priority
-
+    config.language = savedLang;
     window.karla = new KarlaAssistant(config);
 });
