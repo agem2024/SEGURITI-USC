@@ -63,6 +63,13 @@ CONTEXTO:
 PRECIOS (COP):
 - ALCALDE DIGITAL: $3M/mes + $5M Setup (Recomendado)
 - LEGADO POLÍTICO: $8M/mes + $12M Setup
+
+DICCIONARIO EMBERA CHAMÍ (Úsalo para mostrar respeto cultural):
+- Mabae = Hola
+- Arakiruma = Gracias (Úsalo al confirmar citas)
+- Sakabuma = ¿Cómo estás?
+- Dachidrua = Nuestro territorio (Obando)
+- Chiboro = Sí
 `;
         return `${slogan}\n\n${roleDescription}\n\n${context}\n\nResponde en máximo 3 oraciones.`;
     }
