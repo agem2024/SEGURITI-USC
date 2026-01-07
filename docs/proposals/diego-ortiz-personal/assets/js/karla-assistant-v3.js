@@ -74,7 +74,9 @@ INSTRUCCIONES:
             const welcome = this.language === 'es'
                 ? `Mabae! Soy Karla de ORION Tech. Tengo una propuesta para potenciar la marca personal del Alcalde Diego y conectar con los ciudadanos 24/7. Me permite mostrarle como?`
                 : `Mabae! I'm Karla from ORION Tech. I have a proposal to boost Mayor Diego's personal brand and connect with citizens 24/7. May I show you how?`;
-            this._addMessage('karla', welcome);
+
+            // SILENT ON LOAD (Browser Block Fix)
+            this._addMessage('karla', welcome, true);
         }, 500);
     }
 
@@ -162,21 +164,28 @@ INSTRUCCIONES:
     }
 
     _toggleChat() {
-        if (this.synth.resume) this.synth.resume();
+        if (this.synth.resume) this.synth.resume(); // Resume audio context
         const win = document.getElementById('karla-chat-window');
         this.isOpen = !this.isOpen;
         win.classList.toggle('open', this.isOpen);
 
-        if (this.isOpen && !this.hasGreeted) {
-            this.hasGreeted = true;
+        // SPEAK ONLY ON INTERACTION
+        if (this.isOpen) {
             this.voiceEnabled = true;
             this._toggleVoiceUI(true);
-            // Greetings sent in init timeout, but we speak it here if needed
-            // Actually init timeout adds the message. We just highlight voice button.
+
+            // If it's the first time opening OR if we have the welcome message pending
+            if (!this.hasGreeted) {
+                this.hasGreeted = true;
+                const welcome = this.language === 'es'
+                    ? `Mabae! Soy Karla de ORION Tech. Tengo una propuesta para potenciar la marca personal del Alcalde Diego y conectar con los ciudadanos 24/7. Me permite mostrarle como?`
+                    : `Mabae! I'm Karla from ORION Tech. I have a proposal to boost Mayor Diego's personal brand and connect with citizens 24/7. May I show you how?`;
+                this._speak(welcome);
+            }
         }
     }
 
-    _addMessage(sender, text) {
+    _addMessage(sender, text, silent = false) {
         const div = document.createElement('div');
         div.className = `karla-message ${sender}`;
         div.textContent = text;
@@ -186,7 +195,8 @@ INSTRUCCIONES:
         if (this.messages.length > 20) this.messages.shift();
         this.messages.push({ role: sender === 'karla' ? 'model' : 'user', parts: [{ text }] });
 
-        if (sender === 'karla' && this.voiceEnabled) this._speak(text);
+        // Only speak if NOT silent and voice is enabled
+        if (sender === 'karla' && this.voiceEnabled && !silent) this._speak(text);
 
         const container = document.getElementById('karla-messages');
         container.scrollTop = container.scrollHeight;
