@@ -1068,14 +1068,63 @@
                 box-shadow: 0 0 50px rgba(0, 212, 170, 0.4);
             }
         }
+
+        /* LANGUAGE VISIBILITY */
+        .lang-es {
+            display: none;
+        }
+
+        body.es .lang-es {
+            display: inline;
+        }
+
+        body.es .lang-en {
+            display: none;
+        }
+
+        div.lang-es,
+        p.lang-es,
+        h2.lang-es,
+        h3.lang-es,
+        span.lang-es,
+        li.lang-es,
+        ul.lang-es {
+            display: none;
+        }
+
+        body.es div.lang-es,
+        body.es p.lang-es,
+        body.es h2.lang-es,
+        body.es h3.lang-es,
+        body.es span.lang-es,
+        body.es li.lang-es,
+        body.es ul.lang-es {
+            display: block;
+        }
+
+        body.es div.lang-en,
+        body.es p.lang-en,
+        body.es h2.lang-en,
+        body.es h3.lang-en,
+        body.es span.lang-en,
+        body.es li.lang-en,
+        body.es ul.lang-en {
+            display: none;
+        }
     </style>
 </head>
 
 <body>
 
+    <!-- LANGUAGE SWITCHER -->
+    <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('es')">ES</button>
+    </div>
+
     <!-- FLOATING ACTION BUTTONS -->
     <div class="floating-buttons">
-        <a href="https://wa.me/16692342444?text=LGB%20Autowork%20-%20Interested%20in%20ORION%20Platform"
+        <a href="https://wa.me/16692342444?text=Daniel%20Enterprise%20-%20Interesado%20en%20ORION"
             class="float-btn whatsapp" title="Chat on WhatsApp" target="_blank" style="z-index: 10001;">
             <video autoplay muted loop playsinline
                 poster="https://agem2024.github.io/SEGURITI-USC/images/whatsapp_logo.png">
@@ -1575,8 +1624,8 @@
             <!-- BLACK CARD -->
             <div class="pricing-card">
                 <div class="pricing-name">BLACK CARD</div>
-                <div class="pricing-price">$5M<span style="font-size: 1rem;">COP/mes</span></div>
-                <div class="pricing-setup">+ $10M Setup</div>
+                <div class="pricing-price">$2M<span style="font-size: 1rem;">COP/mes</span></div>
+                <div class="pricing-setup">+ $5M Setup</div>
                 <div class="pricing-capacity">
                     <div class="num">10</div>
                     <div class="cap-label lang-en">Concurrent Guests</div>
@@ -1599,8 +1648,8 @@
             <div class="pricing-card featured">
                 <span class="pricing-badge">BEST VALUE</span>
                 <div class="pricing-name">PLATINUM MEMBER</div>
-                <div class="pricing-price">$15M<span style="font-size: 1rem;">COP/mes</span></div>
-                <div class="pricing-setup">+ $15M Setup</div>
+                <div class="pricing-price">$4M<span style="font-size: 1rem;">COP/mes</span></div>
+                <div class="pricing-setup">+ $8M Setup</div>
                 <div class="pricing-capacity">
                     <div class="num">50</div>
                     <div class="cap-label lang-en">Concurrent Guests</div>
@@ -1623,8 +1672,8 @@
             <div class="pricing-card elite">
                 <span class="pricing-badge">ELITE</span>
                 <div class="pricing-name">DIAMOND ELITE</div>
-                <div class="pricing-price">$30M<span style="font-size: 1rem;">COP/mes</span></div>
-                <div class="pricing-setup">+ $25M Setup</div>
+                <div class="pricing-price">$8M<span style="font-size: 1rem;">COP/mes</span></div>
+                <div class="pricing-setup">+ $15M Setup</div>
                 <div class="pricing-capacity">
                     <div class="num">100</div>
                     <div class="cap-label lang-en">Concurrent Guests</div>
@@ -1647,8 +1696,8 @@
             <div class="pricing-card luxury">
                 <span class="pricing-badge">👑 LEADER</span>
                 <div class="pricing-name">GLOBAL EMPIRE</div>
-                <div class="pricing-price">$60M<span style="font-size: 1rem;">COP/mes</span></div>
-                <div class="pricing-setup">+ $40M Setup</div>
+                <div class="pricing-price">$15M<span style="font-size: 1rem;">COP/mes</span></div>
+                <div class="pricing-setup">+ $25M Setup</div>
                 <div class="pricing-capacity">
                     <div class="num">∞</div>
                     <div class="cap-label lang-en">Unlimited Capacity</div>
