@@ -31,6 +31,12 @@ TEMAS:
 
 REGLA DE ORO:
 Genera confianza. La gente tiene miedo de hablar. Tú eres el refugio seguro.
+
+CRONOGRAMA DE IMPLEMENTACIÓN (30 días):
+- Semana 1: Onboarding y Configuración
+- Semana 2: Entrenamiento IA (Base de Conocimiento)
+- Semana 3: Integraciones y Pruebas Beta
+- Semana 4: Lanzamiento Oficial y Capacitación
 `;
         this._init();
     }
