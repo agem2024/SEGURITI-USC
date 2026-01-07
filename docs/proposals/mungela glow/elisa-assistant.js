@@ -152,8 +152,8 @@ Responde de forma breve y concisa. Máximo 2-3 oraciones. Siempre termina con un
             const savingsFormatted = (estimatedSavings / 1000).toFixed(0);
 
             const welcome = this.language === 'es'
-                ? `${targetName ? 'Hola ' + targetName + '! ' : 'Hola! '}Soy ELISA de ORION Tech. Tengo una propuesta para elevar la experiencia en ${this.clientName} y generar mas de ${savingsFormatted}k extra al mes. Te muestro como?`
-                : `${targetName ? 'Hello ' + targetName + '! ' : 'Hello! '}I'm ELISA from ORION Tech. I have a proposal to elevate the experience at ${this.clientName} and generate over $${estimatedSavings.toLocaleString()} extra per month. Shall I show you how?`;
+                ? `${targetName ? '¡Hola ' + targetName + '! ' : '¡Hola! '}Soy ELISA de ORION Tech. ✨ Tengo una propuesta para elevar la experiencia en ${this.clientName} y generar más de ${savingsFormatted}k extra al mes. ¿Te muestro cómo?`
+                : `${targetName ? 'Hello ' + targetName + '! ' : 'Hello! '}I'm ELISA from ORION Tech. ✨ I have a proposal to elevate the experience at ${this.clientName} and generate over $${estimatedSavings.toLocaleString()} extra per month. Shall I show you how?`;
             this._addMessage('elisa', welcome);
         }, 500);
     }

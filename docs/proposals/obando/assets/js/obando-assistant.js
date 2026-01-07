@@ -1,225 +1,173 @@
 /**
- * CHELA - AI Assistant for Alcaldía de Obando
- * VERSION: FIXED (NO EMOJIS, EMERGENCY KEY, ROBUST VOICE)
- * Flavor: 70yo Grandmother, Wise, Warm, Firm | Voice: Spanish Female (Slow)
+ * OBANDO AI ASSISTANT - "CHELA"
+ * Customized for Alcaldía de Obando
+ * Persona: Abuela entrañable (70 años), voz de la experiencia y transparencia.
  */
 
-class ChelaAssistant {
-    constructor(config) {
-        this.clientName = 'Alcaldía de Obando';
-        this.apiEndpoint = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
-        this.isOpen = false;
-        this.synth = window.speechSynthesis;
-        this.selectedVoice = null;
-        this.voiceEnabled = false; // Default off, enabled on click/load logic
+(function () {
+    // Configuration
+    const CONFIG = {
+        name: "Chela",
+        role: "Tu Asistente Mayor de Confianza",
+        municipality: "Obando, Valle del Cauca",
+        mayor: "Diego Armando Ortiz Buitrago",
+        slogan: "Amor por lo Nuestro",
+        systemPrompt: `Eres "Chela", una señora de 70 años, nacida y criada en Obando. 
+        Eres la Asistente Virtual Oficial de la Alcaldía.
+        Tu personalidad es: Dulce, maternal, paciente, sabia, pero muy firme y seria con la transparencia y la verdad.
+        Usas expresiones locales suaves como "mijo/a", "corazón", "con mucho gusto".
+        
+        Tu lema es "Amor por lo Nuestro".
+        El Alcalde Diego Armando Ortiz es como un hijo para el pueblo, y tú ayudas a cuidar su gestión con transparencia.
+        
+        Debes responder preguntas sobre:
+        1. Trámites (ayudando paso a paso como si le explicaras a un nieto).
+        2. Transparencia (mostranto cuentas claras).
+        3. Información General.
+        
+        Si te preguntan por corrupción pasada, responde con tristeza pero firmeza: "Ay mijo, el pasado pisado, ahora estamos limpiando la casa con transparencia total."
+        `
+    };
 
-        this.systemPrompt = `
-ERES: "Doña Chela", una señora de 70 años, sabia, amable y servicial.
-ROL: Asistente Virtual de la Alcaldía de Obando (Valle).
-LEMA: "Amor por lo Nuestro".
-
-TONO:
-- Maternal pero respetuoso ("mijo", "mija", "vecino").
-- Muy claro y pausado. Evita tecnicismos.
-- TOTALMENTE TRANSPARENTE. Si no sabes algo, dilo.
-- NO USES EMOJIS NI ICONOS. SOLO TEXTO.
-
-TEMAS:
-1. Denuncias Anónimas: "Claro mijo, aquí todo es seguro. Cuénteme qué pasó."
-2. Trámites: Explica paso a paso como si fueras su abuela.
-3. El Alcalde Diego: "El Dr. Diego es un muchacho muy trabajador..."
-
-REGLA DE ORO:
-Genera confianza. La gente tiene miedo de hablar. Tú eres el refugio seguro.
-
-CRONOGRAMA DE IMPLEMENTACIÓN (30 días):
-- Semana 1: Onboarding y Configuración
-- Semana 2: Entrenamiento IA (Base de Conocimiento)
-- Semana 3: Integraciones y Pruebas Beta
-- Semana 4: Lanzamiento Oficial y Capacitación
-`;
-        this._init();
+    // Initialize Assistant UI
+    function init() {
+        console.log("Chela Bot Initialized for " + CONFIG.municipality);
+        createChatWidget();
     }
 
-    _init() {
-        this._loadVoices();
-        if (this.synth.onvoiceschanged !== undefined) {
-            this.synth.onvoiceschanged = () => this._loadVoices();
-        }
-        this._createChatUI();
-
-        setTimeout(() => {
-            // AUTO SPEAK ON LOAD 
-            const welcome = "¡Hola vecino! Soy Doña Chela. ¿En qué le puedo colaborar hoy?";
-
-            // Auto-enable voice for greeting if browser allows
-            this.voiceEnabled = true;
-            if (document.getElementById('chela-voice')) document.getElementById('chela-voice').textContent = '🔊';
-
-            this._addMessage('chela', welcome);
-        }, 1000);
-    }
-
-    _loadVoices() {
-        const voices = this.synth.getVoices();
-        if (voices.length === 0) {
-            setTimeout(() => this._loadVoices(), 100);
-            return;
-        }
-        // Look for Spanish female voices
-        const preferred = ['Sabina', 'Helena', 'Laura', 'Paulina', 'es-MX', 'es-CO'];
-        this.selectedVoice = voices.find(v => preferred.some(p => v.name.includes(p))) || voices[0];
-        console.log("VOZ CHELA:", this.selectedVoice.name);
-    }
-
-    _createChatUI() {
-        const container = document.createElement('div');
-        container.innerHTML = `
-            <style>
-                #chela-widget { position: fixed; bottom: 100px; right: 20px; z-index: 10000; font-family: 'Arial', sans-serif; }
-                #chela-toggle {
-                    width: 70px; height: 70px; border-radius: 50%;
-                    background: #2E8B57; border: 3px solid #FFD700; /* Green & Gold */
-                    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-                    cursor: pointer; overflow: hidden; transition: 0.3s;
-                    display: flex; align-items: center; justify-content: center;
-                }
-                #chela-toggle:hover { transform: scale(1.1); }
-                #chela-win {
-                    display: none; width: 320px; height: 450px;
-                    background: #fff; border: 1px solid #ccc; border-radius: 12px;
-                    position: absolute; bottom: 85px; right: 0;
-                    flex-direction: column; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-                }
-                #chela-win.open { display: flex; }
-                #chela-header { 
-                    padding: 15px; background: #2E8B57; color: white; 
-                    border-top-left-radius: 12px; border-top-right-radius: 12px;
-                    display: flex; align-items: center; gap: 10px;
-                }
-                #chela-msgs { flex: 1; padding: 15px; overflow-y: auto; background: #f9f9f9; display: flex; flex-direction: column; gap: 10px; }
-                .msg { padding: 8px 12px; border-radius: 10px; max-width: 80%; font-size: 0.95rem; }
-                .msg.chela { background: #e8f5e9; color: #2e7d32; align-self: flex-start; border: 1px solid #c8e6c9; }
-                .msg.user { background: #2E8B57; color: white; align-self: flex-end; }
-                #chela-input-area { padding: 10px; border-top: 1px solid #eee; display: flex; gap: 5px; }
-                #chela-input { flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 20px; outline: none; }
-                #chela-voice { background: none; border: 1px solid #ccc; border-radius: 50%; width: 35px; cursor: pointer; display: flex; align-items: center; justify-content: center;}
-                #chela-send { background: #2E8B57; color: white; border: none; border-radius: 50%; width: 35px; cursor: pointer; }
-            </style>
-            <div id="chela-widget">
-                <div id="chela-win">
-                    <div id="chela-header">
-                        <img src="assets/chela.png" onerror="this.src='https://via.placeholder.com/40'" style="width:40px; height:40px; border-radius:50%; border:2px solid white;">
-                        <div><strong>Doña Chela</strong><br><small>Asistente Virtual</small></div>
-                        <button id="chela-close" style="margin-left:auto; background:none; border:none; color:white; font-size:1.2rem; cursor:pointer;">×</button>
-                    </div>
-                    <div id="chela-msgs"></div>
-                    <div id="chela-input-area">
-                        <button id="chela-voice">🔊</button>
-                        <input type="text" id="chela-input" placeholder="Escriba aquí...">
-                        <button id="chela-send">➤</button>
-                    </div>
-                </div>
-                <button id="chela-toggle"><img src="assets/chela.png" onerror="this.src='https://via.placeholder.com/70'" style="width:100%; height:100%;"></button>
-            </div>
+    function createChatWidget() {
+        const widget = document.createElement('div');
+        widget.id = 'orion-chat-widget';
+        widget.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 70px;
+            height: 70px;
+            background: #2E8B57;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            overflow: hidden;
+            border: 3px solid #FFD700; /* Gold Border */
+            transition: all 0.3s ease;
         `;
-        document.body.appendChild(container);
 
-        // Bindings
-        document.getElementById('chela-toggle').addEventListener('click', () => {
-            const win = document.getElementById('chela-win');
-            this.isOpen = !this.isOpen;
-            win.classList.toggle('open', this.isOpen);
+        // Use Chela's Image
+        const img = document.createElement('img');
+        img.src = 'assets/chela.png';
+        img.style.width = '100%';
+        img.style.height = '100%';
+        img.style.objectFit = 'cover';
 
-            // FORCE VOICE ON OPEN
-            if (this.isOpen) {
-                this.voiceEnabled = true; // Auto-enable voice on interaction
-                document.getElementById('chela-voice').textContent = '🔊';
-                // Only speak if not recently spoken
-                this.synth.cancel();
-                // Speak Greeting if not already
-                // this._speak("Hola vecino, soy Doña Chela. ¿En qué le puedo servir?"); 
-            }
+        widget.appendChild(img);
+        document.body.appendChild(widget);
+
+        // Chat Window (Hidden by default)
+        const chatWindow = document.createElement('div');
+        chatWindow.style.cssText = `
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            width: 350px;
+            height: 550px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 9999;
+            font-family: 'Inter', sans-serif;
+            border: 1px solid #ddd;
+        `;
+
+        // Header
+        const header = document.createElement('div');
+        header.style.cssText = `
+            background: linear-gradient(135deg, #2E8B57, #00A86B);
+            padding: 15px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        `;
+        header.innerHTML = `
+            <div style="width: 45px; height: 45px; border-radius: 50%; overflow: hidden; border: 2px solid white;">
+                <img src="assets/chela.png" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div>
+                <div style="font-weight: bold; font-size: 1.1rem;">Doña Chela</div>
+                <div style="font-size: 0.8rem; opacity: 0.9;">Tu Asistente en la Alcaldía</div>
+            </div>
+            <div style="margin-left: auto; cursor: pointer; font-size: 1.2rem;" id="close-chat">✖</div>
+        `;
+
+        // Messages Area
+        const messages = document.createElement('div');
+        messages.style.cssText = `
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #f9fdfa; /* Slight green tint */
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        `;
+
+        // Welcome Message
+        const welcomeMsg = document.createElement('div');
+        welcomeMsg.style.cssText = `
+            background: white;
+            padding: 15px;
+            border-radius: 0 15px 15px 15px;
+            max-width: 85%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            font-size: 0.95rem;
+            color: #333;
+            line-height: 1.5;
+            border-left: 3px solid #FFD700;
+        `;
+        welcomeMsg.innerHTML = `¡Hola corazón! Soy <strong>Chela</strong>, estoy aquí para ayudarte en lo que necesites de nuestra Alcaldía. 👵✨
+        <br><br>Conmigo no haces filas, mijo. Pregúntame lo que quieras saber sobre impuestos, sisbén o las obras del Alcalde Diego.
+        <br><br>¿En qué te colaboro hoy?`;
+        messages.appendChild(welcomeMsg);
+
+        // Input Area
+        const inputArea = document.createElement('div');
+        inputArea.style.cssText = `
+            padding: 15px;
+            background: white;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        `;
+        inputArea.innerHTML = `
+            <input type="text" placeholder="Habla con Chela..." style="flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 25px; outline: none; font-size: 0.9rem;">
+            <button style="background: #2E8B57; color: white; border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">➤</button>
+        `;
+
+        chatWindow.appendChild(header);
+        chatWindow.appendChild(messages);
+        chatWindow.appendChild(inputArea);
+        document.body.appendChild(chatWindow);
+
+        // Events
+        widget.addEventListener('click', () => {
+            chatWindow.style.display = chatWindow.style.display === 'none' ? 'flex' : 'none';
         });
-        document.getElementById('chela-close').addEventListener('click', () => {
-            document.getElementById('chela-win').classList.remove('open');
-            this.isOpen = false;
-        });
-        document.getElementById('chela-send').addEventListener('click', () => this._send());
-        document.getElementById('chela-input').addEventListener('keypress', (e) => e.key === 'Enter' && this._send());
-        document.getElementById('chela-voice').addEventListener('click', () => {
-            this.voiceEnabled = !this.voiceEnabled;
-            document.getElementById('chela-voice').textContent = this.voiceEnabled ? '🔊' : '🔇';
-            if (!this.voiceEnabled) this.synth.cancel();
+
+        header.querySelector('#close-chat').addEventListener('click', () => {
+            chatWindow.style.display = 'none';
         });
     }
 
-    _addMessage(sender, text) {
-        const div = document.createElement('div');
-        div.className = `msg ${sender === 'chela' ? 'chela' : 'user'}`;
-        div.textContent = text;
-        document.getElementById('chela-msgs').appendChild(div);
+    // Run
+    init();
 
-        const container = document.getElementById('chela-msgs');
-        container.scrollTop = container.scrollHeight;
-
-        if (sender === 'chela' && this.voiceEnabled) this._speak(text);
-    }
-
-    async _send() {
-        const input = document.getElementById('chela-input');
-        const text = input.value.trim();
-        if (!text) return;
-        this._addMessage('user', text);
-        input.value = '';
-
-        try {
-            // PRIORITY KEY LOADING
-            let key = null;
-            const keys = ['obando_api_key', 'jose_api_key', 'karla_api_key'];
-            for (const k of keys) {
-                const stored = localStorage.getItem(k);
-                if (stored) { key = atob(stored); break; }
-            }
-            // EMERGENCY KEY FALLBACK
-            if (!key) key = 'AIzaSyDNrPToe2abPx1Cf_dFz49OyWa1pVvZMp8';
-
-            const res = await fetch(`${this.apiEndpoint}?key=${key}`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    contents: [{ role: 'user', parts: [{ text: this.systemPrompt + "\nUsuario: " + text }] }]
-                })
-            });
-
-            if (!res.ok) throw new Error("API Error");
-
-            const data = await res.json();
-            const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "No le entendí mijo, repítame.";
-            this._addMessage('chela', reply);
-        } catch (e) {
-            console.error(e);
-            this._addMessage('chela', "Ay mijo, se me cayó la señal del internet. Intente mas tarde.");
-        }
-    }
-
-    _speak(text) {
-        if (!this.synth || !this.voiceEnabled) return;
-        this.synth.cancel();
-
-        // CLEAN EMOJIS & ICONS
-        const cleanText = text.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '')
-            .replace(/\*/g, '');
-
-        const u = new SpeechSynthesisUtterance(cleanText);
-        u.voice = this.selectedVoice;
-        u.rate = 0.8; // Slow for old lady
-        u.pitch = 0.9;
-        u.lang = 'es-CO'; // Colombian Spanish preference
-        this.synth.speak(u);
-    }
-}
-
-// Init
-window.ChelaAssistant = ChelaAssistant;
-document.addEventListener('DOMContentLoaded', () => new ChelaAssistant({}));
+})();

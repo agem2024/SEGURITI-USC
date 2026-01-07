@@ -75,8 +75,8 @@ INSTRUCCIONES:
                 ? `Mabae! Soy Karla de ORION Tech. Tengo una propuesta para potenciar la marca personal del Alcalde Diego y conectar con los ciudadanos 24/7. Me permite mostrarle como?`
                 : `Mabae! I'm Karla from ORION Tech. I have a proposal to boost Mayor Diego's personal brand and connect with citizens 24/7. May I show you how?`;
 
-            // REVERT: Speak immediately like Elisa/Jose (User Request)
-            this._addMessage('karla', welcome);
+            // SILENT ON LOAD (Browser Block Fix)
+            this._addMessage('karla', welcome, true);
         }, 500);
     }
 

@@ -31,8 +31,8 @@ class MikeAssistant {
     _buildSystemPrompt() {
         // PROMPT PERSONALIZADO PARA MIKE (INTERIOR DESIGN)
         const slogan = this.language === 'es'
-            ? 'ARTESANIA DIGITAL: Tu Taller de Restauracion en la Era IA.'
-            : 'DIGITAL CRAFTSMANSHIP: Your Restoration Shop in the AI Era.';
+            ? '🏛️ ARTESANÍA DIGITAL: Tu Taller de Restauración en la Era IA.'
+            : '🏛️ DIGITAL CRAFTSMANSHIP: Your Restoration Shop in the AI Era.';
 
         const roleDescription = this.language === 'es'
             ? `Eres MIKE, un consultor senior especializado en la operación de negocios de Diseño de Interiores y Restauración. NO eres soporte técnico. Eres un ESTRATEGA DE NEGOCIOS. Hablas con ${this.ownerName}, propietario de un negocio con 35 años de historia. Tu tono es respetuoso, profesional, conocedor de telas y madera, pero firme en la necesidad de modernizarse.`
@@ -94,8 +94,8 @@ REGLAS DE INTERACCIÓN:
 
         setTimeout(() => {
             const welcome = this.language === 'es'
-                ? `Hola ${this.ownerName}! Soy MIKE. Veo que llevan 35 años haciendo trabajos increibles. Tengo una idea para que dejes de perder tiempo en cotizaciones basura y te enfoques solo en los buenos proyectos. Te cuento como?`
-                : `Hello ${this.ownerName}! I'm MIKE. I see you have 35 years of amazing craftsmanship. I have an idea to stop wasting time on junk quotes and focus only on the good projects. Shall I explain?`;
+                ? `¡Hola ${this.ownerName}! Soy MIKE. 🏛️ Veo que llevan 35 años haciendo trabajos increíbles. Tengo una idea para que dejes de perder tiempo en cotizaciones "basura" y te enfoques solo en los buenos proyectos. ¿Te cuento cómo?`
+                : `Hello ${this.ownerName}! I'm MIKE. 🏛️ I see you have 35 years of amazing craftsmanship. I have an idea to stop wasting time on "junk" quotes and focus only on the good projects. Shall I explain?`;
             this._addMessage('mike', welcome);
         }, 1000);
     }
@@ -284,12 +284,9 @@ REGLAS DE INTERACCIÓN:
     _speak(text) {
         if (!this.synth) return;
         this.synth.cancel();
-        // Remove any remaining emojis before speaking
-        const cleanText = text.replace(/[\u{1F300}-\u{1F9FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]/gu, '');
-        const utt = new SpeechSynthesisUtterance(cleanText);
+        const utt = new SpeechSynthesisUtterance(text);
         utt.voice = this.selectedVoice;
-        utt.lang = this.language === 'es' ? 'es-MX' : 'en-US';
-        utt.rate = 0.95;
+        utt.rate = 1.0;
         this.synth.speak(utt);
     }
 }
