@@ -471,23 +471,30 @@ REGLAS:
     }
 
     _getSecureApiKey() {
-        // Check multiple localStorage keys
+        // Priority 1: ORION_CONFIG from jose-loader.js (most reliable)
+        if (window.ORION_CONFIG && typeof window.ORION_CONFIG.getAuth === 'function') {
+            const key = window.ORION_CONFIG.getAuth();
+            if (key) {
+                console.log('🔑 KARLA using ORION_CONFIG key');
+                return key;
+            }
+        }
+
+        // Priority 2: Check localStorage as fallback
         const keys = ['karla_api_key', 'jose_api_key', 'elisa_api_key', 'mario_api_key'];
-        for (const key of keys) {
-            const stored = localStorage.getItem(key);
+        for (const keyName of keys) {
+            const stored = localStorage.getItem(keyName);
             if (stored) {
                 try {
+                    console.log('🔑 KARLA using localStorage key:', keyName);
                     return atob(stored);
                 } catch (e) {
-                    console.error('Invalid key encoding for', key);
+                    console.error('Invalid key encoding for', keyName);
                 }
             }
         }
 
-        if (window.ORION_CONFIG && typeof window.ORION_CONFIG.getAuth === 'function') {
-            return window.ORION_CONFIG.getAuth();
-        }
-
+        console.warn('⚠️ KARLA: No API key found');
         return null;
     }
 
