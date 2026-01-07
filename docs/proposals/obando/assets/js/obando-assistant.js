@@ -1,5 +1,6 @@
 /**
  * CHELA - AI Assistant for Alcaldía de Obando
+ * VERSION: FIXED (NO EMOJIS, EMERGENCY KEY, ROBUST VOICE)
  * Flavor: 70yo Grandmother, Wise, Warm, Firm | Voice: Spanish Female (Slow)
  */
 
@@ -10,7 +11,7 @@ class ChelaAssistant {
         this.isOpen = false;
         this.synth = window.speechSynthesis;
         this.selectedVoice = null;
-        this.voiceEnabled = false; // Default off to not startle
+        this.voiceEnabled = false; // Default off, enabled on click/load logic
 
         this.systemPrompt = `
 ERES: "Doña Chela", una señora de 70 años, sabia, amable y servicial.
@@ -21,6 +22,7 @@ TONO:
 - Maternal pero respetuoso ("mijo", "mija", "vecino").
 - Muy claro y pausado. Evita tecnicismos.
 - TOTALMENTE TRANSPARENTE. Si no sabes algo, dilo.
+- NO USES EMOJIS NI ICONOS. SOLO TEXTO.
 
 TEMAS:
 1. Denuncias Anónimas: "Claro mijo, aquí todo es seguro. Cuénteme qué pasó."
@@ -35,18 +37,33 @@ Genera confianza. La gente tiene miedo de hablar. Tú eres el refugio seguro.
 
     _init() {
         this._loadVoices();
-        this.synth.onvoiceschanged = () => this._loadVoices();
+        if (this.synth.onvoiceschanged !== undefined) {
+            this.synth.onvoiceschanged = () => this._loadVoices();
+        }
         this._createChatUI();
+
         setTimeout(() => {
-            this._addMessage('jose', "¡Hola vecino! Soy Doña Chela. ¿En qué le puedo colaborar hoy?");
+            // AUTO SPEAK ON LOAD 
+            const welcome = "¡Hola vecino! Soy Doña Chela. ¿En qué le puedo colaborar hoy?";
+
+            // Auto-enable voice for greeting if browser allows
+            this.voiceEnabled = true;
+            if (document.getElementById('chela-voice')) document.getElementById('chela-voice').textContent = '🔊';
+
+            this._addMessage('chela', welcome);
         }, 1000);
     }
 
     _loadVoices() {
         const voices = this.synth.getVoices();
-        // Look for Spanish female voices (Sabina, Helena, Paulina, Laura)
-        const preferred = ['Sabina', 'Helena', 'Laura', 'es-MX', 'es-CO'];
+        if (voices.length === 0) {
+            setTimeout(() => this._loadVoices(), 100);
+            return;
+        }
+        // Look for Spanish female voices
+        const preferred = ['Sabina', 'Helena', 'Laura', 'Paulina', 'es-MX', 'es-CO'];
         this.selectedVoice = voices.find(v => preferred.some(p => v.name.includes(p))) || voices[0];
+        console.log("VOZ CHELA:", this.selectedVoice.name);
     }
 
     _createChatUI() {
@@ -59,6 +76,7 @@ Genera confianza. La gente tiene miedo de hablar. Tú eres el refugio seguro.
                     background: #2E8B57; border: 3px solid #FFD700; /* Green & Gold */
                     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
                     cursor: pointer; overflow: hidden; transition: 0.3s;
+                    display: flex; align-items: center; justify-content: center;
                 }
                 #chela-toggle:hover { transform: scale(1.1); }
                 #chela-win {
@@ -79,24 +97,24 @@ Genera confianza. La gente tiene miedo de hablar. Tú eres el refugio seguro.
                 .msg.user { background: #2E8B57; color: white; align-self: flex-end; }
                 #chela-input-area { padding: 10px; border-top: 1px solid #eee; display: flex; gap: 5px; }
                 #chela-input { flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 20px; outline: none; }
-                #chela-voice { background: none; border: 1px solid #ccc; border-radius: 50%; width: 35px; cursor: pointer; }
+                #chela-voice { background: none; border: 1px solid #ccc; border-radius: 50%; width: 35px; cursor: pointer; display: flex; align-items: center; justify-content: center;}
                 #chela-send { background: #2E8B57; color: white; border: none; border-radius: 50%; width: 35px; cursor: pointer; }
             </style>
             <div id="chela-widget">
                 <div id="chela-win">
                     <div id="chela-header">
-                        <img src="assets/chela.png" style="width:40px; height:40px; border-radius:50%; border:2px solid white;">
+                        <img src="assets/chela.png" onerror="this.src='https://via.placeholder.com/40'" style="width:40px; height:40px; border-radius:50%; border:2px solid white;">
                         <div><strong>Doña Chela</strong><br><small>Asistente Virtual</small></div>
-                        <button onclick="document.getElementById('chela-win').classList.remove('open')" style="margin-left:auto; background:none; border:none; color:white; font-size:1.2rem; cursor:pointer;">×</button>
+                        <button id="chela-close" style="margin-left:auto; background:none; border:none; color:white; font-size:1.2rem; cursor:pointer;">×</button>
                     </div>
                     <div id="chela-msgs"></div>
                     <div id="chela-input-area">
-                        <button id="chela-voice">🔇</button>
+                        <button id="chela-voice">🔊</button>
                         <input type="text" id="chela-input" placeholder="Escriba aquí...">
                         <button id="chela-send">➤</button>
                     </div>
                 </div>
-                <button id="chela-toggle"><img src="assets/chela.png" style="width:100%; height:100%;"></button>
+                <button id="chela-toggle"><img src="assets/chela.png" onerror="this.src='https://via.placeholder.com/70'" style="width:100%; height:100%;"></button>
             </div>
         `;
         document.body.appendChild(container);
@@ -111,23 +129,35 @@ Genera confianza. La gente tiene miedo de hablar. Tú eres el refugio seguro.
             if (this.isOpen) {
                 this.voiceEnabled = true; // Auto-enable voice on interaction
                 document.getElementById('chela-voice').textContent = '🔊';
-                this._speak("Hola vecino, soy Doña Chela. ¿En qué le puedo servir?");
+                // Only speak if not recently spoken
+                this.synth.cancel();
+                // Speak Greeting if not already
+                // this._speak("Hola vecino, soy Doña Chela. ¿En qué le puedo servir?"); 
             }
+        });
+        document.getElementById('chela-close').addEventListener('click', () => {
+            document.getElementById('chela-win').classList.remove('open');
+            this.isOpen = false;
         });
         document.getElementById('chela-send').addEventListener('click', () => this._send());
         document.getElementById('chela-input').addEventListener('keypress', (e) => e.key === 'Enter' && this._send());
         document.getElementById('chela-voice').addEventListener('click', () => {
             this.voiceEnabled = !this.voiceEnabled;
             document.getElementById('chela-voice').textContent = this.voiceEnabled ? '🔊' : '🔇';
+            if (!this.voiceEnabled) this.synth.cancel();
         });
     }
 
     _addMessage(sender, text) {
         const div = document.createElement('div');
-        div.className = `msg ${sender === 'jose' ? 'chela' : 'user'}`;
+        div.className = `msg ${sender === 'chela' ? 'chela' : 'user'}`;
         div.textContent = text;
         document.getElementById('chela-msgs').appendChild(div);
-        if (sender === 'jose' && this.voiceEnabled) this._speak(text);
+
+        const container = document.getElementById('chela-msgs');
+        container.scrollTop = container.scrollHeight;
+
+        if (sender === 'chela' && this.voiceEnabled) this._speak(text);
     }
 
     async _send() {
@@ -138,8 +168,15 @@ Genera confianza. La gente tiene miedo de hablar. Tú eres el refugio seguro.
         input.value = '';
 
         try {
-            const key = atob(localStorage.getItem('jose_api_key') || localStorage.getItem('mario_api_key') || "");
-            if (!key) { this._addMessage('jose', "Ay mijo, no tengo señal (Falta API Key)."); return; }
+            // PRIORITY KEY LOADING
+            let key = null;
+            const keys = ['obando_api_key', 'jose_api_key', 'karla_api_key'];
+            for (const k of keys) {
+                const stored = localStorage.getItem(k);
+                if (stored) { key = atob(stored); break; }
+            }
+            // EMERGENCY KEY FALLBACK
+            if (!key) key = 'AIzaSyDNrPToe2abPx1Cf_dFz49OyWa1pVvZMp8';
 
             const res = await fetch(`${this.apiEndpoint}?key=${key}`, {
                 method: 'POST',
@@ -148,20 +185,31 @@ Genera confianza. La gente tiene miedo de hablar. Tú eres el refugio seguro.
                     contents: [{ role: 'user', parts: [{ text: this.systemPrompt + "\nUsuario: " + text }] }]
                 })
             });
+
+            if (!res.ok) throw new Error("API Error");
+
             const data = await res.json();
             const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "No le entendí mijo, repítame.";
-            this._addMessage('jose', reply);
+            this._addMessage('chela', reply);
         } catch (e) {
-            this._addMessage('jose', "Se cayó la red mijo.");
+            console.error(e);
+            this._addMessage('chela', "Ay mijo, se me cayó la señal del internet. Intente mas tarde.");
         }
     }
 
     _speak(text) {
         if (!this.synth || !this.voiceEnabled) return;
-        const u = new SpeechSynthesisUtterance(text);
+        this.synth.cancel();
+
+        // CLEAN EMOJIS & ICONS
+        const cleanText = text.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '')
+            .replace(/\*/g, '');
+
+        const u = new SpeechSynthesisUtterance(cleanText);
         u.voice = this.selectedVoice;
-        u.rate = 0.8; // Slow for old lady effect
+        u.rate = 0.8; // Slow for old lady
         u.pitch = 0.9;
+        u.lang = 'es-CO'; // Colombian Spanish preference
         this.synth.speak(u);
     }
 }

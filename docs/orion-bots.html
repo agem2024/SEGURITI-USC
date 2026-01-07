@@ -2874,6 +2874,9 @@
     </style>
 
     <script>
+        // GLOBAL SETTINGS
+        window.currentLang = localStorage.getItem('orion_lang') || 'en';
+
         // Toggle service details
         function toggleDetails(card) {
             const details = card.querySelector('.service-details');
@@ -2893,9 +2896,12 @@
         }
 
         const XONA_API = 'https://orion-cloud.onrender.com/api/chat';
+        const GEMINI_API = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
+
         let xonaChatOpen = false;
         let isListening = false;
         let recognition = null;
+        let xonaVoiceEnabled = false; // Default OFF until interaction
 
         // Initialize Speech Recognition
         if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
@@ -2903,7 +2909,7 @@
             recognition = new SpeechRecognition();
             recognition.continuous = false;
             recognition.interimResults = false;
-            recognition.lang = currentLang === 'es' ? 'es-CO' : 'en-US';
+            recognition.lang = window.currentLang === 'es' ? 'es-CO' : 'en-US';
 
             recognition.onresult = (event) => {
                 const transcript = event.results[0][0].transcript;
@@ -2922,10 +2928,7 @@
             recognition.onend = () => stopListening();
         }
 
-        // Voice control state (enabled by default)
-        let xonaVoiceEnabled = true;
-
-        // Multilingual SHORT greetings - ORION Tech Professional
+        // Multilingual SHORT greetings
         const xonaGreetings = {
             en: "Hi! I'm XONA. How can I help?",
             es: "¡Hola! Soy XONA. ¿En qué puedo ayudarte?",
@@ -2939,9 +2942,14 @@
             document.getElementById('xonaChat').classList.toggle('active', xonaChatOpen);
             if (xonaChatOpen) {
                 document.getElementById('xonaInput').focus();
-                // Only speak greeting if voice is enabled and it's the first time opening
-                if (xonaVoiceEnabled) {
-                    const greeting = xonaGreetings[currentLang] || xonaGreetings.en;
+
+                // AUTO ENABLE VOICE ON OPEN IF NOT ENABLED
+                if (!xonaVoiceEnabled) {
+                    xonaVoiceEnabled = true;
+                    updateVoiceUI(true);
+
+                    // SPEAK GREETING
+                    const greeting = xonaGreetings[window.currentLang] || xonaGreetings.en;
                     speakXona(greeting);
                 }
             }
@@ -2949,23 +2957,28 @@
 
         function toggleXonaVoice() {
             xonaVoiceEnabled = !xonaVoiceEnabled;
-            const btn = document.getElementById('xonaVoiceToggle');
-            if (xonaVoiceEnabled) {
-                btn.textContent = '🔊';
-                btn.title = currentLang === 'es' ? 'Voz activada (clic para desactivar)' : 'Voice ON (click to disable)';
-                btn.style.background = 'linear-gradient(135deg, #25D366, #00f3ff)';
-
-                // Immediate feedback
-                const feedback = currentLang === 'es' ? 'Voz activada.' : 'Voice enabled.';
-                speakXona(feedback);
-            } else {
-                btn.textContent = '🔇';
-                btn.title = currentLang === 'es' ? 'Voz desactivada (clic para activar)' : 'Voice OFF (click to enable)';
-                btn.style.background = 'rgba(255, 255, 255, 0.1)';
-                if ('speechSynthesis' in window) speechSynthesis.cancel();
-            }
             // Save preference
             localStorage.setItem('xona_voice_enabled', xonaVoiceEnabled);
+            updateVoiceUI(xonaVoiceEnabled);
+
+            if (xonaVoiceEnabled) {
+                speakXona(window.currentLang === 'es' ? 'Voz activada.' : 'Voice enabled.');
+            } else {
+                if ('speechSynthesis' in window) speechSynthesis.cancel();
+            }
+        }
+
+        function updateVoiceUI(enabled) {
+            const btn = document.getElementById('xonaVoiceToggle');
+            if (enabled) {
+                btn.textContent = '🔊';
+                btn.title = window.currentLang === 'es' ? 'Voz activada' : 'Voice ON';
+                btn.style.background = 'linear-gradient(135deg, #25D366, #00f3ff)';
+            } else {
+                btn.textContent = '🔇';
+                btn.title = window.currentLang === 'es' ? 'Voz desactivada' : 'Voice OFF';
+                btn.style.background = 'rgba(255, 255, 255, 0.1)';
+            }
         }
 
         // Load voice preference on page load
@@ -2973,11 +2986,7 @@
             const savedVoicePref = localStorage.getItem('xona_voice_enabled');
             if (savedVoicePref === 'false') {
                 xonaVoiceEnabled = false;
-                const btn = document.getElementById('xonaVoiceToggle');
-                if (btn) {
-                    btn.textContent = '🔇';
-                    btn.style.background = 'rgba(255, 255, 255, 0.1)';
-                }
+                updateVoiceUI(false);
             }
         });
 
@@ -2995,9 +3004,9 @@
 
         function startListening() {
             isListening = true;
-            recognition.lang = currentLang === 'es' ? 'es-CO' : 'en-US';
+            recognition.lang = window.currentLang === 'es' ? 'es-CO' : 'en-US';
             document.getElementById('xonaMic').classList.add('listening');
-            document.getElementById('xonaVoiceStatus').textContent = currentLang === 'es' ? '🎤 Escuchando...' : '🎤 Listening...';
+            document.getElementById('xonaVoiceStatus').textContent = window.currentLang === 'es' ? '🎤 Escuchando...' : '🎤 Listening...';
             recognition.start();
         }
 
@@ -3008,140 +3017,57 @@
             try { recognition.stop(); } catch (e) { }
         }
 
-        // Text-to-Speech for XONA responses - HYBRID (OpenAI API -> Browser Fallback)
-        // Text-to-Speech for XONA responses - HYBRID (OpenAI API -> Browser Fallback)
+        // Clean Text for Speech (No Emojis)
+        function cleanTextForSpeech(text) {
+            return text.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '')
+                .replace(/\*/g, '');
+        }
+
         async function speakXona(text) {
-            // Check if voice is enabled
-            if (!xonaVoiceEnabled) {
-                console.log('🔇 Voice disabled by user');
-                return;
-            }
+            if (!xonaVoiceEnabled) return;
 
-            // Phonetic adjustment for pronunciation 
-            // 'XONA' sometimes read as 'Ks-ona'. We want 'Sona' or 'Shona'.
-            // User feedback: "mal escrito el nombre". 
-            // If the issue is visual text, we don't change it here. 
-            // If it's audio, 'Chona' might sound too hard. Let's try 'Sona' for soft X or keep 'Xona' if TTS handles it well, 
-            // but the user said "mal escrito". I will assume they mean the chatbot Header or Greetings.
-            // However, strict request is "voz de men" (male voice) correction.
+            const spokenText = cleanTextForSpeech(text);
 
-            // 1. Phonetic fix for AUDIO only (not visual)
-            let spokenText = text;
-            // If the user meant the text IS written wrong on screen, I need to check HTML. 
-            // For audio, 'Chona' might be what sounded like a man or wrong? 
-            // Let's use 'XONA' as is for OpenAI (it's smart) 
-            // and 'Sona' for browser fallback to avoid Hard K or Ch.
+            if ('speechSynthesis' in window) {
+                speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(spokenText);
 
-            // API ROTATION ORDER:
-            // 1. Primary: ORION Cloud (OpenAI TTS) - Natural voice ('nova' is female)
-            // 2. Fallback: Browser SpeechSynthesis - Built-in voice
-
-            try {
-                // Determine language
-                const lang = currentLang || 'es';
-
-                // PRIMARY API: ORION Cloud (Render) with OpenAI TTS
-                // Set a timeout for the fetch to avoid long waits (2.5 seconds)
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 2500);
-
-                const response = await fetch('https://orion-cloud.onrender.com/api/tts', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ text: spokenText, lang }), // Send cleaned text
-                    signal: controller.signal
-                });
-                clearTimeout(timeoutId);
-
-                if (response.ok) {
-                    const blob = await response.blob();
-                    const audioUrl = URL.createObjectURL(blob);
-                    const audio = new Audio(audioUrl);
-
-                    // Critical: Handle Promise for Autoplay policies
-                    try {
-                        await audio.play();
-                        console.log('🎤 XONA Voice: OpenAI Natural (via API)');
-                        return; // Success, exit function
-                    } catch (playError) {
-                        console.warn('⚠️ Autoplay prevented or Audio Error. Switching to fallback.', playError);
-                        // Fallback will be called below
-                    }
+                if (window.currentLang === 'es') {
+                    utterance.lang = 'es-MX';
+                    utterance.rate = 1.0;
                 } else {
-                    console.warn('⚠️ Local API TTS failed (status ' + response.status + '), using browser fallback');
+                    utterance.lang = 'en-US';
+                    utterance.rate = 1.0;
                 }
-            } catch (e) {
-                console.warn('⚠️ API unavailable or timed out. Using browser fallback:', e.message);
-            }
+                utterance.pitch = 1.1; // FEMALE PITCH
+                utterance.volume = 1.0;
 
-            // Function to execute Browser TTS Fallback
-            const useBrowserTTS = () => {
-                if ('speechSynthesis' in window) {
-                    speechSynthesis.cancel(); // Stop any current speech
-                    const utterance = new SpeechSynthesisUtterance(spokenText);
+                const setVoice = () => {
+                    const voices = speechSynthesis.getVoices();
+                    let selectedVoice = null;
+                    const preferred = ['Sabina', 'Helena', 'Zira', 'Paulina', 'Google español', 'Google US English'];
 
-                    if (currentLang === 'es') {
-                        utterance.lang = 'es-MX'; // Mexican Spanish usually better quality
-                        utterance.rate = 1.1; // Slightly faster
-                    } else {
-                        utterance.lang = 'en-US';
-                        utterance.rate = 1.0;
+                    selectedVoice = voices.find(v => preferred.some(p => v.name.includes(p)));
+
+                    // Fallback to any female-ish voice if possible (hard to detect, assume default)
+                    if (!selectedVoice) selectedVoice = voices.find(v => v.lang === utterance.lang) || voices[0];
+
+                    if (selectedVoice) {
+                        utterance.voice = selectedVoice;
+                        console.log('🎤 Voice:', selectedVoice.name);
                     }
-                    utterance.pitch = 1.2; // Higher pitch for female
-                    utterance.volume = 1.0;
+                    speechSynthesis.speak(utterance);
+                };
 
-                    const setVoice = () => {
-                        const voices = speechSynthesis.getVoices();
-                        let selectedVoice = null;
-
-                        // console.log("🗣️ Available voices:", voices.map(v => v.name + ' (' + v.lang + ')').join(', '));
-
-                        if (currentLang === 'es') {
-                            // High priority female voices
-                            const femaleKeywords = ['sabina', 'paulina', 'helena', 'laura', 'monica', 'female', 'google español'];
-                            const maleKeywords = ['david', 'pablo', 'raul', 'male'];
-
-                            // 1. Try to find a specific high-quality female voice
-                            selectedVoice = voices.find(v => v.lang.includes('es') && femaleKeywords.some(sw => v.name.toLowerCase().includes(sw)));
-
-                            // 2. If not found, find ANY Spanish voice that is NOT explicitly male
-                            if (!selectedVoice) {
-                                selectedVoice = voices.find(v => v.lang.includes('es') && !maleKeywords.some(mw => v.name.toLowerCase().includes(mw)));
-                            }
-                        } else {
-                            // English
-                            const femaleKeywords = ['zira', 'samantha', 'google us english', 'female'];
-                            const maleKeywords = ['david', 'mark', 'male'];
-
-                            selectedVoice = voices.find(v => v.lang.includes('en') && femaleKeywords.some(sw => v.name.toLowerCase().includes(sw)));
-
-                            if (!selectedVoice) {
-                                selectedVoice = voices.find(v => v.lang.includes('en') && !maleKeywords.some(mw => v.name.toLowerCase().includes(mw)));
-                            }
-                        }
-
-                        if (selectedVoice) {
-                            utterance.voice = selectedVoice;
-                            console.log('🎤 XONA Voice: Browser Fallback -', selectedVoice.name);
-                        } else {
-                            console.log('⚠️ No specific female voice found, using default.');
-                        }
-                        speechSynthesis.speak(utterance);
-                    };
-
-                    if (speechSynthesis.getVoices().length > 0) {
+                if (speechSynthesis.getVoices().length > 0) {
+                    setVoice();
+                } else {
+                    speechSynthesis.onvoiceschanged = () => {
                         setVoice();
-                    } else {
-                        speechSynthesis.onvoiceschanged = () => {
-                            setVoice();
-                            speechSynthesis.onvoiceschanged = null;
-                        };
-                    }
+                        speechSynthesis.onvoiceschanged = null;
+                    };
                 }
-            };
-
-            // If we reached here, execute Fallback
-            useBrowserTTS();
+            }
         }
 
         async function sendXonaMsg() {
@@ -3158,37 +3084,79 @@
 
             // Add typing indicator
             const typingId = 'typing-' + Date.now();
-            const typingText = currentLang === 'es' ? 'Procesando' : 'Processing';
+            const typingText = window.currentLang === 'es' ? 'Procesando...' : 'Processing...';
             messagesDiv.innerHTML += `<div class="xona-msg bot typing" id="${typingId}">${typingText}</div>`;
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
 
             try {
+                // TRY 1: Main API
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 3000); // 3s Timeout
+
                 const res = await fetch(XONA_API, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: msg, lang: currentLang })
+                    body: JSON.stringify({ message: msg, lang: window.currentLang }),
+                    signal: controller.signal
                 });
+                clearTimeout(timeoutId);
 
                 const data = await res.json();
                 document.getElementById(typingId).remove();
 
                 if (data.response) {
                     messagesDiv.innerHTML += `<div class="xona-msg bot">${data.response}</div>`;
-                    speakXona(data.response); // Speak the response!
+                    speakXona(data.response);
                 } else {
-                    const errMsg = currentLang === 'es'
-                        ? '⚠️ Conexión interrumpida. Por favor contacta por WhatsApp.'
-                        : '⚠️ Neural link interrupted. Please contact via WhatsApp.';
-                    messagesDiv.innerHTML += `<div class="xona-msg bot">${errMsg}</div>`;
-                    speakXona(currentLang === 'es' ? 'Conexión interrumpida. Contacta por WhatsApp.' : 'Neural link interrupted. Contact via WhatsApp.');
+                    throw new Error("Empty API response");
                 }
             } catch (e) {
-                const errMsgEs = '⚠️ ORION offline. <a href="https://wa.me/16692342444" style="color:#25D366;">Contactar por WhatsApp</a>';
-                const errMsgEn = '⚠️ ORION offline. <a href="https://wa.me/16692342444" style="color:#25D366;">Contact via WhatsApp</a>';
-                messagesDiv.innerHTML += `<div class="xona-msg bot">${currentLang === 'es' ? errMsgEs : errMsgEn}</div>`;
-                speakXona(currentLang === 'es' ? 'ORION está offline. Contacta por WhatsApp.' : 'ORION is offline. Please contact via WhatsApp.');
+                console.warn("XONA Main API Failed, switching to FALLBACK GEMINI", e);
+
+                // TRY 2: Gemini Direct Fallback
+                try {
+                    const key = 'AIzaSyDNrPToe2abPx1Cf_dFz49OyWa1pVvZMp8'; // EMERGENCY KEY
+
+                    const systemPrompt = window.currentLang === 'es'
+                        ? "Eres XONA, asistente IA de ORION Tech. Eres profesional, futurista y servicial. NO uses Emujis. Responde brevemente."
+                        : "You are XONA, ORION Tech AI Assistant. You are professional, futuristic, and helpful. Do NOT use Emojis. Keep brevity.";
+
+                    const geminiRes = await fetch(`${GEMINI_API}?key=${key}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            contents: [{ role: 'user', parts: [{ text: systemPrompt + "\nUser: " + msg }] }]
+                        })
+                    });
+
+                    const geminiData = await geminiRes.json();
+                    document.getElementById(typingId)?.remove();
+
+                    const fallbackReply = geminiData.candidates?.[0]?.content?.parts?.[0]?.text || (window.currentLang === 'es' ? "Lo siento, mis sistemas neuronales están reiniciando. Intenta de nuevo." : "Sorry, my neural systems are rebooting. Try again.");
+
+                    // Clean emojis just in case
+                    const cleanReply = cleanTextForSpeech(fallbackReply);
+
+                    messagesDiv.innerHTML += `<div class="xona-msg bot">${cleanReply}</div>`;
+                    speakXona(cleanReply);
+
+                } catch (geminiError) {
+                    console.error("ALL APIS FAILED", geminiError);
+                    document.getElementById(typingId)?.remove();
+                    const finalErr = window.currentLang === 'es' ? '⚠️ ORION Offline. Contacta por WhatsApp.' : '⚠️ ORION Offline. Contact via WhatsApp.';
+                    messagesDiv.innerHTML += `<div class="xona-msg bot">${finalErr}</div>`;
+                }
             }
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        // Feature: Set Language Global Function
+        window.setLanguage = function (lang) {
+            window.currentLang = lang;
+            localStorage.setItem('orion_lang', lang);
+            console.log("XONA Language set to:", lang);
+            // Optionally reload page or update UI strings here
+            location.reload();
         }
 
         // Load voices when available
