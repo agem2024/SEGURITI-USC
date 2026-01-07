@@ -233,10 +233,23 @@ INSTRUCCIONES:
         return reply;
     }
 
-    _getFallbackResponse(text) {
-        const msg = text.toLowerCase();
-        if (msg.includes('precio')) return "El plan ALCALDE DIGITAL es el recomendado: $3M/mes + setup. ¿Agendamos?";
-        return "Disculpe, conexión lenta. Llame al 310 888 4014.";
+    _getFallbackResponse(userMessage) {
+        // RESPUESTAS INTELIGENTES OFFLINE/FALLBACK
+        // Si la IA falla, Karla sigue vendiendo.
+        const msg = userMessage.toLowerCase();
+
+        if (msg.includes('precio') || msg.includes('costo') || msg.includes('vale')) {
+            return "El plan recomendado ALCALDE DIGITAL es de $3,000,000 mensuales. Incluye toda la gestión de marca y respuesta ciudadana 24/7. ¿Le interesa ver el retorno de inversión?";
+        }
+        if (msg.includes('hola') || msg.includes('mabae')) {
+            return "¡Mabae! Es un gusto saludarle. Estoy lista para mostrarle cómo Orion puede transformar su gestión digital.";
+        }
+        if (msg.includes('demo') || msg.includes('reunion') || msg.includes('cita')) {
+            return "Excelente decisión. Tengo espacio este Jueves a las 10:00 AM o el Viernes en la tarde para una demostración completa. ¿Qué prefiere?";
+        }
+
+        // Respuesta genérica de ventas (si no entiendo)
+        return "Entiendo perfectamente. La tecnología de Orion está diseñada para resolver justamente eso, automatizando la interacción con ciudadanos para que usted se enfoque en el territorio. ¿Le gustaría ver cómo funciona el módulo de WhatsApp?";
     }
 
     _getSecureApiKey() {
@@ -257,7 +270,13 @@ INSTRUCCIONES:
     _speak(text) {
         if (!this.synth || !this.voiceEnabled) return;
         this.synth.cancel();
-        const u = new SpeechSynthesisUtterance(text);
+
+        // REMOVE EMOJIS SO SHE DOESN'T READ THEM
+        // Regex for Emoji ranges
+        const cleanText = text.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '')
+            .replace(/\*/g, ''); // Remove asterisks too
+
+        const u = new SpeechSynthesisUtterance(cleanText);
         u.voice = this.selectedVoice;
         u.lang = this.language === 'es' ? 'es-MX' : 'en-US';
         u.pitch = 1.1; u.rate = 1.0;
