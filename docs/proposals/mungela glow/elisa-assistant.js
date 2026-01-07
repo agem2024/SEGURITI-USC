@@ -585,26 +585,30 @@ Responde de forma breve y concisa. Máximo 2-3 oraciones. Siempre termina con un
     }
 
     _getSecureApiKey() {
-        // Priority 1: Check for ORION_CONFIG (from jose-loader.js)
-        if (window.ORION_CONFIG && typeof window.ORION_CONFIG.getAuth === 'function') {
-            const key = window.ORION_CONFIG.getAuth();
-            if (key) return key;
-        }
-
-        // Priority 2: Check for injected key
-        if (window.__ELISA_CONFIG__?.apiKey) {
-            return window.__ELISA_CONFIG__.apiKey;
-        }
-
-        // Priority 3: Check localStorage
+        // Priority 1: Check localStorage FIRST (for admin config - same as Mario/Jose)
         const elisaKey = localStorage.getItem('elisa_api_key');
         if (elisaKey) return atob(elisaKey);
 
         const joseKey = localStorage.getItem('jose_api_key');
         if (joseKey) return atob(joseKey);
 
+        const marioKey = localStorage.getItem('mario_api_key');
+        if (marioKey) return atob(marioKey);
+
+        // Priority 2: Check for ORION_CONFIG (from jose-loader.js - fallback)
+        if (window.ORION_CONFIG && typeof window.ORION_CONFIG.getAuth === 'function') {
+            const key = window.ORION_CONFIG.getAuth();
+            if (key) return key;
+        }
+
+        // Priority 3: Check for injected key
+        if (window.__ELISA_CONFIG__?.apiKey) {
+            return window.__ELISA_CONFIG__.apiKey;
+        }
+
         return null;
     }
+
 
     _speak(text) {
         if (!this.synth || !this.voiceEnabled) return;

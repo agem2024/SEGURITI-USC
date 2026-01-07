@@ -625,30 +625,31 @@ CONTEXTO: Estás en el chat de la propuesta comercial. El cliente ya vio los pre
     }
 
     _getSecureApiKey() {
-        // Priority 1: Check for ORION_CONFIG (from jose-loader.js)
-        if (window.ORION_CONFIG && typeof window.ORION_CONFIG.getAuth === 'function') {
-            const key = window.ORION_CONFIG.getAuth();
-            if (key) return key;
-        }
-
-        // Priority 2: Check for injected key (from backend/build process)
-        if (window.__JOSE_CONFIG__?.apiKey) {
-            return window.__JOSE_CONFIG__.apiKey;
-        }
-
-        // Priority 3: Check localStorage (for admin configuration)
+        // Priority 1: Check localStorage FIRST (for admin config - same as Mario)
         const storedKey = localStorage.getItem('jose_api_key');
         if (storedKey) {
             return atob(storedKey); // Decode from base64
         }
 
-        // Also check mario key as fallback if migrating
+        // Priority 2: Check mario key as shared fallback
         const marioKey = localStorage.getItem('mario_api_key');
         if (marioKey) return atob(marioKey);
 
-        // Priority 4: Prompt admin to configure
+        // Priority 3: Check for ORION_CONFIG (from jose-loader.js - fallback)
+        if (window.ORION_CONFIG && typeof window.ORION_CONFIG.getAuth === 'function') {
+            const key = window.ORION_CONFIG.getAuth();
+            if (key) return key;
+        }
+
+        // Priority 4: Check for injected key (from backend/build process)
+        if (window.__JOSE_CONFIG__?.apiKey) {
+            return window.__JOSE_CONFIG__.apiKey;
+        }
+
+        // No key found
         return null;
     }
+
 
     _speak(text) {
         if (!this.synth || !this.voiceEnabled) return;
