@@ -1186,7 +1186,7 @@
         <div class="capacity-grid">
             <div class="capacity-item">
                 <span class="number">‚àû</span>
-                <span class="label lang-en">Mensajes/dÌa</span>
+                <span class="label lang-en">Mensajes/dÔøΩa</span>
                 <span class="label lang-es">Hu√©spedes Simult√°neos</span>
                 <span class="highlight lang-en">Instant Attention</span>
                 <span class="highlight lang-es">Atenci√≥n Instant√°nea</span>
@@ -1443,7 +1443,7 @@
                 <div style="text-align: center;">
                     <div style="font-size: 2.5rem; color: var(--accent-gold); font-family: 'Orbitron', sans-serif;">‚àû
                     </div>
-                    <div style="color: var(--text-gray); font-size: 0.85rem;" class="lang-en">Mensajes/dÌa</div>
+                    <div style="color: var(--text-gray); font-size: 0.85rem;" class="lang-en">Mensajes/dÔøΩa</div>
                     <div style="color: var(--text-gray); font-size: 0.85rem;" class="lang-es">Hu√©spedes Simult√°neos
                     </div>
                 </div>
@@ -1613,9 +1613,9 @@
     <!-- PRICING SECTION -->
     <section class="section" style="padding: 40px 5%;">
         <div class="section-title">
-            <h2 class="lang-en gradient-text">// INVERSI”N MARCA PERSONAL</h2>
+            <h2 class="lang-en gradient-text">// INVERSIÔøΩN MARCA PERSONAL</h2>
             <h2 class="lang-es gradient-text">// MEMBRES√çA EXCLUSIVA</h2>
-            <p class="lang-en">ConexiÛn directa con ciudadanos</p>
+            <p class="lang-en">ConexiÔøΩn directa con ciudadanos</p>
             <p class="lang-es">Elige tu nivel de automatizaci√≥n de lujo</p>
         </div>
 
@@ -1627,7 +1627,7 @@
                 <div class="pricing-setup">+ $5M Setup</div>
                 <div class="pricing-capacity">
                     <div class="num">10</div>
-                    <div class="cap-label lang-en">Mensajes/dÌa</div>
+                    <div class="cap-label lang-en">Mensajes/dÔøΩa</div>
                     <div class="cap-label lang-es">Hu√©spedes Simult√°neos</div>
                 </div>
                 <ul class="pricing-features">
@@ -1651,7 +1651,7 @@
                 <div class="pricing-setup">+ $8M Setup</div>
                 <div class="pricing-capacity">
                     <div class="num">50</div>
-                    <div class="cap-label lang-en">Mensajes/dÌa</div>
+                    <div class="cap-label lang-en">Mensajes/dÔøΩa</div>
                     <div class="cap-label lang-es">Hu√©spedes Simult√°neos</div>
                 </div>
                 <ul class="pricing-features">
@@ -1667,15 +1667,15 @@
                 </a>
             </div>
 
-            <!-- LÕDER REGIONAL -->
+            <!-- LÔøΩDER REGIONAL -->
             <div class="pricing-card elite">
                 <span class="pricing-badge">ELITE</span>
-                <div class="pricing-name">LÕDER REGIONAL</div>
+                <div class="pricing-name">LÔøΩDER REGIONAL</div>
                 <div class="pricing-price">$8M<span style="font-size: 1rem;">COP/mes</span></div>
                 <div class="pricing-setup">+ $15M Setup</div>
                 <div class="pricing-capacity">
                     <div class="num">100</div>
-                    <div class="cap-label lang-en">Mensajes/dÌa</div>
+                    <div class="cap-label lang-en">Mensajes/dÔøΩa</div>
                     <div class="cap-label lang-es">Hu√©spedes Simult√°neos</div>
                 </div>
                 <ul class="pricing-features">
@@ -1691,10 +1691,10 @@
                 </a>
             </div>
 
-            <!-- LEGADO POLÕTICO -->
+            <!-- LEGADO POLÔøΩTICO -->
             <div class="pricing-card luxury">
                 <span class="pricing-badge">üëë LEADER</span>
-                <div class="pricing-name">LEGADO POLÕTICO</div>
+                <div class="pricing-name">LEGADO POLÔøΩTICO</div>
                 <div class="pricing-price">$15M<span style="font-size: 1rem;">COP/mes</span></div>
                 <div class="pricing-setup">+ $25M Setup</div>
                 <div class="pricing-capacity">
@@ -1855,7 +1855,7 @@
 
     <!-- CTA -->
     <section class="cta-section">
-        <h2 class="lang-en">Listo para tu transformaciÛn digital?</h2>
+        <h2 class="lang-en">Listo para tu transformaciÔøΩn digital?</h2>
         <h2 class="lang-es">¬øListos para Transformar Diego Ortiz?</h2>
         <p class="lang-en">Unlimited AI concierge. Instant bookings. Total guest memory. Zero waiting. This is the
             future of luxury operations.</p>
@@ -1876,7 +1876,7 @@
                 href="https://agem2024.github.io/SEGURITI-USC/orion-bots.html">orion-tech.com</a> | (669) 234-2444</p>
         <p style="margin-top: 20px; font-size: 0.75rem;">¬© 2026 ORION Tech. <span class="lang-en">Proposal valid 30
                 days.</span><span class="lang-es">Propuesta v√°lida 30 d√≠as.</span></p>
-    </footer>
+    </footer></footer>
 
     <script>
         function setLang(lang) {
@@ -1885,8 +1885,6 @@
                 btn.classList.toggle('active', btn.textContent.includes(lang.toUpperCase()));
             });
             localStorage.setItem('mcProposalLang', lang);
-
-            // Update JOSE dynamically if active
             if (window.jose && typeof window.jose.setLanguage === 'function') {
                 window.jose.setLanguage(lang);
             }
@@ -1895,15 +1893,17 @@
         if (savedLang) setLang(savedLang);
     </script>
 
-    <!-- DANIEL ASSISTANT -->
-    <script src="assets/js/karla-assistant.js"></script>
     <script>
-        console.log('‚úÖ Daniel AI Configured');
+        window.JOSE_CONFIG = {
+            clientName: 'Alcalde Diego Ortiz',
+            clientPhone: '+57 310 888 4014',
+            language: localStorage.getItem('mcProposalLang') || 'es',
+            ownerName: 'Diego Armando Ortiz Buitrago',
+            proposalContext: 'Marca Personal Digital para Alcalde de Obando'
+        };
     </script>
+    <script src="https://agem2024.github.io/SEGURITI-USC/proposals/jose-loader.js"></script>
+    <script src="https://agem2024.github.io/SEGURITI-USC/proposals/jose-assistant.js"></script>
+
 </body>
-
 </html>
-```
-
-
-
