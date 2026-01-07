@@ -1,8 +1,6 @@
 /**
- * KARLA - AI Political Brand Consultant for Mayor Diego Ortiz
- * TRILINGUAL: Español | English | Embera Chamí (Obando)
- * Female Voice | Gemini AI Powered
- * VERSION: V2 - WINDOWS VOICE FORCE
+ * KARLA - AI Political Brand Consultant
+ * VERSION: V2 - FINAL RESCUE (Windows Voice + Emergency Key)
  */
 
 class KarlaAssistant {
@@ -17,9 +15,9 @@ class KarlaAssistant {
         this.messages = [];
         this.synth = window.speechSynthesis;
         this.selectedVoice = null;
+        this.voiceEnabled = false;
 
         this.systemPrompt = this._buildSystemPrompt();
-
         this._init();
     }
 
@@ -80,22 +78,14 @@ INSTRUCCIONES:
         const isSpanish = this.language === 'es';
 
         // ESTRATEGIA DE SELECCIÓN DE VOZ (WINDOWS/CHROME)
-
-        // 1. Buscar voces específicas de alta calidad (Sabina es TOP en Windows)
-        // Sabina = Mexico, Helena = Spain, Zira = US English
         const sabina = voices.find(v => v.name.includes('Sabina'));
         const helena = voices.find(v => v.name.includes('Helena'));
         const googleEs = voices.find(v => v.name.includes('Google español'));
-
-        // Ingles
         const zira = voices.find(v => v.name.includes('Zira'));
         const googleEn = voices.find(v => v.name.includes('Google US English'));
 
         if (isSpanish) {
-            // Preferimos Sabina (Latina) > Google > Helena (España)
             this.selectedVoice = sabina || googleEs || helena;
-
-            // Si no hay ninguna específica, buscamos ANY spanish voice que NO sea Raul (Hombre)
             if (!this.selectedVoice) {
                 this.selectedVoice = voices.find(v => v.lang.startsWith('es') && !v.name.includes('Raul') && !v.name.includes('Pablo'));
             }
@@ -106,9 +96,8 @@ INSTRUCCIONES:
             }
         }
 
-        // FALLBACK FINAL: Si sigue null, agarramos cualquiera pero logueamos advertencia
         if (!this.selectedVoice) {
-            console.warn('⚠️ NO SE ENCONTRÓ VOZ FEMENINA PREFERIDA. Usando default.');
+            console.warn('⚠️ NO VOICE FOUND, USING DEFAULT');
             this.selectedVoice = voices[0];
         } else {
             console.log('✅ VOZ KARLA ACTIVADA:', this.selectedVoice.name);
@@ -120,52 +109,27 @@ INSTRUCCIONES:
         container.id = 'karla-chat-container';
         container.innerHTML = `
             <style>
-                #karla-chat-container {
-                    position: fixed; bottom: 100px; right: 20px; z-index: 10000;
-                    font-family: 'Segoe UI', sans-serif;
-                }
-                #karla-toggle {
-                    width: 70px; height: 70px; border-radius: 50%;
-                    background: linear-gradient(135deg, #0984e3 0%, #00b894 100%);
-                    border: 3px solid #fff;
-                    cursor: pointer;
-                    box-shadow: 0 0 20px rgba(9, 132, 227, 0.6);
-                    transition: transform 0.3s;
-                    overflow: hidden; padding: 0;
-                }
+                #karla-chat-container { position: fixed; bottom: 100px; right: 20px; z-index: 10000; font-family: 'Segoe UI', sans-serif; }
+                #karla-toggle { width: 70px; height: 70px; border-radius: 50%; background: linear-gradient(135deg, #0984e3 0%, #00b894 100%); border: 3px solid #fff; cursor: pointer; box-shadow: 0 0 20px rgba(9, 132, 227, 0.6); transition: transform 0.3s; padding: 0; display:flex; align-items:center; justify-content:center; }
                 #karla-toggle:hover { transform: scale(1.15); }
-                #karla-toggle img { width: 100%; height: 100%; object-fit: cover; }
-                
-                #karla-chat-window {
-                    display: none; width: 380px; height: 500px;
-                    background: #1a1a1a; border: 1px solid #333;
-                    border-radius: 16px; overflow: hidden;
-                    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-                    flex-direction: column;
-                    position: absolute; bottom: 80px; right: 0;
-                }
+                #karla-toggle img { width: 100%; height: 100%; object-fit: cover; border-radius:50%;}
+                #karla-chat-window { display: none; width: 380px; height: 500px; background: #1a1a1a; border: 1px solid #333; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); flex-direction: column; position: absolute; bottom: 80px; right: 0; }
                 #karla-chat-window.open { display: flex; }
-                
-                #karla-header {
-                    background: linear-gradient(135deg, #0984e3 0%, #00b894 100%);
-                    padding: 15px; display: flex; align-items: center; gap: 12px;
-                }
+                #karla-header { background: linear-gradient(135deg, #0984e3 0%, #00b894 100%); padding: 15px; display: flex; align-items: center; gap: 12px; }
                 #karla-header img { width: 45px; height: 45px; border-radius: 50%; border: 2px solid #fff; object-fit: cover; }
                 #karla-messages { flex: 1; overflow-y: auto; padding: 15px; display: flex; flex-direction: column; gap: 12px; }
-                
                 .karla-message { max-width: 85%; padding: 12px 16px; border-radius: 16px; font-size: 0.9rem; line-height: 1.4; }
                 .karla-message.karla { background: rgba(0, 184, 148, 0.15); color: #fff; align-self: flex-start; border: 1px solid rgba(0, 184, 148, 0.3); }
                 .karla-message.user { background: rgba(255, 255, 255, 0.1); color: #fff; align-self: flex-end; }
-                
                 #karla-input-area { padding: 15px; border-top: 1px solid #333; display: flex; gap: 10px; background: #1a1a1a; }
                 #karla-input { flex: 1; background: #252525; border: 1px solid #444; border-radius: 25px; padding: 12px 20px; color: #fff; outline: none; }
                 #karla-send { width: 45px; height: 45px; border-radius: 50%; background: linear-gradient(135deg, #0984e3 0%, #00b894 100%); border: none; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-                #karla-voice-btn { width: 35px; height: 35px; border-radius: 50%; background: rgba(255, 255, 255, 0.1); border: 1px solid #555; color: #00b894; cursor: pointer; }
+                #karla-voice-btn { width: 35px; height: 35px; border-radius: 50%; background: rgba(255, 255, 255, 0.1); border: 1px solid #555; color: #00b894; cursor: pointer; display:flex; align-items:center; justify-content:center;}
             </style>
             
             <div id="karla-chat-window">
                 <div id="karla-header">
-                    <img src="assets/karla.png" style="width:40px; height:40px; object-fit:cover;" onerror="this.style.display='none'">
+                    <img src="assets/karla.png" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI1MCIgZmlsbD0iIzAwYjg5NCIvPjx0ZXh0IHg9IjUwIiB5PSI2NSIgZm9udC1zaXplPSI0MCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPu🏛️PC90ZXh0Pjwvc3ZnPg=='">
                     <div><h3 style="color:white; margin:0; font-size:1rem;">KARLA</h3><span style="color:rgba(255,255,255,0.8); font-size:0.7rem;">ORION Tech Consultant</span></div>
                     <button id="karla-close" style="margin-left:auto; background:none; border:none; color:#fff; cursor:pointer; font-size:1.5rem;">×</button>
                 </div>
@@ -178,7 +142,7 @@ INSTRUCCIONES:
             </div>
             
             <button id="karla-toggle">
-                <img src="assets/karla.png" onerror="this.style.display='none'; this.parentElement.innerHTML='🏛️'">
+                <img src="assets/karla.png" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI1MCIgZmlsbD0iIzAwYjg5NCIvPjx0ZXh0IHg9IjUwIiB5PSI2NSIgZm9udC1zaXplPSI0MCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPu🏛️PC90ZXh0Pjwvc3ZnPg=='">
             </button>
         `;
 
@@ -187,51 +151,36 @@ INSTRUCCIONES:
         document.getElementById('karla-toggle').addEventListener('click', () => this._toggleChat());
         document.getElementById('karla-close').addEventListener('click', () => this._toggleChat());
         document.getElementById('karla-send').addEventListener('click', () => this._sendMessage());
-        document.getElementById('karla-input').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') this._sendMessage();
-        });
+        document.getElementById('karla-input').addEventListener('keypress', (e) => e.key === 'Enter' && this._sendMessage());
         document.getElementById('karla-voice-btn').addEventListener('click', () => this._toggleVoice());
     }
 
     _toggleChat() {
         if (this.synth.resume) this.synth.resume();
-
-        const chatWindow = document.getElementById('karla-chat-window');
+        const win = document.getElementById('karla-chat-window');
         this.isOpen = !this.isOpen;
-        chatWindow.classList.toggle('open', this.isOpen);
+        win.classList.toggle('open', this.isOpen);
 
-        if (this.isOpen && !this.hasGreeted) {
-            this.hasGreeted = true;
+        if (this.isOpen && this.messages.length === 0) {
             this.voiceEnabled = true;
-
-            const vBtn = document.getElementById('karla-voice-btn');
-            if (vBtn) {
-                vBtn.style.background = 'linear-gradient(135deg, #0984e3 0%, #00b894 100%)';
-                vBtn.textContent = '🔊';
-            }
-
-            setTimeout(() => {
-                const welcome = this.language === 'es'
-                    ? `¡Mabae! 🏛️ Soy Karla. ¿En qué puedo ayudarle hoy con su marca personal?`
-                    : `Mabae! 🏛️ I'm Karla. How can I help you today with your personal brand?`;
-                this._speak(welcome);
-            }, 300);
+            this._toggleVoiceUI(true);
+        } else if (this.isOpen && this.messages.length === 1) { // Re-enable voice if reopened and only welcome exists
+            this.voiceEnabled = true;
+            this._toggleVoiceUI(true);
         }
     }
 
     _addMessage(sender, text) {
-        const messagesContainer = document.getElementById('karla-messages');
-        const messageEl = document.createElement('div');
-        messageEl.className = `karla-message ${sender}`;
-        messageEl.textContent = text;
-        messagesContainer.appendChild(messageEl);
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
-        if (sender === 'karla' && this.voiceEnabled) {
-            this._speak(text);
-        }
-
+        const div = document.createElement('div');
+        div.className = `karla-message ${sender}`;
+        div.textContent = text;
+        document.getElementById('karla-messages').appendChild(div);
         this.messages.push({ role: sender === 'karla' ? 'model' : 'user', parts: [{ text }] });
+
+        if (sender === 'karla' && this.voiceEnabled) this._speak(text);
+
+        const container = document.getElementById('karla-messages');
+        container.scrollTop = container.scrollHeight;
     }
 
     async _sendMessage() {
@@ -252,131 +201,96 @@ INSTRUCCIONES:
             const response = await this._callGemini(text);
             document.getElementById('karla-typing').remove();
             this._addMessage('karla', response);
-        } catch (error) {
+        } catch (e) {
             document.getElementById('karla-typing')?.remove();
-            console.error('KARLA Error:', error);
+            console.error('API FAIL:', e);
             const fallback = this._getFallbackResponse(text);
-            this._addMessage('karla', fallback);
+            this._addMessage('karla', fallback + ` (Debug: ${e.message})`);
         }
     }
 
     async _callGemini(userMessage) {
         const apiKey = this._getSecureApiKey();
+        if (!apiKey) throw new Error("Missing API Key");
 
-        if (!apiKey) {
-            console.warn('⚠️ KARLA: No API key found');
-            return this._getFallbackResponse(userMessage);
-        }
-
-        try {
-            const requestBody = {
+        const response = await fetch(`${this.apiEndpoint}?key=${apiKey}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
                 contents: [
                     { role: 'user', parts: [{ text: this.systemPrompt }] },
                     ...this.messages.slice(-10),
                     { role: 'user', parts: [{ text: userMessage }] }
                 ],
-                generationConfig: {
-                    temperature: 0.7,
-                    maxOutputTokens: 400,
-                    topP: 0.9
-                }
-            };
+                generationConfig: { temperature: 0.7, maxOutputTokens: 300 }
+            })
+        });
 
-            const response = await fetch(`${this.apiEndpoint}?key=${apiKey}`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(requestBody)
-            });
-
-            if (!response.ok) {
-                console.error('KARLA API Error:', response.status);
-                return this._getFallbackResponse(userMessage);
-            }
-
-            const data = await response.json();
-            const aiResponse = data.candidates?.[0]?.content?.parts?.[0]?.text;
-
-            if (!aiResponse) {
-                console.error('KARLA: Empty response');
-                return this._getFallbackResponse(userMessage);
-            }
-
-            return aiResponse;
-
-        } catch (error) {
-            console.error('KARLA API Exception:', error);
-            return this._getFallbackResponse(userMessage);
-        }
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+        const reply = data.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (!reply) throw new Error("Empty JSON");
+        return reply;
     }
 
-    _getFallbackResponse(userMessage) {
-        const msg = userMessage.toLowerCase();
-        if (msg.includes('precio')) {
-            return "El plan ALCALDE DIGITAL es el más recomendado: $3M/mes + $5M Setup. ¿Le gustaría ver una demo?";
-        }
-        return `Disculpe, mi conexión está lenta. Por favor contacte al 310 888 4014 para atención inmediata.`;
+    _getFallbackResponse(text) {
+        const msg = text.toLowerCase();
+        if (msg.includes('precio')) return "El plan ALCALDE DIGITAL es el recomendado: $3M/mes + setup. ¿Agendamos?";
+        return "Disculpe, conexión lenta. Llame al 310 888 4014.";
     }
 
     _getSecureApiKey() {
         if (window.ORION_CONFIG && typeof window.ORION_CONFIG.getAuth === 'function') {
-            const key = window.ORION_CONFIG.getAuth();
-            if (key) return key;
+            const k = window.ORION_CONFIG.getAuth();
+            if (k) return k;
         }
-        const keys = ['karla_api_key', 'jose_api_key', 'mario_api_key'];
+        const keys = ['karla_api_key', 'jose_api_key'];
         for (const k of keys) {
             const stored = localStorage.getItem(k);
             if (stored) try { return atob(stored); } catch (e) { }
         }
-        return null;
+        // EMERGENCY KEY
+        console.warn('⚠️ USING EMERGENCY KEY');
+        return 'AIzaSyDNrPToe2abPx1Cf_dFz49OyWa1pVvZMp8';
     }
 
     _speak(text) {
         if (!this.synth || !this.voiceEnabled) return;
-
         this.synth.cancel();
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.voice = this.selectedVoice;
-
-        const isSpanish = this.language === 'es';
-        utterance.rate = isSpanish ? 0.9 : 1.0;
-        utterance.pitch = 1.15; // Higher pitch for female voice
-        utterance.volume = 1.0;
-        utterance.lang = isSpanish ? 'es-MX' : 'en-US';
-
-        this.synth.speak(utterance);
+        const u = new SpeechSynthesisUtterance(text);
+        u.voice = this.selectedVoice;
+        u.lang = this.language === 'es' ? 'es-MX' : 'en-US';
+        u.pitch = 1.1; u.rate = 1.0;
+        this.synth.speak(u);
     }
 
     _toggleVoice() {
         this.voiceEnabled = !this.voiceEnabled;
-        const btn = document.getElementById('karla-voice-btn');
+        this._toggleVoiceUI(this.voiceEnabled);
+        if (!this.voiceEnabled) this.synth.cancel();
+    }
 
-        if (this.voiceEnabled) {
-            btn.style.background = 'linear-gradient(135deg, #0984e3 0%, #00b894 100%)';
-            btn.textContent = '🔊';
-        } else {
-            this.synth.cancel();
-            btn.style.background = 'transparent';
-            btn.textContent = '🔇';
+    _toggleVoiceUI(enabled) {
+        const btn = document.getElementById('karla-voice-btn');
+        if (btn) {
+            btn.style.background = enabled ? 'linear-gradient(135deg, #0984e3 0%, #00b894 100%)' : 'transparent';
+            btn.textContent = enabled ? '🔊' : '🔇';
         }
     }
 
     setLanguage(lang) {
-        if (this.language === lang) return;
         this.language = lang;
         this.systemPrompt = this._buildSystemPrompt();
         this._loadVoices();
-        if (this.isOpen) {
-            this._addMessage('karla', lang === 'es' ? "Cambiando a Español. 🏛️" : "Switching to English. 🏛️");
-        }
+        if (this.isOpen) this._addMessage('karla', lang === 'es' ? "Cambiando idioma..." : "Switching language...");
     }
 }
 
 window.KarlaAssistant = KarlaAssistant;
 
 document.addEventListener('DOMContentLoaded', () => {
-    if (window.KARLA_CONFIG) {
-        window.karla = new KarlaAssistant(window.KARLA_CONFIG);
-    } else {
-        window.karla = new KarlaAssistant({ language: 'es' });
-    }
+    const savedLang = localStorage.getItem('mcProposalLang') || 'es';
+    const config = window.KARLA_CONFIG || {};
+    config.language = savedLang;
+    window.karla = new KarlaAssistant(config);
 });
