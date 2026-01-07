@@ -585,48 +585,43 @@ CONTEXTO: Estás en el chat de la propuesta comercial. El cliente ya vio los pre
         const isSpanish = this.language === 'es';
         const name = this.clientName;
 
-        // Get company-specific data
+        // Get company-specific data - use REALISTIC numbers
         const basePrice = this.pricingTiers?.[0]?.monthly || 1500;
-        const topPrice = this.pricingTiers?.[this.pricingTiers.length - 1]?.monthly || 4500;
-        const mainPainPoint = this.painPoints?.[0] || 'operación manual';
-        const mainAdvantage = this.competitorAdvantages?.[0] || 'Automatización con IA';
+        const topPrice = this.pricingTiers?.[this.pricingTiers.length - 1]?.monthly || 2500;
 
-        // Calculate estimated savings based on pricing tier (higher tier = bigger company = more savings)
-        const estimatedSavings = topPrice * 5; // ~5x the monthly fee in savings
+        // REALISTIC savings: 2-3x monthly cost, not inflated
+        const estimatedSavings = Math.round(topPrice * 2.5 / 1000) * 1000; // Conservative 2.5x
 
         // Keyword-based intelligent responses
         if (msg.includes('precio') || msg.includes('cost') || msg.includes('cuanto') || msg.includes('how much')) {
             return isSpanish
-                ? `Mira, el precio es irrelevante si el retorno es 10x. El plan ${name.toUpperCase()} cuesta ~$${topPrice}/mes, pero recuperas $${estimatedSavings.toLocaleString()} en eficiencias el primer mes. ¿Prefieres ahorrar $${topPrice} o ganar $${estimatedSavings.toLocaleString()}?`
-                : `Look, price is irrelevant if the return is 10x. The ${name.toUpperCase()} plan is ~$${topPrice}/mo, but you recover $${estimatedSavings.toLocaleString()} in efficiencies month one. Would you rather save $${topPrice} or earn $${estimatedSavings.toLocaleString()}?`;
+                ? `El plan recomendado para ${name} es ~$${topPrice}/mes. El ROI típico es 2-3x la inversión en ahorros operativos. ¿Cuándo tienes 20 min para ver los números con tu operación específica?`
+                : `The recommended plan for ${name} is ~$${topPrice}/mo. Typical ROI is 2-3x the investment in operational savings. When do you have 20 mins to see the numbers with your specific operation?`;
         }
 
         if (msg.includes('ahorro') || msg.includes('save') || msg.includes('roi') || msg.includes('dinero') || msg.includes('money') || msg.includes('desglose') || msg.includes('breakdown')) {
-            const baySavings = Math.round(topPrice * 1.5);
-            const timeSavings = Math.round(topPrice * 1.2);
-
             return isSpanish
-                ? `Matemáticas simples para ${name}:\n1. 🕒 Eficiencia de Bahía: $${baySavings.toLocaleString()}/mes (1 auto extra/semana)\n2. 📞 Ventas Recuperadas: $${timeSavings.toLocaleString()}/mes (No más llamadas perdidas)\n\nEso son $${estimatedSavings.toLocaleString()} extra en tu bolsillo. ¿Cuándo tienes 15 min para ver cómo funciona?`
-                : `Simple math for ${name}:\n1. 🕒 Bay Efficiency: $${baySavings.toLocaleString()}/mo (1 extra car/week)\n2. 📞 Recovered Sales: $${timeSavings.toLocaleString()}/mo (No more missed calls)\n\nThat's $${estimatedSavings.toLocaleString()} extra in your pocket. When do you have 15 mins to see it work?`;
+                ? `El ahorro varía según tu operación. Típicamente: menos llamadas perdidas, tiempos de bahía más eficientes, y menos errores administrativos. ¿Quieres que calculemos los números exactos para ${name}?`
+                : `Savings vary by operation. Typically: fewer missed calls, more efficient bay times, and fewer admin errors. Want us to calculate exact numbers for ${name}?`;
         }
 
         if (msg.includes('como funciona') || msg.includes('how does') || msg.includes('explicar') || msg.includes('explain')) {
             return isSpanish
-                ? `Es tu Service Writer estrella que nunca duerme. Contesta llamadas, agenda citas, persigue aprobaciones y ordena piezas automáticamente. Tú te enfocas en reparar autos, ORION se encarga del papeleo. ¿Te muestro una demo rápida?`
-                : `It's your star Service Writer that never sleeps. It answers calls, books appointments, chases approvals, and orders parts automatically. You focus on fixing cars, ORION handles the paperwork. Want a quick demo?`;
+                ? `ORION automatiza tareas repetitivas: contesta llamadas, agenda citas, envía recordatorios y maneja el papeleo digital. Tu equipo se enfoca en reparar autos. ¿Te muestro una demo rápida?`
+                : `ORION automates repetitive tasks: answers calls, books appointments, sends reminders, and handles digital paperwork. Your team focuses on fixing cars. Want a quick demo?`;
         }
 
         // Competitor check (ShopMonkey, etc)
         if (msg.includes('shopmonkey') || msg.includes('tekmetric') || msg.includes('mitchell') || msg.includes('software')) {
             return isSpanish
-                ? `Ellos son tu "ERP", ORION es tu "Vendedor". Ellos guardan datos, ORION TRAE dinero. Nos integramos con ellos para que no tengas que cambiar nada. ¿Usamos ShopMonkey hoy?`
-                : `They are your "ERP", ORION is your "Salesman". They store data, ORION BRINGS money. We integrate with them so you don't change a thing. Do you use ShopMonkey today?`;
+                ? `Nos integramos con tu software actual. ORION añade la capa de automatización e IA que ellos no tienen. ¿Qué sistema usas actualmente?`
+                : `We integrate with your current software. ORION adds the automation and AI layer they don't have. What system do you currently use?`;
         }
 
-        // Default closing response
+        // Default closing response - NO hardcoded inflated numbers
         return isSpanish
-            ? `Entiendo perfectamente. Pero déjame preguntarte algo directo: ¿Estás contento con la eficiencia actual de ${name}? Si la respuesta es "podría ser mejor", necesito solo 20 minutos para mostrarte cómo sumar $15k al mes. ¿Jueves a las 10am o Viernes a las 2pm?`
-            : `I understand perfectly. But let me ask you straight: Are you happy with ${name}'s current efficiency? If the answer is "could be better", I just need 20 mins to show you how to add $15k/mo. Thursday at 10am or Friday at 2pm?`;
+            ? `Entiendo. La mejor forma de ver el valor es con una demo personalizada de 20 minutos donde calculamos el ROI específico para ${name}. ¿Te funciona Jueves o Viernes?`
+            : `I understand. The best way to see the value is with a personalized 20-minute demo where we calculate the specific ROI for ${name}. Does Thursday or Friday work for you?`;
     }
 
     _getSecureApiKey() {

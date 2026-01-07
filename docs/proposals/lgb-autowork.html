@@ -2160,6 +2160,11 @@
                 btn.classList.toggle('active', btn.textContent.includes(lang.toUpperCase()));
             });
             localStorage.setItem('mcProposalLang', lang);
+
+            // Update JOSE dynamically if active
+            if (window.jose && typeof window.jose.setLanguage === 'function') {
+                window.jose.setLanguage(lang);
+            }
         }
         const savedLang = localStorage.getItem('mcProposalLang');
         if (savedLang) setLang(savedLang);
@@ -2171,14 +2176,41 @@
         window.JOSE_CONFIG = {
             clientName: "LGB Autowork",
             clientPhone: "(408) 727-4500",
-            language: "en"
+            language: localStorage.getItem('mcProposalLang') || "en",
+            ownerName: "Partner", // Using generic respectful term as owner name isn't explicit in file
+
+            // CONTEXTO ESPECÍFICO DEL CLIENTE
+            painPoints: [
+                "Operational bottleneck with paper workflow",
+                "Lost revenue from missed calls and simple inquiries",
+                "Parts ordering delays affecting cycle time",
+                "Service Advisor burnout from repetitive tasks"
+            ],
+
+            // SOLUCIONES ORION
+            competitorAdvantages: [
+                "MP PRO AI Diagnosis - Instant check-in",
+                "InvAI Smart Inventory - Auto-ordering",
+                "24/7 AI Call Center - Zero missed calls",
+                "Paperless Operations - Digital ROs"
+            ],
+
+            // TABLA DE PRECIOS REAL (Extraída del HTML)
+            pricingTiers: [
+                { name: "SMART", monthly: 1500, setup: 10000 },
+                { name: "FLEET", monthly: 2500, setup: 15000 }, // BEST VALUE
+                { name: "GROWTH", monthly: 4500, setup: 20000 },
+                { name: "LEADER", monthly: 8500, setup: 25000 }
+            ],
+
+            proposalContext: "LGB Autowork is a trusted San Jose shop since 2006. Focus is on modernizing operations to go paperless and increase efficiency without replacing staff."
         };
     </script>
+    <!-- Production: Loaded from AGEM Cloud -->
     <script src="https://agem2024.github.io/SEGURITI-USC/proposals/jose-loader.js"></script>
     <script src="https://agem2024.github.io/SEGURITI-USC/proposals/jose-assistant.js"></script>
     <script>
-        // JOSE initializes automatically when loaded
-        console.log('✅ JOSE AI Loaded for LGB Autowork');
+        console.log('✅ JOSE AI Configured & Loaded for LGB Autowork');
     </script>
 
 </body>
