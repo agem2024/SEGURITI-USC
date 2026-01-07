@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORION Tech | Daniel's Exclusive Enterprise</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            /* LUXURY PALETTE */
+            --bg-dark: #050505;
+            --bg-card: #0a0a0a;
+            --accent-purple: #a855f7;
+            --accent-gold: #FFD700;
+            --accent-glow: #d8b4fe;
+            --text-white: #ffffff;
+            --text-gray: #a3a3a3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-white);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        .btn,
+        .price-tag,
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            /* REAL LUXURY BG */
+            background: linear-gradient(rgba(5, 5, 5, 0.5), rgba(0, 0, 0, 0.9)),
+                url('assets/bg_luxury.png') center/cover no-repeat;
+            position: relative;
+            background-attachment: fixed;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            background: linear-gradient(135deg, white, var(--accent-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(168, 85, 247, 0.5);
+        }
+
+        .cta-btn {
+            background: transparent;
+            border: 2px solid var(--accent-purple);
+            color: var(--accent-purple);
+            padding: 15px 40px;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-decoration: none;
+            transition: 0.4s;
+        }
+
+        .cta-btn:hover {
+            background: var(--accent-purple);
+            color: black;
+            box-shadow: 0 0 50px rgba(168, 85, 247, 0.6);
+        }
+
+        /* CAPACITY BANNER */
+        .capacity-banner {
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+            padding: 40px 0;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .capacity-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            color: var(--accent-gold);
+            display: block;
+        }
+
+        .stat-label {
+            color: #888;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        /* SECTIONS */
+        .section {
+            padding: 100px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            padding: 40px;
+            border: 1px solid #222;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .card:hover {
+            border-color: var(--accent-purple);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.2);
+        }
+
+        .icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--accent-purple);
+        }
+
+        /* COMPETITION TABLE */
+        .comp-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 40px;
+        }
+
+        .comp-table th {
+            text-align: left;
+            padding: 20px;
+            border-bottom: 2px solid var(--accent-purple);
+            color: var(--accent-purple);
+        }
+
+        .comp-table td {
+            padding: 20px;
+            border-bottom: 1px solid #333;
+            color: #aaa;
+        }
+
+        .comp-table tr.orion td {
+            color: white;
+            background: rgba(168, 85, 247, 0.05);
+            font-weight: bold;
+        }
+
+        /* PRICING */
+        .pricing-section {
+            text-align: center;
+        }
+
+        .price-card {
+            background: #0a0a0a;
+            border: 1px solid #333;
+            padding: 60px;
+            max-width: 500px;
+            margin: 0 auto;
+            transition: 0.3s;
+        }
+
+        .price-card:hover {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.2);
+        }
+
+        .price-tag {
+            font-size: 4rem;
+            color: white;
+            margin: 20px 0;
+        }
+
+        .price-tag span {
+            font-size: 1rem;
+            color: gray;
+        }
+
+        /* FLOATING BUTTONS */
+        .floating-buttons {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .float-btn {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            transition: 0.3s;
+            color: white;
+            font-size: 24px;
+            text-decoration: none;
+        }
+
+        .float-btn:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 1. HERO -->
+    <section class="hero">
+        <div style="font-size: 0.9rem; color: var(--accent-purple); letter-spacing: 5px; margin-bottom: 20px;">DANIEL'S
+            ENTERPRISE</div>
+        <h1>The Art of<br>Automation</h1>
+        <p style="color: #aaa; font-size: 1.2rem; margin-bottom: 40px;">Where luxury service meets infinite scalability.
+        </p>
+        <a href="#experience" class="cta-btn">ENTER THE VORTEX</a>
+    </section>
+
+    <!-- CINEMATIC VIDEO SECTION -->
+    <div
+        style="position: relative; height: 400px; overflow: hidden; border-top: 1px solid #333; border-bottom: 1px solid #333;">
+        <iframe width="100%" height="150%"
+            src="https://www.youtube.com/embed/5K9j1aZ5f4w?autoplay=1&mute=1&controls=0&start=10&loop=1" frameborder="0"
+            style="position: absolute; top: -25%; left: 0; filter: grayscale(50%) brightness(0.6);"></iframe>
+        <div
+            style="position: absolute; top:0; left:0; width:100%; height:100%; display: flex; align-items: center; justify-content: center;">
+            <h2 style="color: white; font-size: 3rem; text-shadow: 0 0 20px black;">SILENT LUXURY</h2>
+        </div>
+    </div>
+
+    <!-- 2. CAPACITY BANNER -->
+    <div class="capacity-banner">
+        <div class="capacity-grid">
+            <div>
+                <span class="stat-number">∞</span>
+                <span class="stat-label">CONCURRENT GUESTS</span>
+            </div>
+            <div>
+                <span class="stat-number">0s</span>
+                <span class="stat-label">WAIT TIME</span>
+            </div>
+            <div>
+                <span class="stat-number">24/7</span>
+                <span class="stat-label">WHITE GLOVE SERVICE</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. PROBLEMS & SOLUTIONS -->
+    <section class="section" id="experience">
+        <div class="section-title" style="text-align: center; margin-bottom: 60px;">
+            <h2 style="color: #666; font-size: 1rem; letter-spacing: 3px;">THE PARADIGM SHIFT</h2>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <div class="icon">⌛</div>
+                <h3>The Wait</h3>
+                <p style="color: grey;">Traditional concierge misses calls. Delays responses. In luxury, waiting is the
+                    ultimate sin.</p>
+                <div style="margin-top: 20px; border-left: 2px solid var(--accent-purple); padding-left: 15px;">
+                    <strong style="color: var(--accent-purple);">KARLA AI:</strong> Instant response. Zero latency.
+                </div>
+            </div>
+            <div class="card">
+                <div class="icon">👁️</div>
+                <h3>The Blind Spot</h3>
+                <p style="color: grey;">You don't know what your clients want until they ask. That's reactive.</p>
+                <div style="margin-top: 20px; border-left: 2px solid var(--accent-purple); padding-left: 15px;">
+                    <strong style="color: var(--accent-purple);">KARLA AI:</strong> Predictive analytics. Anticipate
+                    desire.
+                </div>
+            </div>
+            <div class="card">
+                <div class="icon">📉</div>
+                <h3>The Human Limit</h3>
+                <p style="color: grey;">Humans sleep. Humans forget. Humans have bad days.</p>
+                <div style="margin-top: 20px; border-left: 2px solid var(--accent-purple); padding-left: 15px;">
+                    <strong style="color: var(--accent-purple);">KARLA AI:</strong> Perfection, 24/7/365.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. COMPETITION BENCHMARK -->
+    <section class="section">
+        <h2 style="text-align: center; color: var(--accent-gold); margin-bottom: 40px;">// MARKET DOMINANCE</h2>
+        <table class="comp-table">
+            <thead>
+                <tr>
+                    <th>FEATURE</th>
+                    <th>OLD LUXURY</th>
+                    <th style="color: var(--accent-purple);">DANIEL'S ENTERPRISE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Availability</td>
+                    <td>9am - 10pm (Maybe)</td>
+                    <td style="color: white;">24/7 Instant</td>
+                </tr>
+                <tr>
+                    <td>Knowledge Base</td>
+                    <td>Limited to memory</td>
+                    <td style="color: white;">Infinite Access</td>
+                </tr>
+                <tr class="orion">
+                    <td>Response Time</td>
+                    <td>Minutes/Hours</td>
+                    <td style="color: var(--accent-purple);">Milliseconds</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- 5. MODULES (Karla Demo) -->
+    <section class="section" style="background: rgba(10,10,10,0.5);">
+        <div style="text-align: center; margin-bottom: 50px;">
+            <h2 style="color: var(--accent-purple);">THE SYSTEM CORE</h2>
+        </div>
+        <div class="grid">
+            <div class="card" style="border-color: var(--accent-purple);">
+                <span
+                    style="position: absolute; top: 20px; right: 20px; background: var(--accent-purple); color: black; padding: 2px 10px; font-size: 0.7rem; font-weight: bold; border-radius: 10px;">LIVE</span>
+                <h3>KARLA AI CONCIERGE</h3>
+                <p style="color: #aaa; margin-bottom: 20px;">The voice of your brand. Seductive, intelligent, and
+                    relentlessly efficient.</p>
+                <button class="cta-btn" style="padding: 10px 20px; font-size: 0.8rem;">CHAT NOW</button>
+            </div>
+            <div class="card">
+                <h3>CRM SYNCHRONIZATION</h3>
+                <p style="color: #aaa; margin-bottom: 20px;">Every conversation logged. Every preference saved. Total
+                    recall of client history.</p>
+            </div>
+            <div class="card">
+                <h3>PRIORITY BOOKING</h3>
+                <p style="color: #aaa; margin-bottom: 20px;">Direct integration with calendar and payment gateways.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. PARTNERS -->
+    <section class="section" style="text-align: center; opacity: 0.6;">
+        <h3 style="color: #666; margin-bottom: 30px; font-size: 0.8rem; letter-spacing: 5px;">TRUSTED BY THE ELITE</h3>
+        <div
+            style="display: flex; justify-content: center; gap: 50px; font-family: 'Orbitron'; color: #444; font-size: 1.5rem;">
+            <div>AMEX BLACK</div>
+            <div>ROLLS ROYCE</div>
+            <div>FOUR SEASONS</div>
+        </div>
+    </section>
+
+    <!-- 7. ROI -->
+    <section class="section" style="text-align: center; background: linear-gradient(to bottom, #050505, #111);">
+        <h2 style="color: var(--accent-gold); margin-bottom: 20px;">RETURN ON EXCELLENCE</h2>
+        <div style="font-size: 4rem; color: var(--accent-purple); font-family: 'Orbitron'; margin-bottom: 10px;">$250k+
+        </div>
+        <p style="color: #888;">Projected Annual Revenue Increase via Automation</p>
+    </section>
+
+    <!-- 8. PRICING -->
+    <section class="section pricing-section">
+        <h2 style="color: grey; margin-bottom: 50px; font-size: 1rem; letter-spacing: 5px;">INVESTMENT TIER</h2>
+        <div class="price-card">
+            <h3 style="color: var(--accent-purple); font-size: 1.5rem;">BLACK CARD ACCESS</h3>
+            <div class="price-tag">$5,000 <span>/ mo</span></div>
+            <p style="color: #888; margin-bottom: 40px;">Full AI Concierge + Private Server + 24/7 Priority Support</p>
+            <ul style="list-style: none; text-align: left; color: #ccc; margin-bottom: 40px; line-height: 2.5;">
+                <li>✓ <strong>Karla AI Persona</strong> (Custom Trained)</li>
+                <li>✓ <strong>Unlimited</strong> Concurrent Conversations</li>
+                <li>✓ <strong>CRM Deep Integration</strong></li>
+                <li>✓ <strong>Voice & Chat</strong> Interfaces</li>
+            </ul>
+            <a href="#" class="cta-btn" style="width: 100%; display: inline-block;">ACTIVATE</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="text-align: center; padding: 50px; border-top: 1px solid #111; color: #444;">
+        <p>ORION PRIVILEGED CLIENT PROGRAM • 2026</p>
+        <p style="font-size: 0.8rem; margin-top: 10px;">San Francisco • New York • Dubai</p>
+    </footer>
+
+    <!-- FLOAT BUTTONS -->
+    <div class="floating-buttons">
+        <a href="https://wa.me/16692342444" class="float-btn" style="background: #25D366;">
+            <svg viewBox="0 0 24 24" width="30" height="30" fill="white">
+                <path
+                    d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.997.551 2.013.88 3.096.88 3.182 0 5.768-2.587 5.768-5.767s-2.586-5.766-5.768-5.766zM13 13h-2v-2h2v2zm0-4h-2V8h2v1z" />
+            </svg>
+        </a>
+        <a href="tel:+16692342444" class="float-btn" style="background: var(--accent-purple);">📞</a>
+    </div>
+
+    <!-- KARLA AI ASSISTANT -->
+    <script src="assets/js/daniel-assistant.js"></script>
+
+</body>
+
+</html>
