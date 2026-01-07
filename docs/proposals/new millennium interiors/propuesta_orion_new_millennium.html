@@ -41,7 +41,9 @@
         h2,
         h3,
         .btn,
-        .stat-number {
+        .stat-number,
+        .pricing-name,
+        .pricing-price {
             font-family: 'Orbitron', sans-serif;
         }
 
@@ -292,6 +294,179 @@
             margin-bottom: 8px;
         }
 
+        /* PRICING */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .pricing-card {
+            background: var(--bg-card);
+            border: 1px solid #333;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border-color: var(--accent-teal);
+        }
+
+        .pricing-card.featured {
+            border: 2px solid var(--accent-teal);
+            background: rgba(0, 188, 212, 0.05);
+            transform: scale(1.05);
+            z-index: 10;
+        }
+
+        .pricing-card.elite {
+            border: 2px solid var(--accent-gold);
+            background: rgba(255, 215, 0, 0.05);
+        }
+
+        .pricing-card.luxury {
+            border: 2px solid var(--accent-purple);
+            background: rgba(168, 85, 247, 0.05);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-teal);
+            color: #000;
+            padding: 5px 20px;
+            font-weight: 800;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .elite .pricing-badge {
+            background: var(--accent-gold);
+        }
+
+        .luxury .pricing-badge {
+            background: var(--accent-purple);
+            color: white;
+        }
+
+        .pricing-name {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--text-gray);
+            letter-spacing: 2px;
+        }
+
+        .pricing-price {
+            font-size: 3rem;
+            color: var(--text-white);
+            margin-bottom: 5px;
+        }
+
+        .pricing-price span {
+            font-size: 1rem;
+            color: var(--text-gray);
+        }
+
+        .pricing-setup {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+        }
+
+        .pricing-capacity {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .pricing-capacity .num {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-teal);
+        }
+
+        .pricing-capacity .cap-label {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+        }
+
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 40px;
+        }
+
+        .pricing-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+
+        .pricing-features li strong {
+            color: white;
+        }
+
+        /* PARTNERS & PAPERLESS */
+        .partners-section {
+            background: var(--bg-card);
+            padding: 80px 20px;
+            text-align: center;
+            border-top: 1px solid #222;
+            border-bottom: 1px solid #222;
+        }
+
+        .partners-logos {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .partner-badge {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            color: var(--accent-gold);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .paperless-banner {
+            background: linear-gradient(90deg, #111, #1a1a1a);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .paperless-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 40px auto 0;
+        }
+
+        .paperless-item .icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .paperless-item .text {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
         /* BUTTONS */
         .btn {
             display: inline-block;
@@ -303,6 +478,7 @@
             cursor: pointer;
             border: none;
             width: 100%;
+            text-align: center;
         }
 
         .btn-primary {
@@ -314,6 +490,49 @@
         .btn-primary:hover {
             box-shadow: 0 0 30px rgba(205, 127, 50, 0.5);
             transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--text-gray);
+            color: var(--text-white);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-white);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .btn-elite {
+            background: linear-gradient(135deg, var(--accent-gold), #e0aa00);
+            color: #000;
+            font-weight: 700;
+        }
+
+        .btn-luxury {
+            background: linear-gradient(135deg, var(--accent-purple), #8a2be2);
+            color: #fff;
+            font-weight: 700;
+        }
+
+        /* CTA SECTION */
+        .cta-section {
+            text-align: center;
+            padding: 100px 20px;
+            background: radial-gradient(circle, rgba(0, 188, 212, 0.1) 0%, transparent 70%);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .cta-buttons .btn {
+            width: auto;
+            min-width: 200px;
         }
 
         /* LANGUAGE */
@@ -513,7 +732,7 @@
         </div>
     </div>
 
-    <!-- MODULES DETAILED (COPIED EXACTLY FROM REF, ADAPTED) -->
+    <!-- MODULES DETAILED -->
     <section class="section">
         <div class="section-title">
             <h2 class="lang-en">// COMPLETE OPERATIONS PLATFORM</h2>
@@ -613,64 +832,212 @@
         </div>
     </section>
 
-    <!-- ROI BREAKDOWN -->
+    <!-- PARTNERS SECTION (NEW) -->
+    <section class="partners-section">
+        <div class="partners-content">
+            <h2 class="lang-en">🤝 TRUSTED COMMUNITY CRAFTSMEN</h2>
+            <h2 class="lang-es">🤝 ARTESANOS DE CONFIANZA EN LA COMUNIDAD</h2>
+            <p class="lang-en">New Millennium Interiors has built a reputation for exquisite craftsmanship since 1991.
+                Now, elevate that trust with 100% transparent AI quoting.</p>
+            <p class="lang-es">New Millennium Interiors ha construido una reputación de artesanía exquisita desde 1991.
+                Ahora, eleve esa confianza con cotizaciones IA 100% transparentes.</p>
+            <div class="partners-logos">
+                <div class="partner-badge">✅ BBB Accredited</div>
+                <div class="partner-badge">🛠️ Licensed & Insured</div>
+                <div class="partner-badge">🏘️ Family Owned</div>
+                <div class="partner-badge">🧵 Master Upholsterers</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAPERLESS BANNER (NEW) -->
+    <section class="paperless-banner">
+        <h2 class="lang-en">📄 → 📱 ZERO PAPER OPERATIONS</h2>
+        <h2 class="lang-es">📄 → 📱 OPERACIÓN CERO PAPEL</h2>
+        <p class="lang-en">Every quote, invoice, and fabric order — 100% digital. Focus on the art, not the paperwork.
+        </p>
+        <p class="lang-es">Cada cotización, factura y pedido de tela — 100% digital. Enfócate en el arte, no en el
+            papeleo.</p>
+        <div class="paperless-grid">
+            <div class="paperless-item">
+                <div class="icon">📋</div>
+                <div class="text lang-en">Digital Quotes</div>
+                <div class="text lang-es">Cotizaciones Digitales</div>
+            </div>
+            <div class="paperless-item">
+                <div class="icon">✍️</div>
+                <div class="text lang-en">E-Signatures</div>
+                <div class="text lang-es">Firmas Electrónicas</div>
+            </div>
+            <div class="paperless-item">
+                <div class="icon">🧾</div>
+                <div class="text lang-en">Digital Invoices</div>
+                <div class="text lang-es">Facturas Digitales</div>
+            </div>
+            <div class="paperless-item">
+                <div class="icon">📷</div>
+                <div class="text lang-en">Photo Doc</div>
+                <div class="text lang-es">Documentación Foto</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI GRID (NEW) -->
+    <section class="section">
+        <div class="section-title">
+            <h2 class="lang-en">// PROJECTED MONTHLY SAVINGS</h2>
+            <h2 class="lang-es">// AHORROS MENSUALES PROYECTADOS</h2>
+        </div>
+        <div class="roi-grid">
+            <div class="roi-item"><span class="number">$5K+</span><span class="label lang-en">Saved on Fabric
+                    Waste</span><span class="label lang-es">Ahorro Desperdicio Tela</span></div>
+            <div class="roi-item"><span class="number">$4K+</span><span class="label lang-en">Saved on Admin
+                    Time</span><span class="label lang-es">Ahorro Tiempo Admin</span></div>
+            <div class="roi-item"><span class="number">+30%</span><span class="label lang-en">More Jobs
+                    Booked</span><span class="label lang-es">Más Trabajos Agendados</span></div>
+            <div class="roi-item"><span class="number">10 hrs</span><span class="label lang-en">Saved/Week
+                    Driving</span><span class="label lang-es">Ahorro/Semana Manejando</span></div>
+            <div class="roi-item"><span class="number">-20%</span><span class="label lang-en">Fuel Costs</span><span
+                    class="label lang-es">Costos Combustible</span></div>
+            <div class="roi-item"><span class="number">24/7</span><span class="label lang-en">Lead Capture</span><span
+                    class="label lang-es">Captura de Leads</span></div>
+        </div>
+    </section>
+
+    <!-- PRICING SECTION (NEW) -->
+    <section class="section" id="pricing">
+        <div class="section-title">
+            <h2 class="lang-en">// INVESTMENT OPTIONS</h2>
+            <h2 class="lang-es">// OPCIONES DE INVERSIÓN</h2>
+        </div>
+        <div class="pricing-grid">
+            <!-- SMART -->
+            <div class="pricing-card">
+                <div class="pricing-name">SMART STUDIO</div>
+                <div class="pricing-price">$1,500<span>/mo</span></div>
+                <div class="pricing-setup">+ $10,000 Setup</div>
+                <div class="pricing-capacity">
+                    <div class="num">10</div>
+                    <div class="cap-label lang-en">Simultaneous Calls</div>
+                    <div class="cap-label lang-es">Llamadas Simultáneas</div>
+                </div>
+                <ul class="pricing-features">
+                    <li>AI Voice Receptionist</li>
+                    <li>Basic Quoting System</li>
+                    <li>WhatsApp Integration</li>
+                    <li>Google Calendar Sync</li>
+                </ul>
+                <a href="https://wa.me/16692342444?text=New%20Millennium%20-%20SMART%20Plan"
+                    class="btn btn-secondary"><span class="lang-en">INQUIRE</span><span
+                        class="lang-es">CONSULTAR</span></a>
+            </div>
+
+            <!-- FLEET (FEATURED) -->
+            <div class="pricing-card featured">
+                <span class="pricing-badge">BEST VALUE</span>
+                <div class="pricing-name">ATELIER PRO</div>
+                <div class="pricing-price">$2,500<span>/mo</span></div>
+                <div class="pricing-setup">+ $15,000 Setup</div>
+                <div class="pricing-capacity">
+                    <div class="num">25</div>
+                    <div class="cap-label lang-en">Simultaneous Calls</div>
+                    <div class="cap-label lang-es">Llamadas Simultáneas</div>
+                </div>
+                <ul class="pricing-features">
+                    <li><strong>All Smart Features +</strong></li>
+                    <li>Digital Fabric Inventory (InvAI)</li>
+                    <li>PhotoAI Quoting (MP PRO Eq)</li>
+                    <li>Logistics & Pickup AI</li>
+                    <li>2 AI Project Managers</li>
+                </ul>
+                <a href="https://wa.me/16692342444?text=New%20Millennium%20-%20ATELIER%20PRO%20Plan"
+                    class="btn btn-primary"><span class="lang-en">START NOW</span><span
+                        class="lang-es">COMENZAR</span></a>
+            </div>
+
+            <!-- LEADER -->
+            <div class="pricing-card elite">
+                <span class="pricing-badge">ELITE</span>
+                <div class="pricing-name">LEGACY LEADER</div>
+                <div class="pricing-price">$4,500<span>/mo</span></div>
+                <div class="pricing-setup">+ $20,000 Setup</div>
+                <div class="pricing-capacity">
+                    <div class="num">50</div>
+                    <div class="cap-label lang-en">Simultaneous Calls</div>
+                    <div class="cap-label lang-es">Llamadas Simultáneas</div>
+                </div>
+                <ul class="pricing-features">
+                    <li><strong>All Atelier Features +</strong></li>
+                    <li>Custom 3D Visualizer</li>
+                    <li>Dedicated Account Manager</li>
+                    <li>Multi-Team Dashboard</li>
+                    <li>Advanced SEO Package</li>
+                </ul>
+                <a href="https://wa.me/16692342444?text=New%20Millennium%20-%20LEADER%20Plan"
+                    class="btn btn-elite"><span class="lang-en">GO LEADER</span><span class="lang-es">SER
+                        LÍDER</span></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI BREAKDOWN VS -->
     <section class="section"
         style="background: linear-gradient(180deg, rgba(0, 212, 170, 0.05) 0%, rgba(255, 215, 0, 0.05) 100%);">
         <div style="text-align: center; margin-bottom: 50px;">
             <h2 style="font-size: 2rem; color: var(--accent-gold); font-family: 'Orbitron', 'sans-serif';">
-                <span class="lang-en">💰 YOUR ROI BREAKDOWN</span>
-                <span class="lang-es">💰 DESGLOSE DE TU ROI</span>
+                <span class="lang-en">💰 ROI ANALYSIS</span>
+                <span class="lang-es">💰 ANÁLISIS ROI</span>
             </h2>
         </div>
 
         <div
             style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 40px; max-width: 1100px; margin: 0 auto; align-items: center;">
-
-            <!-- INVESTMENT SIDE -->
+            <!-- OUT -->
             <div
                 style="background: rgba(255, 68, 68, 0.1); border: 2px solid var(--accent-red); border-radius: 20px; padding: 30px; text-align: center;">
-                <h3 style="color: var(--accent-red); font-family: 'Orbitron'; margin-bottom: 20px;">
-                    <span class="lang-en">OUT</span><span class="lang-es">SALIDA</span>
-                </h3>
+                <h3 style="color: var(--accent-red); font-family: 'Orbitron'; margin-bottom: 20px;"><span
+                        class="lang-en">INVESTMENT</span><span class="lang-es">INVERSIÓN</span></h3>
                 <div style="font-size: 3rem; color: var(--accent-red); font-family: 'Orbitron'; margin-bottom: 10px;">
-                    $497<span style="font-size: 1rem; color: var(--text-gray);">/mo</span></div>
-                <p style="color:var(--text-gray)">Restoration Plan</p>
+                    $2,500<span style="font-size: 1rem; color: var(--text-gray);">/mo</span></div>
+                <p style="color:var(--text-gray)">Atelier Pro Plan</p>
             </div>
-
-            <!-- VS LOGO -->
+            <!-- VS -->
             <div style="text-align: center;">
                 <div style="font-family: 'Orbitron'; font-size: 2rem; color: var(--accent-gold); font-weight:bold;">VS
                 </div>
             </div>
-
-            <!-- SAVINGS SIDE -->
+            <!-- IN -->
             <div
                 style="background: rgba(0, 212, 170, 0.1); border: 2px solid var(--accent-teal); border-radius: 20px; padding: 30px; text-align: center; box-shadow: 0 0 40px rgba(0, 212, 170, 0.2);">
-                <h3 style="color: var(--accent-teal); font-family: 'Orbitron'; margin-bottom: 20px;">
-                    <span class="lang-en">IN (VALUE)</span><span class="lang-es">ENTRADA</span>
-                </h3>
+                <h3 style="color: var(--accent-teal); font-family: 'Orbitron'; margin-bottom: 20px;"><span
+                        class="lang-en">MONTHLY SAVINGS</span><span class="lang-es">AHORRO MENSUAL</span></h3>
                 <div style="font-size: 3rem; color: var(--accent-teal); font-family: 'Orbitron'; margin-bottom: 10px;">
-                    $4,500<span style="font-size: 1rem; color: var(--text-gray);">+/mo</span></div>
-                <p style="color:var(--text-gray)">Recovered Time & Leads</p>
-                <ul
-                    style="list-style: none; text-align: left; margin-top: 20px; color: var(--text-gray); font-size: 0.85rem;">
-                    <li style="border-bottom: 1px solid rgba(0,212,170,0.2); padding:5px;">📞 Lead Recovery:
-                        <strong>$1,500</strong>
-                    </li>
-                    <li style="border-bottom: 1px solid rgba(0,212,170,0.2); padding:5px;">⛽ Fuel & Time:
-                        <strong>$1,200</strong>
-                    </li>
-                    <li style="border-bottom: 1px solid rgba(0,212,170,0.2); padding:5px;">⚡ Admin/Quotes:
-                        <strong>$1,800</strong>
-                    </li>
-                </ul>
+                    $12,500<span style="font-size: 1rem; color: var(--text-gray);">+/mo</span></div>
+                <p style="color:var(--text-gray)">Time, Fuel, Fabric & Leads</p>
             </div>
+        </div>
+    </section>
+
+    <!-- CTA FOOTER -->
+    <section class="cta-section">
+        <h2 class="lang-en">Ready to Transform New Millennium?</h2>
+        <h2 class="lang-es">¿Listos para Transformar New Millennium?</h2>
+        <p class="lang-en">From manual estimation to AI precision. From lost calls to booked jobs.</p>
+        <p class="lang-es">De estimación manual a precisión IA. De llamadas perdidas a trabajos agendados.</p>
+        <div class="cta-buttons">
+            <a href="https://wa.me/16692342444?text=New%20Millennium%20-%20Full%20Demo" class="btn btn-primary">
+                💬 <span class="lang-en">SCHEDULE FULL DEMO</span><span class="lang-es">AGENDAR DEMO COMPLETO</span>
+            </a>
+            <a href="tel:+14086940401" class="btn btn-secondary">📞 (408) 694-0401</a>
         </div>
     </section>
 
     <!-- FOOTER -->
     <footer style="text-align:center; padding:50px; border-top:1px solid #222; margin-top:50px; color:#666;">
-        <p>ORION Tech © 2026. Prepared for Estella Padilla / New Millennium Interiors.</p>
+        <p><strong>New Millennium Interiors</strong> • ✅ Established 1991 • 🛡️ Master Craftsmanship</p>
+        <p style="margin-top: 10px;">ORION Tech | <a href="https://agem2024.github.io/SEGURITI-USC/orion-bots.html"
+                style="color:#888;">orion-tech.com</a> | (669) 234-2444</p>
+        <p style="margin-top: 20px; font-size: 0.75rem;">© 2026 ORION Tech. Proposal valid 30 days.</p>
     </footer>
 
     <!-- FLOATING ACTION BUTTONS -->
@@ -708,8 +1075,35 @@
             clientName: "New Millennium Interiors",
             ownerName: "Estella",
             language: localStorage.getItem('nmiLang') || 'en',
-            painPoints: ["Driving to quotes", "Lost calls", "Manual fabric search"],
-            pricingTiers: [{ monthly: 297 }, { monthly: 497 }, { monthly: 997 }]
+            painPoints: ["Driving to quotes (wasted time)", "Manual fabric search", "Missed calls", "Lost lead follow-up"],
+            pricingTiers: [
+                { name: "SMART", monthly: 1500, setup: 10000 },
+                { name: "ATELIER PRO", monthly: 2500, setup: 15000 },
+                { name: "LEADER", monthly: 4500, setup: 20000 }
+            ],
+            proposalContext: `
+=== NEW MILLENNIUM SALES TRAINING FOR MIKE ===
+COMPANY: New Millennium Interiors (Est. 1991)
+OWNER: Estella Padilla
+TYPE: Restoration & Custom Furniture
+PAIN: Driving 10h/week for quotes, messy fabric inventory, missed calls.
+
+STRATEGY: "DIGITAL ATELIER" - Transform chaos into streamlined art.
+
+PRICING & ROI PITCH:
+"Estella, here is the reality:
+INVESTMENT: Atelier Pro Plan @ $2,500/mo.
+SAVINGS:
+- Fuel & Driving Time: $2,000/mo (No more useless trips)
+- Lead Capture (24/7): $5,000/mo (Recovered jobs)
+- Fabric Waste Reduction: $1,500/mo (Precise ordering)
+TOTAL VALUE: $8,500+/mo.
+ROI: 300%+ immediately.
+
+OBJECTION HANDLING:
+"It's expensive" -> "Estella, one high-end sofa restoration covers the cost. Just one. The system brings you 5 extra jobs a month."
+"My team is old school" -> "The AI is simple. They just take a photo. The AI does the measuring and fabric matching. It makes them faster, not replaced."
+`
         };
     </script>
     <script src="assets/js/mike-loader.js"></script>
