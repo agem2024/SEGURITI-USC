@@ -106,7 +106,13 @@ Genera confianza. La gente tiene miedo de hablar. Tú eres el refugio seguro.
             const win = document.getElementById('chela-win');
             this.isOpen = !this.isOpen;
             win.classList.toggle('open', this.isOpen);
-            if (this.isOpen && this.voiceEnabled) this._speak("Hola, soy Chela.");
+
+            // FORCE VOICE ON OPEN
+            if (this.isOpen) {
+                this.voiceEnabled = true; // Auto-enable voice on interaction
+                document.getElementById('chela-voice').textContent = '🔊';
+                this._speak("Hola vecino, soy Doña Chela. ¿En qué le puedo servir?");
+            }
         });
         document.getElementById('chela-send').addEventListener('click', () => this._send());
         document.getElementById('chela-input').addEventListener('keypress', (e) => e.key === 'Enter' && this._send());

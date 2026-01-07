@@ -124,7 +124,12 @@ RULES:
         const win = document.getElementById('jose-chat-window');
         this.isOpen = !this.isOpen;
         win.classList.toggle('open', this.isOpen);
-        if (this.isOpen && this.voiceEnabled) this._speak("How may I help?");
+
+        // FORCE VOICE ON INTERACTION
+        if (this.isOpen) {
+            this.voiceEnabled = true;
+            this._speak("Welcome to the inner circle. I am Karla.");
+        }
     }
 
     _addMessage(sender, text) {
