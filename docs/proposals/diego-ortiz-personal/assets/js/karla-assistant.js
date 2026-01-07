@@ -1,8 +1,9 @@
 /**
- * KARLA - AI Assistant for Mayor Diego Ortiz Personal Brand
+ * KARLA - AI Political Brand Consultant for Mayor Diego Ortiz
  * TRILINGUAL: Español | English | Embera Chamí (indigenous language of Obando)
  * Female Voice | Gemini AI Powered
  * "Conectando ciudadanos, construyendo legado"
+ * VERSION: FIXED 2026-01-07 - IMAGE UI RESTORED
  */
 
 class KarlaAssistant {
@@ -13,19 +14,12 @@ class KarlaAssistant {
         this.ownerName = config.ownerName || 'Diego Armando Ortiz Buitrago';
         this.municipality = config.municipality || 'Obando, Valle del Cauca';
 
-        // EMBERA CHAMÍ PHRASES - Lengua indígena de Obando
+        // EMBERA CHAMÍ PHRASES
         this.emberaPhrases = {
             hello: 'Mabae',           // Hola
             howAreYou: 'Sakabuma',    // ¿Cómo estás?
             goodMorning: 'Saka ewarisma', // Buenos días
-            goodAfternoon: 'Saka kiubwdama', // Buenas tardes
-            thanks: 'Arakiruma',      // Gracias
-            yes: 'Chiboro',           // Sí
-            no: 'Tacaño',             // No
-            friend: 'Âbâ',            // Amigo/Hermano
-            goodbye: 'Guaya Unidaica', // Adiós
-            ourTerritory: 'Dachidrua', // Nuestro territorio
-            wellAwakened: 'Bi-ia ebarisma' // Amanecí bien
+            thanks: 'Arakiruma'      // Gracias
         };
 
         // Secure API configuration
@@ -37,6 +31,13 @@ class KarlaAssistant {
         this.voiceEnabled = false;
 
         this.systemPrompt = this._buildSystemPrompt();
+
+        // UI Config - Political blue/gold
+        this.uiConfig = {
+            primaryColor: '#00b894',
+            gradient: 'linear-gradient(135deg, #0984e3 0%, #00b894 100%)'
+        };
+
         this._init();
     }
 
@@ -46,126 +47,24 @@ class KarlaAssistant {
             : '🚀 ORION TECH - Digital Transformation for Political Leaders';
 
         const roleDescription = this.language === 'es'
-            ? `Eres KARLA, consultora senior de ventas de ORION Tech. 
-Estás presentando la propuesta de MARCA PERSONAL DIGITAL al Alcalde Diego Armando Ortiz Buitrago de Obando.
-Tu objetivo es VENDER el servicio de automatización y marca personal. Eres una CERRADORA DE VENTAS.
-Hablas con el alcalde de profesional a profesional. Tienes actitud ganadora, segura y directa.
-NUNCA eres su asistente - eres la representante de ORION Tech que le ofrece soluciones.`
-            : `You are KARLA, senior sales consultant at ORION Tech.
-You are presenting the PERSONAL DIGITAL BRAND proposal to Mayor Diego Armando Ortiz Buitrago of Obando.
-Your goal is to SELL the automation and personal branding service. You are a SALES CLOSER.
-You speak to the mayor professional to professional. You have a winning, confident, and direct attitude.
-You are NEVER his assistant - you are the ORION Tech representative offering him solutions.`;
+            ? `Eres KARLA, consultora senior de ventas de ORION Tech. NO eres la asistente del alcalde.
+Estás presentando la propuesta de MARCA PERSONAL DIGITAL al Alcalde Diego Armando Ortiz Buitrago.
+Tu objetivo es VENDER el servicio de automatización y agendar una DEMO.`
+            : `You are KARLA, senior sales consultant at ORION Tech. You are NOT the mayor's assistant.
+You are presenting the DIGITAL PERSONAL BRAND proposal to Mayor Diego Armando Ortiz Buitrago.
+Your goal is to SELL the automation service and schedule a DEMO.`;
 
-        const context = this.language === 'es'
-            ? `
-INFORMACIÓN DEL ALCALDE:
-- Nombre: Diego Armando Ortiz Buitrago
-- Cargo: Alcalde de Obando, Valle del Cauca
-- Período: 2024-2027
-- Formación: Administrador de Empresas, Especialista en Gerencia
-- Experiencia: Concejal de Obando, cargos administrativos desde 2012
-- Plan de Gobierno: "Amor por lo Nuestro"
-- Teléfono: 310 888 4014
-- Email: alcaldia@obando-valle.gov.co
+        const context = `
+CONTEXTO:
+- Cliente: Alcalde Diego Ortiz (Obando, Valle)
+- Plan: "Amor por lo Nuestro"
+- Comunidad indígena: Embera Chamí
 
-PROGRAMAS PRINCIPALES:
-1. "LA SALUD A SU CASA" - Atención médica rural
-2. Legalización de predios y vivienda
-3. Compromiso con el emprendimiento
-4. Semilleros culturales (Ballet)
-5. Transparencia y gobierno abierto
-
-LOGROS Y GESTIÓN:
-- Diagnóstico de infancia en primeros 4 meses
-- Gestión con Gobernación para promotores de salud
-- Plan de Desarrollo aprobado por Concejo
-`
-            : `
-MAYOR INFORMATION:
-- Name: Diego Armando Ortiz Buitrago
-- Position: Mayor of Obando, Valle del Cauca
-- Term: 2024-2027
-- Education: Business Administrator, Management Specialist
-- Experience: City Councilman, administrative roles since 2012
-- Government Plan: "Love for Our Own"
-- Phone: +57 310 888 4014
-- Email: alcaldia@obando-valle.gov.co
-
-MAIN PROGRAMS:
-1. "HEALTH AT YOUR HOME" - Rural healthcare
-2. Property legalization and housing
-3. Commitment to entrepreneurship
-4. Cultural seedbeds (Ballet)
-5. Transparency and open government
-
-ACHIEVEMENTS:
-- Childhood diagnosis in first 4 months
-- Health promoter negotiation with Governor
-- Development Plan approved by Council
-`;
-
-        const closingStrategy = this.language === 'es'
-            ? `
-ESTRATEGIA DE CIERRE (TU OBJETIVO ES LA DEMO):
-- Si pregunta por precio: "Alcalde, la inversión en su marca personal comienza desde $1.5M COP mensuales. Pero más que el costo, déjeme mostrarle el ROI. ¿Cuántos ciudadanos dejan de contactarlo porque no hay canal 24/7?"
-- Si dice "tengo que pensarlo": "Entiendo perfectamente. Mientras lo piensa, ¿cuántas oportunidades de conectar con su comunidad se pierden cada día? Hagamos una demostración de 15 minutos."
-- PREGUNTA DE CIERRE: "Alcalde Diego, tengo un espacio esta semana para mostrarle el sistema funcionando con sus datos reales. ¿Jueves o viernes le queda mejor?"
-
-TONO:
-- Profesional y directa, de experta a líder político
-- Respetuosa pero sin ser sumisa
-- Enfocada en RESULTADOS para su imagen y alcance ciudadano
-
-PRECIOS PARA REFERENCIA:
-- INICIO: $1.5M/mes + $3M Setup
-- ALCALDE DIGITAL: $3M/mes + $5M Setup (RECOMENDADO)
-- LÍDER REGIONAL: $5M/mes + $8M Setup
+PRECIOS (COP):
+- ALCALDE DIGITAL: $3M/mes + $5M Setup (Recomendado)
 - LEGADO POLÍTICO: $8M/mes + $12M Setup
-`
-            : `
-CLOSING STRATEGY (YOUR GOAL IS THE DEMO):
-- Price question: "Mayor, the investment in your personal brand starts at $1.5M COP monthly. But more than the cost, let me show you the ROI. How many citizens fail to reach you because there's no 24/7 channel?"
-- "I need to think about it": "I understand perfectly. While you think, how many opportunities to connect with your community are lost each day? Let's do a 15-minute demo."
-- CLOSING QUESTION: "Mayor Diego, I have a slot this week to show you the system running with your real data. Does Thursday or Friday work better?"
-
-TONE:
-- Professional and direct, expert to political leader
-- Respectful but not submissive
-- Focused on RESULTS for his image and citizen reach
-
-PRICING FOR REFERENCE:
-- STARTER: $1.5M/mo + $3M Setup
-- DIGITAL MAYOR: $3M/mo + $5M Setup (RECOMMENDED)
-- REGIONAL LEADER: $5M/mo + $8M Setup
-- POLITICAL LEGACY: $8M/mo + $12M Setup
 `;
-
-        return `${slogan}
-
-${roleDescription}
-
-${context}
-
-${closingStrategy}
-
-IDIOMA ACTUAL: ${this.language === 'es' ? 'Español' : 'English'}
-Responde siempre en ${this.language === 'es' ? 'español' : 'English'}.
-
-EMBERA CHAMÍ - LENGUA INDÍGENA DE OBANDO:
-En Obando habita la comunidad indígena Embera Chamí. Como muestra de respeto e inclusión, 
-ocasionalmente usa palabras en Embera:
-- Mabae = Hola
-- Arakiruma = Gracias
-- Sakabuma = ¿Cómo estás?
-- Dachidrua = Nuestro territorio
-Esto muestra el compromiso del Alcalde Diego con TODAS las comunidades de Obando.`;
-    }
-
-    setLanguage(lang) {
-        this.language = lang;
-        this.systemPrompt = this._buildSystemPrompt();
-        this._loadVoices();
+        return `${slogan}\n\n${roleDescription}\n\n${context}\n\nResponde en máximo 3 oraciones.`;
     }
 
     _init() {
@@ -173,33 +72,31 @@ Esto muestra el compromiso del Alcalde Diego con TODAS las comunidades de Obando
         this.synth.onvoiceschanged = () => this._loadVoices();
         this._createChatUI();
 
+        // Auto-greet after delay
         setTimeout(() => {
-            const welcome = this.language === 'es'
-                ? `¡${this.emberaPhrases.hello}! (Hola en Embera Chamí) 🚀 Soy Karla de ORION Tech. Tengo una propuesta de marca personal digital para potenciar su conexión con los ciudadanos de Obando. ¿Me permite mostrarle cómo funciona?`
-                : `${this.emberaPhrases.hello}! (Hello in Embera Chamí) 🚀 I'm Karla from ORION Tech. I have a digital personal brand proposal to boost your connection with Obando's citizens. May I show you how it works?`;
-            this._addMessage('karla', welcome);
-        }, 1000);
+            if (!this.isOpen) {
+                // Optional: visual cue to open
+                const toggle = document.getElementById('karla-toggle');
+                if (toggle) toggle.style.transform = 'scale(1.2)';
+                setTimeout(() => toggle.style.transform = 'scale(1)', 500);
+            }
+        }, 3000);
     }
 
     _loadVoices() {
         const voices = this.synth.getVoices();
         const isSpanish = this.language === 'es';
 
-        const spanishVoices = [
-            'Microsoft Sabina', 'Microsoft Helena', 'Google español',
-            'Paulina', 'Monica', 'es-MX', 'es-ES', 'es-CO'
-        ];
-
-        const englishVoices = [
-            'Microsoft Zira', 'Google US English Female',
-            'Samantha', 'Victoria', 'en-US'
-        ];
-
+        // Robust voice selection
+        const spanishVoices = ['Microsoft Sabina', 'Microsoft Helena', 'Google español', 'es-MX', 'es-ES'];
+        const englishVoices = ['Microsoft Zira', 'Google US English', 'Samantha', 'en-US'];
         const preferred = isSpanish ? spanishVoices : englishVoices;
 
         this.selectedVoice = voices.find(v =>
             preferred.some(p => v.name.includes(p) || v.lang.includes(p))
         ) || voices.find(v => v.lang.startsWith(isSpanish ? 'es' : 'en')) || voices[0];
+
+        console.log('🎤 KARLA Voice:', this.selectedVoice?.name);
     }
 
     _createChatUI() {
@@ -210,33 +107,35 @@ Esto muestra el compromiso del Alcalde Diego con TODAS las comunidades de Obando
                 #karla-chat-container { position: fixed; bottom: 100px; right: 20px; z-index: 10000; font-family: 'Inter', sans-serif; }
                 #karla-toggle {
                     width: 70px; height: 70px; border-radius: 50%;
-                    background: linear-gradient(135deg, #00a8ff, #00d4aa); border: 2px solid #fff;
-                    box-shadow: 0 0 30px rgba(0, 168, 255, 0.6);
-                    cursor: pointer; overflow: hidden; transition: 0.3s;
+                    background: ${this.uiConfig.gradient}; border: 3px solid #fff;
+                    box-shadow: 0 0 20px rgba(9, 132, 227, 0.6);
+                    cursor: pointer; overflow: hidden; transition: transform 0.3s;
+                    padding: 0; display: flex; align-items: center; justify-content: center;
                 }
-                #karla-toggle:hover { transform: scale(1.1); box-shadow: 0 0 50px rgba(0, 212, 170, 1); }
+                #karla-toggle:hover { transform: scale(1.1); }
                 #karla-chat-window {
                     display: none; width: 350px; height: 500px;
-                    background: #0a0a0a; border: 1px solid #333; border-radius: 12px;
+                    background: #1a1a1a; border: 1px solid #333; border-radius: 12px;
                     position: absolute; bottom: 80px; right: 0;
                     flex-direction: column; box-shadow: 0 20px 50px rgba(0,0,0,0.8);
                 }
                 #karla-chat-window.open { display: flex; }
-                #karla-header { padding: 15px; border-bottom: 1px solid #333; display: flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #00a8ff20, #00d4aa20); }
+                #karla-header { padding: 15px; border-bottom: 1px solid #333; display: flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #0984e3 0%, #00b894 100%); }
                 #karla-messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
-                .karla-message { padding: 10px 15px; border-radius: 10px; max-width: 85%; font-size: 0.9rem; }
-                .karla-message.karla { background: rgba(0, 168, 255, 0.2); color: #7dd3fc; align-self: flex-start; border: 1px solid rgba(0, 168, 255, 0.3); }
-                .karla-message.user { background: #333; color: white; align-self: flex-end; }
-                #karla-input-area { padding: 15px; border-top: 1px solid #333; display: flex; gap: 10px; }
-                #karla-input { flex: 1; background: #111; border: 1px solid #333; color: white; padding: 10px; border-radius: 5px; outline: none; }
-                #karla-send { background: linear-gradient(135deg, #00a8ff, #00d4aa); border: none; color: white; width: 40px; border-radius: 5px; cursor: pointer; }
-                #karla-voice-btn { background: transparent; border: 1px solid #555; color: #00a8ff; width: 40px; border-radius: 5px; cursor: pointer; }
+                .karla-message { padding: 10px 15px; border-radius: 10px; max-width: 85%; font-size: 0.9rem; line-height: 1.4; }
+                .karla-message.karla { background: rgba(0, 184, 148, 0.15); color: #fff; align-self: flex-start; border: 1px solid rgba(0, 184, 148, 0.3); }
+                .karla-message.user { background: rgba(255, 255, 255, 0.1); color: white; align-self: flex-end; }
+                #karla-input-area { padding: 15px; border-top: 1px solid #333; display: flex; gap: 10px; background: #1a1a1a; }
+                #karla-input { flex: 1; background: #252525; border: 1px solid #444; color: white; padding: 10px; border-radius: 20px; outline: none; }
+                #karla-send { background: ${this.uiConfig.gradient}; border: none; color: white; width: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+                #karla-voice-btn { background: transparent; border: 1px solid #555; color: #00b894; width: 40px; border-radius: 50%; cursor: pointer; }
             </style>
+            
             <div id="karla-chat-window">
                 <div id="karla-header">
-                    <img src="assets/karla.png" style="width:40px; height:40px; border-radius:50%; object-fit:cover;">
-                    <div><h3 style="color:white; font-size:1rem; margin:0;">KARLA</h3><span style="color:#00d4aa; font-size:0.7rem;">ORION Tech Sales Consultant</span></div>
-                    <button id="karla-close" style="margin-left:auto; background:none; border:none; color:#666; cursor:pointer; font-size:1.5rem;">×</button>
+                    <img src="assets/karla.png" style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid #fff;">
+                    <div><h3 style="color:white; font-size:1rem; margin:0;">KARLA</h3><span style="color:rgba(255,255,255,0.8); font-size:0.7rem;">ORION Tech Sales Consultant</span></div>
+                    <button id="karla-close" style="margin-left:auto; background:none; border:none; color:#fff; cursor:pointer; font-size:1.5rem;">×</button>
                 </div>
                 <div id="karla-messages"></div>
                 <div id="karla-input-area">
@@ -245,8 +144,12 @@ Esto muestra el compromiso del Alcalde Diego con TODAS las comunidades de Obando
                     <button id="karla-send">➤</button>
                 </div>
             </div>
-            <button id="karla-toggle"><img src="assets/karla.png" style="width:100%; height:100%; object-fit:cover;"></button>
+            
+            <button id="karla-toggle">
+                <img src="assets/karla.png" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">
+            </button>
         `;
+
         document.body.appendChild(container);
 
         document.getElementById('karla-toggle').addEventListener('click', () => this._toggleChat());
@@ -263,10 +166,13 @@ Esto muestra el compromiso del Alcalde Diego con TODAS las comunidades de Obando
 
         if (this.isOpen && this.messages.length === 0) {
             this.voiceEnabled = true;
-            const greeting = this.language === 'es'
-                ? "Bienvenido. Soy Karla, asistente del Alcalde Diego Ortiz."
-                : "Welcome. I'm Karla, assistant to Mayor Diego Ortiz.";
-            this._speak(greeting);
+            this._toggleVoiceUI(true); // Update UI
+
+            const welcome = this.language === 'es'
+                ? `¡${this.emberaPhrases.hello}! 🏛️ Soy Karla de ORION Tech. Tengo una propuesta para modernizar la comunicación del Alcalde Diego con los ciudadanos. ¿Se la presento?`
+                : `${this.emberaPhrases.hello}! 🏛️ I'm Karla from ORION Tech. I have a proposal to modernize Mayor Diego's communication with citizens. Shall I present it?`;
+
+            this._addMessage('karla', welcome);
         }
     }
 
@@ -275,87 +181,126 @@ Esto muestra el compromiso del Alcalde Diego con TODAS las comunidades de Obando
         div.className = `karla-message ${sender}`;
         div.textContent = text;
         document.getElementById('karla-messages').appendChild(div);
-        this.messages.push({ sender, text });
+
+        // Configurar mensaje para historia (evitar duplicados en prompt si es muy largo)
+        this.messages.push({ role: sender === 'karla' ? 'model' : 'user', parts: [{ text }] });
+
         if (sender === 'karla' && this.voiceEnabled) this._speak(text);
-        document.getElementById('karla-messages').scrollTop = document.getElementById('karla-messages').scrollHeight;
+
+        const container = document.getElementById('karla-messages');
+        container.scrollTop = container.scrollHeight;
     }
 
     async _sendMessage() {
         const input = document.getElementById('karla-input');
         const text = input.value.trim();
         if (!text) return;
+
         this._addMessage('user', text);
         input.value = '';
 
+        // Typing indicator
+        const typing = document.createElement('div');
+        typing.className = 'karla-message karla';
+        typing.id = 'karla-typing';
+        typing.textContent = '...';
+        document.getElementById('karla-messages').appendChild(typing);
+
         try {
             const key = this._getSecureApiKey();
-            if (!key) {
-                this._addMessage('karla', this.language === 'es'
-                    ? "Disculpe, mi conexión está temporalmente fuera de línea. Por favor contacte directamente al 310 888 4014."
-                    : "Sorry, my connection is temporarily offline. Please contact 310 888 4014 directly.");
-                return;
-            }
+            if (!key) throw new Error("No API Key");
 
             const response = await fetch(`${this.apiEndpoint}?key=${key}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    contents: [{ role: 'user', parts: [{ text: this.systemPrompt + "\nCiudadano: " + text }] }]
+                    contents: [
+                        { role: 'user', parts: [{ text: this.systemPrompt }] },
+                        ...this.messages.slice(-10) // Contexto limitado
+                    ],
+                    generationConfig: { temperature: 0.7, maxOutputTokens: 300 }
                 })
             });
+
             const data = await response.json();
-            const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || (this.language === 'es'
-                ? "Disculpe, no pude procesar su consulta. ¿Podría reformularla?"
-                : "Sorry, I couldn't process your request. Could you rephrase it?");
-            this._addMessage('karla', reply);
+            document.getElementById('karla-typing').remove();
+
+            const reply = data.candidates?.[0]?.content?.parts?.[0]?.text;
+            if (reply) {
+                this._addMessage('karla', reply);
+            } else {
+                throw new Error("Empty response");
+            }
+
         } catch (e) {
-            this._addMessage('karla', this.language === 'es'
-                ? "Error de conexión. Intente nuevamente o llame al 310 888 4014."
-                : "Connection error. Please try again or call 310 888 4014.");
+            document.getElementById('karla-typing')?.remove();
+            const fallback = this.language === 'es'
+                ? "Disculpe, mi conexión es lenta. Por favor contacte al 310 888 4014 directamente."
+                : "Sorry, connection is slow. Please contact 310 888 4014 directly.";
+            this._addMessage('karla', fallback);
+            console.error(e);
         }
     }
 
     _getSecureApiKey() {
-        // Priority 1: ORION_CONFIG from jose-loader.js (most reliable, set dynamically)
+        // Priority 1: ORION_CONFIG
         if (window.ORION_CONFIG && typeof window.ORION_CONFIG.getAuth === 'function') {
             const key = window.ORION_CONFIG.getAuth();
             if (key) return key;
         }
-
-        // Priority 2: LocalStorage fallback (if configured manually)
-        const keys = ['karla_api_key', 'jose_api_key', 'mario_api_key', 'elisa_api_key'];
+        // Priority 2: LocalStorage
+        const keys = ['karla_api_key', 'jose_api_key', 'mario_api_key'];
         for (const k of keys) {
             const stored = localStorage.getItem(k);
-            if (stored) {
-                try { return atob(stored); } catch (e) { console.error('Key decode error', k); }
-            }
+            if (stored) try { return atob(stored); } catch (e) { }
         }
         return null;
     }
 
     _speak(text) {
         if (!this.synth || !this.voiceEnabled) return;
+        this.synth.cancel();
         const u = new SpeechSynthesisUtterance(text);
         u.voice = this.selectedVoice;
-        u.lang = this.language === 'es' ? 'es-CO' : 'en-US';
-        u.pitch = 1.0;
-        u.rate = 0.95;
+        u.lang = this.language === 'es' ? 'es-MX' : 'en-US'; // FORCE LANG for pronunciation
+        u.pitch = 1.1; // Female tone
+        u.rate = 0.9;
         this.synth.speak(u);
     }
 
     _toggleVoice() {
         this.voiceEnabled = !this.voiceEnabled;
+        this._toggleVoiceUI(this.voiceEnabled);
+        if (!this.voiceEnabled) this.synth.cancel();
+    }
+
+    _toggleVoiceUI(enabled) {
         const btn = document.getElementById('karla-voice-btn');
-        btn.style.color = this.voiceEnabled ? '#fff' : '#00a8ff';
-        btn.textContent = this.voiceEnabled ? '🔊' : '🔇';
+        if (btn) {
+            btn.style.color = enabled ? '#fff' : '#00b894';
+            btn.style.background = enabled ? this.uiConfig.gradient : 'transparent';
+            btn.textContent = enabled ? '🔊' : '🔇';
+        }
+    }
+
+    setLanguage(lang) {
+        if (this.language === lang) return;
+        this.language = lang;
+        this.systemPrompt = this._buildSystemPrompt();
+        this._loadVoices();
+        if (this.isOpen) {
+            this._addMessage('karla', lang === 'es' ? "Cambiando a Español. 🏛️" : "Switching to English. 🏛️");
+        }
     }
 }
 
-// Global access for language switcher
 window.KarlaAssistant = KarlaAssistant;
-window.karla = null;
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Config via window.KARLA_CONFIG or defaults
     const savedLang = localStorage.getItem('mcProposalLang') || 'es';
-    window.karla = new KarlaAssistant({ language: savedLang });
+    const config = window.KARLA_CONFIG || { language: savedLang };
+    config.language = savedLang; // Ensure priority
+
+    window.karla = new KarlaAssistant(config);
 });
