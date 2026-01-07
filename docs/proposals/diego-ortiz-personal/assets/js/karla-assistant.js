@@ -1,6 +1,7 @@
 /**
  * KARLA - AI Assistant for Mayor Diego Ortiz Personal Brand
- * Bilingual (EN/ES) | Female Voice | Gemini AI Powered
+ * TRILINGUAL: Español | English | Embera Chamí (indigenous language of Obando)
+ * Female Voice | Gemini AI Powered
  * "Conectando ciudadanos, construyendo legado"
  */
 
@@ -11,6 +12,21 @@ class KarlaAssistant {
         this.language = config.language || 'es';
         this.ownerName = config.ownerName || 'Diego Armando Ortiz Buitrago';
         this.municipality = config.municipality || 'Obando, Valle del Cauca';
+
+        // EMBERA CHAMÍ PHRASES - Lengua indígena de Obando
+        this.emberaPhrases = {
+            hello: 'Mabae',           // Hola
+            howAreYou: 'Sakabuma',    // ¿Cómo estás?
+            goodMorning: 'Saka ewarisma', // Buenos días
+            goodAfternoon: 'Saka kiubwdama', // Buenas tardes
+            thanks: 'Arakiruma',      // Gracias
+            yes: 'Chiboro',           // Sí
+            no: 'Tacaño',             // No
+            friend: 'Âbâ',            // Amigo/Hermano
+            goodbye: 'Guaya Unidaica', // Adiós
+            ourTerritory: 'Dachidrua', // Nuestro territorio
+            wellAwakened: 'Bi-ia ebarisma' // Amanecí bien
+        };
 
         // Secure API configuration
         this.apiEndpoint = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
@@ -120,7 +136,16 @@ ${context}
 ${closingStrategy}
 
 IDIOMA ACTUAL: ${this.language === 'es' ? 'Español' : 'English'}
-Responde siempre en ${this.language === 'es' ? 'español' : 'English'}.`;
+Responde siempre en ${this.language === 'es' ? 'español' : 'English'}.
+
+EMBERA CHAMÍ - LENGUA INDÍGENA DE OBANDO:
+En Obando habita la comunidad indígena Embera Chamí. Como muestra de respeto e inclusión, 
+ocasionalmente usa palabras en Embera:
+- Mabae = Hola
+- Arakiruma = Gracias
+- Sakabuma = ¿Cómo estás?
+- Dachidrua = Nuestro territorio
+Esto muestra el compromiso del Alcalde Diego con TODAS las comunidades de Obando.`;
     }
 
     setLanguage(lang) {
@@ -136,8 +161,8 @@ Responde siempre en ${this.language === 'es' ? 'español' : 'English'}.`;
 
         setTimeout(() => {
             const welcome = this.language === 'es'
-                ? `¡Hola! Soy Karla, asistente del Alcalde Diego Ortiz. 🏛️ ¿En qué puedo ayudarle hoy?`
-                : `Hello! I'm Karla, assistant to Mayor Diego Ortiz. 🏛️ How may I help you today?`;
+                ? `¡${this.emberaPhrases.hello}! (Hola en Embera Chamí) 🏛️ Soy Karla, asistente del Alcalde Diego Ortiz. ¿En qué puedo ayudarle hoy?`
+                : `${this.emberaPhrases.hello}! (Hello in Embera Chamí) 🏛️ I'm Karla, assistant to Mayor Diego Ortiz. How may I help you today?`;
             this._addMessage('karla', welcome);
         }, 1000);
     }
