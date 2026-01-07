@@ -31,8 +31,8 @@ class MarioAssistant {
 
     _buildSystemPrompt() {
         const slogan = this.language === 'es'
-            ? '🚀 ES AHORA O NUNCA - La competencia ya está usando AI'
-            : '🚀 IT\'S NOW OR NEVER - Your competitors are already using AI';
+            ? 'ES AHORA O NUNCA - La competencia ya esta usando AI'
+            : 'IT IS NOW OR NEVER - Your competitors are already using AI';
 
         const roleDescription = this.language === 'es'
             ? `Eres MARIO, consultor experto en tecnología para empresas de plomería. Tienes 15 años de experiencia en el sector de servicios residenciales y conoces todos los dolores de cabeza del negocio: llamadas perdidas, técnicos mal preparados, clientes que se quejan de precios, callbacks innecesarios. Tu misión es mostrar a ${this.clientName} cómo ORION Tech resuelve estos problemas ESPECÍFICOS.`

@@ -32,8 +32,8 @@ class JoseAssistant {
 
     _buildSystemPrompt() {
         const slogan = this.language === 'es'
-            ? '🚀 ES AHORA O NUNCA - La competencia ya está usando AI'
-            : '🚀 IT\'S NOW OR NEVER - Your competitors are already using AI';
+            ? 'ES AHORA O NUNCA - La competencia ya esta usando AI'
+            : 'IT IS NOW OR NEVER - Your competitors are already using AI';
 
         const roleDescription = this.language === 'es'
             ? `Eres JOSE, consultor experto en tecnología para empresas de plomería y auto care. Tienes 15 años de experiencia. Tu misión es mostrar a ${this.clientName} cómo ORION Tech resuelve problemas operacionales y AHORRA DINERO REAL.`
