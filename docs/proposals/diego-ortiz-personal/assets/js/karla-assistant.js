@@ -1,9 +1,8 @@
 /**
  * KARLA - AI Political Brand Consultant for Mayor Diego Ortiz
- * TRILINGUAL: Español | English | Embera Chamí (indigenous language of Obando)
+ * TRILINGUAL: Español | English | Embera Chamí (Obando)
  * Female Voice | Gemini AI Powered
- * "Conectando ciudadanos, construyendo legado"
- * VERSION: FIXED 2026-01-07 - ROBUST VOICE & IMAGE UI
+ * VERSION: FINAL ROBUST 2026-01-07
  */
 
 class KarlaAssistant {
@@ -12,19 +11,17 @@ class KarlaAssistant {
         this.clientPhone = config.clientPhone || '+57 310 888 4014';
         this.language = config.language || 'es';
         this.ownerName = config.ownerName || 'Diego Armando Ortiz Buitrago';
-        this.municipality = config.municipality || 'Obando, Valle del Cauca';
 
         // EMBERA CHAMÍ PHRASES
         this.emberaPhrases = {
             hello: 'Mabae',           // Hola
             howAreYou: 'Sakabuma',    // ¿Cómo estás?
-            goodMorning: 'Saka ewarisma', // Buenos días
             thanks: 'Arakiruma',      // Gracias
             yes: 'Chiboro',           // Sí
             ourTerritory: 'Dachidrua' // Nuestro territorio
         };
 
-        // Secure API configuration
+        // API Configuration (Gemini 2.0 Flash)
         this.apiEndpoint = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
         this.isOpen = false;
         this.messages = [];
@@ -34,7 +31,7 @@ class KarlaAssistant {
 
         this.systemPrompt = this._buildSystemPrompt();
 
-        // UI Config
+        // UI Colors
         this.uiConfig = {
             primaryColor: '#00b894',
             gradient: 'linear-gradient(135deg, #0984e3 0%, #00b894 100%)'
@@ -44,62 +41,56 @@ class KarlaAssistant {
     }
 
     _buildSystemPrompt() {
-        const slogan = this.language === 'es'
-            ? '🚀 ORION TECH - Transformación Digital para Líderes Políticos'
-            : '🚀 ORION TECH - Digital Transformation for Political Leaders';
+        const lang = this.language === 'es' ? 'Español' : 'English';
 
-        const roleDescription = this.language === 'es'
-            ? `Eres KARLA, consultora senior de ventas de ORION Tech. NO eres la asistente del alcalde.
-Estás presentando la propuesta de MARCA PERSONAL DIGITAL al Alcalde Diego Armando Ortiz Buitrago.
-Tu objetivo es VENDER el servicio de automatización y agendar una DEMO.`
-            : `You are KARLA, senior sales consultant at ORION Tech. You are NOT the mayor's assistant.
-You are presenting the DIGITAL PERSONAL BRAND proposal to Mayor Diego Armando Ortiz Buitrago.
-Your goal is to SELL the automation service and schedule a DEMO.`;
+        return `
+ROL: Karla, Consultora Senior de ORION Tech (Ventas & Marca Personal).
+OBJETIVO: Vender soluciones digitales al Alcalde Diego Armando Ortiz Buitrago (Obando, Valle).
+TONO: Profesional, Directa, Persuasiva (Cerradora de Ventas). NO eres asistente, eres CONSULTORA.
 
-        const context = `
-CONTEXTO:
-- Cliente: Alcalde Diego Ortiz (Obando, Valle)
+CONTEXTO CLIENTE:
+- Alcalde Diego Ortiz (2024-2027)
 - Plan: "Amor por lo Nuestro"
-- Comunidad indígena: Embera Chamí
+- Población: Incluye comunidad Embera Chamí.
 
-PRECIOS (COP):
-- ALCALDE DIGITAL: $3M/mes + $5M Setup (Recomendado)
-- LEGADO POLÍTICO: $8M/mes + $12M Setup
+PRECIOS ORION (COP):
+- ALCALDE DIGITAL: $3M/mes + $5M Setup (Recomendado).
+- LEGADO POLÍTICO: $8M/mes + $12M Setup.
 
-DICCIONARIO EMBERA CHAMÍ (Respeto cultural):
+DICCIONARIO EMBERA CHAMÍ (Cultura local):
 - Mabae = Hola
 - Arakiruma = Gracias
 - Sakabuma = ¿Cómo estás?
+- Dachidrua = Nuestro territorio
+
+INSTRUCCIONES:
+- Responde siempre en ${lang}.
+- Usa vocabulario político profesional.
+- Si preguntan precio: justifica con ROI (votos, conexión ciudadana).
+- Máximo 3 oraciones.
+- Cierra siempre invitando a una DEMO.
 `;
-        return `${slogan}\n\n${roleDescription}\n\n${context}\n\nResponde en máximo 3 oraciones.`;
     }
 
     _init() {
         this._loadVoices();
-
-        // Ensure voice loading even if event missed
         if (this.synth.onvoiceschanged !== undefined) {
             this.synth.onvoiceschanged = () => this._loadVoices();
         }
-
         this._createChatUI();
 
-        // Auto-greet visual cue
+        // Visual cue only
         setTimeout(() => {
-            if (!this.isOpen) {
-                const toggle = document.getElementById('karla-toggle');
-                if (toggle) {
-                    toggle.style.transform = 'scale(1.1)';
-                    setTimeout(() => toggle.style.transform = 'scale(1)', 300);
-                }
+            const toggle = document.getElementById('karla-toggle');
+            if (toggle && !this.isOpen) {
+                toggle.style.transform = 'scale(1.1)';
+                setTimeout(() => toggle.style.transform = 'scale(1)', 300);
             }
         }, 3000);
     }
 
     _loadVoices() {
         let voices = this.synth.getVoices();
-
-        // RETRY MECHANISM: Chrome returns empty array initially
         if (voices.length === 0) {
             setTimeout(() => this._loadVoices(), 100);
             return;
@@ -107,23 +98,16 @@ DICCIONARIO EMBERA CHAMÍ (Respeto cultural):
 
         const isSpanish = this.language === 'es';
 
-        // Expanded list of female Spanish voices
-        const spanishVoices = [
-            'Microsoft Sabina', 'Microsoft Helena', 'Google español',
-            'es-MX', 'es-ES', 'Paulina', 'Hilda', 'Laura', 'Helena'
-        ];
-
+        // Prioridad voces femeninas español
+        const spanishVoices = ['Microsoft Sabina', 'Microsoft Helena', 'Google español', 'es-MX', 'es-ES', 'Paulina'];
         const englishVoices = ['Microsoft Zira', 'Google US English', 'Samantha', 'en-US'];
         const preferred = isSpanish ? spanishVoices : englishVoices;
 
-        // Try to find exact match -> then startsWith lang -> then any lang match
         this.selectedVoice = voices.find(v =>
             preferred.some(p => v.name.includes(p) || v.lang.includes(p))
         ) || voices.find(v => v.lang.startsWith(isSpanish ? 'es' : 'en')) || voices[0];
 
-        if (this.selectedVoice) {
-            console.log('✅ KARLA VOICE READY:', this.selectedVoice.name);
-        }
+        if (this.selectedVoice) console.log('✅ VOZ:', this.selectedVoice.name);
     }
 
     _createChatUI() {
@@ -160,14 +144,14 @@ DICCIONARIO EMBERA CHAMÍ (Respeto cultural):
             
             <div id="karla-chat-window">
                 <div id="karla-header">
-                    <img src="assets/karla.png" style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid #fff;" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI1MCIgZmlsbD0iIzAwYjg5NCIvPjx0ZXh0IHg9IjUwIiB5PSI2NSIgZm9udC1zaXplPSI0MCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPu🏛️PC90ZXh0Pjwvc3ZnPg=='">
-                    <div><h3 style="color:white; font-size:1rem; margin:0;">KARLA</h3><span style="color:rgba(255,255,255,0.8); font-size:0.7rem;">ORION Tech Sales Consultant</span></div>
+                    <img src="assets/karla.png" style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid #fff;" onerror="this.style.display='none'">
+                    <div><h3 style="color:white; font-size:1rem; margin:0;">KARLA</h3><span style="color:rgba(255,255,255,0.8); font-size:0.7rem;">ORION Tech Consultant</span></div>
                     <button id="karla-close" style="margin-left:auto; background:none; border:none; color:#fff; cursor:pointer; font-size:1.5rem;">×</button>
                 </div>
                 <div id="karla-messages"></div>
                 <div id="karla-input-area">
                     <button id="karla-voice-btn">🎤</button>
-                    <input type="text" id="karla-input" placeholder="${this.language === 'es' ? 'Escriba su consulta...' : 'Type your question...'}">
+                    <input type="text" id="karla-input" placeholder="Mensaje...">
                     <button id="karla-send">➤</button>
                 </div>
             </div>
@@ -187,20 +171,19 @@ DICCIONARIO EMBERA CHAMÍ (Respeto cultural):
     }
 
     _toggleChat() {
-        // Must interact to unlock audio context in some browsers
-        if (this.synth.resume) this.synth.resume();
+        if (this.synth.resume) this.synth.resume(); // Unlock audio context
 
         const win = document.getElementById('karla-chat-window');
         this.isOpen = !this.isOpen;
         win.classList.toggle('open', this.isOpen);
 
         if (this.isOpen && this.messages.length === 0) {
-            this.voiceEnabled = true;
+            this.voiceEnabled = true; // Auto-enable voice
             this._toggleVoiceUI(true);
 
             const welcome = this.language === 'es'
-                ? `¡${this.emberaPhrases.hello}! 🏛️ Soy Karla de ORION Tech. Tengo una propuesta para modernizar la comunicación del Alcalde Diego con los ciudadanos. ¿Se la presento?`
-                : `${this.emberaPhrases.hello}! 🏛️ I'm Karla from ORION Tech. I have a proposal to modernize Mayor Diego's communication with citizens. Shall I present it?`;
+                ? `¡${this.emberaPhrases.hello}! 🏛️ Soy Karla de ORION Tech. Tengo una propuesta para potenciar su marca personal. ¿Le interesa verla?`
+                : `${this.emberaPhrases.hello}! 🏛️ I'm Karla from ORION Tech. I have a proposal to boost your personal brand. Interested?`;
 
             this._addMessage('karla', welcome);
         }
@@ -235,39 +218,55 @@ DICCIONARIO EMBERA CHAMÍ (Respeto cultural):
         document.getElementById('karla-messages').appendChild(typing);
 
         try {
-            const key = this._getSecureApiKey();
-            if (!key) throw new Error("No API Key");
-
-            const response = await fetch(`${this.apiEndpoint}?key=${key}`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    contents: [
-                        { role: 'user', parts: [{ text: this.systemPrompt }] },
-                        ...this.messages.slice(-10)
-                    ],
-                    generationConfig: { temperature: 0.7, maxOutputTokens: 300 }
-                })
-            });
-
-            const data = await response.json();
+            const response = await this._callGemini(text);
             document.getElementById('karla-typing').remove();
-
-            const reply = data.candidates?.[0]?.content?.parts?.[0]?.text;
-            if (reply) {
-                this._addMessage('karla', reply);
-            } else {
-                throw new Error("Empty response");
-            }
-
+            this._addMessage('karla', response);
         } catch (e) {
             document.getElementById('karla-typing')?.remove();
-            const fallback = this.language === 'es'
-                ? "Disculpe, mi conexión es lenta. Por favor contacte al 310 888 4014 directamente."
-                : "Sorry, connection is slow. Please contact 310 888 4014 directly.";
+            console.error("KARLA ERROR:", e);
+            const fallback = this._getFallbackResponse(text);
             this._addMessage('karla', fallback);
-            console.error(e);
         }
+    }
+
+    async _callGemini(userMessage) {
+        const apiKey = this._getSecureApiKey();
+        if (!apiKey) throw new Error("No API Key");
+
+        // JOSE-style request
+        const requestBody = {
+            contents: [
+                { role: 'user', parts: [{ text: this.systemPrompt }] },
+                ...this.messages.slice(-10),
+                { role: 'user', parts: [{ text: userMessage }] }
+            ],
+            generationConfig: {
+                temperature: 0.7,
+                maxOutputTokens: 300
+            }
+        };
+
+        const response = await fetch(`${this.apiEndpoint}?key=${apiKey}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(requestBody)
+        });
+
+        if (!response.ok) throw new Error(`API Error: ${response.status}`);
+
+        const data = await response.json();
+        const reply = data.candidates?.[0]?.content?.parts?.[0]?.text;
+
+        if (!reply) throw new Error("Empty API Response");
+        return reply;
+    }
+
+    _getFallbackResponse(text) {
+        const msg = text.toLowerCase();
+        if (msg.includes('precio') || msg.includes('cost')) {
+            return "El plan ALCALDE DIGITAL es el más recomendado: $3M/mes + $5M Setup. Incluye todo lo necesario para su gestión. ¿Agendamos demo?";
+        }
+        return `Disculpe, tengo conexión limitada. Por favor llame al 310 888 4014 para una atención inmediata.`;
     }
 
     _getSecureApiKey() {
@@ -290,7 +289,6 @@ DICCIONARIO EMBERA CHAMÍ (Respeto cultural):
         this.synth.cancel();
         const u = new SpeechSynthesisUtterance(text);
         u.voice = this.selectedVoice;
-        // FORCE SPANISH LOCALE: 'es-MX' works best for neutral female voices in most browsers
         u.lang = this.language === 'es' ? 'es-MX' : 'en-US';
         u.pitch = 1.1;
         u.rate = 0.9;
