@@ -316,7 +316,21 @@ Esto muestra el compromiso del Alcalde Diego con TODAS las comunidades de Obando
     }
 
     _getSecureApiKey() {
-        return atob(localStorage.getItem('jose_api_key') || localStorage.getItem('mario_api_key') || "") || null;
+        // Priority 1: ORION_CONFIG from jose-loader.js (most reliable, set dynamically)
+        if (window.ORION_CONFIG && typeof window.ORION_CONFIG.getAuth === 'function') {
+            const key = window.ORION_CONFIG.getAuth();
+            if (key) return key;
+        }
+
+        // Priority 2: LocalStorage fallback (if configured manually)
+        const keys = ['karla_api_key', 'jose_api_key', 'mario_api_key', 'elisa_api_key'];
+        for (const k of keys) {
+            const stored = localStorage.getItem(k);
+            if (stored) {
+                try { return atob(stored); } catch (e) { console.error('Key decode error', k); }
+            }
+        }
+        return null;
     }
 
     _speak(text) {
