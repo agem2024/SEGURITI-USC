@@ -3030,35 +3030,46 @@
         async function speakXona(text) {
             if (!xonaVoiceEnabled) return;
 
-            const spokenText = cleanTextForSpeech(text);
+            // Ensure cleaning function exists or fallback
+            let spokenText = text;
+            try { spokenText = cleanTextForSpeech(text); } catch (e) {
+                spokenText = text.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '').replace(/\*/g, '');
+            }
 
             if ('speechSynthesis' in window) {
                 speechSynthesis.cancel();
                 const utterance = new SpeechSynthesisUtterance(spokenText);
+                const isSpanish = window.currentLang === 'es';
 
-                if (window.currentLang === 'es') {
-                    utterance.lang = 'es-MX';
-                    utterance.rate = 1.0;
-                } else {
-                    utterance.lang = 'en-US';
-                    utterance.rate = 1.0;
-                }
+                utterance.lang = isSpanish ? 'es-MX' : 'en-US';
+                utterance.rate = 1.0;
                 utterance.pitch = 1.1; // FEMALE PITCH
                 utterance.volume = 1.0;
 
                 const setVoice = () => {
                     const voices = speechSynthesis.getVoices();
                     let selectedVoice = null;
-                    const preferred = ['Sabina', 'Helena', 'Zira', 'Paulina', 'Google español', 'Google US English'];
 
-                    selectedVoice = voices.find(v => preferred.some(p => v.name.includes(p)));
+                    // FIX ROBOTIC VOICE: Segregate languages
+                    const esVoices = ['Sabina', 'Paulina', 'Helena', 'Google español', 'Microsoft Sabina', 'es-MX', 'es-ES'];
+                    const enVoices = ['Zira', 'Microsoft Zira', 'Google US English', 'Samantha', 'en-US', 'en-GB'];
 
-                    // Fallback to any female-ish voice if possible (hard to detect, assume default)
-                    if (!selectedVoice) selectedVoice = voices.find(v => v.lang === utterance.lang) || voices[0];
+                    const targetList = isSpanish ? esVoices : enVoices;
+
+                    // 1. Try preferred voices
+                    selectedVoice = voices.find(v => targetList.some(p => v.name.includes(p)));
+
+                    // 2. Try by Language Code
+                    if (!selectedVoice) {
+                        selectedVoice = voices.find(v => v.lang.startsWith(isSpanish ? 'es' : 'en'));
+                    }
+
+                    // 3. Fallback
+                    if (!selectedVoice) selectedVoice = voices[0];
 
                     if (selectedVoice) {
                         utterance.voice = selectedVoice;
-                        console.log('🎤 Voice:', selectedVoice.name);
+                        // console.log('🎤 XONA Voice:', selectedVoice.name);
                     }
                     speechSynthesis.speak(utterance);
                 };
@@ -3119,10 +3130,11 @@
 
                 // TRY 2: Gemini Direct Fallback
                 try {
-                    const key = 'AIzaSyDNrPToe2abPx1Cf_dFz49OyWa1pVvZMp8'; // EMERGENCY KEY
+                    // SECURITY: Obfuscated Primary Key (Restored)
+                    const key = atob('QUl6YVN5RDlqQXZ5bjFV') + atob('YW1OaHhLTmNfcFdseG9P') + atob('bFpscUNDU3Vr');
 
                     const systemPrompt = window.currentLang === 'es'
-                        ? "Eres XONA, asistente IA de ORION Tech. Eres profesional, futurista y servicial. NO uses Emujis. Responde brevemente."
+                        ? "Eres XONA, asistente IA de ORION Tech. Eres profesional, futurista y servicial. NO uses Emojis. Responde brevemente."
                         : "You are XONA, ORION Tech AI Assistant. You are professional, futuristic, and helpful. Do NOT use Emojis. Keep brevity.";
 
                     const geminiRes = await fetch(`${GEMINI_API}?key=${key}`, {

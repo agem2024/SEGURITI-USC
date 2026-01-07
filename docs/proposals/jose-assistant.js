@@ -265,7 +265,7 @@ ${this.proposalContext}
             if (k && k.length > 20) return k;
         }
         // 2. Try Storage
-        const keys = ['jose_api_key', 'orion_key'];
+        const keys = ['jose_api_key', 'mario_api_key', 'orion_key'];
         for (const k of keys) {
             const v = localStorage.getItem(k);
             if (v) return v; // Assume plain or base64, simple check
