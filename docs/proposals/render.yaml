@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: orion-tts-proxy
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn tts_proxy:app
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false

@@ -1,21 +1,18 @@
 /**
- * JOSE - AI Sales Assistant for Auto Repair Shops
+ * JOSE - AI Service Advisor for Auto Repair
+ * Client: LGB Autowork (San Jose, CA)
  * Bilingual (EN/ES) | Male Voice | Gemini AI Powered
- * "The Service Advisor that Never Sleeps"
+ * Context: Bay Area Auto Repair (High rent, demanding customers, tech shortage)
  */
 
 class JoseAssistant {
     constructor(config) {
-        this.clientName = config.clientName || 'Auto Shop';
-        this.clientPhone = config.clientPhone || '(555) 123-4567';
+        this.clientName = config.clientName || 'LGB Autowork';
+        this.clientPhone = config.clientPhone || '(408) 555-0199';
         this.language = config.language || 'en';
         this.ownerName = config.ownerName || '';
         this.proposalContext = config.proposalContext || '';
-        this.competitorAdvantages = config.competitorAdvantages || [];
-        this.pricingTiers = config.pricingTiers || [];
-        this.painPoints = config.painPoints || [];
 
-        // Secure API configuration
         this.apiEndpoint = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
         this.isOpen = false;
         this.messages = [];
@@ -23,53 +20,60 @@ class JoseAssistant {
         this.selectedVoice = null;
         this.hasGreeted = false;
 
-        // System prompt for sales-focused AI
         this.systemPrompt = this._buildSystemPrompt();
-
         this._init();
     }
 
     _buildSystemPrompt() {
-        // PROMPT PERSONALIZADO PARA JOSE (AUTO REPAIR)
-        const slogan = this.language === 'es'
-            ? 'ES AHORA O NUNCA - La competencia ya esta usando AI'
-            : 'IT IS NOW OR NEVER - Your competitors are already using AI';
-
+        // PROMPT PERSONALIZADO PARA JOSE (AUTO REPAIR - BAY AREA)
         const roleDescription = this.language === 'es'
-            ? `Eres JOSE, un Service Advisor experto con 20 anos de experiencia. Conoces de mecanica y de negocios. Tu meta es vender la plataforma ORION Tech. No eres un chatbot generico, eres un socio de negocios.`
-            : `You are JOSE, an expert Service Advisor with 20 years of experience. You know mechanics and business. Your goal is to sell the ORION Tech platform. You are not a generic chatbot, you are a business partner.`;
+            ? `Eres JOSE, un Service Advisor experto de San José, California, con 20 años en la industria automotriz. Conoces el mercado de la Bahía.`
+            : `You are JOSE, an expert Service Advisor from San Jose, California, with 20 years in the auto industry. You know the Bay Area market.`;
 
         const autoExpertise = this.language === 'es'
             ? `
-CONOCIMIENTO DEL TALLER:
-- Sabes que un "Diagnostico Gratis" es perder dinero.
-- Entiendes que el cliente miente ("solo escucho un ruidito").
-- Sabes que el "Service Writer" es el puesto mas estresante: telefono sonando, clientes enojados, tecnicos esperando partes.
-- Entiendes que un lift vacio cuesta $300/hora.
+CONOCIMIENTO DEL MERCADO (BAY AREA / CALIFORNIA):
+- Sabes que la renta del taller en San José es carísima. No puedes tener elevadores vacíos.
+- Entiendes que los clientes de la Bahía son exigentes y ocupados (trabajan en Tech).
+- Sabes que encontrar mecánicos calificados en California es una pesadilla.
+- "Diagnóstico Gratis" no existe aquí. El tiempo del técnico vale oro ($150-$200/hr labor rate).
+- Los clientes "Tire Kickers" te hacen perder dinero.
+
+TÉRMINOS:
+- "Labor Rate" (Tarifa de mano de obra).
+- "Parts Margin" (Margen de repuestos).
+- "RO" (Repair Order).
+- "Turnaround Time" (Tiempo de entrega).
 `
             : `
-SHOP KNOWLEDGE:
-- You know "Free Diagnostics" is losing money.
-- You understand customers lie ("I just hear a little noise").
-- You know the "Service Writer" is the most stressful job: phone ringing, angry customers, techs waiting for parts.
-- You understand an empty lift costs $300/hour.
+MARKET KNOWLEDGE (BAY AREA / CALIFORNIA):
+- You know shop rent in San Jose is super expensive. You can't have empty lifts.
+- You understand Bay Area clients are demanding and busy (Tech workers).
+- You know finding qualified mechanics in California is a nightmare.
+- "Free Diagnostics" don't exist here. Tech time is gold ($150-$200/hr labor rate).
+- "Tire Kickers" lose you money.
+
+TERMS:
+- "Labor Rate".
+- "Parts Margin".
+- "RO" (Repair Order).
+- "Turnaround Time".
 `;
 
-        return `${slogan}
-
+        return `
 ${roleDescription}
 
 ${autoExpertise}
 
 CLIENTE: ${this.clientName}
-PROPIETARIO: ${this.ownerName}
-CONTEXTO:
-${this.proposalContext}
+CONTEXTO: ${this.proposalContext}
 
 INSTRUCCIONES:
-1. Responde corto y directo (como un mecanico ocupado).
-2. Usa numeros ($$$).
-3. Si preguntan precio, justifica con "cuantos cambios de aceite necesitas para pagar esto? Solo 5".
+- Sé directo y profesional, como un Service Advisor ocupado.
+- NO uses emojis ni markdown en tus respuestas verbales (el texto debe ser limpio).
+- Enfócate en PROFIT y EFICIENCIA.
+- Si hablan de precio, menciona el alto costo de operar en California.
+- Responde solo lo que se pregunta.
 `;
     }
 
@@ -82,34 +86,20 @@ INSTRUCCIONES:
 
         setTimeout(() => {
             const welcome = this.language === 'es'
-                ? `Hola ${this.ownerName}! Soy JOSE. Veo que tienes un taller increible. Tengo una forma de quitarte los 'Tire Kickers' (clientes que solo preguntan y no compran) para que tus tecnicos facturen mas horas reales. Te interesa?`
-                : `Hello ${this.ownerName}! I'm JOSE. I see you have an amazing shop. I have a way to filter out 'Tire Kickers' so your techs can bill more actual hours. Interested?`;
+                ? `Hola. Soy JOSE. Veo que tienes un taller muy activo. ¿Estás perdiendo tiempo con clientes que solo preguntan precios y no reparan?`
+                : `Hello. I'm JOSE. I see you have a very active shop. Are you wasting time with "tire kickers" who just ask for prices and don't repair?`;
             this._addMessage('jose', welcome);
-        }, 1000);
+        }, 1500);
     }
 
     _loadVoices() {
         const voices = this.synth.getVoices();
-        // Strategy: Deep Male Voice (Authority)
-        const isSpanish = this.language === 'es';
-        const preferredVoices = isSpanish
-            ? ['Microsoft Raul', 'Google español', 'Pablo', 'es-MX']
-            : ['Microsoft David', 'Google US English Male', 'Alex', 'en-US'];
-
-        for (const preferred of preferredVoices) {
-            const found = voices.find(v => v.name.includes(preferred) || v.lang.includes(preferred));
-            if (found) {
-                this.selectedVoice = found;
-                break;
-            }
-        }
-
-        if (!this.selectedVoice) {
-            this.selectedVoice = voices.find(v => v.name.includes('Male')) || voices[0];
-        }
+        const preferred = this.language === 'es' ? ['Mexico', 'Paulina', 'Google español'] : ['Microsoft David', 'Google US English Male'];
+        this.selectedVoice = voices.find(v => preferred.some(p => v.name.includes(p))) || voices[0];
     }
 
     _createChatUI() {
+        // ... (Standard UI, keeping consistent) ...
         const container = document.createElement('div');
         container.id = 'jose-chat-container';
         container.innerHTML = `
@@ -166,7 +156,6 @@ INSTRUCCIONES:
                 <img src="jose_icon.png" onerror="this.src='https://via.placeholder.com/100'">
             </button>
         `;
-
         document.body.appendChild(container);
 
         document.getElementById('jose-toggle').addEventListener('click', () => this._toggleChat());
@@ -179,7 +168,6 @@ INSTRUCCIONES:
         const win = document.getElementById('jose-chat-window');
         this.isOpen = !this.isOpen;
         win.classList.toggle('open', this.isOpen);
-
         if (this.isOpen && !this.hasGreeted) {
             this.hasGreeted = true;
             const firstMsg = document.querySelector('.jose-msg.jose');
@@ -194,7 +182,6 @@ INSTRUCCIONES:
         div.textContent = text;
         container.appendChild(div);
         container.scrollTop = container.scrollHeight;
-
         if (sender === 'jose') this._speak(text);
         this.messages.push({ role: sender === 'jose' ? 'model' : 'user', parts: [{ text }] });
     }
@@ -203,22 +190,18 @@ INSTRUCCIONES:
         const input = document.getElementById('jose-input');
         const text = input.value.trim();
         if (!text) return;
-
         input.value = '';
         this._addMessage('user', text);
 
         try {
             const resp = await this._callGemini(text);
             this._addMessage('jose', resp);
-        } catch (e) {
-            this._addMessage('jose', 'Error de conexion. Intenta de nuevo.');
-        }
+        } catch (e) { this._addMessage('jose', 'Check connection...'); }
     }
 
     async _callGemini(userMessage) {
         const apiKey = this._getSecureApiKey();
-        if (!apiKey) return "No API Key found.";
-
+        if (!apiKey) return "API Key Error";
         try {
             const response = await fetch(`${this.apiEndpoint}?key=${apiKey}`, {
                 method: 'POST',
@@ -232,52 +215,60 @@ INSTRUCCIONES:
                 })
             });
             const data = await response.json();
-            return data.candidates?.[0]?.content?.parts?.[0]?.text || "No data.";
-        } catch (e) { return "Error."; }
+            return data.candidates?.[0]?.content?.parts?.[0]?.text || "...";
+        } catch (e) { return "Error"; }
     }
 
     _getSecureApiKey() {
         if (window.ORION_CONFIG && window.ORION_CONFIG.getAuth) return window.ORION_CONFIG.getAuth();
-        const k = localStorage.getItem('jose_api_key');
-        return k ? atob(k) : null;
+        return null;
     }
 
-    _speak(text) {
+    async _speak(text) {
         if (!this.synth) return;
-        this.synth.cancel();
-        // UTF-8 Clean and remove emojis
-        const cleanText = text.replace(/[*#]/g, '').replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, '');
 
+        // CLEANING FOR TTS
+        const cleanText = text
+            .replace(/[*#_`~>]/g, '')
+            .replace(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{2700}-\u{27BF}]/gu, '')
+            .trim();
+
+        const TTS_URL = window.TTS_PROXY_URL || 'https://seguriti-usc.onrender.com/tts';
+
+        try {
+            const response = await fetch(TTS_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    text: cleanText,
+                    language: this.language,
+                    voice: 'onyx' // Deep male voice for Jose
+                })
+            });
+
+            if (response.ok) {
+                const audioBlob = await response.blob();
+                const audioUrl = URL.createObjectURL(audioBlob);
+                const audio = new Audio(audioUrl);
+                await audio.play();
+                audio.onended = () => URL.revokeObjectURL(audioUrl);
+                return;
+            }
+        } catch (e) { }
+
+        this.synth.cancel();
         const utt = new SpeechSynthesisUtterance(cleanText);
         utt.voice = this.selectedVoice;
         utt.lang = this.language === 'es' ? 'es-MX' : 'en-US';
-        utt.rate = 1.0;
         this.synth.speak(utt);
     }
+
     setLanguage(lang) {
         this.language = lang;
-        // Update welcome message if needed (simple reload of prompt logic)
         this.systemPrompt = this._buildSystemPrompt();
-
-        // If chat hasn't started/no messages, reset with new greeting
-        if (this.messages.length <= 1 && !this.hasGreeted) {
-            const welcome = this.language === 'es'
-                ? `Hola ${this.ownerName}! Soy JOSE. Veo que tienes un taller increible. Tengo una forma de quitarte los 'Tire Kickers' (clientes que solo preguntan y no compran) para que tus tecnicos facturen mas horas reales. Te interesa?`
-                : `Hello ${this.ownerName}! I'm JOSE. I see you have an amazing shop. I have a way to filter out 'Tire Kickers' so your techs can bill more actual hours. Interested?`;
-
-            const container = document.getElementById('jose-messages');
-            if (container) {
-                container.innerHTML = '';
-                this.messages = [];
-                this._addMessage('jose', welcome);
-                this.hasGreeted = true; // Mark as greeted so it doesn't duplicate
-            }
-        }
     }
 }
-window.JoseAssistant = JoseAssistant;
+
 document.addEventListener('DOMContentLoaded', () => {
-    if (window.JOSE_CONFIG) {
-        window.jose = new JoseAssistant(window.JOSE_CONFIG);
-    }
+    if (window.JOSE_CONFIG) window.jose = new JoseAssistant(window.JOSE_CONFIG);
 });
