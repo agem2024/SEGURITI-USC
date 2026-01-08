@@ -901,42 +901,46 @@ Which part would you like me to explain better - the call center, the dispatch, 
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.voice = this.selectedVoice;
 
-        // Adjust rate based on language - Spanish needs slower for clarity
+        // OPTIMIZED FOR NATURAL SOUND
         const isSpanish = this.language === 'es';
-        utterance.rate = isSpanish ? 0.85 : 0.95; // Slower for clarity
-        utterance.pitch = 1.0; // Natural pitch
+
+        // Rate: 0.92 = conversational speed (not too fast/robotic, not too slow)
+        // Pitch: 0.95 = slightly deeper, warmer, more human
+        utterance.rate = 0.92;   // Natural conversation pace
+        utterance.pitch = 0.95;  // Warm, masculine tone
         utterance.volume = 1.0;
 
-        // Set language explicitly
-        utterance.lang = isSpanish ? 'es-US' : 'en-US';
+        // Locale: California English (en-US) | Neutral Latin Spanish (es-MX)
+        utterance.lang = isSpanish ? 'es-MX' : 'en-US';
 
         this.synth.speak(utterance);
     }
+}
 
-    _toggleVoice() {
-        this.voiceEnabled = !this.voiceEnabled;
-        const btn = document.getElementById('mario-voice-btn');
+_toggleVoice() {
+    this.voiceEnabled = !this.voiceEnabled;
+    const btn = document.getElementById('mario-voice-btn');
 
-        if (this.voiceEnabled) {
-            btn.style.background = 'linear-gradient(135deg, #00d4aa, #00a8ff)';
-            btn.title = '🔊 Voz ACTIVADA - Click para desactivar';
-            btn.textContent = '🔊';
-        } else {
-            // Cancel any current speech
-            this.synth.cancel();
-            btn.style.background = 'rgba(255, 255, 255, 0.1)';
-            btn.title = '🔇 Voz DESACTIVADA - Click para activar';
-            btn.textContent = '🔇';
-        }
+    if (this.voiceEnabled) {
+        btn.style.background = 'linear-gradient(135deg, #00d4aa, #00a8ff)';
+        btn.title = '🔊 Voz ACTIVADA - Click para desactivar';
+        btn.textContent = '🔊';
+    } else {
+        // Cancel any current speech
+        this.synth.cancel();
+        btn.style.background = 'rgba(255, 255, 255, 0.1)';
+        btn.title = '🔇 Voz DESACTIVADA - Click para activar';
+        btn.textContent = '🔇';
     }
+}
 
     // Public method to configure API key securely
     static configure(apiKey) {
-        if (apiKey) {
-            localStorage.setItem('mario_api_key', btoa(apiKey));
-            console.log('✅ MARIO configured successfully');
-        }
+    if (apiKey) {
+        localStorage.setItem('mario_api_key', btoa(apiKey));
+        console.log('✅ MARIO configured successfully');
     }
+}
 }
 
 // Export for use
