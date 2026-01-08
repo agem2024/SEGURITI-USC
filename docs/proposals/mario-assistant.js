@@ -268,6 +268,9 @@ class MarioAssistant {
         try {
             const openaiKey = window.ORION_CONFIG?.getOpenAI?.();
             if (openaiKey) {
+                // Select voice based on language
+                const voice = this.language === 'es' ? 'alloy' : 'echo'; // echo = clear American male, alloy = neutral for Spanish
+
                 const response = await fetch('https://api.openai.com/v1/audio/speech', {
                     method: 'POST',
                     headers: {
@@ -276,7 +279,7 @@ class MarioAssistant {
                     },
                     body: JSON.stringify({
                         model: 'tts-1',
-                        voice: 'onyx', // Deep male voice
+                        voice: voice,
                         input: cleanText,
                         speed: 1.0
                     })
