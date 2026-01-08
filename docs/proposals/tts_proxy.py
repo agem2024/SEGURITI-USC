@@ -16,26 +16,31 @@ client = None
 
 def init_openai():
     global client
-    # Intenta leer la key del archivo local jose-loader.js
-    try:
-        with open('jose-loader.js', 'r', encoding='utf-8') as f:
-            content = f.read()
-            # Busca la línea con OpenAI key
-            if 'TU_OPENAI_KEY' not in content:
-                # Ya tiene una key real
-                import re
-                match = re.search(r"const _ok = ['\"]([^'\"]+)['\"]", content)
-                if match:
-                    api_key = match.group(1)
-                    client = OpenAI(api_key=api_key)
-                    print("✅ OpenAI client initialized from jose-loader.js")
-                    return
-    except:
-        pass
     
-    # Fallback a variable de entorno
-    client = OpenAI()
-    print("✅ OpenAI client initialized from environment")
+    # Production: use environment variable
+    api_key = os.getenv('OPENAI_API_KEY')
+    
+    if not api_key:
+        # Development: try to read from local jose-loader.js
+        try:
+            with open('jose-loader.js', 'r', encoding='utf-8') as f:
+                content = f.read()
+                if 'TU_OPENAI_KEY' not in content:
+                    import re
+                    match = re.search(r"const _ok = ['\"]([^'\"]+)['\"]", content)
+                    if match:
+                        api_key = match.group(1)
+                        print("✅ OpenAI client initialized from jose-loader.js (dev)")
+        except:
+            pass
+    
+    if api_key:
+        client = OpenAI(api_key=api_key)
+        print("✅ OpenAI client initialized")
+    else:
+        print("❌ No OpenAI API key found!")
+        raise Exception("OPENAI_API_KEY required")
+
 
 @app.route('/tts', methods=['POST'])
 def text_to_speech():
