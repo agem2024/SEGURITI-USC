@@ -3,8 +3,8 @@
  * Restored for Jose/Chela/Mike compatibility.
  */
 (function (window) {
-    // Valid API Key (Base64)
-    const _k = atob('QUl6YVN5RE5yUFRvZTJhYlB4MUNmX2RGejQ5T3lXYTFwVnZaTXA4');
+    // Valid API Key (Base64 encoded - replace with your valid key)
+    const _k = atob('QUl6YVN5QzdoSlJQQnFnNXh1WnJmb3gwNHhiQVVDNG1TY2c1TnJz');
 
     window.ORION_CONFIG = {
         getAuth: function () {
