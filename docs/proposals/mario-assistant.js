@@ -46,6 +46,172 @@ class MarioAssistant {
         }, 1000);
     }
 
+    _createChatUI() {
+        // Create Toggle Button
+        const toggleBtn = document.createElement('div');
+        toggleBtn.id = 'mario-toggle';
+        toggleBtn.innerHTML = '<img src="mario_icon.png" alt="Mario AI" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">';
+        toggleBtn.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 60px;
+            height: 60px;
+            background: #2563EB;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 9999;
+            transition: transform 0.3s;
+            display: flex; /* Ensure image is centered if needed */
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
+        `;
+        toggleBtn.onmouseover = () => toggleBtn.style.transform = 'scale(1.1)';
+        toggleBtn.onmouseout = () => toggleBtn.style.transform = 'scale(1)';
+        toggleBtn.onclick = () => this._toggleChat();
+        document.body.appendChild(toggleBtn);
+
+        // Create Chat Window
+        const chatWindow = document.createElement('div');
+        chatWindow.id = 'mario-chat';
+        chatWindow.style.cssText = `
+            position: fixed;
+            bottom: 90px;
+            left: 20px;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            z-index: 9999;
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        `;
+
+        // HEADER
+        const header = document.createElement('div');
+        header.style.cssText = `
+            background: #2563EB;
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+        `;
+        header.innerHTML = `
+            <div style="width: 35px; height: 35px; border-radius: 50%; background: white; overflow: hidden; border: 2px solid rgba(255,255,255,0.3);">
+                <img src="mario_icon.png" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div>
+                <div style="font-size: 1.1rem;">Mario AI</div>
+                <div style="font-size: 0.8rem; opacity: 0.9;">Professional Consultant</div>
+            </div>
+            <div id="mario-close" style="margin-left: auto; cursor: pointer; font-size: 1.2rem;">×</div>
+        `;
+        header.querySelector('#mario-close').onclick = () => this._toggleChat();
+        chatWindow.appendChild(header);
+
+        // MESSAGES AREA
+        const messagesArea = document.createElement('div');
+        messagesArea.id = 'mario-messages';
+        messagesArea.style.cssText = `
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        `;
+        chatWindow.appendChild(messagesArea);
+
+        // TYPING INDICATOR
+        const typing = document.createElement('div');
+        typing.id = 'mario-typing';
+        typing.style.cssText = `
+            padding: 10px 15px;
+            font-size: 0.8rem;
+            color: #64748b;
+            font-style: italic;
+            display: none;
+        `;
+        typing.textContent = 'Mario is analyzing...';
+        chatWindow.appendChild(typing);
+
+        // INPUT AREA
+        const inputArea = document.createElement('div');
+        inputArea.style.cssText = `
+            padding: 15px;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            gap: 10px;
+            background: white;
+        `;
+        inputArea.innerHTML = `
+            <input type="text" id="mario-input" placeholder="Ask about ORION..." style="flex: 1; padding: 10px; border: 1px solid #cbd5e1; border-radius: 20px; outline: none;">
+            <button id="mario-send" style="background: #2563EB; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer;">➤</button>
+        `;
+        chatWindow.appendChild(inputArea);
+
+        document.body.appendChild(chatWindow);
+
+        // Event Listeners
+        document.getElementById('mario-send').onclick = () => this.sendMessage();
+        document.getElementById('mario-input').onkeypress = (e) => {
+            if (e.key === 'Enter') this.sendMessage();
+        };
+    }
+
+    _toggleChat() {
+        this.isOpen = !this.isOpen;
+        const chat = document.getElementById('mario-chat');
+        const btn = document.getElementById('mario-toggle');
+
+        if (this.isOpen) {
+            chat.style.display = 'flex';
+            btn.style.display = 'none';
+        } else {
+            chat.style.display = 'none';
+            btn.style.display = 'flex';
+        }
+    }
+
+    _addMessage(sender, text) {
+        const div = document.createElement('div');
+        const isMario = sender === 'mario';
+
+        div.style.cssText = `
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            align-self: ${isMario ? 'flex-start' : 'flex-end'};
+            background: ${isMario ? 'white' : '#2563EB'};
+            color: ${isMario ? '#1e293b' : 'white'};
+            box-shadow: ${isMario ? '0 2px 5px rgba(0,0,0,0.05)' : 'none'};
+            border-bottom-left-radius: ${isMario ? '2px' : '15px'};
+            border-bottom-right-radius: ${isMario ? '15px' : '2px'};
+        `;
+
+        // Process links if any (simple markdown to link)
+        const formatText = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" style="color: inherit; text-decoration: underline;">$1</a>');
+        div.innerHTML = formatText;
+
+        document.getElementById('mario-messages').appendChild(div);
+        document.getElementById('mario-messages').scrollTop = document.getElementById('mario-messages').scrollHeight;
+
+        if (isMario && this.voiceEnabled) {
+            this._speak(text);
+        }
+    }
+
     _getSystemPrompt() {
         const langInstruction = this.language === 'es' ?
             'Responde SIEMPRE en Español. Eres profesional, técnico pero persuasivo.' :
@@ -83,101 +249,33 @@ class MarioAssistant {
                 voices.find(v => v.lang.includes('es'));
         } else {
             // Priority 1: Known Male English Voices
-            this.selectedVoice = voices.find(v => v.name.includes('Google US English')) || // Often Androgynous/Male leaning
-                voices.find(v => v.name.includes('David')) || // Microsoft David (Male)
-                voices.find(v => v.name.toLowerCase().includes('male')) ||
-                voices.find(v => v.lang.includes('en'));
+            this.selectedVoice = voices.find(v => v.name.includes('David')) || // Microsoft David
+                voices.find(v => v.name.includes('Mark')) ||  // Microsoft Mark
+                voices.find(v => v.name.toLowerCase().includes('male')) ||     // Any Explicitly Male Voice
+                voices.find(v => v.name.includes('Google US English'));        // Fallback to Google
         }
 
         if (!this.selectedVoice) this.selectedVoice = voices[0];
-
-        console.log('Mario Voice Selected:', this.selectedVoice.name);
-    }
-
-    _createChatUI() {
-        const existing = document.getElementById('mario-chat-container');
-        if (existing) existing.remove();
-
-        const container = document.createElement('div');
-        container.id = 'mario-chat-container';
-        container.innerHTML = `
-            <style>
-                #mario-chat-container { position: fixed; bottom: 20px; left: 20px; z-index: 9999; font-family: 'Segoe UI', Roboto, sans-serif; }
-                #mario-toggle { width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #00d4aa 0%, #00a8ff 100%); box-shadow: 0 4px 15px rgba(0, 212, 170, 0.4); border: 2px solid #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 30px; transition: transform 0.3s; }
-                #mario-toggle:hover { transform: scale(1.1); }
-                #mario-window { display: none; width: 350px; height: 500px; background: #1e1e1e; border: 1px solid #333; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); flex-direction: column; position: absolute; bottom: 80px; left: 0; }
-                #mario-window.open { display: flex; }
-                #mario-header { background: #252525; padding: 15px; border-bottom: 1px solid #333; display: flex; justify-content: space-between; align-items: center; }
-                #mario-header h3 { margin: 0; color: #fff; font-size: 1rem; }
-                #mario-header span { font-size: 0.8rem; color: #00d4aa; }
-                #mario-close { background: none; border: none; color: #aaa; cursor: pointer; font-size: 1.2rem; }
-                #mario-messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
-                .message { max-width: 80%; padding: 10px 14px; border-radius: 10px; font-size: 0.9rem; line-height: 1.4; word-wrap: break-word; }
-                .message.mario { align-self: flex-start; background: #2a2a2a; color: #ddd; border-left: 3px solid #00d4aa; }
-                .message.user { align-self: flex-end; background: #0056b3; color: white; }
-                #mario-input-area { padding: 10px; background: #252525; border-top: 1px solid #333; display: flex; gap: 10px; }
-                #mario-input { flex: 1; padding: 10px; border-radius: 20px; border: 1px solid #444; background: #111; color: #fff; outline: none; }
-                #mario-send, #mario-voice-toggle { background: none; border: none; cursor: pointer; font-size: 1.2rem; }
-                #mario-typing { font-size: 0.8rem; color: #888; margin-left: 10px; display: none; }
-            </style>
-            <div id="mario-window">
-                <div id="mario-header">
-                    <div><h3>MARIO</h3><span>AI Operations Specialist</span></div>
-                    <button id="mario-close">×</button>
-                </div>
-                <div id="mario-messages"></div>
-                <div id="mario-typing">Mario is typing...</div>
-                <div id="mario-input-area">
-                    <button id="mario-voice-toggle" title="Toggle Voice">🔊</button>
-                    <input type="text" id="mario-input" placeholder="Ask about ROI...">
-                    <button id="mario-send">➤</button>
-                </div>
-            </div>
-            <button id="mario-toggle"><div style="font-size:24px;">👷‍♂️</div></button>
-        `;
-        document.body.appendChild(container);
-
-        document.getElementById('mario-toggle').addEventListener('click', () => this.toggleChat());
-        document.getElementById('mario-close').addEventListener('click', () => this.toggleChat());
-        document.getElementById('mario-send').addEventListener('click', () => this.sendMessage());
-        document.getElementById('mario-input').addEventListener('keypress', (e) => { if (e.key === 'Enter') this.sendMessage(); });
-        document.getElementById('mario-voice-toggle').addEventListener('click', (e) => {
-            this.voiceEnabled = !this.voiceEnabled;
-            e.target.textContent = this.voiceEnabled ? '🔊' : '🔇';
-            if (!this.voiceEnabled) this.synth.cancel();
-        });
-    }
-
-    toggleChat() {
-        const win = document.getElementById('mario-window');
-        this.isOpen = !this.isOpen;
-        win.classList.toggle('open', this.isOpen);
-        if (this.isOpen) document.getElementById('mario-input').focus();
-    }
-
-    _addMessage(sender, text) {
-        const div = document.createElement('div');
-        div.className = `message ${sender}`;
-        div.innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        document.getElementById('mario-messages').appendChild(div);
-        const container = document.getElementById('mario-messages');
-        container.scrollTop = container.scrollHeight;
-        this.messages.push({ role: sender === 'mario' ? 'model' : 'user', parts: [{ text }] });
-        if (sender === 'mario' && this.voiceEnabled) this._speak(text);
+        console.log('Mario Voice Selected:', this.selectedVoice ? this.selectedVoice.name : 'None');
     }
 
     _speak(text) {
         if (this.synth.speaking) this.synth.cancel();
+
+        // Ensure voice is loaded
+        if (!this.selectedVoice) this._loadVoices();
+
         const cleanText = text.replace(/[*#]/g, '').replace(/[\u{1F600}-\u{1F64F}]/gu, '');
         const utter = new SpeechSynthesisUtterance(cleanText);
+
         if (this.selectedVoice) {
             utter.voice = this.selectedVoice;
-            // "Masculinize" the voice if it's a known female-default (Google)
-            if (this.selectedVoice.name.includes('Google')) {
-                utter.pitch = 0.85; // Slightly deeper
-            }
+            // Removed pitch adjustment to prevent silence loop
         }
+
         utter.lang = this.language === 'es' ? 'es-MX' : 'en-US';
+
+        utter.onerror = (e) => console.error('Speech Error:', e);
         this.synth.speak(utter);
     }
 
@@ -204,16 +302,15 @@ class MarioAssistant {
     }
 
     _getSecureApiKey() {
+        // 1. Try generic window config
         if (window.ORION_CONFIG && window.ORION_CONFIG.getAuth) {
-            const key = window.ORION_CONFIG.getAuth();
-            if (key) return key;
+            return window.ORION_CONFIG.getAuth();
         }
-        const storedKey = localStorage.getItem('mario_api_key') || localStorage.getItem('jose_api_key');
-        if (storedKey) {
-            if (storedKey.length > 30 && !storedKey.includes(' ')) return storedKey;
-            try { return atob(storedKey); } catch (e) { return storedKey; }
-        }
-        // EMERGENCY KEY (Fallback if local key missing)
+        // 2. Try LocalStorage
+        const storedKey = localStorage.getItem('mario_api_key') || localStorage.getItem('mike_api_key') || localStorage.getItem('jose_api_key');
+        if (storedKey) return storedKey;
+
+        // 3. Emergency Fallback
         return 'AIzaSyDNrPToe2abPx1Cf_dFz49OyWa1pVvZMp8';
     }
 
@@ -242,5 +339,24 @@ class MarioAssistant {
         }
         const data = await response.json();
         return data.candidates[0].content.parts[0].text;
+    }
+    setLanguage(lang) {
+        this.language = lang;
+        console.log('Mario Language switched to:', lang);
+
+        // Update welcome message if chat hasn't started
+        if (this.messages.length <= 1) { // Only system prompt + welcome
+            const welcomeEn = "Hello! I'm Mario, your AI Operations Specialist. I observe that your dispatchers handle 50 calls a day manually. Would you like to see how we can automate that to zero hold times?";
+            const welcomeEs = "¡Hola! Soy Mario, su Especialista de Operaciones IA. Veo que sus dispatchers manejan 50 llamadas diarias manualmente. ¿Le gustaría ver cómo podemos automatizar eso a cero tiempos de espera?";
+            const msg = lang === 'es' ? welcomeEs : welcomeEn;
+
+            // Clear messages and re-add welcome
+            const msgContainer = document.getElementById('mario-messages');
+            if (msgContainer) {
+                msgContainer.innerHTML = '';
+                this.messages = []; // Clear history to reset context language
+                this._addMessage('mario', msg);
+            }
+        }
     }
 }

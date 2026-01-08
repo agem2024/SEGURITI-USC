@@ -87,7 +87,7 @@
             background:
                 radial-gradient(ellipse at top, rgba(0, 168, 255, 0.15) 0%, transparent 50%),
                 radial-gradient(ellipse at bottom, rgba(0, 212, 170, 0.1) 0%, transparent 50%),
-                url('mike_counsil_hero.png') center/cover no-repeat,
+                url('./mike_counsil_hero.png') center/cover no-repeat,
                 var(--bg-dark);
             position: relative;
         }
@@ -2151,18 +2151,23 @@
                 btn.classList.toggle('active', btn.textContent.includes(lang.toUpperCase()));
             });
             localStorage.setItem('mcProposalLang', lang);
+
+            // Update Mario if initialized
+            if (window.mario) {
+                window.mario.setLanguage(lang);
+            }
         }
         const savedLang = localStorage.getItem('mcProposalLang');
         if (savedLang) setLang(savedLang);
     </script>
 
     <!-- MARIO AI SALES ASSISTANT - SECURE CONFIG -->
-
-    <script src="mario-assistant.js?v=MARIO_MALE_FIX"></script>
+    <script src="jose-loader.js"></script>
+    <script src="mario-assistant.js?v=MARIO_FIXED_API"></script>
     <script>
         // Initialize MARIO for Mike Counsil Plumbing
         document.addEventListener('DOMContentLoaded', function () {
-            const mario = new MarioAssistant({
+            window.mario = new MarioAssistant({
                 clientName: 'Mike Counsil Plumbing',
                 clientPhone: '(408) 617-9486',
                 ownerName: 'Mike',

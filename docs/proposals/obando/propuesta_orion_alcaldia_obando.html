@@ -2095,18 +2095,43 @@
             });
             localStorage.setItem('mcProposalLang', lang);
 
-            // Update JOSE dynamically if active
-            if (window.jose && typeof window.jose.setLanguage === 'function') {
-                window.jose.setLanguage(lang);
+            // Update CHELA dynamically if active
+            if (window.chela && typeof window.chela.setLanguage === 'function') {
+                window.chela.setLanguage(lang);
             }
         }
         const savedLang = localStorage.getItem('mcProposalLang');
         if (savedLang) setLang(savedLang);
     </script>
 
+    <!-- OBANDO ASSISTANT CONFIG -->
+    <script>
+        window.CHELA_CONFIG = {
+            clientName: "Alcaldía de Obando",
+            language: localStorage.getItem('mcProposalLang') || 'es',
+            proposalContext: `
+=== CONTEXTO MUNICIPAL OBANDO ===
+CLIENTE: Alcaldía de Obando
+PROBLEMA: Filas físicas, pérdida de documentos (papel), falta de trazabilidad en PQRS.
+SOLUCIÓN: "MUNICIPIO DIGITAL" (ORION Gov).
+
+PUNTOS CLAVE DE VENTA:
+1. CERO FILAS: Los ciudadanos hacen trámites por WhatsApp.
+2. CERO PAPEL: Archivo 100% digital y buscable.
+3. TRANSPARENCIA TOTAL: El alcalde puede ver un dashboard en tiempo real de cada solicitud.
+4. ROI SOCIAL: Se estima un ahorro de $125 Millones COP mensuales en eficiencia y tiempo ciudadano.
+
+MANEJO DE OBJECIONES:
+- "Es costoso ($35M)": "Alcalde, el costo es menor que el salario anual de un solo funcionario, pero Chela atiende a 10,000 ciudadanos simultáneamente 24/7."
+- "La gente no usa tecnología": "Todo el mundo usa WhatsApp. No hay que descargar apps nuevas. Es tan fácil como chatear con un vecino."
+- "Seguridad": "Usamos encriptación bancaria. Los datos están más seguros que en carpetas de papel que se mojan o pierden."
+            `
+        };
+    </script>
+
     <!-- OBANDO ASSISTANT -->
     <script src="../jose-loader.js"></script>
-    <script src="assets/js/obando-assistant.js?v=UTF8_FIX_KEY"></script>
+    <script src="assets/js/obando-assistant.js?v=CHELA_SMART_V1"></script>
     <script>
         console.log('✅ Obando AI Configured');
     </script>

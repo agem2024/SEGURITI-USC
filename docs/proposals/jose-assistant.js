@@ -254,6 +254,26 @@ INSTRUCCIONES:
         utt.rate = 1.0;
         this.synth.speak(utt);
     }
+    setLanguage(lang) {
+        this.language = lang;
+        // Update welcome message if needed (simple reload of prompt logic)
+        this.systemPrompt = this._buildSystemPrompt();
+
+        // If chat hasn't started/no messages, reset with new greeting
+        if (this.messages.length <= 1 && !this.hasGreeted) {
+            const welcome = this.language === 'es'
+                ? `Hola ${this.ownerName}! Soy JOSE. Veo que tienes un taller increible. Tengo una forma de quitarte los 'Tire Kickers' (clientes que solo preguntan y no compran) para que tus tecnicos facturen mas horas reales. Te interesa?`
+                : `Hello ${this.ownerName}! I'm JOSE. I see you have an amazing shop. I have a way to filter out 'Tire Kickers' so your techs can bill more actual hours. Interested?`;
+
+            const container = document.getElementById('jose-messages');
+            if (container) {
+                container.innerHTML = '';
+                this.messages = [];
+                this._addMessage('jose', welcome);
+                this.hasGreeted = true; // Mark as greeted so it doesn't duplicate
+            }
+        }
+    }
 }
 window.JoseAssistant = JoseAssistant;
 document.addEventListener('DOMContentLoaded', () => {
