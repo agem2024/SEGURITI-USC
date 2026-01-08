@@ -259,22 +259,49 @@ class MarioAssistant {
         console.log('Mario Voice Selected:', this.selectedVoice ? this.selectedVoice.name : 'None');
     }
 
-    _speak(text) {
-        if (this.synth.speaking) this.synth.cancel();
-
-        // Ensure voice is loaded
-        if (!this.selectedVoice) this._loadVoices();
+    async _speak(text) {
+        if (!this.voiceEnabled) return;
 
         const cleanText = text.replace(/[*#]/g, '').replace(/[\u{1F600}-\u{1F64F}]/gu, '');
-        const utter = new SpeechSynthesisUtterance(cleanText);
 
-        if (this.selectedVoice) {
-            utter.voice = this.selectedVoice;
-            // Removed pitch adjustment to prevent silence loop
+        // Try OpenAI TTS first (better quality)
+        try {
+            const openaiKey = window.ORION_CONFIG?.getOpenAI?.();
+            if (openaiKey) {
+                const response = await fetch('https://api.openai.com/v1/audio/speech', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${openaiKey}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        model: 'tts-1',
+                        voice: 'onyx', // Deep male voice
+                        input: cleanText,
+                        speed: 1.0
+                    })
+                });
+
+                if (response.ok) {
+                    const audioBlob = await response.blob();
+                    const audioUrl = URL.createObjectURL(audioBlob);
+                    const audio = new Audio(audioUrl);
+                    audio.play();
+                    audio.onended = () => URL.revokeObjectURL(audioUrl);
+                    return; // Success, exit
+                }
+            }
+        } catch (e) {
+            console.log('OpenAI TTS unavailable, using Web Speech fallback');
         }
 
-        utter.lang = this.language === 'es' ? 'es-MX' : 'en-US';
+        // Fallback to Web Speech API
+        if (this.synth.speaking) this.synth.cancel();
+        if (!this.selectedVoice) this._loadVoices();
 
+        const utter = new SpeechSynthesisUtterance(cleanText);
+        if (this.selectedVoice) utter.voice = this.selectedVoice;
+        utter.lang = this.language === 'es' ? 'es-MX' : 'en-US';
         utter.onerror = (e) => console.error('Speech Error:', e);
         this.synth.speak(utter);
     }
@@ -315,30 +342,62 @@ class MarioAssistant {
     }
 
     async _callGemini(userMessage) {
-        const apiKey = this._getSecureApiKey();
-        if (!apiKey) throw new Error("API Key not found");
+        const maxRetries = 3; // Try all backup keys
+        let lastError = null;
 
-        const payload = {
-            contents: [
-                { role: 'user', parts: [{ text: this._getSystemPrompt() }] },
-                ...this.messages.slice(-10),
-                { role: 'user', parts: [{ text: userMessage }] }
-            ],
-            generationConfig: { temperature: 0.7, maxOutputTokens: 300 }
-        };
+        for (let attempt = 0; attempt < maxRetries; attempt++) {
+            try {
+                const apiKey = attempt === 0 ?
+                    this._getSecureApiKey() :
+                    window.ORION_CONFIG?.getNextAuth?.() || this._getSecureApiKey();
 
-        const response = await fetch(`${this.apiEndpoint}?key=${apiKey}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        });
+                if (!apiKey) throw new Error("API Key not found");
 
-        if (!response.ok) {
-            const errData = await response.json();
-            throw new Error(`Gemini API Error: ${errData.error?.message || response.statusText}`);
+                const payload = {
+                    contents: [
+                        { role: 'user', parts: [{ text: this._getSystemPrompt() }] },
+                        ...this.messages.slice(-10),
+                        { role: 'user', parts: [{ text: userMessage }] }
+                    ],
+                    generationConfig: { temperature: 0.7, maxOutputTokens: 300 }
+                };
+
+                const response = await fetch(`${this.apiEndpoint}?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(`Gemini API Error: ${errorData.error?.message || response.statusText}`);
+                }
+
+                const data = await response.json();
+                const reply = data.candidates?.[0]?.content?.parts?.[0]?.text;
+
+                if (!reply) throw new Error("No response from AI");
+
+                // Success! Reset to primary key for next time
+                if (attempt > 0) window.ORION_CONFIG?.resetAuth?.();
+
+                return reply;
+
+            } catch (error) {
+                lastError = error;
+                console.log(`API attempt ${attempt + 1} failed:`, error.message);
+
+                // If this was the last attempt, throw the error
+                if (attempt === maxRetries - 1) {
+                    throw lastError;
+                }
+
+                // Otherwise, continue to next backup key
+                await new Promise(resolve => setTimeout(resolve, 500)); // Brief delay
+            }
         }
-        const data = await response.json();
-        return data.candidates[0].content.parts[0].text;
+
+        throw lastError || new Error("All API attempts failed");
     }
     setLanguage(lang) {
         this.language = lang;
