@@ -23,3 +23,11 @@ venv/
 env/
 __pycache__/
 *.pyc
+
+# API Keys y configuración sensible (NUNCA subir a GitHub)
+docs/proposals/jose-loader.js
+**/jose-loader.js
+**/*-loader.js
+**/*api-keys*.js
+.env
+.env.*
