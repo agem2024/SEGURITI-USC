@@ -915,32 +915,31 @@ Which part would you like me to explain better - the call center, the dispatch, 
 
         this.synth.speak(utterance);
     }
-}
 
-_toggleVoice() {
-    this.voiceEnabled = !this.voiceEnabled;
-    const btn = document.getElementById('mario-voice-btn');
+    _toggleVoice() {
+        this.voiceEnabled = !this.voiceEnabled;
+        const btn = document.getElementById('mario-voice-btn');
 
-    if (this.voiceEnabled) {
-        btn.style.background = 'linear-gradient(135deg, #00d4aa, #00a8ff)';
-        btn.title = '🔊 Voz ACTIVADA - Click para desactivar';
-        btn.textContent = '🔊';
-    } else {
-        // Cancel any current speech
-        this.synth.cancel();
-        btn.style.background = 'rgba(255, 255, 255, 0.1)';
-        btn.title = '🔇 Voz DESACTIVADA - Click para activar';
-        btn.textContent = '🔇';
+        if (this.voiceEnabled) {
+            btn.style.background = 'linear-gradient(135deg, #00d4aa, #00a8ff)';
+            btn.title = '🔊 Voz ACTIVADA - Click para desactivar';
+            btn.textContent = '🔊';
+        } else {
+            // Cancel any current speech
+            this.synth.cancel();
+            btn.style.background = 'rgba(255, 255, 255, 0.1)';
+            btn.title = '🔇 Voz DESACTIVADA - Click para activar';
+            btn.textContent = '🔇';
+        }
     }
-}
 
     // Public method to configure API key securely
     static configure(apiKey) {
-    if (apiKey) {
-        localStorage.setItem('mario_api_key', btoa(apiKey));
-        console.log('✅ MARIO configured successfully');
+        if (apiKey) {
+            localStorage.setItem('mario_api_key', btoa(apiKey));
+            console.log('✅ MARIO configured successfully');
+        }
     }
-}
 }
 
 // Export for use
