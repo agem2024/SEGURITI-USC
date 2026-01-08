@@ -74,16 +74,24 @@ class MarioAssistant {
         const isSpanish = this.language === 'es';
 
         if (isSpanish) {
-            this.selectedVoice = voices.find(v => v.name.includes('Google') && v.lang.includes('es')) ||
-                voices.find(v => v.lang.includes('es') && (v.name.includes('Pablo') || v.name.includes('Raul'))) ||
+            // Priority 1: Known Male Spanish Voices (Microsoft Pablo, Raul)
+            // Priority 2: Voices with 'Male' in name
+            // Priority 3: Google Español (often female but better quality) -> adjusted with pitch later if needed
+            this.selectedVoice = voices.find(v => v.lang.includes('es') && (v.name.toLowerCase().includes('pablo') || v.name.toLowerCase().includes('raul'))) ||
+                voices.find(v => v.lang.includes('es') && v.name.toLowerCase().includes('male')) ||
+                voices.find(v => v.name.includes('Google') && v.lang.includes('es')) ||
                 voices.find(v => v.lang.includes('es'));
         } else {
-            this.selectedVoice = voices.find(v => v.name.includes('Google US English')) ||
-                voices.find(v => v.name.includes('David')) ||
+            // Priority 1: Known Male English Voices
+            this.selectedVoice = voices.find(v => v.name.includes('Google US English')) || // Often Androgynous/Male leaning
+                voices.find(v => v.name.includes('David')) || // Microsoft David (Male)
+                voices.find(v => v.name.toLowerCase().includes('male')) ||
                 voices.find(v => v.lang.includes('en'));
         }
 
         if (!this.selectedVoice) this.selectedVoice = voices[0];
+
+        console.log('Mario Voice Selected:', this.selectedVoice.name);
     }
 
     _createChatUI() {
@@ -162,8 +170,13 @@ class MarioAssistant {
         if (this.synth.speaking) this.synth.cancel();
         const cleanText = text.replace(/[*#]/g, '').replace(/[\u{1F600}-\u{1F64F}]/gu, '');
         const utter = new SpeechSynthesisUtterance(cleanText);
-        utter.rate = 1.0;
-        if (this.selectedVoice) utter.voice = this.selectedVoice;
+        if (this.selectedVoice) {
+            utter.voice = this.selectedVoice;
+            // "Masculinize" the voice if it's a known female-default (Google)
+            if (this.selectedVoice.name.includes('Google')) {
+                utter.pitch = 0.85; // Slightly deeper
+            }
+        }
         utter.lang = this.language === 'es' ? 'es-MX' : 'en-US';
         this.synth.speak(utter);
     }
