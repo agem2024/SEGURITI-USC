@@ -899,9 +899,12 @@ Which part would you like me to explain better - the call center, the dispatch, 
 
         const cleanText = text.replace(/[*#]/g, '').replace(/[\u{1F600}-\u{1F64F}]/gu, '');
 
+        // TTS Proxy URL (Railway deployment)
+        const TTS_URL = window.TTS_PROXY_URL || 'https://tts-proxy-production.up.railway.app/tts';
+
         // Try OpenAI TTS via proxy first (NATURAL VOICE - marin/coral)
         try {
-            const response = await fetch('http://localhost:5000/tts', {
+            const response = await fetch(TTS_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
