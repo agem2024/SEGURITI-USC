@@ -293,8 +293,41 @@ INSTRUCCIONES DE RESPUESTA:
             .replace(/\s+/g, ' ') // Collapse spaces
             .trim();
 
-        const TTS_URL = window.TTS_PROXY_URL || 'https://seguriti-usc.onrender.com/tts';
+        // 1. Try Direct OpenAI API using the Key from jose-loader.js
+        const openAIKey = window.ORION_CONFIG && window.ORION_CONFIG.getOpenAI ? window.ORION_CONFIG.getOpenAI() : null;
 
+        if (openAIKey) {
+            try {
+                const response = await fetch('https://api.openai.com/v1/audio/speech', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${openAIKey}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        model: "tts-1",
+                        input: cleanText,
+                        voice: "onyx"
+                    })
+                });
+
+                if (response.ok) {
+                    const audioBlob = await response.blob();
+                    const audioUrl = URL.createObjectURL(audioBlob);
+                    const audio = new Audio(audioUrl);
+                    await audio.play();
+                    audio.onended = () => URL.revokeObjectURL(audioUrl);
+                    return;
+                } else {
+                    console.warn('OpenAI Direct TTS Failed:', response.status);
+                }
+            } catch (e) {
+                console.warn('OpenAI Direct TTS Error:', e);
+            }
+        }
+
+        // 2. Try Proxy (Legacy Backup)
+        const TTS_URL = window.TTS_PROXY_URL || 'https://seguriti-usc.onrender.com/tts';
         try {
             const response = await fetch(TTS_URL, {
                 method: 'POST',
@@ -316,7 +349,7 @@ INSTRUCCIONES DE RESPUESTA:
             }
         } catch (e) { }
 
-        // Fallback
+        // 3. Fallback to Browser
         this.synth.cancel();
         const utt = new SpeechSynthesisUtterance(cleanText);
         utt.voice = this.selectedVoice;
