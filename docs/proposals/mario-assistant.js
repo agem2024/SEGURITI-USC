@@ -271,7 +271,7 @@ INSTRUCCIONES DE RESPUESTA:
                 body: JSON.stringify({
                     text: cleanText,
                     language: this.language,
-                    voice: 'marin' // Natural male voice
+                    voice: 'onyx' // OpenAI Male Voice (Deep & Professional)
                 })
             });
 
