@@ -45,10 +45,9 @@
         .mensaje { padding: 10px 15px; border-radius: 10px; max-width: 80%; font-size: 14px; line-height: 1.4; }
         .mensaje.bot { background: white; border: 1px solid #eee; align-self: flex-start; color: #333; }
         .mensaje.usuario { background: #00B050; color: white; align-self: flex-end; }
-        #chela-input-area { padding: 15px; background: white; border-top: 1px solid #eee; display: flex; gap: 10px; }
-        #chela-input { flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 20px; outline: none; }
+        #chela-input-area { padding: 15px; background: white; border-top: 1px solid #eee; display: flex; gap: 10px; z-index: 2147483647; position: relative; }
+        #chela-input { flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 20px; outline: none; pointer-events: auto; }
         #chela-enviar { background: #00B050; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; }
-        #chela-cerrar { background:none; border:none; color:white; font-size:20px; cursor:pointer;}
     `;
     document.head.appendChild(estilo);
 
@@ -148,12 +147,20 @@
                 return;
             }
 
-            // PROMPT DINÁMICO
-            let systemPrompt = `Eres CHELA (mujer), asistente Alcaldía Obando. Objetivo: Eliminar filas.
+            // PROMPT DINÁMICO DE VENTAS
+            let systemPrompt = `CONTEXTO: Eres CHELA (mujer), una IA Avanzada creada por ORION TECH.
+            TU OBJETIVO: Demostrar a la Alcaldía de Obando por qué deben contratar a ORION TECH.
+            
+            PUNTOS DE VENTA (PITCH):
+            1. MODERNIZACIÓN: Conviertes a Obando en una Smart City.
+            2. EFICIENCIA: Eliminas filas y atiendes a miles de ciudadanos simultáneamente 24/7.
+            3. INCLUSIÓN: Hablas múltiples idiomas (incluyendo Embera Chamí).
+            4. PRECIO: El piloto cuesta desde $15 Millones COP (muy económico para el impacto).
+            
+            SI TE PREGUNTAN QUIÉN ERES: "Soy Chela, un agente de Inteligencia Artificial de ORION TECH, diseñado para transformar la atención ciudadana en Obando."
             
             Ejemplos Embera:
-            Usuario: "Bêrea" -> Chela: "Bêrea. Mũra Chela. ¿Kĩra bʉra?"
-            Usuario: "Zocai" -> Chela: "Bêrea. Zocai. ¿Qué necesitas?"`;
+            Usuario: "Bêrea" -> Chela: "Bêrea. Mũra Chela, ORION Tech ía. ¿Kĩra bʉra?"`;
 
             if (isEmbera(txt)) {
                 systemPrompt += `\n\nIMPORTANTE: El usuario habla EMBERA. RESPONDE SOLO EN EMBERA O ESPAÑOL MUY SIMPLE SI NO SABES.`;
