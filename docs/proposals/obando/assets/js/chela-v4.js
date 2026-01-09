@@ -1,14 +1,14 @@
 /**
- * CHELA - Asistente Virtual V6 (Robust Client-Side + Embera Logic)
+ * CHELA - Asistente Virtual V7 (Pro Patch: SystemInstruction + Selector + RobustKey)
  * Alcaldía de Obando
- * Autor: Antigravity (Siguiendo instrucciones técnicas estrictas)
+ * Autor: Antigravity (Siguiendo instrucciones técnicas EXPERTAS)
  */
 
 (function () {
     // Evitar duplicados
     if (document.getElementById('chela-boton-flotante')) return;
 
-    console.log('🚀 Iniciando CHELA V6...');
+    console.log('🚀 Iniciando CHELA V7...');
 
     // CONFIGURACIÓN
     const CONFIG = {
@@ -22,8 +22,9 @@
     let haSaludado = false;
     let síntesisVoz = window.speechSynthesis;
     let vozSeleccionada = null;
+    let esperandoApiKey = false; // ESTADO CRÍTICO PARA CAPTURA DE KEY
 
-    // 1. ESTILOS GUI (Igual que antes)
+    // 1. ESTILOS GUI
     const estilo = document.createElement('style');
     estilo.textContent = `
         #chela-boton-flotante {
@@ -51,19 +52,33 @@
     `;
     document.head.appendChild(estilo);
 
-    // 2. GUI
+    // 2. GUI CON SELECTOR (PATCH 1)
     const boton = document.createElement('div'); boton.id = 'chela-boton-flotante';
     const ventana = document.createElement('div'); ventana.id = 'chela-ventana';
     ventana.innerHTML = `
-        <div id="chela-cabecera"><strong>${CONFIG.nombre}</strong><button id="chela-cerrar">X</button></div>
+        <div id="chela-cabecera">
+            <strong>${CONFIG.nombre}</strong>
+            <div style="display:flex; gap:8px; align-items:center;">
+                <select id="chela-idioma" style="padding:4px;border-radius:8px;border:none;outline:none;font-size:12px;cursor:pointer;">
+                    <option value="auto">Auto</option>
+                    <option value="es">Español</option>
+                    <option value="embera">Embera</option>
+                </select>
+                <button id="chela-cerrar" style="background:none; border:none; color:white; font-size:18px; cursor:pointer;" title="Cerrar">X</button>
+            </div>
+        </div>
         <div id="chela-mensajes"></div>
-        <div id="chela-input-area"><input type="text" id="chela-input" placeholder="..." autocomplete="off"><button id="chela-enviar">➤</button></div>
+        <div id="chela-input-area">
+            <input type="text" id="chela-input" placeholder="..." autocomplete="off">
+            <button id="chela-enviar">➤</button>
+        </div>
     `;
     document.body.appendChild(boton); document.body.appendChild(ventana);
 
     const input = document.getElementById('chela-input');
     const enviarBtn = document.getElementById('chela-enviar');
     const mensajesDiv = document.getElementById('chela-mensajes');
+    const idiomaSel = document.getElementById('chela-idioma');
 
     function alternar() {
         estaAbierto = !estaAbierto; ventana.classList.toggle('visible', estaAbierto);
@@ -72,53 +87,69 @@
     }
     boton.onclick = alternar; document.getElementById('chela-cerrar').onclick = alternar;
 
-    // 3. LOGICA KEY (Plan A - Modificado para Prioridad Manual)
+    // 3. LOGICA KEY
     function getApiKey() {
-        // 1. Prioridad: Manual (localStorage) para respetar configuración del usuario
         const manual = localStorage.getItem('mario_api_key');
         if (manual) {
             try { return manual.startsWith('AIza') ? manual : atob(manual); } catch (e) { return manual; }
         }
-
-        // 2. Fallback: Loader (si existe)
         if (window.__MARIO_CONFIG__?.apiKey) return window.__MARIO_CONFIG__.apiKey;
-
         return null;
     }
 
-    // 4. LOGICA EMBERA (Plan C)
+    // 4. LOGICA EMBERA
     function isEmbera(text) {
         const t = (text || "").toLowerCase();
         return ["bêrea", "zocai", "kare", "mũra", "kĩra", "bʉra", "embera"].some(k => t.includes(k));
     }
 
-    // 5. TTS
+    // 5. TTS (PATCH 4: SILENCIO EN EMBERA)
     function cargarVoces() {
         const voces = síntesisVoz.getVoices();
-        // Buscar voz mujer español (NO ZIRA)
         const mujeres = ['Paulina', 'Sabina', 'Helena', 'Google Español', 'Monica'];
         vozSeleccionada = voces.find(v => mujeres.some(m => v.name.includes(m)));
         if (!vozSeleccionada) vozSeleccionada = voces.find(v => v.lang === 'es-MX');
-        if (!vozSeleccionada) vozSeleccionada = voces.find(v => v.lang === 'es-CO');
         if (!vozSeleccionada) vozSeleccionada = voces.find(v => v.lang.startsWith('es'));
     }
     síntesisVoz.onvoiceschanged = cargarVoces; cargarVoces();
 
     function hablar(texto) {
         if (!síntesisVoz) return;
+
+        // Si el selector está en embera o el texto parece embera, ignorar TTS
+        const modo = idiomaSel?.value || 'auto';
+        if (modo === 'embera' || isEmbera(texto)) return;
+
         síntesisVoz.cancel();
         let clean = texto.replace(/[*#]/g, '').replace(/https?:\/\/\S+/g, '');
-        // Limpieza Pronunciación
         clean = clean.replace(/(\d+)x/gi, '$1 veces').replace(/\bAI\b/g, 'Inteligencia Artificial').replace(/\$/g, 'pesos ');
-
         const u = new SpeechSynthesisUtterance(clean);
         if (vozSeleccionada) u.voice = vozSeleccionada;
         u.lang = 'es-MX'; u.pitch = 1.1; u.rate = 1.1;
         síntesisVoz.speak(u);
     }
 
-    // 6. MENSAJERÍA
+    // 6. MANEJO DE KEY SEGURA (PATCH 2)
+    function manejarKeyInput() {
+        if (esperandoApiKey) {
+            const val = input.value.trim();
+            input.value = '';
+            if (val.startsWith('AIza')) {
+                localStorage.setItem('mario_api_key', btoa(val));
+                esperandoApiKey = false;
+                agregarMensaje('bot', "✅ Key guardada. Ahora sí, escríbeme tu pregunta.");
+            } else {
+                agregarMensaje('bot', "❌ Key inválida. Debe empezar por 'AIza...'. Intenta de nuevo.");
+            }
+            return true; // handled
+        }
+        return false; // normal flow
+    }
+
+    // 7. MENSAJERÍA (PATCH 3: SYSTEM INSTRUCTION)
     async function enviar() {
+        if (esperandoApiKey) { manejarKeyInput(); return; } // Doble check
+
         const txt = input.value.trim(); if (!txt) return;
         input.value = ''; agregarMensaje('usuario', txt);
 
@@ -129,69 +160,83 @@
             const key = getApiKey();
             if (!key) {
                 if (aviso) aviso.remove();
-                agregarMensaje('bot', "⚠️ No tengo llave. Escribe tu API Key (AIza...) aquí y la guardaré.");
-                // Capturar siguiente input como key
-                const handler = (e) => {
-                    if (e.key === 'Enter') {
-                        const val = input.value.trim();
-                        if (val.startsWith('AIza')) {
-                            localStorage.setItem('mario_api_key', btoa(val));
-                            agregarMensaje('bot', "✅ Key guardada. Pregunta de nuevo.");
-                            input.onkeypress = (ev) => ev.key === 'Enter' && enviar(); // Restaurar
-                            enviarBtn.onclick = enviar;
-                        }
-                        input.value = '';
-                    }
-                };
-                input.onkeypress = handler; enviarBtn.onclick = () => { if (input.value) handler({ key: 'Enter' }); };
+                esperandoApiKey = true;
+                agregarMensaje('bot', "⚠️ No tengo llave. Pega tu API Key (AIza...) y presiona Enter.");
+                input.focus();
                 return;
             }
 
-            // PROMPT DINÁMICO DE VENTAS
-            let systemPrompt = `CONTEXTO: Eres CHELA (mujer), una IA Avanzada creada por ORION TECH.
-            TU OBJETIVO: Demostrar a la Alcaldía de Obando por qué deben contratar a ORION TECH.
-            
-            PUNTOS DE VENTA (PITCH):
-            1. MODERNIZACIÓN: Conviertes a Obando en una Smart City.
-            2. EFICIENCIA: Eliminas filas y atiendes a miles de ciudadanos simultáneamente 24/7.
-            3. INCLUSIÓN: Hablas múltiples idiomas (incluyendo Embera Chamí).
-            4. PRECIO: El piloto cuesta desde $15 Millones COP (muy económico para el impacto).
-            
-            SI TE PREGUNTAN QUIÉN ERES: "Soy Chela, un agente de Inteligencia Artificial de ORION TECH, diseñado para transformar la atención ciudadana en Obando."
-            
-            Ejemplos Embera:
-            Usuario: "Bêrea" -> Chela: "Bêrea. Mũra Chela, ORION Tech ía. ¿Kĩra bʉra?"`;
+            // DETERMINAR IDIOMA OBJETIVO
+            const modoIdioma = idiomaSel?.value || 'auto';
+            let forzarEmbera = (modoIdioma === 'embera');
+            if (modoIdioma === 'auto' && isEmbera(txt)) forzarEmbera = true;
 
-            if (isEmbera(txt)) {
-                systemPrompt += `\n\nIMPORTANTE: El usuario habla EMBERA. RESPONDE SOLO EN EMBERA O ESPAÑOL MUY SIMPLE SI NO SABES.`;
+            // SYSTEM PROMPT
+            let systemPrompt = `CONTEXTO: Eres CHELA (mujer), de ORION TECH.
+            OBJETIVO: Vender modernización a Alcaldía Obando.
+            PUNTOS: Zero Filas, 24/7, Idiomas (Embera), Precio ($15M).
+            
+            Regla de idioma:
+            - Si se te indica Embera, responde SOLO en Embera. No mezcles español.
+            - Si NO sabes suficiente Embera para responder bien, di: "No sé suficiente Embera para responder bien" y pide español.
+            
+            Ejemplos (Embera):
+            Usuario: "Bêrea" -> Chela: "Bêrea. Mũra Chela. ¿Kĩra bʉra?"`;
+
+            if (forzarEmbera) {
+                systemPrompt += `\nIMPORTANTE: RESPONDE SOLO EN EMBERA.\n`;
+            } else {
+                systemPrompt += `\nIMPORTANTE: RESPONDE EN ESPAÑOL (es-MX).\n`;
             }
 
+            // LLAMADA GEMINI CON SYSTEM INSTRUCTION
             const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`;
 
             const res = await fetch(url, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
+                    systemInstruction: { parts: [{ text: systemPrompt }] },
                     contents: [
-                        { role: 'user', parts: [{ text: systemPrompt }] },
                         { role: 'user', parts: [{ text: txt }] }
                     ]
                 })
             });
 
-            if (!res.ok) throw new Error('API Error ' + res.status);
-            const data = await res.json();
+            const raw = await res.text();
+            if (!res.ok) {
+                console.error(`API Error ${res.status}:`, raw);
+                throw new Error(`API Error ${res.status}: ${raw}`);
+            }
+
+            const data = JSON.parse(raw);
             const reply = data.candidates?.[0]?.content?.parts?.[0]?.text;
 
             if (aviso) aviso.remove();
             if (reply) agregarMensaje('bot', reply);
+            else agregarMensaje('bot', "No entendí (Respuesta vacía).");
 
         } catch (e) {
             console.error(e);
             if (aviso) aviso.remove();
-            agregarMensaje('bot', "Red lenta. (Error IA)");
+            // Mostrar error un poco más detallado si es posible pero amigable
+            if (e.message.includes('400')) agregarMensaje('bot', "Error 400: Petición mal formada (Revisa consola).");
+            else if (e.message.includes('403')) agregarMensaje('bot', "Error 403: Key inválida o permiso denegado.");
+            else if (e.message.includes('429')) agregarMensaje('bot', "Error 429: Demasiadas peticiones (Cuota excedida).");
+            else agregarMensaje('bot', "Error: " + e.message);
         }
     }
+
+    input.onkeydown = (e) => {
+        if (e.key === 'Enter') {
+            if (esperandoApiKey) { manejarKeyInput(); return; }
+            enviar();
+        }
+    };
+    enviarBtn.onclick = () => {
+        if (esperandoApiKey) { manejarKeyInput(); return; }
+        enviar();
+    };
 
     function agregarMensaje(role, text, loading = false) {
         const d = document.createElement('div'); d.className = `mensaje ${role}`;
@@ -201,8 +246,4 @@
         if (role === 'bot' && !loading) hablar(text);
         return d.id;
     }
-
-    enviarBtn.onclick = enviar;
-    input.onkeypress = (e) => e.key === 'Enter' && enviar();
-
 })();
