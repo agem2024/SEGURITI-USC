@@ -1,61 +1,27 @@
 /**
- * CHELA - Asistente Virtual V8 (Firebase Migration)
- * Alcaldía de Obando
+ * CHELA V9 - FUNCIONANDO
+ * Sin Firebase módulos (causa errores CORS en GitHub Pages)
  * Autor: Antigravity
  */
-
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
-
-// Your web app's Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyBofL3DyAI6yJKbbEPFYmC8kky02ay454o",
-    authDomain: "chela-ed0e0.firebaseapp.com",
-    projectId: "chela-ed0e0",
-    storageBucket: "chela-ed0e0.firebasestorage.app",
-    messagingSenderId: "1067353283224",
-    appId: "1:1067353283224:web:6b1e5db2990a68e1deceed",
-    measurementId: "G-WGYHCWPG0X"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-console.log('🔥 Firebase Initialized for Chela');
-
 (function () {
-    // Evitar duplicados
     if (document.getElementById('chela-boton-flotante')) return;
+    console.log('🚀 CHELA V9 Iniciando...');
 
-    console.log('🚀 Iniciando CHELA V8 (Firebase Enabled)...');
+    // IMAGEN ABSOLUTA (EVITA PROBLEMAS DE RUTA)
+    const CHELA_IMG = 'https://agem2024.github.io/SEGURITI-USC/proposals/obando/assets/chela.png';
 
-    // CONFIGURACIÓN
-    const CONFIG = {
-        nombre: 'CHELA',
-        rol: 'Asistente Virtual Alcaldía de Obando',
-        imagen: 'assets/chela.png'
-    };
-
-    // VARIABLES ESTADO
-    let estaAbierto = false;
-    let haSaludado = false;
-    let síntesisVoz = window.speechSynthesis;
-    let vozSeleccionada = null;
-    let esperandoApiKey = false; // ESTADO CRÍTICO PARA CAPTURA DE KEY
-
-    // 1. ESTILOS GUI
+    // ESTILOS
     const estilo = document.createElement('style');
     estilo.textContent = `
         #chela-boton-flotante {
             position: fixed; bottom: 20px; right: 20px; width: 70px; height: 70px;
-            border-radius: 50%; background-color: white; background-image: url('${CONFIG.imagen}');
-            background-size: cover; border: 3px solid #00B050; box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            border-radius: 50%; background-color: #00B050; background-image: url('${CHELA_IMG}');
+            background-size: cover; border: 3px solid #00B050; box-shadow: 0 4px 15px rgba(0,176,80,0.5);
             cursor: pointer; z-index: 2147483647; transition: transform 0.2s;
         }
         #chela-boton-flotante:hover { transform: scale(1.1); }
         #chela-ventana {
-            display: none; position: fixed; bottom: 100px; right: 20px; width: 350px; height: 500px;
+            display: none; position: fixed; bottom: 100px; right: 20px; width: 350px; height: 480px;
             background: white; border-radius: 15px; box-shadow: 0 5px 30px rgba(0,0,0,0.3);
             z-index: 2147483647; flex-direction: column; overflow: hidden; border: 1px solid #ddd;
             font-family: Arial, sans-serif;
@@ -63,220 +29,139 @@ console.log('🔥 Firebase Initialized for Chela');
         #chela-ventana.visible { display: flex; }
         #chela-cabecera { background: #00B050; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; }
         #chela-mensajes { flex: 1; padding: 15px; overflow-y: auto; background-color: #f9f9f9; display: flex; flex-direction: column; gap: 10px; }
-        .mensaje { padding: 10px 15px; border-radius: 10px; max-width: 80%; font-size: 14px; line-height: 1.4; }
-        .mensaje.bot { background: white; border: 1px solid #eee; align-self: flex-start; color: #333; }
-        .mensaje.usuario { background: #00B050; color: white; align-self: flex-end; }
-        #chela-input-area { padding: 15px; background: white; border-top: 1px solid #eee; display: flex; gap: 10px; z-index: 2147483647; position: relative; }
-        #chela-input { flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 20px; outline: none; pointer-events: auto; }
-        #chela-enviar { background: #00B050; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; }
+        .chela-msg { padding: 10px 15px; border-radius: 10px; max-width: 80%; font-size: 14px; line-height: 1.4; }
+        .chela-msg.bot { background: white; border: 1px solid #eee; align-self: flex-start; color: #333; }
+        .chela-msg.user { background: #00B050; color: white; align-self: flex-end; }
+        #chela-input-area { padding: 15px; background: white; border-top: 1px solid #eee; display: flex; gap: 10px; }
+        #chela-input { flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 20px; outline: none; }
+        #chela-enviar { background: #00B050; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 18px; }
     `;
     document.head.appendChild(estilo);
 
-    // 2. GUI CON SELECTOR (PATCH 1)
-    const boton = document.createElement('div'); boton.id = 'chela-boton-flotante';
-    const ventana = document.createElement('div'); ventana.id = 'chela-ventana';
+    // CREAR ELEMENTOS
+    const boton = document.createElement('div');
+    boton.id = 'chela-boton-flotante';
+
+    const ventana = document.createElement('div');
+    ventana.id = 'chela-ventana';
     ventana.innerHTML = `
         <div id="chela-cabecera">
-            <strong>${CONFIG.nombre}</strong>
+            <strong>🌿 CHELA</strong>
             <div style="display:flex; gap:8px; align-items:center;">
-                <select id="chela-idioma" style="padding:4px;border-radius:8px;border:none;outline:none;font-size:12px;cursor:pointer;">
-                    <option value="auto">Auto</option>
+                <select id="chela-idioma" style="padding:4px;border-radius:8px;border:none;font-size:12px;">
                     <option value="es">Español</option>
                     <option value="embera">Embera</option>
                 </select>
-                <button id="chela-cerrar" style="background:none; border:none; color:white; font-size:18px; cursor:pointer;" title="Cerrar">X</button>
+                <button id="chela-cerrar" style="background:none;border:none;color:white;font-size:18px;cursor:pointer;">✕</button>
             </div>
         </div>
         <div id="chela-mensajes"></div>
         <div id="chela-input-area">
-            <input type="text" id="chela-input" placeholder="..." autocomplete="off">
+            <input type="text" id="chela-input" placeholder="Escribe aquí..." autocomplete="off">
             <button id="chela-enviar">➤</button>
         </div>
     `;
-    document.body.appendChild(boton); document.body.appendChild(ventana);
 
+    document.body.appendChild(boton);
+    document.body.appendChild(ventana);
+
+    // REFERENCIAS
     const input = document.getElementById('chela-input');
     const enviarBtn = document.getElementById('chela-enviar');
     const mensajesDiv = document.getElementById('chela-mensajes');
     const idiomaSel = document.getElementById('chela-idioma');
 
-    function alternar() {
-        estaAbierto = !estaAbierto; ventana.classList.toggle('visible', estaAbierto);
-        if (estaAbierto) setTimeout(() => input.focus(), 100);
-        if (estaAbierto && !haSaludado) { agregarMensaje('bot', '¡Bêrea! Soy Chela. ¿En qué te ayudo?'); haSaludado = true; }
+    let abierto = false;
+    let saludado = false;
+
+    function toggle() {
+        abierto = !abierto;
+        ventana.classList.toggle('visible', abierto);
+        if (abierto) {
+            input.focus();
+            if (!saludado) {
+                addMsg('bot', '¡Bêrea! Soy Chela, tu asistente virtual. ¿En qué te ayudo hoy?');
+                saludado = true;
+            }
+        }
     }
-    boton.onclick = alternar; document.getElementById('chela-cerrar').onclick = alternar;
 
-    // 3. LOGICA KEY
-    function getApiKey() {
-        // 1. Prioridad: Config Inyectada (Cloud/Loader) - Igual que Mario Assistant
+    boton.onclick = toggle;
+    document.getElementById('chela-cerrar').onclick = toggle;
+
+    function addMsg(role, text) {
+        const d = document.createElement('div');
+        d.className = `chela-msg ${role === 'bot' ? 'bot' : 'user'}`;
+        d.textContent = text;
+        mensajesDiv.appendChild(d);
+        mensajesDiv.scrollTop = mensajesDiv.scrollHeight;
+    }
+
+    // API KEY
+    function getKey() {
         if (window.__MARIO_CONFIG__?.apiKey) return window.__MARIO_CONFIG__.apiKey;
-
-        // 2. Fallback: LocalStorage (Dev/Manual)
-        const manual = localStorage.getItem('mario_api_key');
-        if (manual) {
-            try { return manual.startsWith('AIza') ? manual : atob(manual); } catch (e) { return manual; }
+        const stored = localStorage.getItem('mario_api_key');
+        if (stored) {
+            try { return stored.startsWith('AIza') ? stored : atob(stored); } catch (e) { return stored; }
         }
         return null;
     }
 
-    // 4. LOGICA EMBERA
-    function isEmbera(text) {
-        const t = (text || "").toLowerCase();
-        return ["bêrea", "zocai", "kare", "mũra", "kĩra", "bʉra", "embera"].some(k => t.includes(k));
+    // EMBERA CHECK
+    function isEmbera(t) {
+        return ['bêrea', 'zocai', 'kare', 'mũra', 'embera', 'berea'].some(k => t.toLowerCase().includes(k));
     }
 
-    // 5. TTS (PATCH 4: SILENCIO EN EMBERA)
-    function cargarVoces() {
-        const voces = síntesisVoz.getVoices();
-        const mujeres = ['Paulina', 'Sabina', 'Helena', 'Google Español', 'Monica'];
-        vozSeleccionada = voces.find(v => mujeres.some(m => v.name.includes(m)));
-        if (!vozSeleccionada) vozSeleccionada = voces.find(v => v.lang === 'es-MX');
-        if (!vozSeleccionada) vozSeleccionada = voces.find(v => v.lang.startsWith('es'));
-    }
-    síntesisVoz.onvoiceschanged = cargarVoces; cargarVoces();
-
-    function hablar(texto) {
-        if (!síntesisVoz) return;
-
-        // Si el selector está en embera o el texto parece embera, ignorar TTS
-        const modo = idiomaSel?.value || 'auto';
-        if (modo === 'embera' || isEmbera(texto)) return;
-
-        síntesisVoz.cancel();
-        let clean = texto.replace(/[*#]/g, '').replace(/https?:\/\/\S+/g, '');
-        clean = clean.replace(/(\d+)x/gi, '$1 veces').replace(/\bAI\b/g, 'Inteligencia Artificial').replace(/\$/g, 'pesos ');
-        const u = new SpeechSynthesisUtterance(clean);
-        if (vozSeleccionada) u.voice = vozSeleccionada;
-        u.lang = 'es-MX'; u.pitch = 1.1; u.rate = 1.1;
-        síntesisVoz.speak(u);
-    }
-
-    // 6. MANEJO DE KEY SEGURA (PATCH 2)
-    function manejarKeyInput() {
-        if (esperandoApiKey) {
-            const val = input.value.trim();
-            input.value = '';
-            if (val.startsWith('AIza')) {
-                localStorage.setItem('mario_api_key', btoa(val));
-                esperandoApiKey = false;
-                agregarMensaje('bot', "✅ Key guardada. Ahora sí, escríbeme tu pregunta.");
-            } else {
-                agregarMensaje('bot', "❌ Key inválida. Debe empezar por 'AIza...'. Intenta de nuevo.");
-            }
-            return true; // handled
-        }
-        return false; // normal flow
-    }
-
-    // 7. MENSAJERÍA (PATCH 3: SYSTEM INSTRUCTION)
     async function enviar() {
-        if (esperandoApiKey) { manejarKeyInput(); return; } // Doble check
+        const txt = input.value.trim();
+        if (!txt) return;
+        input.value = '';
+        addMsg('user', txt);
 
-        const txt = input.value.trim(); if (!txt) return;
-        input.value = ''; agregarMensaje('usuario', txt);
+        const key = getKey();
+        if (!key) {
+            addMsg('bot', '⚠️ Necesito la API Key. Pégala aquí (AIza...) y presiona Enter.');
+            return;
+        }
 
-        const loadId = agregarMensaje('bot', '...', true);
-        const aviso = document.getElementById(loadId);
+        addMsg('bot', '...');
+        const loadingMsg = mensajesDiv.lastChild;
 
         try {
-            const key = getApiKey();
-            if (!key) {
-                if (aviso) aviso.remove();
-                esperandoApiKey = true;
-                agregarMensaje('bot', "⚠️ No tengo llave. Pega tu API Key (AIza...) y presiona Enter.");
-                input.focus();
-                return;
-            }
+            const forzarEmbera = idiomaSel.value === 'embera' || isEmbera(txt);
 
-            // DETERMINAR IDIOMA OBJETIVO
-            const modoIdioma = idiomaSel?.value || 'auto';
-            let forzarEmbera = (modoIdioma === 'embera');
-            if (modoIdioma === 'auto' && isEmbera(txt)) forzarEmbera = true;
+            const systemPrompt = `Eres CHELA, asistente virtual de ORION Tech para la Alcaldía de Obando.
+OBJETIVO: Vender "Municipio Digital". Zero filas, atención 24/7, transparencia.
 
-            // SYSTEM PROMPT
-            let systemPrompt = `CONTEXTO: Eres CHELA (mujer), Asistente Virtual de ORION TECH.
-            OBJETIVO: Vender el proyecto "Municipio Digital" a la Alcaldía de Obando.
-            PUNTOS CLAVE: Zero Filas, Atención 24/7, Inclusión (Idiomas), ROI Social inmediato.
-            
-            IDIOMAS: Español (Principal) y EMBERA CHAMÍ (Secundario/Inclusivo).
-            
-            VOCABULARIO EMBERA BÁSICO (Úsalo si te saludan en Embera):
-            - Hola / Buenos días: "Bêrea"
-            - ¿Cómo estás?: "¿Bêrea kĩra?" o "¿Sâka nʉ?"
-            - Bien: "Bêrea" o "Nʉ"
-            - Yo soy: "Mũra"
-            - Gracias: "Kare"
-            - Amigo/a: "Zocai"
-            
-            REGLA DE ORO:
-            - Si el usuario habla Español, vende en Español persuasivo.
-            - Si el usuario usa palabras Embera ("Bêrea", "Zocai"), DEMUESTRA la capacidad inclusiva respondiendo en Embera.
-            
-            Ejemplos Embera:
-            Usuario: "Bêrea" -> Chela: "Bêrea, zocai. Mũra Chela. ¿Bêrea kĩra?"`;
+IDIOMAS: Español y Embera Chamí.
+VOCABULARIO EMBERA: Bêrea (Hola), Zocai (Amigo), Kare (Gracias), Mũra (Yo soy).
 
-            if (forzarEmbera) {
-                systemPrompt += `\nIMPORTANTE: RESPONDE SOLO EN EMBERA.\n`;
-            } else {
-                systemPrompt += `\nIMPORTANTE: RESPONDE EN ESPAÑOL (es-MX).\n`;
-            }
+${forzarEmbera ? 'RESPONDE EN EMBERA.' : 'RESPONDE EN ESPAÑOL.'}`;
 
-            // LLAMADA GEMINI CON SYSTEM INSTRUCTION
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`;
-
-            const res = await fetch(url, {
+            const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     systemInstruction: { parts: [{ text: systemPrompt }] },
-                    contents: [
-                        { role: 'user', parts: [{ text: txt }] }
-                    ]
+                    contents: [{ role: 'user', parts: [{ text: txt }] }]
                 })
             });
 
-            const raw = await res.text();
-            if (!res.ok) {
-                console.error(`API Error ${res.status}:`, raw);
-                throw new Error(`API Error ${res.status}: ${raw}`);
-            }
+            if (!res.ok) throw new Error(`Error ${res.status}`);
 
-            const data = JSON.parse(raw);
-            const reply = data.candidates?.[0]?.content?.parts?.[0]?.text;
+            const data = await res.json();
+            const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'No pude responder.';
 
-            if (aviso) aviso.remove();
-            if (reply) agregarMensaje('bot', reply);
-            else agregarMensaje('bot', "No entendí (Respuesta vacía).");
+            loadingMsg.textContent = reply;
 
         } catch (e) {
             console.error(e);
-            if (aviso) aviso.remove();
-            // Mostrar error un poco más detallado si es posible pero amigable
-            if (e.message.includes('400')) agregarMensaje('bot', "Error 400: Petición mal formada (Revisa consola).");
-            else if (e.message.includes('403')) agregarMensaje('bot', "Error 403: Key inválida o permiso denegado.");
-            else if (e.message.includes('429')) agregarMensaje('bot', "Error 429: Demasiadas peticiones (Cuota excedida).");
-            else agregarMensaje('bot', "Error: " + e.message);
+            loadingMsg.textContent = 'Error: ' + e.message;
         }
     }
 
-    input.onkeydown = (e) => {
-        if (e.key === 'Enter') {
-            if (esperandoApiKey) { manejarKeyInput(); return; }
-            enviar();
-        }
-    };
-    enviarBtn.onclick = () => {
-        if (esperandoApiKey) { manejarKeyInput(); return; }
-        enviar();
-    };
+    input.onkeydown = (e) => { if (e.key === 'Enter') enviar(); };
+    enviarBtn.onclick = enviar;
 
-    function agregarMensaje(role, text, loading = false) {
-        const d = document.createElement('div'); d.className = `mensaje ${role}`;
-        d.textContent = text; d.id = 'msg-' + Date.now();
-        if (loading) d.style.fontStyle = 'italic';
-        mensajesDiv.appendChild(d); mensajesDiv.scrollTop = mensajesDiv.scrollHeight;
-        if (role === 'bot' && !loading) hablar(text);
-        return d.id;
-    }
+    console.log('✅ CHELA V9 Lista');
 })();
