@@ -6,13 +6,13 @@
     // Gemini API Keys (Primary + Backups)
     // Gemini API Keys (Obfuscated)
     const _gk = [
-        'AIzaSy' + 'C10OGfoKTi45Lv9hhX6_Zs76tjUvTJTyM',
-        'AIzaSy' + 'CCE4uf6kOxBZrBq_iWvjLFrR1dZcQLOlo',
+        'AIzaSy' + 'D9jAvyn1UamNhxKNc_pWlxoOlZlqCCSuk',
+        'AIzaSy' + 'DNrPToe2abPx1Cf_dFz49OyWa1pVvZMp8',
         'AIzaSy' + 'Dl_OGBtBE8RTOxjHIgSY4XSQKUEs6aAWo'
     ];
 
     // OpenAI API Key (para TTS)
-    const _ok = 'sk-proj-' + 'FFXVPe52EEGz863KddatiXtcUTPbKR42rydqlkAEE_qcuXGcqkUxtmWnX_13F6HKSkT3BlbkFJql-SIUZzhQZzbaM7ZvUdxjQAppmdiafdG0fGtle_GFCMt8gaENJ0QAlggvY8A';
+    const _ok = 'sk-proj-' + 'fYGMFK0JKpy40UT1Mkyr44uVcGTwjE-h8Gb4r_jhTiJgDepuZVYX85WWondxVWsvCjd_7jZD_4T3BlbkFJbXkfSLtenBFxeG_u4LQwtk9ZEkb9lryySGp8WqbB24iKmrDZonpbUOMaTHKcGDynWnoZG7qBUA';
 
     let _currentGeminiIndex = 0;
 
