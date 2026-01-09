@@ -1939,21 +1939,35 @@
 
     <script>
         window.KARLA_CONFIG = {
-            clientName: 'Alcalde Diego Ortiz',
+            clientName: 'Diego Ortiz',
             clientPhone: '+57 310 888 4014',
             language: localStorage.getItem('mcProposalLang') || 'es',
             ownerName: 'Diego Armando Ortiz Buitrago',
+
+            // PRECIOS EN COP - 2026
+            pricingTiers: [
+                { name: "INICIO", monthly: "2M", setup: "5M" },
+                { name: "ALCALDE DIGITAL", monthly: "4M", setup: "8M", bestValue: true },
+                { name: "LÍDER REGIONAL", monthly: "8M", setup: "15M" },
+                { name: "LEGADO POLÍTICO", monthly: "15M", setup: "25M" }
+            ],
+
             implementationTimeline: [
                 "Semana 1: Onboarding y Estrategia de Contenido",
                 "Semana 2: Desarrollo de Marca e Identidad Visual",
                 "Semana 3: Contenido y Pruebas de Asistente IA",
                 "Semana 4: Lanzamiento Oficial y Cobertura Mediática"
             ],
-            proposalContext: 'Marca Personal Digital para Alcalde de Obando, Valle del Cauca'
+
+            proposalContext: `Diego Ortiz es un líder político en Colombia (Obando, Valle del Cauca).
+            Necesita conectar con ciudadanos 24/7 mediante WhatsApp AI.
+            El bot Diego AI responderá PQRS, registrará solicitudes y generará reportes.
+            Competencia: Otros políticos sin presencia digital moderna.
+            Diferenciador ORION: Misma tecnología usada por la Alcaldía de Obando.`
         };
     </script>
-    <script src="../jose-loader.js"></script>
-    <script src="assets/js/karla-assistant-v3.js?v=TIMESTAMP_NOW"></script>
+    <script src="../mario-loader-v2.js"></script>
+    <script src="assets/js/karla-assistant.js?v=V4_POLITICAL"></script>
 
 </body>
 
