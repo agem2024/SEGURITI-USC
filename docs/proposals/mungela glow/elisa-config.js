@@ -1,6 +1,6 @@
 /**
- * JOSE KEY LOADER - Independent System
- * Exclusive for Jose Assistant
+ * ELISA CONFIG - Independent Key System
+ * Exclusive for Elisa Assistant
  */
 (function () {
     // Independent Key Management
@@ -11,11 +11,11 @@
 
     const key = _p1 + _p2 + _p3 + _p4;
 
-    window.JOSE_KEYS = {
+    window.ELISA_KEYS = {
         getKey: function () {
             return key;
         }
     };
 
-    console.log('✅ JOSE Keys Loaded (Independent)');
+    console.log('✅ ELISA Config Loaded (Independent)');
 })();

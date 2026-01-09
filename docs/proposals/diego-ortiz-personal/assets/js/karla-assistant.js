@@ -179,14 +179,8 @@ REGLAS:
         return msg;
     }
 
-    _getApiKey() {
-        // Use Mario Loader V3
-        if (window.ORION_CONFIG?.getAuth) return window.ORION_CONFIG.getAuth();
-        if (window.__MARIO_CONFIG__?.apiKey) return window.__MARIO_CONFIG__.apiKey;
-        const stored = localStorage.getItem('mario_api_key');
-        if (stored) {
-            try { return stored.startsWith('AIza') ? stored : atob(stored); } catch (e) { return stored; }
-        }
+    async _getApiKey() {
+        if (window.KARLA_KEYS && window.KARLA_KEYS.getKey) return window.KARLA_KEYS.getKey();
         return null;
     }
 

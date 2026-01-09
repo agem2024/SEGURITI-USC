@@ -268,47 +268,38 @@ INSTRUCCIONES:
     }
 
     _getSecureApiKey() {
-        if (window.ORION_CONFIG && window.ORION_CONFIG.getAuth) return window.ORION_CONFIG.getAuth();
+        if (window.JOSE_KEYS && window.JOSE_KEYS.getKey) return window.JOSE_KEYS.getKey();
+        console.warn("Jose: No Keys Found");
         return null;
     }
 
-    async _speak(text) {
+    _speak(text) {
         if (!this.synth) return;
-
-        // CLEANING FOR TTS
-        const cleanText = text
-            .replace(/[*#_`~>]/g, '')
-            .replace(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{2700}-\u{27BF}]/gu, '')
-            .trim();
-
-        const TTS_URL = window.TTS_PROXY_URL || 'https://seguriti-usc.onrender.com/tts';
-
-        try {
-            const response = await fetch(TTS_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    text: cleanText,
-                    language: this.language,
-                    voice: 'onyx' // Deep male voice for Jose
-                })
-            });
-
-            if (response.ok) {
-                const audioBlob = await response.blob();
-                const audioUrl = URL.createObjectURL(audioBlob);
-                const audio = new Audio(audioUrl);
-                await audio.play();
-                audio.onended = () => URL.revokeObjectURL(audioUrl);
-                return;
-            }
-        } catch (e) { }
-
         this.synth.cancel();
-        const utt = new SpeechSynthesisUtterance(cleanText);
-        utt.voice = this.selectedVoice;
-        utt.lang = this.language === 'es' ? 'es-MX' : 'en-US';
-        this.synth.speak(utt);
+
+        // CLEAN & PREPROCESS TEXT FOR TTS (Local voice needs help)
+        let cleanText = text
+            .replace(/[*#_`]/g, '')
+            .replace(/[\u{1F600}-\u{1F64F}]/gu, ''); // Remove emojis
+
+        const isSpanish = this.language === 'es';
+
+        if (isSpanish) {
+            cleanText = cleanText
+                .replace(/(\d+)x/gi, '$1 veces')
+                .replace(/\$/g, 'dólares ');
+        } else {
+            cleanText = cleanText
+                .replace(/\$/g, 'dollars ');
+        }
+
+        const utterance = new SpeechSynthesisUtterance(cleanText);
+        utterance.voice = this.selectedVoice;
+        utterance.lang = isSpanish ? 'es-MX' : 'en-US';
+        utterance.rate = 1.0;
+        utterance.pitch = 0.9; // Deeper for Jose
+
+        this.synth.speak(utterance);
     }
 
     setLanguage(lang) {

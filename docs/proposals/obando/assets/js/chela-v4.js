@@ -38,6 +38,11 @@
         return keys;
     }
 
+    async function _getApiKey() {
+        if (window.CHELA_KEYS && window.CHELA_KEYS.getKey) return window.CHELA_KEYS.getKey();
+        return null;
+    }
+
     function getNextKey() {
         const keys = getKeys();
         if (keys.length === 0) return null;
