@@ -232,40 +232,26 @@ REGLAS:
                 })
             });
 
-            if (response.status === 429 || response.status === 403) {
-                // Auto-Rotate Logic
-                if (retryCount < 6 && window.__MARIO_CONFIG__?.getNextKey) {
-                    console.warn(`⚠️ API Key Error (Attempt ${retryCount + 1}). Rotating...`);
-                    loadingMsg.textContent = '🔄 Adjusting connection...';
-
-                    window.__MARIO_CONFIG__.getNextKey(); // Updates global key
-                    await new Promise(r => setTimeout(r, 1000));
-
-                    // Recursive retry with the SAME text
-                    return this._sendMessage(text, retryCount + 1);
-                }
-                throw new Error("API_RESOURCES_EXHAUSTED");
-            }
-
-            if (!response.ok) throw new Error(`API Error ${response.status}`);
-
-            const data = await response.json();
-            const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'No pude generar respuesta.';
-            loadingMsg.textContent = reply;
-            this._speak(reply);
-
         } catch (error) {
-            console.error('Karla AI Error:', error);
-            if (error.message.includes("EXHAUSTED")) {
-                loadingMsg.textContent = '⚠️ Servidor ocupado (429). Por favor intenta en 1 minuto.';
-            } else {
-                loadingMsg.textContent = 'Error de conexión. Intenta de nuevo.';
-            }
+            console.error('Karla API Fail. Using Offline Backup.', error);
+            const offlineReply = this._getOfflineResponse(text);
+            loadingMsg.textContent = offlineReply;
+            this._speak(offlineReply);
         } finally {
             if (retryCount === 0 || !sendBtn.disabled) {
                 sendBtn.disabled = false;
             }
         }
+    }
+
+    _getOfflineResponse(text) {
+        const t = text.toLowerCase();
+        // KARLA PERSONA: Friendly, efficient, focused on Diego Ortiz's goals
+        if (t.includes('hola') || t.includes('hi')) return "¡Hola! Soy Karla. Tengo una propuesta para automatizar tu flujo de ventas. ¿Te interesa ver números?";
+        if (t.includes('precio') || t.includes('costo') || t.includes('vale')) return "La inversión es de $1,500/mes, pero recuperas $5,000/mes en leads que hoy se pierden. El ROI es positivo desde el primer mes.";
+        if (t.includes('implement') || t.includes('tiempo')) return "En 15 días dejamos todo rodando. Configuración, entrenamiento de IA y conexión a tu WhatsApp. Sin interrumpir tu operación actual.";
+        if (t.includes('agendar') || t.includes('reunion') || t.includes('cita')) return "¡Claro! Puedo agendar una demo corta para mostrarte cómo funciona en vivo. ¿Qué día te queda mejor?";
+        return "Ese es exactamente el tipo de problema que ORION resuelve automatizando la comunicación. ¿Me permites mostrarte un ejemplo rápido?";
     }
 
     _speak(text) {

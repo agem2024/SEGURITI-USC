@@ -166,33 +166,38 @@ ${forzarEmbera ? 'RESPONDE EN EMBERA.' : 'RESPONDE EN ESPAÑOL.'}`;
                 })
             });
 
-            if (res.status === 429 || res.status === 403) {
-                throw new Error("RATE_LIMIT");
-            }
-
-            if (!res.ok) {
-                const errText = await res.text();
-                throw new Error(`API_ERROR: ${res.status} ${errText}`);
-            }
+            if (!res.ok) throw new Error("API_FAIL");
 
             const data = await res.json();
-            return data.candidates?.[0]?.content?.parts?.[0]?.text || 'No pude responder.';
+            return data.candidates?.[0]?.content?.parts?.[0]?.text || getOfflineResponse(txt);
 
         } catch (e) {
-            // Auto-Rotate Logic
-            if ((e.message.includes("RATE_LIMIT") || e.message.includes("429") || e.message.includes("403")) && retryCount < 6) {
-                console.warn(`⚠️ API Key Error (Attempt ${retryCount + 1}). Rotating...`);
-
-                if (window.__MARIO_CONFIG__?.getNextKey) {
-                    window.__MARIO_CONFIG__.getNextKey(); // Updates global key
-                    // Wait 1s before retry
-                    await new Promise(r => setTimeout(r, 1000));
-                    // Retry with new key from global state
-                    return callGemini(txt, null, retryCount + 1);
-                }
-            }
-            throw e;
+            console.warn("⚠️ API Error/Timeout. Using Offline Backup.", e);
+            // Fallback to "TSS" (Offline Preconceived Answers)
+            return getOfflineResponse(txt);
         }
+    }
+
+    function getOfflineResponse(text) {
+        const t = text.toLowerCase();
+        // 1. GREETINGS / HOLA
+        if (t.includes('hola') || t.includes('burea') || t.includes('bêrea')) {
+            return "¡Bêrea! Soy Chela, tu asistente virtual. ¿Te gustaría saber cómo el Municipio Digital elimina las filas?";
+        }
+        // 2. PRECIO / COSTO / MONEY
+        if (t.includes('precio') || t.includes('costo') || t.includes('cuanto') || t.includes('vale')) {
+            return "El proyecto se paga solo con el ahorro en papel y horas extra. La inversión inicial es mínima comparada con recuperar $200 millones en impuestos perdidos. ¿Quieres ver el desglose?";
+        }
+        // 3. TIEMPO / DEMORA
+        if (t.includes('tiempo') || t.includes('demora') || t.includes('cuando')) {
+            return "Implementamos en 30 días. Semana 1: Configuración. Semana 2: Entrenamiento. Semana 3: Pruebas. Día 30: Lanzamiento oficial.";
+        }
+        // 4. FILAS / CITAS
+        if (t.includes('fila') || t.includes('cita') || t.includes('turno')) {
+            return "Con el Municipio Digital, el ciudadano saca su turno por WhatsApp. Cero filas bajo el sol. El sistema les avisa 10 minutos antes de ser atendidos.";
+        }
+        // DEFAULT BACKUP
+        return "Entiendo tu punto. El Municipio Digital está diseñado justamente para resolver eso con tecnología 24/7. ¿Te gustaría ver una demo rápida?";
     }
 
     async function enviar() {
