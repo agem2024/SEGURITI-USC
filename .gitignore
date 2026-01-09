@@ -34,3 +34,8 @@ docs/proposals/jose-loader.js
 
 # SECURITY: NEVER upload loader files with API keys
 # Bots should load keys from a secure backend or environment variables
+
+docs/proposals/mario-local-config.js
+
+# Restore functionality for Mario Cloud
+!docs/proposals/mario-loader-v2.js
