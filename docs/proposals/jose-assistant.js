@@ -123,7 +123,7 @@ INSTRUCCIONES:
         container.id = 'jose-chat-container';
         container.innerHTML = `
             <style>
-                #jose-chat-container { position: fixed; bottom: 100px; right: 20px; z-index: 10000; font-family: 'Inter', sans-serif; }
+                #jose-chat-container { position: fixed; bottom: 100px; left: 20px; z-index: 10000; font-family: 'Inter', sans-serif; }
                 #jose-toggle {
                     width: 70px; height: 70px; border-radius: 50%;
                     background: linear-gradient(135deg, #FF4444, #cc0000); /* Red for Auto/Power */
@@ -140,7 +140,7 @@ INSTRUCCIONES:
                     background: #111; border: 1px solid #333;
                     border-radius: 16px; overflow: hidden;
                     box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-                    flex-direction: column; position: absolute; bottom: 85px; right: 0;
+                    flex-direction: column; position: absolute; bottom: 85px; left: 0;
                 }
                 #jose-chat-window.open { display: flex; }
                 
