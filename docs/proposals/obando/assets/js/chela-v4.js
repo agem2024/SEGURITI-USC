@@ -1,16 +1,55 @@
 /**
- * CHELA V10 - Anti-spam + 429 handling
+ * CHELA V11 - API Key Rotation + Anti-spam
  * Autor: Antigravity
  */
 (function () {
     if (document.getElementById('chela-boton-flotante')) return;
-    console.log('🚀 CHELA V10 Iniciando...');
+    console.log('🚀 CHELA V11 Iniciando...');
 
     const CHELA_IMG = 'https://agem2024.github.io/SEGURITI-USC/proposals/obando/assets/chela.png';
 
-    // ANTI-SPAM GLOBALS
+    // ANTI-SPAM
     let enviando = false;
     let ultimoEnvio = 0;
+
+    // API KEY ROTATION
+    let currentKeyIndex = 0;
+    function getKeys() {
+        const keys = [];
+        // 1. Key del loader (mario-loader-v2.js)
+        if (window.__MARIO_CONFIG__?.apiKey) keys.push(window.__MARIO_CONFIG__.apiKey);
+        // 2. Key del localStorage
+        const stored = localStorage.getItem('mario_api_key');
+        if (stored) {
+            try {
+                const k = stored.startsWith('AIza') ? stored : atob(stored);
+                if (!keys.includes(k)) keys.push(k);
+            } catch (e) { }
+        }
+        // 3. Keys adicionales (puedes agregar más aquí)
+        const extra = localStorage.getItem('gemini_backup_keys');
+        if (extra) {
+            try {
+                const arr = JSON.parse(extra);
+                arr.forEach(k => { if (k && !keys.includes(k)) keys.push(k); });
+            } catch (e) { }
+        }
+        return keys;
+    }
+
+    function getNextKey() {
+        const keys = getKeys();
+        if (keys.length === 0) return null;
+        currentKeyIndex = (currentKeyIndex + 1) % keys.length;
+        console.log(`🔑 Rotando a key ${currentKeyIndex + 1}/${keys.length}`);
+        return keys[currentKeyIndex];
+    }
+
+    function getCurrentKey() {
+        const keys = getKeys();
+        if (keys.length === 0) return null;
+        return keys[currentKeyIndex % keys.length];
+    }
 
     // ESTILOS
     const estilo = document.createElement('style');
@@ -68,7 +107,6 @@
     document.body.appendChild(boton);
     document.body.appendChild(ventana);
 
-    // REFERENCIAS
     const input = document.getElementById('chela-input');
     const enviarBtn = document.getElementById('chela-enviar');
     const mensajesDiv = document.getElementById('chela-mensajes');
@@ -83,7 +121,7 @@
         if (abierto) {
             input.focus();
             if (!saludado) {
-                addMsg('bot', '¡Bêrea! Soy Chela, tu asistente virtual. ¿En qué te ayudo hoy?');
+                addMsg('bot', '¡Bêrea! Soy Chela. ¿En qué te ayudo?');
                 saludado = true;
             }
         }
@@ -101,26 +139,47 @@
         return d;
     }
 
-    // API KEY
-    function getKey() {
-        if (window.__MARIO_CONFIG__?.apiKey) return window.__MARIO_CONFIG__.apiKey;
-        const stored = localStorage.getItem('mario_api_key');
-        if (stored) {
-            try { return stored.startsWith('AIza') ? stored : atob(stored); } catch (e) { return stored; }
-        }
-        return null;
-    }
-
-    // EMBERA CHECK
     function isEmbera(t) {
         return ['bêrea', 'zocai', 'kare', 'mũra', 'embera', 'berea'].some(k => t.toLowerCase().includes(k));
+    }
+
+    async function callGemini(txt, key, retryCount = 0) {
+        const forzarEmbera = idiomaSel.value === 'embera' || isEmbera(txt);
+        const systemPrompt = `Eres CHELA, asistente de ORION Tech para Alcaldía de Obando.
+OBJETIVO: Vender "Municipio Digital". Zero filas, 24/7, transparencia.
+IDIOMAS: Español y Embera. Vocabulario: Bêrea (Hola), Zocai (Amigo), Kare (Gracias).
+${forzarEmbera ? 'RESPONDE EN EMBERA.' : 'RESPONDE EN ESPAÑOL.'}`;
+
+        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                systemInstruction: { parts: [{ text: systemPrompt }] },
+                contents: [{ role: 'user', parts: [{ text: txt }] }]
+            })
+        });
+
+        if (!res.ok) {
+            const errText = await res.text();
+            // Si es 429 o 403 y tenemos más keys, rotar
+            if ((res.status === 429 || res.status === 403) && retryCount < getKeys().length - 1) {
+                const nextKey = getNextKey();
+                if (nextKey && nextKey !== key) {
+                    console.log(`⚠️ Error ${res.status}, rotando key...`);
+                    return callGemini(txt, nextKey, retryCount + 1);
+                }
+            }
+            throw new Error(`${res.status}: ${errText.substring(0, 100)}`);
+        }
+
+        const data = await res.json();
+        return data.candidates?.[0]?.content?.parts?.[0]?.text || 'No pude responder.';
     }
 
     async function enviar() {
         const txt = input.value.trim();
         if (!txt) return;
 
-        // ANTI-SPAM
         const ahora = Date.now();
         if (enviando) return;
         if (ahora - ultimoEnvio < 1500) return;
@@ -131,9 +190,9 @@
         input.value = '';
         addMsg('user', txt);
 
-        const key = getKey();
+        const key = getCurrentKey();
         if (!key) {
-            addMsg('bot', '⚠️ Necesito la API Key. Pégala aquí (AIza...) y presiona Enter.');
+            addMsg('bot', '⚠️ No hay API Key. Pega una (AIza...) aquí.');
             enviando = false;
             enviarBtn.disabled = false;
             return;
@@ -142,41 +201,17 @@
         const loadingMsg = addMsg('bot', '...');
 
         try {
-            const forzarEmbera = idiomaSel.value === 'embera' || isEmbera(txt);
-
-            const systemPrompt = `Eres CHELA, asistente virtual de ORION Tech para la Alcaldía de Obando.
-OBJETIVO: Vender "Municipio Digital". Zero filas, atención 24/7, transparencia.
-IDIOMAS: Español y Embera Chamí.
-VOCABULARIO EMBERA: Bêrea (Hola), Zocai (Amigo), Kare (Gracias), Mũra (Yo soy).
-${forzarEmbera ? 'RESPONDE EN EMBERA.' : 'RESPONDE EN ESPAÑOL.'}`;
-
-            const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    systemInstruction: { parts: [{ text: systemPrompt }] },
-                    contents: [{ role: 'user', parts: [{ text: txt }] }]
-                })
-            });
-
-            if (!res.ok) {
-                const errText = await res.text();
-                throw new Error(`${res.status}: ${errText}`);
-            }
-
-            const data = await res.json();
-            const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'No pude responder.';
+            const reply = await callGemini(txt, key);
             loadingMsg.textContent = reply;
-
         } catch (e) {
             console.error(e);
             const msg = String(e?.message || "");
             if (msg.includes("429")) {
-                loadingMsg.textContent = "⚠️ Gemini está saturado (429). Espera 30-60 segundos e intenta de nuevo.";
+                loadingMsg.textContent = "⚠️ Todas las keys agotadas (429). Espera 1 minuto.";
             } else if (msg.includes("403")) {
-                loadingMsg.textContent = "❌ API Key inválida o sin permisos.";
+                loadingMsg.textContent = "❌ Todas las keys inválidas.";
             } else {
-                loadingMsg.textContent = 'Error: ' + msg;
+                loadingMsg.textContent = 'Error: ' + msg.substring(0, 80);
             }
         } finally {
             enviando = false;
@@ -187,5 +222,5 @@ ${forzarEmbera ? 'RESPONDE EN EMBERA.' : 'RESPONDE EN ESPAÑOL.'}`;
     input.onkeydown = (e) => { if (e.key === 'Enter' && !enviando) enviar(); };
     enviarBtn.onclick = () => { if (!enviando) enviar(); };
 
-    console.log('✅ CHELA V10 Lista');
+    console.log('✅ CHELA V11 Lista - Keys disponibles:', getKeys().length);
 })();
