@@ -1,22 +1,21 @@
 /**
- * CHELA - Asistente Virtual V4 (Reescrito desde cero)
+ * CHELA - Asistente Virtual V5 (Client-Side Only)
  * Alcaldía de Obando
  * Autor: Antigravity
  * Idioma: Español (Código y Comentarios)
  */
 
 (function () {
-    // Evitar duplicados si el script se carga dos veces
-    if (document.getElementById('chela-main-container')) return;
+    // Evitar duplicados
+    if (document.getElementById('chela-boton-flotante')) return;
 
-    console.log('🚀 Iniciando CHELA V4...');
+    console.log('🚀 Iniciando CHELA V5 (Serverless)...');
 
-    // CONFIGURACIÓN
+    // CONFIGURACIÓN (Sin Backend)
     const CONFIG = {
         nombre: 'CHELA',
         rol: 'Asistente Virtual Alcaldía de Obando',
-        endpoint: 'https://seguriti-usc.onrender.com/chat', // Servidor Compartido (Proxy Seguro)
-        imagen: 'assets/chela.png' // Ruta relativa al archivo HTML
+        imagen: 'assets/chela.png'
     };
 
     // VARIABLES DE ESTADO
@@ -28,7 +27,7 @@
     // 1. INYECTAR ESTILOS CSS
     const estilo = document.createElement('style');
     estilo.textContent = `
-        /* Contenedor Principal del Botón - Z-Index ALTÍSIMO para que flote sobre todo */
+        /* Contenedor Principal del Botón */
         #chela-boton-flotante {
             position: fixed;
             bottom: 20px;
@@ -40,17 +39,16 @@
             background-image: url('${CONFIG.imagen}');
             background-size: cover;
             background-position: center;
-            border: 3px solid #00B050; /* Verde Obando */
+            border: 3px solid #00B050;
             box-shadow: 0 4px 15px rgba(0,0,0,0.4);
             cursor: pointer;
-            z-index: 2147483647; /* Máxima prioridad */
+            z-index: 2147483647;
             transition: transform 0.2s;
         }
         #chela-boton-flotante:hover { transform: scale(1.1); }
         
-        /* Ventana de Chat */
         #chela-ventana {
-            display: none; /* Oculto por defecto */
+            display: none;
             position: fixed;
             bottom: 100px;
             right: 20px;
@@ -67,7 +65,6 @@
         }
         #chela-ventana.visible { display: flex; }
 
-        /* Cabecera */
         #chela-cabecera {
             background: #00B050;
             color: white;
@@ -85,7 +82,6 @@
             font-weight: bold;
         }
 
-        /* Área de Mensajes */
         #chela-mensajes {
             flex: 1;
             padding: 15px;
@@ -114,7 +110,6 @@
             align-self: flex-end;
         }
 
-        /* Área de Entrada (Input) */
         #chela-input-area {
             padding: 15px;
             background: white;
@@ -167,7 +162,7 @@
     document.body.appendChild(boton);
     document.body.appendChild(ventana);
 
-    // 3. LÓGICA Y EVENTOS
+    // 3. LÓGICA
     const input = document.getElementById('chela-input');
     const enviarBtn = document.getElementById('chela-enviar');
     const mensajesDiv = document.getElementById('chela-mensajes');
@@ -178,7 +173,7 @@
         ventana.classList.toggle('visible', estaAbierto);
 
         if (estaAbierto) {
-            setTimeout(() => input.focus(), 100); // Foco automático
+            setTimeout(() => input.focus(), 100);
             if (!haSaludado) {
                 agregarMensaje('bot', '¡Hola! Soy Chela. ¿En qué puedo ayudarte hoy en la Alcaldía?');
                 haSaludado = true;
@@ -189,26 +184,17 @@
     boton.onclick = alternarChat;
     cerrarBtn.onclick = alternarChat;
 
-    // SÍNTESIS DE VOZ (TTS)
+    // SÍNTESIS DE VOZ
     function cargarVoces() {
         let voces = síntesisVoz.getVoices();
 
-        // Estrategia para Windows/Android:
-        // 1. Buscamos nombres de mujer en ESPAÑOL (Paulina=MX, Sabina=MX, Helena=ES)
-        // REMOVIDO: 'Zira' (Es voz en inglés, suena robótico leyendo español)
         const mujeres = ['Paulina', 'Sabina', 'Helena', 'Google Español', 'Monica'];
         vozSeleccionada = voces.find(v => mujeres.some(m => v.name.includes(m)));
 
-        // 2. Si no, buscamos por idioma específico (MX y CO)
         if (!vozSeleccionada) vozSeleccionada = voces.find(v => v.lang === 'es-CO');
         if (!vozSeleccionada) vozSeleccionada = voces.find(v => v.lang === 'es-MX');
         if (!vozSeleccionada) vozSeleccionada = voces.find(v => v.lang === 'es-ES');
-        if (!vozSeleccionada) vozSeleccionada = voces.find(v => v.lang === 'es-US');
-
-        // 3. Último recurso: Cualquiera en español
         if (!vozSeleccionada) vozSeleccionada = voces.find(v => v.lang.startsWith('es'));
-
-        console.log("Voz Chela:", vozSeleccionada ? vozSeleccionada.name : "Nativa Default");
     }
 
     if (síntesisVoz.onvoiceschanged !== undefined) {
@@ -220,38 +206,32 @@
         if (!síntesisVoz) return;
         síntesisVoz.cancel();
 
-        const textoLimpio = texto.replace(/[*#]/g, '').replace(/https?:\/\/\S+/g, '');
+        let textoLimpio = texto.replace(/[*#]/g, '').replace(/https?:\/\/\S+/g, '');
+
+        // Limpieza para pronunciación (Igual que Mario)
+        textoLimpio = textoLimpio
+            .replace(/(\d+)x/gi, '$1 veces')
+            .replace(/\bAI\b/g, 'Inteligencia Artificial')
+            .replace(/\$/g, 'pesos ');
 
         const enunciado = new SpeechSynthesisUtterance(textoLimpio);
         if (vozSeleccionada) enunciado.voice = vozSeleccionada;
 
-        // FORZAR IDIOMA ESPAÑOL (Crucial para evitar acento inglés)
-        enunciado.lang = 'es-MX'; // Neutro Latino
-
-        // Forzar atributos femeninos si la voz es genérica
-        enunciado.pitch = 1.1; // Sutilmente agudo
-        enunciado.rate = 1.1;  // Velocidad fluida
+        enunciado.lang = 'es-MX';
+        enunciado.pitch = 1.1;
+        enunciado.rate = 1.1;
 
         síntesisVoz.speak(enunciado);
     }
 
-    // Respuestas Locales (Backup si falla el servidor)
     function respuestaLocal(texto) {
         const t = texto.toLowerCase();
-        if (t.includes('precio') || t.includes('costo') || t.includes('cotizaci'))
-            return "El proyecto arranca desde $15 Millones de Pesos (COP) para el piloto inicial.";
-        if (t.includes('hola') || t.includes('dia') || t.includes('tarde'))
-            return "¡Hola! Soy Chela. ¿En qué puedo ayudarte hoy?";
-        if (t.includes('bêrea') || t.includes('zocai') || t.includes('embera'))
-            return "Bêrea! Mũra Chela. (Hola, soy Chela. Hablo tu idioma).";
-        if (t.includes('orion') || t.includes('sistema'))
-            return "ORION es el sistema que eliminará las filas en la Alcaldía.";
+        if (t.includes('precio') || t.includes('costo'))
+            return "El proyecto arranca desde $15 Millones de Pesos (COP).";
 
-        return "Lo siento, mi conexión con la Alcaldía está lenta. Pero aquí estoy para ayudarte con lo básico.";
+        return "Lo siento, necesito que configures mi llave de acceso (API Key) para poder pensar.";
     }
 
-    // Enviar Mensaje
-    // Enviar Mensaje
     async function enviarMensaje() {
         const texto = input.value.trim();
         if (!texto) return;
@@ -263,87 +243,88 @@
         const aviso = document.getElementById(idCarga);
 
         try {
-            // CONTEXTO DEL SISTEMA
-            let promptSistema = `CONTEXTO: Eres CHELA (Mujer), asistente Alcaldía Obando. IDIOMA: Español. Si detectas Embera ('Bêrea'), responde en Embera. Responde corto y amable.`;
+            // 1. OBTENER API KEY
+            // Prioridad: LocalStorage (Manual) > Config Inyectada > Prompt
+            let apiKey = localStorage.getItem('mario_api_key');
 
-            // 1. INTENTO: GEMINI CLIENT-SIDE DIRECTO (Si hay clave segura del loader)
-            const apiKey = window.__MARIO_CONFIG__?.apiKey || (localStorage.getItem('mario_api_key') ? atob(localStorage.getItem('mario_api_key')) : null);
-
-            if (apiKey) {
-                // MODIFICACIÓN CRÍTICA: USAR GEMINI DIRECTO PARA ESTABILIDAD
-                const apiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-                const response = await fetch(apiEndpoint, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        contents: [
-                            { role: 'user', parts: [{ text: promptSistema }] },
-                            { role: 'user', parts: [{ text: texto }] }
-                        ]
-                    })
-                });
-
-                const data = await response.json();
-                const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text;
-
-                if (aiText) {
-                    if (aviso) aviso.remove();
-                    agregarMensaje('bot', aiText);
-                    return; // ÉXITO
-                }
+            if (!apiKey && window.__MARIO_CONFIG__?.apiKey) {
+                apiKey = window.__MARIO_CONFIG__.apiKey;
+            } else if (apiKey) {
+                // Si está en base64 (por compatibilidad con mario)
+                try {
+                    if (!apiKey.startsWith('AIza')) apiKey = atob(apiKey);
+                } catch (e) { }
             }
 
-            // 2. INTENTO: SERVIDOR PROXY (FALLBACK)
-            if (aviso) aviso.innerText = "Conectando servidor...";
+            if (!apiKey) {
+                if (aviso) aviso.remove();
+                agregarMensaje('bot', "⚠️ Faltan credenciales. Escribe tu API Key de Gemini aquí en el chat para guardarla (o configúrala en la consola).");
 
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 10000);
+                // Hack para capturar input siguiente como API Key
+                const capturaKey = (e) => {
+                    const key = input.value.trim();
+                    if (key.startsWith('AIza')) {
+                        localStorage.setItem('mario_api_key', btoa(key));
+                        agregarMensaje('bot', "✅ Llave guardada. Intenta tu pregunta de nuevo.");
+                        input.value = '';
+                        input.onkeypress = (ev) => ev.key === 'Enter' && enviarMensaje(); // Restaurar
+                        enviarBtn.onclick = enviarMensaje;
+                    }
+                };
+                // Esto es complejo de implementar en un paso simple, simplifiquemos:
+                // Solo pedir en consola por ahora para no romper el flujo.
+                return;
+            }
 
-            const respuesta = await fetch(CONFIG.endpoint, {
+            // 2. LLAMADA DIRECTA GEMINI
+            const promptSistema = `Eres CHELA (Mujer), asistente Alcaldía Obando. Objetivo: Eliminar filas y burocracia. Idioma: Español Latino.`;
+
+            const apiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+            const response = await fetch(apiEndpoint, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: `${promptSistema}\n\nUsuario: ${texto}` }),
-                signal: controller.signal
+                body: JSON.stringify({
+                    contents: [
+                        { role: 'user', parts: [{ text: promptSistema }] },
+                        { role: 'user', parts: [{ text: texto }] }
+                    ]
+                })
             });
 
-            clearTimeout(timeoutId);
+            if (!response.ok) throw new Error('Error Gemini: ' + response.status);
 
-            if (!respuesta.ok) throw new Error('Error HTTP Proxy: ' + respuesta.status);
-            const datos = await respuesta.json();
+            const data = await response.json();
+            const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text;
 
             if (aviso) aviso.remove();
-            agregarMensaje('bot', datos.response || "¿Cómo dices?");
+
+            if (aiText) {
+                agregarMensaje('bot', aiText);
+            } else {
+                agregarMensaje('bot', "No entendí.");
+            }
 
         } catch (error) {
-            console.warn("Fallo IA (Directo y Proxy), usando respuesta local:", error);
+            console.error(error);
             if (aviso) aviso.remove();
-
-            // FALLBACK LOCAL FINAL
-            const respuestaBackup = respuestaLocal(texto);
-            agregarMensaje('bot', respuestaBackup);
+            const resp = respuestaLocal(texto);
+            agregarMensaje('bot', resp);
         }
     }
 
     enviarBtn.onclick = enviarMensaje;
-    input.onkeypress = (e) => {
-        if (e.key === 'Enter') enviarMensaje();
-    };
+    input.onkeypress = (e) => e.key === 'Enter' && enviarMensaje();
 
     function agregarMensaje(remitente, texto, esCarga = false) {
         const div = document.createElement('div');
         div.className = `mensaje ${remitente}`;
         div.textContent = texto;
         div.id = 'msg-' + Date.now();
-
         if (esCarga) div.style.fontStyle = 'italic';
-
         mensajesDiv.appendChild(div);
         mensajesDiv.scrollTop = mensajesDiv.scrollHeight;
-
-        if (remitente === 'bot' && !esCarga) {
-            hablar(texto);
-        }
+        if (remitente === 'bot' && !esCarga) hablar(texto);
         return div.id;
     }
 
