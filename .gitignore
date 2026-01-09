@@ -31,3 +31,6 @@ docs/proposals/jose-loader.js
 **/*api-keys*.js
 .env
 .env.*
+
+# ALLOW loader for deployment (Required for bots to work)
+!docs/proposals/jose-loader.js
