@@ -11,7 +11,7 @@ class KarlaAssistant {
         this.proposalContext = config.proposalContext || '';
         this.pricingTiers = config.pricingTiers || [];
 
-        this.apiEndpoint = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
+        this.apiEndpoint = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
         this.isOpen = false;
         this.messages = [];
         this.synth = window.speechSynthesis;
@@ -190,15 +190,19 @@ REGLAS:
         return null;
     }
 
-    async _sendMessage() {
+    async _sendMessage(textArg = null, retryCount = 0) {
         const input = document.getElementById('karla-input');
         const sendBtn = document.getElementById('karla-send');
-        const text = input.value.trim();
+        const text = textArg || input.value.trim();
+
         if (!text) return;
 
-        sendBtn.disabled = true;
-        input.value = '';
-        this._addMessage('user', text);
+        if (!textArg) {
+            // Only clear input if it came from UI
+            input.value = '';
+            this._addMessage('user', text);
+            sendBtn.disabled = true;
+        }
 
         const apiKey = this._getApiKey();
         if (!apiKey) {
@@ -207,7 +211,16 @@ REGLAS:
             return;
         }
 
-        const loadingMsg = this._addMessage('karla', '...');
+        // Only show loading if first attempt
+        let loadingMsg;
+        if (retryCount === 0) {
+            loadingMsg = this._addMessage('karla', '...');
+        } else {
+            // Find the last message (which should be "...")
+            const msgs = document.getElementById('karla-messages').children;
+            loadingMsg = msgs[msgs.length - 1];
+            loadingMsg.textContent = '... (Connecting)';
+        }
 
         try {
             const response = await fetch(`${this.apiEndpoint}?key=${apiKey}`, {
@@ -220,15 +233,18 @@ REGLAS:
             });
 
             if (response.status === 429 || response.status === 403) {
-                // Try to rotate key
-                if (window.__MARIO_CONFIG__?.getNextKey) {
-                    const newKey = window.__MARIO_CONFIG__.getNextKey();
-                    loadingMsg.textContent = '🔄 Rotando API key, intenta de nuevo...';
-                } else {
-                    loadingMsg.textContent = '⚠️ API agotada. Espera 30 segundos.';
+                // Auto-Rotate Logic
+                if (retryCount < 6 && window.__MARIO_CONFIG__?.getNextKey) {
+                    console.warn(`⚠️ API Key Error (Attempt ${retryCount + 1}). Rotating...`);
+                    loadingMsg.textContent = '🔄 Adjusting connection...';
+
+                    window.__MARIO_CONFIG__.getNextKey(); // Updates global key
+                    await new Promise(r => setTimeout(r, 1000));
+
+                    // Recursive retry with the SAME text
+                    return this._sendMessage(text, retryCount + 1);
                 }
-                sendBtn.disabled = false;
-                return;
+                throw new Error("API_RESOURCES_EXHAUSTED");
             }
 
             if (!response.ok) throw new Error(`API Error ${response.status}`);
@@ -240,9 +256,15 @@ REGLAS:
 
         } catch (error) {
             console.error('Karla AI Error:', error);
-            loadingMsg.textContent = 'Error de conexión. Intenta de nuevo.';
+            if (error.message.includes("EXHAUSTED")) {
+                loadingMsg.textContent = '⚠️ Servidor ocupado (429). Por favor intenta en 1 minuto.';
+            } else {
+                loadingMsg.textContent = 'Error de conexión. Intenta de nuevo.';
+            }
         } finally {
-            sendBtn.disabled = false;
+            if (retryCount === 0 || !sendBtn.disabled) {
+                sendBtn.disabled = false;
+            }
         }
     }
 

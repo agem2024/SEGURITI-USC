@@ -144,37 +144,56 @@
         return ['bêrea', 'zocai', 'kare', 'mũra', 'embera', 'berea'].some(k => t.toLowerCase().includes(k));
     }
 
-    async function callGemini(txt, key, retryCount = 0) {
+    async function callGemini(txt, keyArg, retryCount = 0) {
+        // Use global loader if available
+        let key = keyArg;
+        if (window.__MARIO_CONFIG__?.apiKey) key = window.__MARIO_CONFIG__.apiKey;
+
         const forzarEmbera = idiomaSel.value === 'embera' || isEmbera(txt);
         const systemPrompt = `Eres CHELA, asistente de ORION Tech para Alcaldía de Obando.
 OBJETIVO: Vender "Municipio Digital". Zero filas, 24/7, transparencia.
 IDIOMAS: Español y Embera. Vocabulario: Bêrea (Hola), Zocai (Amigo), Kare (Gracias).
 ${forzarEmbera ? 'RESPONDE EN EMBERA.' : 'RESPONDE EN ESPAÑOL.'}`;
 
-        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                systemInstruction: { parts: [{ text: systemPrompt }] },
-                contents: [{ role: 'user', parts: [{ text: txt }] }]
-            })
-        });
+        try {
+            // Using gemini-1.5-flash for better stability
+            const modelVersion = 'gemini-1.5-flash';
+            const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modelVersion}:generateContent?key=${key}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    systemInstruction: { parts: [{ text: systemPrompt }] },
+                    contents: [{ role: 'user', parts: [{ text: txt }] }]
+                })
+            });
 
-        if (!res.ok) {
-            const errText = await res.text();
-            // Si es 429 o 403 y tenemos más keys, rotar
-            if ((res.status === 429 || res.status === 403) && retryCount < getKeys().length - 1) {
-                const nextKey = getNextKey();
-                if (nextKey && nextKey !== key) {
-                    console.log(`⚠️ Error ${res.status}, rotando key...`);
-                    return callGemini(txt, nextKey, retryCount + 1);
+            if (res.status === 429 || res.status === 403) {
+                throw new Error("RATE_LIMIT");
+            }
+
+            if (!res.ok) {
+                const errText = await res.text();
+                throw new Error(`API_ERROR: ${res.status} ${errText}`);
+            }
+
+            const data = await res.json();
+            return data.candidates?.[0]?.content?.parts?.[0]?.text || 'No pude responder.';
+
+        } catch (e) {
+            // Auto-Rotate Logic
+            if ((e.message.includes("RATE_LIMIT") || e.message.includes("429") || e.message.includes("403")) && retryCount < 6) {
+                console.warn(`⚠️ API Key Error (Attempt ${retryCount + 1}). Rotating...`);
+
+                if (window.__MARIO_CONFIG__?.getNextKey) {
+                    window.__MARIO_CONFIG__.getNextKey(); // Updates global key
+                    // Wait 1s before retry
+                    await new Promise(r => setTimeout(r, 1000));
+                    // Retry with new key from global state
+                    return callGemini(txt, null, retryCount + 1);
                 }
             }
-            throw new Error(`${res.status}: ${errText.substring(0, 100)}`);
+            throw e;
         }
-
-        const data = await res.json();
-        return data.candidates?.[0]?.content?.parts?.[0]?.text || 'No pude responder.';
     }
 
     async function enviar() {
