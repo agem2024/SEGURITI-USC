@@ -1,14 +1,16 @@
 /**
- * CHELA V9 - FUNCIONANDO
- * Sin Firebase módulos (causa errores CORS en GitHub Pages)
+ * CHELA V10 - Anti-spam + 429 handling
  * Autor: Antigravity
  */
 (function () {
     if (document.getElementById('chela-boton-flotante')) return;
-    console.log('🚀 CHELA V9 Iniciando...');
+    console.log('🚀 CHELA V10 Iniciando...');
 
-    // IMAGEN ABSOLUTA (EVITA PROBLEMAS DE RUTA)
     const CHELA_IMG = 'https://agem2024.github.io/SEGURITI-USC/proposals/obando/assets/chela.png';
+
+    // ANTI-SPAM GLOBALS
+    let enviando = false;
+    let ultimoEnvio = 0;
 
     // ESTILOS
     const estilo = document.createElement('style');
@@ -35,6 +37,7 @@
         #chela-input-area { padding: 15px; background: white; border-top: 1px solid #eee; display: flex; gap: 10px; }
         #chela-input { flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 20px; outline: none; }
         #chela-enviar { background: #00B050; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 18px; }
+        #chela-enviar:disabled { background: #ccc; cursor: not-allowed; }
     `;
     document.head.appendChild(estilo);
 
@@ -95,6 +98,7 @@
         d.textContent = text;
         mensajesDiv.appendChild(d);
         mensajesDiv.scrollTop = mensajesDiv.scrollHeight;
+        return d;
     }
 
     // API KEY
@@ -115,27 +119,35 @@
     async function enviar() {
         const txt = input.value.trim();
         if (!txt) return;
+
+        // ANTI-SPAM
+        const ahora = Date.now();
+        if (enviando) return;
+        if (ahora - ultimoEnvio < 1500) return;
+        enviando = true;
+        ultimoEnvio = ahora;
+        enviarBtn.disabled = true;
+
         input.value = '';
         addMsg('user', txt);
 
         const key = getKey();
         if (!key) {
             addMsg('bot', '⚠️ Necesito la API Key. Pégala aquí (AIza...) y presiona Enter.');
+            enviando = false;
+            enviarBtn.disabled = false;
             return;
         }
 
-        addMsg('bot', '...');
-        const loadingMsg = mensajesDiv.lastChild;
+        const loadingMsg = addMsg('bot', '...');
 
         try {
             const forzarEmbera = idiomaSel.value === 'embera' || isEmbera(txt);
 
             const systemPrompt = `Eres CHELA, asistente virtual de ORION Tech para la Alcaldía de Obando.
 OBJETIVO: Vender "Municipio Digital". Zero filas, atención 24/7, transparencia.
-
 IDIOMAS: Español y Embera Chamí.
 VOCABULARIO EMBERA: Bêrea (Hola), Zocai (Amigo), Kare (Gracias), Mũra (Yo soy).
-
 ${forzarEmbera ? 'RESPONDE EN EMBERA.' : 'RESPONDE EN ESPAÑOL.'}`;
 
             const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`, {
@@ -147,21 +159,33 @@ ${forzarEmbera ? 'RESPONDE EN EMBERA.' : 'RESPONDE EN ESPAÑOL.'}`;
                 })
             });
 
-            if (!res.ok) throw new Error(`Error ${res.status}`);
+            if (!res.ok) {
+                const errText = await res.text();
+                throw new Error(`${res.status}: ${errText}`);
+            }
 
             const data = await res.json();
             const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'No pude responder.';
-
             loadingMsg.textContent = reply;
 
         } catch (e) {
             console.error(e);
-            loadingMsg.textContent = 'Error: ' + e.message;
+            const msg = String(e?.message || "");
+            if (msg.includes("429")) {
+                loadingMsg.textContent = "⚠️ Gemini está saturado (429). Espera 30-60 segundos e intenta de nuevo.";
+            } else if (msg.includes("403")) {
+                loadingMsg.textContent = "❌ API Key inválida o sin permisos.";
+            } else {
+                loadingMsg.textContent = 'Error: ' + msg;
+            }
+        } finally {
+            enviando = false;
+            enviarBtn.disabled = false;
         }
     }
 
-    input.onkeydown = (e) => { if (e.key === 'Enter') enviar(); };
-    enviarBtn.onclick = enviar;
+    input.onkeydown = (e) => { if (e.key === 'Enter' && !enviando) enviar(); };
+    enviarBtn.onclick = () => { if (!enviando) enviar(); };
 
-    console.log('✅ CHELA V9 Lista');
+    console.log('✅ CHELA V10 Lista');
 })();
