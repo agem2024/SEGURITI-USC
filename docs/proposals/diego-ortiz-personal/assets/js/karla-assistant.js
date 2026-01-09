@@ -179,7 +179,7 @@ REGLAS:
         return msg;
     }
 
-    async _getApiKey() {
+    _getApiKey() {
         if (window.KARLA_KEYS && window.KARLA_KEYS.getKey) return window.KARLA_KEYS.getKey();
         return null;
     }
