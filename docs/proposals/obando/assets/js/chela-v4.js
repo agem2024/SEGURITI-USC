@@ -244,6 +244,7 @@
     }
 
     // Enviar Mensaje
+    // Enviar Mensaje
     async function enviarMensaje() {
         const texto = input.value.trim();
         if (!texto) return;
@@ -254,17 +255,43 @@
         const idCarga = agregarMensaje('bot', '...', true);
         const aviso = document.getElementById(idCarga);
 
-        // Aviso de espera
-        const timeoutAviso = setTimeout(() => {
-            if (aviso) aviso.innerText = "Conectando...";
-        }, 4000);
-
         try {
-            // INTENTO 1: LLAMADA AL SERVIDOR
-            let promptSistema = `CONTEXTO: Eres CHELA (Mujer), asistente Alcaldía Obando. IDIOMA: Español. Si detectas Embera ('Bêrea'), responde en Embera.`;
+            // CONTEXTO DEL SISTEMA
+            let promptSistema = `CONTEXTO: Eres CHELA (Mujer), asistente Alcaldía Obando. IDIOMA: Español. Si detectas Embera ('Bêrea'), responde en Embera. Responde corto y amable.`;
+
+            // 1. INTENTO: GEMINI CLIENT-SIDE DIRECTO (Si hay clave segura del loader)
+            const apiKey = window.__MARIO_CONFIG__?.apiKey || (localStorage.getItem('mario_api_key') ? atob(localStorage.getItem('mario_api_key')) : null);
+
+            if (apiKey) {
+                // MODIFICACIÓN CRÍTICA: USAR GEMINI DIRECTO PARA ESTABILIDAD
+                const apiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiEndpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [
+                            { role: 'user', parts: [{ text: promptSistema }] },
+                            { role: 'user', parts: [{ text: texto }] }
+                        ]
+                    })
+                });
+
+                const data = await response.json();
+                const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+
+                if (aiText) {
+                    if (aviso) aviso.remove();
+                    agregarMensaje('bot', aiText);
+                    return; // ÉXITO
+                }
+            }
+
+            // 2. INTENTO: SERVIDOR PROXY (FALLBACK)
+            if (aviso) aviso.innerText = "Conectando servidor...";
 
             const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 seg timeout máximo
+            const timeoutId = setTimeout(() => controller.abort(), 10000);
 
             const respuesta = await fetch(CONFIG.endpoint, {
                 method: 'POST',
@@ -275,20 +302,17 @@
 
             clearTimeout(timeoutId);
 
-            if (!respuesta.ok) throw new Error('Error HTTP: ' + respuesta.status);
+            if (!respuesta.ok) throw new Error('Error HTTP Proxy: ' + respuesta.status);
             const datos = await respuesta.json();
 
-            clearTimeout(timeoutAviso);
             if (aviso) aviso.remove();
-
             agregarMensaje('bot', datos.response || "¿Cómo dices?");
 
         } catch (error) {
-            clearTimeout(timeoutAviso);
+            console.warn("Fallo IA (Directo y Proxy), usando respuesta local:", error);
             if (aviso) aviso.remove();
-            console.warn("Fallo API, usando respuesta local:", error);
 
-            // FALLBACK: RESPUESTA LOCAL
+            // FALLBACK LOCAL FINAL
             const respuestaBackup = respuestaLocal(texto);
             agregarMensaje('bot', respuestaBackup);
         }
