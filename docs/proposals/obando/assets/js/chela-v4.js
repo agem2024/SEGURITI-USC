@@ -189,6 +189,34 @@
     boton.onclick = alternarChat;
     cerrarBtn.onclick = alternarChat;
 
+    // SÍNTESIS DE VOZ (TTS)
+    function cargarVoces() {
+        let voces = síntesisVoz.getVoices();
+        // Buscar voz de MUJER en Español
+        const preferidas = ['Google Español', 'Paulina', 'Sabina', 'Helena', 'Monica'];
+        vozSeleccionada = voces.find(v => preferidas.some(p => v.name.includes(p))) || voces.find(v => v.lang.startsWith('es'));
+    }
+
+    // Carga inicial y evento de cambio
+    if (síntesisVoz.onvoiceschanged !== undefined) {
+        síntesisVoz.onvoiceschanged = cargarVoces;
+    }
+    cargarVoces(); // Intentar cargar inmediatamente
+
+    function hablar(texto) {
+        if (!síntesisVoz) return;
+        síntesisVoz.cancel(); // Detener anterior
+
+        // Limpiar texto de símbolos raros
+        const textoLimpio = texto.replace(/[*#]/g, '').replace(/https?:\/\/\S+/g, '');
+
+        const enunciado = new SpeechSynthesisUtterance(textoLimpio);
+        if (vozSeleccionada) enunciado.voice = vozSeleccionada;
+        enunciado.lang = 'es-CO'; // Español Colombia
+        enunciado.rate = 1.1; // Un poco más fluido
+        síntesisVoz.speak(enunciado);
+    }
+
     // Enviar Mensaje
     async function enviarMensaje() {
         const texto = input.value.trim();
@@ -198,18 +226,23 @@
         agregarMensaje('usuario', texto);
 
         // Indicador de carga
-        const idCarga = agregarMensaje('bot', 'Escribiendo...', true);
+        const idCarga = agregarMensaje('bot', 'Pensando...', true);
+
+        // Timeout para avisar si Render está dormido
+        const timeoutAviso = setTimeout(() => {
+            const el = document.getElementById(idCarga);
+            if (el) el.innerText = "Despertando al servidor (puede tardar 30s)...";
+        }, 5000);
 
         try {
-            // DETECCIÓN DE IDIOMA (Embera Chamí)
+            // DETECCIÓN DE IDIOMA
             let promptSistema = `
-CONTEXTO: Eres CHELA, la asistente virtual de la Alcaldía de Obando, Valle del Cauca.
-OBJETIVO: Ayudar a los ciudadanos con trámites y dudas de forma amable y eficiente.
-IDIOMA: Español (Principal).
-IMPORTANTE: Si el usuario usa palabras como "Bêrea", "Zocai" o parece hablar en EMBERA CHAMÍ, intenta responder en ese idioma o saluda en Embera.
+CONTEXTO: Eres CHELA, la asistente virtual de la Alcaldía de Obando.
+TONO: Amable, servicial, mujer colombiana.
+OBJETIVO: Ayudar con trámites, precios y dudas.
+IDIOMA: Español. (Si detectas Embera Chamí, responde en Embera).
 `;
 
-            // Llamada al Servidor (Proxy)
             const respuesta = await fetch(CONFIG.endpoint, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -218,21 +251,28 @@ IMPORTANTE: Si el usuario usa palabras como "Bêrea", "Zocai" o parece hablar en
                 })
             });
 
+            clearTimeout(timeoutAviso); // Cancelar aviso de espera
+
             if (!respuesta.ok) throw new Error('Error en el servidor');
 
             const datos = await respuesta.json();
 
-            // Eliminar "Escribiendo..." y mostrar respuesta real
+            // Eliminar "Pensando..." y mostrar respuesta real
             const elCarga = document.getElementById(idCarga);
             if (elCarga) elCarga.remove();
 
-            agregarMensaje('bot', datos.response);
+            if (datos.response) {
+                agregarMensaje('bot', datos.response);
+            } else {
+                agregarMensaje('bot', "No entendí bien, ¿puedes repetir?");
+            }
 
         } catch (error) {
+            clearTimeout(timeoutAviso);
             console.error(error);
             const elCarga = document.getElementById(idCarga);
             if (elCarga) elCarga.remove();
-            agregarMensaje('bot', 'Lo siento, tengo un problema de conexión. Por favor intenta de nuevo.');
+            agregarMensaje('bot', 'Tuve un fallo de conexión. Intenta de nuevo.');
         }
     }
 
@@ -256,28 +296,6 @@ IMPORTANTE: Si el usuario usa palabras como "Bêrea", "Zocai" o parece hablar en
             hablar(texto);
         }
         return div.id;
-    }
-
-    // SÍNTESIS DE VOZ (TTS)
-    function cargarVoces() {
-        // Intentar silenciar carga inicial
-        let voces = síntesisVoz.getVoices();
-    }
-
-    if (síntesisVoz.onvoiceschanged !== undefined) {
-        síntesisVoz.onvoiceschanged = cargarVoces;
-    }
-
-    function hablar(texto) {
-        if (!síntesisVoz) return;
-        síntesisVoz.cancel(); // Detener anterior
-
-        // Limpiar texto de símbolos raros
-        const textoLimpio = texto.replace(/[*#]/g, '');
-
-        const enunciado = new SpeechSynthesisUtterance(textoLimpio);
-        enunciado.lang = 'es-CO'; // Español Colombia
-        síntesisVoz.speak(enunciado);
     }
 
 })();
