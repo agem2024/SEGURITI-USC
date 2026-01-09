@@ -591,7 +591,7 @@ Responde de manera conversacional, como si estuvieras tomando un café con el du
     async _callGemini(userMessage) {
         // AUTO-DETECT LANGUAGE from user message
         const isSpanish = /[áéíóúñ¿¡]/i.test(userMessage) ||
-            /\b(hola|qué|cómo|debo|habla|español|precio|cuánto)\b/i.test(userMessage);
+            /\b(hola|qué|que|cómo|como|debo|habla|español|precio|cuánto|cuanto|costo|cuesta|valor)\b/i.test(userMessage);
 
         if (isSpanish && this.language !== 'es') {
             this.setLanguage('es');
