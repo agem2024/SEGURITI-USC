@@ -589,59 +589,36 @@ Responde de manera conversacional, como si estuvieras tomando un café con el du
     }
 
     async _callGemini(userMessage) {
-        // Get API key from secure source (localStorage or backend)
-        const apiKey = this._getSecureApiKey();
+        // AUTO-DETECT LANGUAGE from user message
+        const isSpanish = /[áéíóúñ¿¡]/i.test(userMessage) ||
+            /\b(hola|qué|cómo|debo|habla|español|precio|cuánto)\b/i.test(userMessage);
 
-        if (!apiKey) {
-            console.warn('⚠️ MARIO: No API key found, using fallback responses');
-            return this._getFallbackResponse(userMessage);
+        if (isSpanish && this.language !== 'es') {
+            this.setLanguage('es');
+        } else if (!isSpanish && this.language !== 'en') {
+            this.setLanguage('en');
         }
 
+        // USE RENDER PROXY (Secure - keys never exposed in browser)
+        const PROXY_URL = 'https://seguriti-usc.onrender.com/chat';
+
         try {
-            const requestBody = {
-                contents: [
-                    {
-                        role: 'user',
-                        parts: [{ text: this.systemPrompt }]
-                    },
-                    ...this.messages.slice(-10),
-                    {
-                        role: 'user',
-                        parts: [{ text: userMessage }]
-                    }
-                ],
-                generationConfig: {
-                    temperature: 0.7,
-                    maxOutputTokens: 400,
-                    topP: 0.9
-                }
-            };
-
-            console.log('🤖 MARIO calling Gemini API...');
-
-            const response = await fetch(`${this.apiEndpoint}?key=${apiKey}`, {
+            const response = await fetch(PROXY_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(requestBody)
+                body: JSON.stringify({
+                    message: `${this.systemPrompt}\n\nUser: ${userMessage}`
+                })
             });
 
             if (!response.ok) {
-                console.error('MARIO API Error:', response.status, response.statusText);
-                return this._getFallbackResponse(userMessage);
+                throw new Error(`Server error: ${response.status}`);
             }
 
             const data = await response.json();
-            const aiResponse = data.candidates?.[0]?.content?.parts?.[0]?.text;
-
-            if (!aiResponse) {
-                console.error('MARIO: Empty response from API');
-                return this._getFallbackResponse(userMessage);
-            }
-
-            return aiResponse;
-
-        } catch (error) {
-            console.error('MARIO API Exception:', error);
+            return data.response || "I'm analyzing the data...";
+        } catch (e) {
+            console.error('MARIO API Exception:', e);
             return this._getFallbackResponse(userMessage);
         }
     }
