@@ -12,26 +12,27 @@
     let enviando = false;
     let ultimoEnvio = 0;
 
-    // API KEY ROTATION
+    // API KEY ROTATION - Uses Mario Loader V3
     let currentKeyIndex = 0;
     function getKeys() {
         const keys = [];
-        // 1. Key del loader (mario-loader-v2.js)
+        // 1. Key del loader (mario-loader-v3.js) - tiene múltiples keys
         if (window.__MARIO_CONFIG__?.apiKey) keys.push(window.__MARIO_CONFIG__.apiKey);
-        // 2. Key del localStorage
+
+        // 2. Segunda key del loader (si existe getNextKey)
+        if (window.__MARIO_CONFIG__?.getNextKey && window.__MARIO_CONFIG__?.keyCount > 1) {
+            const backupKey = window.__MARIO_CONFIG__.getNextKey();
+            if (backupKey && !keys.includes(backupKey)) keys.push(backupKey);
+            // Volver a la primera key
+            window.__MARIO_CONFIG__.getNextKey();
+        }
+
+        // 3. Key del localStorage
         const stored = localStorage.getItem('mario_api_key');
         if (stored) {
             try {
                 const k = stored.startsWith('AIza') ? stored : atob(stored);
                 if (!keys.includes(k)) keys.push(k);
-            } catch (e) { }
-        }
-        // 3. Keys adicionales (puedes agregar más aquí)
-        const extra = localStorage.getItem('gemini_backup_keys');
-        if (extra) {
-            try {
-                const arr = JSON.parse(extra);
-                arr.forEach(k => { if (k && !keys.includes(k)) keys.push(k); });
             } catch (e) { }
         }
         return keys;
