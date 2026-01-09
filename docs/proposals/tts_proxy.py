@@ -12,6 +12,7 @@ app = Flask(__name__)
 CORS(app)  # Permitir CORS desde cualquier origen
 
 # OpenAI client (usa variable de entorno o archivo local)
+# OpenAI client (usa variable de entorno o archivo local)
 client = None
 
 def init_openai():
@@ -38,8 +39,11 @@ def init_openai():
         client = OpenAI(api_key=api_key)
         print("✅ OpenAI client initialized")
     else:
-        print("❌ No OpenAI API key found!")
-        raise Exception("OPENAI_API_KEY required")
+        print("❌ No OpenAI API key found! (Check Render Environment Variables)")
+        # raise Exception("OPENAI_API_KEY required") # Don't crash immediately, allow health checks
+
+# Initialize immediately for Gunicorn
+init_openai()
 
 
 @app.route('/tts', methods=['POST'])
