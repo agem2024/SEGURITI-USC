@@ -231,21 +231,50 @@ INSTRUCCIONES DE RESPUESTA:
     async _callGemini(userMessage) {
         const apiKey = this._getSecureApiKey();
         if (!apiKey) return "Configuration Error: API Key Missing";
-        try {
-            const response = await fetch(`${this.apiEndpoint}?key=${apiKey}`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    contents: [
-                        { role: 'user', parts: [{ text: this.systemPrompt }] },
-                        ...this.messages.slice(-10),
-                        { role: 'user', parts: [{ text: userMessage }] }
-                    ]
-                })
-            });
-            const data = await response.json();
-            return data.candidates?.[0]?.content?.parts?.[0]?.text || "I'm analyzing the data...";
-        } catch (e) { return "Connection Error"; }
+
+        // RETRY LOGIC: Try up to 3 times with different API keys
+        let attempts = 0;
+        const maxAttempts = 3;
+
+        while (attempts < maxAttempts) {
+            try {
+                const currentKey = attempts === 0 ? apiKey : this._getNextApiKey();
+                const response = await fetch(`${this.apiEndpoint}?key=${currentKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [
+                            { role: 'user', parts: [{ text: this.systemPrompt }] },
+                            ...this.messages.slice(-10),
+                            { role: 'user', parts: [{ text: userMessage }] }
+                        ]
+                    })
+                });
+
+                // If API returns 400/403 (bad/invalid key), rotate to next key
+                if (response.status === 400 || response.status === 403) {
+                    console.warn(`API key ${attempts + 1} failed (${response.status}). Trying backup key...`);
+                    attempts++;
+                    continue;
+                }
+
+                const data = await response.json();
+                return data.candidates?.[0]?.content?.parts?.[0]?.text || "I'm analyzing the data...";
+            } catch (e) {
+                console.error(`Attempt ${attempts + 1} failed:`, e);
+                attempts++;
+                if (attempts >= maxAttempts) return "Connection Error";
+            }
+        }
+
+        return "All API keys exhausted. Please contact support.";
+    }
+
+    _getNextApiKey() {
+        if (window.ORION_CONFIG && window.ORION_CONFIG.getNextAuth) {
+            return window.ORION_CONFIG.getNextAuth();
+        }
+        return null;
     }
 
     _getSecureApiKey() {
