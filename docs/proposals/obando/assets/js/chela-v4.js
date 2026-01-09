@@ -1,14 +1,34 @@
 /**
- * CHELA - Asistente Virtual V7 (Pro Patch: SystemInstruction + Selector + RobustKey)
+ * CHELA - Asistente Virtual V8 (Firebase Migration)
  * Alcaldía de Obando
- * Autor: Antigravity (Siguiendo instrucciones técnicas EXPERTAS)
+ * Autor: Antigravity
  */
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyBofL3DyAI6yJKbbEPFYmC8kky02ay454o",
+    authDomain: "chela-ed0e0.firebaseapp.com",
+    projectId: "chela-ed0e0",
+    storageBucket: "chela-ed0e0.firebasestorage.app",
+    messagingSenderId: "1067353283224",
+    appId: "1:1067353283224:web:6b1e5db2990a68e1deceed",
+    measurementId: "G-WGYHCWPG0X"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+console.log('🔥 Firebase Initialized for Chela');
 
 (function () {
     // Evitar duplicados
     if (document.getElementById('chela-boton-flotante')) return;
 
-    console.log('🚀 Iniciando CHELA V7...');
+    console.log('🚀 Iniciando CHELA V8 (Firebase Enabled)...');
 
     // CONFIGURACIÓN
     const CONFIG = {
@@ -89,11 +109,14 @@
 
     // 3. LOGICA KEY
     function getApiKey() {
+        // 1. Prioridad: Config Inyectada (Cloud/Loader) - Igual que Mario Assistant
+        if (window.__MARIO_CONFIG__?.apiKey) return window.__MARIO_CONFIG__.apiKey;
+
+        // 2. Fallback: LocalStorage (Dev/Manual)
         const manual = localStorage.getItem('mario_api_key');
         if (manual) {
             try { return manual.startsWith('AIza') ? manual : atob(manual); } catch (e) { return manual; }
         }
-        if (window.__MARIO_CONFIG__?.apiKey) return window.__MARIO_CONFIG__.apiKey;
         return null;
     }
 
@@ -172,16 +195,26 @@
             if (modoIdioma === 'auto' && isEmbera(txt)) forzarEmbera = true;
 
             // SYSTEM PROMPT
-            let systemPrompt = `CONTEXTO: Eres CHELA (mujer), de ORION TECH.
-            OBJETIVO: Vender modernización a Alcaldía Obando.
-            PUNTOS: Zero Filas, 24/7, Idiomas (Embera), Precio ($15M).
+            let systemPrompt = `CONTEXTO: Eres CHELA (mujer), Asistente Virtual de ORION TECH.
+            OBJETIVO: Vender el proyecto "Municipio Digital" a la Alcaldía de Obando.
+            PUNTOS CLAVE: Zero Filas, Atención 24/7, Inclusión (Idiomas), ROI Social inmediato.
             
-            Regla de idioma:
-            - Si se te indica Embera, responde SOLO en Embera. No mezcles español.
-            - Si NO sabes suficiente Embera para responder bien, di: "No sé suficiente Embera para responder bien" y pide español.
+            IDIOMAS: Español (Principal) y EMBERA CHAMÍ (Secundario/Inclusivo).
             
-            Ejemplos (Embera):
-            Usuario: "Bêrea" -> Chela: "Bêrea. Mũra Chela. ¿Kĩra bʉra?"`;
+            VOCABULARIO EMBERA BÁSICO (Úsalo si te saludan en Embera):
+            - Hola / Buenos días: "Bêrea"
+            - ¿Cómo estás?: "¿Bêrea kĩra?" o "¿Sâka nʉ?"
+            - Bien: "Bêrea" o "Nʉ"
+            - Yo soy: "Mũra"
+            - Gracias: "Kare"
+            - Amigo/a: "Zocai"
+            
+            REGLA DE ORO:
+            - Si el usuario habla Español, vende en Español persuasivo.
+            - Si el usuario usa palabras Embera ("Bêrea", "Zocai"), DEMUESTRA la capacidad inclusiva respondiendo en Embera.
+            
+            Ejemplos Embera:
+            Usuario: "Bêrea" -> Chela: "Bêrea, zocai. Mũra Chela. ¿Bêrea kĩra?"`;
 
             if (forzarEmbera) {
                 systemPrompt += `\nIMPORTANTE: RESPONDE SOLO EN EMBERA.\n`;

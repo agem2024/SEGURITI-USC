@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ORION Tech | Proposal for LGB Autowork</title>
+    <title>ORION Tech Proposal | Mike Counsil Plumbing</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap"
         rel="stylesheet">
@@ -12,14 +12,11 @@
         :root {
             --bg-dark: #050508;
             --bg-card: #0a0a12;
-            --accent-blue: #ff6b00;
-            /* LGB Autowork NAPA Orange */
-            --accent-teal: #ff6b00;
-            /* Unified Theme */
+            --accent-blue: #00a8ff;
+            --accent-teal: #00d4aa;
             --accent-gold: #ffd700;
             --accent-purple: #a855f7;
-            --accent-red: #1a73e8;
-            /* LGB Autowork NAPA Blue */
+            --accent-red: #ff4444;
             --accent-orange: #ff6b35;
             --text-white: #ffffff;
             --text-gray: #888;
@@ -29,6 +26,12 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
         }
 
         body {
@@ -88,9 +91,9 @@
             text-align: center;
             padding: 60px 20px;
             background:
-                radial-gradient(circle at top right, rgba(232, 0, 41, 0.25) 0%, transparent 60%),
-                radial-gradient(circle at bottom left, rgba(64, 180, 229, 0.2) 0%, transparent 60%),
-                url('lgb_hero.png') center/cover no-repeat,
+                radial-gradient(ellipse at top, rgba(0, 168, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom, rgba(0, 212, 170, 0.1) 0%, transparent 50%),
+                url('./mike_counsil_hero.png') center/cover no-repeat,
                 var(--bg-dark);
             position: relative;
         }
@@ -1009,18 +1012,17 @@
             gap: 20px;
             justify-content: center;
             flex-wrap: wrap;
-            margin-top: 30px;
         }
 
         .partner-badge {
-            background: rgba(0, 212, 170, 0.1);
-            border: 1px solid rgba(0, 212, 170, 0.3);
+            background: rgba(0, 212, 170, 0.15);
+            border: 1px solid rgba(0, 212, 170, 0.4);
             padding: 15px 30px;
-            border-radius: 8px;
-            color: var(--text-gray);
-            font-weight: 500;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
+            border-radius: 12px;
+            color: var(--text-white);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.3s;
         }
 
         .partner-badge:hover {
@@ -1075,20 +1077,20 @@
 
     <!-- FLOATING ACTION BUTTONS -->
     <div class="floating-buttons">
-        <a href="https://wa.me/16692342444?text=LGB%20Autowork%20-%20Interested%20in%20ORION%20Platform"
-            class="float-btn whatsapp" title="Chat on WhatsApp" target="_blank" style="z-index: 10001;">
-            <video autoplay muted loop playsinline
-                poster="https://agem2024.github.io/SEGURITI-USC/images/whatsapp_logo.png">
-                <source src="https://agem2024.github.io/SEGURITI-USC/img_automation.mp4" type="video/mp4">
+        <a href="https://wa.me/16692342444?text=Mike%20Counsil%20Plumbing%20-%20Interested%20in%20ORION%20Platform"
+            class="float-btn whatsapp" title="WhatsApp">
+            <video autoplay muted loop playsinline>
+                <source src="https://agem2024.github.io/SEGURITI-USC/images/capability_whatsapp_bot_1765573180451.mp4"
+                    type="video/mp4">
             </video>
         </a>
         <a href="https://agem2024.github.io/SEGURITI-USC/orion-bots.html" target="_blank" class="float-btn website"
-            title="ORION Website" style="z-index: 10001;">
+            title="ORION Website">
             <video autoplay muted loop playsinline>
                 <source src="https://agem2024.github.io/SEGURITI-USC/images/orion_logo_2090.mp4" type="video/mp4">
             </video>
         </a>
-        <a href="tel:+16692342444" class="float-btn phone" title="Call Now" style="z-index: 10001;">
+        <a href="tel:+16692342444" class="float-btn phone" title="Call Now">
             <video autoplay muted loop playsinline>
                 <source src="https://agem2024.github.io/SEGURITI-USC/images/phone_icon.mp4" type="video/mp4">
             </video>
@@ -1104,26 +1106,23 @@
 
     <!-- HERO -->
     <section class="hero">
-        <img src="https://agem2024.github.io/SEGURITI-USC/images/orion-logo.png" alt="ORION Tech" class="logo-orion"
-            onerror="this.style.display='none'">
 
         <div class="badge lang-en">⚡ COMPLETE OPERATIONS PLATFORM 2026</div>
         <div class="badge lang-es">⚡ PLATAFORMA OPERATIVA COMPLETA 2026</div>
 
-        <h1>LGB Autowork SAN JOSE
-            <span class="lang-en">Precision Auto Care • Smart Diagnosis • AI Dispatch • No Callbacks</span>
-            <span class="lang-es">Plomería de Precisión • Diagnóstico IA • Dispatch IA • Cero Callbacks</span>
+        <h1>MIKE COUNSIL PLUMBING
+            <span class="lang-en">Total Business Automation • Fleet • Payroll • Dispatch • AI</span>
+            <span class="lang-es">Automatización Total • Flota • Nómina • Dispatch • IA</span>
         </h1>
 
-        <p class="lang-en">From Advanced Autowork Technology to AI-Powered Precision.
-            Eliminate misdiagnosis, stop expensive callbacks, and provide visual proof for every job.
-            Upgrade your "Autowork Tech" to 2026 Standards.</p>
-        <p class="lang-es">De Tecnología Autowork Avanzada a Precisión Potenciada por IA.
-            Elimine diagnósticos erróneos, detenga callbacks costosos y provea prueba visual en cada trabajo.
-            Actualice su "Tecnología Autowork" a Estándares 2026.</p>
+        <p class="lang-en">After 30+ years leading the South Bay, it's time for COMPLETE transformation.
+            Not just a bot — a full operational platform that handles calls, dispatches technicians,
+            tracks your fleet, manages payroll, eliminates paper, and puts AI to work 24/7.</p>
+        <p class="lang-es">Después de 30+ años liderando el South Bay, es hora de una transformación COMPLETA.
+            No solo un bot — una plataforma operativa que maneja llamadas, despacha técnicos,
+            rastrea su flota, gestiona nómina, elimina papel, y pone la IA a trabajar 24/7.</p>
 
-        <a href="https://wa.me/16692342444?text=LGB Autowork%20Autowork%20-%20Full%20Platform%20Demo"
-            class="btn btn-primary">
+        <a href="https://wa.me/16692342444?text=Mike%20Counsil%20-%20Full%20Platform%20Demo" class="btn btn-primary">
             🚀 <span class="lang-en">REQUEST FULL DEMO</span><span class="lang-es">SOLICITAR DEMO COMPLETO</span>
         </a>
     </section>
@@ -1133,11 +1132,6 @@
         <div class="section-title">
             <h2 class="lang-en">// SIMULTANEOUS CAPACITY</h2>
             <h2 class="lang-es">// CAPACIDAD SIMULTÁNEA</h2>
-            <div class="client-name">PREPARED FOR: Owner SCHAFER & LGB Autowork TEAM</div>
-            <h1 class="lang-en">ADVANCED Autowork TECH <br>MEETS <span class="highlight">ARTIFICIAL INTELLIGENCE</span>
-            </h1>
-            <h1 class="lang-es">TECNOLOGÍA Autowork AVANZADA <br>ENCUENTRA <span class="highlight">INTELIGENCIA
-                    ARTIFICIAL</span></h1>
             <p class="lang-en">What your ORION Platform can handle at the SAME time</p>
             <p class="lang-es">Lo que su Plataforma ORION puede manejar AL MISMO TIEMPO</p>
         </div>
@@ -1188,53 +1182,52 @@
     </section>
 
     <!-- $89 COMPARISON -->
-    <!-- COMPARISON -->
     <section class="comparison">
         <div class="section-title" style="max-width: 1100px; margin: 0 auto;">
-            <h2 class="lang-en">// GUESSWORK vs PRECISION DIAGNOSIS</h2>
-            <h2 class="lang-es">// ADIVINANZAS vs DIAGNÓSTICO DE PRECISIÓN</h2>
+            <h2 class="lang-en">// $89 VISIT vs FREE AI DIAGNOSIS</h2>
+            <h2 class="lang-es">// VISITA DE $89 vs DIAGNÓSTICO IA GRATIS</h2>
         </div>
         <div class="comparison-grid">
             <div class="comparison-box old">
                 <h3 class="lang-en">CURRENT SYSTEM</h3>
                 <h3 class="lang-es">SISTEMA ACTUAL</h3>
-                <div class="price">CALLBACKS</div>
-                <p style="color: var(--accent-red); margin-bottom: 20px; font-weight: 600;" class="lang-en">Techs
-                    guessing the problem</p>
-                <p style="color: var(--accent-red); margin-bottom: 20px; font-weight: 600;" class="lang-es">Técnicos
-                    adivinando el problema</p>
+                <div class="price">$89</div>
+                <p style="color: var(--accent-red); margin-bottom: 20px; font-weight: 600;" class="lang-en">Per estimate
+                    visit</p>
+                <p style="color: var(--accent-red); margin-bottom: 20px; font-weight: 600;" class="lang-es">Por visita
+                    de estimado</p>
                 <ul class="lang-en">
-                    <li>Subjective mechanic opinions</li>
-                    <li>Charging for "process of elimination"</li>
-                    <li>Frustrated clients needing re-work</li>
-                    <li>Losing trust with every return visit</li>
+                    <li>Wait 24-48 hours for technician</li>
+                    <li>Pay before knowing the problem</li>
+                    <li>Competitors offer FREE estimates</li>
+                    <li>Losing leads to price barrier</li>
                 </ul>
                 <ul class="lang-es">
-                    <li>Opiniones subjetivas del técnico</li>
-                    <li>Cobrando por "proceso de eliminación"</li>
-                    <li>Clientes frustrados por re-trabajos</li>
-                    <li>Perdiendo confianza con cada visita extra</li>
+                    <li>Esperar 24-48 horas por técnico</li>
+                    <li>Pagar antes de saber el problema</li>
+                    <li>Competencia ofrece estimados GRATIS</li>
+                    <li>Perdiendo leads por barrera de precio</li>
                 </ul>
             </div>
             <div class="vs-badge">VS</div>
             <div class="comparison-box new">
-                <h3>ORION AI</h3>
-                <div class="price">EXACT</div>
-                <p style="color: var(--accent-teal); margin-bottom: 20px; font-weight: 600;" class="lang-en">Visual
-                    Evidence First</p>
-                <p style="color: var(--accent-teal); margin-bottom: 20px; font-weight: 600;" class="lang-es">Evidencia
-                    Visual Primero</p>
+                <h3>MP PRO AI</h3>
+                <div class="price">$0</div>
+                <p style="color: var(--accent-teal); margin-bottom: 20px; font-weight: 600;" class="lang-en">Instant AI
+                    diagnosis</p>
+                <p style="color: var(--accent-teal); margin-bottom: 20px; font-weight: 600;" class="lang-es">Diagnóstico
+                    IA instantáneo</p>
                 <ul class="lang-en">
-                    <li>AI analyzes video/photo instantly</li>
-                    <li>Visual proof of the root cause</li>
-                    <li>Fixed quote based on data</li>
-                    <li>Zero callbacks, 100% resolution</li>
+                    <li>Send photo → Get diagnosis in SECONDS</li>
+                    <li>Automatic price range</li>
+                    <li>Book technician in ONE click</li>
+                    <li>100% leads captured, zero friction</li>
                 </ul>
                 <ul class="lang-es">
-                    <li>IA analiza video/foto al instante</li>
-                    <li>Prueba visual de la causa raíz</li>
-                    <li>Cotización fija basada en datos</li>
-                    <li>Cero callbacks, 100% resolución</li>
+                    <li>Envía foto → Diagnóstico en SEGUNDOS</li>
+                    <li>Rango de precio automático</li>
+                    <li>Agenda técnico en UN click</li>
+                    <li>100% leads capturados, cero fricción</li>
                 </ul>
             </div>
         </div>
@@ -1257,14 +1250,10 @@
             </h3>
             <div class="feature-grid">
                 <div class="feature-card">
-                    <div class="status-item">
-                        <div class="label">CLIENT</div>
-                        <div class="value">LGB Autowork</div>
-                    </div>
                     <div class="icon">🏆</div>
                     <h3 class="lang-en">30+ YEARS REPUTATION</h3>
                     <h3 class="lang-es">30+ AÑOS DE REPUTACIÓN</h3>
-                    <p class="lang-en">Established trust in South Bay since 1994. Recognition as official mechanic for
+                    <p class="lang-en">Established trust in South Bay since 1994. Recognition as official plumber for
                         Sharks, Earthquakes, Giants.</p>
                     <p class="lang-es">Confianza establecida en South Bay desde 1994. Reconocimiento como plomero
                         oficial de Sharks, Earthquakes, Giants.</p>
@@ -1328,26 +1317,26 @@
             </h3>
             <div class="feature-grid">
                 <div class="feature-card" style="border-color: rgba(255, 68, 68, 0.3);">
-                    <div class="icon">�</div>
-                    <h3 style="color: var(--accent-red);" class="lang-en">COSTLY CALLBACKS</h3>
-                    <h3 style="color: var(--accent-red);" class="lang-es">CALLBACKS COSTOSOS</h3>
-                    <p class="lang-en">Misdiagnosis leads to return visits. Refunds and bad reviews kill profitability.
-                    </p>
-                    <p class="lang-es">El mal diagnóstico lleva a visitas de retorno. Reembolsos y malas reseñas matan
-                        la rentabilidad.</p>
+                    <div class="icon">💸</div>
+                    <h3 style="color: var(--accent-red);" class="lang-en">$89 ESTIMATE VISIT FEE</h3>
+                    <h3 style="color: var(--accent-red);" class="lang-es">VISITA DE ESTIMADO $89</h3>
+                    <p class="lang-en">Barrier to entry loses leads to competitors offering free estimates. Price
+                        friction before trust is established.</p>
+                    <p class="lang-es">Barrera de entrada pierde leads ante competidores que ofrecen estimados gratis.
+                        Fricción de precio antes de establecer confianza.</p>
                     <div
                         style="margin-top: 15px; padding: 10px; background: rgba(0, 212, 170, 0.15); border: 1px solid var(--accent-teal); border-radius: 8px;">
                         <span style="color: var(--accent-teal); font-weight: 700;" class="lang-en">🤖 AI
                             SOLUTION:</span>
                         <span style="color: var(--accent-teal); font-weight: 700;" class="lang-es">🤖 SOLUCIÓN
                             IA:</span>
-                        <span style="color: var(--text-white); font-size: 0.85rem;" class="lang-en">MP PRO forces visual
-                            verification BEFORE quoting.</span>
-                        <span style="color: var(--text-white); font-size: 0.85rem;" class="lang-es">MP PRO fuerza
-                            verificación visual ANTES de cotizar.</span>
+                        <span style="color: var(--text-white); font-size: 0.85rem;" class="lang-en">MP PRO provides FREE
+                            instant AI diagnosis. Capture 100% of leads.</span>
+                        <span style="color: var(--text-white); font-size: 0.85rem;" class="lang-es">MP PRO proporciona
+                            diagnóstico IA GRATIS instantáneo. Capture 100% de leads.</span>
                         <div style="margin-top: 8px; color: var(--accent-gold); font-weight: 600; font-size: 0.9rem;">
-                            <span class="lang-en">📈 Projected: -80% callbacks</span>
-                            <span class="lang-es">📈 Proyectado: -80% callbacks</span>
+                            <span class="lang-en">📈 Projected: +40% lead capture rate</span>
+                            <span class="lang-es">📈 Proyectado: +40% tasa de captura de leads</span>
                         </div>
                     </div>
                 </div>
@@ -1404,7 +1393,7 @@
                     <div class="icon">📦</div>
                     <h3 style="color: var(--accent-red);" class="lang-en">INVENTORY INEFFICIENCY</h3>
                     <h3 style="color: var(--accent-red);" class="lang-es">INEFICIENCIA DE INVENTARIO</h3>
-                    <p class="lang-en">mechanics lose 1.5-2 hours/day searching for parts. No real-time visibility
+                    <p class="lang-en">Technicians lose 1.5-2 hours/day searching for parts. No real-time visibility
                         into truck inventory.</p>
                     <p class="lang-es">Técnicos pierden 1.5-2 horas/día buscando piezas. Sin visibilidad en tiempo real
                         del inventario de camiones.</p>
@@ -1475,76 +1464,7 @@
             </div>
         </div>
 
-        <!-- COMPETITIVE & PARTNER LANDSCAPE (NEW) -->
-        <div style="margin-bottom: 50px;">
-            <h3 style="color: var(--accent-gold); text-align: center; margin-bottom: 30px; font-size: 1.3rem;">
-                <span class="lang-en">🤝 NEIGHBORS & COMPETITIVE LANDSCAPE</span>
-                <span class="lang-es">🤝 VECINOS Y PANORAMA COMPETITIVO</span>
-            </h3>
-            <div
-                style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; overflow-x: auto;">
-                <table style="width: 100%; border-collapse: collapse; min-width: 600px;">
-                    <thead>
-                        <tr style="border-bottom: 2px solid var(--accent-gold);">
-                            <th style="padding: 15px; text-align: left; color: var(--accent-gold);">Business</th>
-                            <th style="padding: 15px; text-align: left; color: var(--accent-gold);">Type</th>
-                            <th style="padding: 15px; text-align: left; color: var(--accent-gold);">Relation /
-                                Opportunity</th>
-                            <th style="padding: 15px; text-align: left; color: var(--accent-gold);">Distance</th>
-                        </tr>
-                    </thead>
-                    <tbody style="font-size: 0.9rem;">
-                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                            <td style="padding: 15px; font-weight: 600;">Quality Tune-Up Car Care</td>
-                            <td style="padding: 15px;">Franchise / Speed</td>
-                            <td style="padding: 15px;">
-                                <span class="lang-en" style="color: var(--accent-red);">Direct Competitor.</span>
-                                <span class="lang-es" style="color: var(--accent-red);">Competidor Directo.</span>
-                                <br>High volume, less personal.
-                            </td>
-                            <td style="padding: 15px;">0.8 mi</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                            <td style="padding: 15px; font-weight: 600;">Reliable Auto Repair</td>
-                            <td style="padding: 15px;">Independent</td>
-                            <td style="padding: 15px;">
-                                <span class="lang-en" style="color: var(--accent-red);">Competitor.</span>
-                                <span class="lang-es" style="color: var(--accent-red);">Competidor.</span>
-                                <br>General repair, similar model.
-                            </td>
-                            <td style="padding: 15px;">2.5 mi</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                            <td style="padding: 15px; font-weight: 600; color: var(--accent-teal);">B & S Hacienda Auto
-                                Body</td>
-                            <td style="padding: 15px;">Body Shop</td>
-                            <td style="padding: 15px;">
-                                <span class="lang-en" style="color: var(--accent-teal);">Potential Partner.</span>
-                                <span class="lang-es" style="color: var(--accent-teal);">Socio Potencial.</span>
-                                <br>Referral Exchange (Mech <-> Body).
-                            </td>
-                            <td style="padding: 15px;">Nearby</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 15px; font-weight: 600;">Capitol Auto Care</td>
-                            <td style="padding: 15px;">Smog & General</td>
-                            <td style="padding: 15px;">Competitor (Smog focus)</td>
-                            <td style="padding: 15px;">East SJ</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div style="margin-top: 15px; padding: 10px; background: rgba(0, 212, 170, 0.1); border-radius: 8px;">
-                    <span style="color: var(--accent-teal); font-weight: 600;" class="lang-en">ORION Edge:</span>
-                    <span style="color: var(--accent-teal); font-weight: 600;" class="lang-es">Ventaja ORION:</span>
-                    <span style="color: var(--text-gray); font-size: 0.85rem;" class="lang-en">While competitors rely on
-                        volume or paper, LGB becomes the ONLY AI-First shop in the area. </span>
-                    <span style="color: var(--text-gray); font-size: 0.85rem;" class="lang-es">Mientras los competidores
-                        dependen del volumen o papel, LGB se convierte en el ÚNICO taller IA-First de la zona.</span>
-                </div>
-            </div>
-        </div>
-
-
+        <!-- TRANSFORMATION SUMMARY -->
         <div
             style="background: linear-gradient(135deg, rgba(0, 168, 255, 0.1), rgba(0, 212, 170, 0.1)); border: 1px solid rgba(0, 212, 170, 0.3); border-radius: 16px; padding: 40px; text-align: center;">
             <h3 style="color: var(--accent-teal); margin-bottom: 20px; font-size: 1.5rem;">
@@ -1589,7 +1509,7 @@
         <div class="section-title">
             <h2 class="lang-en">// COMPLETE OPERATIONS PLATFORM</h2>
             <h2 class="lang-es">// PLATAFORMA OPERATIVA COMPLETA</h2>
-            <p class="lang-en">Everything you need to run a modern Auto Care enterprise</p>
+            <p class="lang-en">Everything you need to run a modern plumbing enterprise</p>
             <p class="lang-es">Todo lo que necesita para operar una empresa de plomería moderna</p>
         </div>
         <div class="feature-grid">
@@ -1731,7 +1651,7 @@
                     <li>Photo/video analysis</li>
                     <li>Automatic problem identification</li>
                     <li>Price range from YOUR Price Book</li>
-                    <li>One-click mechanic booking</li>
+                    <li>One-click technician booking</li>
                 </ul>
                 <ul class="lang-es">
                     <li>Análisis de foto/video</li>
@@ -1819,24 +1739,20 @@
     </section>
 
     <!-- PARTNERS SECTION -->
-    <!-- TRUST SECTION -->
     <section class="partners-section">
         <div class="partners-content">
-            <h2 class="lang-en">� TRUSTED COMMUNITY EXPERTS</h2>
-            <h2 class="lang-es">� EXPERTOS DE CONFIANZA EN LA COMUNIDAD</h2>
-            <p class="lang-en">LGB Autowork has built a reputation for honest work and supporting the San Jose
-                community.
-                Now, elevate that trust with 100% transparent AI diagnostics. Show your customers you have nothing to
-                hide.</p>
-            <p class="lang-es">LGB Autowork ha construido una reputación de trabajo honesto y apoyo a la comunidad de
-                San
-                Jose.
-                Ahora, eleve esa confianza con diagnósticos IA 100% transparentes. Muestre a sus clientes que no tiene
-                nada que ocultar.</p>
+            <h2 class="lang-en">🏒 CHAMPIONS TEAM PARTNERS</h2>
+            <h2 class="lang-es">🏒 PARTNERS DE EQUIPOS CAMPEONES</h2>
+            <p class="lang-en">Mike Counsil Plumbing already understands the value of strategic partnerships.
+                As the official plumber for San Jose's major teams, you know that cutting-edge
+                technology is key to staying on top. ORION Tech is your next championship partner.</p>
+            <p class="lang-es">Mike Counsil Plumbing ya entiende el valor de partnerships estratégicos.
+                Como plomero oficial de los principales equipos de San Jose, saben que la
+                tecnología de punta es clave para mantenerse arriba. ORION Tech es su próximo partner campeón.</p>
             <div class="partners-logos">
-                <div class="partner-badge">✅ BBB Accredited</div>
-                <div class="partner-badge">🛠️ Licensed & Insured</div>
-                <div class="partner-badge">🏘️ Local Since 2006</div>
+                <div class="partner-badge">🦈 San Jose Sharks</div>
+                <div class="partner-badge">⚽ San Jose Earthquakes</div>
+                <div class="partner-badge">⚾ San Jose Giants</div>
             </div>
         </div>
     </section>
@@ -1924,11 +1840,11 @@
             <h2 class="lang-es">// INVERSIÓN</h2>
         </div>
         <div class="pricing-grid">
-            <!-- SMART Autowork -->
+            <!-- PROFESSIONAL -->
             <div class="pricing-card">
-                <div class="pricing-name">SMART Autowork</div>
-                <div class="pricing-price">$1,500<span>/mo</span></div>
-                <div class="pricing-setup">+ $10,000 Setup</div>
+                <div class="pricing-name">PROFESSIONAL</div>
+                <div class="pricing-price">$1,997<span>/mo</span></div>
+                <div class="pricing-setup">+ $4,997 Setup</div>
                 <div class="pricing-capacity">
                     <div class="num">10</div>
                     <div class="cap-label lang-en">Simultaneous Calls</div>
@@ -1941,48 +1857,48 @@
                     <li>Basic Fleet Tracking</li>
                     <li>2 AI Dispatchers</li>
                 </ul>
-                <a href="https://wa.me/16692342444?text=LGB Autowork%20Autowork%20-%20SMART" class="btn btn-secondary">
+                <a href="https://wa.me/16692342444?text=Mike%20Counsil%20-%20PROFESSIONAL" class="btn btn-secondary">
                     <span class="lang-en">INQUIRE</span><span class="lang-es">CONSULTAR</span>
                 </a>
             </div>
 
-            <!-- Autowork FLEET -->
+            <!-- ENTERPRISE -->
             <div class="pricing-card featured">
-                <span class="pricing-badge">BEST VALUE</span>
-                <div class="pricing-name">Autowork FLEET</div>
-                <div class="pricing-price">$2,500<span>/mo</span></div>
-                <div class="pricing-setup">+ $15,000 Setup</div>
+                <span class="pricing-badge">POPULAR</span>
+                <div class="pricing-name">ENTERPRISE</div>
+                <div class="pricing-price">$4,997<span>/mo</span></div>
+                <div class="pricing-setup">+ $9,997 Setup</div>
                 <div class="pricing-capacity">
                     <div class="num">25</div>
                     <div class="cap-label lang-en">Simultaneous Calls</div>
                     <div class="cap-label lang-es">Llamadas Simultáneas</div>
                 </div>
                 <ul class="pricing-features">
-                    <li><strong>All Smart Autowork +</strong></li>
+                    <li><strong>All Professional +</strong></li>
                     <li>InvAI Smart Inventory</li>
                     <li>Full Fleet Management</li>
                     <li>Time Cards System</li>
                     <li>5 AI Dispatchers</li>
                     <li>Payroll Export</li>
                 </ul>
-                <a href="https://wa.me/16692342444?text=LGB Autowork%20Autowork%20-%20FLEET" class="btn btn-primary">
+                <a href="https://wa.me/16692342444?text=Mike%20Counsil%20-%20ENTERPRISE" class="btn btn-primary">
                     <span class="lang-en">START NOW</span><span class="lang-es">COMENZAR</span>
                 </a>
             </div>
 
-            <!-- GROWTH SCALE -->
+            <!-- ELITE -->
             <div class="pricing-card elite">
                 <span class="pricing-badge">ELITE</span>
-                <div class="pricing-name">GROWTH SCALE</div>
-                <div class="pricing-price">$4,500<span>/mo</span></div>
-                <div class="pricing-setup">+ $20,000 Setup</div>
+                <div class="pricing-name">ELITE</div>
+                <div class="pricing-price">$7,997<span>/mo</span></div>
+                <div class="pricing-setup">+ $14,997 Setup</div>
                 <div class="pricing-capacity">
                     <div class="num">50</div>
                     <div class="cap-label lang-en">Simultaneous Calls</div>
                     <div class="cap-label lang-es">Llamadas Simultáneas</div>
                 </div>
                 <ul class="pricing-features">
-                    <li><strong>All Autowork Fleet +</strong></li>
+                    <li><strong>All Enterprise +</strong></li>
                     <li>10 AI Dispatchers</li>
                     <li>Custom AI Training</li>
                     <li>Multi-Location Dashboard</li>
@@ -1990,32 +1906,35 @@
                     <li>CRM Integration</li>
                     <li>Quarterly Strategy Calls</li>
                 </ul>
-                <a href="https://wa.me/16692342444?text=LGB Autowork%20Autowork%20-%20GROWTH" class="btn btn-elite">
-                    <span class="lang-en">GO GROWTH</span><span class="lang-es">IR GROWTH</span>
+                <a href="https://wa.me/16692342444?text=Mike%20Counsil%20-%20ELITE" class="btn btn-elite">
+                    <span class="lang-en">GO ELITE</span><span class="lang-es">IR ELITE</span>
                 </a>
             </div>
 
-            <!-- REGIONAL LEADER -->
+            <!-- LUXURY -->
             <div class="pricing-card luxury">
-                <span class="pricing-badge">👑 LEADER</span>
-                <div class="pricing-name">REGIONAL LEADER</div>
-                <div class="pricing-price">$8,500<span>/mo</span></div>
-                <div class="pricing-setup">+ $25,000 Setup</div>
+                <span class="pricing-badge">👑 LUXURY</span>
+                <div class="pricing-name">LUXURY</div>
+                <div class="pricing-price">$14,997<span>/mo</span></div>
+                <div class="pricing-setup">+ $29,997 Setup</div>
                 <div class="pricing-capacity">
                     <div class="num">∞</div>
                     <div class="cap-label lang-en">Unlimited Capacity</div>
                     <div class="cap-label lang-es">Capacidad Ilimitada</div>
                 </div>
                 <ul class="pricing-features">
-                    <li><strong>All Growth Scale +</strong></li>
+                    <li><strong>All Elite +</strong></li>
                     <li>White-Label Custom App</li>
                     <li>Predictive Maintenance AI</li>
                     <li>Customer Sentiment Analysis</li>
                     <li>Weekly Exec Reports</li>
                     <li>Dedicated Dev Team</li>
+                    <li>On-Site Training</li>
+                    <li>100+ Fleet Vehicles</li>
+                    <li>500+ Employees</li>
                 </ul>
-                <a href="https://wa.me/16692342444?text=LGB Autowork%20Autowork%20-%20LEADER" class="btn btn-luxury">
-                    <span class="lang-en">GO LEADER</span><span class="lang-es">LÍDER REGIONAL</span>
+                <a href="https://wa.me/16692342444?text=Mike%20Counsil%20-%20LUXURY" class="btn btn-luxury">
+                    <span class="lang-en">GO LUXURY</span><span class="lang-es">IR LUXURY</span>
                 </a>
             </div>
         </div>
@@ -2030,8 +1949,8 @@
                 <span class="lang-es">💰 DESGLOSE DE TU ROI</span>
             </h2>
             <p style="color: var(--text-gray);">
-                <span class="lang-en">Investment vs. Savings Analysis for LGB Autowork</span>
-                <span class="lang-es">Análisis de Inversión vs. Ahorro para LGB Autowork</span>
+                <span class="lang-en">Investment vs. Savings Analysis for Mike Counsil</span>
+                <span class="lang-es">Análisis de Inversión vs. Ahorro para Mike Counsil</span>
             </p>
         </div>
 
@@ -2047,20 +1966,22 @@
                 </h3>
                 <div
                     style="font-size: 3rem; color: var(--accent-red); font-family: 'Orbitron', sans-serif; margin-bottom: 10px;">
-                    $2,500<span style="font-size: 1rem; color: var(--text-gray);">/mo</span>
+                    $4,997<span style="font-size: 1rem; color: var(--text-gray);">/mo</span>
                 </div>
                 <p style="color: var(--text-gray); font-size: 0.9rem;">
-                    <span class="lang-en">Autowork Fleet Package (Recommended)</span>
-                    <span class="lang-es">Paquete Autowork Fleet (Recomendado)</span>
+                    <span class="lang-en">ORION Enterprise Package (Premium)</span>
+                    <span class="lang-es">Paquete ORION Enterprise (Premium)</span>
                 </p>
                 <ul
                     style="list-style: none; text-align: left; margin-top: 20px; color: var(--text-gray); font-size: 0.85rem;">
-                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,68,68,0.2);">✓ Setup: $15,000 <span
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,68,68,0.2);">✓ Setup: $20,000 <span
                             class="lang-en">(one-time)</span><span class="lang-es">(única vez)</span></li>
-                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,68,68,0.2);">✓ 24/7 AI Call Center</li>
-                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,68,68,0.2);">✓ MP PRO Diagnosis</li>
-                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,68,68,0.2);">✓ EP PRO Estimator</li>
-                    <li style="padding: 8px 0;">✓ 5 AI Dispatchers</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,68,68,0.2);">✓ InvAI Inventory System
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,68,68,0.2);">✓ Video Assessment AI</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,68,68,0.2);">✓ Transparent Estimates
+                        Portal</li>
+                    <li style="padding: 8px 0;">✓ Bilingual Dispatch App</li>
                 </ul>
             </div>
 
@@ -2068,7 +1989,7 @@
             <div style="text-align: center;">
                 <video autoplay muted loop playsinline
                     style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 40px rgba(255, 215, 0, 0.4);">
-                    <source src="img_automation.mp4" type="video/mp4">
+                    <source src="https://agem2024.github.io/SEGURITI-USC/images/orion_logo_2090.mp4" type="video/mp4">
                 </video>
                 <div
                     style="font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: var(--accent-gold); margin-top: 15px;">
@@ -2084,29 +2005,105 @@
                 </h3>
                 <div
                     style="font-size: 3rem; color: var(--accent-teal); font-family: 'Orbitron', sans-serif; margin-bottom: 10px;">
-                    $22,500<span style="font-size: 1rem; color: var(--text-gray);">+/mo</span>
+                    $25,000<span style="font-size: 1rem; color: var(--text-gray);">+/mo</span>
                 </div>
                 <p style="color: var(--text-gray); font-size: 0.9rem;">
-                    <span class="lang-en">Estimated Based on Operations</span>
-                    <span class="lang-es">Estimado Basado en Operaciones</span>
+                    <span class="lang-en">Estimated Based on 30+ Years Operations</span>
+                    <span class="lang-es">Estimado Basado en 30+ Años de Operaciones</span>
                 </p>
                 <ul
                     style="list-style: none; text-align: left; margin-top: 20px; color: var(--text-gray); font-size: 0.85rem;">
-                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(0,212,170,0.2);">📞 <span
-                            class="lang-en">Callback Reduction:</span><span class="lang-es">Reducción Callbacks:</span>
-                        <strong style="color: var(--accent-teal);">$6,750</strong>
-                    </li>
-                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(0,212,170,0.2);">⏱️ <span
-                            class="lang-en">Time Saved:</span><span class="lang-es">Tiempo Ahorrado:</span> <strong
-                            style="color: var(--accent-teal);">$5,400</strong></li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(0,212,170,0.2);">📦 <span
+                            class="lang-en">Parts Search Time Saved:</span><span class="lang-es">Tiempo Búsqueda
+                            Piezas:</span> <strong style="color: var(--accent-teal);">$7,500</strong></li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(0,212,170,0.2);">💸 <span
+                            class="lang-en">Sticker Shock Reduced:</span><span class="lang-es">Shock de Precio
+                            Reducido:</span> <strong style="color: var(--accent-teal);">$6,000</strong></li>
                     <li style="padding: 8px 0; border-bottom: 1px solid rgba(0,212,170,0.2);">📈 <span
-                            class="lang-en">More Jobs/Day:</span><span class="lang-es">Más Trabajos/Día:</span> <strong
-                            style="color: var(--accent-teal);">$5,850</strong></li>
-                    <li style="padding: 8px 0;">🚫 <span class="lang-en">Complaints Avoided:</span><span
-                            class="lang-es">Quejas Evitadas:</span> <strong
-                            style="color: var(--accent-teal);">$4,500</strong></li>
+                            class="lang-en">Conversion Boost:</span><span class="lang-es">Aumento Conversión:</span>
+                        <strong style="color: var(--accent-teal);">$6,500</strong>
+                    </li>
+                    <li style="padding: 8px 0;">🌐 <span class="lang-en">Bilingual Market Expansion:</span><span
+                            class="lang-es">Expansión Mercado Bilingüe:</span> <strong
+                            style="color: var(--accent-teal);">$5,000</strong></li>
                 </ul>
             </div>
+        </div>
+
+        <!-- DETAILED ROI BREAKDOWN -->
+        <div
+            style="max-width: 900px; margin: 50px auto 0; background: rgba(10, 10, 18, 0.8); border: 1px solid #333; border-radius: 12px; padding: 30px;">
+            <h4
+                style="color: var(--text-white); text-align: center; margin-bottom: 20px; font-family: 'Orbitron', sans-serif;">
+                <span class="lang-en">CALCULATION BREAKDOWN (ENTERPRISE SCALE)</span>
+                <span class="lang-es">DESGLOSE DEL CÁLCULO (ESCALA ENTERPRISE)</span>
+            </h4>
+            <table style="width: 100%; border-collapse: collapse; color: #ccc;">
+                <tr style="border-bottom: 1px solid #333;">
+                    <th style="text-align: left; padding: 10px; color: var(--accent-gold);">Source / Fuente</th>
+                    <th style="text-align: left; padding: 10px;">Math / Cálculo</th>
+                    <th style="text-align: right; padding: 10px; color: var(--accent-teal);">Impact / Impacto</th>
+                </tr>
+                <!-- ITEM 1 -->
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <td style="padding: 15px 10px;">
+                        <strong style="color:white; display:block;">Parts Search Time</strong>
+                        <span style="font-size:0.85rem;" class="lang-es">Tiempo Búsqueda Piezas</span>
+                    </td>
+                    <td style="padding: 15px 10px; font-size: 0.9rem;">
+                        <span class="lang-en">1.5 hrs/job saved (InvAI) x $150/hr</span>
+                        <span class="lang-es">1.5 hrs/trabajo ahorradas (InvAI) x $150/hr</span>
+                    </td>
+                    <td style="padding: 15px 10px; text-align: right; font-weight: bold; color: white;">+ $7,500 /mo
+                    </td>
+                </tr>
+                <!-- ITEM 2 -->
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <td style="padding: 15px 10px;">
+                        <strong style="color:white; display:block;">Sticker Shock Reduction</strong>
+                        <span style="font-size:0.85rem;" class="lang-es">Reducción Rechazo Precio</span>
+                    </td>
+                    <td style="padding: 15px 10px; font-size: 0.9rem;">
+                        <span class="lang-en">Convert 15% more quotes via transparency</span>
+                        <span class="lang-es">Convertir 15% más cotizaciones por transparencia</span>
+                    </td>
+                    <td style="padding: 15px 10px; text-align: right; font-weight: bold; color: white;">+ $6,000 /mo
+                    </td>
+                </tr>
+                <!-- ITEM 3 -->
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <td style="padding: 15px 10px;">
+                        <strong style="color:white; display:block;">Conversion Boost</strong>
+                        <span style="font-size:0.85rem;" class="lang-es">Aumento Conversión</span>
+                    </td>
+                    <td style="padding: 15px 10px; font-size: 0.9rem;">
+                        <span class="lang-en">Interactive Estimates close faster</span>
+                        <span class="lang-es">Estimados Interactivos cierran más rápido</span>
+                    </td>
+                    <td style="padding: 15px 10px; text-align: right; font-weight: bold; color: white;">+ $6,500 /mo
+                    </td>
+                </tr>
+                <!-- ITEM 4 -->
+                <tr>
+                    <td style="padding: 15px 10px;">
+                        <strong style="color:white; display:block;">Bilingual Market</strong>
+                        <span style="font-size:0.85rem;" class="lang-es">Mercado Bilingüe</span>
+                    </td>
+                    <td style="padding: 15px 10px; font-size: 0.9rem;">
+                        <span class="lang-en">New revenue from Spanish speakers</span>
+                        <span class="lang-es">Nuevos ingresos de hispanohablantes</span>
+                    </td>
+                    <td style="padding: 15px 10px; text-align: right; font-weight: bold; color: white;">+ $5,000 /mo
+                    </td>
+                </tr>
+                <tr style="border-top: 2px solid var(--accent-teal); background: rgba(0, 212, 170, 0.05);">
+                    <td style="padding: 20px 10px; font-weight: bold; color: white;">TOTAL MONTHLY IMPACT</td>
+                    <td style="padding: 20px 10px;"></td>
+                    <td
+                        style="padding: 20px 10px; text-align: right; font-size: 1.5rem; font-weight: 900; color: var(--accent-teal);">
+                        $25,000 /mo</td>
+                </tr>
+            </table>
         </div>
 
         <!-- ROI SUMMARY -->
@@ -2114,30 +2111,30 @@
             style="text-align: center; margin-top: 50px; padding: 30px; background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(0, 212, 170, 0.1)); border-radius: 16px; max-width: 600px; margin-left: auto; margin-right: auto;">
             <div
                 style="font-family: 'Orbitron', sans-serif; color: var(--accent-gold); font-size: 2.5rem; margin-bottom: 10px;">
-                <span class="lang-en">ROI: 800%+</span>
-                <span class="lang-es">ROI: 800%+</span>
+                <span class="lang-en">ROI: 400%+</span>
+                <span class="lang-es">ROI: 400%+</span>
             </div>
             <p style="color: var(--text-gray);">
-                <span class="lang-en">Payback Period: ~33 Days</span>
-                <span class="lang-es">Período de Recuperación: ~33 Días</span>
+                <span class="lang-en">Payback Period: ~60 Days (Industry Best for Enterprise)</span>
+                <span class="lang-es">Período de Recuperación: ~60 Días (Mejor para Enterprise)</span>
             </p>
             <p style="color: var(--accent-teal); font-size: 1.1rem; margin-top: 15px; font-weight: 600;">
-                <span class="lang-en">You invest $2,500 → You save $22,500+ = $20,000 NET PROFIT/month</span>
-                <span class="lang-es">Inviertes $2,500 → Ahorras $22,500+ = $20,000 GANANCIA NETA/mes</span>
+                <span class="lang-en">You invest $4,997 → You save $25,000+ = $20,003 NET PROFIT/month</span>
+                <span class="lang-es">Inviertes $4,997 → Ahorras $25,000+ = $20,003 GANANCIA NETA/mes</span>
             </p>
         </div>
     </section>
 
     <!-- CTA -->
     <section class="cta-section">
-        <h2 class="lang-en">Ready to Transform LGB Autowork?</h2>
-        <h2 class="lang-es">¿Listos para Transformar LGB Autowork?</h2>
+        <h2 class="lang-en">Ready to Transform Mike Counsil Plumbing?</h2>
+        <h2 class="lang-es">¿Listos para Transformar Mike Counsil Plumbing?</h2>
         <p class="lang-en">50 simultaneous AI calls. 10 virtual dispatchers. Complete fleet control. Zero paper.
-            This is the future of Auto Care operations.</p>
+            This is the future of plumbing operations.</p>
         <p class="lang-es">50 llamadas IA simultáneas. 10 dispatchers virtuales. Control completo de flota. Cero papel.
             Este es el futuro de las operaciones de plomería.</p>
         <div class="cta-buttons">
-            <a href="https://wa.me/16692342444?text=LGB Autowork%20Autowork%20-%20Full%20Demo" class="btn btn-primary">
+            <a href="https://wa.me/16692342444?text=Mike%20Counsil%20-%20Full%20Demo" class="btn btn-primary">
                 💬 <span class="lang-en">SCHEDULE FULL DEMO</span><span class="lang-es">AGENDAR DEMO COMPLETO</span>
             </a>
             <a href="tel:+16692342444" class="btn btn-secondary">📞 (669) 234-2444</a>
@@ -2146,7 +2143,7 @@
 
     <!-- FOOTER -->
     <footer>
-        <p><strong>LGB Autowork San Jose</strong> • ✅ BBB Accredited • 🛡️ Licensed & Insured • 📍 Since 2006</p>
+        <p><strong>Mike Counsil Plumbing and Rooter</strong> • 🦈 Sharks • ⚽ Earthquakes • ⚾ Giants</p>
         <p style="margin-top: 10px;">ORION Tech | <a
                 href="https://agem2024.github.io/SEGURITI-USC/orion-bots.html">orion-tech.com</a> | (669) 234-2444</p>
         <p style="margin-top: 20px; font-size: 0.75rem;">© 2026 ORION Tech. <span class="lang-en">Proposal valid 30
@@ -2161,59 +2158,100 @@
             });
             localStorage.setItem('mcProposalLang', lang);
 
-            // Update JOSE dynamically if active
-            if (window.jose && typeof window.jose.setLanguage === 'function') {
-                window.jose.setLanguage(lang);
+            // Update Mario if initialized
+            if (window.mario) {
+                window.mario.setLanguage(lang);
             }
         }
         const savedLang = localStorage.getItem('mcProposalLang');
         if (savedLang) setLang(savedLang);
     </script>
 
-    <!-- JOSE AI ASSISTANT -->
+    <!-- MARIO AI SALES ASSISTANT - SECURE CONFIG -->
+    <script src="jose-loader.js"></script>
+    <script src="mario-assistant-male.js?v=2"></script>
     <script>
-        // JOSE CONFIGURATION FOR LGB AUTOWORK
-        window.JOSE_CONFIG = {
-            clientName: "LGB Autowork",
-            clientPhone: "(408) 727-4500",
-            language: localStorage.getItem('mcProposalLang') || "en",
-            ownerName: "Partner", // Using generic respectful term as owner name isn't explicit in file
-
-            // CONTEXTO ESPECÍFICO DEL CLIENTE
-            painPoints: [
-                "Operational bottleneck with paper workflow",
-                "Lost revenue from missed calls and simple inquiries",
-                "Parts ordering delays affecting cycle time",
-                "Service Advisor burnout from repetitive tasks"
-            ],
-
-            // SOLUCIONES ORION
-            competitorAdvantages: [
-                "MP PRO AI Diagnosis - Instant check-in",
-                "InvAI Smart Inventory - Auto-ordering",
-                "24/7 AI Call Center - Zero missed calls",
-                "Paperless Operations - Digital ROs"
-            ],
-
-            // TABLA DE PRECIOS REAL (Extraída del HTML)
-            pricingTiers: [
-                { name: "SMART", monthly: 1500, setup: 10000 },
-                { name: "FLEET", monthly: 2500, setup: 15000 }, // BEST VALUE
-                { name: "GROWTH", monthly: 4500, setup: 20000 },
-                { name: "LEADER", monthly: 8500, setup: 25000 }
-            ],
-
-            proposalContext: "LGB Autowork is a trusted San Jose shop since 2006. Focus is on modernizing operations to go paperless and increase efficiency without replacing staff."
-        };
-    </script>
-    <!-- JOSE AI ASSISTANT - CLOUD READY -->
-    <script src="jose-loader-v2.js"></script>
-    <script src="jose-assistant.js"></script>
-    <script>
-        console.log('✅ JOSE AI Configured & Loaded for LGB Autowork');
+        // Initialize MARIO for Mike Counsil Plumbing
+        document.addEventListener('DOMContentLoaded', function () {
+            window.mario = new MarioAssistant({
+                clientName: 'Mike Counsil Plumbing',
+                clientPhone: '(408) 617-9486',
+                ownerName: 'Mike',
+                language: localStorage.getItem('mcProposalLang') || 'en',
+                painPoints: [
+                    'Sticker Shock - prices perceived as 2x-3x higher than competitors',
+                    'Slow authorization process - customers waiting to approve work',
+                    'Invoice inconsistencies - final bill doesnt match initial quote',
+                    'Inventory visibility - techs waste 1.5-2 hours per job searching for parts'
+                ],
+                competitorAdvantages: [
+                    'AI Price Book - Interactive Good/Better/Best options that EXPLAIN premium factors',
+                    'Instant Authorization App - customers review, sign and pay instantly on mobile',
+                    'Real-time Job Tracker - DoorDash-style tracking with materials and time',
+                    'InvAI Inventory - real-time parts tracking saves 1.5-2 hours per job',
+                    'Video Assessment AI - AI analyzes pipe inspection videos automatically'
+                ],
+                pricingTiers: [
+                    { name: 'ORION STANDARD', monthly: 2497, setup: 10000 },
+                    { name: 'ORION PREMIUM', monthly: 3997, setup: 15000 },
+                    { name: 'ORION ENTERPRISE', monthly: 4997, setup: 20000 }
+                ],
+                proposalContext: `
+                    === MIKE COUNSIL PLUMBING SALES TRAINING FOR MARIO ===
+                    
+                    COMPANY PROFILE:
+                    - Mike Counsil Plumbing and Rooter - Founded 1994 (30+ years)
+                    - Key Decision Maker: Mike Counsil (Founder/Owner) and his wife
+                    - Rating: 4.8 Google / 4.6 BirdEye / Superior BBB / Angi Hall of Fame
+                    - MAJOR PARTNERSHIPS: Official Plumber of San Jose Sharks, Earthquakes, and Giants
+                    - Area: Greater South Bay and Peninsula, 24/7 service
+                    
+                    STRATEGY: "PREMIUM TRANSPARENCY" - They already charge premium, help them JUSTIFY it
+                    
+                    CRITICAL PAIN POINTS:
+                    1. STICKER SHOCK: Customers complain prices are 2x-3x higher than competitors
+                       SOLUTION: AI Price Book with interactive breakdown showing WHY premium is worth it
+                       KEY PHRASE: "Customers understand premium when they SEE what they're paying for"
+                    
+                    2. SLOW AUTHORIZATION: Process to approve work takes too long, customers leave
+                       SOLUTION: Custom Authorization App - review, sign, pay all on mobile instantly
+                       KEY PHRASE: "From quote to signature in 60 seconds, not 60 minutes"
+                    
+                    3. INVOICE SURPRISES: Final invoice doesn't match expectations
+                       SOLUTION: Real-time Job Tracker shows materials and time like DoorDash
+                       KEY PHRASE: "The customer watches their job progress in real-time. Zero surprises"
+                    
+                    4. INVENTORY CHAOS: Techs waste 1.5-2 HOURS per job looking for parts
+                       SOLUTION: InvAI Inventory with camera/RFID tracking in trucks
+                       KEY PHRASE: "That's $100+ in labor saved PER JOB just in parts searching"
+                    
+                    SALES OBJECTION RESPONSES:
+                    - "Too expensive": Mike, you sponsor the Sharks. You already invest in brand. ORION protects that investment.
+                    - "We've been doing this 30 years": Exactly. Your experience + AI = unstoppable. Evolution not replacement.
+                    - "Our Video Assessments work fine": Great! Our AI ENHANCES them - automatic analysis, faster diagnosis.
+                    
+                    HERO MESSAGE: "30 Years of Excellence. Now AI-Powered."
+                    
+                    CLOSING LANGUAGE:
+                    - "Mike, you built this company from mom-and-pop to Sharks sponsor in 30 years. AI is the next level."
+                    - "Your techs lose 2 hours per job finding parts. InvAI saves that. Do the math."
+                    - "Angi Hall of Fame and BBB Superior - ORION keeps you there and gets you higher."
+                    
+                    ROI PROJECTIONS (REAL):
+                    - 1.5-2 hours saved per job = $100+/job
+                    - -30% price complaints with transparent breakdowns
+                    - +15% conversion with interactive estimates
+                    - +20% market expansion with bilingual support
+                    - +25% diagnostic efficiency with Video AI
+                    
+                    SLOGAN: "ES AHORA O NUNCA / IT'S NOW OR NEVER"
+                    
+                    RECOMMENDED PACKAGE: ORION ENTERPRISE ($4,997/mo) - They're premium, they need enterprise
+                `
+            });
+        });
     </script>
 
 </body>
 
 </html>
-```
