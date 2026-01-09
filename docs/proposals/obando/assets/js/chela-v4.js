@@ -194,17 +194,21 @@
         let voces = síntesisVoz.getVoices();
 
         // Estrategia para Windows/Android:
-        // 1. Buscamos nombres de mujer conocidos
-        const mujeres = ['Sabina', 'Paulina', 'Helena', 'Zira', 'Google Español', 'Monica'];
+        // 1. Buscamos nombres de mujer en ESPAÑOL (Paulina=MX, Sabina=MX, Helena=ES)
+        // REMOVIDO: 'Zira' (Es voz en inglés, suena robótico leyendo español)
+        const mujeres = ['Paulina', 'Sabina', 'Helena', 'Google Español', 'Monica'];
         vozSeleccionada = voces.find(v => mujeres.some(m => v.name.includes(m)));
 
-        // 2. Si no, buscamos por idioma específico (MX y US suelen ser mujer)
+        // 2. Si no, buscamos por idioma específico (MX y CO)
+        if (!vozSeleccionada) vozSeleccionada = voces.find(v => v.lang === 'es-CO');
         if (!vozSeleccionada) vozSeleccionada = voces.find(v => v.lang === 'es-MX');
-        if (!vozSeleccionada) vozSeleccionada = voces.find(v => v.lang === 'es-US');
         if (!vozSeleccionada) vozSeleccionada = voces.find(v => v.lang === 'es-ES');
+        if (!vozSeleccionada) vozSeleccionada = voces.find(v => v.lang === 'es-US');
 
         // 3. Último recurso: Cualquiera en español
         if (!vozSeleccionada) vozSeleccionada = voces.find(v => v.lang.startsWith('es'));
+
+        console.log("Voz Chela:", vozSeleccionada ? vozSeleccionada.name : "Nativa Default");
     }
 
     if (síntesisVoz.onvoiceschanged !== undefined) {
@@ -221,8 +225,11 @@
         const enunciado = new SpeechSynthesisUtterance(textoLimpio);
         if (vozSeleccionada) enunciado.voice = vozSeleccionada;
 
+        // FORZAR IDIOMA ESPAÑOL (Crucial para evitar acento inglés)
+        enunciado.lang = 'es-MX'; // Neutro Latino
+
         // Forzar atributos femeninos si la voz es genérica
-        enunciado.pitch = 1.2; // Un poco más agudo (ayuda si es voz de hombre)
+        enunciado.pitch = 1.1; // Sutilmente agudo
         enunciado.rate = 1.1;  // Velocidad fluida
 
         síntesisVoz.speak(enunciado);
