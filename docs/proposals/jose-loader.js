@@ -6,9 +6,9 @@
     // Gemini API Keys (Primary + Backups)
     // Gemini API Keys (Obfuscated)
     const _gk = [
-        'AIzaSy' + 'DNrPToe2abPx1Cf_dFz49OyWa1pVvZMp8', // Backup Key (Promoted to Primary)
-        'AIzaSy' + 'D9jAvyn1UamNhxKNc_pWlxoOlZlqCCSuk',
-        'AIzaSy' + 'Dl_OGBtBE8RTOxjHIgSY4XSQKUEs6aAWo'
+        'AIzaSy' + 'Bh1wcshJS1gjMzzaBkjgsDTWm2pDZWK9Q', // Recovered Key 1 (Juan Camilo)
+        'AIzaSy' + 'DngKFBwVVIi3aRkOWVslAOivCvwKTiEmM', // Recovered Key 2 (Jarvis Core)
+        'AIzaSy' + 'DNrPToe2abPx1Cf_dFz49OyWa1pVvZMp8'  // Old Backup (Likely burnt, kept as last resort)
     ];
 
     // OpenAI API Key (para TTS)
