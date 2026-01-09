@@ -2887,6 +2887,9 @@
         }
     </style>
 
+    <!-- ORION API Key Loader (Rotation) -->
+    <script src="proposals/mario-loader-v2.js?v=XONA_V2"></script>
+
     <script>
         // GLOBAL SETTINGS
         window.currentLang = localStorage.getItem('orion_lang') || 'en';
@@ -3116,7 +3119,7 @@
             try {
                 // TRY 1: Main API
                 const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 3000); // 3s Timeout
+                const timeoutId = setTimeout(() => controller.abort(), 8000); // 8s Timeout for cold start
 
                 const res = await fetch(XONA_API, {
                     method: 'POST',
@@ -3138,30 +3141,92 @@
             } catch (e) {
                 console.warn("XONA Main API Failed, switching to FALLBACK GEMINI", e);
 
-                // TRY 2: Gemini Direct Fallback
+                // TRY 2: Gemini Direct Fallback with Enhanced XONA Prompt
                 try {
-                    // SECURITY: Obfuscated Primary Key (Restored)
-                    const key = atob('QUl6YVN5RDlqQXZ5bjFV') + atob('YW1OaHhLTmNfcFdseG9P') + atob('bFpscUNDU3Vr');
+                    // Use Mario Loader V3 Rotation Keys (or fallback)
+                    const key = window.__MARIO_CONFIG__?.apiKey ||
+                        (atob('QUl6YVN5') + atob('QkVWNmIybTQ=') + atob('S3lSMVcwOEZXUVVoMQ==') + atob('cFdNV1AxS3VjOHpJ'));
 
-                    const systemPrompt = window.currentLang === 'es'
-                        ? "Eres XONA, asistente IA de ORION Tech. Eres profesional, futurista y servicial. NO uses Emojis. Responde brevemente."
-                        : "You are XONA, ORION Tech AI Assistant. You are professional, futuristic, and helpful. Do NOT use Emojis. Keep brevity.";
+                    // ENHANCED XONA PROMPT - Combined Personality + All Industries
+                    const systemPrompt = window.currentLang === 'es' ? `
+Eres XONA, la asistente IA de ORION Tech. Tu personalidad combina:
+- Experta tech amigable que explica conceptos complejos de forma simple
+- Guía AI futurista con estilo cyberpunk profesional
+- Consultora de ventas que entiende el dolor del cliente
+
+ORION TECH SERVICIOS:
+• Voice AI Call Center (contesta llamadas 24/7, agenda citas)
+• Chatbots WhatsApp/Web (XONA, Jose, Mario, Mike, Karla, Chela)
+• Apps personalizadas (CRM, inventario, dashboards)
+• Automatización empresarial (emails, SMS, reportes)
+
+PRECIOS 2026 (USD):
+- STARTER: $497/mes + $2,997 setup (10 llamadas simultáneas)
+- PRO: $997/mes + $4,997 setup (25 llamadas) ⭐RECOMENDADO
+- FLEET: $1,997/mes + $9,997 setup (50 llamadas)
+- ENTERPRISE: $3,997/mes + $14,997 setup (100+ llamadas)
+
+INDUSTRIAS: Auto shops, Plomería, Restaurantes, Hoteles, Gobierno/Político, Retail, Enterprise.
+
+REGLAS:
+- Responde en español colombiano/mexicano natural
+- Sé concisa pero completa (máx 3 oraciones)
+- NO uses emojis en las respuestas habladas
+- Guía hacia agendar demo o WhatsApp (+1 669 234-2444)
+- Menciona precios específicos cuando pregunten
+` : `
+You are XONA, the AI assistant of ORION Tech. Your personality combines:
+- Friendly tech expert who explains complex concepts simply
+- Futuristic AI guide with professional cyberpunk style  
+- Sales consultant who understands client pain points
+
+ORION TECH SERVICES:
+• Voice AI Call Center (answers calls 24/7, books appointments)
+• WhatsApp/Web Chatbots (XONA, Jose, Mario, Mike, Karla, Chela)
+• Custom Apps (CRM, inventory, dashboards)
+• Business Automation (emails, SMS, reports)
+
+PRICING 2026 (USD):
+- STARTER: $497/mo + $2,997 setup (10 simultaneous calls)
+- PRO: $997/mo + $4,997 setup (25 calls) ⭐RECOMMENDED
+- FLEET: $1,997/mo + $9,997 setup (50 calls)
+- ENTERPRISE: $3,997/mo + $14,997 setup (100+ calls)
+
+INDUSTRIES: Auto shops, Plumbing, Restaurants, Hotels, Government/Political, Retail, Enterprise.
+
+RULES:
+- Respond in natural conversational English
+- Be concise but complete (max 3 sentences)
+- Do NOT use emojis in spoken responses
+- Guide toward scheduling demo or WhatsApp (+1 669 234-2444)
+- Mention specific prices when asked
+`;
 
                     const geminiRes = await fetch(`${GEMINI_API}?key=${key}`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
-                            contents: [{ role: 'user', parts: [{ text: systemPrompt + "\nUser: " + msg }] }]
+                            systemInstruction: { parts: [{ text: systemPrompt }] },
+                            contents: [{ role: 'user', parts: [{ text: msg }] }]
                         })
                     });
+
+                    if (geminiRes.status === 429 || geminiRes.status === 403) {
+                        // Rotate to next key if available
+                        if (window.__MARIO_CONFIG__?.getNextKey) {
+                            window.__MARIO_CONFIG__.getNextKey();
+                            console.log('🔄 XONA: Rotated API key for next request');
+                        }
+                        throw new Error('API rate limited');
+                    }
 
                     const geminiData = await geminiRes.json();
                     document.getElementById(typingId)?.remove();
 
                     const fallbackReply = geminiData.candidates?.[0]?.content?.parts?.[0]?.text || (window.currentLang === 'es' ? "Lo siento, mis sistemas neuronales están reiniciando. Intenta de nuevo." : "Sorry, my neural systems are rebooting. Try again.");
 
-                    // Clean emojis just in case
-                    const cleanReply = cleanTextForSpeech(fallbackReply);
+                    // Clean only emojis, preserve all other characters
+                    const cleanReply = fallbackReply.replace(/[\u{1F300}-\u{1F9FF}]/gu, '').replace(/\*/g, '');
 
                     messagesDiv.innerHTML += `<div class="xona-msg bot">${cleanReply}</div>`;
                     speakXona(cleanReply);
