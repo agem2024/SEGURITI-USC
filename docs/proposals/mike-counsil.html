@@ -792,6 +792,116 @@
             display: none !important;
         }
 
+        /* 3D PRICE BOOK CARD */
+        .pricebook-section {
+            padding: 60px 20px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid #222;
+        }
+
+        .pricebook-wrapper {
+            perspective: 1000px;
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .pricebook-card-3d {
+            display: block;
+            width: 220px;
+            height: 320px;
+            background: linear-gradient(135deg, #0a1018 0%, #001f3f 100%);
+            border-radius: 5px 15px 15px 5px;
+            box-shadow:
+                20px 20px 50px rgba(0, 0, 0, 0.8),
+                inset 2px 0 5px rgba(255, 255, 255, 0.05);
+            text-decoration: none;
+            transition: all 0.4s ease;
+            position: relative;
+            border-left: 12px solid #111;
+            /* Spine */
+            border-right: 2px solid #333;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
+
+        .pricebook-card-3d::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .pricebook-card-3d:hover {
+            transform: translateY(-15px) rotateY(-15deg);
+            box-shadow:
+                30px 30px 60px rgba(0, 168, 255, 0.2),
+                0 0 20px rgba(0, 168, 255, 0.4);
+            border-color: var(--accent-blue);
+        }
+
+        .book-cover {
+            padding: 40px 20px;
+            text-align: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid rgba(0, 168, 255, 0.1);
+            border-left: none;
+        }
+
+        .book-logo {
+            font-size: 4rem;
+            margin-bottom: 25px;
+            filter: drop-shadow(0 0 10px var(--accent-blue));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .book-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 900;
+            line-height: 1.2;
+            color: var(--accent-gold);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+            margin-bottom: 10px;
+        }
+
+        .book-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+        }
+
+        .book-edition {
+            font-size: 0.75rem;
+            color: var(--accent-teal);
+            border: 1px solid var(--accent-teal);
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: rgba(0, 212, 170, 0.1);
+            font-weight: 700;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
         /* Spanish mode: hide English, show Spanish */
         body.es .lang-en {
             display: none !important;
