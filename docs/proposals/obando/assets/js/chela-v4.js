@@ -156,9 +156,7 @@ IDIOMAS: Español y Embera. Vocabulario: Bêrea (Hola), Zocai (Amigo), Kare (Gra
 ${forzarEmbera ? 'RESPONDE EN EMBERA.' : 'RESPONDE EN ESPAÑOL.'}`;
 
         try {
-            // Using gemini-1.5-flash for better stability
-            const modelVersion = 'gemini-1.5-flash';
-            const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modelVersion}:generateContent?key=${key}`, {
+            const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

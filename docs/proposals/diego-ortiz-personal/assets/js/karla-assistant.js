@@ -11,7 +11,7 @@ class KarlaAssistant {
         this.proposalContext = config.proposalContext || '';
         this.pricingTiers = config.pricingTiers || [];
 
-        this.apiEndpoint = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
+        this.apiEndpoint = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
         this.isOpen = false;
         this.messages = [];
         this.synth = window.speechSynthesis;
