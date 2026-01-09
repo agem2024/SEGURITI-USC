@@ -192,23 +192,19 @@
     // SÍNTESIS DE VOZ (TTS)
     function cargarVoces() {
         let voces = síntesisVoz.getVoices();
-        console.log("Voces disponibles:", voces.map(v => v.name));
 
-        // Prioridad Estricta: Voces Femeninas Conocidas en Español
-        const mujeres = ['Microsoft Sabina', 'Microsoft Paulina', 'Google Español', 'Monica', 'Soledad', 'Paulina', 'Sabina'];
-
-        // 1. Buscar coincidencia exacta
+        // Estrategia para Windows/Android:
+        // 1. Buscamos nombres de mujer conocidos
+        const mujeres = ['Sabina', 'Paulina', 'Helena', 'Zira', 'Google Español', 'Monica'];
         vozSeleccionada = voces.find(v => mujeres.some(m => v.name.includes(m)));
 
-        // 2. Si no, buscar cualquiera que diga "Female" o "Mujer" en Español
-        if (!vozSeleccionada) {
-            vozSeleccionada = voces.find(v => v.lang.startsWith('es') && (v.name.includes('Female') || v.name.includes('Mujer')));
-        }
+        // 2. Si no, buscamos por idioma específico (MX y US suelen ser mujer)
+        if (!vozSeleccionada) vozSeleccionada = voces.find(v => v.lang === 'es-MX');
+        if (!vozSeleccionada) vozSeleccionada = voces.find(v => v.lang === 'es-US');
+        if (!vozSeleccionada) vozSeleccionada = voces.find(v => v.lang === 'es-ES');
 
-        // 3. Fallback: Cualquier voz en español (pero trataremos de ajustarla)
-        if (!vozSeleccionada) {
-            vozSeleccionada = voces.find(v => v.lang.startsWith('es'));
-        }
+        // 3. Último recurso: Cualquiera en español
+        if (!vozSeleccionada) vozSeleccionada = voces.find(v => v.lang.startsWith('es'));
     }
 
     if (síntesisVoz.onvoiceschanged !== undefined) {
@@ -225,12 +221,26 @@
         const enunciado = new SpeechSynthesisUtterance(textoLimpio);
         if (vozSeleccionada) enunciado.voice = vozSeleccionada;
 
-        // Ajustes para sonar más femenina si toca usar voz genérica
-        enunciado.lang = 'es-CO';
-        enunciado.pitch = 1.0; // Tono natural
-        enunciado.rate = 1.0;
+        // Forzar atributos femeninos si la voz es genérica
+        enunciado.pitch = 1.2; // Un poco más agudo (ayuda si es voz de hombre)
+        enunciado.rate = 1.1;  // Velocidad fluida
 
         síntesisVoz.speak(enunciado);
+    }
+
+    // Respuestas Locales (Backup si falla el servidor)
+    function respuestaLocal(texto) {
+        const t = texto.toLowerCase();
+        if (t.includes('precio') || t.includes('costo') || t.includes('cotizaci'))
+            return "El proyecto arranca desde $15 Millones de Pesos (COP) para el piloto inicial.";
+        if (t.includes('hola') || t.includes('dia') || t.includes('tarde'))
+            return "¡Hola! Soy Chela. ¿En qué puedo ayudarte hoy?";
+        if (t.includes('bêrea') || t.includes('zocai') || t.includes('embera'))
+            return "Bêrea! Mũra Chela. (Hola, soy Chela. Hablo tu idioma).";
+        if (t.includes('orion') || t.includes('sistema'))
+            return "ORION es el sistema que eliminará las filas en la Alcaldía.";
+
+        return "Lo siento, mi conexión con la Alcaldía está lenta. Pero aquí estoy para ayudarte con lo básico.";
     }
 
     // Enviar Mensaje
@@ -241,63 +251,46 @@
         input.value = '';
         agregarMensaje('usuario', texto);
 
-        const idCarga = agregarMensaje('bot', 'Pensando...', true);
+        const idCarga = agregarMensaje('bot', '...', true);
+        const aviso = document.getElementById(idCarga);
 
-        // Timeout aviso
+        // Aviso de espera
         const timeoutAviso = setTimeout(() => {
-            const el = document.getElementById(idCarga);
-            if (el) el.innerText = "Conectando con el servidor municipal...";
-        }, 6000);
+            if (aviso) aviso.innerText = "Conectando...";
+        }, 4000);
 
         try {
-            // DETECCIÓN INTELIGENTE DE IDIOMA
-            const esEmbera = /(embera|bêrea|zocai|kĩra|nũmí|chami|chamí)/i.test(texto);
-            const esIngles = /(hello|help|english|price|thank)/i.test(texto);
+            // INTENTO 1: LLAMADA AL SERVIDOR
+            let promptSistema = `CONTEXTO: Eres CHELA (Mujer), asistente Alcaldía Obando. IDIOMA: Español. Si detectas Embera ('Bêrea'), responde en Embera.`;
 
-            let contextoIA = `
-Eres CHELA, asistente de la Alcaldía de Obando, Valle.
-IDENTIDAD: Mujer, amable, eficiente.
-IDIOMA BASE: Español.
-REGLAS CRÍTICAS:
-1. Si el usuario habla en INGLÉS, responde en INGLÉS.
-2. Si el usuario usa palabras como "Bêrea" o "Zocai" (Embera), DEBES RESPONDER EN EMBERA CHAMÍ.
-3. Sé breve y directa. No des respuestas de 3 párrafos.
-`;
-
-            if (esEmbera) {
-                contextoIA += "\n[URGENTE: EL USUARIO ESTÁ HABLANDO EN EMBERA CHAMÍ. ACTIVA MODO TRADUCTOR INDÍGENA. RESPONDE EN EMBERA].";
-            } else if (esIngles) {
-                contextoIA += "\n[USER IS SPEAKING ENGLISH. REPLY IN ENGLISH ONLY].";
-            }
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 seg timeout máximo
 
             const respuesta = await fetch(CONFIG.endpoint, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    message: `${contextoIA}\n\nUsuario: ${texto}`
-                })
+                body: JSON.stringify({ message: `${promptSistema}\n\nUsuario: ${texto}` }),
+                signal: controller.signal
             });
 
-            clearTimeout(timeoutAviso);
+            clearTimeout(timeoutId);
 
-            if (!respuesta.ok) throw new Error('Error en el servidor');
+            if (!respuesta.ok) throw new Error('Error HTTP: ' + respuesta.status);
             const datos = await respuesta.json();
 
-            const elCarga = document.getElementById(idCarga);
-            if (elCarga) elCarga.remove();
+            clearTimeout(timeoutAviso);
+            if (aviso) aviso.remove();
 
-            if (datos.response) {
-                agregarMensaje('bot', datos.response);
-            } else {
-                agregarMensaje('bot', "¿Podrías repetirlo?");
-            }
+            agregarMensaje('bot', datos.response || "¿Cómo dices?");
 
         } catch (error) {
             clearTimeout(timeoutAviso);
-            console.error(error);
-            const elCarga = document.getElementById(idCarga);
-            if (elCarga) elCarga.remove();
-            agregarMensaje('bot', 'Sin conexión. Intenta de nuevo.');
+            if (aviso) aviso.remove();
+            console.warn("Fallo API, usando respuesta local:", error);
+
+            // FALLBACK: RESPUESTA LOCAL
+            const respuestaBackup = respuestaLocal(texto);
+            agregarMensaje('bot', respuestaBackup);
         }
     }
 
