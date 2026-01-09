@@ -147,7 +147,8 @@
     async function callGemini(txt, keyArg, retryCount = 0) {
         // Use global loader if available
         let key = keyArg;
-        if (window.__MARIO_CONFIG__?.apiKey) key = window.__MARIO_CONFIG__.apiKey;
+        if (window.ORION_CONFIG?.getAuth) key = window.ORION_CONFIG.getAuth();
+        else if (window.__MARIO_CONFIG__?.apiKey) key = window.__MARIO_CONFIG__.apiKey;
 
         const forzarEmbera = idiomaSel.value === 'embera' || isEmbera(txt);
         const systemPrompt = `Eres CHELA, asistente de ORION Tech para Alcaldía de Obando.
