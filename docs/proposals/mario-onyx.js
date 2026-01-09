@@ -929,12 +929,33 @@ Which part would you like me to explain better - the call center, the dispatch, 
         if (!this.synth || !this.voiceEnabled) return;
 
         this.synth.cancel();
-        const utterance = new SpeechSynthesisUtterance(text);
+
+        // 1. CLEAN & PREPROCESS TEXT FOR TTS
+        let cleanText = text.replace(/[*#_`]/g, ''); // Remove Markdown
+
+        const isSpanish = this.language === 'es';
+
+        if (isSpanish) {
+            // Spanish Conversational Replacements
+            cleanText = cleanText
+                .replace(/(\d+)x/gi, '$1 veces')      // 2x -> 2 veces
+                .replace(/\bAI\b/g, 'Inteligencia Artificial')
+                .replace(/\bORION\b/g, 'Oribon')      // Phonetic adjustment if needed
+                .replace(/ROI/g, 'Retorno de Inversión')
+                .replace(/\$/g, 'dólares ');
+        } else {
+            // English Conversational Replacements
+            cleanText = cleanText
+                .replace(/(\d+)x/gi, '$1 times')      // 2x -> 2 times
+                .replace(/\bAI\b/g, 'A.I.')           // Force Acronym pronunciation
+                .replace(/ROI/g, 'R.O.I.')
+                .replace(/\$/g, 'dollars ');
+        }
+
+        const utterance = new SpeechSynthesisUtterance(cleanText);
         utterance.voice = this.selectedVoice;
 
         // OPTIMIZED FOR NATURAL SOUND
-        const isSpanish = this.language === 'es';
-
         // Rate: 0.92 = conversational speed (not too fast/robotic, not too slow)
         // Pitch: 0.95 = slightly deeper, warmer, more human
         utterance.rate = 0.92;   // Natural conversation pace
