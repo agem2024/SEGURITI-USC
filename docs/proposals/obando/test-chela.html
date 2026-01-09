@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRUEBA DE CHELA (OFFLINE)</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        #chela-root {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 99999;
+            font-family: sans-serif;
+        }
+
+        /* BOTON FLOTANTE */
+        #chela-toggle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #fff url('assets/chela.png') no-repeat center center;
+            background-size: cover;
+            border: 4px solid #00B050;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        #chela-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* VENTANA CHAT */
+        #chela-window {
+            display: none;
+            flex-direction: column;
+            width: 360px;
+            height: 550px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.2);
+            position: absolute;
+            bottom: 95px;
+            right: 0;
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+
+        #chela-window.visible {
+            display: flex;
+        }
+
+        #chela-header {
+            background: #00B050;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        #chela-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .msg {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .msg.bot {
+            background: #fff;
+            border: 1px solid #eee;
+            align-self: flex-start;
+            color: #333;
+            border-bottom-left-radius: 2px;
+        }
+
+        .msg.user {
+            background: #00B050;
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 2px;
+        }
+
+        #chela-input-area {
+            padding: 15px;
+            background: #fff;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+        }
+
+        #chela-input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        #chela-input:focus {
+            border-color: #00B050;
+        }
+
+        #chela-send {
+            background: #00B050;
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>PRUEBA DE CONCEPTO: CHELA</h1>
+        <p>Abre el chat abajo a la derecha ↘️</p>
+    </div>
+
+    <!-- SISTEMA CHELA INTEGRADO -->
+    <div id="chela-root">
+        <div id="chela-window">
+            <div id="chela-header">
+                <span>CHELA - Alcaldía</span>
+                <button id="chela-close"
+                    style="background:none;border:none;color:white;font-size:24px;cursor:pointer;">&times;</button>
+            </div>
+            <div id="chela-messages"></div>
+            <div id="chela-input-area">
+                <input type="text" id="chela-input" placeholder="Pregunta algo..." autocomplete="off">
+                <button id="chela-send">➤</button>
+            </div>
+        </div>
+        <div id="chela-toggle" title="Abrir Chat"></div>
+    </div>
+
+    <script>
+        (function () {
+            // CONFIG
+            const API_URL = 'https://seguriti-usc.onrender.com/chat';
+            let synth = window.speechSynthesis;
+            let selectedVoice = null;
+
+            // UI ELEMENTS
+            const win = document.getElementById('chela-window');
+            const toggle = document.getElementById('chela-toggle');
+            const inp = document.getElementById('chela-input');
+            const sendBtn = document.getElementById('chela-send');
+            const closeBtn = document.getElementById('chela-close');
+            const msgs = document.getElementById('chela-messages');
+
+            // VOICE SETUP
+            function loadVoice() {
+                const voices = synth.getVoices();
+                // Buscar voz mujer
+                selectedVoice = voices.find(v => v.name.includes('Paulina') || v.name.includes('Sabina') || v.name.includes('Helena') || v.name.includes('Zira') || v.name.includes('Google Español'));
+
+                // Fallback
+                if (!selectedVoice) selectedVoice = voices.find(v => v.lang.startsWith('es'));
+                console.log("Voz elegida:", selectedVoice ? selectedVoice.name : "Ninguna");
+            }
+            if (synth.onvoiceschanged !== undefined) synth.onvoiceschanged = loadVoice;
+            loadVoice();
+
+            function speak(text) {
+                if (!synth) return;
+                synth.cancel();
+                const u = new SpeechSynthesisUtterance(text);
+                if (selectedVoice) u.voice = selectedVoice;
+                u.lang = 'es-CO';
+                u.rate = 1.1; // Sutilmente más rápido
+                u.pitch = 1.2; // Sutilmente más agudo (feminización)
+                synth.speak(u);
+            }
+
+            // LOGIC
+            function addMsg(cls, text) {
+                const d = document.createElement('div');
+                d.className = 'msg ' + cls;
+                d.innerText = text;
+                msgs.appendChild(d);
+                msgs.scrollTop = msgs.scrollHeight;
+                if (cls === 'bot' && text !== '...') speak(text);
+                return d;
+            }
+
+            async function processMessage() {
+                const txt = inp.value.trim();
+                if (!txt) return;
+                inp.value = '';
+                addMsg('user', txt);
+
+                const loading = addMsg('bot', '...');
+
+                try {
+                    // FALLBACK LOCAL INMEDIATO (SIMULADO)
+                    // Si el usuario dice "Bêrea" o "Prueba", respondemos localmente para testear
+                    const clean = txt.toLowerCase();
+                    if (clean.includes('bêrea') || clean.includes('zocai')) {
+                        throw { type: 'local', msg: "Bêrea! Mũra Chela. (Hola, soy Chela. ¿Cómo estás?)" };
+                    }
+                    if (clean.includes('precio') || clean.includes('costo')) {
+                        throw { type: 'local', msg: "El proyecto piloto municipio digital inicia en $15 Millones COP." };
+                    }
+
+                    // INTENTO REAL DE API
+                    const req = await fetch(API_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ message: "Responde como Chela (Mujer, Alcaldia Obando). Usuario: " + txt })
+                    });
+
+                    if (!req.ok) throw new Error("Server Error");
+                    const res = await req.json();
+
+                    loading.remove();
+                    addMsg('bot', res.response);
+
+                } catch (e) {
+                    loading.remove();
+                    if (e.type === 'local') {
+                        addMsg('bot', e.msg);
+                    } else {
+                        console.error(e);
+                        addMsg('bot', "Lo siento, la red está lenta. Pero aquí estoy.");
+                    }
+                }
+            }
+
+            // EVENTS
+            toggle.onclick = () => {
+                const visible = win.classList.toggle('visible');
+                if (visible) {
+                    setTimeout(() => inp.focus(), 100);
+                    if (msgs.children.length === 0) addMsg('bot', "¡Hola! Soy Chela. Asistente de la Alcaldía. ¿En qué te ayudo?");
+                }
+            };
+            closeBtn.onclick = toggle.onclick;
+            sendBtn.onclick = processMessage;
+            inp.onkeypress = (e) => e.key === 'Enter' && processMessage();
+
+        })();
+    </script>
+</body>
+
+</html>
