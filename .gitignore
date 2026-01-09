@@ -32,5 +32,5 @@ docs/proposals/jose-loader.js
 .env
 .env.*
 
-# ALLOW loader for deployment (Required for bots to work)
-!docs/proposals/jose-loader.js
+# SECURITY: NEVER upload loader files with API keys
+# Bots should load keys from a secure backend or environment variables
