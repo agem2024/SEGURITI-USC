@@ -599,24 +599,78 @@ Responde de manera conversacional, como si estuvieras tomando un café con el du
             this.setLanguage('en');
         }
 
-        // USE RENDER PROXY (Secure - keys never exposed in browser)
-        const PROXY_URL = 'https://seguriti-usc.onrender.com/chat';
+        // Get API key from ORION_CONFIG (loaded by jose-loader.js)
+        const apiKey = window.ORION_CONFIG?.getAuth?.() || this._getSecureApiKey();
+
+        if (!apiKey) {
+            console.warn('⚠️ MARIO: No API key found, using fallback responses');
+            return this._getFallbackResponse(userMessage);
+        }
+
+        const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
 
         try {
-            const response = await fetch(PROXY_URL, {
+            console.log('🤖 MARIO calling Gemini API directly...');
+
+            const requestBody = {
+                contents: [
+                    {
+                        role: 'user',
+                        parts: [{ text: this.systemPrompt }]
+                    },
+                    ...this.messages.slice(-10),
+                    {
+                        role: 'user',
+                        parts: [{ text: userMessage }]
+                    }
+                ],
+                generationConfig: {
+                    temperature: 0.7,
+                    maxOutputTokens: 500,
+                    topP: 0.9
+                }
+            };
+
+            const response = await fetch(`${API_URL}?key=${apiKey}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    message: `${this.systemPrompt}\n\nUser: ${userMessage}`
-                })
+                body: JSON.stringify(requestBody)
             });
 
             if (!response.ok) {
-                throw new Error(`Server error: ${response.status}`);
+                const errorText = await response.text();
+                console.error('MARIO API Error:', response.status, errorText);
+
+                // Try next key if available
+                if (window.ORION_CONFIG?.getNextAuth) {
+                    console.log('🔄 Trying backup API key...');
+                    const backupKey = window.ORION_CONFIG.getNextAuth();
+                    const retryResponse = await fetch(`${API_URL}?key=${backupKey}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(requestBody)
+                    });
+
+                    if (retryResponse.ok) {
+                        const retryData = await retryResponse.json();
+                        return retryData.candidates?.[0]?.content?.parts?.[0]?.text || this._getFallbackResponse(userMessage);
+                    }
+                }
+
+                return this._getFallbackResponse(userMessage);
             }
 
             const data = await response.json();
-            return data.response || "I'm analyzing the data...";
+            const aiResponse = data.candidates?.[0]?.content?.parts?.[0]?.text;
+
+            if (!aiResponse) {
+                console.error('MARIO: Empty response from API');
+                return this._getFallbackResponse(userMessage);
+            }
+
+            console.log('✅ MARIO got intelligent response');
+            return aiResponse;
+
         } catch (e) {
             console.error('MARIO API Exception:', e);
             return this._getFallbackResponse(userMessage);
@@ -908,6 +962,23 @@ Which part would you like me to explain better - the call center, the dispatch, 
             btn.title = '🔇 Voz DESACTIVADA - Click para activar';
             btn.textContent = '🔇';
         }
+    }
+
+    // Public method to change language dynamically
+    setLanguage(lang) {
+        this.language = lang;
+        this.systemPrompt = this._buildSystemPrompt();
+        this._loadVoices(); // Reload voices for new language
+
+        // Update input placeholder
+        const input = document.getElementById('mario-input');
+        if (input) {
+            input.placeholder = lang === 'es'
+                ? 'Pregúntale a MARIO...'
+                : 'Ask MARIO anything...';
+        }
+
+        console.log('🌍 MARIO language changed to:', lang);
     }
 
     // Public method to configure API key securely
