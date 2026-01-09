@@ -192,28 +192,44 @@
     // SÍNTESIS DE VOZ (TTS)
     function cargarVoces() {
         let voces = síntesisVoz.getVoices();
-        // Buscar voz de MUJER en Español
-        const preferidas = ['Google Español', 'Paulina', 'Sabina', 'Helena', 'Monica'];
-        vozSeleccionada = voces.find(v => preferidas.some(p => v.name.includes(p))) || voces.find(v => v.lang.startsWith('es'));
+        console.log("Voces disponibles:", voces.map(v => v.name));
+
+        // Prioridad Estricta: Voces Femeninas Conocidas en Español
+        const mujeres = ['Microsoft Sabina', 'Microsoft Paulina', 'Google Español', 'Monica', 'Soledad', 'Paulina', 'Sabina'];
+
+        // 1. Buscar coincidencia exacta
+        vozSeleccionada = voces.find(v => mujeres.some(m => v.name.includes(m)));
+
+        // 2. Si no, buscar cualquiera que diga "Female" o "Mujer" en Español
+        if (!vozSeleccionada) {
+            vozSeleccionada = voces.find(v => v.lang.startsWith('es') && (v.name.includes('Female') || v.name.includes('Mujer')));
+        }
+
+        // 3. Fallback: Cualquier voz en español (pero trataremos de ajustarla)
+        if (!vozSeleccionada) {
+            vozSeleccionada = voces.find(v => v.lang.startsWith('es'));
+        }
     }
 
-    // Carga inicial y evento de cambio
     if (síntesisVoz.onvoiceschanged !== undefined) {
         síntesisVoz.onvoiceschanged = cargarVoces;
     }
-    cargarVoces(); // Intentar cargar inmediatamente
+    cargarVoces();
 
     function hablar(texto) {
         if (!síntesisVoz) return;
-        síntesisVoz.cancel(); // Detener anterior
+        síntesisVoz.cancel();
 
-        // Limpiar texto de símbolos raros
         const textoLimpio = texto.replace(/[*#]/g, '').replace(/https?:\/\/\S+/g, '');
 
         const enunciado = new SpeechSynthesisUtterance(textoLimpio);
         if (vozSeleccionada) enunciado.voice = vozSeleccionada;
-        enunciado.lang = 'es-CO'; // Español Colombia
-        enunciado.rate = 1.1; // Un poco más fluido
+
+        // Ajustes para sonar más femenina si toca usar voz genérica
+        enunciado.lang = 'es-CO';
+        enunciado.pitch = 1.0; // Tono natural
+        enunciado.rate = 1.0;
+
         síntesisVoz.speak(enunciado);
     }
 
@@ -225,46 +241,55 @@
         input.value = '';
         agregarMensaje('usuario', texto);
 
-        // Indicador de carga
         const idCarga = agregarMensaje('bot', 'Pensando...', true);
 
-        // Timeout para avisar si Render está dormido
+        // Timeout aviso
         const timeoutAviso = setTimeout(() => {
             const el = document.getElementById(idCarga);
-            if (el) el.innerText = "Despertando al servidor (puede tardar 30s)...";
-        }, 5000);
+            if (el) el.innerText = "Conectando con el servidor municipal...";
+        }, 6000);
 
         try {
-            // DETECCIÓN DE IDIOMA
-            let promptSistema = `
-CONTEXTO: Eres CHELA, la asistente virtual de la Alcaldía de Obando.
-TONO: Amable, servicial, mujer colombiana.
-OBJETIVO: Ayudar con trámites, precios y dudas.
-IDIOMA: Español. (Si detectas Embera Chamí, responde en Embera).
+            // DETECCIÓN INTELIGENTE DE IDIOMA
+            const esEmbera = /(embera|bêrea|zocai|kĩra|nũmí|chami|chamí)/i.test(texto);
+            const esIngles = /(hello|help|english|price|thank)/i.test(texto);
+
+            let contextoIA = `
+Eres CHELA, asistente de la Alcaldía de Obando, Valle.
+IDENTIDAD: Mujer, amable, eficiente.
+IDIOMA BASE: Español.
+REGLAS CRÍTICAS:
+1. Si el usuario habla en INGLÉS, responde en INGLÉS.
+2. Si el usuario usa palabras como "Bêrea" o "Zocai" (Embera), DEBES RESPONDER EN EMBERA CHAMÍ.
+3. Sé breve y directa. No des respuestas de 3 párrafos.
 `;
+
+            if (esEmbera) {
+                contextoIA += "\n[URGENTE: EL USUARIO ESTÁ HABLANDO EN EMBERA CHAMÍ. ACTIVA MODO TRADUCTOR INDÍGENA. RESPONDE EN EMBERA].";
+            } else if (esIngles) {
+                contextoIA += "\n[USER IS SPEAKING ENGLISH. REPLY IN ENGLISH ONLY].";
+            }
 
             const respuesta = await fetch(CONFIG.endpoint, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    message: `${promptSistema}\n\nUsuario: ${texto}`
+                    message: `${contextoIA}\n\nUsuario: ${texto}`
                 })
             });
 
-            clearTimeout(timeoutAviso); // Cancelar aviso de espera
+            clearTimeout(timeoutAviso);
 
             if (!respuesta.ok) throw new Error('Error en el servidor');
-
             const datos = await respuesta.json();
 
-            // Eliminar "Pensando..." y mostrar respuesta real
             const elCarga = document.getElementById(idCarga);
             if (elCarga) elCarga.remove();
 
             if (datos.response) {
                 agregarMensaje('bot', datos.response);
             } else {
-                agregarMensaje('bot', "No entendí bien, ¿puedes repetir?");
+                agregarMensaje('bot', "¿Podrías repetirlo?");
             }
 
         } catch (error) {
@@ -272,7 +297,7 @@ IDIOMA: Español. (Si detectas Embera Chamí, responde en Embera).
             console.error(error);
             const elCarga = document.getElementById(idCarga);
             if (elCarga) elCarga.remove();
-            agregarMensaje('bot', 'Tuve un fallo de conexión. Intenta de nuevo.');
+            agregarMensaje('bot', 'Sin conexión. Intenta de nuevo.');
         }
     }
 
