@@ -16,8 +16,12 @@
     const _b4 = 'pWMWP1Kuc8zI';
 
     const keys = [
-        _a1 + _a2 + _a3 + _a4,
-        _b1 + _b2 + _b3 + _b4
+        _a1 + _a2 + _a3 + _a4,                        // Key 1 (Primary)
+        _b1 + _b2 + _b3 + _b4,                        // Key 2 (Backup 1)
+        'AIzaSyBJducUOcsPnNEtYOFI3sF60AfHUXMkXBo',    // Key 3 (Firebase/Gemini)
+        'AIzaSyBh1wcshJS1gjMzzaBkjgsDTWm2pDZWK9Q',    // Key 4 (Jose Legacy 1)
+        'AIzaSyDngKFBwVVIi3aRkOWVslAOivCvwKTiEmM',    // Key 5 (Jose Legacy 2)
+        'AIzaSyDNrPToe2abPx1Cf_dFz49OyWa1pVvZMp8'     // Key 6 (Mike Loader)
     ];
 
     let idx = 0;

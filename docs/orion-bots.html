@@ -3141,14 +3141,20 @@
             } catch (e) {
                 console.warn("XONA Main API Failed, switching to FALLBACK GEMINI", e);
 
-                // TRY 2: Gemini Direct Fallback with Enhanced XONA Prompt
-                try {
-                    // Use Mario Loader V3 Rotation Keys (or fallback)
-                    const key = window.__MARIO_CONFIG__?.apiKey ||
-                        (atob('QUl6YVN5') + atob('QkVWNmIybTQ=') + atob('S3lSMVcwOEZXUVVoMQ==') + atob('cFdNV1AxS3VjOHpJ'));
+                // TRY 2: Gemini Direct Fallback with Enhanced XONA Prompt (RETRY LOOP)
+                let attempts = 0;
+                let success = false;
+                const maxAttempts = window.__MARIO_CONFIG__?.keyCount || 3;
 
-                    // ENHANCED XONA PROMPT - Combined Personality + All Industries
-                    const systemPrompt = window.currentLang === 'es' ? `
+                while (attempts < maxAttempts && !success) {
+                    attempts++;
+                    try {
+                        // Use Mario Loader V3 Rotation Keys (or fallback)
+                        const key = window.__MARIO_CONFIG__?.apiKey ||
+                            (atob('QUl6YVN5') + atob('QkVWNmIybTQ=') + atob('S3lSMVcwOEZXUVVoMQ==') + atob('cFdNV1AxS3VjOHpJ'));
+
+                        // ENHANCED XONA PROMPT - Combined Personality + All Industries
+                        const systemPrompt = window.currentLang === 'es' ? `
 Eres XONA, la asistente IA de ORION Tech. Tu personalidad combina:
 - Experta tech amigable que explica conceptos complejos de forma simple
 - Guía AI futurista con estilo cyberpunk profesional
@@ -3192,7 +3198,7 @@ PRICING 2026 (USD):
 - FLEET: $1,997/mo + $9,997 setup (50 calls)
 - ENTERPRISE: $3,997/mo + $14,997 setup (100+ calls)
 
-INDUSTRIES: Auto shops, Plumbing, Restaurants, Hotels, Government/Political, Retail, Enterprise.
+INDUSTRIAS: Auto shops, Plumbing, Restaurants, Hotels, Government/Political, Retail, Enterprise.
 
 RULES:
 - Respond in natural conversational English
@@ -3202,40 +3208,49 @@ RULES:
 - Mention specific prices when asked
 `;
 
-                    const geminiRes = await fetch(`${GEMINI_API}?key=${key}`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            systemInstruction: { parts: [{ text: systemPrompt }] },
-                            contents: [{ role: 'user', parts: [{ text: msg }] }]
-                        })
-                    });
+                        const geminiRes = await fetch(`${GEMINI_API}?key=${key}`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                systemInstruction: { parts: [{ text: systemPrompt }] },
+                                contents: [{ role: 'user', parts: [{ text: msg }] }]
+                            })
+                        });
 
-                    if (geminiRes.status === 429 || geminiRes.status === 403) {
-                        // Rotate to next key if available
-                        if (window.__MARIO_CONFIG__?.getNextKey) {
-                            window.__MARIO_CONFIG__.getNextKey();
-                            console.log('🔄 XONA: Rotated API key for next request');
+                        if (geminiRes.status === 429 || geminiRes.status === 403) {
+                            // Rotate key and continue loop
+                            if (window.__MARIO_CONFIG__?.getNextKey) {
+                                console.log(`🔄 XONA: Key exhausted (Attempt ${attempts}/${maxAttempts}). Rotating and retrying...`);
+                                window.__MARIO_CONFIG__.getNextKey();
+                                continue; // Retry immediately
+                            }
+                            throw new Error('API rate limited');
                         }
-                        throw new Error('API rate limited');
+
+                        if (!geminiRes.ok) throw new Error('API Error: ' + geminiRes.statusText);
+
+                        const geminiData = await geminiRes.json();
+                        success = true; // Mark as success to exit loop
+                        document.getElementById(typingId)?.remove();
+
+                        const fallbackReply = geminiData.candidates?.[0]?.content?.parts?.[0]?.text || (window.currentLang === 'es' ? "Lo siento, mis sistemas neuronales están reiniciando. Intenta de nuevo." : "Sorry, my neural systems are rebooting. Try again.");
+
+                        // Clean only emojis, preserve all other characters
+                        const cleanReply = fallbackReply.replace(/[\u{1F300}-\u{1F9FF}]/gu, '').replace(/\*/g, '');
+
+                        messagesDiv.innerHTML += `<div class="xona-msg bot">${cleanReply}</div>`;
+                        speakXona(cleanReply);
+
+                    } catch (geminiError) {
+                        console.error(`Attempt ${attempts} failed:`, geminiError);
+                        // If it's the last attempt, show error
+                        if (attempts >= maxAttempts) {
+                            document.getElementById(typingId)?.remove();
+                            const finalErr = window.currentLang === 'es' ? '⚠️ ORION Offline. Contacta por WhatsApp.' : '⚠️ ORION Offline. Contact via WhatsApp.';
+                            messagesDiv.innerHTML += `<div class="xona-msg bot">${finalErr}</div>`;
+                        }
+                        // Otherwise loop continues
                     }
-
-                    const geminiData = await geminiRes.json();
-                    document.getElementById(typingId)?.remove();
-
-                    const fallbackReply = geminiData.candidates?.[0]?.content?.parts?.[0]?.text || (window.currentLang === 'es' ? "Lo siento, mis sistemas neuronales están reiniciando. Intenta de nuevo." : "Sorry, my neural systems are rebooting. Try again.");
-
-                    // Clean only emojis, preserve all other characters
-                    const cleanReply = fallbackReply.replace(/[\u{1F300}-\u{1F9FF}]/gu, '').replace(/\*/g, '');
-
-                    messagesDiv.innerHTML += `<div class="xona-msg bot">${cleanReply}</div>`;
-                    speakXona(cleanReply);
-
-                } catch (geminiError) {
-                    console.error("ALL APIS FAILED", geminiError);
-                    document.getElementById(typingId)?.remove();
-                    const finalErr = window.currentLang === 'es' ? '⚠️ ORION Offline. Contacta por WhatsApp.' : '⚠️ ORION Offline. Contact via WhatsApp.';
-                    messagesDiv.innerHTML += `<div class="xona-msg bot">${finalErr}</div>`;
                 }
             }
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
