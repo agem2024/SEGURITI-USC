@@ -215,7 +215,10 @@ INSTRUCCIONES:
         try {
             const resp = await this._callGemini(text);
             this._addMessage('jose', resp);
-        } catch (e) { this._addMessage('jose', 'Check connection...'); }
+        } catch (e) {
+            const fallback = this._getOfflineResponse(text);
+            this._addMessage('jose', fallback);
+        }
     }
 
     async _callGemini(userMessage) {
@@ -234,8 +237,34 @@ INSTRUCCIONES:
                 })
             });
             const data = await response.json();
-            return data.candidates?.[0]?.content?.parts?.[0]?.text || "...";
-        } catch (e) { return "Error"; }
+            return data.candidates?.[0]?.content?.parts?.[0]?.text || this._getOfflineResponse(userMessage);
+        } catch (e) {
+            console.warn("Jose Offline Mode:", e);
+            return this._getOfflineResponse(userMessage);
+        }
+    }
+
+    _getOfflineResponse(text) {
+        const t = text.toLowerCase();
+        // JOSE PERSONA: Experienced Service Advisor (20 years)
+        if (t.includes('price') || t.includes('cost') || t.includes('precio') || t.includes('much')) {
+            return this.language === 'es'
+                ? "El plan PRO ($997/mes) es el más popular. Recuperas la inversión en 14 días evitando citas perdidas. ¿Te explico el ROI?"
+                : "The PRO plan ($997/mo) is our best seller. You break even in 14 days just by stopping tire kickers. Want to see the ROI?";
+        }
+        if (t.includes('demo') || t.includes('trial') || t.includes('prueba')) {
+            return this.language === 'es'
+                ? "Tenemos un piloto de 30 días. Si no te ahorra dinero, no pagas. ¿Agendamos una demo rápida?"
+                : "We offer a 30-day pilot. If it doesn't save you money, you don't pay. Shall we book a quick demo?";
+        }
+        if (t.includes('hola') || t.includes('hello') || t.includes('hi')) {
+            return this.language === 'es'
+                ? "¡Hola! Soy Jose. ¿Tu taller necesita más trabajos grandes y menos preguntas de precio? Puedo ayudarte con eso."
+                : "Hello! I'm Jose. Does your shop need more big jobs and fewer price questions? I can help with that.";
+        }
+        return this.language === 'es'
+            ? "Entiendo. En la Bahía, el tiempo es dinero. ORION filtra a los curiosos para que tú solo hables con clientes serios. ¿Te interesa?"
+            : "I get it. In the Bay Area, time is money. ORION filters out the tire kickers so you only talk to serious clients. Interested?";
     }
 
     _getSecureApiKey() {

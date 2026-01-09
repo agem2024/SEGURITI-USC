@@ -580,11 +580,9 @@ Responde de manera conversacional, como si estuvieras tomando un café con el du
             this._addMessage('mario', response);
         } catch (error) {
             this._hideTyping();
-            const errorMsg = this.language === 'es'
-                ? 'Disculpa, hubo un problema. ¿Puedes repetir tu pregunta?'
-                : 'Sorry, there was an issue. Can you repeat your question?';
-            this._addMessage('mario', errorMsg);
-            console.error('MARIO Error:', error);
+            console.warn('MARIO Offline Mode:', error);
+            const fallback = this._getFallbackResponse(text);
+            this._addMessage('mario', fallback);
         }
     }
 
