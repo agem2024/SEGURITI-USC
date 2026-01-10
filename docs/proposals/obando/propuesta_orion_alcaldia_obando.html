@@ -1115,6 +1115,55 @@
         body.es h1.lang-en {
             display: none;
         }
+
+        /* EMBERA LANGUAGE SUPPORT - Shows Spanish as fallback */
+        .lang-em {
+            display: none;
+        }
+
+        div.lang-em,
+        p.lang-em,
+        h2.lang-em,
+        h3.lang-em,
+        span.lang-em,
+        li.lang-em,
+        ul.lang-em,
+        h1.lang-em {
+            display: none;
+        }
+
+        /* When Embera is active: show Embera content */
+        body.em .lang-em {
+            display: inline;
+        }
+
+        body.em div.lang-em,
+        body.em p.lang-em,
+        body.em h2.lang-em,
+        body.em h3.lang-em,
+        body.em span.lang-em,
+        body.em li.lang-em,
+        body.em ul.lang-em,
+        body.em h1.lang-em {
+            display: block;
+        }
+
+        /* When Embera is active: hide English, but KEEP Spanish as fallback */
+        body.em div.lang-en,
+        body.em p.lang-en,
+        body.em h2.lang-en,
+        body.em h3.lang-en,
+        body.em span.lang-en,
+        body.em li.lang-en,
+        body.em ul.lang-en,
+        body.em h1.lang-en {
+            display: none;
+        }
+
+        /* Hide Spanish ONLY when sibling Embera exists - handled by JS */
+        body.em .has-embera .lang-es {
+            display: none !important;
+        }
     </style>
 </head>
 
@@ -1146,7 +1195,8 @@
     <!-- LANGUAGE SWITCHER -->
     <div class="lang-switcher">
         <button class="lang-btn active" onclick="setLang('en')">🇺🇸 EN</button>
-        <button class="lang-btn" onclick="setLang('es')">🇪🇸 ES</button>
+        <button class="lang-btn" onclick="setLang('es')">🇨🇴 ES</button>
+        <button class="lang-btn" onclick="setLang('em')">🪶 EMBERA</button>
     </div>
 
     <!-- HERO -->
@@ -1156,15 +1206,19 @@
 
         <div class="badge lang-en">ALCALDÍA DE OBANDO • 2024-2027</div>
         <div class="badge lang-es">ALCALDÍA DE OBANDO • 2024-2027</div>
+        <div class="badge lang-em">OBANDO DRUA ẼBẼRA • 2024-2027</div>
 
         <h1 class="lang-en">MUNICIPAL GOV<br><span>DIGITAL TRANSPARENCY</span></h1>
         <h1 class="lang-es">GOBIERNO DIGITAL<br><span>AMOR POR LO NUESTRO</span></h1>
+        <h1 class="lang-em">DRUA DIGITAL<br><span>DAU JŨMA ẼBẼRA</span></h1>
 
         <p class="lang-en">Transforming public management. Zero lines. Instant response. 100% Transparent.</p>
         <p class="lang-es">Transformando la gestión pública. Cero filas. Respuesta instantánea. 100% Transparente.</p>
+        <p class="lang-em">Drua kĩrãrã jara. Ũrĩa ẽdrẽ. Wãgãrã jemene. 100% Kĩrãrã.</p>
 
         <a href="https://wa.me/573108884014?text=Alcalde,%20me%20interesa%20la%20propuesta" class="btn btn-primary">
-            🚀 <span class="lang-en">CONTACT MAYOR'S OFFICE</span><span class="lang-es">CONTACTAR ALCALDÍA</span>
+            🚀 <span class="lang-en">CONTACT MAYOR'S OFFICE</span><span class="lang-es">CONTACTAR ALCALDÍA</span><span
+                class="lang-em">DRUA WÃME</span>
         </a>
     </section>
 
@@ -1173,56 +1227,76 @@
         <div class="section-title">
             <h2 class="lang-en">// MUNICIPAL CAPACITY</h2>
             <h2 class="lang-es">// CAPACIDAD MUNICIPAL</h2>
-            <div class="client-name">PREPARED FOR: ALCALDE DIEGO ORTIZ</div>
+            <h2 class="lang-em">// DRUA KĨRÃRÃ</h2>
+            <div class="client-name">
+                <span class="lang-en">PREPARED FOR: MAYOR DIEGO ORTIZ</span>
+                <span class="lang-es">PREPARADO PARA: ALCALDE DIEGO ORTIZ</span>
+                <span class="lang-em">DIEGO ORTIZ DRUA EWARI</span>
+            </div>
             <h1 class="lang-en">PUBLIC MANAGEMENT <br>MEETS <span class="highlight">ARTIFICIAL INTELLIGENCE</span>
             </h1>
             <h1 class="lang-es">GESTIÓN PÚBLICA <br>ENCUENTRA <span class="highlight">INTELIGENCIA ARTIFICIAL</span>
             </h1>
+            <h1 class="lang-em">DRUA KŨRĨSIA <br>DAU <span class="highlight">KŨRĨSIA WÃGÃRÃ</span>
+            </h1>
             <p class="lang-en">What your Administration can handle at the SAME time</p>
             <p class="lang-es">Lo que su Administración puede manejar AL MISMO TIEMPO</p>
+            <p class="lang-em">Drua ĩja kĩrãrã daupari</p>
         </div>
         <div class="capacity-grid">
             <div class="capacity-item">
                 <span class="number">24/7</span>
                 <span class="label lang-en">Citizen Attention</span>
                 <span class="label lang-es">Atención Ciudadana</span>
+                <span class="label lang-em">Ẽbẽra Wãme</span>
                 <span class="highlight lang-en">Voice AI Answering</span>
                 <span class="highlight lang-es">Contestadas por IA</span>
+                <span class="highlight lang-em">Kũrĩsia Wãgãrã</span>
             </div>
             <div class="capacity-item">
                 <span class="number">∞</span>
                 <span class="label lang-en">WhatsApp Chats</span>
                 <span class="label lang-es">Chats WhatsApp</span>
+                <span class="label lang-em">WhatsApp Jara</span>
                 <span class="highlight lang-en">Unlimited Concurrent</span>
                 <span class="highlight lang-es">Concurrentes Ilimitados</span>
+                <span class="highlight lang-em">Ũrĩa Ẽdrẽ</span>
             </div>
             <div class="capacity-item">
                 <span class="number">0</span>
                 <span class="label lang-en">Physical Lines</span>
                 <span class="label lang-es">Filas Físicas</span>
+                <span class="label lang-em">Bari Ẽdrẽ</span>
                 <span class="highlight lang-en">Virtual Procedures</span>
                 <span class="highlight lang-es">Trámites Virtuales</span>
+                <span class="highlight lang-em">Kĩrãrã Digital</span>
             </div>
             <div class="capacity-item">
                 <span class="number">100%</span>
                 <span class="label lang-en">Transparency</span>
                 <span class="label lang-es">Transparencia</span>
+                <span class="label lang-em">Kĩrãrã Jũma</span>
                 <span class="highlight lang-en">Real-time Data</span>
                 <span class="highlight lang-es">Datos en Tiempo Real</span>
+                <span class="highlight lang-em">Dau Wãgãrã</span>
             </div>
             <div class="capacity-item">
                 <span class="number">50+</span>
                 <span class="label lang-en">Officials</span>
                 <span class="label lang-es">Funcionarios</span>
+                <span class="label lang-em">Drua Ẽbẽra</span>
                 <span class="highlight lang-en">Productivity Focus</span>
                 <span class="highlight lang-es">Enfoque Productivo</span>
+                <span class="highlight lang-em">Kĩrãrã Dau</span>
             </div>
             <div class="capacity-item">
                 <span class="number">0</span>
                 <span class="label lang-en">Paper Required</span>
                 <span class="label lang-es">Papel Requerido</span>
+                <span class="label lang-em">Papel Ẽdrẽ</span>
                 <span class="highlight lang-en">100% Digital Gov</span>
                 <span class="highlight lang-es">100% Gobierno Digital</span>
+                <span class="highlight lang-em">100% Drua Digital</span>
             </div>
         </div>
     </section>
@@ -1233,16 +1307,24 @@
         <div class="section-title" style="max-width: 1100px; margin: 0 auto;">
             <h2 class="lang-en">// BUREAUCRACY vs EFFICIENCY</h2>
             <h2 class="lang-es">// BUROCRACIA vs EFICIENCIA</h2>
+            <h2 class="lang-em">// DŨRĨSIA vs KĨRÃRÃ</h2>
         </div>
         <div class="comparison-grid">
             <div class="comparison-box old">
                 <h3 class="lang-en">TRADITIONAL GOV</h3>
                 <h3 class="lang-es">MODELO TRADICIONAL</h3>
-                <div class="price">FILAS / LINES</div>
+                <h3 class="lang-em">DRUA KŨRĨSIA BĨA</h3>
+                <div class="price">
+                    <span class="lang-en">LINES</span>
+                    <span class="lang-es">FILAS</span>
+                    <span class="lang-em">BARI</span>
+                </div>
                 <p style="color: var(--accent-red); margin-bottom: 20px; font-weight: 600;" class="lang-en">Citizens
                     waiting for hours</p>
                 <p style="color: var(--accent-red); margin-bottom: 20px; font-weight: 600;" class="lang-es">Ciudadanos
                     esperando horas</p>
+                <p style="color: var(--accent-red); margin-bottom: 20px; font-weight: 600;" class="lang-em">Ẹbẹra
+                    naa jaraba</p>
                 <ul class="lang-en">
                     <li>Lost paperwork & documents</li>
                     <li>Unanswered phone calls</li>
@@ -1255,15 +1337,29 @@
                     <li>Comunidad frustrada</li>
                     <li>Falta de transparencia</li>
                 </ul>
+                <ul class="lang-em">
+                    <li>Papel bũrãra</li>
+                    <li>Jara wĩdrĩ</li>
+                    <li>Ẹbẹra kĩrãrã ẽdrẽ</li>
+                    <li>Kĩrãrã jũma ẽdrẽ</li>
+                </ul>
             </div>
             <div class="vs-badge">VS</div>
             <div class="comparison-box new">
-                <h3>ORION GOV</h3>
-                <div class="price">INSTANT</div>
+                <h3 class="lang-en">ORION GOV</h3>
+                <h3 class="lang-es">ORION GOV</h3>
+                <h3 class="lang-em">ORION DRUA</h3>
+                <div class="price">
+                    <span class="lang-en">INSTANT</span>
+                    <span class="lang-es">INSTANTÁNEO</span>
+                    <span class="lang-em">JEMENE</span>
+                </div>
                 <p style="color: var(--accent-teal); margin-bottom: 20px; font-weight: 600;" class="lang-en">Digital &
                     Immediate</p>
                 <p style="color: var(--accent-teal); margin-bottom: 20px; font-weight: 600;" class="lang-es">Digital e
                     Inmediato</p>
+                <p style="color: var(--accent-teal); margin-bottom: 20px; font-weight: 600;" class="lang-em">Digital
+                    jemene</p>
                 <ul class="lang-en">
                     <li>Procedures on WhatsApp</li>
                     <li>Anonymous Reporting</li>
@@ -1738,6 +1834,39 @@
                     <li>Registro de capacitaciones</li>
                 </ul>
             </div>
+
+            <!-- PLATAFORMA CIUDADANA IA -->
+            <div class="feature-card gold" style="grid-column: span 2;">
+                <span class="feature-badge">LIVE DEMO</span>
+                <div class="icon">🤖</div>
+                <h3 class="lang-en">SMART CITIZEN PLATFORM</h3>
+                <h3 class="lang-es">PLATAFORMA CIUDADANA IA</h3>
+                <p class="lang-en">Intelligent citizen attention platform for Colombian municipalities. Multilingual
+                    support, PQR procedures, anonymous complaints, and live AI assistant.</p>
+                <p class="lang-es">Plataforma de atención ciudadana inteligente para alcaldías de Colombia. Soporte
+                    multilingüe, trámites PQR, denuncias anónimas y asistente en vivo con IA.</p>
+                <ul class="lang-en">
+                    <li>Multilingual support (Spanish, English, Indigenous)</li>
+                    <li>PQR tracking & management</li>
+                    <li>Secure anonymous reporting</li>
+                    <li>Live AI assistant 24/7</li>
+                </ul>
+                <ul class="lang-es">
+                    <li>Soporte multilingüe (Español, Inglés, Indígenas)</li>
+                    <li>Seguimiento y gestión de PQR</li>
+                    <li>Denuncias anónimas seguras</li>
+                    <li>Asistente IA en vivo 24/7</li>
+                </ul>
+                <div style="margin-top: 20px; text-align: center;">
+                    <img src="assets/citizen_platform_ai.png" alt="Plataforma Ciudadana IA"
+                        style="width: 100%; max-width: 400px; border-radius: 12px; border: 1px solid rgba(255,215,0,0.3); box-shadow: 0 0 20px rgba(255,215,0,0.2);">
+                </div>
+                <a href="https://ai.studio/apps/drive/1ynpZDtRGc7jYerpBPXpDSsDGC098tR5c?fullscreenApplet=true"
+                    target="_blank" class="btn btn-luxury"
+                    style="margin-top: 20px; display: block; text-align: center;">
+                    🚀 <span class="lang-en">TRY LIVE DEMO</span><span class="lang-es">PROBAR DEMO EN VIVO</span>
+                </a>
+            </div>
         </div>
     </section>
 
@@ -2089,10 +2218,24 @@
     </footer>
 
     <script>
+        // Mark parent containers that have Embera translations
+        function markEmberaContainers() {
+            document.querySelectorAll('.lang-em').forEach(em => {
+                const parent = em.parentElement;
+                if (parent) {
+                    parent.classList.add('has-embera');
+                }
+            });
+        }
+        // Run on load
+        markEmberaContainers();
+
         function setLang(lang) {
-            document.body.classList.toggle('es', lang === 'es');
+            document.body.classList.remove('es', 'em');
+            if (lang === 'es') document.body.classList.add('es');
+            if (lang === 'em') document.body.classList.add('em');
             document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.textContent.includes(lang.toUpperCase()));
+                btn.classList.toggle('active', btn.textContent.includes(lang.toUpperCase()) || (lang === 'em' && btn.textContent.includes('EMBERA')));
             });
             localStorage.setItem('mcProposalLang', lang);
 
@@ -2133,7 +2276,7 @@ MANEJO DE OBJECIONES:
     <!-- CHELA V9 - SCRIPT NORMAL (NO MODULE) -->
     <script src="../mario-loader-v2.js"></script>
     <script src="assets/js/chela-config.js"></script>
-    <script src="assets/js/chela-v4.js?v=V_SEP_FIX"></script>
+    <script src="assets/js/chela-v4.js?v=V13_LANG_FIX"></script>
     <script>
         console.log('✅ Obando AI (Chela V9) Cargado');
     </script>
