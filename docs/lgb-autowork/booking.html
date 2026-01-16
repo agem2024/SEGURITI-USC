@@ -1,2 +1,202 @@
-<span class="continued-indicator">SHOWING CHARACTER 1 TO 20000 OF 21341. TO VIEW THE COMPLETE CONTENT, EXPAND THE
-    ARTIFACT IN THE UI.</span>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment | LGB Autowork</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body class="en">
+    <div class="lang-switcher">
+        <button class="lang-btn" onclick="switchLanguage('en')">🇺🇸 EN</button>
+        <button class="lang-btn" onclick="switchLanguage('es')">🇪🇸 ES</button>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-logo">
+            <h2 style="color: #FF6B00; font-family: Orbitron;">LGB AUTOWORK</h2>
+            <p style="color: #1A73E8; font-size: 0.85rem;">NAPA AutoCare Center</p>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="lang-en">Home</a><a href="index.html" class="lang-es">Inicio</a></li>
+            <li><a href="services.html" class="lang-en">Services</a><a href="services.html"
+                    class="lang-es">Servicios</a></li>
+            <li><a href="booking.html" class="lang-en">Book Appointment</a><a href="booking.html"
+                    class="lang-es">Agendar Cita</a></li>
+            <li><a href="maintenance.html" class="lang-en">Maintenance Tips</a><a href="maintenance.html"
+                    class="lang-es">Mantenimiento</a></li>
+            <li><a href="about.html" class="lang-en">About</a><a href="about.html" class="lang-es">Nosotros</a></li>
+        </ul>
+    </nav>
+
+    <section class="services-section" style="min-height: 80vh;">
+        <div class="section-header">
+            <h2 class="lang-en">Schedule Your Appointment</h2>
+            <h2 class="lang-es">Agende Su Cita</h2>
+            <p class="lang-en">Book online or call us at (408) 727-4500</p>
+            <p class="lang-es">Reserve en línea o llámenos al (408) 727-4500</p>
+        </div>
+
+        <div
+            style="max-width: 600px; margin: 0 auto; background: var(--card-bg); padding: 40px; border-radius: 16px; border: 2px solid var(--napa-orange);">
+            <form id="bookingForm">
+                <div style="margin-bottom: 20px;">
+                    <label class="lang-en"
+                        style="display: block; margin-bottom: 8px; color: var(--text-white); font-weight: 600;">Service
+                        Needed:</label>
+                    <label class="lang-es"
+                        style="display: block; margin-bottom: 8px; color: var(--text-white); font-weight: 600;">Servicio
+                        Necesitado:</label>
+                    <select
+                        style="width: 100%; padding: 12px; border-radius: 8px; background: var(--dark-bg); color: var(--text-white); border: 2px solid var(--napa-blue);"
+                        required>
+                        <option class="lang-en">Oil Change</option>
+                        <option class="lang-es">Cambio de Aceite</option>
+                        <option class="lang-en">Brake Service</option>
+                        <option class="lang-es">Servicio de Frenos</option>
+                        <option class="lang-en">Diagnostics</option>
+                        <option class="lang-es">Diagnóstico</option>
+                        <option class="lang-en">Tesla Key Programming</option>
+                        <option class="lang-es">Programación Llave Tesla</option>
+                        <option class="lang-en">A/C Service</option>
+                        <option class="lang-es">Servicio A/C</option>
+                        <option class="lang-en">Transmission</option>
+                        <option class="lang-es">Transmisión</option>
+                        <option class="lang-en">Smog Check</option>
+                        <option class="lang-es">Verificación Emisiones</option>
+                        <option class="lang-en">Other</option>
+                        <option class="lang-es">Otro</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label class="lang-en"
+                        style="display: block; margin-bottom: 8px; color: var(--text-white); font-weight: 600;">Full
+                        Name:</label>
+                    <label class="lang-es"
+                        style="display: block; margin-bottom: 8px; color: var(--text-white); font-weight: 600;">Nombre
+                        Completo:</label>
+                    <input type="text"
+                        style="width: 100%; padding: 12px; border-radius: 8px; background: var(--dark-bg); color: var(--text-white); border: 2px solid var(--napa-blue);"
+                        required>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label class="lang-en"
+                        style="display: block; margin-bottom: 8px; color: var(--text-white); font-weight: 600;">Phone:</label>
+                    <label class="lang-es"
+                        style="display: block; margin-bottom: 8px; color: var(--text-white); font-weight: 600;">Teléfono:</label>
+                    <input type="tel" placeholder="(408) 555-1234"
+                        style="width: 100%; padding: 12px; border-radius: 8px; background: var(--dark-bg); color: var(--text-white); border: 2px solid var(--napa-blue);"
+                        required>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label class="lang-en"
+                        style="display: block; margin-bottom: 8px; color: var(--text-white); font-weight: 600;">Email:</label>
+                    <label class="lang-es"
+                        style="display: block; margin-bottom: 8px; color: var(--text-white); font-weight: 600;">Correo:</label>
+                    <input type="email"
+                        style="width: 100%; padding: 12px; border-radius: 8px; background: var(--dark-bg); color: var(--text-white); border: 2px solid var(--napa-blue);"
+                        required>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label class="lang-en"
+                        style="display: block; margin-bottom: 8px; color: var(--text-white); font-weight: 600;">Vehicle
+                        (Year, Make, Model):</label>
+                    <label class="lang-es"
+                        style="display: block; margin-bottom: 8px; color: var(--text-white); font-weight: 600;">Vehículo
+                        (Año, Marca, Modelo):</label>
+                    <input type="text" placeholder="2020 Tesla Model 3"
+                        style="width: 100%; padding: 12px; border-radius: 8px; background: var(--dark-bg); color: var(--text-white); border: 2px solid var(--napa-blue);"
+                        required>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label class="lang-en"
+                        style="display: block; margin-bottom: 8px; color: var(--text-white); font-weight: 600;">Preferred
+                        Date:</label>
+                    <label class="lang-es"
+                        style="display: block; margin-bottom: 8px; color: var(--text-white); font-weight: 600;">Fecha
+                        Preferida:</label>
+                    <input type="date"
+                        style="width: 100%; padding: 12px; border-radius: 8px; background: var(--dark-bg); color: var(--text-white); border: 2px solid var(--napa-blue);"
+                        required>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label class="lang-en"
+                        style="display: block; margin-bottom: 8px; color: var(--text-white); font-weight: 600;">Preferred
+                        Time:</label>
+                    <label class="lang-es"
+                        style="display: block; margin-bottom: 8px; color: var(--text-white); font-weight: 600;">Hora
+                        Preferida:</label>
+                    <select
+                        style="width: 100%; padding: 12px; border-radius: 8px; background: var(--dark-bg); color: var(--text-white); border: 2px solid var(--napa-blue);"
+                        required>
+                        <option>8:00 AM</option>
+                        <option>9:00 AM</option>
+                        <option>10:00 AM</option>
+                        <option>11:00 AM</option>
+                        <option>12:00 PM</option>
+                        <option>1:00 PM</option>
+                        <option>2:00 PM</option>
+                        <option>3:00 PM</option>
+                        <option>4:00 PM</option>
+                        <option>5:00 PM</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 30px;">
+                    <label class="lang-en"
+                        style="display: block; margin-bottom: 8px; color: var(--text-white); font-weight: 600;">Additional
+                        Notes:</label>
+                    <label class="lang-es"
+                        style="display: block; margin-bottom: 8px; color: var(--text-white); font-weight: 600;">Notas
+                        Adicionales:</label>
+                    <textarea rows="4"
+                        style="width: 100%; padding: 12px; border-radius: 8px; background: var(--dark-bg); color: var(--text-white); border: 2px solid var(--napa-blue);"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary lang-en" style="width: 100%;">Submit Appointment
+                    Request</button>
+                <button type="submit" class="btn btn-primary lang-es" style="width: 100%;">Enviar Solicitud de
+                    Cita</button>
+            </form>
+
+            <p class="lang-en" style="margin-top: 30px; text-align: center; color: var(--text-gray);">We'll call you
+                within 24 hours to confirm your appointment</p>
+            <p class="lang-es" style="margin-top: 30px; text-align: center; color: var(--text-gray);">Le llamaremos
+                dentro de 24 horas para confirmar su cita</p>
+
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="tel:4087274500" class="btn btn-secondary lang-en">Or Call (408) 727-4500</a>
+                <a href="tel:4087274500" class="btn btn-secondary lang-es">O Llame (408) 727-4500</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p class="lang-en">&copy; 2026 LGB Autowork | NAPA AutoCare Center | Built by ORION Tech</p>
+        <p class="lang-es">&copy; 2026 LGB Autowork | Centro NAPA AutoCare | Construido por ORION Tech</p>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        document.getElementById('bookingForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const lang = document.body.className;
+            alert(lang === 'es' ?
+                '¡Gracias! Su solicitud ha sido enviada. Le llamaremos pronto para confirmar.' :
+                'Thank you! Your request has been submitted. We\'ll call you soon to confirm.');
+            this.reset();
+        });
+    </script>
+</body>
+
+</html>

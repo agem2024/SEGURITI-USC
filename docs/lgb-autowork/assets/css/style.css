@@ -1,2 +1,460 @@
-<span class="continued-indicator">SHOWING CHARACTER 1 TO 20000 OF 21621. TO VIEW THE COMPLETE CONTENT,
-EXPAND THE ARTIFACT IN THE UI.</span>
+/* LGB Autowork - Professional CSS */
+:root {
+    --napa-orange: #FF6B00;
+    --napa-blue: #1A73E8;
+    --dark-bg: #0A0A12;
+    --card-bg: #1A1A24;
+    --text-white: #FFFFFF;
+    --text-gray: #B0B0B0;
+    --accent-gold: #FFD700;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    background: var(--dark-bg);
+    color: var(--text-white);
+    line-height: 1.6;
+}
+
+/* Language Switching */
+.lang-es {
+    display: none;
+}
+
+body.es .lang-en {
+    display: none;
+}
+
+body.es .lang-es {
+    display: inline;
+}
+
+body.es h1.lang-es,
+body.es h2.lang-es,
+body.es h3.lang-es,
+body.es p.lang-es,
+body.es div.lang-es {
+    display: block;
+}
+
+body.en h1.lang-es,
+body.en h2.lang-es,
+body.en h3.lang-es,
+body.en p.lang-es,
+body.en div.lang-es {
+    display: none;
+}
+
+/* Language Switcher Button */
+.lang-switcher {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: rgba(26, 26, 36, 0.95);
+    padding: 8px;
+    border-radius: 30px;
+    border: 2px solid var(--napa-orange);
+    display: flex;
+    gap: 5px;
+}
+
+.lang-btn {
+    padding: 8px 16px;
+    border: none;
+    background: transparent;
+    color: var(--text-gray);
+    cursor: pointer;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.lang-btn:hover {
+    background: var(--napa-orange);
+    color: #000;
+}
+
+/* Navigation */
+.navbar {
+    background: var(--card-bg);
+    padding: 20px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid var(--napa-orange);
+}
+
+.nav-logo h2 {
+    font-family: 'Orbitron', sans-serif;
+    margin-bottom: 5px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--text-white);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--napa-orange);
+}
+
+/* Hero Section */
+.hero {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 5%;
+    background: linear-gradient(135deg, rgba(255, 107, 0, 0.1), rgba(26, 115, 232, 0.1));
+    position: relative;
+}
+
+.hero-content {
+    max-width: 900px;
+    z-index: 1;
+}
+
+.badge {
+    background: rgba(255, 215, 0, 0.2);
+    border: 2px solid var(--accent-gold);
+    padding: 10px 25px;
+    display: inline-block;
+    border-radius: 30px;
+    color: var(--accent-gold);
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+.hero h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, var(--napa-orange), var(--napa-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero h1 span {
+    display: block;
+    font-size: 1.5rem;
+    color: var(--text-gray);
+    -webkit-text-fill-color: var(--text-gray);
+    margin-top: 15px;
+    font-family: 'Inter', sans-serif;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: var(--text-gray);
+    margin-bottom: 40px;
+}
+
+.hero-cta {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Traditional Banner */
+.tradition-banner {
+    background: var(--napa-orange);
+    color: #000;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 15px 0;
+    overflow: hidden;
+}
+
+/* Sections */
+.services-section,
+.offers-section,
+.why-section,
+.contact-section {
+    padding: 80px 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-header h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5rem;
+    color: var(--napa-orange);
+    margin-bottom: 15px;
+}
+
+.section-header p {
+    font-size: 1.1rem;
+    color: var(--text-gray);
+}
+
+/* Services Grid */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.service-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 2px solid transparent;
+    position: relative;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(255, 107, 0, 0.3);
+    border-color: var(--napa-orange);
+}
+
+.service-card.featured {
+    border-color: var(--accent-gold);
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+}
+
+.service-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
+.service-card h3 {
+    padding: 20px 20px 10px;
+    font-size: 1.3rem;
+    color: var(--napa-blue);
+}
+
+.service-card p {
+    padding: 0 20px 20px;
+    color: var(--text-gray);
+    font-size: 0.95rem;
+}
+
+.service-card .btn {
+    margin: 0 20px 20px;
+}
+
+.service-card.cta-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 350px;
+    background: linear-gradient(135deg, rgba(255, 107, 0, 0.1), rgba(26, 115, 232, 0.1));
+    border: 2px dashed var(--napa-orange);
+}
+
+.service-card.cta-card h3 {
+    font-size: 1.8rem;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 14px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s;
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--napa-orange), #FF8C00);
+    color: #000;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 8px 25px rgba(255, 107, 0, 0.5);
+    transform: translateY(-3px);
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 2px solid var(--napa-blue);
+    color: var(--napa-blue);
+}
+
+.btn-secondary:hover {
+    background: var(--napa-blue);
+    color: #fff;
+}
+
+.btn-sm {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+}
+
+/* Offers Carousel */
+.offers-section {
+    background: linear-gradient(180deg, rgba(255, 107, 0, 0.05), rgba(26, 115, 232, 0.05));
+}
+
+.offers-section h2 {
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5rem;
+    color: var(--napa-orange);
+    margin-bottom: 50px;
+}
+
+.offers-carousel {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.offer-card {
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 16px;
+    text-align: center;
+    border: 2px solid var(--napa-orange);
+}
+
+.offer-card h3 {
+    font-size: 1.5rem;
+    color: var(--napa-blue);
+    margin-bottom: 20px;
+}
+
+.offer-price {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
+    color: var(--accent-gold);
+    margin: 20px 0;
+}
+
+.offer-card p {
+    color: var(--text-gray);
+    margin-bottom: 25px;
+}
+
+/* Features Grid */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.feature {
+    text-align: center;
+    padding: 30px;
+    background: var(--card-bg);
+    border-radius: 16px;
+    transition: transform 0.3s;
+}
+
+.feature:hover {
+    transform: scale(1.05);
+}
+
+.feature-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.feature h3 {
+    font-size: 1.3rem;
+    color: var(--napa-orange);
+    margin-bottom: 10px;
+}
+
+.feature p {
+    color: var(--text-gray);
+}
+
+/* Contact Section */
+.contact-section {
+    background: var(--card-bg);
+    border-top: 3px solid var(--napa-orange);
+}
+
+.contact-info {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.contact-info h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5rem;
+    color: var(--napa-orange);
+    margin-bottom: 30px;
+}
+
+.contact-info p {
+    font-size: 1.1rem;
+    margin: 10px 0;
+}
+
+.quick-contact {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Footer */
+footer {
+    background: #000;
+    text-align: center;
+    padding: 30px;
+    border-top: 2px solid var(--napa-orange);
+    color: var(--text-gray);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .services-grid,
+    .offers-carousel {
+        grid-template-columns: 1fr;
+    }
+
+    .lang-switcher {
+        top: 10px;
+        right: 10px;
+    }
+}

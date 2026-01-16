@@ -1,2 +1,159 @@
-<span class="continued-indicator">SHOWING CHARACTER 1 TO 20000 OF 27487. TO VIEW THE COMPLETE CONTENT, EXPAND THE
-    ARTIFACT IN THE UI.</span>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | LGB Autowork</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body class="en">
+    <div class="lang-switcher">
+        <button class="lang-btn" onclick="switchLanguage('en')">🇺🇸 EN</button>
+        <button class="lang-btn" onclick="switchLanguage('es')">🇪🇸 ES</button>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-logo">
+            <h2 style="color: #FF6B00; font-family: Orbitron;">LGB AUTOWORK</h2>
+            <p style="color: #1A73E8; font-size: 0.85rem;">NAPA AutoCare Center</p>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="lang-en">Home</a><a href="index.html" class="lang-es">Inicio</a></li>
+            <li><a href="services.html" class="lang-en">Services</a><a href="services.html"
+                    class="lang-es">Servicios</a></li>
+            <li><a href="booking.html" class="lang-en">Book Appointment</a><a href="booking.html"
+                    class="lang-es">Agendar Cita</a></li>
+            <li><a href="maintenance.html" class="lang-en">Maintenance Tips</a><a href="maintenance.html"
+                    class="lang-es">Mantenimiento</a></li>
+            <li><a href="about.html" class="lang-en">About</a><a href="about.html" class="lang-es">Nosotros</a></li>
+        </ul>
+    </nav>
+
+    <section class="services-section">
+        <div class="section-header">
+            <h2 class="lang-en">All Our Services</h2>
+            <h2 class="lang-es">Todos Nuestros Servicios</h2>
+            <p class="lang-en">Complete automotive repair and maintenance solutions</p>
+            <p class="lang-es">Soluciones completas de reparación y mantenimiento automotriz</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card" id="oil">
+                <img src="assets/images/lgb_oil_change_service_1768597267906.png" alt="Oil Change">
+                <h3 class="lang-en">Oil Change Services</h3>
+                <h3 class="lang-es">Servicios de Cambio de Aceite</h3>
+                <p class="lang-en"><strong>From $79.99</strong> | Conventional, Blend, Full Synthetic<br>Includes FREE
+                    27-point inspection</p>
+                <p class="lang-es"><strong>Desde $79.99</strong> | Convencional, Mezcla, Sintético Completo<br>Incluye
+                    inspección GRATIS de 27 puntos</p>
+                <a href="booking.html" class="btn btn-sm btn-primary lang-en">Book Now</a>
+                <a href="booking.html" class="btn btn-sm btn-primary lang-es">Reservar</a>
+            </div>
+
+            <div class="service-card" id="brakes">
+                <img src="assets/images/lgb_brake_service_1768597281819.png" alt="Brakes">
+                <h3 class="lang-en">Brake Service</h3>
+                <h3 class="lang-es">Servicio de Frenos</h3>
+                <p class="lang-en"><strong>From $299</strong> | Pads, Rotors, Calipers, ABS<br>Free brake inspection
+                    included</p>
+                <p class="lang-es"><strong>Desde $299</strong> | Pastillas, Discos, Calipers, ABS<br>Inspección gratis
+                    incluida</p>
+                <a href="booking.html" class="btn btn-sm btn-primary lang-en">Book Now</a>
+                <a href="booking.html" class="btn btn-sm btn-primary lang-es">Reservar</a>
+            </div>
+
+            <div class="service-card" id="diagnostics">
+                <img src="assets/images/lgb_diagnostics_1768597325452.png" alt="Diagnostics">
+                <h3 class="lang-en">Engine Diagnostics</h3>
+                <h3 class="lang-es">Diagnóstico del Motor</h3>
+                <p class="lang-en"><strong>$100</strong> | Check Engine Light, OBD-II Scan<br>Computer diagnostics
+                    included</p>
+                <p class="lang-es"><strong>$100</strong> | Luz del Motor, Escaneo OBD-II<br>Diagnóstico computarizado
+                    incluido</p>
+                <a href="booking.html" class="btn btn-sm btn-primary lang-en">Book Now</a>
+                <a href="booking.html" class="btn btn-sm btn-primary lang-es">Reservar</a>
+            </div>
+
+            <div class="service-card featured" id="keys">
+                <div class="badge" style="position: absolute; top: 10px; right: 10px; background: #FFD700;">⭐ SPECIALTY
+                </div>
+                <img src="assets/images/lgb_tesla_key_1768597311700.png" alt="Tesla Keys">
+                <h3 class="lang-en">Key Duplication & Programming</h3>
+                <h3 class="lang-es">Duplicado y Programación de Llaves</h3>
+                <p class="lang-en"><strong>$15-$400</strong> | Traditional, Transponder, Tesla<br>Same-day service
+                    available</p>
+                <p class="lang-es"><strong>$15-$400</strong> | Tradicional, Transponder, Tesla<br>Servicio mismo día
+                    disponible</p>
+                <a href="keys.html" class="btn btn-sm btn-primary lang-en">Details</a>
+                <a href="keys.html" class="btn btn-sm btn-primary lang-es">Detalles</a>
+            </div>
+
+            <div class="service-card" id="ac">
+                <img src="assets/images/lgb_ac_service_1768597565610.png" alt="A/C">
+                <h3 class="lang-en">A/C Service & Repair</h3>
+                <h3 class="lang-es">Servicio y Reparación A/C</h3>
+                <p class="lang-en"><strong>From $150</strong> | Recharge, Leak Detection<br>R-134a and R-1234yf
+                    supported</p>
+                <p class="lang-es"><strong>Desde $150</strong> | Recarga, Detección de Fugas<br>Compatible R-134a y
+                    R-1234yf</p>
+                <a href="booking.html" class="btn btn-sm btn-primary lang-en">Book Now</a>
+                <a href="booking.html" class="btn btn-sm btn-primary lang-es">Reservar</a>
+            </div>
+
+            <div class="service-card" id="transmission">
+                <img src="assets/images/lgb_transmission_service_1768597580273.png" alt="Transmission">
+                <h3 class="lang-en">Transmission Service</h3>
+                <h3 class="lang-es">Servicio de Transmisión</h3>
+                <p class="lang-en"><strong>From $180</strong> | Fluid Change, Filter, Diagnostics<br>Automatic & manual
+                </p>
+                <p class="lang-es"><strong>Desde $180</strong> | Cambio de Fluido, Filtro, Diagnóstico<br>Automática y
+                    manual</p>
+                <a href="booking.html" class="btn btn-sm btn-primary lang-en">Book Now</a>
+                <a href="booking.html" class="btn btn-sm btn-primary lang-es">Reservar</a>
+            </div>
+
+            <div class="service-card" id="smog">
+                <img src="assets/images/lgb_smog_check_1768597597776.png" alt="Smog">
+                <h3 class="lang-en">California Smog Check</h3>
+                <h3 class="lang-es">Verificación de Emisiones California</h3>
+                <p class="lang-en"><strong>$49</strong> | STAR Certified Station<br>Fast service, results same day</p>
+                <p class="lang-es"><strong>$49</strong> | Estación Certificada STAR<br>Servicio rápido, resultados mismo
+                    día</p>
+                <a href="booking.html" class="btn btn-sm btn-primary lang-en">Book Now</a>
+                <a href="booking.html" class="btn btn-sm btn-primary lang-es">Reservar</a>
+            </div>
+
+            <div class="service-card">
+                <h3 class="lang-en">+ More Services</h3>
+                <h3 class="lang-es">+ Más Servicios</h3>
+                <ul style="text-align: left; padding: 20px; color: var(--text-gray);">
+                    <li class="lang-en">Suspension & Steering</li>
+                    <li class="lang-es">Suspensión y Dirección</li>
+                    <li class="lang-en">Electrical Systems</li>
+                    <li class="lang-es">Sistemas Eléctricos</li>
+                    <li class="lang-en">Cooling System</li>
+                    <li class="lang-es">Sistema de Enfriamiento</li>
+                    <li class="lang-en">Tune-Ups</li>
+                    <li class="lang-es">Puestas a Punto</li>
+                    <li class="lang-en">Fleet Services</li>
+                    <li class="lang-es">Servicios de Flotas</li>
+                </ul>
+                <a href="booking.html" class="btn btn-sm btn-primary lang-en">Schedule Service</a>
+                <a href="booking.html" class="btn btn-sm btn-primary lang-es">Agendar Servicio</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p class="lang-en">&copy; 2026 LGB Autowork | NAPA AutoCare Center | Built by ORION Tech</p>
+        <p class="lang-es">&copy; 2026 LGB Autowork | Centro NAPA AutoCare | Construido por ORION Tech</p>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>
