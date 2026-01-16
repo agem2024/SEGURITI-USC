@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance Tips | LGB Autowork</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .mascot-section {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, rgba(255, 107, 0, 0.1), rgba(26, 115, 232, 0.1));
+        }
+
+        .mascots {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .mascot {
+            text-align: center;
+        }
+
+        .mascot img {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+            background: white;
+            border-radius: 50%;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(255, 107, 0, 0.3);
+        }
+
+        .mascot h3 {
+            margin-top: 20px;
+            color: var(--napa-orange);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .tip-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            margin: 20px 0;
+            border-left: 5px solid var(--napa-orange);
+        }
+
+        .tip-card h3 {
+            color: var(--napa-blue);
+            margin-bottom: 15px;
+        }
+
+        .tip-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .tip-card li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .tip-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--napa-orange);
+            font-weight: bold;
+        }
+
+        .interactive-tool {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            margin: 30px 0;
+            border: 2px solid var(--napa-blue);
+        }
+
+        .calculator-input {
+            width: 100%;
+            max-width: 300px;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            background: var(--dark-bg);
+            color: var(--text-white);
+            border: 2px solid var(--napa-orange);
+            font-size: 1rem;
+        }
+
+        .result-box {
+            background: linear-gradient(135deg, rgba(255, 107, 0, 0.2), rgba(26, 115, 232, 0.2));
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .result-box.show {
+            display: block;
+        }
+    </style>
+</head>
+
+<body class="en">
+    <div class="lang-switcher">
+        <button class="lang-btn" onclick="switchLanguage('en')">🇺🇸 EN</button>
+        <button class="lang-btn" onclick="switchLanguage('es')">🇪🇸 ES</button>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-logo">
+            <h2 style="color: #FF6B00; font-family: Orbitron;">LGB AUTOWORK</h2>
+            <p style="color: #1A73E8; font-size: 0.85rem;">NAPA AutoCare Center</p>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="lang-en">Home</a><a href="index.html" class="lang-es">Inicio</a></li>
+            <li><a href="services.html" class="lang-en">Services</a><a href="services.html"
+                    class="lang-es">Servicios</a></li>
+            <li><a href="booking.html" class="lang-en">Book Appointment</a><a href="booking.html"
+                    class="lang-es">Agendar Cita</a></li>
+            <li><a href="maintenance.html" class="lang-en">Maintenance Tips</a><a href="maintenance.html"
+                    class="lang-es">Mantenimiento</a></li>
+            <li><a href="about.html" class="lang-en">About</a><a href="about.html" class="lang-es">Nosotros</a></li>
+        </ul>
+    </nav>
+
+    <!-- Mascot Introduction -->
+    <section class="mascot-section">
+        <h2 class="lang-en" style="font-family: Orbitron; font-size: 2.5rem; color: var(--napa-orange);">Meet Your Car
+            Care Experts!</h2>
+        <h2 class="lang-es" style="font-family: Orbitron; font-size: 2.5rem; color: var(--napa-orange);">¡Conoce a Tus
+            Expertos en Cuidado Automotriz!</h2>
+
+        <div class="mascots">
+            <div class="mascot">
+                <img src="assets/images/mechanic_mike_character_1768597345024.png" alt="Mechanic Mike">
+                <h3>Mechanic Mike</h3>
+                <p class="lang-en" style="color: var(--text-gray);">Your friendly expert</p>
+                <p class="lang-es" style="color: var(--text-gray);">Tu experto amigable</p>
+            </div>
+            <div class="mascot">
+                <img src="assets/images/car_charlie_mascot_1768597362872.png" alt="Car Charlie">
+                <h3>Car Charlie</h3>
+                <p class="lang-en" style="color: var(--text-gray);">Your vehicle's voice</p>
+                <p class="lang-es" style="color: var(--text-gray);">La voz de tu vehículo</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Oil Change Calculator -->
+    <section class="services-section">
+        <h2 class="lang-en" style="text-align: center; font-family: Orbitron; color: var(--napa-orange);">Interactive
+            Maintenance Tools</h2>
+        <h2 class="lang-es" style="text-align: center; font-family: Orbitron; color: var(--napa-orange);">Herramientas
+            Interactivas de Mantenimiento</h2>
+
+        <div class="interactive-tool">
+            <h3 class="lang-en" style="color: var(--napa-blue);">🛢️ Oil Change Calculator</h3>
+            <h3 class="lang-es" style="color: var(--napa-blue);">🛢️ Calculadora de Cambio de Aceite</h3>
+            <p class="lang-en">Enter your current mileage to see when your next oil change is due:</p>
+            <p class="lang-es">Ingrese su kilometraje actual para ver cuándo vence su próximo cambio de aceite:</p>
+
+            <input type="number" id="mileage" class="calculator-input"
+                placeholder="Current mileage / Kilometraje actual">
+            <button onclick="calculateOilChange()" class="btn btn-primary lang-en">Calculate</button>
+            <button onclick="calculateOilChange()" class="btn btn-primary lang-es">Calcular</button>
+
+            <div id="oilResult" class="result-box">
+                <h4 style="color: var(--accent-gold);">Result / Resultado:</h4>
+                <p id="oilResultText"></p>
+            </div>
+        </div>
+
+        <!-- Tire Pressure Guide -->
+        <div class="interactive-tool">
+            <h3 class="lang-en" style="color: var(--napa-blue);">🚗 Tire Pressure Guide</h3>
+            <h3 class="lang-es" style="color: var(--napa-blue);">🚗 Guía de Presión de Neumáticos</h3>
+            <p class="lang-en">Select your vehicle type:</p>
+            <p class="lang-es">Seleccione su tipo de vehículo:</p>
+
+            <select id="vehicleType" class="calculator-input" onchange="showTirePressure()">
+                <option class="lang-en">Sedan / Sedán</option>
+                <option class="lang-en">SUV / Camioneta</option>
+                <option class="lang-en">Truck / Pickup</option>
+                <option class="lang-en">Sports Car / Deportivo</option>
+            </select>
+
+            <div id="tirePressureResult" class="result-box">
+                <h4 style="color: var(--accent-gold);">Recommended PSI / PSI Recomendado:</h4>
+                <p id="tirePressureText"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Maintenance Tips -->
+    <section class="services-section"
+        style="background: linear-gradient(180deg, rgba(255, 107, 0, 0.05), transparent);">
+        <h2 class="lang-en"
+            style="text-align: center; font-family: Orbitron; color: var(--napa-orange); margin-bottom: 40px;">Essential
+            Maintenance Tips</h2>
+        <h2 class="lang-es"
+            style="text-align: center; font-family: Orbitron; color: var(--napa-orange); margin-bottom: 40px;">Consejos
+            Esenciales de Mantenimiento</h2>
+
+        <div class="tip-card">
+            <h3 class="lang-en">🛢️ Oil Changes - Every 3,000-7,500 Miles</h3>
+            <h3 class="lang-es">🛢️ Cambios de Aceite - Cada 3,000-7,500 Millas</h3>
+            <ul>
+                <li class="lang-en">Conventional oil: Every 3,000-5,000 miles</li>
+                <li class="lang-es">Aceite convencional: Cada 3,000-5,000 millas</li>
+                <li class="lang-en">Synthetic blend: Every 5,000-7,500 miles</li>
+                <li class="lang-es">Mezcla sintética: Cada 5,000-7,500 millas</li>
+                <li class="lang-en">Full synthetic: Every 7,500-10,000 miles</li>
+                <li class="lang-es">Sintético completo: Cada 7,500-10,000 millas</li>
+            </ul>
+        </div>
+
+        <div class="tip-card">
+            <h3 class="lang-en">🔧 Brake Inspection - Every 12,000 Miles</h3>
+            <h3 class="lang-es">🔧 Inspección de Frenos - Cada 12,000 Millas</h3>
+            <ul>
+                <li class="lang-en">Listen for squealing or grinding sounds</li>
+                <li class="lang-es">Escuche chirridos o ruidos de trituración</li>
+                <li class="lang-en">Feel for vibrations when braking</li>
+                <li class="lang-es">Sienta vibraciones al frenar</li>
+                <li class="lang-en">Check if car pulls to one side</li>
+                <li class="lang-es">Verifique si el auto se inclina hacia un lado</li>
+            </ul>
+        </div>
+
+        <div class="tip-card">
+            <h3 class="lang-en">🌡️ Coolant/Antifreeze - Check Monthly</h3>
+            <h3 class="lang-es">🌡️ Refrigerante/Anticongelante - Revise Mensualmente</h3>
+            <ul>
+                <li class="lang-en">Check level when engine is cold</li>
+                <li class="lang-es">Revise el nivel cuando el motor esté frío</li>
+                <li class="lang-en">Look for leaks under the car</li>
+                <li class="lang-es">Busque fugas debajo del auto</li>
+                <li class="lang-en">Flush and replace every 30,000 miles</li>
+                <li class="lang-es">Enjuague y reemplace cada 30,000 millas</li>
+            </ul>
+        </div>
+
+        <div class="tip-card">
+            <h3 class="lang-en">⚡ Battery - Test Annually</h3>
+            <h3 class="lang-es">⚡ Batería - Pruebe Anualmente</h3>
+            <ul>
+                <li class="lang-en">Clean corrosion from terminals</li>
+                <li class="lang-es">Limpie la corrosión de los terminales</li>
+                <li class="lang-en">Check for dim headlights</li>
+                <li class="lang-es">Revise si las luces están tenues</li>
+                <li class="lang-en">Replace every 3-5 years</li>
+                <li class="lang-es">Reemplace cada 3-5 años</li>
+            </ul>
+        </div>
+
+        <div class="tip-card">
+            <h3 class="lang-en">🌞 Summer Preparation</h3>
+            <h3 class="lang-es">🌞 Preparación de Verano</h3>
+            <ul>
+                <li class="lang-en">Check A/C system before hot weather</li>
+                <li class="lang-es">Revise el sistema A/C antes del calor</li>
+                <li class="lang-en">Inspect coolant levels</li>
+                <li class="lang-es">Inspeccione niveles de refrigerante</li>
+                <li class="lang-en">Verify tire pressure (heat increases PSI)</li>
+                <li class="lang-es">Verifique presión de llantas (el calor aumenta PSI)</li>
+            </ul>
+        </div>
+
+        <div class="tip-card">
+            <h3 class="lang-en">❄️ Winter Preparation</h3>
+            <h3 class="lang-es">❄️ Preparación de Invierno</h3>
+            <ul>
+                <li class="lang-en">Check battery health (cold reduces capacity)</li>
+                <li class="lang-es">Revise salud de batería (frío reduce capacidad)</li>
+                <li class="lang-en">Inspect wiper blades and fluid</li>
+                <li class="lang-es">Inspeccione escobillas y fluido limpiaparabrisas</li>
+                <li class="lang-en">Test heating system</li>
+                <li class="lang-es">Pruebe sistema de calefacción</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="contact-section">
+        <h2 class="lang-en" style="text-align: center; margin-bottom: 30px;">Need Professional Help?</h2>
+        <h2 class="lang-es" style="text-align: center; margin-bottom: 30px;">¿Necesita Ayuda Profesional?</h2>
+        <div style="text-align: center;">
+            <a href="booking.html" class="btn btn-primary lang-en">Schedule Your Service</a>
+            <a href="booking.html" class="btn btn-primary lang-es">Agende Su Servicio</a>
+        </div>
+    </section>
+
+    <footer>
+        <p class="lang-en">&copy; 2026 LGB Autowork | NAPA AutoCare Center | Built by ORION Tech</p>
+        <p class="lang-es">&copy; 2026 LGB Autowork | Centro NAPA AutoCare | Construido por ORION Tech</p>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        function calculateOilChange() {
+            const mileage = parseInt(document.getElementById('mileage').value);
+            const resultBox = document.getElementById('oilResult');
+            const resultText = document.getElementById('oilResultText');
+            const lang = document.body.className;
+
+            if (mileage && mileage > 0) {
+                const nextChange = Math.ceil(mileage / 5000) * 5000;
+                const milesUntil = nextChange - mileage;
+
+                if (lang === 'es') {
+                    resultText.innerHTML = `
+                        <strong>Próximo cambio recomendado:</strong> ${nextChange.toLocaleString()} millas<br>
+                        <strong>Millas restantes:</strong> ${milesUntil.toLocaleString()} millas<br>
+                        ${milesUntil < 500 ? '<span style="color: #FFD700;">⚠️ ¡Agende su cita pronto!</span>' : ''}
+                    `;
+                } else {
+                    resultText.innerHTML = `
+                        <strong>Next recommended change:</strong> ${nextChange.toLocaleString()} miles<br>
+                        <strong>Miles remaining:</strong> ${milesUntil.toLocaleString()} miles<br>
+                        ${milesUntil < 500 ? '<span style="color: #FFD700;">⚠️ Schedule your appointment soon!</span>' : ''}
+                    `;
+                }
+                resultBox.classList.add('show');
+            } else {
+                alert(lang === 'es' ? 'Por favor ingrese un kilometraje válido' : 'Please enter a valid mileage');
+            }
+        }
+
+        function showTirePressure() {
+            const vehicleType = document.getElementById('vehicleType').value;
+            const resultBox = document.getElementById('tirePressureResult');
+            const resultText = document.getElementById('tirePressureText');
+            const lang = document.body.className;
+
+            const pressures = {
+                'Sedan / Sedán': '32-35 PSI',
+                'SUV / Camioneta': '35-40 PSI',
+                'Truck / Pickup': '40-45 PSI',
+                'Sports Car / Deportivo': '30-33 PSI'
+            };
+
+            resultText.innerHTML = `<strong>${pressures[vehicleType]}</strong><br>
+                ${lang === 'es' ? 'Revise la presión mensualmente' : 'Check pressure monthly'}`;
+            resultBox.classList.add('show');
+        }
+    </script>
+</body>
+
+</html>
