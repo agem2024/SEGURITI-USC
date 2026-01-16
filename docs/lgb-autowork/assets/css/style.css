@@ -16,6 +16,44 @@
 }
 
 body {
+    font-family: 'Inter', Arial, sans-serif;
+    background: var(--dark-bg);
+    color: var(--text-white);
+    line-height: 1.6;
+}
+
+/* Language Switching */
+.lang-es {
+    display: none;
+}
+
+body.es .lang-en {
+    display: none;
+}
+
+body.es .lang-es {
+    display: inline;
+}
+
+body.es h1.lang-es,
+body.es h2.lang-es,
+body.es h3.lang-es,
+body.es p.lang-es,
+body.es div.lang-es {
+    display: block;
+}
+
+body.en h1.lang-es,
+body.en h2.lang-es,
+body.en h3.lang-es,
+body.en p.lang-es,
+body.en div.lang-es {
+    display: none;
+}
+
+/* Language Switcher Button */
+.lang-switcher {
+    position: fixed;
     top: 20px;
     right: 20px;
     z-index: 1000;

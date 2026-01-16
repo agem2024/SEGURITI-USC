@@ -1,0 +1,17 @@
+/* LGB Autowork - BILINGUAL FIX */
+/* Force proper language switching */
+body.en .lang-es {
+    display: none !important;
+}
+
+body.es .lang-en {
+    display: none !important;
+}
+
+body.en a.lang-en {
+    display: inline-block !important;
+}
+
+body.es a.lang-es {
+    display: inline-block !important;
+}
