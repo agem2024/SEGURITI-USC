@@ -1,283 +1,269 @@
 <!DOCTYPE html>
-<html lang="en">
+<button class="lang-btn" onclick="switchLanguage('en')">🇺🇸 EN</button>
+<button class="lang-btn" onclick="switchLanguage('es')">🇪🇸 ES</button>
+</div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LGB Autowork | NAPA AutoCare San Jose</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;600&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-logo">
+        <h2 style="color: #FF6B00; font-family: Orbitron;">LGB AUTOWORK</h2>
+        <p style="color: #1A73E8; font-size: 0.85rem;">NAPA AutoCare Center</p>
+    </div>
+    <ul class="nav-links">
+        <li><a href="index.html" class="lang-en">Home</a><a href="index.html" class="lang-es">Inicio</a></li>
+        <li><a href="services.html" class="lang-en">Services</a><a href="services.html" class="lang-es">Servicios</a>
+        </li>
+        <li><a href="booking.html" class="lang-en">Book Appointment</a><a href="booking.html" class="lang-es">Agendar
+                Cita</a></li>
+        <li><a href="maintenance.html" class="lang-en">Maintenance Tips</a><a href="maintenance.html"
+                class="lang-es">Mantenimiento</a></li>
+        <li><a href="about.html" class="lang-en">About</a><a href="about.html" class="lang-es">Nosotros</a></li>
+    </ul>
+</nav>
 
-<body class="en">
-    <!-- Language Switcher -->
-    <div class="lang-switcher">
-        <button class="lang-btn" onclick="switchLanguage('en')">🇺🇸 EN</button>
-        <button class="lang-btn" onclick="switchLanguage('es')">🇪🇸 ES</button>
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="badge lang-en">NAPA AUTOCARE CENTER • 4.9★ RATING</div>
+        <div class="badge lang-es">CENTRO NAPA AUTOCARE • 4.9★ CALIFICACIÓN</div>
+
+        <h1 class="lang-en">
+            Expert Auto Repair<br>
+            <span>1095 Foxworthy Ave, San Jose</span>
+        </h1>
+        <h1 class="lang-es">
+            Reparación Automotriz Experta<br>
+            <span>1095 Foxworthy Ave, San Jose</span>
+        </h1>
+
+        <p class="lang-en">ASE Certified Technicians • 24/24 Nationwide Warranty • Tesla Key Programming</p>
+        <p class="lang-es">Técnicos Certificados ASE • Garantía Nacional 24/24 • Programación de Llaves Tesla</p>
+
+        <div class="hero-cta">
+            <a href="booking.html" class="btn btn-primary lang-en">Book Appointment</a>
+            <a href="booking.html" class="btn btn-primary lang-es">Agendar Cita</a>
+            <a href="tel:4087274500" class="btn btn-secondary">(408) 727-4500</a>
+        </div>
+    </div>
+</section>
+
+<!-- Traditional Phrases Banner -->
+<section class="tradition-banner">
+    <marquee behavior="scroll" direction="left" scrollamount="5">
+        🔧 HOY NO FÍO, VUELVA MAÑANA 🔧 SE HABLA ESPAÑOL 🔧 PASE SIN TOCAR EL CLAXON 🔧 MECÁNICA EN GENERAL 🔧
+        GARANTÍA NAPA 24 MESES / 24,000 MILLAS 🔧
+    </marquee>
+</section>
+
+<!-- Services Grid -->
+<section class="services-section">
+    <div class="section-header">
+        <h2 class="lang-en">Our Services</h2>
+        <h2 class="lang-es">Nuestros Servicios</h2>
+        <p class="lang-en">Professional automotive repair and maintenance</p>
+        <p class="lang-es">Reparación y mantenimiento automotriz profesional</p>
     </div>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-logo">
-            <h2 style="color: #FF6B00; font-family: Orbitron;">LGB AUTOWORK</h2>
-            <p style="color: #1A73E8; font-size: 0.85rem;">NAPA AutoCare Center</p>
-        </div>
-        <ul class="nav-links">
-            <li><a href="index.html" class="lang-en">Home</a><a href="index.html" class="lang-es">Inicio</a></li>
-            <li><a href="services.html" class="lang-en">Services</a><a href="services.html"
-                    class="lang-es">Servicios</a></li>
-            <li><a href="booking.html" class="lang-en">Book Appointment</a><a href="booking.html"
-                    class="lang-es">Agendar Cita</a></li>
-            <li><a href="maintenance.html" class="lang-en">Maintenance Tips</a><a href="maintenance.html"
-                    class="lang-es">Mantenimiento</a></li>
-            <li><a href="about.html" class="lang-en">About</a><a href="about.html" class="lang-es">Nosotros</a></li>
-        </ul>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="badge lang-en">NAPA AUTOCARE CENTER • 4.9★ RATING</div>
-            <div class="badge lang-es">CENTRO NAPA AUTOCARE • 4.9★ CALIFICACIÓN</div>
-
-            <h1 class="lang-en">
-                Expert Auto Repair<br>
-                <span>1095 Foxworthy Ave, San Jose</span>
-            </h1>
-            <h1 class="lang-es">
-                Reparación Automotriz Experta<br>
-                <span>1095 Foxworthy Ave, San Jose</span>
-            </h1>
-
-            <p class="lang-en">ASE Certified Technicians • 24/24 Nationwide Warranty • Tesla Key Programming</p>
-            <p class="lang-es">Técnicos Certificados ASE • Garantía Nacional 24/24 • Programación de Llaves Tesla</p>
-
-            <div class="hero-cta">
-                <a href="booking.html" class="btn btn-primary lang-en">Book Appointment</a>
-                <a href="booking.html" class="btn btn-primary lang-es">Agendar Cita</a>
-                <a href="tel:4087274500" class="btn btn-secondary">(408) 727-4500</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Traditional Phrases Banner -->
-    <section class="tradition-banner">
-        <marquee behavior="scroll" direction="left" scrollamount="5">
-            🔧 HOY NO FÍO, VUELVA MAÑANA 🔧 SE HABLA ESPAÑOL 🔧 PASE SIN TOCAR EL CLAXON 🔧 MECÁNICA EN GENERAL 🔧
-            GARANTÍA NAPA 24 MESES / 24,000 MILLAS 🔧
-        </marquee>
-    </section>
-
-    <!-- Services Grid -->
-    <section class="services-section">
-        <div class="section-header">
-            <h2 class="lang-en">Our Services</h2>
-            <h2 class="lang-es">Nuestros Servicios</h2>
-            <p class="lang-en">Professional automotive repair and maintenance</p>
-            <p class="lang-es">Reparación y mantenimiento automotriz profesional</p>
+    <div class="services-grid">
+        <!-- Oil Change -->
+        <div class="service-card">
+            <img src="assets/images/lgb_oil_change_service_1768597267906.png" alt="Oil Change">
+            <h3 class="lang-en">Oil Change</h3>
+            <h3 class="lang-es">Cambio de Aceite</h3>
+            <p class="lang-en">From $79.99 • Synthetic options</p>
+            <p class="lang-es">Desde $79.99 • Opciones sintéticas</p>
+            <a href="services.html#oil" class="btn btn-sm lang-en">Learn More</a>
+            <a href="services.html#oil" class="btn btn-sm lang-es">Ver Más</a>
         </div>
 
-        <div class="services-grid">
-            <!-- Oil Change -->
-            <div class="service-card">
-                <img src="assets/images/lgb_oil_change_service_1768597267906.png" alt="Oil Change">
-                <h3 class="lang-en">Oil Change</h3>
-                <h3 class="lang-es">Cambio de Aceite</h3>
-                <p class="lang-en">From $79.99 • Synthetic options</p>
-                <p class="lang-es">Desde $79.99 • Opciones sintéticas</p>
-                <a href="services.html#oil" class="btn btn-sm lang-en">Learn More</a>
-                <a href="services.html#oil" class="btn btn-sm lang-es">Ver Más</a>
-            </div>
-
-            <!-- Brakes -->
-            <div class="service-card">
-                <img src="assets/images/lgb_brake_service_1768597281819.png" alt="Brake Service">
-                <h3 class="lang-en">Brake Service</h3>
-                <h3 class="lang-es">Servicio de Frenos</h3>
-                <p class="lang-en">From $299 • Pads & Rotors</p>
-                <p class="lang-es">Desde $299 • Pastillas y Discos</p>
-                <a href="services.html#brakes" class="btn btn-sm lang-en">Learn More</a>
-                <a href="services.html#brakes" class="btn btn-sm lang-es">Ver Más</a>
-            </div>
-
-            <!-- Diagnostics -->
-            <div class="service-card">
-                <img src="assets/images/lgb_diagnostics_1768597325452.png" alt="Diagnostics">
-                <h3 class="lang-en">Engine Diagnostics</h3>
-                <h3 class="lang-es">Diagnóstico del Motor</h3>
-                <p class="lang-en">$100 • Check Engine Light</p>
-                <p class="lang-es">$100 • Luz del Motor</p>
-                <a href="services.html#diagnostics" class="btn btn-sm lang-en">Learn More</a>
-                <a href="services.html#diagnostics" class="btn btn-sm lang-es">Ver Más</a>
-            </div>
-
-            <!-- Tesla Keys -->
-            <div class="service-card featured">
-                <div class="badge" style="position: absolute; top: 10px; right: 10px; background: #FFD700;">⭐ SPECIALTY
-                </div>
-                <img src="assets/images/lgb_tesla_key_1768597311700.png" alt="Tesla Keys">
-                <h3 class="lang-en">Tesla Key Programming</h3>
-                <h3 class="lang-es">Programación Llaves Tesla</h3>
-                <p class="lang-en">$299 • Same Day Service</p>
-                <p class="lang-es">$299 • Servicio Mismo Día</p>
-                <a href="keys.html" class="btn btn-sm lang-en">Learn More</a>
-                <a href="keys.html" class="btn btn-sm lang-es">Ver Más</a>
-            </div>
-
-            <!-- A/C Service -->
-            <div class="service-card">
-                <img src="assets/images/lgb_ac_service_1768597565610.png" alt="A/C Service">
-                <h3 class="lang-en">A/C Service</h3>
-                <h3 class="lang-es">Servicio de A/C</h3>
-                <p class="lang-en">From $150 • R-134a & R-1234yf</p>
-                <p class="lang-es">Desde $150 • R-134a y R-1234yf</p>
-                <a href="services.html#ac" class="btn btn-sm lang-en">Learn More</a>
-                <a href="services.html#ac" class="btn btn-sm lang-es">Ver Más</a>
-            </div>
-
-            <!-- Transmission -->
-            <div class="service-card">
-                <img src="assets/images/lgb_transmission_service_1768597580273.png" alt="Transmission">
-                <h3 class="lang-en">Transmission Service</h3>
-                <h3 class="lang-es">Servicio de Transmisión</h3>
-                <p class="lang-en">From $180 • Fluid Change</p>
-                <p class="lang-es">Desde $180 • Cambio de Fluido</p>
-                <a href="services.html#transmission" class="btn btn-sm lang-en">Learn More</a>
-                <a href="services.html#transmission" class="btn btn-sm lang-es">Ver Más</a>
-            </div>
-
-            <!-- Smog Check -->
-            <div class="service-card">
-                <img src="assets/images/lgb_smog_check_1768597597776.png" alt="Smog Check">
-                <h3 class="lang-en">Smog Check</h3>
-                <h3 class="lang-es">Verificación de Emisiones</h3>
-                <p class="lang-en">$49 • California Certified</p>
-                <p class="lang-es">$49 • Certificado California</p>
-                <a href="services.html#smog" class="btn btn-sm lang-en">Learn More</a>
-                <a href="services.html#smog" class="btn btn-sm lang-es">Ver Más</a>
-            </div>
-
-            <!-- More Services CTA -->
-            <div class="service-card cta-card">
-                <h3 class="lang-en">View All Services</h3>
-                <h3 class="lang-es">Ver Todos los Servicios</h3>
-                <p class="lang-en">12+ automotive services available</p>
-                <p class="lang-es">Más de 12 servicios disponibles</p>
-                <a href="services.html" class="btn btn-primary lang-en">See Full Catalog</a>
-                <a href="services.html" class="btn btn-primary lang-es">Ver Catálogo Completo</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Special Offers -->
-    <section class="offers-section">
-        <h2 class="lang-en">Special Offers</h2>
-        <h2 class="lang-es">Ofertas Especiales</h2>
-
-        <div class="offers-carousel">
-            <div class="offer-card">
-                <h3 class="lang-en">Oil Change Special</h3>
-                <h3 class="lang-es">Especial Cambio de Aceite</h3>
-                <div class="offer-price">$79.99</div>
-                <p class="lang-en">Full Synthetic + FREE 27-point inspection</p>
-                <p class="lang-es">Sintético completo + inspección GRATIS de 27 puntos</p>
-                <a href="booking.html" class="btn btn-secondary lang-en">Book Now</a>
-                <a href="booking.html" class="btn btn-secondary lang-es">Reservar Ahora</a>
-            </div>
-
-            <div class="offer-card">
-                <h3 class="lang-en">Tesla Key Special</h3>
-                <h3 class="lang-es">Especial Llave Tesla</h3>
-                <div class="offer-price">$299</div>
-                <p class="lang-en">Lost Your Tesla Key? We Got You.</p>
-                <p class="lang-es">¿Perdió su llave Tesla? ¡No problem!</p>
-                <a href="keys.html" class="btn btn-secondary lang-en">Learn More</a>
-                <a href="keys.html" class="btn btn-secondary lang-es">Ver Más</a>
-            </div>
-
-            <div class="offer-card">
-                <h3 class="lang-en">A/C Check</h3>
-                <h3 class="lang-es">Revisión A/C</h3>
-                <div class="offer-price">$49</div>
-                <p class="lang-en">Beat the Heat - Inspection + Estimate</p>
-                <p class="lang-es">Contra el Calor - Inspección + Cotización</p>
-                <a href="booking.html" class="btn btn-secondary lang-en">Book Now</a>
-                <a href="booking.html" class="btn btn-secondary lang-es">Reservar Ahora</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Choose Us -->
-    <section class="why-section">
-        <h2 class="lang-en">Why Choose LGB Autowork?</h2>
-        <h2 class="lang-es">¿Por Qué Elegir LGB Autowork?</h2>
-
-        <div class="features-grid">
-            <div class="feature">
-                <div class="feature-icon">⭐</div>
-                <h3 class="lang-en">4.9★ Rating</h3>
-                <h3 class="lang-es">4.9★ Calificación</h3>
-                <p class="lang-en">Exceptional customer reviews</p>
-                <p class="lang-es">Comentarios excepcionales</p>
-            </div>
-
-            <div class="feature">
-                <div class="feature-icon">🛡️</div>
-                <h3 class="lang-en">NAPA Warranty</h3>
-                <h3 class="lang-es">Garantía NAPA</h3>
-                <p class="lang-en">24 months / 24,000 miles nationwide</p>
-                <p class="lang-es">24 meses / 24,000 millas nacional</p>
-            </div>
-
-            <div class="feature">
-                <div class="feature-icon">🔧</div>
-                <h3 class="lang-en">ASE Certified</h3>
-                <h3 class="lang-es">Certificado ASE</h3>
-                <p class="lang-en">Expert technicians</p>
-                <p class="lang-es">Técnicos expertos</p>
-            </div>
-
-            <div class="feature">
-                <div class="feature-icon">🔑</div>
-                <h3 class="lang-en">Tesla Keys</h3>
-                <h3 class="lang-es">Llaves Tesla</h3>
-                <p class="lang-en">Specialty programming service</p>
-                <p class="lang-es">Servicio de programación especializado</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact-section">
-        <div class="contact-info">
-            <h2 class="lang-en">Visit Us</h2>
-            <h2 class="lang-es">Visítenos</h2>
-            <p><strong class="lang-en">Address:</strong><strong class="lang-es">Dirección:</strong> 1095 Foxworthy Ave,
-                San Jose, CA 95118</p>
-            <p><strong class="lang-en">Phone:</strong><strong class="lang-es">Teléfono:</strong> (408) 727-4500</p>
-            <p><strong class="lang-en">Email:</strong> mrripp@iowatelcom.net</p>
-            <p><strong class="lang-en">Hours:</strong><strong class="lang-es">Horario:</strong> Mon-Sat 8:00 AM - 5:30
-                PM</p>
-            <p style="color: #FF6B00; font-weight: bold;" class="lang-en">Closed Sundays</p>
-            <p style="color: #FF6B00; font-weight: bold;" class="lang-es">Cerrado Domingos</p>
+        <!-- Brakes -->
+        <div class="service-card">
+            <img src="assets/images/lgb_brake_service_1768597281819.png" alt="Brake Service">
+            <h3 class="lang-en">Brake Service</h3>
+            <h3 class="lang-es">Servicio de Frenos</h3>
+            <p class="lang-en">From $299 • Pads & Rotors</p>
+            <p class="lang-es">Desde $299 • Pastillas y Discos</p>
+            <a href="services.html#brakes" class="btn btn-sm lang-en">Learn More</a>
+            <a href="services.html#brakes" class="btn btn-sm lang-es">Ver Más</a>
         </div>
 
-        <div class="quick-contact">
-            <a href="booking.html" class="btn btn-primary lang-en">Schedule Appointment</a>
-            <a href="booking.html" class="btn btn-primary lang-es">Agendar Cita</a>
-            <a href="pqrs.html" class="btn btn-secondary lang-en">Customer Feedback</a>
-            <a href="pqrs.html" class="btn btn-secondary lang-es">PQRS</a>
+        <!-- Diagnostics -->
+        <div class="service-card">
+            <img src="assets/images/lgb_diagnostics_1768597325452.png" alt="Diagnostics">
+            <h3 class="lang-en">Engine Diagnostics</h3>
+            <h3 class="lang-es">Diagnóstico del Motor</h3>
+            <p class="lang-en">$100 • Check Engine Light</p>
+            <p class="lang-es">$100 • Luz del Motor</p>
+            <a href="services.html#diagnostics" class="btn btn-sm lang-en">Learn More</a>
+            <a href="services.html#diagnostics" class="btn btn-sm lang-es">Ver Más</a>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer>
-        <p class="lang-en">&copy; 2026 LGB Autowork | NAPA AutoCare Center | Built by ORION Tech</p>
-        <p class="lang-es">&copy; 2026 LGB Autowork | Centro NAPA AutoCare | Construido por ORION Tech</p>
-    </footer>
+        <!-- Tesla Keys -->
+        <div class="service-card featured">
+            <div class="badge" style="position: absolute; top: 10px; right: 10px; background: #FFD700;">⭐ SPECIALTY
+            </div>
+            <img src="assets/images/lgb_tesla_key_1768597311700.png" alt="Tesla Keys">
+            <h3 class="lang-en">Tesla Key Programming</h3>
+            <h3 class="lang-es">Programación Llaves Tesla</h3>
+            <p class="lang-en">$299 • Same Day Service</p>
+            <p class="lang-es">$299 • Servicio Mismo Día</p>
+            <a href="keys.html" class="btn btn-sm lang-en">Learn More</a>
+            <a href="keys.html" class="btn btn-sm lang-es">Ver Más</a>
+        </div>
 
-    <script src="assets/js/main.js"></script>
+        <!-- A/C Service -->
+        <div class="service-card">
+            <img src="assets/images/lgb_ac_service_1768597565610.png" alt="A/C Service">
+            <h3 class="lang-en">A/C Service</h3>
+            <h3 class="lang-es">Servicio de A/C</h3>
+            <p class="lang-en">From $150 • R-134a & R-1234yf</p>
+            <p class="lang-es">Desde $150 • R-134a y R-1234yf</p>
+            <a href="services.html#ac" class="btn btn-sm lang-en">Learn More</a>
+            <a href="services.html#ac" class="btn btn-sm lang-es">Ver Más</a>
+        </div>
+
+        <!-- Transmission -->
+        <div class="service-card">
+            <img src="assets/images/lgb_transmission_service_1768597580273.png" alt="Transmission">
+            <h3 class="lang-en">Transmission Service</h3>
+            <h3 class="lang-es">Servicio de Transmisión</h3>
+            <p class="lang-en">From $180 • Fluid Change</p>
+            <p class="lang-es">Desde $180 • Cambio de Fluido</p>
+            <a href="services.html#transmission" class="btn btn-sm lang-en">Learn More</a>
+            <a href="services.html#transmission" class="btn btn-sm lang-es">Ver Más</a>
+        </div>
+
+        <!-- Smog Check -->
+        <div class="service-card">
+            <img src="assets/images/lgb_smog_check_1768597597776.png" alt="Smog Check">
+            <h3 class="lang-en">Smog Check</h3>
+            <h3 class="lang-es">Verificación de Emisiones</h3>
+            <p class="lang-en">$49 • California Certified</p>
+            <p class="lang-es">$49 • Certificado California</p>
+            <a href="services.html#smog" class="btn btn-sm lang-en">Learn More</a>
+            <a href="services.html#smog" class="btn btn-sm lang-es">Ver Más</a>
+        </div>
+
+        <!-- More Services CTA -->
+        <div class="service-card cta-card">
+            <h3 class="lang-en">View All Services</h3>
+            <h3 class="lang-es">Ver Todos los Servicios</h3>
+            <p class="lang-en">12+ automotive services available</p>
+            <p class="lang-es">Más de 12 servicios disponibles</p>
+            <a href="services.html" class="btn btn-primary lang-en">See Full Catalog</a>
+            <a href="services.html" class="btn btn-primary lang-es">Ver Catálogo Completo</a>
+        </div>
+    </div>
+</section>
+
+<!-- Special Offers -->
+<section class="offers-section">
+    <h2 class="lang-en">Special Offers</h2>
+    <h2 class="lang-es">Ofertas Especiales</h2>
+
+    <div class="offers-carousel">
+        <div class="offer-card">
+            <h3 class="lang-en">Oil Change Special</h3>
+            <h3 class="lang-es">Especial Cambio de Aceite</h3>
+            <div class="offer-price">$79.99</div>
+            <p class="lang-en">Full Synthetic + FREE 27-point inspection</p>
+            <p class="lang-es">Sintético completo + inspección GRATIS de 27 puntos</p>
+            <a href="booking.html" class="btn btn-secondary lang-en">Book Now</a>
+            <a href="booking.html" class="btn btn-secondary lang-es">Reservar Ahora</a>
+        </div>
+
+        <div class="offer-card">
+            <h3 class="lang-en">Tesla Key Special</h3>
+            <h3 class="lang-es">Especial Llave Tesla</h3>
+            <div class="offer-price">$299</div>
+            <p class="lang-en">Lost Your Tesla Key? We Got You.</p>
+            <p class="lang-es">¿Perdió su llave Tesla? ¡No problem!</p>
+            <a href="keys.html" class="btn btn-secondary lang-en">Learn More</a>
+            <a href="keys.html" class="btn btn-secondary lang-es">Ver Más</a>
+        </div>
+
+        <div class="offer-card">
+            <h3 class="lang-en">A/C Check</h3>
+            <h3 class="lang-es">Revisión A/C</h3>
+            <div class="offer-price">$49</div>
+            <p class="lang-en">Beat the Heat - Inspection + Estimate</p>
+            <p class="lang-es">Contra el Calor - Inspección + Cotización</p>
+            <a href="booking.html" class="btn btn-secondary lang-en">Book Now</a>
+            <a href="booking.html" class="btn btn-secondary lang-es">Reservar Ahora</a>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="why-section">
+    <h2 class="lang-en">Why Choose LGB Autowork?</h2>
+    <h2 class="lang-es">¿Por Qué Elegir LGB Autowork?</h2>
+
+    <div class="features-grid">
+        <div class="feature">
+            <div class="feature-icon">⭐</div>
+            <h3 class="lang-en">4.9★ Rating</h3>
+            <h3 class="lang-es">4.9★ Calificación</h3>
+            <p class="lang-en">Exceptional customer reviews</p>
+            <p class="lang-es">Comentarios excepcionales</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">🛡️</div>
+            <h3 class="lang-en">NAPA Warranty</h3>
+            <h3 class="lang-es">Garantía NAPA</h3>
+            <p class="lang-en">24 months / 24,000 miles nationwide</p>
+            <p class="lang-es">24 meses / 24,000 millas nacional</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">🔧</div>
+            <h3 class="lang-en">ASE Certified</h3>
+            <h3 class="lang-es">Certificado ASE</h3>
+            <p class="lang-en">Expert technicians</p>
+            <p class="lang-es">Técnicos expertos</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">🔑</div>
+            <h3 class="lang-en">Tesla Keys</h3>
+            <h3 class="lang-es">Llaves Tesla</h3>
+            <p class="lang-en">Specialty programming service</p>
+            <p class="lang-es">Servicio de programación especializado</p>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact-section">
+    <div class="contact-info">
+        <h2 class="lang-en">Visit Us</h2>
+        <h2 class="lang-es">Visítenos</h2>
+        <p><strong class="lang-en">Address:</strong><strong class="lang-es">Dirección:</strong> 1095 Foxworthy Ave,
+            San Jose, CA 95118</p>
+        <p><strong class="lang-en">Phone:</strong><strong class="lang-es">Teléfono:</strong> (408) 727-4500</p>
+        <p><strong class="lang-en">Email:</strong> mrripp@iowatelcom.net</p>
+        <p><strong class="lang-en">Hours:</strong><strong class="lang-es">Horario:</strong> Mon-Sat 8:00 AM - 5:30
+            PM</p>
+        <p style="color: #FF6B00; font-weight: bold;" class="lang-en">Closed Sundays</p>
+        <p style="color: #FF6B00; font-weight: bold;" class="lang-es">Cerrado Domingos</p>
+    </div>
+
+    <div class="quick-contact">
+        <a href="booking.html" class="btn btn-primary lang-en">Schedule Appointment</a>
+        <a href="booking.html" class="btn btn-primary lang-es">Agendar Cita</a>
+        <a href="pqrs.html" class="btn btn-secondary lang-en">Customer Feedback</a>
+        <a href="pqrs.html" class="btn btn-secondary lang-es">PQRS</a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p class="lang-en">&copy; 2026 LGB Autowork | NAPA AutoCare Center | Built by ORION Tech</p>
+    <p class="lang-es">&copy; 2026 LGB Autowork | Centro NAPA AutoCare | Construido por ORION Tech</p>
+</footer>
+
+<script src="assets/js/main.js"></script>
 </body>
 
 </html>
