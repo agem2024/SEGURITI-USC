@@ -1,0 +1,712 @@
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propuesta Orion Tech | Ferragro Obando</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&amp;family=Inter:wght@300;400;600;700&amp;family=Outfit:wght@300;400;600;700&amp;display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #050505;
+            --bg-card: #0f0f0f;
+            --accent-orange: #ff6a00;
+            --accent-green: #00ff88;
+            --accent-cyan: #00f2ff;
+            --text-white: #ffffff;
+            --text-gray: #b0b0b0;
+            --gradient-agro: linear-gradient(135deg, #ff6a00 0%, #00ff88 100%);
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        .stat-number,
+        .plan-name,
+        .btn {
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(rgba(5, 5, 5, 0.8), rgba(5, 5, 5, 0.8)), url('cyber_agro_background_1768584480925.png');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            background: var(--gradient-agro);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.3));
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            color: var(--text-gray);
+            margin-bottom: 40px;
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 100px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--accent-green);
+            margin-bottom: 20px;
+        }
+
+        /* Comparison Section */
+        .comparison-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 30px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .comparison-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .comparison-item:hover {
+            transform: scale(1.02);
+            border-color: var(--accent-green);
+            z-index: 10;
+            box-shadow: 0 0 50px rgba(0, 255, 136, 0.2);
+        }
+
+        .comparison-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .comparison-label {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 8px 20px;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            border: 1px solid var(--glass-border);
+            z-index: 2;
+        }
+
+        .comparison-label.before {
+            color: var(--accent-orange);
+            border-color: var(--accent-orange);
+        }
+
+        .comparison-label.after {
+            color: var(--accent-green);
+            border-color: var(--accent-green);
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+        }
+
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            padding: 40px;
+            border-radius: 20px;
+            transition: 0.3s;
+            text-align: center;
+            position: relative;
+        }
+
+        .feature-card:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .feature-card i {
+            font-size: 3rem;
+            color: var(--accent-green);
+            margin-bottom: 20px;
+        }
+
+        .badge-container {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            align-items: flex-end;
+        }
+
+        .badge {
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: 1px solid transparent;
+        }
+
+        .badge-install {
+            background: rgba(0, 242, 255, 0.1);
+            color: var(--accent-cyan);
+            border-color: var(--accent-cyan);
+        }
+
+        .badge-offline {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--accent-green);
+            border-color: var(--accent-green);
+        }
+
+        /* Financial Table */
+        .financial-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 40px;
+            background: var(--bg-card);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .financial-table th,
+        .financial-table td {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .financial-table th {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--accent-green);
+        }
+
+        /* Pricing Cards */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .pricing-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            padding: 50px 30px;
+            border-radius: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--accent-green);
+            box-shadow: 0 0 40px rgba(0, 255, 136, 0.1);
+            transform: scale(1.05);
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .plan-price {
+            font-size: 3rem;
+            color: var(--accent-green);
+            margin-bottom: 30px;
+        }
+
+        .plan-price span {
+            font-size: 1rem;
+            color: var(--text-gray);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--gradient-agro);
+            color: #000;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 900;
+            transition: 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn:hover {
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .comparison-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="">
+
+    <!-- HERO -->
+    <section class="hero">
+        <h1>FERRAGRO OBANDO</h1>
+        <p>Liderando la Revolución Agro-Industrial con Inteligencia Artificial. Transformamos el "Vacío Digital" en
+            Dominio de Mercado.</p>
+        <a href="#propuesta" class="btn">EXPLORAR PROPUESTA</a>
+    </section>
+
+    <!-- COMPARISON -->
+    <section class="section" id="propuesta">
+        <div class="section-title">
+            <h2>Transformación Visual: Antes vs. Después</h2>
+            <p>De una ferretería tradicional a una Flagship Store tecnológica de clase mundial.</p>
+        </div>
+        <div class="comparison-container">
+            <div class="comparison-item">
+                <div class="comparison-label before">ESTADO ACTUAL</div>
+                <img src="uploaded_image_1768584398243.jpg" alt="Ferretería Actual" class="comparison-image">
+            </div>
+            <div class="comparison-item">
+                <div class="comparison-label after">VISIÓN ORION TECH</div>
+                <img src="ferragro_futuristic_storefront_1768584435750.png" alt="Ferretería Futurista"
+                    class="comparison-image">
+            </div>
+        </div>
+        <div style="margin-top: 40px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
+            <h3 style="color: var(--accent-orange); margin-bottom: 20px;">El Salto Cuántico "Cyber-Agro"</h3>
+            <p>No es solo estética; es <strong>psicología de ventas</strong>. Un cliente que percibe tecnología de punta
+                está
+                dispuesto a invertir en soluciones de alto valor como sistemas solares y riego automatizado. Orion Tech
+                posiciona a Ferragro como el líder indiscutible de la región.</p>
+        </div>
+    </section>
+
+    <!-- STRATEGIC OPPORTUNITIES -->
+    <section class="section"
+        style="background: rgba(0, 242, 255, 0.02); border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border);">
+        <div class="section-title">
+            <h2>Oportunidades y Potencialidades</h2>
+            <p>El valor estratégico de ser el primer pionero tecnológico en Obando.</p>
+        </div>
+        <div class="feature-grid">
+            <div class="feature-card" style="text-align: left; border-left: 4px solid var(--accent-cyan);">
+                <i class="fas fa-rocket" style="color: var(--accent-cyan);"></i>
+                <h3 style="color: var(--accent-cyan);">Dominio del Vacío Digital</h3>
+                <p>Al ser el primero, Ferragro captura el 100% de la intención de búsqueda local, creando una barrera de
+                    entrada insuperable para la competencia.</p>
+            </div>
+            <div class="feature-card" style="text-align: left; border-left: 4px solid var(--accent-green);">
+                <i class="fas fa-users-gear" style="color: var(--accent-green);"></i>
+                <h3>Socio Tecnológico</h3>
+                <p>Eleva la marca de "vendedor de herramientas" a "consultor experto". Fideliza a la nueva generación de
+                    administradores de fincas nativos digitales.</p>
+            </div>
+            <div class="feature-card" style="text-align: left; border-left: 4px solid var(--accent-orange);">
+                <i class="fas fa-map-location-dot" style="color: var(--accent-orange);"></i>
+                <h3 style="color: var(--accent-orange);">Expansión Regional</h3>
+                <p>Vende en municipios vecinos (La Unión, Toro, Cartago) sin locales físicos. Tu landing page y bot son
+                    tus nuevas sucursales virtuales.</p>
+            </div>
+            <div class="feature-card" style="text-align: left; border-left: 4px solid var(--accent-green);">
+                <i class="fas fa-database" style="color: var(--accent-green);"></i>
+                <h3>Data-Driven Growth</h3>
+                <p>Anticípate a la demanda. Los datos de consultas en la IA te permiten optimizar el stock antes de las
+                    temporadas críticas de riego y cosecha.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- APPS -->
+    <section class="section">
+        <div class="section-title">
+            <h2>Ecosistema de Apps Personalizadas</h2>
+            <p>Herramientas diseñadas específicamente para la realidad del agro en Obando.</p>
+        </div>
+        <div class="feature-grid">
+            <!-- Agro-Inventario -->
+            <div class="feature-card">
+                <div class="badge-container">
+                    <div class="badge badge-install">Sin Instalación</div>
+                    <div class="badge badge-offline">Modo Offline</div>
+                </div>
+                <i class="fas fa-boxes"></i>
+                <h3>Agro-Inventario Móvil</h3>
+                <p>La bodega en tu bolsillo. Consulta stock real desde la finca del cliente.</p>
+                <ul
+                    style="list-style: none; text-align: left; margin: 20px 0; font-size: 0.85rem; color: var(--text-gray);">
+                    <li><i class="fas fa-check" style="color: var(--accent-green); margin-right: 10px;"></i>
+                        Sincronización en tiempo real</li>
+                    <li><i class="fas fa-check" style="color: var(--accent-green); margin-right: 10px;"></i> Escaneo de
+                        QR para bodega</li>
+                    <li><i class="fas fa-check" style="color: var(--accent-green); margin-right: 10px;"></i> Alertas de
+                        stock crítico</li>
+                </ul>
+                <img src="farmer_using_agro_app_1768584451484.png" alt="App Inventario"
+                    style="width: 100%; border-radius: 10px; border: 1px solid var(--glass-border); margin-bottom: 20px;">
+                <a href="#" class="btn" style="padding: 10px 20px; font-size: 0.8rem;">ACCESO INSTANTÁNEO</a>
+            </div>
+            <!-- Calculadora Solar -->
+            <div class="feature-card">
+                <div class="badge-container">
+                    <div class="badge badge-install">Sin Instalación</div>
+                </div>
+                <i class="fas fa-solar-panel"></i>
+                <h3>Calculadora Solar ROI</h3>
+                <p>Cierra ventas de paneles solares mostrando el ahorro exacto en segundos.</p>
+                <ul
+                    style="list-style: none; text-align: left; margin: 20px 0; font-size: 0.85rem; color: var(--text-gray);">
+                    <li><i class="fas fa-check" style="color: var(--accent-green); margin-right: 10px;"></i> Simulador
+                        de ahorro energético</li>
+                    <li><i class="fas fa-check" style="color: var(--accent-green); margin-right: 10px;"></i> Generación
+                        de propuestas PDF</li>
+                    <li><i class="fas fa-check" style="color: var(--accent-green); margin-right: 10px;"></i> Cálculo de
+                        beneficios Ley 1715</li>
+                </ul>
+                <img src="solar_roi_consultation_1768584465566.png" alt="Calculadora Solar"
+                    style="width: 100%; border-radius: 10px; border: 1px solid var(--glass-border); margin-bottom: 20px;">
+                <a href="#" class="btn" style="padding: 10px 20px; font-size: 0.8rem;">ACCESO INSTANTÁNEO</a>
+            </div>
+            <!-- IA Concierge -->
+            <div class="feature-card">
+                <div class="badge-container">
+                    <div class="badge badge-install">Sin Instalación</div>
+                </div>
+                <i class="fab fa-whatsapp"></i>
+                <h3>IA Concierge (WhatsApp)</h3>
+                <p>Atención experta 24/7. Tu mejor vendedor nunca duerme.</p>
+                <ul
+                    style="list-style: none; text-align: left; margin: 20px 0; font-size: 0.85rem; color: var(--text-gray);">
+                    <li><i class="fas fa-check" style="color: var(--accent-green); margin-right: 10px;"></i> Entiende
+                        lenguaje técnico local</li>
+                    <li><i class="fas fa-check" style="color: var(--accent-green); margin-right: 10px;"></i> Cotización
+                        automática 24/7</li>
+                    <li><i class="fas fa-check" style="color: var(--accent-green); margin-right: 10px;"></i> Pre-carga
+                        de pedidos al sistema</li>
+                </ul>
+                <div
+                    style="height: 150px; display: flex; align-items: center; justify-content: center; background: rgba(0, 255, 136, 0.05); border-radius: 10px; border: 1px dashed var(--accent-green); margin-bottom: 20px;">
+                    <span style="color: var(--accent-green); font-weight: 900; letter-spacing: 3px;">IA ACTIVA
+                        24/7</span>
+                </div>
+                <a href="#" class="btn" style="padding: 10px 20px; font-size: 0.8rem;">ACCESO INSTANTÁNEO</a>
+            </div>
+        </div>
+        <!-- Cero Papel -->
+        <div class="feature-card"
+            style="margin-top: 30px; display: flex; align-items: center; gap: 30px; text-align: left;">
+            <div style="font-size: 3rem; color: var(--accent-orange);"><i class="fas fa-leaf"></i></div>
+            <div style="flex: 1;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <h3>Gestor de Pedidos "Cero Papel"</h3>
+                    <div style="display: flex; gap: 5px;">
+                        <div class="badge badge-install">Sin Instalación</div>
+                        <div class="badge badge-offline">Modo Offline</div>
+                    </div>
+                </div>
+                <p>Digitalización total de remisiones y firmas. Elimina el caos administrativo y ahorra en suministros.
+                </p>
+                <p style="font-size: 0.85rem; color: var(--text-gray); margin-top: 10px;">Firma digital en pantalla +
+                    Prueba fotográfica de entrega + Archivo histórico instantáneo.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- OFFLINE RURAL POWER -->
+    <section class="section"
+        style="background: linear-gradient(rgba(0, 255, 136, 0.05), transparent); border-top: 1px solid var(--glass-border);">
+        <div class="section-title">
+            <h2 style="color: var(--accent-green);">Poder Rural: Funciona Sin Internet</h2>
+            <p>Diseñado para el campo real. Registra datos en la finca y sincroniza al volver al pueblo.</p>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center;">
+            <div style="text-align: left;">
+                <h3 style="font-size: 2rem; margin-bottom: 20px; color: var(--accent-green);">Resiliencia de
+                    Conectividad</h3>
+                <p style="font-size: 1.1rem; color: var(--text-gray); margin-bottom: 30px;">En las zonas rurales de
+                    Obando, la señal no es negociable. Nuestra tecnología garantiza que el trabajo nunca se detenga.</p>
+                <ul style="list-style: none;">
+                    <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 15px;">
+                        <i class="fas fa-database" style="color: var(--accent-green);"></i>
+                        <span><strong>Almacenamiento Local:</strong> Guarda pedidos y fotos sin señal.</span>
+                    </li>
+                    <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 15px;">
+                        <i class="fas fa-sync" style="color: var(--accent-green);"></i>
+                        <span><strong>Sincronización Inteligente:</strong> Sube los datos automáticamente al detectar
+                            red.</span>
+                    </li>
+                    <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 15px;">
+                        <i class="fas fa-mountain-sun" style="color: var(--accent-green);"></i>
+                        <span><strong>Optimizado para el Campo:</strong> Bajo consumo de batería y datos.</span>
+                    </li>
+                </ul>
+                <div
+                    style="margin-top: 40px; padding: 20px; background: rgba(0, 255, 136, 0.1); border-radius: 15px; border: 1px dashed var(--accent-green);">
+                    <p style="font-weight: 700; color: var(--accent-green); text-align: center;">LA FALTA DE SEÑAL YA NO
+                        ES UNA BARRERA PARA TU NEGOCIO</p>
+                </div>
+            </div>
+            <div>
+                <img src="ferragro_offline_rural_marketing_1768591426344.png" alt="Marketing Offline Rural"
+                    style="width: 100%; border-radius: 30px; border: 1px solid var(--accent-green); box-shadow: 0 0 50px rgba(0, 255, 136, 0.2);">
+            </div>
+        </div>
+    </section>
+
+    <!-- ZERO FRICTION MARKETING -->
+    <section class="section"
+        style="background: linear-gradient(rgba(0, 242, 255, 0.05), transparent); border-top: 1px solid var(--glass-border);">
+        <div class="section-title">
+            <h2 style="color: var(--accent-cyan);">Fricción Cero: Acceso Web Directo</h2>
+            <p>Sin descargas, sin esperas, sin complicaciones. Conexión inmediata con el cliente.</p>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center;">
+            <div>
+                <img src="ferragro_acceso_instantaneo_marketing_1768590911634.png" alt="Marketing Fricción Cero"
+                    style="width: 100%; border-radius: 30px; border: 1px solid var(--accent-cyan); box-shadow: 0 0 50px rgba(0, 242, 255, 0.2);">
+            </div>
+            <div style="text-align: left;">
+                <h3 style="font-size: 2rem; margin-bottom: 20px; color: var(--accent-cyan);">La Ventaja de la Inmediatez
+                </h3>
+                <p style="font-size: 1.1rem; color: var(--text-gray); margin-bottom: 30px;">En el agro, el tiempo es
+                    dinero. Nuestras aplicaciones no requieren que el cliente visite una tienda de apps ni que ocupe
+                    memoria en su teléfono.</p>
+                <ul style="list-style: none;">
+                    <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 15px;">
+                        <i class="fas fa-bolt" style="color: var(--accent-cyan);"></i>
+                        <span><strong>Acceso vía QR o Link:</strong> Escanea y usa. Así de simple.</span>
+                    </li>
+                    <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 15px;">
+                        <i class="fas fa-cloud-arrow-up" style="color: var(--accent-cyan);"></i>
+                        <span><strong>Siempre Actualizado:</strong> Sin descargas de parches o nuevas versiones.</span>
+                    </li>
+                    <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 15px;">
+                        <i class="fas fa-mobile-screen-button" style="color: var(--accent-cyan);"></i>
+                        <span><strong>Universal:</strong> Funciona en cualquier Android, iPhone o Computador.</span>
+                    </li>
+                </ul>
+                <div
+                    style="margin-top: 40px; padding: 20px; background: rgba(0, 242, 255, 0.1); border-radius: 15px; border: 1px dashed var(--accent-cyan);">
+                    <p style="font-weight: 700; color: var(--accent-cyan); text-align: center;">ELIMINA LA BARRERA DE
+                        ENTRADA Y CIERRA VENTAS AL INSTANTE</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAYMENTS & CREDIT -->
+    <section class="section"
+        style="background: rgba(255, 106, 0, 0.02); border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border);">
+        <div class="section-title">
+            <h2>Pagos y Crédito Digital</h2>
+            <p>Flexibilidad financiera para el agricultor, seguridad total para Ferragro.</p>
+        </div>
+        <div class="feature-grid">
+            <!-- Online Payments -->
+            <div class="feature-card" style="text-align: left;">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                    <i class="fas fa-credit-card" style="color: var(--accent-cyan); font-size: 2rem;"></i>
+                    <h3 style="color: var(--accent-cyan);">Pasarelas de Pago</h3>
+                </div>
+                <p>Integración con <strong>Wompi</strong> y <strong>Bold</strong>. Recibe pagos por PSE, Nequi y
+                    tarjetas con liquidación inmediata.</p>
+                <img src="ferragro_online_payments_agro_1768590225528.png" alt="Pagos Online"
+                    style="width: 100%; border-radius: 15px; margin-top: 20px; border: 1px solid var(--glass-border);">
+            </div>
+            <!-- Digital Credit -->
+            <div class="feature-card" style="text-align: left;">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                    <i class="fas fa-hand-holding-dollar" style="color: var(--accent-green); font-size: 2rem;"></i>
+                    <h3 style="color: var(--accent-green);">Crédito al Instante</h3>
+                </div>
+                <p>Alianza con <strong>Sistecredito</strong> y <strong>Addi</strong>. Financia paneles solares y
+                    maquinaria sin asumir el riesgo de cobro.</p>
+                <img src="ferragro_agro_credit_system_1768590239904.png" alt="Crédito Agro"
+                    style="width: 100%; border-radius: 15px; margin-top: 20px; border: 1px solid var(--glass-border);">
+            </div>
+        </div>
+        <!-- Collections -->
+        <div class="feature-card"
+            style="margin-top: 30px; display: flex; align-items: center; gap: 30px; text-align: left; border-left: 4px solid var(--accent-orange);">
+            <div style="font-size: 3rem; color: var(--accent-orange);"><i class="fas fa-file-invoice-dollar"></i></div>
+            <div>
+                <h3>Gestión de Cartera IA</h3>
+                <p>Automatiza el cobro de facturas pendientes. Recordatorios por WhatsApp con links de pago directos.
+                </p>
+                <p style="font-size: 0.85rem; color: var(--text-gray); margin-top: 10px;">Reduce la mora en un 60%
+                    mediante seguimiento proactivo y facilidades de pago digital.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINANCIAL -->
+    <section class="section">
+        <div class="section-title">
+            <h2>Análisis de Ineficiencia</h2>
+            <p>Lo que Ferragro deja de ganar hoy por falta de automatización.</p>
+        </div>
+        <table class="financial-table">
+            <thead>
+                <tr>
+                    <th>Concepto</th>
+                    <th>Costo Mensual (Actual)</th>
+                    <th>Solución Orion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Ventas Perdidas (Horarios no comerciales)</td>
+                    <td>$2,500,000</td>
+                    <td>Atención 24/7</td>
+                </tr>
+                <tr>
+                    <td>Errores de Inventario y Mermas</td>
+                    <td>$1,200,000</td>
+                    <td>Sincronización Digital</td>
+                </tr>
+                <tr>
+                    <td>Tiempo Administrativo Manual</td>
+                    <td>$900,000</td>
+                    <td>Automatización IA</td>
+                </tr>
+                <tr style="font-weight: 900; color: var(--accent-green);">
+                    <td>TOTAL AHORRO POTENCIAL</td>
+                    <td>$4,750,000</td>
+                    <td>ROI &lt; 45 Días</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- PRICING -->
+    <section class="section">
+        <div class="section-title">
+            <h2>Planes de Inversión y Retorno (ROI)</h2>
+            <p>Análisis de rentabilidad: Cómo tu inversión se convierte en ganancias netas.</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="plan-name">Smart Agro</div>
+                <div class="plan-price">$790k<span>/mes</span></div>
+                <p style="color: var(--text-gray); margin-bottom: 20px;">Setup: $3.99M</p>
+                <div
+                    style="background: rgba(0, 255, 136, 0.05); padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: left;">
+                    <strong style="color: var(--accent-green); font-size: 0.8rem;">ANÁLISIS DE RÉDITO:</strong>
+                    <p style="font-size: 0.85rem; color: var(--text-gray); margin-top: 5px;">Elimina el costo de ventas
+                        perdidas por falta de respuesta. Recupera ~2.5M/mes en ventas que hoy se van a la competencia.
+                    </p>
+                </div>
+                <ul style="list-style: none; text-align: left; margin-bottom: 30px; font-size: 0.9rem;">
+                    <li><i class="fas fa-check" style="color: var(--accent-green);"></i> Bot WhatsApp 24/7</li>
+                    <li><i class="fas fa-check" style="color: var(--accent-green);"></i> Landing Page Básica</li>
+                </ul>
+                <a href="#" class="btn">SELECCIONAR</a>
+            </div>
+            <div class="pricing-card featured">
+                <div class="plan-name">Pro Business</div>
+                <div class="plan-price">$1.59M<span>/mes</span></div>
+                <p style="color: var(--text-gray); margin-bottom: 20px;">Setup: $7.99M</p>
+                <div
+                    style="background: rgba(0, 255, 136, 0.1); padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: left;">
+                    <strong style="color: var(--accent-green); font-size: 0.8rem;">ANÁLISIS DE RÉDITO:</strong>
+                    <p style="font-size: 0.85rem; color: var(--text-gray); margin-top: 5px;">Aumento del 30% en cierre
+                        de proyectos solares gracias a la Calculadora ROI. Ahorro de $1.2M/mes en mermas de inventario.
+                    </p>
+                </div>
+                <ul style="list-style: none; text-align: left; margin-bottom: 30px; font-size: 0.9rem;">
+                    <li><i class="fas fa-check" style="color: var(--accent-green);"></i> Todo en Smart</li>
+                    <li><i class="fas fa-check" style="color: var(--accent-green);"></i> Agro-Inventario Móvil</li>
+                    <li><i class="fas fa-check" style="color: var(--accent-green);"></i> Calculadora Solar ROI</li>
+                </ul>
+                <a href="#" class="btn">RECOMENDADO</a>
+            </div>
+            <div class="pricing-card">
+                <div class="plan-name">Leader Elite</div>
+                <div class="plan-price">$2.79M<span>/mes</span></div>
+                <p style="color: var(--text-gray); margin-bottom: 20px;">Setup: $15.99M</p>
+                <div
+                    style="background: rgba(0, 255, 136, 0.05); padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: left;">
+                    <strong style="color: var(--accent-green); font-size: 0.8rem;">ANÁLISIS DE RÉDITO:</strong>
+                    <p style="font-size: 0.85rem; color: var(--text-gray); margin-top: 5px;">Dominio total del mercado
+                        regional. El CRM IA identifica patrones de compra para ventas proactivas, aumentando el LTV del
+                        cliente en un 40%.</p>
+                </div>
+                <ul style="list-style: none; text-align: left; margin-bottom: 30px; font-size: 0.9rem;">
+                    <li><i class="fas fa-check" style="color: var(--accent-green);"></i> Todo en Pro</li>
+                    <li><i class="fas fa-check" style="color: var(--accent-green);"></i> CRM IA a Medida</li>
+                    <li><i class="fas fa-check" style="color: var(--accent-green);"></i> Estrategia Social Media</li>
+                </ul>
+                <a href="#" class="btn">SELECCIONAR</a>
+            </div>
+        </div>
+    </section>
+
+    <footer
+        style="text-align: center; padding: 40px; color: var(--text-gray); border-top: 1px solid var(--glass-border);">
+        <p>© 2026 Orion Tech Services. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+
+</html>
