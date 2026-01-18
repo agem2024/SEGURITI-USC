@@ -3063,27 +3063,35 @@
                     const voices = speechSynthesis.getVoices();
                     let selectedVoice = null;
 
-                    // FIX ROBOTIC VOICE: Segregate languages
-                    const esVoices = ['Sabina', 'Paulina', 'Helena', 'Google español', 'Microsoft Sabina', 'es-MX', 'es-ES'];
-                    const enVoices = ['Zira', 'Microsoft Zira', 'Google US English', 'Samantha', 'en-US', 'en-GB'];
+                    // FIX ROBOTIC VOICE: Segregate languages STRICTLY
+                    const esVoices = ['Sabina', 'Paulina', 'Helena', 'Google español', 'Microsoft Sabina', 'es-MX', 'es-ES', 'Spanish'];
+                    const enVoices = ['Zira', 'Microsoft Zira', 'Google US English', 'Samantha', 'en-US', 'en-GB', 'English'];
 
                     const targetList = isSpanish ? esVoices : enVoices;
+                    const targetLang = isSpanish ? 'es' : 'en';
 
-                    // 1. Try preferred voices
-                    selectedVoice = voices.find(v => targetList.some(p => v.name.includes(p)));
+                    // 1. Try preferred voices WITH matching language
+                    selectedVoice = voices.find(v =>
+                        v.lang.startsWith(targetLang) &&
+                        targetList.some(p => v.name.includes(p))
+                    );
 
-                    // 2. Try by Language Code
+                    // 2. Try ANY voice with matching language code
                     if (!selectedVoice) {
-                        selectedVoice = voices.find(v => v.lang.startsWith(isSpanish ? 'es' : 'en'));
+                        selectedVoice = voices.find(v => v.lang.startsWith(targetLang));
                     }
 
-                    // 3. Fallback
-                    if (!selectedVoice) selectedVoice = voices[0];
-
+                    // 3. CRITICAL: Override utterance.lang to match selected voice
                     if (selectedVoice) {
                         utterance.voice = selectedVoice;
-                        // console.log('🎤 XONA Voice:', selectedVoice.name);
+                        utterance.lang = selectedVoice.lang; // FORCE SYNC
+                        console.log('🎤 XONA Voice:', selectedVoice.name, '| Lang:', selectedVoice.lang);
+                    } else {
+                        // 4. Last resort fallback
+                        utterance.voice = voices[0];
+                        console.warn('⚠️ No matching voice found, using default');
                     }
+
                     speechSynthesis.speak(utterance);
                 };
 
