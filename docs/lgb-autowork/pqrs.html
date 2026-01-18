@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PQRS - Customer Feedback | LGB Autowork</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/bilingual-fix.css">
 </head>
+
 <body class="en">
     <div class="lang-switcher">
         <button class="lang-btn" onclick="switchLanguage('en')">🇺🇸 EN</button>
@@ -21,9 +24,14 @@
         </div>
         <ul class="nav-links">
             <li><a href="index.html" class="lang-en">Home</a><a href="index.html" class="lang-es">Inicio</a></li>
-            <li><a href="services.html" class="lang-en">Services</a><a href="services.html" class="lang-es">Servicios</a></li>
-            <li><a href="booking.html" class="lang-en">Book Appointment</a><a href="booking.html" class="lang-es">Agendar Cita</a></li>
-            <li><a href="maintenance.html" class="lang-en">Maintenance Tips</a><a href="maintenance.html" class="lang-es">Mantenimiento</a></li>
+            <li><a href="services.html" class="lang-en">Services</a><a href="services.html"
+                    class="lang-es">Servicios</a></li>
+            <li><a href="booking.html" class="lang-en">Book Appointment</a><a href="booking.html"
+                    class="lang-es">Agendar Cita</a></li>
+            <li><a href="maintenance.html" class="lang-en">Maintenance Tips</a><a href="maintenance.html"
+                    class="lang-es">Mantenimiento</a></li>
+            <li><a href="pricing.html" class="lang-en">Pricing</a><a href="pricing.html" class="lang-es">Precios</a>
+            </li>
             <li><a href="about.html" class="lang-en">About</a><a href="about.html" class="lang-es">Nosotros</a></li>
         </ul>
     </nav>
@@ -39,9 +47,14 @@
         <div style="max-width: 800px; margin: 0 auto; background: var(--card-bg); padding: 40px; border-radius: 16px;">
             <form id="pqrsForm" style="display: flex; flex-direction: column; gap: 20px;">
                 <div>
-                    <label class="lang-en" style="color: var(--napa-orange); font-weight: 600; display: block; margin-bottom: 8px;">Type of Request</label>
-                    <label class="lang-es" style="color: var(--napa-orange); font-weight: 600; display: block; margin-bottom: 8px;">Tipo de Solicitud</label>
-                    <select id="requestType" required style="width: 100%; padding: 12px; border-radius: 8px; background: var(--dark-bg); color: var(--text-white); border: 2px solid var(--napa-blue);">
+                    <label class="lang-en"
+                        style="color: var(--napa-orange); font-weight: 600; display: block; margin-bottom: 8px;">Type of
+                        Request</label>
+                    <label class="lang-es"
+                        style="color: var(--napa-orange); font-weight: 600; display: block; margin-bottom: 8px;">Tipo de
+                        Solicitud</label>
+                    <select id="requestType" required
+                        style="width: 100%; padding: 12px; border-radius: 8px; background: var(--dark-bg); color: var(--text-white); border: 2px solid var(--napa-blue);">
                         <option class="lang-en">Petition (Request)</option>
                         <option class="lang-es">Petición (Solicitud)</option>
                         <option class="lang-en">Complaint</option>
@@ -54,27 +67,46 @@
                 </div>
 
                 <div>
-                    <label class="lang-en" style="color: var(--napa-orange); font-weight: 600; display: block; margin-bottom: 8px;">Your Name</label>
-                    <label class="lang-es" style="color: var(--napa-orange); font-weight: 600; display: block; margin-bottom: 8px;">Su Nombre</label>
-                    <input type="text" id="name" required placeholder="John Doe / Juan Pérez" style="width: 100%; padding: 12px; border-radius: 8px; background: var(--dark-bg); color: var(--text-white); border: 2px solid var(--napa-blue);">
+                    <label class="lang-en"
+                        style="color: var(--napa-orange); font-weight: 600; display: block; margin-bottom: 8px;">Your
+                        Name</label>
+                    <label class="lang-es"
+                        style="color: var(--napa-orange); font-weight: 600; display: block; margin-bottom: 8px;">Su
+                        Nombre</label>
+                    <input type="text" id="name" required placeholder="John Doe / Juan Pérez"
+                        style="width: 100%; padding: 12px; border-radius: 8px; background: var(--dark-bg); color: var(--text-white); border: 2px solid var(--napa-blue);">
                 </div>
 
                 <div>
-                    <label class="lang-en" style="color: var(--napa-orange); font-weight: 600; display: block; margin-bottom: 8px;">Email</label>
-                    <label class="lang-es" style="color: var(--napa-orange); font-weight: 600; display: block; margin-bottom: 8px;">Correo Electrónico</label>
-                    <input type="email" id="email" required placeholder="your@email.com" style="width: 100%; padding: 12px; border-radius: 8px; background: var(--dark-bg); color: var(--text-white); border: 2px solid var(--napa-blue);">
+                    <label class="lang-en"
+                        style="color: var(--napa-orange); font-weight: 600; display: block; margin-bottom: 8px;">Email</label>
+                    <label class="lang-es"
+                        style="color: var(--napa-orange); font-weight: 600; display: block; margin-bottom: 8px;">Correo
+                        Electrónico</label>
+                    <input type="email" id="email" required placeholder="your@email.com"
+                        style="width: 100%; padding: 12px; border-radius: 8px; background: var(--dark-bg); color: var(--text-white); border: 2px solid var(--napa-blue);">
                 </div>
 
                 <div>
-                    <label class="lang-en" style="color: var(--napa-orange); font-weight: 600; display: block; margin-bottom: 8px;">Phone (optional)</label>
-                    <label class="lang-es" style="color: var(--napa-orange); font-weight: 600; display: block; margin-bottom: 8px;">Teléfono (opcional)</label>
-                    <input type="tel" id="phone" placeholder="(408) 123-4567" style="width: 100%; padding: 12px; border-radius: 8px; background: var(--dark-bg); color: var(--text-white); border: 2px solid var(--napa-blue);">
+                    <label class="lang-en"
+                        style="color: var(--napa-orange); font-weight: 600; display: block; margin-bottom: 8px;">Phone
+                        (optional)</label>
+                    <label class="lang-es"
+                        style="color: var(--napa-orange); font-weight: 600; display: block; margin-bottom: 8px;">Teléfono
+                        (opcional)</label>
+                    <input type="tel" id="phone" placeholder="(408) 123-4567"
+                        style="width: 100%; padding: 12px; border-radius: 8px; background: var(--dark-bg); color: var(--text-white); border: 2px solid var(--napa-blue);">
                 </div>
 
                 <div>
-                    <label class="lang-en" style="color: var(--napa-orange); font-weight: 600; display: block; margin-bottom: 8px;">Service Received (if applicable)</label>
-                    <label class="lang-es" style="color: var(--napa-orange); font-weight: 600; display: block; margin-bottom: 8px;">Servicio Recibido (si aplica)</label>
-                    <select id="service" style="width: 100%; padding: 12px; border-radius: 8px; background: var(--dark-bg); color: var(--text-white); border: 2px solid var(--napa-blue);">
+                    <label class="lang-en"
+                        style="color: var(--napa-orange); font-weight: 600; display: block; margin-bottom: 8px;">Service
+                        Received (if applicable)</label>
+                    <label class="lang-es"
+                        style="color: var(--napa-orange); font-weight: 600; display: block; margin-bottom: 8px;">Servicio
+                        Recibido (si aplica)</label>
+                    <select id="service"
+                        style="width: 100%; padding: 12px; border-radius: 8px; background: var(--dark-bg); color: var(--text-white); border: 2px solid var(--napa-blue);">
                         <option class="lang-en">N/A</option>
                         <option class="lang-es">N/A</option>
                         <option class="lang-en">Oil Change</option>
@@ -97,14 +129,24 @@
                 </div>
 
                 <div>
-                    <label class="lang-en" style="color: var(--napa-orange); font-weight: 600; display: block; margin-bottom: 8px;">Your Message</label>
-                    <label class="lang-es" style="color: var(--napa-orange); font-weight: 600; display: block; margin-bottom: 8px;">Su Mensaje</label>
-                    <textarea id="message" required rows="6" placeholder="Please provide details..." style="width: 100%; padding: 12px; border-radius: 8px; background: var(--dark-bg); color: var(--text-white); border: 2px solid var(--napa-blue); resize: vertical;"></textarea>
+                    <label class="lang-en"
+                        style="color: var(--napa-orange); font-weight: 600; display: block; margin-bottom: 8px;">Your
+                        Message</label>
+                    <label class="lang-es"
+                        style="color: var(--napa-orange); font-weight: 600; display: block; margin-bottom: 8px;">Su
+                        Mensaje</label>
+                    <textarea id="message" required rows="6" placeholder="Please provide details..."
+                        style="width: 100%; padding: 12px; border-radius: 8px; background: var(--dark-bg); color: var(--text-white); border: 2px solid var(--napa-blue); resize: vertical;"></textarea>
                 </div>
 
-                <div style="background: rgba(255, 107, 0, 0.1); padding: 15px; border-radius: 8px; border-left: 4px solid var(--napa-orange);">
-                    <p class="lang-en" style="font-size: 0.9rem; margin: 0;"><strong>Response Time:</strong> We will respond to your request within 24-48 business hours. For urgent matters, please call (408) 727-4500.</p>
-                    <p class="lang-es" style="font-size: 0.9rem; margin: 0;"><strong>Tiempo de Respuesta:</strong> Responderemos a su solicitud en 24-48 horas hábiles. Para asuntos urgentes, llame al (408) 727-4500.</p>
+                <div
+                    style="background: rgba(255, 107, 0, 0.1); padding: 15px; border-radius: 8px; border-left: 4px solid var(--napa-orange);">
+                    <p class="lang-en" style="font-size: 0.9rem; margin: 0;"><strong>Response Time:</strong> We will
+                        respond to your request within 24-48 business hours. For urgent matters, please call (408)
+                        727-4500.</p>
+                    <p class="lang-es" style="font-size: 0.9rem; margin: 0;"><strong>Tiempo de Respuesta:</strong>
+                        Responderemos a su solicitud en 24-48 horas hábiles. Para asuntos urgentes, llame al (408)
+                        727-4500.</p>
                 </div>
 
                 <button type="submit" class="btn btn-primary" style="width: 100%; padding: 15px; font-size: 1.1rem;">
@@ -113,9 +155,12 @@
                 </button>
             </form>
 
-            <div id="confirmationMessage" style="display: none; margin-top: 30px; padding: 20px; background: linear-gradient(135deg, rgba(255, 107, 0, 0.2), rgba(26, 115, 232, 0.2)); border-radius: 12px; text-align: center;">
-                <h3 class="lang-en" style="color: var(--accent-gold); margin-bottom: 10px;">✅ Thank You for Your Feedback!</h3>
-                <h3 class="lang-es" style="color: var(--accent-gold); margin-bottom: 10px;">✅ ¡Gracias por su Retroalimentación!</h3>
+            <div id="confirmationMessage"
+                style="display: none; margin-top: 30px; padding: 20px; background: linear-gradient(135deg, rgba(255, 107, 0, 0.2), rgba(26, 115, 232, 0.2)); border-radius: 12px; text-align: center;">
+                <h3 class="lang-en" style="color: var(--accent-gold); margin-bottom: 10px;">✅ Thank You for Your
+                    Feedback!</h3>
+                <h3 class="lang-es" style="color: var(--accent-gold); margin-bottom: 10px;">✅ ¡Gracias por su
+                    Retroalimentación!</h3>
                 <p class="lang-en">Your message has been received. We will contact you within 24-48 hours.</p>
                 <p class="lang-es">Su mensaje ha sido recibido. Lo contactaremos en 24-48 horas.</p>
                 <p><strong>Reference #: <span id="referenceNumber"></span></strong></p>
@@ -130,17 +175,17 @@
 
     <script src="assets/js/main.js"></script>
     <script>
-        document.getElementById('pqrsForm').addEventListener('submit', function(e) {
+        document.getElementById('pqrsForm').addEventListener('submit', function (e) {
             e.preventDefault();
-            
+
             // Generate random reference number
             const refNumber = 'PQRS-' + Date.now().toString().slice(-8);
             document.getElementById('referenceNumber').textContent = refNumber;
-            
+
             // Hide form, show confirmation
             document.getElementById('pqrsForm').style.display = 'none';
             document.getElementById('confirmationMessage').style.display = 'block';
-            
+
             // In a real implementation, this would send to a backend/email service
             console.log('PQRS Submission:', {
                 type: document.getElementById('requestType').value,
@@ -155,4 +200,5 @@
         });
     </script>
 </body>
+
 </html>

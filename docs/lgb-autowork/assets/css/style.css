@@ -54,25 +54,25 @@ body.en div.lang-es {
 /* Language Switcher Button */
 .lang-switcher {
     position: fixed;
-    top: 20px;
-    right: 20px;
+    top: 75px;
+    right: 10px;
     z-index: 1000;
-    background: rgba(26, 26, 36, 0.95);
-    padding: 8px;
-    border-radius: 30px;
-    border: 2px solid var(--napa-orange);
+    background: rgba(26, 26, 36, 0.9);
+    padding: 4px;
+    border-radius: 20px;
+    border: 1px solid var(--napa-orange);
     display: flex;
-    gap: 5px;
+    gap: 3px;
 }
 
 .lang-btn {
-    padding: 8px 16px;
+    padding: 5px 10px;
     border: none;
     background: transparent;
     color: var(--text-gray);
     cursor: pointer;
-    border-radius: 20px;
-    font-size: 0.9rem;
+    border-radius: 15px;
+    font-size: 0.75rem;
     font-weight: 600;
     transition: all 0.3s;
 }

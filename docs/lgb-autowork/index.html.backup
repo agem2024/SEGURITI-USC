@@ -32,8 +32,6 @@
                     class="lang-es">Agendar Cita</a></li>
             <li><a href="maintenance.html" class="lang-en">Maintenance Tips</a><a href="maintenance.html"
                     class="lang-es">Mantenimiento</a></li>
-            <li><a href="pricing.html" class="lang-en">Pricing</a><a href="pricing.html" class="lang-es">Precios</a>
-            </li>
             <li><a href="about.html" class="lang-en">About</a><a href="about.html" class="lang-es">Nosotros</a></li>
         </ul>
     </nav>
@@ -64,24 +62,15 @@
         </div>
     </section>
 
-    <!-- Traditional Phrases Banner -->
-    <section class="tradition-banner">
-        <marquee behavior="scroll" direction="left" scrollamount="5" class="lang-es">
-            🔧 HOY NO FÍO, MAÑANA TAMPOCO 🔧 SE HABLA ESPAÑOL 🔧 PASE SIN TOCAR EL CLAXON 🔧 MECÁNICA EN GENERAL 🔧
-            GARANTÍA NAPA 24 MESES / 24,000 MILLAS 🔧 SI LO VISTE EN INTERNET Y ERA FACILÍSIMO, $60 MÁS 🔧 POR MIRAR,
-            $10 MÁS 🔧 SI MIRAS Y OPINAS, $15 MÁS 🔧 SOY MECÁNICO, NO MAGO 🔧 ESPECIALISTAS EN TODO TIPO DE VEHÍCULOS 🔧
-            DIAGNÓSTICO COMPUTARIZADO 🔧 SERVICIO RÁPIDO Y CONFIABLE 🔧 LOS MÉDICOS DE TU AUTO 🔧 DEJAMOS TU AUTO COMO
-            UN 0 KM 🔧 LLAVES TESLA - NUESTRA ESPECIALIDAD 🔧 TÉCNICOS CERTIFICADOS ASE 🔧 ACEPTAMOS TODAS LAS TARJETAS
-            🔧 ESTACIONAMIENTO GRATIS 🔧
-        </marquee>
-        <marquee behavior="scroll" direction="left" scrollamount="5" class="lang-en">
-            🔧 CASH ONLY - NO CREDIT TODAY 🔧 WE SPEAK SPANISH 🔧 PLEASE, NO HONKING 🔧 FULL AUTOMOTIVE REPAIR 🔧 NAPA
-            WARRANTY 24 MONTHS / 24,000 MILES 🔧 IF YOU SAW IT ON YOUTUBE, ADD $60 🔧 JUST LOOKING COSTS EXTRA 🔧 IF YOU
-            LOOK AND COMMENT, EVEN MORE 🔧 I'M A MECHANIC, NOT A MAGICIAN 🔧 SPECIALISTS IN ALL VEHICLE TYPES 🔧
-            COMPUTER DIAGNOSTICS 🔧 FAST & RELIABLE SERVICE 🔧 YOUR CAR'S DOCTORS 🔧 WE'LL MAKE YOUR CAR LIKE NEW 🔧
-            TESLA KEYS - OUR SPECIALTY 🔧 ASE CERTIFIED TECHNICIANS 🔧 ALL CARDS ACCEPTED 🔧 FREE PARKING 🔧
-        </marquee>
-    </section>
+    \u003c!-- Traditional Phrases Banner --\u003e
+    \u003csection class=" \tradition-banner\\\u003e
+ \u003cmarquee behavior=\\scroll\\ direction=\\left\\ scrollamount=\\5\\ class=\\lang-es\\\u003e
+ HOY NO F�O, MA�ANA TAMPOCO SE HABLA ESPA�OL PASE SIN TOCAR EL CLAXON MEC�NICA EN GENERAL GARANT�A NAPA 24 MESES / 24,000 MILLAS SI LO VISTE EN INTERNET Y ERA FACIL�SIMO, $60 M�S POR MIRAR, $10 M�S SI MIRAS Y OPINAS, $15 M�S SOY MEC�NICO, NO MAGO ESPECIALISTAS EN TODO TIPO DE VEH�CULOS DIAGN�STICO COMPUTARIZADO SERVICIO R�PIDO Y CONFIABLE LOS M�DICOS DE TU AUTO DEJAMOS TU AUTO COMO UN 0 KM LLAVES TESLA - NUESTRA ESPECIALIDAD T�CNICOS CERTIFICADOS ASE ACEPTAMOS TODAS LAS TARJETAS ESTACIONAMIENTO GRATIS 
+ \u003c/marquee\u003e
+ \u003cmarquee behavior=\\scroll\\ direction=\\left\\ scrollamount=\\5\\ class=\\lang-en\\\u003e
+ CASH ONLY - NO CREDIT TODAY WE SPEAK SPANISH PLEASE, NO HONKING FULL AUTOMOTIVE REPAIR NAPA WARRANTY 24 MONTHS / 24,000 MILES IF YOU SAW IT ON YOUTUBE, ADD $60 JUST LOOKING COSTS EXTRA IF YOU LOOK AND COMMENT, EVEN MORE I'M A MECHANIC, NOT A MAGICIAN SPECIALISTS IN ALL VEHICLE TYPES COMPUTER DIAGNOSTICS FAST & RELIABLE SERVICE YOUR CAR'S DOCTORS WE'LL MAKE YOUR CAR LIKE NEW TESLA KEYS - OUR SPECIALTY ASE CERTIFIED TECHNICIANS ALL CARDS ACCEPTED FREE PARKING 
+ \u003c/marquee\u003e
+ \u003c/section\u003e
 
     <!-- Services Grid -->
     <section class="services-section">
@@ -106,8 +95,7 @@
 
             <!-- Brakes -->
             <div class="service-card">
-                <video src="assets/images/lgb_brake_service_1768597281819.mp4" autoplay loop muted playsinline
-                    style="width: 100%; height: 200px; object-fit: cover;"></video>
+                <img src="assets/images/lgb_brake_service_1768597281819.png" alt="Brake Service">
                 <h3 class="lang-en">Brake Service</h3>
                 <h3 class="lang-es">Servicio de Frenos</h3>
                 <p class="lang-en">From $299 • Pads & Rotors</p>
@@ -118,8 +106,7 @@
 
             <!-- Diagnostics -->
             <div class="service-card">
-                <video src="assets/images/lgb_diagnostics_1768597325452.mp4" autoplay loop muted playsinline
-                    style="width: 100%; height: 200px; object-fit: cover;"></video>
+                <img src="assets/images/lgb_diagnostics_1768597325452.png" alt="Diagnostics">
                 <h3 class="lang-en">Engine Diagnostics</h3>
                 <h3 class="lang-es">Diagnóstico del Motor</h3>
                 <p class="lang-en">$100 • Check Engine Light</p>

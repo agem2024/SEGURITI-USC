@@ -4,10 +4,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | LGB Autowork</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;600&display=swap"
+    <title>Our Story | LGB Autowork</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/bilingual-fix.css">
+    <style>
+        .story-hero {
+            position: relative;
+            height: 60vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)),
+                url('assets/images/lgb_shop_interior.png') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .story-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .story-hero .subtitle {
+            font-size: 1.3rem;
+            color: var(--napa-orange);
+            font-weight: 600;
+        }
+
+        .story-card {
+            background: var(--card-bg);
+            padding: 50px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            border-left: 6px solid var(--napa-orange);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .story-card h3 {
+            color: var(--napa-blue);
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .story-card p {
+            color: var(--text-gray);
+            line-height: 2;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .brook-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            padding: 80px 5%;
+            max-width: 1300px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(26, 115, 232, 0.05), rgba(255, 107, 0, 0.05));
+        }
+
+        .brook-image {
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(255, 107, 0, 0.3);
+            width: 100%;
+        }
+
+        .brook-content h2 {
+            font-size: 2.5rem;
+            color: var(--napa-orange);
+            margin-bottom: 30px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .brook-content p {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: var(--text-gray);
+            margin-bottom: 20px;
+        }
+
+        .stats-banner {
+            background: linear-gradient(135deg, var(--napa-blue), var(--napa-orange));
+            padding: 60px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 40px auto 0;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-box .number {
+            font-size: 3.5rem;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-box .label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .community-section {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .community-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            margin: 40px 0;
+        }
+
+        .warranty-section {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(26, 115, 232, 0.1));
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .warranty-badge-img {
+            max-width: 400px;
+            margin: 40px auto;
+            display: block;
+        }
+
+        .napa-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 50px auto;
+        }
+
+        .benefit-card {
+            background: white;
+            color: #333;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .benefit-card .icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .benefit-card h4 {
+            color: var(--napa-blue);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .highlight {
+            color: var(--napa-orange);
+            font-weight: 700;
+        }
+
+        @media (max-width: 900px) {
+            .brook-section {
+                grid-template-columns: 1fr;
+            }
+
+            .story-hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 
 <body class="en">
@@ -29,135 +214,238 @@
                     class="lang-es">Agendar Cita</a></li>
             <li><a href="maintenance.html" class="lang-en">Maintenance Tips</a><a href="maintenance.html"
                     class="lang-es">Mantenimiento</a></li>
+            <li><a href="pricing.html" class="lang-en">Pricing</a><a href="pricing.html" class="lang-es">Precios</a>
+            </li>
             <li><a href="about.html" class="lang-en">About</a><a href="about.html" class="lang-es">Nosotros</a></li>
         </ul>
     </nav>
 
-    <section class="services-section">
-        <div class="section-header">
-            <h2 class="lang-en">About LGB Autowork</h2>
-            <h2 class="lang-es">Sobre LGB Autowork</h2>
-            <p class="lang-en">Your trusted NAPA AutoCare Center in San Jose since 2010</p>
-            <p class="lang-es">Su Centro NAPA AutoCare de confianza en San Jose desde 2010</p>
+    <!-- HERO -->
+    <section class="story-hero">
+        <div>
+            <h1 class="lang-en">Trusted Automotive Care<br>Since 2006</h1>
+            <h1 class="lang-es">Cuidado Automotriz de Confianza<br>Desde 2006</h1>
+            <p class="subtitle lang-en">NAPA AutoCare Center • 1095 Foxworthy Ave, San Jose</p>
+            <p class="subtitle lang-es">Centro NAPA AutoCare • 1095 Foxworthy Ave, San Jose</p>
+        </div>
+    </section>
+
+    <!-- OUR STORY -->
+    <section style="padding: 80px 5%;">
+        <div class="story-card">
+            <h3 class="lang-en">🔧 Our Mission</h3>
+            <h3 class="lang-es">🔧 Nuestra Misión</h3>
+            <p class="lang-en">
+                LGB Autowork was founded by Brook with a clear mission: <span class="highlight">provide honest, expert
+                    automotive repair</span>
+                to the San Jose community. As a certified NAPA AutoCare Center, we combine the personalized service of a
+                local business
+                with the backing and reliability of a nationwide warranty network.
+            </p>
+            <p class="lang-es">
+                LGB Autowork fue fundado por Brook con una misión clara: <span class="highlight">proporcionar reparación
+                    automotriz honesta y experta</span>
+                a la comunidad de San Jose. Como Centro NAPA AutoCare certificado, combinamos el servicio personalizado
+                de un negocio local
+                con el respaldo y la confiabilidad de una red de garantía nacional.
+            </p>
         </div>
 
-        <div style="max-width: 800px; margin: 0 auto;">
-            <div
-                style="background: var(--card-bg); padding: 40px; border-radius: 16px; border-left: 5px solid var(--napa-orange); margin-bottom: 30px;">
-                <h3 class="lang-en" style="color: var(--napa-blue); margin-bottom: 20px;">Our Story</h3>
-                <h3 class="lang-es" style="color: var(--napa-blue); margin-bottom: 20px;">Nuestra Historia</h3>
-                <p class="lang-en" style="color: var(--text-gray); line-height: 1.8;">
-                    LGB Autowork was founded by Brook with a simple mission: provide honest, expert automotive repair to
-                    the San Jose community. As a NAPA AutoCare Center, we combine the trust of a local business with the
-                    backing of a national warranty network.
-                </p>
-                <p class="lang-es" style="color: var(--text-gray); line-height: 1.8;">
-                    LGB Autowork fue fundado por Brook con una misión simple: proporcionar reparación automotriz honesta
-                    y experta a la comunidad de San Jose. Como Centro NAPA AutoCare, combinamos la confianza de un
-                    negocio local con el respaldo de una red nacional de garantía.
-                </p>
-            </div>
+        <div class="story-card">
+            <h3 class="lang-en">⭐ 4.9-Star Rating</h3>
+            <h3 class="lang-es">⭐ Calificación de 4.9 Estrellas</h3>
+            <p class="lang-en">
+                Our <span class="highlight">4.9 out of 5-star rating</span> reflects our commitment to quality service
+                and customer satisfaction.
+                This exceptional rating is the result of consistently delivering honest diagnostics, transparent
+                pricing, and reliable repairs
+                to the families and businesses of San Jose.
+            </p>
+            <p class="lang-es">
+                Nuestra <span class="highlight">calificación de 4.9 de 5 estrellas</span> refleja nuestro compromiso con
+                el servicio de calidad y la satisfacción del cliente.
+                Esta calificación excepcional es el resultado de entregar consistentemente diagnósticos honestos,
+                precios transparentes y reparaciones confiables
+                a las familias y negocios de San Jose.
+            </p>
+        </div>
+    </section>
 
-            <div
-                style="background: var(--card-bg); padding: 40px; border-radius: 16px; border-left: 5px solid var(--napa-blue); margin-bottom: 30px;">
-                <h3 class="lang-en" style="color: var(--napa-orange); margin-bottom: 20px;">Meet Brook - Owner & Master
-                    Technician</h3>
-                <h3 class="lang-es" style="color: var(--napa-orange); margin-bottom: 20px;">Conozca a Brook - Dueño y
-                    Técnico Maestro</h3>
-                <p class="lang-en" style="color: var(--text-gray); line-height: 1.8;">
-                    With over 20 years of automotive experience and ASE Master Technician certification, Brook
-                    personally oversees every repair to ensure the highest quality standards. His commitment to
-                    transparency and customer satisfaction has earned LGB Autowork a 4.9-star rating.
-                </p>
-                <p class="lang-es" style="color: var(--text-gray); line-height: 1.8;">
-                    Con más de 20 años de experiencia automotriz y certificación de Técnico Maestro ASE, Brook supervisa
-                    personalmente cada reparación para garantizar los más altos estándares de calidad. Su compromiso con
-                    la transparencia y satisfacción del cliente ha ganado a LGB Autowork una calificación de 4.9
-                    estrellas.
-                </p>
-            </div>
+    <!-- BROOK SECTION -->
+    <section class="brook-section">
+        <div>
+            <video src="assets/images/brook_master_technician.mp4" autoplay loop muted playsinline controls
+                class="brook-image"></video>
+        </div>
+        <div class="brook-content">
+            <h2 class="lang-en">Meet Brook<br>Owner & Master Technician</h2>
+            <h2 class="lang-es">Conozca a Brook<br>Dueño y Técnico Maestro</h2>
+            <p class="lang-en">
+                With <span class="highlight">over 20 years of automotive experience</span> and <span
+                    class="highlight">ASE Master Technician certification</span>,
+                Brook brings extensive expertise to every repair. ASE (Automotive Service Excellence) certification
+                represents the industry's
+                highest standard for automotive professionals.
+            </p>
+            <p class="lang-es">
+                Con <span class="highlight">más de 20 años de experiencia automotriz</span> y <span
+                    class="highlight">certificación de Técnico Maestro ASE</span>,
+                Brook aporta amplia experiencia a cada reparación. La certificación ASE (Excelencia en Servicio
+                Automotriz) representa el
+                estándar más alto de la industria para profesionales automotrices.
+            </p>
+            <p class="lang-en">
+                Brook personally oversees repair work to ensure the highest quality standards are maintained. This
+                hands-on approach,
+                combined with commitment to transparency and customer satisfaction, has earned LGB Autowork its
+                excellent reputation in the community.
+            </p>
+            <p class="lang-es">
+                Brook supervisa personalmente el trabajo de reparación para garantizar que se mantengan los más altos
+                estándares de calidad. Este enfoque práctico,
+                combinado con el compromiso con la transparencia y satisfacción del cliente, le ha ganado a LGB Autowork
+                su excelente reputación en la comunidad.
+            </p>
+        </div>
+    </section>
 
-            <div
-                style="background: var(--card-bg); padding: 40px; border-radius: 16px; border-left: 5px solid var(--accent-gold);">
-                <h3 class="lang-en" style="color: var(--accent-gold); margin-bottom: 20px;">NAPA AutoCare Certification
-                </h3>
-                <h3 class="lang-es" style="color: var(--accent-gold); margin-bottom: 20px;">Certificación NAPA AutoCare
-                </h3>
-                <p class="lang-en" style="color: var(--text-gray); line-height: 1.8; margin-bottom: 20px;">
-                    As a certified NAPA AutoCare Center, we adhere to a strict Code of Ethics and provide:
-                </p>
-                <p class="lang-es" style="color: var(--text-gray); line-height: 1.8; margin-bottom: 20px;">
-                    Como Centro NAPA AutoCare certificado, adherimos a un estricto Código de Ética y proporcionamos:
-                </p>
-                <ul style="color: var(--text-gray); padding-left: 25px;">
-                    <li class="lang-en">24-month / 24,000-mile nationwide warranty</li>
-                    <li class="lang-es">Garantía nacional de 24 meses / 24,000 millas</li>
-                    <li class="lang-en">ASE Certified Technicians</li>
-                    <li class="lang-es">Técnicos Certificados ASE</li>
-                    <li class="lang-en">Quality NAPA parts</li>
-                    <li class="lang-es">Partes NAPA de calidad</li>
-                    <li class="lang-en">Fair pricing with written estimates</li>
-                    <li class="lang-es">Precios justos con estimados escritos</li>
-                </ul>
+    <!-- STATS BANNER -->
+    <section class="stats-banner">
+        <h2 class="lang-en" style="font-size: 2.5rem; margin-bottom: 20px;">By the Numbers</h2>
+        <h2 class="lang-es" style="font-size: 2.5rem; margin-bottom: 20px;">Por Los Números</h2>
+        <div class="stats-grid">
+            <div class="stat-box">
+                <span class="number">20+</span>
+                <span class="label lang-en">Years Experience</span>
+                <span class="label lang-es">Años de Experiencia</span>
+            </div>
+            <div class="stat-box">
+                <span class="number">4.9★</span>
+                <span class="label lang-en">Customer Rating</span>
+                <span class="label lang-es">Calificación Cliente</span>
+            </div>
+            <div class="stat-box">
+                <span class="number">17,000+</span>
+                <span class="label lang-en">NAPA Network Shops</span>
+                <span class="label lang-es">Talleres Red NAPA</span>
+            </div>
+            <div class="stat-box">
+                <span class="number">2006</span>
+                <span class="label lang-en">Est. Serving San Jose</span>
+                <span class="label lang-es">Sirviendo San Jose</span>
             </div>
         </div>
     </section>
 
-    <section class="why-section" style="background: linear-gradient(180deg, rgba(255, 107, 0, 0.05), transparent);">
-        <h2 class="lang-en" style="text-align: center; margin-bottom: 40px;">Our Values</h2>
-        <h2 class="lang-es" style="text-align: center; margin-bottom: 40px;">Nuestros Valores</h2>
+    <!-- COMMUNITY -->
+    <section class="community-section">
+        <h2 class="lang-en"
+            style="text-align: center; font-size: 2.5rem; color: var(--napa-blue); margin-bottom: 30px;">
+            Serving the San Jose Community
+        </h2>
+        <h2 class="lang-es"
+            style="text-align: center; font-size: 2.5rem; color: var(--napa-blue); margin-bottom: 30px;">
+            Sirviendo a la Comunidad de San Jose
+        </h2>
+        <video src="assets/images/lgb_community_story.mp4" autoplay loop muted playsinline
+            class="community-image"></video>
+        <p class="lang-en"
+            style="text-align: center; font-size: 1.2rem; color: var(--text-gray); line-height: 2; margin-top: 30px;">
+            Located at <span class="highlight">1095 Foxworthy Ave</span> in South San Jose, we've been serving local
+            families and businesses
+            with reliable automotive repair and maintenance services. Our bilingual team provides professional service
+            in both English and Spanish.
+        </p>
+        <p class="lang-es"
+            style="text-align: center; font-size: 1.2rem; color: var(--text-gray); line-height: 2; margin-top: 30px;">
+            Ubicados en <span class="highlight">1095 Foxworthy Ave</span> en el sur de San Jose, hemos estado sirviendo
+            a familias y negocios locales
+            con servicios confiables de reparación y mantenimiento automotriz. Nuestro equipo bilingüe proporciona
+            servicio profesional en inglés y español.
+        </p>
+    </section>
 
-        <div class="features-grid">
-            <div class="feature">
-                <div class="feature-icon">✓</div>
-                <h3 class="lang-en">Honesty</h3>
-                <h3 class="lang-es">Honestidad</h3>
-                <p class="lang-en">We only recommend necessary repairs</p>
-                <p class="lang-es">Solo recomendamos reparaciones necesarias</p>
+    <!-- NAPA WARRANTY -->
+    <section class="warranty-section">
+        <h2 class="lang-en" style="font-size: 2.5rem; color: var(--napa-blue); margin-bottom: 20px;">
+            NAPA AutoCare Certification
+        </h2>
+        <h2 class="lang-es" style="font-size: 2.5rem; color: var(--napa-blue); margin-bottom: 20px;">
+            Certificación NAPA AutoCare
+        </h2>
+        <p class="lang-en"
+            style="font-size: 1.2rem; color: var(--text-gray); max-width: 800px; margin: 0 auto 40px; line-height: 2;">
+            As a certified <span class="highlight">NAPA AutoCare Center</span>, LGB Autowork adheres to a strict Code of
+            Ethics and
+            meets rigorous certification standards. This certification provides you with additional peace of mind
+            through nationwide warranty coverage.
+        </p>
+        <p class="lang-es"
+            style="font-size: 1.2rem; color: var(--text-gray); max-width: 800px; margin: 0 auto 40px; line-height: 2;">
+            Como <span class="highlight">Centro NAPA AutoCare</span> certificado, LGB Autowork se adhiere a un estricto
+            Código de Ética y
+            cumple con rigurosos estándares de certificación. Esta certificación le proporciona tranquilidad adicional a
+            través de cobertura de garantía nacional.
+        </p>
+
+        <img src="assets/images/napa_warranty_badge.png" alt="NAPA Warranty Badge" class="warranty-badge-img">
+
+        <div class="napa-benefits">
+            <div class="benefit-card">
+                <div class="icon">🛡️</div>
+                <h4 class="lang-en">24 Month / 24,000 Mile Warranty</h4>
+                <h4 class="lang-es">Garantía 24 Meses / 24,000 Millas</h4>
+                <p class="lang-en">Covers both parts and labor. Honored at over 17,000 NAPA AutoCare Centers nationwide.
+                </p>
+                <p class="lang-es">Cubre partes y mano de obra. Honrada en más de 17,000 Centros NAPA AutoCare a nivel
+                    nacional.</p>
             </div>
-
-            <div class="feature">
-                <div class="feature-icon">🔧</div>
-                <h3 class="lang-en">Expertise</h3>
-                <h3 class="lang-es">Experiencia</h3>
-                <p class="lang-en">ASE certified, continuously trained</p>
-                <p class="lang-es">Certificados ASE, capacitados continuamente</p>
+            <div class="benefit-card">
+                <div class="icon">✅</div>
+                <h4 class="lang-en">ASE Certified Technicians</h4>
+                <h4 class="lang-es">Técnicos Certificados ASE</h4>
+                <p class="lang-en">Our technicians meet ASE (Automotive Service Excellence) certification standards.</p>
+                <p class="lang-es">Nuestros técnicos cumplen con los estándares de certificación ASE (Excelencia en
+                    Servicio Automotriz).</p>
             </div>
-
-            <div class="feature">
-                <div class="feature-icon">💬</div>
-                <h3 class="lang-en">Communication</h3>
-                <h3 class="lang-es">Comunicación</h3>
-                <p class="lang-en">We explain every repair clearly</p>
-                <p class="lang-es">Explicamos cada reparación claramente</p>
+            <div class="benefit-card">
+                <div class="icon">🔧</div>
+                <h4 class="lang-en">Quality NAPA Parts</h4>
+                <h4 class="lang-es">Partes NAPA de Calidad</h4>
+                <p class="lang-en">We use quality NAPA parts backed by their manufacturer warranties.</p>
+                <p class="lang-es">Utilizamos partes NAPA de calidad respaldadas por sus garantías de fabricante.</p>
             </div>
-
-            <div class="feature">
-                <div class="feature-icon">⭐</div>
-                <h3 class="lang-en">Satisfaction</h3>
-                <h3 class="lang-es">Satisfacción</h3>
-                <p class="lang-en">4.9★ rating speaks for itself</p>
-                <p class="lang-es">4.9★ calificación habla por sí misma</p>
+            <div class="benefit-card">
+                <div class="icon">💰</div>
+                <h4 class="lang-en">Fair, Written Estimates</h4>
+                <h4 class="lang-es">Estimados Escritos Justos</h4>
+                <p class="lang-en">We provide clear, written estimates before beginning any work on your vehicle.</p>
+                <p class="lang-es">Proporcionamos estimados claros y escritos antes de comenzar cualquier trabajo en su
+                    vehículo.</p>
             </div>
         </div>
     </section>
 
-    <section class="contact-section">
-        <h2 class="lang-en" style="text-align: center; margin-bottom: 20px;">Visit Us</h2>
-        <h2 class="lang-es" style="text-align: center; margin-bottom: 20px;">Visítenos</h2>
+    <!-- CONTACT -->
+    <section class="contact-section"
+        style="background: linear-gradient(135deg, rgba(255, 107, 0, 0.1), rgba(26, 115, 232, 0.1)); padding: 80px 5%;">
+        <h2 class="lang-en" style="text-align: center; font-size: 2.5rem; margin-bottom: 30px;">Visit LGB Autowork</h2>
+        <h2 class="lang-es" style="text-align: center; font-size: 2.5rem; margin-bottom: 30px;">Visite LGB Autowork</h2>
         <div style="text-align: center; max-width: 600px; margin: 0 auto;">
-            <p><strong>📍 LGB Autowork</strong></p>
+            <p><strong>📍 LGB Autowork - NAPA AutoCare Center</strong></p>
             <p>1095 Foxworthy Ave, San Jose, CA 95118</p>
             <p><strong>📞</strong> (408) 727-4500</p>
             <p><strong>✉️</strong> mrripp@iowatelcom.net</p>
-            <p><strong class="lang-en">🕐 Hours:</strong><strong class="lang-es">🕐 Horario:</strong> Mon-Sat 8:00 AM -
-                5:30 PM</p>
+            <p><strong class="lang-en">🕐 Hours:</strong><strong class="lang-es">🕐 Horario:</strong> Monday - Saturday,
+                8:00 AM - 5:30 PM</p>
             <p style="color: var(--napa-orange); font-weight: bold;" class="lang-en">Closed Sundays</p>
             <p style="color: var(--napa-orange); font-weight: bold;" class="lang-es">Cerrado Domingos</p>
 
-            <div style="margin-top: 30px;">
-                <a href="booking.html" class="btn btn-primary lang-en">Schedule Appointment</a>
-                <a href="booking.html" class="btn btn-primary lang-es">Agendar Cita</a>
+            <div style="margin-top: 40px;">
+                <a href="booking.html" class="btn btn-primary lang-en"
+                    style="padding: 15px 40px; font-size: 1.1rem;">Schedule Appointment</a>
+                <a href="booking.html" class="btn btn-primary lang-es"
+                    style="padding: 15px 40px; font-size: 1.1rem;">Agendar Cita</a>
             </div>
         </div>
     </section>

@@ -8,6 +8,60 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/bilingual-fix.css">
+    <style>
+        .service-detail {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(26, 115, 232, 0.1);
+            border-left: 3px solid var(--napa-blue);
+            border-radius: 8px;
+        }
+
+        .service-detail h4 {
+            color: var(--napa-orange);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .service-detail ul {
+            margin: 8px 0;
+            padding-left: 20px;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .service-detail ul li {
+            margin-bottom: 5px;
+        }
+
+        .toggle-details {
+            margin-top: 10px;
+            background: transparent;
+            border: 1px solid var(--napa-blue);
+            color: var(--napa-blue);
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+
+        .toggle-details:hover {
+            background: var(--napa-blue);
+            color: white;
+        }
+
+        .details-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .details-content.active {
+            max-height: 800px;
+        }
+    </style>
 </head>
 
 <body class="en">
@@ -29,6 +83,8 @@
                     class="lang-es">Agendar Cita</a></li>
             <li><a href="maintenance.html" class="lang-en">Maintenance Tips</a><a href="maintenance.html"
                     class="lang-es">Mantenimiento</a></li>
+            <li><a href="pricing.html" class="lang-en">Pricing</a><a href="pricing.html" class="lang-es">Precios</a>
+            </li>
             <li><a href="about.html" class="lang-en">About</a><a href="about.html" class="lang-es">Nosotros</a></li>
         </ul>
     </nav>
@@ -42,6 +98,7 @@
         </div>
 
         <div class="services-grid">
+            <!-- OIL CHANGE -->
             <div class="service-card" id="oil">
                 <img src="assets/images/lgb_oil_change_service_1768597267906.png" alt="Oil Change">
                 <h3 class="lang-en">Oil Change Services</h3>
@@ -50,34 +107,214 @@
                     27-point inspection</p>
                 <p class="lang-es"><strong>Desde $79.99</strong> | Convencional, Mezcla, Sintético Completo<br>Incluye
                     inspección GRATIS de 27 puntos</p>
+
+                <button class="toggle-details lang-en" onclick="toggleDetails('oil-details')">+ Learn More</button>
+                <button class="toggle-details lang-es" onclick="toggleDetails('oil-details')">+ Ver Más</button>
+
+                <div class="details-content" id="oil-details">
+                    <div class="service-detail">
+                        <h4 class="lang-en">What's Included:</h4>
+                        <h4 class="lang-es">Qué Incluye:</h4>
+                        <ul class="lang-en">
+                            <li>Premium quality motor oil (your choice of type)</li>
+                            <li>New oil filter installation</li>
+                            <li>Fluid level check and top-off (coolant, brake, power steering, washer)</li>
+                            <li>27-point comprehensive vehicle inspection</li>
+                            <li>Tire pressure check and adjustment</li>
+                            <li>Battery test and terminal cleaning</li>
+                        </ul>
+                        <ul class="lang-es">
+                            <li>Aceite de motor de calidad premium (a su elección)</li>
+                            <li>Instalación de filtro de aceite nuevo</li>
+                            <li>Revisión y llenado de fluidos (refrigerante, freno, dirección, limpiaparabrisas)</li>
+                            <li>Inspección integral de 27 puntos</li>
+                            <li>Revisión y ajuste de presión de neumáticos</li>
+                            <li>Prueba de batería y limpieza de terminales</li>
+                        </ul>
+
+                        <h4 class="lang-en">How It Works:</h4>
+                        <h4 class="lang-es">Cómo Funciona:</h4>
+                        <p class="lang-en" style="color: var(--text-gray); font-size: 0.9rem;">
+                            Our certified technicians drain your old oil, replace the filter, and fill your engine with
+                            fresh, high-quality oil suited to your vehicle's specifications. We then perform a
+                            comprehensive 27-point inspection to identify any potential issues before they become costly
+                            repairs.
+                        </p>
+                        <p class="lang-es" style="color: var(--text-gray); font-size: 0.9rem;">
+                            Nuestros técnicos certificados drenan el aceite usado, reemplazan el filtro y llenan su
+                            motor con aceite fresco de alta calidad adecuado para las especificaciones de su vehículo.
+                            Luego realizamos una inspección integral de 27 puntos para identificar cualquier problema
+                            potencial antes de que se convierta en reparaciones costosas.
+                        </p>
+
+                        <h4 class="lang-en">Benefits:</h4>
+                        <h4 class="lang-es">Beneficios:</h4>
+                        <ul class="lang-en">
+                            <li>Extends engine life and performance</li>
+                            <li>Prevents costly engine damage</li>
+                            <li>Improves fuel efficiency</li>
+                            <li>Early detection of potential problems</li>
+                        </ul>
+                        <ul class="lang-es">
+                            <li>Prolonga la vida útil y el rendimiento del motor</li>
+                            <li>Previene daños costosos al motor</li>
+                            <li>Mejora la eficiencia de combustible</li>
+                            <li>Detección temprana de problemas potenciales</li>
+                        </ul>
+                    </div>
+                </div>
+
                 <a href="booking.html" class="btn btn-sm btn-primary lang-en">Book Now</a>
                 <a href="booking.html" class="btn btn-sm btn-primary lang-es">Reservar</a>
             </div>
 
+            <!-- BRAKES -->
             <div class="service-card" id="brakes">
-                <img src="assets/images/lgb_brake_service_1768597281819.png" alt="Brakes">
+                <video src="assets/images/lgb_brake_service_1768597281819.mp4" autoplay loop muted playsinline
+                    style="width: 100%; height: 200px; object-fit: cover;"></video>
                 <h3 class="lang-en">Brake Service</h3>
                 <h3 class="lang-es">Servicio de Frenos</h3>
                 <p class="lang-en"><strong>From $299</strong> | Pads, Rotors, Calipers, ABS<br>Free brake inspection
                     included</p>
                 <p class="lang-es"><strong>Desde $299</strong> | Pastillas, Discos, Calipers, ABS<br>Inspección gratis
                     incluida</p>
+
+                <button class="toggle-details lang-en" onclick="toggleDetails('brakes-details')">+ Learn More</button>
+                <button class="toggle-details lang-es" onclick="toggleDetails('brakes-details')">+ Ver Más</button>
+
+                <div class="details-content" id="brakes-details">
+                    <div class="service-detail">
+                        <h4 class="lang-en">What's Included:</h4>
+                        <h4 class="lang-es">Qué Incluye:</h4>
+                        <ul class="lang-en">
+                            <li>Complete brake system inspection</li>
+                            <li>Brake pad replacement (premium NAPA pads)</li>
+                            <li>Rotor resurfacing or replacement</li>
+                            <li>Caliper inspection and lubrication</li>
+                            <li>Brake fluid level check</li>
+                            <li>Road test to verify proper operation</li>
+                        </ul>
+                        <ul class="lang-es">
+                            <li>Inspección completa del sistema de frenos</li>
+                            <li>Reemplazo de pastillas de frenos (pastillas NAPA premium)</li>
+                            <li>Rectificado o reemplazo de discos</li>
+                            <li>Inspección y lubricación de calipers</li>
+                            <li>Revisión del nivel de líquido de frenos</li>
+                            <li>Prueba de manejo para verificar operación correcta</li>
+                        </ul>
+
+                        <h4 class="lang-en">How It Works:</h4>
+                        <h4 class="lang-es">Cómo Funciona:</h4>
+                        <p class="lang-en" style="color: var(--text-gray); font-size: 0.9rem;">
+                            We start with a thorough inspection of your entire brake system, including pads, rotors,
+                            calipers, and brake lines. Worn pads are replaced with high-quality NAPA parts, rotors are
+                            resurfaced or replaced as needed, and all components are properly lubricated. We finish with
+                            a road test to ensure your brakes respond smoothly and safely.
+                        </p>
+                        <p class="lang-es" style="color: var(--text-gray); font-size: 0.9rem;">
+                            Comenzamos con una inspección exhaustiva de todo su sistema de frenos, incluyendo pastillas,
+                            discos, calipers y líneas de freno. Las pastillas desgastadas se reemplazan con repuestos
+                            NAPA de alta calidad, los discos se rectifican o reemplazan según sea necesario, y todos los
+                            componentes se lubrican adecuadamente. Finalizamos con una prueba de manejo para garantizar
+                            que sus frenos respondan de manera suave y segura.
+                        </p>
+
+                        <h4 class="lang-en">Benefits:</h4>
+                        <h4 class="lang-es">Beneficios:</h4>
+                        <ul class="lang-en">
+                            <li>Maximum stopping power and safety</li>
+                            <li>Reduced brake noise and vibration</li>
+                            <li>Extended brake component life</li>
+                            <li>Peace of mind for you and your family</li>
+                        </ul>
+                        <ul class="lang-es">
+                            <li>Máxima potencia de frenado y seguridad</li>
+                            <li>Reducción de ruido y vibración de frenos</li>
+                            <li>Vida útil prolongada de componentes de freno</li>
+                            <li>Tranquilidad para usted y su familia</li>
+                        </ul>
+                    </div>
+                </div>
+
                 <a href="booking.html" class="btn btn-sm btn-primary lang-en">Book Now</a>
                 <a href="booking.html" class="btn btn-sm btn-primary lang-es">Reservar</a>
             </div>
 
+            <!-- ENGINE DIAGNOSTICS -->
             <div class="service-card" id="diagnostics">
-                <img src="assets/images/lgb_diagnostics_1768597325452.png" alt="Diagnostics">
+                <video src="assets/images/lgb_diagnostics_1768597325452.mp4" autoplay loop muted playsinline
+                    style="width: 100%; height: 200px; object-fit: cover;"></video>
                 <h3 class="lang-en">Engine Diagnostics</h3>
                 <h3 class="lang-es">Diagnóstico del Motor</h3>
                 <p class="lang-en"><strong>$100</strong> | Check Engine Light, OBD-II Scan<br>Computer diagnostics
                     included</p>
                 <p class="lang-es"><strong>$100</strong> | Luz del Motor, Escaneo OBD-II<br>Diagnóstico computarizado
                     incluido</p>
+
+                <button class="toggle-details lang-en" onclick="toggleDetails('diagnostics-details')">+ Learn
+                    More</button>
+                <button class="toggle-details lang-es" onclick="toggleDetails('diagnostics-details')">+ Ver Más</button>
+
+                <div class="details-content" id="diagnostics-details">
+                    <div class="service-detail">
+                        <h4 class="lang-en">What's Included:</h4>
+                        <h4 class="lang-es">Qué Incluye:</h4>
+                        <ul class="lang-en">
+                            <li>Professional OBD-II computer scan</li>
+                            <li>Trouble code retrieval and interpretation</li>
+                            <li>Visual engine inspection</li>
+                            <li>Sensor testing and verification</li>
+                            <li>Detailed diagnostic report</li>
+                            <li>Repair recommendations and cost estimate</li>
+                        </ul>
+                        <ul class="lang-es">
+                            <li>Escaneo computarizado OBD-II profesional</li>
+                            <li>Recuperación e interpretación de códigos de falla</li>
+                            <li>Inspección visual del motor</li>
+                            <li>Prueba y verificación de sensores</li>
+                            <li>Reporte de diagnóstico detallado</li>
+                            <li>Recomendaciones de reparación y estimado de costos</li>
+                        </ul>
+
+                        <h4 class="lang-en">How It Works:</h4>
+                        <h4 class="lang-es">Cómo Funciona:</h4>
+                        <p class="lang-en" style="color: var(--text-gray); font-size: 0.9rem;">
+                            Using advanced diagnostic equipment, we connect to your vehicle's onboard computer to read
+                            and interpret error codes. Our experienced technicians analyze these codes in conjunction
+                            with a physical inspection to accurately pinpoint the root cause of your check engine light
+                            or performance issues. You'll receive a clear explanation of the problem and a transparent
+                            repair estimate.
+                        </p>
+                        <p class="lang-es" style="color: var(--text-gray); font-size: 0.9rem;">
+                            Utilizando equipo de diagnóstico avanzado, nos conectamos a la computadora de su vehículo
+                            para leer e interpretar códigos de error. Nuestros técnicos experimentados analizan estos
+                            códigos junto con una inspección física para identificar con precisión la causa raíz de su
+                            luz de motor o problemas de rendimiento. Recibirá una explicación clara del problema y un
+                            estimado de reparación transparente.
+                        </p>
+
+                        <h4 class="lang-en">Benefits:</h4>
+                        <h4 class="lang-es">Beneficios:</h4>
+                        <ul class="lang-en">
+                            <li>Accurate problem identification</li>
+                            <li>Prevention of further damage</li>
+                            <li>Avoid unnecessary repairs</li>
+                            <li>Informed decision-making</li>
+                        </ul>
+                        <ul class="lang-es">
+                            <li>Identificación precisa del problema</li>
+                            <li>Prevención de daños adicionales</li>
+                            <li>Evitar reparaciones innecesarias</li>
+                            <li>Toma de decisiones informadas</li>
+                        </ul>
+                    </div>
+                </div>
+
                 <a href="booking.html" class="btn btn-sm btn-primary lang-en">Book Now</a>
                 <a href="booking.html" class="btn btn-sm btn-primary lang-es">Reservar</a>
             </div>
 
+            <!-- KEYS - SPECIALTY -->
             <div class="service-card featured" id="keys">
                 <div class="badge" style="position: absolute; top: 10px; right: 10px; background: #FFD700;">⭐ SPECIALTY
                 </div>
@@ -88,10 +325,71 @@
                     available</p>
                 <p class="lang-es"><strong>$15-$400</strong> | Tradicional, Transponder, Tesla<br>Servicio mismo día
                     disponible</p>
+
+                <button class="toggle-details lang-en" onclick="toggleDetails('keys-details')">+ Learn More</button>
+                <button class="toggle-details lang-es" onclick="toggleDetails('keys-details')">+ Ver Más</button>
+
+                <div class="details-content" id="keys-details">
+                    <div class="service-detail">
+                        <h4 class="lang-en">What's Included:</h4>
+                        <h4 class="lang-es">Qué Incluye:</h4>
+                        <ul class="lang-en">
+                            <li>Traditional key cutting ($15-$25)</li>
+                            <li>Transponder chip programming ($150-$250)</li>
+                            <li>Smart key/FOB programming ($200-$400)</li>
+                            <li>Tesla key card programming (specialty)</li>
+                            <li>Key battery replacement</li>
+                            <li>Remote testing and verification</li>
+                        </ul>
+                        <ul class="lang-es">
+                            <li>Corte de llaves tradicionales ($15-$25)</li>
+                            <li>Programación de chip transponder ($150-$250)</li>
+                            <li>Programación de llave inteligente/FOB ($200-$400)</li>
+                            <li>Programación de tarjeta Tesla (especialidad)</li>
+                            <li>Reemplazo de batería de llave</li>
+                            <li>Prueba y verificación de control remoto</li>
+                        </ul>
+
+                        <h4 class="lang-en">How It Works:</h4>
+                        <h4 class="lang-es">Cómo Funciona:</h4>
+                        <p class="lang-en" style="color: var(--text-gray); font-size: 0.9rem;">
+                            Brook has specialized training and equipment for automotive key programming, including newer
+                            vehicles and Tesla models. We cut and/or program your new key to match your vehicle's
+                            security system. For transponder and smart keys, we connect to your vehicle's computer
+                            system to program the chip, ensuring secure and reliable operation. Most services are
+                            completed same-day.
+                        </p>
+                        <p class="lang-es" style="color: var(--text-gray); font-size: 0.9rem;">
+                            Brook tiene capacitación y equipo especializado para programación de llaves automotrices,
+                            incluyendo vehículos más nuevos y modelos Tesla. Cortamos y/o programamos su llave nueva
+                            para que coincida con el sistema de seguridad de su vehículo. Para llaves transponder e
+                            inteligentes, nos conectamos al sistema informático de su vehículo para programar el chip,
+                            asegurando una operación segura y confiable. La mayoría de los servicios se completan el
+                            mismo día.
+                        </p>
+
+                        <h4 class="lang-en">Benefits:</h4>
+                        <h4 class="lang-es">Beneficios:</h4>
+                        <ul class="lang-en">
+                            <li>Save hundreds vs. dealership pricing</li>
+                            <li>Same-day service (no appointment wait)</li>
+                            <li>Expert service for all makes and models</li>
+                            <li>Specialty in Tesla and luxury vehicles</li>
+                        </ul>
+                        <ul class="lang-es">
+                            <li>Ahorre cientos vs. precios de concesionario</li>
+                            <li>Servicio el mismo día (sin espera de cita)</li>
+                            <li>Servicio experto para todas las marcas y modelos</li>
+                            <li>Especialidad en Tesla y vehículos de lujo</li>
+                        </ul>
+                    </div>
+                </div>
+
                 <a href="keys.html" class="btn btn-sm btn-primary lang-en">Details</a>
                 <a href="keys.html" class="btn btn-sm btn-primary lang-es">Detalles</a>
             </div>
 
+            <!-- A/C SERVICE -->
             <div class="service-card" id="ac">
                 <img src="assets/images/lgb_ac_service_1768597565610.png" alt="A/C">
                 <h3 class="lang-en">A/C Service & Repair</h3>
@@ -100,10 +398,69 @@
                     supported</p>
                 <p class="lang-es"><strong>Desde $150</strong> | Recarga, Detección de Fugas<br>Compatible R-134a y
                     R-1234yf</p>
+
+                <button class="toggle-details lang-en" onclick="toggleDetails('ac-details')">+ Learn More</button>
+                <button class="toggle-details lang-es" onclick="toggleDetails('ac-details')">+ Ver Más</button>
+
+                <div class="details-content" id="ac-details">
+                    <div class="service-detail">
+                        <h4 class="lang-en">What's Included:</h4>
+                        <h4 class="lang-es">Qué Incluye:</h4>
+                        <ul class="lang-en">
+                            <li>A/C system inspection and pressure test</li>
+                            <li>Refrigerant recharge (R-134a or R-1234yf)</li>
+                            <li>Leak detection using UV dye</li>
+                            <li>Compressor and condenser inspection</li>
+                            <li>Belt and hose condition check</li>
+                            <li>Temperature performance verification</li>
+                        </ul>
+                        <ul class="lang-es">
+                            <li>Inspección del sistema A/C y prueba de presión</li>
+                            <li>Recarga de refrigerante (R-134a o R-1234yf)</li>
+                            <li>Detección de fugas usando tinte UV</li>
+                            <li>Inspección de compresor y condensador</li>
+                            <li>Revisión de estado de correas y mangueras</li>
+                            <li>Verificación de rendimiento de temperatura</li>
+                        </ul>
+
+                        <h4 class="lang-en">How It Works:</h4>
+                        <h4 class="lang-es">Cómo Funciona:</h4>
+                        <p class="lang-en" style="color: var(--text-gray); font-size: 0.9rem;">
+                            We use specialized equipment to test your A/C system pressure and identify leaks. After
+                            diagnosing any issues, we evacuate the old refrigerant, check for leaks using UV dye, repair
+                            as needed, and recharge the system with the correct type and amount of refrigerant for your
+                            vehicle. Perfect for hot California summers!
+                        </p>
+                        <p class="lang-es" style="color: var(--text-gray); font-size: 0.9rem;">
+                            Utilizamos equipo especializado para probar la presión de su sistema A/C e identificar
+                            fugas. Después de diagnosticar cualquier problema, evacuamos el refrigerante viejo,
+                            verificamos fugas usando tinte UV, reparamos según sea necesario, y recargamos el sistema
+                            con el tipo y cantidad correctos de refrigerante para su vehículo. ¡Perfecto para los
+                            veranos calurosos de California!
+                        </p>
+
+                        <h4 class="lang-en">Benefits:</h4>
+                        <h4 class="lang-es">Beneficios:</h4>
+                        <ul class="lang-en">
+                            <li>Restore ice-cold A/C performance</li>
+                            <li>Improve cabin comfort and air quality</li>
+                            <li>Environmental compliance (proper refrigerant handling)</li>
+                            <li>Prevent costly compressor damage</li>
+                        </ul>
+                        <ul class="lang-es">
+                            <li>Restaurar rendimiento helado del A/C</li>
+                            <li>Mejorar comodidad de cabina y calidad del aire</li>
+                            <li>Cumplimiento ambiental (manejo correcto de refrigerante)</li>
+                            <li>Prevenir daños costosos al compresor</li>
+                        </ul>
+                    </div>
+                </div>
+
                 <a href="booking.html" class="btn btn-sm btn-primary lang-en">Book Now</a>
                 <a href="booking.html" class="btn btn-sm btn-primary lang-es">Reservar</a>
             </div>
 
+            <!-- TRANSMISSION -->
             <div class="service-card" id="transmission">
                 <img src="assets/images/lgb_transmission_service_1768597580273.png" alt="Transmission">
                 <h3 class="lang-en">Transmission Service</h3>
@@ -112,10 +469,71 @@
                 </p>
                 <p class="lang-es"><strong>Desde $180</strong> | Cambio de Fluido, Filtro, Diagnóstico<br>Automática y
                     manual</p>
+
+                <button class="toggle-details lang-en" onclick="toggleDetails('transmission-details')">+ Learn
+                    More</button>
+                <button class="toggle-details lang-es" onclick="toggleDetails('transmission-details')">+ Ver
+                    Más</button>
+
+                <div class="details-content" id="transmission-details">
+                    <div class="service-detail">
+                        <h4 class="lang-en">What's Included:</h4>
+                        <h4 class="lang-es">Qué Incluye:</h4>
+                        <ul class="lang-en">
+                            <li>Transmission fluid drain and refill</li>
+                            <li>Filter replacement (where applicable)</li>
+                            <li>Pan gasket replacement</li>
+                            <li>Torque converter inspection</li>
+                            <li>Shift quality road test</li>
+                            <li>Leak inspection and repair</li>
+                        </ul>
+                        <ul class="lang-es">
+                            <li>Drenado y llenado de fluido de transmisión</li>
+                            <li>Reemplazo de filtro (cuando aplique)</li>
+                            <li>Reemplazo de empaque de bandeja</li>
+                            <li>Inspección del convertidor de par</li>
+                            <li>Prueba de manejo de calidad de cambios</li>
+                            <li>Inspección y reparación de fugas</li>
+                        </ul>
+
+                        <h4 class="lang-en">How It Works:</h4>
+                        <h4 class="lang-es">Cómo Funciona:</h4>
+                        <p class="lang-en" style="color: var(--text-gray); font-size: 0.9rem;">
+                            We drain the old, contaminated transmission fluid, replace the filter and pan gasket, then
+                            refill with manufacturer-specified fluid. For automatic transmissions, we inspect the torque
+                            converter and solenoids. A road test ensures smooth shifting and proper operation. Regular
+                            transmission service prevents expensive transmission rebuilds or replacements.
+                        </p>
+                        <p class="lang-es" style="color: var(--text-gray); font-size: 0.9rem;">
+                            Drenamos el fluido de transmisión viejo y contaminado, reemplazamos el filtro y el empaque
+                            de la bandeja, luego rellenamos con fluido especificado por el fabricante. Para
+                            transmisiones automáticas, inspeccionamos el convertidor de par y solenoides. Una prueba de
+                            manejo asegura cambios suaves y operación adecuada. El servicio regular de transmisión
+                            previene reconstrucciones o reemplazos costosos de transmisión.
+                        </p>
+
+                        <h4 class="lang-en">Benefits:</h4>
+                        <h4 class="lang-es">Beneficios:</h4>
+                        <ul class="lang-en">
+                            <li>Smooth, responsive shifting</li>
+                            <li>Extended transmission lifespan</li>
+                            <li>Prevent costly transmission failure</li>
+                            <li>Better fuel economy</li>
+                        </ul>
+                        <ul class="lang-es">
+                            <li>Cambios suaves y responsivos</li>
+                            <li>Vida útil extendida de la transmisión</li>
+                            <li>Prevenir falla costosa de transmisión</li>
+                            <li>Mejor economía de combustible</li>
+                        </ul>
+                    </div>
+                </div>
+
                 <a href="booking.html" class="btn btn-sm btn-primary lang-en">Book Now</a>
                 <a href="booking.html" class="btn btn-sm btn-primary lang-es">Reservar</a>
             </div>
 
+            <!-- SMOG CHECK -->
             <div class="service-card" id="smog">
                 <img src="assets/images/lgb_smog_check_1768597597776.png" alt="Smog">
                 <h3 class="lang-en">California Smog Check</h3>
@@ -123,10 +541,71 @@
                 <p class="lang-en"><strong>$49</strong> | STAR Certified Station<br>Fast service, results same day</p>
                 <p class="lang-es"><strong>$49</strong> | Estación Certificada STAR<br>Servicio rápido, resultados mismo
                     día</p>
+
+                <button class="toggle-details lang-en" onclick="toggleDetails('smog-details')">+ Learn More</button>
+                <button class="toggle-details lang-es" onclick="toggleDetails('smog-details')">+ Ver Más</button>
+
+                <div class="details-content" id="smog-details">
+                    <div class="service-detail">
+                        <h4 class="lang-en">What's Included:</h4>
+                        <h4 class="lang-es">Qué Incluye:</h4>
+                        <ul class="lang-en">
+                            <li>Complete OBD-II emissions test</li>
+                            <li>Visual inspection of emissions systems</li>
+                            <li>Gas cap pressure test</li>
+                            <li>Electronic submission to DMV</li>
+                            <li>Printed certificate for your records</li>
+                            <li>Free retest if failed (with repairs done here)</li>
+                        </ul>
+                        <ul class="lang-es">
+                            <li>Prueba completa de emisiones OBD-II</li>
+                            <li>Inspección visual de sistemas de emisiones</li>
+                            <li>Prueba de presión de tapa de gasolina</li>
+                            <li>Envío electrónico al DMV</li>
+                            <li>Certificado impreso para sus registros</li>
+                            <li>Re-prueba gratis si falla (con reparaciones hechas aquí)</li>
+                        </ul>
+
+                        <h4 class="lang-en">How It Works:</h4>
+                        <h4 class="lang-es">Cómo Funciona:</h4>
+                        <p class="lang-en" style="color: var(--text-gray); font-size: 0.9rem;">
+                            As a STAR certified station, we perform the required California emissions test using
+                            state-approved equipment. We connect to your vehicle's computer, test all emissions-related
+                            systems, and submit results directly to the DMV electronically. Most tests are completed in
+                            30 minutes or less. If your vehicle fails, we can diagnose and repair the issue, then retest
+                            for free.
+                        </p>
+                        <p class="lang-es" style="color: var(--text-gray); font-size: 0.9rem;">
+                            Como estación certificada STAR, realizamos la prueba de emisiones de California requerida
+                            usando equipo aprobado por el estado. Nos conectamos a la computadora de su vehículo,
+                            probamos todos los sistemas relacionados con emisiones, y enviamos los resultados
+                            directamente al DMV electrónicamente. La mayoría de las pruebas se completan en 30 minutos o
+                            menos. Si su vehículo falla, podemos diagnosticar y reparar el problema, luego re-probar
+                            gratis.
+                        </p>
+
+                        <h4 class="lang-en">Benefits:</h4>
+                        <h4 class="lang-es">Beneficios:</h4>
+                        <ul class="lang-en">
+                            <li>Required for DMV registration renewal</li>
+                            <li>STAR certified = trusted and accurate</li>
+                            <li>Same-day service and results</li>
+                            <li>Free retest with repairs</li>
+                        </ul>
+                        <ul class="lang-es">
+                            <li>Requerido para renovación de registro del DMV</li>
+                            <li>Certificado STAR = confiable y preciso</li>
+                            <li>Servicio y resultados el mismo día</li>
+                            <li>Re-prueba gratis con reparaciones</li>
+                        </ul>
+                    </div>
+                </div>
+
                 <a href="booking.html" class="btn btn-sm btn-primary lang-en">Book Now</a>
                 <a href="booking.html" class="btn btn-sm btn-primary lang-es">Reservar</a>
             </div>
 
+            <!-- MORE SERVICES -->
             <div class="service-card">
                 <h3 class="lang-en">+ More Services</h3>
                 <h3 class="lang-es">+ Más Servicios</h3>
@@ -154,6 +633,12 @@
     </footer>
 
     <script src="assets/js/main.js"></script>
+    <script>
+        function toggleDetails(id) {
+            const element = document.getElementById(id);
+            element.classList.toggle('active');
+        }
+    </script>
 </body>
 
 </html>

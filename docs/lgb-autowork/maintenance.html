@@ -8,103 +8,200 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/bilingual-fix.css">
     <style>
-        .mascot-section {
-            text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, rgba(255, 107, 0, 0.1), rgba(26, 115, 232, 0.1));
+        .tips-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 5%;
         }
 
-        .mascots {
+        .vehicle-form {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            border-left: 5px solid var(--napa-orange);
+        }
+
+        .vehicle-form h3 {
+            color: var(--napa-blue);
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .form-group {
             display: flex;
-            justify-content: center;
-            gap: 50px;
-            margin: 30px 0;
-            flex-wrap: wrap;
+            flex-direction: column;
         }
 
-        .mascot {
-            text-align: center;
+        .form-group label {
+            color: var(--text-gray);
+            margin-bottom: 8px;
+            font-weight: 600;
         }
 
-        .mascot img {
-            width: 200px;
-            height: 200px;
-            object-fit: contain;
-            background: white;
-            border-radius: 50%;
-            padding: 20px;
-            box-shadow: 0 10px 30px rgba(255, 107, 0, 0.3);
+        .form-group select,
+        .form-group input {
+            padding: 12px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            font-size: 1rem;
         }
 
-        .mascot h3 {
-            margin-top: 20px;
-            color: var(--napa-orange);
-            font-family: 'Orbitron', sans-serif;
+        .tips-results {
+            display: grid;
+            gap: 30px;
         }
 
         .tip-card {
             background: var(--card-bg);
             padding: 30px;
             border-radius: 16px;
-            margin: 20px 0;
-            border-left: 5px solid var(--napa-orange);
+            border-left: 4px solid var(--napa-blue);
         }
 
-        .tip-card h3 {
-            color: var(--napa-blue);
-            margin-bottom: 15px;
-        }
-
-        .tip-card ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .tip-card li {
-            padding: 8px 0;
-            padding-left: 25px;
-            position: relative;
-        }
-
-        .tip-card li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
+        .tip-card h4 {
             color: var(--napa-orange);
-            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
         }
 
-        .interactive-tool {
+        .tip-card p {
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        .tip-card .interval {
+            background: var(--napa-blue);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        .jokes-section {
+            background: linear-gradient(135deg, rgba(255, 107, 0, 0.1), rgba(26, 115, 232, 0.1));
+            padding: 80px 5%;
+            margin-top: 60px;
+        }
+
+        .jokes-marquee {
+            background: var(--napa-orange);
+            color: #000;
+            padding: 15px 0;
+            font-weight: 700;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .jokes-marquee span {
+            display: inline-block;
+            animation: scroll 60s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .jokes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            max-width: 1400px;
+            margin: 40px auto;
+        }
+
+        .joke-card {
             background: var(--card-bg);
-            padding: 30px;
-            border-radius: 16px;
-            margin: 30px 0;
-            border: 2px solid var(--napa-blue);
-        }
-
-        .calculator-input {
-            width: 100%;
-            max-width: 300px;
-            padding: 12px;
-            margin: 10px 0;
-            border-radius: 8px;
-            background: var(--dark-bg);
-            color: var(--text-white);
-            border: 2px solid var(--napa-orange);
-            font-size: 1rem;
-        }
-
-        .result-box {
-            background: linear-gradient(135deg, rgba(255, 107, 0, 0.2), rgba(26, 115, 232, 0.2));
-            padding: 20px;
+            padding: 25px;
             border-radius: 12px;
-            margin-top: 20px;
-            display: none;
+            border-left: 3px solid var(--napa-orange);
+            transition: transform 0.3s;
         }
 
-        .result-box.show {
-            display: block;
+        .joke-card:hover {
+            transform: scale(1.02);
+        }
+
+        .joke-card .flag {
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+
+        .joke-card p {
+            color: var(--text-gray);
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        .joke-card .origin {
+            color: var(--napa-blue);
+            font-size: 0.8rem;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .joke-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .category-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .category-tab {
+            padding: 10px 20px;
+            background: var(--card-bg);
+            border: 2px solid var(--napa-orange);
+            color: var(--text-white);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .category-tab:hover,
+        .category-tab.active {
+            background: var(--napa-orange);
+            color: #000;
+        }
+
+        .price-link {
+            text-align: center;
+            margin: 40px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, var(--napa-blue), var(--napa-orange));
+            border-radius: 16px;
+        }
+
+        .price-link h3 {
+            color: white;
+            margin-bottom: 15px;
         }
     </style>
 </head>
@@ -127,175 +224,129 @@
             <li><a href="booking.html" class="lang-en">Book Appointment</a><a href="booking.html"
                     class="lang-es">Agendar Cita</a></li>
             <li><a href="maintenance.html" class="lang-en">Maintenance Tips</a><a href="maintenance.html"
-                    class="lang-es">Mantenimiento</a></li>
+                    class="lang-es">Tips de Mantenimiento</a></li>
+            <li><a href="pricing.html" class="lang-en">Pricing</a><a href="pricing.html" class="lang-es">Precios</a>
+            </li>
             <li><a href="about.html" class="lang-en">About</a><a href="about.html" class="lang-es">Nosotros</a></li>
         </ul>
     </nav>
 
-    <!-- Mascot Introduction -->
-    <section class="mascot-section">
-        <h2 class="lang-en" style="font-family: Orbitron; font-size: 2.5rem; color: var(--napa-orange);">Meet Your Car
-            Care Experts!</h2>
-        <h2 class="lang-es" style="font-family: Orbitron; font-size: 2.5rem; color: var(--napa-orange);">¡Conoce a Tus
-            Expertos en Cuidado Automotriz!</h2>
+    <!-- MARQUEE WITH CLASSIC PHRASES -->
+    <div class="jokes-marquee">
+        <span>
+            🔧 "HOY NO FÍO, MAÑANA TAMPOCO" • 🚗 "IF IT AIN'T BROKE, DON'T FIX IT" • ⚙️ "SOY MECÁNICO, NO MAGO" •
+            🛠️ "CHEAP PARTS AIN'T GOOD, GOOD PARTS AIN'T CHEAP" • 🔩 "EL QUE MUCHO CORRE, PRONTO PARA" •
+            🚙 "YOUR CAR TOLD ME EVERYTHING" • 💸 "SI LO VISTE EN YOUTUBE Y ERA FÁCIL, $100 MÁS" •
+            🔧 "I'M A MECHANIC, I CAN'T FIX STUPID" • ⚡ "NO HAY IMPOSIBLES, SOLO PRESUPUESTOS CORTOS" •
+            🛻 "TRUST ME, I'M A MECHANIC" • 🔧 "AQUÍ SE REPARA TODO, MENOS EL CORAZÓN" •
+        </span>
+    </div>
 
-        <div class="mascots">
-            <div class="mascot">
-                <img src="assets/images/mechanic_mike_character_1768597345024.png" alt="Mechanic Mike">
-                <h3>Mechanic Mike</h3>
-                <p class="lang-en" style="color: var(--text-gray);">Your friendly expert</p>
-                <p class="lang-es" style="color: var(--text-gray);">Tu experto amigable</p>
+    <section class="tips-container">
+        <div class="section-header" style="text-align: center; margin-bottom: 50px;">
+            <h1 class="lang-en">🔧 Maintenance Tips & Recommendations</h1>
+            <h1 class="lang-es">🔧 Tips y Recomendaciones de Mantenimiento</h1>
+            <p class="lang-en" style="color: var(--text-gray); font-size: 1.1rem;">Get personalized maintenance
+                schedules based on your vehicle</p>
+            <p class="lang-es" style="color: var(--text-gray); font-size: 1.1rem;">Obtenga calendarios de mantenimiento
+                personalizados para su vehículo</p>
+        </div>
+
+        <!-- VEHICLE INFO FORM -->
+        <div class="vehicle-form">
+            <h3 class="lang-en">🚗 Enter Your Vehicle Information</h3>
+            <h3 class="lang-es">🚗 Ingrese la Información de Su Vehículo</h3>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label class="lang-en">Year</label>
+                    <label class="lang-es">Año</label>
+                    <input type="number" id="tipYear" min="1990" max="2026" placeholder="2020">
+                </div>
+                <div class="form-group">
+                    <label class="lang-en">Make</label>
+                    <label class="lang-es">Marca</label>
+                    <select id="tipMake">
+                        <option value="">Select / Seleccionar</option>
+                        <option value="Toyota">Toyota</option>
+                        <option value="Honda">Honda</option>
+                        <option value="Ford">Ford</option>
+                        <option value="Chevrolet">Chevrolet</option>
+                        <option value="Nissan">Nissan</option>
+                        <option value="Tesla">Tesla</option>
+                        <option value="BMW">BMW</option>
+                        <option value="Mercedes">Mercedes-Benz</option>
+                        <option value="Audi">Audi</option>
+                        <option value="Lexus">Lexus</option>
+                        <option value="Mazda">Mazda</option>
+                        <option value="Subaru">Subaru</option>
+                        <option value="Volkswagen">Volkswagen</option>
+                        <option value="Hyundai">Hyundai</option>
+                        <option value="Kia">Kia</option>
+                        <option value="Jeep">Jeep</option>
+                        <option value="Other">Other / Otro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="lang-en">Mileage</label>
+                    <label class="lang-es">Millaje</label>
+                    <input type="number" id="tipMileage" placeholder="50000">
+                </div>
+                <div class="form-group">
+                    <label class="lang-en">Vehicle Type</label>
+                    <label class="lang-es">Tipo de Vehículo</label>
+                    <select id="tipType">
+                        <option value="Sedan">Sedan</option>
+                        <option value="SUV">SUV</option>
+                        <option value="Truck">Truck / Camioneta</option>
+                        <option value="Electric">Electric / Eléctrico</option>
+                        <option value="Hybrid">Hybrid / Híbrido</option>
+                    </select>
+                </div>
             </div>
-            <div class="mascot">
-                <img src="assets/images/car_charlie_mascot_1768597362872.png" alt="Car Charlie">
-                <h3>Car Charlie</h3>
-                <p class="lang-en" style="color: var(--text-gray);">Your vehicle's voice</p>
-                <p class="lang-es" style="color: var(--text-gray);">La voz de tu vehículo</p>
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn btn-primary" onclick="generateTips()">
+                    <span class="lang-en">📋 Get My Maintenance Tips</span>
+                    <span class="lang-es">📋 Obtener Mis Tips de Mantenimiento</span>
+                </button>
             </div>
+        </div>
+
+        <!-- TIPS RESULTS -->
+        <div id="tipsResults" class="tips-results">
+            <!-- Will be populated by JavaScript -->
+        </div>
+
+        <!-- PRICE ESTIMATOR LINK -->
+        <div class="price-link">
+            <h3 class="lang-en">💰 Need a Price Estimate?</h3>
+            <h3 class="lang-es">💰 ¿Necesita un Estimado de Precio?</h3>
+            <a href="pricing.html" class="btn btn-primary" style="background: white; color: var(--napa-orange);">
+                <span class="lang-en">Go to Price Estimator</span>
+                <span class="lang-es">Ir al Estimador de Precios</span>
+            </a>
         </div>
     </section>
 
-    <!-- Interactive Oil Change Calculator -->
-    <section class="services-section">
-        <h2 class="lang-en" style="text-align: center; font-family: Orbitron; color: var(--napa-orange);">Interactive
-            Maintenance Tools</h2>
-        <h2 class="lang-es" style="text-align: center; font-family: Orbitron; color: var(--napa-orange);">Herramientas
-            Interactivas de Mantenimiento</h2>
+    <!-- MECHANIC JOKES SECTION -->
+    <section class="jokes-section">
+        <h2 style="text-align: center; font-size: 2.5rem; color: var(--napa-orange); margin-bottom: 20px;">
+            <span class="lang-en">😂 Mechanic Wisdom Around the World</span>
+            <span class="lang-es">😂 Sabiduría Mecánica Alrededor del Mundo</span>
+        </h2>
+        <p style="text-align: center; color: var(--text-gray); margin-bottom: 40px;">
+            <span class="lang-en">Classic phrases from auto shops across the globe</span>
+            <span class="lang-es">Frases clásicas de talleres alrededor del mundo</span>
+        </p>
 
-        <div class="interactive-tool">
-            <h3 class="lang-en" style="color: var(--napa-blue);">🛢️ Oil Change Calculator</h3>
-            <h3 class="lang-es" style="color: var(--napa-blue);">🛢️ Calculadora de Cambio de Aceite</h3>
-            <p class="lang-en">Enter your current mileage to see when your next oil change is due:</p>
-            <p class="lang-es">Ingrese su kilometraje actual para ver cuándo vence su próximo cambio de aceite:</p>
-
-            <input type="number" id="mileage" class="calculator-input"
-                placeholder="Current mileage / Kilometraje actual">
-            <button onclick="calculateOilChange()" class="btn btn-primary lang-en">Calculate</button>
-            <button onclick="calculateOilChange()" class="btn btn-primary lang-es">Calcular</button>
-
-            <div id="oilResult" class="result-box">
-                <h4 style="color: var(--accent-gold);">Result / Resultado:</h4>
-                <p id="oilResultText"></p>
-            </div>
+        <div class="category-tabs">
+            <button class="category-tab active" onclick="filterJokes('all')">🌎 All / Todos</button>
+            <button class="category-tab" onclick="filterJokes('latino')">🇲🇽 Latino</button>
+            <button class="category-tab" onclick="filterJokes('usa')">🇺🇸 USA</button>
+            <button class="category-tab" onclick="filterJokes('world')">🌍 World</button>
         </div>
 
-        <!-- Tire Pressure Guide -->
-        <div class="interactive-tool">
-            <h3 class="lang-en" style="color: var(--napa-blue);">🚗 Tire Pressure Guide</h3>
-            <h3 class="lang-es" style="color: var(--napa-blue);">🚗 Guía de Presión de Neumáticos</h3>
-            <p class="lang-en">Select your vehicle type:</p>
-            <p class="lang-es">Seleccione su tipo de vehículo:</p>
-
-            <select id="vehicleType" class="calculator-input" onchange="showTirePressure()">
-                <option class="lang-en">Sedan / Sedán</option>
-                <option class="lang-en">SUV / Camioneta</option>
-                <option class="lang-en">Truck / Pickup</option>
-                <option class="lang-en">Sports Car / Deportivo</option>
-            </select>
-
-            <div id="tirePressureResult" class="result-box">
-                <h4 style="color: var(--accent-gold);">Recommended PSI / PSI Recomendado:</h4>
-                <p id="tirePressureText"></p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Maintenance Tips -->
-    <section class="services-section"
-        style="background: linear-gradient(180deg, rgba(255, 107, 0, 0.05), transparent);">
-        <h2 class="lang-en"
-            style="text-align: center; font-family: Orbitron; color: var(--napa-orange); margin-bottom: 40px;">Essential
-            Maintenance Tips</h2>
-        <h2 class="lang-es"
-            style="text-align: center; font-family: Orbitron; color: var(--napa-orange); margin-bottom: 40px;">Consejos
-            Esenciales de Mantenimiento</h2>
-
-        <div class="tip-card">
-            <h3 class="lang-en">🛢️ Oil Changes - Every 3,000-7,500 Miles</h3>
-            <h3 class="lang-es">🛢️ Cambios de Aceite - Cada 3,000-7,500 Millas</h3>
-            <ul>
-                <li class="lang-en">Conventional oil: Every 3,000-5,000 miles</li>
-                <li class="lang-es">Aceite convencional: Cada 3,000-5,000 millas</li>
-                <li class="lang-en">Synthetic blend: Every 5,000-7,500 miles</li>
-                <li class="lang-es">Mezcla sintética: Cada 5,000-7,500 millas</li>
-                <li class="lang-en">Full synthetic: Every 7,500-10,000 miles</li>
-                <li class="lang-es">Sintético completo: Cada 7,500-10,000 millas</li>
-            </ul>
-        </div>
-
-        <div class="tip-card">
-            <h3 class="lang-en">🔧 Brake Inspection - Every 12,000 Miles</h3>
-            <h3 class="lang-es">🔧 Inspección de Frenos - Cada 12,000 Millas</h3>
-            <ul>
-                <li class="lang-en">Listen for squealing or grinding sounds</li>
-                <li class="lang-es">Escuche chirridos o ruidos de trituración</li>
-                <li class="lang-en">Feel for vibrations when braking</li>
-                <li class="lang-es">Sienta vibraciones al frenar</li>
-                <li class="lang-en">Check if car pulls to one side</li>
-                <li class="lang-es">Verifique si el auto se inclina hacia un lado</li>
-            </ul>
-        </div>
-
-        <div class="tip-card">
-            <h3 class="lang-en">🌡️ Coolant/Antifreeze - Check Monthly</h3>
-            <h3 class="lang-es">🌡️ Refrigerante/Anticongelante - Revise Mensualmente</h3>
-            <ul>
-                <li class="lang-en">Check level when engine is cold</li>
-                <li class="lang-es">Revise el nivel cuando el motor esté frío</li>
-                <li class="lang-en">Look for leaks under the car</li>
-                <li class="lang-es">Busque fugas debajo del auto</li>
-                <li class="lang-en">Flush and replace every 30,000 miles</li>
-                <li class="lang-es">Enjuague y reemplace cada 30,000 millas</li>
-            </ul>
-        </div>
-
-        <div class="tip-card">
-            <h3 class="lang-en">⚡ Battery - Test Annually</h3>
-            <h3 class="lang-es">⚡ Batería - Pruebe Anualmente</h3>
-            <ul>
-                <li class="lang-en">Clean corrosion from terminals</li>
-                <li class="lang-es">Limpie la corrosión de los terminales</li>
-                <li class="lang-en">Check for dim headlights</li>
-                <li class="lang-es">Revise si las luces están tenues</li>
-                <li class="lang-en">Replace every 3-5 years</li>
-                <li class="lang-es">Reemplace cada 3-5 años</li>
-            </ul>
-        </div>
-
-        <div class="tip-card">
-            <h3 class="lang-en">🌞 Summer Preparation</h3>
-            <h3 class="lang-es">🌞 Preparación de Verano</h3>
-            <ul>
-                <li class="lang-en">Check A/C system before hot weather</li>
-                <li class="lang-es">Revise el sistema A/C antes del calor</li>
-                <li class="lang-en">Inspect coolant levels</li>
-                <li class="lang-es">Inspeccione niveles de refrigerante</li>
-                <li class="lang-en">Verify tire pressure (heat increases PSI)</li>
-                <li class="lang-es">Verifique presión de llantas (el calor aumenta PSI)</li>
-            </ul>
-        </div>
-
-        <div class="tip-card">
-            <h3 class="lang-en">❄️ Winter Preparation</h3>
-            <h3 class="lang-es">❄️ Preparación de Invierno</h3>
-            <ul>
-                <li class="lang-en">Check battery health (cold reduces capacity)</li>
-                <li class="lang-es">Revise salud de batería (frío reduce capacidad)</li>
-                <li class="lang-en">Inspect wiper blades and fluid</li>
-                <li class="lang-es">Inspeccione escobillas y fluido limpiaparabrisas</li>
-                <li class="lang-en">Test heating system</li>
-                <li class="lang-es">Pruebe sistema de calefacción</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="contact-section">
-        <h2 class="lang-en" style="text-align: center; margin-bottom: 30px;">Need Professional Help?</h2>
-        <h2 class="lang-es" style="text-align: center; margin-bottom: 30px;">¿Necesita Ayuda Profesional?</h2>
-        <div style="text-align: center;">
-            <a href="booking.html" class="btn btn-primary lang-en">Schedule Your Service</a>
-            <a href="booking.html" class="btn btn-primary lang-es">Agende Su Servicio</a>
+        <div class="jokes-grid" id="jokesGrid">
+            <!-- Will be populated by JavaScript -->
         </div>
     </section>
 
@@ -306,52 +357,221 @@
 
     <script src="assets/js/main.js"></script>
     <script>
-        function calculateOilChange() {
-            const mileage = parseInt(document.getElementById('mileage').value);
-            const resultBox = document.getElementById('oilResult');
-            const resultText = document.getElementById('oilResultText');
-            const lang = document.body.className;
+        // MAINTENANCE TIPS DATABASE (BILINGUAL)
+        const MAINTENANCE_TIPS = {
+            standard: [
+                { service_en: 'Oil Change', service_es: 'Cambio de Aceite', interval_en: 'Every 5,000-7,500 miles', interval_es: 'Cada 5,000-7,500 millas', icon: '🛢️', desc_en: 'Regular oil changes prevent engine wear and maintain optimal performance.', desc_es: 'Los cambios de aceite regulares previenen el desgaste del motor.' },
+                { service_en: 'Tire Rotation', service_es: 'Rotación de Llantas', interval_en: 'Every 5,000-7,500 miles', interval_es: 'Cada 5,000-7,500 millas', icon: '🔄', desc_en: 'Rotate tires to ensure even wear and extend tire life.', desc_es: 'Rotar las llantas asegura un desgaste uniforme.' },
+                { service_en: 'Air Filter', service_es: 'Filtro de Aire', interval_en: 'Every 15,000-30,000 miles', interval_es: 'Cada 15,000-30,000 millas', icon: '💨', desc_en: 'Clean air filters improve fuel efficiency and engine performance.', desc_es: 'Los filtros de aire limpios mejoran la eficiencia de combustible.' },
+                { service_en: 'Brake Inspection', service_es: 'Inspección de Frenos', interval_en: 'Every 12,000 miles', interval_es: 'Cada 12,000 millas', icon: '🛑', desc_en: 'Regular brake checks ensure your safety on the road.', desc_es: 'Las revisiones de frenos aseguran su seguridad.' },
+                { service_en: 'Coolant Flush', service_es: 'Cambio de Refrigerante', interval_en: 'Every 30,000 miles', interval_es: 'Cada 30,000 millas', icon: '❄️', desc_en: 'Prevents overheating and protects your engine from corrosion.', desc_es: 'Previene el sobrecalentamiento y protege el motor.' },
+                { service_en: 'Transmission Service', service_es: 'Servicio de Transmisión', interval_en: 'Every 30,000-60,000 miles', interval_es: 'Cada 30,000-60,000 millas', icon: '⚙️', desc_en: 'Keeps your transmission shifting smoothly.', desc_es: 'Mantiene su transmisión cambiando suavemente.' },
+                { service_en: 'Spark Plugs', service_es: 'Bujías', interval_en: 'Every 30,000-100,000 miles', interval_es: 'Cada 30,000-100,000 millas', icon: '⚡', desc_en: 'Worn spark plugs reduce fuel efficiency and power.', desc_es: 'Las bujías desgastadas reducen eficiencia y potencia.' },
+                { service_en: 'Battery Check', service_es: 'Revisión de Batería', interval_en: 'Every 6 months', interval_es: 'Cada 6 meses', icon: '🔋', desc_en: 'Test battery health before it leaves you stranded.', desc_es: 'Pruebe la batería antes de que lo deje varado.' },
+                { service_en: 'Belt Inspection', service_es: 'Inspección de Bandas', interval_en: 'Every 60,000 miles', interval_es: 'Cada 60,000 millas', icon: '🎗️', desc_en: 'Worn belts can cause engine damage if they break.', desc_es: 'Las bandas desgastadas pueden dañar el motor.' },
+                { service_en: 'Wheel Alignment', service_es: 'Alineación', interval_en: 'Every 12,000 miles', interval_es: 'Cada 12,000 millas', icon: '🎯', desc_en: 'Proper alignment prevents uneven tire wear.', desc_es: 'La alineación correcta previene desgaste irregular.' }
+            ],
+            electric: [
+                { service_en: 'Brake Fluid Check', service_es: 'Revisión de Líquido de Frenos', interval_en: 'Every 25,000 miles', interval_es: 'Cada 25,000 millas', icon: '🛑', desc_en: 'EVs use regenerative braking but still need brake fluid.', desc_es: 'Los EVs usan frenado regenerativo pero necesitan líquido de frenos.' },
+                { service_en: 'Tire Rotation', service_es: 'Rotación de Llantas', interval_en: 'Every 7,500 miles', interval_es: 'Cada 7,500 millas', icon: '🔄', desc_en: 'EVs are heavier, so tire rotation is crucial.', desc_es: 'Los EVs son más pesados, la rotación es crucial.' },
+                { service_en: 'Cabin Air Filter', service_es: 'Filtro de Cabina', interval_en: 'Every 15,000 miles', interval_es: 'Cada 15,000 millas', icon: '💨', desc_en: 'Keep the air inside your EV fresh and clean.', desc_es: 'Mantenga el aire de su EV fresco y limpio.' },
+                { service_en: 'Battery Health Check', service_es: 'Revisión de Batería EV', interval_en: 'Annually', interval_es: 'Anualmente', icon: '🔋', desc_en: 'Monitor your EV battery degradation and range.', desc_es: 'Monitoree la degradación y rango de su batería.' },
+                { service_en: 'Software Updates', service_es: 'Actualizaciones de Software', interval_en: 'As available', interval_es: 'Cuando disponible', icon: '📱', desc_en: 'Keep your EV software current for best performance.', desc_es: 'Mantenga el software actualizado para mejor rendimiento.' },
+                { service_en: 'Coolant Service', service_es: 'Servicio de Refrigerante', interval_en: 'Every 50,000 miles', interval_es: 'Cada 50,000 millas', icon: '❄️', desc_en: 'Battery thermal management needs proper coolant.', desc_es: 'El sistema térmico de batería necesita refrigerante.' }
+            ],
+            highMileage: [
+                { service_en: 'Oil Change (High Mileage)', service_es: 'Cambio de Aceite (Alto Millaje)', interval_en: 'Every 3,000-5,000 miles', interval_es: 'Cada 3,000-5,000 millas', icon: '🛢️', desc_en: 'Use high-mileage oil formula with seal conditioners.', desc_es: 'Use aceite de alto millaje con acondicionadores de sellos.' },
+                { service_en: 'Transmission Flush', service_es: 'Cambio de Transmisión', interval_en: 'Every 30,000 miles', interval_es: 'Cada 30,000 millas', icon: '⚙️', desc_en: 'Critical for older vehicles to prevent transmission failure.', desc_es: 'Crítico para vehículos viejos para prevenir fallas.' },
+                { service_en: 'Full Brake Service', service_es: 'Servicio Completo de Frenos', interval_en: 'Every 40,000 miles', interval_es: 'Cada 40,000 millas', icon: '🛑', desc_en: 'Replace pads, rotors, and flush fluid for safety.', desc_es: 'Reemplace pastillas, discos y cambie líquido.' },
+                { service_en: 'Suspension Check', service_es: 'Revisión de Suspensión', interval_en: 'Every 50,000 miles', interval_es: 'Cada 50,000 millas', icon: '🔧', desc_en: 'Worn shocks and struts affect handling.', desc_es: 'Amortiguadores desgastados afectan el manejo.' },
+                { service_en: 'Timing Belt', service_es: 'Banda de Tiempo', interval_en: 'Every 60,000-100,000 miles', interval_es: 'Cada 60,000-100,000 millas', icon: '⏱️', desc_en: 'A broken timing belt can destroy your engine.', desc_es: 'Una banda rota puede destruir su motor.' },
+                { service_en: 'Water Pump', service_es: 'Bomba de Agua', interval_en: 'With timing belt', interval_es: 'Con banda de tiempo', icon: '💧', desc_en: 'Replace water pump when doing timing belt.', desc_es: 'Reemplace bomba de agua con la banda.' }
+            ]
+        };
 
-            if (mileage && mileage > 0) {
-                const nextChange = Math.ceil(mileage / 5000) * 5000;
-                const milesUntil = nextChange - mileage;
+        // MECHANIC JOKES DATABASE - 100+ PHRASES (BILINGUAL)
+        const MECHANIC_JOKES = [
+            // LATINO CLASSICS (40) - Original in Spanish, translated to English
+            { text_en: "No credit today, none tomorrow either", text_es: "Hoy no fío, mañana tampoco", origin: "Latino Classic", flag: "🇲🇽", category: "latino", image: "assets/img/jokes/joke_no_credit.png" },
+            { text_en: "If you saw it on YouTube and it looked easy, that's $100 more", text_es: "Si lo viste en YouTube y era fácil, son $100 más", origin: "México", flag: "🇲🇽", category: "latino", image: "assets/img/jokes/joke_youtube_fail.png" },
+            { text_en: "I'm a mechanic, not a magician", text_es: "Soy mecánico, no mago", origin: "Latino Classic", flag: "🇲🇽", category: "latino", image: "assets/img/jokes/joke_magician.png" },
+            { text_en: "He who runs too fast, stops soon", text_es: "El que mucho corre, pronto para", origin: "México", flag: "🇲🇽", category: "latino", image: "assets/img/jokes/joke_speed_stops.png" },
+            { text_en: "We fix everything here, except broken hearts", text_es: "Aquí se repara todo, menos el corazón roto", origin: "Colombia", flag: "🇨🇴", category: "latino", image: "assets/img/jokes/joke_broken_hearts.png" },
+            { text_en: "Nothing is impossible, only budgets are short", text_es: "No hay imposibles, solo presupuestos cortos", origin: "Argentina", flag: "🇦🇷", category: "latino", image: "assets/img/jokes/joke_short_budgets.png" },
+            { text_en: "If your car could talk, it would tell me everything", text_es: "Si tu carro hablara, me contaría todo", origin: "México", flag: "🇲🇽", category: "latino" },
+            { text_en: "Better to change oil than engine", text_es: "Más vale cambiar aceite que motor", origin: "Latino Classic", flag: "🇲🇽", category: "latino" },
+            { text_en: "A car that doesn't run, doesn't earn", text_es: "Carro que no camina, no gana", origin: "Colombia", flag: "🇨🇴", category: "latino" },
+            { text_en: "A car is like a mother-in-law: take care of it or it'll leave you stranded", text_es: "El carro es como la suegra: hay que cuidarlo para que no te deje tirado", origin: "México", flag: "🇲🇽", category: "latino" },
+            { text_en: "Cheap and good? That doesn't exist here", text_es: "¿Barato y bueno? Eso no existe aquí", origin: "Chile", flag: "🇨🇱", category: "latino" },
+            { text_en: "If it sounds, it thunders", text_es: "Si le suena, le truena", origin: "México", flag: "🇲🇽", category: "latino" },
+            { text_en: "One loose screw and everything falls apart", text_es: "Un tornillo flojo y todo se cae", origin: "Perú", flag: "🇵🇪", category: "latino" },
+            { text_en: "Old oil, dead engine", text_es: "Aceite viejo, motor muerto", origin: "Venezuela", flag: "🇻🇪", category: "latino" },
+            { text_en: "If the brakes squeak, prepare your wallet", text_es: "Si chirrían los frenos, prepárate el bolsillo", origin: "Ecuador", flag: "🇪🇨", category: "latino" },
+            { text_en: "The warranty left when the car left the shop", text_es: "La garantía se fue cuando salió del taller", origin: "Argentina", flag: "🇦🇷", category: "latino" },
+            { text_en: "If it doesn't thunder, it doesn't work", text_es: "Si no truena, no funciona", origin: "México", flag: "🇲🇽", category: "latino" },
+            { text_en: "Cheap becomes expensive, buddy", text_es: "Lo barato sale caro, compadre", origin: "Latino Classic", flag: "🇲🇽", category: "latino" },
+            { text_en: "Don't look a gift car in the cylinders", text_es: "A carro regalado no se le miran los cilindros", origin: "Colombia", flag: "🇨🇴", category: "latino" },
+            { text_en: "If it runs on credit, why doesn't it run on gas?", text_es: "Si fía, ¿por qué no camina?", origin: "México", flag: "🇲🇽", category: "latino" },
+            { text_en: "The customer is always right... until he opens the hood", text_es: "El cliente siempre tiene razón... hasta que abre el cofre", origin: "Panamá", flag: "🇵🇦", category: "latino" },
+            { text_en: "Better to prevent than to push", text_es: "Mejor prevenir que empujar", origin: "Rep. Dominicana", flag: "🇩🇴", category: "latino" },
+            { text_en: "A clean car runs faster", text_es: "Carro lavado corre más rápido", origin: "Puerto Rico", flag: "🇵🇷", category: "latino" },
+            { text_en: "If your wallet doesn't hurt, your car doesn't hurt", text_es: "Si no le duele el bolsillo, no le duele el carro", origin: "Cuba", flag: "🇨🇺", category: "latino" },
+            { text_en: "Don't mistreat your car, it can leave you stranded", text_es: "No maltrates tu carro, él te puede dejar tirado", origin: "Honduras", flag: "🇭🇳", category: "latino" },
+            { text_en: "Haste is the enemy of repair", text_es: "La prisa es enemiga de la reparación", origin: "Guatemala", flag: "🇬🇹", category: "latino" },
+            { text_en: "If you walk, the mechanic wins", text_es: "Si caminas, el mecánico gana", origin: "El Salvador", flag: "🇸🇻", category: "latino" },
+            { text_en: "Chinese parts, Latino problems", text_es: "Repuesto chino, problema latino", origin: "Bolivia", flag: "🇧🇴", category: "latino" },
+            { text_en: "What oil joins, lack of maintenance separates", text_es: "Lo que el aceite une, la falta de mantenimiento separa", origin: "Paraguay", flag: "🇵🇾", category: "latino" },
+            { text_en: "When the engine speaks, the owner shuts up", text_es: "Cuando el motor habla, el dueño calla", origin: "Uruguay", flag: "🇺🇾", category: "latino" },
+            { text_en: "Better one known shop than a hundred unknown", text_es: "Más vale un taller conocido que cien por conocer", origin: "Costa Rica", flag: "🇨🇷", category: "latino" },
+            { text_en: "I fix cars, not marriages", text_es: "Yo arreglo carros, no matrimonios", origin: "Nicaragua", flag: "🇳🇮", category: "latino" },
+            { text_en: "If it sounds ugly, it costs a lot", text_es: "Si suena feo, cuesta caro", origin: "Latino Classic", flag: "🇲🇽", category: "latino" },
+            { text_en: "Credit is for fools, collecting is for the wise", text_es: "Fiar es de pendejos, cobrar de inteligentes", origin: "México", flag: "🇲🇽", category: "latino" },
+            { text_en: "No bargaining here, accept it or walk", text_es: "Aquí no se regatea, se acepta o se camina", origin: "Perú", flag: "🇵🇪", category: "latino" },
+            { text_en: "A car without oil is like a man without water", text_es: "Un carro sin aceite es como un hombre sin agua", origin: "Venezuela", flag: "🇻🇪", category: "latino" },
+            { text_en: "The engine doesn't forgive", text_es: "El motor no perdona", origin: "Chile", flag: "🇨🇱", category: "latino" },
+            { text_en: "If it doesn't blow up today, it'll blow up tomorrow", text_es: "Si no revienta hoy, revienta mañana", origin: "Colombia", flag: "🇨🇴", category: "latino" },
+            { text_en: "With faith and gasoline, everything arrives", text_es: "Con fe y gasolina, todo llega", origin: "Brasil", flag: "🇧🇷", category: "latino" },
+            { text_en: "Old car but paid, worth more than new and in debt", text_es: "Carro viejo pero pagado, vale más que nuevo y endeudado", origin: "Argentina", flag: "🇦🇷", category: "latino" },
 
-                if (lang === 'es') {
-                    resultText.innerHTML = `
-                        <strong>Próximo cambio recomendado:</strong> ${nextChange.toLocaleString()} millas<br>
-                        <strong>Millas restantes:</strong> ${milesUntil.toLocaleString()} millas<br>
-                        ${milesUntil < 500 ? '<span style="color: #FFD700;">⚠️ ¡Agende su cita pronto!</span>' : ''}
-                    `;
-                } else {
-                    resultText.innerHTML = `
-                        <strong>Next recommended change:</strong> ${nextChange.toLocaleString()} miles<br>
-                        <strong>Miles remaining:</strong> ${milesUntil.toLocaleString()} miles<br>
-                        ${milesUntil < 500 ? '<span style="color: #FFD700;">⚠️ Schedule your appointment soon!</span>' : ''}
-                    `;
-                }
-                resultBox.classList.add('show');
+            // USA CLASSICS (35) - Original in English, translated to Spanish
+            { text_en: "If it ain't broke, don't fix it", text_es: "Si no está roto, no lo arregles", origin: "USA Classic", flag: "🇺🇸", category: "usa" },
+            { text_en: "Cheap parts ain't good, good parts ain't cheap", text_es: "Las partes baratas no son buenas, las buenas no son baratas", origin: "USA Classic", flag: "🇺🇸", category: "usa" },
+            { text_en: "I'm a mechanic, not a magician", text_es: "Soy mecánico, no mago", origin: "USA Classic", flag: "🇺🇸", category: "usa" },
+            { text_en: "Your car told me everything", text_es: "Tu carro me contó todo", origin: "USA", flag: "🇺🇸", category: "usa" },
+            { text_en: "Trust me, I'm a mechanic", text_es: "Confía en mí, soy mecánico", origin: "USA", flag: "🇺🇸", category: "usa" },
+            { text_en: "I can fix anything... except stupid", text_es: "Puedo arreglar todo... excepto la estupidez", origin: "USA", flag: "🇺🇸", category: "usa" },
+            { text_en: "That'll buff right out", text_es: "Eso se pule y queda", origin: "USA Classic", flag: "🇺🇸", category: "usa" },
+            { text_en: "Check engine? More like check wallet", text_es: "¿Revisar motor? Mejor revisa tu cartera", origin: "USA", flag: "🇺🇸", category: "usa" },
+            { text_en: "Every noise has a price", text_es: "Cada ruido tiene un precio", origin: "USA", flag: "🇺🇸", category: "usa" },
+            { text_en: "Duct tape fixes everything", text_es: "La cinta adhesiva arregla todo", origin: "USA Classic", flag: "🇺🇸", category: "usa" },
+            { text_en: "The best time to change your oil was yesterday", text_es: "El mejor momento para cambiar tu aceite fue ayer", origin: "USA", flag: "🇺🇸", category: "usa" },
+            { text_en: "Cash is king in this garage", text_es: "El efectivo es el rey en este taller", origin: "USA", flag: "🇺🇸", category: "usa" },
+            { text_en: "If you hear it, you buy it", text_es: "Si lo escuchas, lo compras", origin: "USA Mechanic", flag: "🇺🇸", category: "usa" },
+            { text_en: "Labor is time, time is money", text_es: "La mano de obra es tiempo, el tiempo es dinero", origin: "USA", flag: "🇺🇸", category: "usa" },
+            { text_en: "No estimate is too high if you want it done right", text_es: "Ningún presupuesto es muy alto si lo quieres bien hecho", origin: "USA", flag: "🇺🇸", category: "usa" },
+            { text_en: "The previous owner did what?!", text_es: "¡¿El dueño anterior hizo qué?!", origin: "USA Mechanic", flag: "🇺🇸", category: "usa" },
+            { text_en: "I fix cars, not relationships", text_es: "Arreglo carros, no relaciones", origin: "USA", flag: "🇺🇸", category: "usa" },
+            { text_en: "Warning lights are just suggestions", text_es: "Las luces de advertencia son solo sugerencias", origin: "USA Humor", flag: "🇺🇸", category: "usa" },
+            { text_en: "Your car's fine... for a museum", text_es: "Tu carro está bien... para un museo", origin: "USA", flag: "🇺🇸", category: "usa" },
+            { text_en: "Real mechanics don't need instructions", text_es: "Los mecánicos de verdad no necesitan instrucciones", origin: "USA", flag: "🇺🇸", category: "usa" },
+            { text_en: "When in doubt, WD-40", text_es: "En caso de duda, WD-40", origin: "USA Classic", flag: "🇺🇸", category: "usa" },
+            { text_en: "If WD-40 doesn't work, use duct tape", text_es: "Si WD-40 no funciona, usa cinta", origin: "USA", flag: "🇺🇸", category: "usa" },
+            { text_en: "It ran when I parked it", text_es: "Funcionaba cuando lo estacioné", origin: "USA Seller", flag: "🇺🇸", category: "usa" },
+            { text_en: "I know a guy who can do it cheaper", text_es: "Conozco a alguien que lo hace más barato", origin: "USA Customer", flag: "🇺🇸", category: "usa" },
+            { text_en: "Your mechanic knows more about your car than you do", text_es: "Tu mecánico sabe más de tu carro que tú", origin: "USA", flag: "🇺🇸", category: "usa" },
+            { text_en: "Trade-in? More like trade-up to the junkyard", text_es: "¿Cambio? Más bien intercambio al deshuesadero", origin: "USA", flag: "🇺🇸", category: "usa" },
+            { text_en: "DIY until you cry, then call me", text_es: "Hazlo tú mismo hasta llorar, luego llámame", origin: "USA Mechanic", flag: "🇺🇸", category: "usa" },
+            { text_en: "Check engine light on? That's just the car saying hello", text_es: "¿Luz del motor encendida? Es solo el carro saludando", origin: "USA", flag: "🇺🇸", category: "usa" },
+            { text_en: "A clean engine is a happy engine", text_es: "Un motor limpio es un motor feliz", origin: "USA", flag: "🇺🇸", category: "usa" },
+            { text_en: "Parts and labor aren't included in 'quick fix'", text_es: "Partes y mano de obra no incluidas en 'arreglo rápido'", origin: "USA", flag: "🇺🇸", category: "usa" },
+            { text_en: "Free estimates cost more in the end", text_es: "Los estimados gratis cuestan más al final", origin: "USA", flag: "🇺🇸", category: "usa" },
+            { text_en: "The problem is between the steering wheel and the seat", text_es: "El problema está entre el volante y el asiento", origin: "USA Classic", flag: "🇺🇸", category: "usa" },
+            { text_en: "Old cars never die, they just cost more to run", text_es: "Los carros viejos nunca mueren, solo cuestan más mantener", origin: "USA", flag: "🇺🇸", category: "usa" },
+            { text_en: "Regular maintenance is cheaper than emergency repairs", text_es: "El mantenimiento regular es más barato que reparaciones de emergencia", origin: "USA Wisdom", flag: "🇺🇸", category: "usa" },
+            { text_en: "Your car's warranty? It expired the day you bought it", text_es: "¿La garantía de tu carro? Expiró el día que lo compraste", origin: "USA", flag: "🇺🇸", category: "usa" },
+
+            // WORLD CLASSICS (35)
+            { text_en: "A car is only as good as its mechanic", text_es: "Un carro es tan bueno como su mecánico", origin: "UK", flag: "🇬🇧", category: "world" },
+            { text_en: "German engineering... still needs maintenance", text_es: "Ingeniería alemana... aún necesita mantenimiento", origin: "Germany", flag: "🇩🇪", category: "world" },
+            { text_en: "Japanese reliability begins with maintenance", text_es: "La confiabilidad japonesa comienza con mantenimiento", origin: "Japan", flag: "🇯🇵", category: "world" },
+            { text_en: "In Russia, car fixes you", text_es: "En Rusia, el carro te arregla a ti", origin: "Russia", flag: "🇷🇺", category: "world" },
+            { text_en: "Italian cars: beautiful problems", text_es: "Carros italianos: problemas hermosos", origin: "Italy", flag: "🇮🇹", category: "world" },
+            { text_en: "French cars: when they work, they're brilliant", text_es: "Carros franceses: cuando funcionan, son brillantes", origin: "France", flag: "🇫🇷", category: "world" },
+            { text_en: "If it's Swedish, it's safe... mostly", text_es: "Si es sueco, es seguro... mayormente", origin: "Sweden", flag: "🇸🇪", category: "world" },
+            { text_en: "Australian cars: built for the outback, fixed in the city", text_es: "Carros australianos: hechos para el desierto, arreglados en la ciudad", origin: "Australia", flag: "🇦🇺", category: "world" },
+            { text_en: "Korean cars: the best value until repairs", text_es: "Carros coreanos: el mejor valor hasta las reparaciones", origin: "South Korea", flag: "🇰🇷", category: "world" },
+            { text_en: "Spanish mechanics work on Spanish time", text_es: "Los mecánicos españoles trabajan en hora española", origin: "Spain", flag: "🇪🇸", category: "world" },
+            { text_en: "Canadian mechanics: sorry for the repair bill", text_es: "Mecánicos canadienses: perdón por la factura", origin: "Canada", flag: "🇨🇦", category: "world" },
+            { text_en: "Dutch mechanics are practical, not cheap", text_es: "Los mecánicos holandeses son prácticos, no baratos", origin: "Netherlands", flag: "🇳🇱", category: "world" },
+            { text_en: "Indian mechanics: Jugaad always works", text_es: "Mecánicos indios: Jugaad siempre funciona", origin: "India", flag: "🇮🇳", category: "world" },
+            { text_en: "Chinese parts, international problems", text_es: "Partes chinas, problemas internacionales", origin: "Worldwide", flag: "🌏", category: "world" },
+            { text_en: "African mechanics: fixing miracles daily", text_es: "Mecánicos africanos: haciendo milagros diarios", origin: "Africa", flag: "🌍", category: "world" },
+            { text_en: "Middle Eastern mechanics: oil is not a problem", text_es: "Mecánicos del Medio Oriente: el aceite no es problema", origin: "Middle East", flag: "🇸🇦", category: "world" },
+            { text_en: "Polish mechanics: cheaper than replacement", text_es: "Mecánicos polacos: más barato que reemplazar", origin: "Poland", flag: "🇵🇱", category: "world" },
+            { text_en: "Greek mechanics: tomorrow is always better", text_es: "Mecánicos griegos: mañana es siempre mejor", origin: "Greece", flag: "🇬🇷", category: "world" },
+            { text_en: "Turkish mechanics: tea first, repair second", text_es: "Mecánicos turcos: primero el té, después la reparación", origin: "Turkey", flag: "🇹🇷", category: "world" },
+            { text_en: "Irish mechanics: if it starts, it's fine", text_es: "Mecánicos irlandeses: si arranca, está bien", origin: "Ireland", flag: "🇮🇪", category: "world" },
+            { text_en: "Portuguese mechanics: patience is a virtue", text_es: "Mecánicos portugueses: la paciencia es una virtud", origin: "Portugal", flag: "🇵🇹", category: "world" },
+            { text_en: "Swiss precision costs Swiss money", text_es: "La precisión suiza cuesta dinero suizo", origin: "Switzerland", flag: "🇨🇭", category: "world" },
+            { text_en: "Belgian mechanics: chocolate doesn't fix cars", text_es: "Mecánicos belgas: el chocolate no arregla carros", origin: "Belgium", flag: "🇧🇪", category: "world" },
+            { text_en: "Norwegian mechanics: expensive like everything else", text_es: "Mecánicos noruegos: caros como todo lo demás", origin: "Norway", flag: "🇳🇴", category: "world" },
+            { text_en: "Finnish mechanics: quiet work, quality results", text_es: "Mecánicos finlandeses: trabajo silencioso, resultados de calidad", origin: "Finland", flag: "🇫🇮", category: "world" },
+            { text_en: "Danish mechanics: hygge doesn't include broken cars", text_es: "Mecánicos daneses: hygge no incluye carros rotos", origin: "Denmark", flag: "🇩🇰", category: "world" },
+            { text_en: "New Zealand mechanics: far from parts, close to solutions", text_es: "Mecánicos neozelandeses: lejos de las partes, cerca de soluciones", origin: "New Zealand", flag: "🇳🇿", category: "world" },
+            { text_en: "Egyptian mechanics: pyramids last, cars don't", text_es: "Mecánicos egipcios: las pirámides duran, los carros no", origin: "Egypt", flag: "🇪🇬", category: "world" },
+            { text_en: "South African mechanics: braai after repairs", text_es: "Mecánicos sudafricanos: asado después de las reparaciones", origin: "South Africa", flag: "🇿🇦", category: "world" },
+            { text_en: "Moroccan mechanics: bargaining included", text_es: "Mecánicos marroquíes: regateo incluido", origin: "Morocco", flag: "🇲🇦", category: "world" },
+            { text_en: "Thai mechanics: smile and fix", text_es: "Mecánicos tailandeses: sonríe y arregla", origin: "Thailand", flag: "🇹🇭", category: "world" },
+            { text_en: "Vietnamese mechanics: nothing is impossible", text_es: "Mecánicos vietnamitas: nada es imposible", origin: "Vietnam", flag: "🇻🇳", category: "world" },
+            { text_en: "Filipino mechanics: the best abroad", text_es: "Mecánicos filipinos: los mejores en el extranjero", origin: "Philippines", flag: "🇵🇭", category: "world" },
+            { text_en: "Indonesian mechanics: where there's a will, there's a way", text_es: "Mecánicos indonesios: donde hay voluntad, hay camino", origin: "Indonesia", flag: "🇮🇩", category: "world" },
+            { text_en: "Malaysian mechanics: boleh fix!", text_es: "Mecánicos malasios: ¡se puede arreglar!", origin: "Malaysia", flag: "🇲🇾", category: "world" }
+        ];
+
+        function generateTips() {
+            const year = parseInt(document.getElementById('tipYear').value) || 2020;
+            const make = document.getElementById('tipMake').value || 'Standard';
+            const mileage = parseInt(document.getElementById('tipMileage').value) || 50000;
+            const type = document.getElementById('tipType').value;
+
+            let tips = [];
+
+            // Select tips based on vehicle type and mileage
+            if (type === 'Electric') {
+                tips = MAINTENANCE_TIPS.electric;
+            } else if (mileage > 100000) {
+                tips = [...MAINTENANCE_TIPS.standard, ...MAINTENANCE_TIPS.highMileage];
             } else {
-                alert(lang === 'es' ? 'Por favor ingrese un kilometraje válido' : 'Please enter a valid mileage');
+                tips = MAINTENANCE_TIPS.standard;
             }
+
+            // Display tips
+            const resultsDiv = document.getElementById('tipsResults');
+            resultsDiv.innerHTML = `
+                <h3 style="color: var(--napa-orange); margin-bottom: 20px;">
+                    <span class="lang-en">📋 Maintenance Schedule for your ${year} ${make}</span>
+                    <span class="lang-es">📋 Calendario de Mantenimiento para su ${year} ${make}</span>
+                </h3>
+                ${tips.map(tip => `
+                    <div class="tip-card">
+                        <h4>${tip.icon} <span class="lang-en">${tip.service_en}</span><span class="lang-es">${tip.service_es}</span></h4>
+                        <p><span class="lang-en">${tip.desc_en}</span><span class="lang-es">${tip.desc_es}</span></p>
+                        <span class="interval"><span class="lang-en">${tip.interval_en}</span><span class="lang-es">${tip.interval_es}</span></span>
+                    </div>
+                `).join('')}
+            `;
         }
 
-        function showTirePressure() {
-            const vehicleType = document.getElementById('vehicleType').value;
-            const resultBox = document.getElementById('tirePressureResult');
-            const resultText = document.getElementById('tirePressureText');
-            const lang = document.body.className;
+        function filterJokes(category) {
+            document.querySelectorAll('.category-tab').forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
 
-            const pressures = {
-                'Sedan / Sedán': '32-35 PSI',
-                'SUV / Camioneta': '35-40 PSI',
-                'Truck / Pickup': '40-45 PSI',
-                'Sports Car / Deportivo': '30-33 PSI'
-            };
+            const filteredJokes = category === 'all'
+                ? MECHANIC_JOKES
+                : MECHANIC_JOKES.filter(j => j.category === category);
 
-            resultText.innerHTML = `<strong>${pressures[vehicleType]}</strong><br>
-                ${lang === 'es' ? 'Revise la presión mensualmente' : 'Check pressure monthly'}`;
-            resultBox.classList.add('show');
+            displayJokes(filteredJokes);
         }
+
+        function displayJokes(jokes) {
+            const grid = document.getElementById('jokesGrid');
+            grid.innerHTML = jokes.map(joke => `
+                <div class="joke-card" data-category="${joke.category}">
+                    ${joke.image ? `<img src="${joke.image}" class="joke-image" alt="Mechanic Wisdom">` : ''}
+                    <p>
+                        <span class="flag">${joke.flag}</span>
+                        <span class="lang-en">"${joke.text_en}"</span>
+                        <span class="lang-es">"${joke.text_es}"</span>
+                    </p>
+                    <div class="origin">${joke.origin}</div>
+                </div>
+            `).join('');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            displayJokes(MECHANIC_JOKES);
+        });
     </script>
 </body>
 
