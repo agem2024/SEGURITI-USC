@@ -860,6 +860,16 @@
 
                     // FORCE INITIAL VIEW TO GALAXY
                     setView('galaxy');
+
+                    // FORCE VIDEO VISIBILITY (Fix "No se ve")
+                    const galWrap = document.getElementById('galaxy-video-wrap');
+                    if (galWrap) {
+                        galWrap.style.display = 'block';
+                        galWrap.style.zIndex = '50';
+                        galWrap.style.opacity = '1';
+                        const v = document.getElementById('bottles-video');
+                        if (v) v.play().catch(e => console.log("Force play botellas", e));
+                    }
                 };
 
                 // MANUAL AUDIO TOGGLE
