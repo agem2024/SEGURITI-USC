@@ -950,6 +950,89 @@
             visibility: visible !important;
         }
     </style>
+
+    <!-- STRATEGY MODAL -->
+    <div id="strategy-modal"
+        style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.95); z-index:10001; overflow-y:auto; padding: 2rem;">
+        <button onclick="document.getElementById('strategy-modal').style.display='none'"
+            style="position:fixed; top:2rem; right:2rem; background:transparent; border:1px solid #00f2ff; color:#00f2ff; padding:1rem; cursor:pointer; z-index:10002;">X
+            CERRAR</button>
+
+        <div style="max-width:1200px; margin:0 auto; color:white; font-family:'Outfit', sans-serif;">
+            <h1 class="neon-title" style="font-size:3rem; text-align:center; margin-bottom:2rem;">INTELIGENCIA
+                ESTRATÉGICA</h1>
+
+            <!-- SECTION 1: THE FOUNDATION -->
+            <div
+                style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem; align-items:center; margin-bottom:4rem;">
+                <div>
+                    <img src="./assets/stella_mars.png"
+                        style="width:100%; border-radius:8px; border:1px solid #00f2ff;">
+                </div>
+                <div>
+                    <h2 style="color:#00f2ff; font-size:2rem; margin-bottom:1rem;">1. EL SUELO (THE FOUNDATION)</h2>
+                    <p style="font-size:1.2rem; line-height:1.6; color:#ccc;">
+                        <strong>Ubicación:</strong> Lodi AVA, Norte de California.<br>
+                        <strong>Suelo:</strong> Tokay Sandy Loam (Arena Volcánica).<br>
+                        <strong>Secreto:</strong> La arena repele la filoxera, permitiendo vides de +100 años "A Pie
+                        Franco" (sin injertar). Esto crea una intensidad de sabor imposible de replicar en Napa o
+                        Sonoma.
+                    </p>
+                </div>
+            </div>
+
+            <!-- SECTION 2: THE PRODUCT -->
+            <div
+                style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem; align-items:center; margin-bottom:4rem;">
+                <div>
+                    <h2 style="color:#ff1493; font-size:2rem; margin-bottom:1rem;">2. EL CATALOGO (THE STARS)</h2>
+                    <ul style="list-style:none; font-size:1.2rem; line-height:2;">
+                        <li><strong style="color:#00f2ff;">NOVA STELLA ($27.99):</strong> Sauvignon Blanc. Fermentado en
+                            acero. Puro, Cítrico, "Luz de Estrella".</li>
+                        <li><strong style="color:#ff1493;">STELLA Z ($28.99):</strong> Old Vine Zinfandel. La joya de la
+                            corona. Frambuesa negra, Pimienta, Higo.</li>
+                        <li><strong style="color:var(--neon-gold);">CUATRO STELLAS ($29.99):</strong> Red Blend.
+                            Estructura imperial. Cabernet + Merlot + Petit Verdot.</li>
+                    </ul>
+                </div>
+                <div>
+                    <img src="./assets/nova_nebula.png"
+                        style="width:100%; border-radius:8px; border:1px solid #ff1493;">
+                </div>
+            </div>
+
+            <!-- SECTION 3: ORION STRATEGY -->
+            <div
+                style="background:rgba(0, 242, 255, 0.1); padding:3rem; border:1px solid #00f2ff; border-radius:12px; margin-bottom:2rem;">
+                <h2 style="text-align:center; color:white; font-size:2.5rem; margin-bottom:2rem;">3. ESTRATEGIA ORION
+                    TECH</h2>
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem;">
+                    <div>
+                        <h3 style="color:#00f2ff;">A. "JOSE ASSISTANT" (AI SOMMELIER)</h3>
+                        <p style="color:#ddd;">Entrenamos una IA con los datos de suelo y notas de cata de Lodi. Vive en
+                            la web 24/7 y vende vino usando la historia del astronauta. "Si José llegó al espacio, este
+                            vino te llevará a las estrellas".</p>
+                    </div>
+                    <div>
+                        <h3 style="color:#00f2ff;">B. 3D IMMERSIVE COMMERCE</h3>
+                        <p style="color:#ddd;">Transformamos esta experiencia visual (Dossier Imperial) en el canal de
+                            ventas principal. En lugar de un carrito aburrido de WooCommerce, el cliente compra
+                            "misiones espaciales" (Cajas de 6 botellas).</p>
+                    </div>
+                </div>
+                <div style="margin-top:2rem; text-align:center;">
+                    <img src="./assets/cuatro_constellation.png"
+                        style="width:100%; max-width:600px; border-radius:8px; border:1px solid white;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openStrategy() {
+            document.getElementById('strategy-modal').style.display = 'block';
+        }
+    </script>
 </body>
 
 </html>
