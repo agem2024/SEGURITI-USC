@@ -904,20 +904,39 @@
                 };
                 document.body.appendChild(muteBtn);
 
-                // Remove the old resize listener to avoid duplication if any
-                window.removeEventListener('resize', null);
-                window.addEventListener('resize', () => {
-                    camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix();
-                    renderer.setSize(window.innerWidth, window.innerHeight);
-                });
+            });
+            document.body.appendChild(muteBtn);
 
-            } catch (e) {
-                console.error("IGNITION FAIL:", e);
-            }
+            // Remove the old resize listener to avoid duplication if any
+            window.removeEventListener('resize', null);
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+
+        } catch (e) {
+            console.error("IGNITION FAIL:", e);
+        }
         }
 
         init();
     </script>
+
+    <!-- NUCLEAR CSS OVERRIDE to guarantee visibility -->
+    <style>
+        #galaxy-video-wrap {
+            display: block !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            z-index: 50 !important;
+            position: fixed !important;
+            right: 0 !important;
+            top: 0 !important;
+            height: 100vh !important;
+            width: 50vw !important;
+            /* Adjust if needed */
+        }
+    </style>
 </body>
 
 </html>
