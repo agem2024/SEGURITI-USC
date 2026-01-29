@@ -905,19 +905,18 @@
                 };
                 document.body.appendChild(muteBtn);
 
-            });
-            document.body.appendChild(muteBtn);
 
-            // Remove the old resize listener to avoid duplication if any
-            window.removeEventListener('resize', null);
-            window.addEventListener('resize', () => {
-                camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix();
-                renderer.setSize(window.innerWidth, window.innerHeight);
-            });
 
-        } catch (e) {
-            console.error("IGNITION FAIL:", e);
-        }
+                // Remove the old resize listener to avoid duplication if any
+                window.removeEventListener('resize', null);
+                window.addEventListener('resize', () => {
+                    camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                });
+
+            } catch (e) {
+                console.error("IGNITION FAIL:", e);
+            }
         }
 
         init();
