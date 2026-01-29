@@ -928,14 +928,18 @@
             display: block !important;
             opacity: 1 !important;
             visibility: visible !important;
-            z-index: 50 !important;
+            z-index: 40 !important;
+            /* Reduced from 50 to let UI pop if needed */
             position: fixed !important;
             right: 0 !important;
-            top: 0 !important;
-            height: 100vh !important;
-            width: 50vw !important;
-            /* Adjust if needed */
+            top: 20% !important;
+            /* Moved down */
+            height: 60vh !important;
+            /* Reduced from 100vh */
+            width: 30vw !important;
+            /* Reduced from 50vw */
             background: transparent !important;
+            pointer-events: none !important;
         }
 
         /* FORCE VIDEO ELEMENT TO FILL CONTAINER */
