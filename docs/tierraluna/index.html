@@ -935,6 +935,18 @@
             height: 100vh !important;
             width: 50vw !important;
             /* Adjust if needed */
+            background: transparent !important;
+        }
+
+        /* FORCE VIDEO ELEMENT TO FILL CONTAINER */
+        #galaxy-video-wrap video,
+        #bottles-video {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            display: block !important;
+            opacity: 1 !important;
+            visibility: visible !important;
         }
     </style>
 </body>
