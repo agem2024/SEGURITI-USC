@@ -857,7 +857,42 @@
                     bg.play();
 
                     startBtn.style.display = 'none';
+
+                    // FORCE INITIAL VIEW TO GALAXY
+                    setView('galaxy');
                 };
+
+                // MANUAL AUDIO TOGGLE
+                const muteBtn = document.createElement('button');
+                muteBtn.innerHTML = '🔊 AUDIO: ON';
+                Object.assign(muteBtn.style, {
+                    position: 'fixed', bottom: '2rem', right: '2rem',
+                    zIndex: '1000', padding: '0.8rem 1.5rem',
+                    background: 'rgba(0, 242, 255, 0.1)', color: '#00f2ff',
+                    border: '1px solid #00f2ff', borderRadius: '4px',
+                    cursor: 'pointer', fontWeight: '800', letterSpacing: '2px'
+                });
+                muteBtn.onclick = () => {
+                    const jose = document.getElementById('jose-video');
+                    const modal = document.getElementById('modal-video');
+                    const allVideos = [jose, modal];
+
+                    const isMuted = muteBtn.innerHTML.includes('OFF');
+                    allVideos.forEach(v => v.muted = !isMuted);
+
+                    if (isMuted) {
+                        muteBtn.innerHTML = '🔊 AUDIO: ON';
+                        muteBtn.style.borderColor = '#00f2ff';
+                        muteBtn.style.color = '#00f2ff';
+                    } else {
+                        muteBtn.innerHTML = '🔇 AUDIO: OFF';
+                        muteBtn.style.borderColor = '#666';
+                        muteBtn.style.color = '#666';
+                        jose.muted = true;
+                        modal.muted = true;
+                    }
+                };
+                document.body.appendChild(muteBtn);
 
                 // Remove the old resize listener to avoid duplication if any
                 window.removeEventListener('resize', null);
