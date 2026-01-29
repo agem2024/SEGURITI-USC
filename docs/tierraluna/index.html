@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIERRA LUNA | Dossier Imperial: Compact V5</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600;900&family=Playfair+Display:ital,wght@0,900;1,900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --neon-blue: #00f2ff;
+            --neon-gold: #c5a059;
+            --neon-magenta: #ff1493;
+            --bg-dark: #000;
+            --panel-bg: rgba(5, 10, 25, 0.85);
+            /* Slightly more transparent */
+            --text-main: #ffffff;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: transparent;
+            color: var(--text-main);
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* --- BACKGROUND VIDEO (CORRECTED) --- */
+        #global-bg-video {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -2;
+            opacity: 0.98;
+            /* High visibility as requested */
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            outline: none;
+            pointer-events: auto;
+        }
+
+        /* --- LOADER --- */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #loader-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            opacity: 0.5;
+        }
+
+        .loader-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+        }
+
+        .orbit-loader {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--neon-blue);
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* --- TYPOGRAPHY (COMPACT) --- */
+        .neon-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            /* Reduced from 6rem */
+            color: #fff;
+            text-shadow: 0 0 20px rgba(0, 242, 255, 0.8), 3px 3px 0px rgba(0, 0, 0, 0.9);
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+            line-height: 1.1;
+        }
+
+        .neon-glow-blue {
+            text-shadow: 0 0 20px var(--neon-blue), 0 0 40px rgba(0, 242, 255, 0.4);
+        }
+
+        .neon-glow-gold {
+            text-shadow: 0 0 20px var(--neon-gold), 0 0 40px rgba(197, 160, 89, 0.4);
+        }
+
+        .neon-glow-magenta {
+            text-shadow: 0 0 20px var(--neon-magenta), 0 0 40px rgba(255, 20, 147, 0.4);
+        }
+
+        .tag {
+            color: var(--neon-blue);
+            font-weight: 800;
+            letter-spacing: 6px;
+            margin-bottom: 1rem;
+            display: block;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+        }
+
+        /* NAVIGATION (COMPACT) */
+        #top-nav {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            position: fixed;
+            top: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            pointer-events: auto;
+        }
+
+        .nav-btn {
+            background: var(--glass);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 0.6rem 2rem;
+            border-radius: 4px;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+            backdrop-filter: blur(20px);
+            transition: 0.4s;
+            letter-spacing: 3px;
+            font-size: 0.8rem;
+        }
+
+        .nav-btn.active {
+            border-color: var(--neon-blue);
+            color: var(--neon-blue);
+            box-shadow: 0 0 25px rgba(0, 242, 255, 0.4);
+            background: rgba(0, 242, 255, 0.1);
+        }
+
+        /* PANELS (COMPACT) */
+        .panel {
+            background: var(--panel-bg);
+            backdrop-filter: blur(30px);
+            padding: 2.5rem;
+            /* Reduced from 4rem */
+            border-radius: 4px;
+            border-left: 6px solid var(--neon-blue);
+            max-width: 500px;
+            /* Reduced width */
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+        }
+
+        .panel h2 {
+            font-size: 0.9rem;
+            color: var(--neon-blue);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .panel p {
+            line-height: 1.8;
+            font-size: 1rem;
+            color: #ddd;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            text-align: justify;
+        }
+
+        .price {
+            font-size: 3rem;
+            /* Reduced from 5rem */
+            color: #fff;
+            font-weight: 900;
+            margin: 1rem 0;
+            letter-spacing: 1px;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+        }
+
+        .btn-detail {
+            background: transparent;
+            border: 2px solid var(--neon-blue);
+            color: var(--neon-blue);
+            padding: 0.8rem 2rem;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: 0.4s;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: 3px;
+        }
+
+        .btn-detail:hover {
+            background: var(--neon-blue);
+            color: #000;
+            box-shadow: 0 0 30px var(--neon-blue);
+            transform: translateY(-2px);
+        }
+
+        /* SELECTOR (COMPACT) */
+        #product-selector {
+            position: fixed;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 3rem;
+            z-index: 1000;
+            pointer-events: auto;
+        }
+
+        .prod-btn {
+            background: none;
+            border: none;
+            color: #666;
+            font-size: 1rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.4s;
+            letter-spacing: 2px;
+        }
+
+        .prod-btn.active {
+            color: #fff;
+            transform: scale(1.2);
+            text-shadow: 0 0 20px var(--neon-blue);
+        }
+
+        /* THE LEGEND (JOSE VIDEO) */
+        #legend-content {
+            position: absolute;
+            left: 8%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40%;
+            z-index: 20;
+        }
+
+        .legend-video-wrap {
+            position: absolute;
+            right: 8%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 35%;
+            height: 60vh;
+            overflow: hidden;
+            border: 1px solid var(--neon-blue);
+            box-shadow: 0 0 60px rgba(0, 242, 255, 0.2);
+            border-radius: 4px;
+        }
+
+        #jose-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* BOTELLAS VIDEO (HOME RIGHT) */
+        #galaxy-video-wrap {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30%;
+            /* Balanced width */
+            height: 50vh;
+            overflow: hidden;
+            border: 1px solid var(--neon-blue);
+            box-shadow: 0 0 40px rgba(0, 242, 255, 0.15);
+            border-radius: 4px;
+            z-index: 20;
+            display: none;
+            /* Toggled by JS */
+        }
+
+        #bottles-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #instruction-hint {
+            position: fixed;
+            bottom: 12rem;
+            left: 5%;
+            font-size: 0.75rem;
+            color: #777;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            z-index: 5;
+            font-weight: 800;
+            opacity: 0.6;
+        }
+
+        /* MODAL (TRAVEL VIDEO) */
+        #modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            background: #050812;
+            max-width: 1000px;
+            width: 100%;
+            max-height: 80vh;
+            border: 1px solid var(--neon-blue);
+            display: flex;
+            overflow: hidden;
+            border-radius: 2px;
+        }
+
+        .modal-media {
+            flex: 0.8;
+            background: #000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #modal-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+        }
+
+        .modal-body {
+            flex: 1.2;
+            padding: 3rem;
+            overflow-y: auto;
+            background: linear-gradient(180deg, #090e1a 0%, #000 100%);
+            z-index: 10;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            font-size: 3rem;
+            cursor: pointer;
+            color: var(--neon-blue);
+            transition: 0.3s;
+            z-index: 20;
+            line-height: 0.5;
+        }
+
+        .close-modal:hover {
+            transform: scale(1.1);
+            color: #fff;
+        }
+
+        h4 {
+            color: var(--neon-blue);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            font-size: 0.95rem;
+            border-bottom: 1px solid rgba(0, 242, 255, 0.2);
+            padding-bottom: 0.5rem;
+        }
+
+        .story-p {
+            line-height: 1.8;
+            font-size: 1rem;
+            color: #ccc;
+            text-align: justify;
+            margin-bottom: 2rem;
+        }
+
+        .ui-container {
+            position: relative;
+            z-index: 10;
+            pointer-events: none;
+            height: 100vh;
+            width: 100vw;
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .ui-container>* {
+            pointer-events: auto;
+        }
+    </style>
+    <script>
+        window.onerror = function (msg, url, line, col, error) {
+            const errBox = document.createElement('div');
+            errBox.style.position = 'fixed';
+            errBox.style.top = '0';
+            errBox.style.left = '0';
+            errBox.style.width = '100%';
+            errBox.style.background = 'red';
+            errBox.style.color = 'white';
+            errBox.style.zIndex = '99999';
+            errBox.style.padding = '1rem';
+            errBox.innerHTML = `<h3>SYSTEM ERROR:</h3><p>${msg}</p><p>Line: ${line}</p>`;
+            document.body.appendChild(errBox);
+            // Force hide loader on error
+            document.getElementById('loader').style.display = 'none';
+        };
+    </script>
+</head>
+
+<body>
+
+    <!-- CLIP 1: START/IGNITION ("3 BOTELLAS") - GROK VIDEO -->
+    <div id="loader">
+        <video id="loader-video" autoplay muted loop playsinline>
+            <source src="grok-video-4df01651-595d-409b-be4b-dbe2f8bf95d2.mp4" type="video/mp4">
+        </video>
+        <div class="loader-content">
+            <div class="orbit-loader"></div>
+            <p
+                style="margin-top: 1.5rem; letter-spacing: 8px; font-weight: 800; color: var(--neon-blue); font-size: 0.9rem;">
+                SYSTEM IGNITION</p>
+        </div>
+    </div>
+
+    <!-- CLIP 3: GLOBAL BACKGROUND (Encoded Path) -->
+    <video id="global-bg-video" autoplay muted loop playsinline>
+        <source src="FONDO%20DE%20PANTALLA.mp4" type="video/mp4">
+    </video>
+
+    <!-- MODAL WITH CLIP 2 (TRAVEL LOG) -->
+    <div id="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div class="modal-media">
+                <video id="modal-video" autoplay muted loop playsinline>
+                    <source src="client_travel_log_vintage_jet_1769634000000_png_1769633470103.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="modal-body">
+                <h3 id="modal-sub"
+                    style="color:var(--neon-blue); letter-spacing: 8px; text-transform:uppercase; margin-bottom: 2rem; font-size: 0.9rem;">
+                    ARCHIVO CONFIDENCIAL</h3>
+                <h1 id="modal-title" class="neon-title" style="font-size: 3.5rem; margin-bottom: 2rem;">DOSSIER</h1>
+                <div id="modal-text"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="top-nav">
+        <button class="nav-btn active" onclick="setView('galaxy')">Galaxy</button>
+        <button class="nav-btn" onclick="setView('legend')">The Legend</button>
+    </div>
+
+    <div class="ui-container">
+        <!-- PRODUCT GALAXY VIEW -->
+        <div id="master-info" style="margin-top: 8vh;">
+            <span class="tag">IMPERIAL DOSSIER</span>
+            <h1 id="main-title" class="neon-title neon-glow-blue">Nova Stella</h1>
+            <div id="main-sub"
+                style="color: var(--neon-gold); letter-spacing: 10px; margin-top: 0.5rem; text-transform: uppercase; font-weight: 900; font-size: 1.5rem;">
+                SAUVIGNON BLANC</div>
+            <div class="price" id="main-price">$27.99</div>
+
+            <div class="panel">
+                <h2>Technical Analysis</h2>
+                <p id="main-desc">Inspirado en la visión STS-128. Fermentado 100% en acero, capturando la pureza del
+                    vacío estelar con notas de flores de pera y un final cítrico de alta resolución.</p>
+                <button class="btn-detail" onclick="showDetails()">Ver Bitácora de Viaje</button>
+            </div>
+        </div>
+
+        <!-- THE LEGEND VIEW -->
+        <div id="legend-content" style="display: none;">
+            <span class="tag">VERIFIED ASTRO-FOUNDER</span>
+            <h1 class="neon-title" style="font-size: 4.5rem;">Dr. José Hernández</h1>
+            <div
+                style="color: var(--neon-gold); letter-spacing: 8px; font-weight: 900; margin: 1rem 0; font-size: 1.5rem; text-transform: uppercase;">
+                STS-128 MISSION SPECIALIST</div>
+
+            <div class="panel">
+                <p><strong>El Triunfo de la Voluntad:</strong> Del campo de Lodi a la cúpula del Discovery. Rechazado 11
+                    veces, seleccionado en la número 12. Un legado de persistencia absoluta.</p>
+                <button class="btn-detail" onclick="showClientHistory()">Biografía Completa</button>
+            </div>
+        </div>
+
+        <!-- CLIP: BOTELLAS (HOME RIGHT) -->
+        <div id="galaxy-video-wrap">
+            <video id="bottles-video" autoplay muted loop playsinline>
+                <source src="BOTELLAS.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <!-- CLIP 5: PORTRAIT VIDEO (Encoded Path) -->
+        <div class="legend-video-wrap" id="legend-img" style="display: none;">
+            <video id="jose-video" autoplay muted loop playsinline>
+                <source src="JOSE%20HERNANDEZ%202.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div id="instruction-hint">DRAG TO ORBIT | SCROLL TO ZOOM</div>
+
+        <div id="product-selector">
+            <button class="prod-btn active" onclick="selectProduct(0)">Nova Stella</button>
+            <button class="prod-btn" onclick="selectProduct(1)">Stella Z</button>
+            <button class="prod-btn" onclick="selectProduct(2)">Cuatro Stellas</button>
+        </div>
+    </div>
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+        import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+        import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+
+        let currentIdx = 0;
+        const products = [
+            {
+                name: 'Nova Stella', sub: 'Sauvignon Blanc', price: '$27.99', wine: '#fffedb', labelColor: '#00f2ff',
+                history: 'Nova Stella representa el principio de todo. Inspirada en la primera luz captada por el telescopio espacial, este vino es un tributo a la claridad absoluta. Nacido en la frialdad del acero, sin la interferencia del roble, para capturar la esencia pura de la uva tal como la naturaleza la diseñó en el vacío del espacio.',
+                travesia: 'Desde los viñedos de gran altitud que miran al cosmos, hasta su fermentación a baja temperatura controlada. Cada botella es una cápsula del tiempo que preserva la frescura de una noche estrellada en el hemisferio sur.',
+                tasting: 'Explosión de cítricos de alta definición, notas de lima kaffir y flor de pera blanca. En boca es eléctrico, vibrante, con una mineralidad que recuerda al polvo de estrellas y un final limpio que desafía la gravedad.',
+                video: 'client_travel_log_vintage_jet_1769634000000_png_1769633470103.mp4'
+            },
+            {
+                name: 'Stella Z', sub: 'Old Vine Zinfandel', price: '$28.99', wine: '#ff2a2a', labelColor: '#c5a059',
+                history: 'El ancla terrestre. Mientras miramos al cielo, nuestros pies siguen en la tierra. Stella Z rinde honor a las vides centenarias de Lodi, supervivientes de generaciones. Plantadas por manos trabajadoras, estas cepas viejas son las antenas biológicas que conectan el suelo californiano con el universo.',
+                travesia: 'Un viaje a través del tiempo en el Valle Central. Cosecha seleccionada a mano bajo el sol implacable que concentra el azúcar y el carácter. Envejecido en roble americano para desarrollar una estructura robusta capaz de soportar el lanzamiento más exigente.',
+                tasting: 'Profundidad abismal de frambuesa negra y mermelada de higo. Notas de pimienta blanca, chocolate oscuro y un toque de vainilla tostada que evoca los paneles de control de una nave clásica. Final largo y persistente.',
+                video: 'cinematic_space_env_map_1769625387018.mp4'
+            },
+            {
+                name: 'Cuatro Stellas', sub: 'North Coast Blend', price: '$69.99', wine: '#e60049', labelColor: '#ff1493',
+                history: 'La Convergencia. Nacido de una cena visionaria en París, bajo la luz de la Torre Eiffel, donde se trazó el plan para alcanzar las estrellas. Cuatro variedades, cuatro destinos, una sola misión. Es la culminación de todas las lecciones aprendidas en la Tierra y en el Espacio.',
+                travesia: 'Una mezcla maestra que desafía fronteras. Cabernet para la estructura, Merlot para la elegancia, Petit Verdot para el color y Cabernet Franc para el aroma. Ensamblado con la precisión de una maniobra de acoplamiento orbital.',
+                tasting: 'Complejidad multidimensional. Capas de cereza negra, cassis y caja de puros. Taninos pulidos como lentes de telescopio y una elegancia estructural que permite guarda por décadas. Un vino para celebrar el regreso a casa.',
+                video: 'space_background_panorama_1769629094049.mp4'
+            }
+        ];
+
+        async function init() {
+            try {
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 5000);
+                const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setPixelRatio(window.devicePixelRatio);
+                renderer.toneMapping = THREE.ACESFilmicToneMapping;
+                renderer.toneMappingExposure = 1.3;
+                renderer.setClearColor(0x000000, 0); // FORCE TRANSPARENT BACKGROUND
+                document.body.appendChild(renderer.domElement);
+
+                const composer = new EffectComposer(renderer);
+                composer.addPass(new RenderPass(scene, camera));
+                const bloom = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.2, 0.5, 0.9);
+                composer.addPass(bloom);
+
+                scene.add(new THREE.AmbientLight(0xffffff, 1.5));
+                const pl = new THREE.PointLight(0xffffff, 500); pl.position.set(20, 30, 40); scene.add(pl);
+
+                const bottleGroup = new THREE.Group();
+                const bottleMeshes = [];
+
+
+                products.forEach((p, i) => {
+                    const wrap = new THREE.Group();
+                    // BRIGHTER GLASS: Increased attenuationDistance from 1 to 8, reduced thickness slightly
+                    const glassMat = new THREE.MeshPhysicalMaterial({
+                        color: 0x222222, metalness: 0.1, roughness: 0.05,
+                        transmission: 0.98, thickness: 1.5, ior: 1.5,
+                        envMapIntensity: 2.5,
+                        attenuationColor: new THREE.Color(p.wine), attenuationDistance: 8
+                    });
+                    const liqMat = new THREE.MeshPhysicalMaterial({ color: p.wine, transmission: 0.9, roughness: 0 });
+
+                    const body = new THREE.Mesh(new THREE.CylinderGeometry(2.5, 2.5, 9, 64), glassMat);
+                    const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.8, 2.5, 5, 64), glassMat); neck.position.y = 7;
+                    const liquid = new THREE.Mesh(new THREE.CylinderGeometry(2.35, 2.35, 8.5, 32), liqMat); liquid.position.y = -0.2;
+
+                    const logoCanvas = document.createElement('canvas'); logoCanvas.width = 512; logoCanvas.height = 512;
+                    const ctx = logoCanvas.getContext('2d'); ctx.fillStyle = '#050508'; ctx.fillRect(0, 0, 512, 512);
+                    ctx.fillStyle = p.labelColor; ctx.shadowColor = p.labelColor; ctx.shadowBlur = 40; // Increased Glow
+                    ctx.font = 'bold 50px serif'; ctx.textAlign = 'center'; ctx.fillText('TIERRA LUNA', 256, 100);
+                    // BIGGER NAME
+                    ctx.font = '900 85px sans-serif'; ctx.fillText(p.name.toUpperCase(), 256, 260);
+                    ctx.font = '40px sans-serif'; ctx.fillText('IMPERIAL', 256, 420);
+
+                    const labelTex = new THREE.CanvasTexture(logoCanvas);
+                    // Emissive Label for visibility
+                    const labelMat = new THREE.MeshStandardMaterial({
+                        map: labelTex, metalness: 0.6, roughness: 0.2,
+                        transparent: true, emissive: p.labelColor, emissiveIntensity: 0.2
+                    });
+                    const label = new THREE.Mesh(new THREE.CylinderGeometry(2.54, 2.54, 6, 64, 1, true), labelMat);
+                    label.rotation.y = Math.PI; label.position.y = -0.5;
+
+                    wrap.add(body, neck, liquid, label);
+                    wrap.visible = i === 0;
+                    bottleGroup.add(wrap);
+                    bottleMeshes.push(wrap);
+                });
+                scene.add(bottleGroup);
+
+                camera.position.set(0, 10, 110);
+                const controls = new OrbitControls(camera, renderer.domElement);
+                controls.enableDamping = true;
+                controls.maxDistance = 150;
+                controls.minDistance = 80;
+
+                window.selectProduct = (idx) => {
+                    currentIdx = idx;
+                    bottleMeshes.forEach((m, ii) => m.visible = ii === idx);
+                    document.querySelectorAll('.prod-btn').forEach((b, ii) => b.classList.toggle('active', ii === idx));
+                    const p = products[idx];
+                    const title = document.getElementById('main-title');
+                    title.innerText = p.name;
+                    title.className = `neon-title neon-glow-${idx === 0 ? 'blue' : idx === 1 ? 'gold' : 'magenta'}`;
+                    document.getElementById('main-sub').innerText = p.sub;
+                    document.getElementById('main-price').innerText = p.price;
+                    document.documentElement.style.setProperty('--neon-blue', p.labelColor);
+                };
+
+                window.setView = (view) => {
+                    const gal = view === 'galaxy';
+                    bottleGroup.visible = gal;
+                    document.getElementById('legend-content').style.display = gal ? 'none' : 'block';
+                    document.getElementById('legend-img').style.display = gal ? 'none' : 'block';
+                    document.getElementById('master-info').style.display = gal ? 'block' : 'none';
+                    document.getElementById('product-selector').style.display = gal ? 'flex' : 'none';
+                    // Fix Opacity to 0.98 as requested (was overriding CSS)
+                    document.getElementById('global-bg-video').style.opacity = gal ? '0.98' : '0.3';
+                    // Show BOTELLAS video (Right Side)
+                    const galVideo = document.getElementById('galaxy-video-wrap');
+                    if (galVideo) galVideo.style.display = gal ? 'block' : 'none';
+
+                    document.querySelectorAll('.nav-btn').forEach(b => b.classList.toggle('active', b.innerText.toLowerCase().includes(view.slice(0, 3))));
+                };
+
+                window.showDetails = () => {
+                    const p = products[currentIdx];
+                    // Dynamic Video Swap for Modals based on Product
+                    const modalVideo = document.getElementById('modal-video');
+                    const source = modalVideo.querySelector('source');
+                    source.src = p.video;
+                    modalVideo.load();
+
+                    document.getElementById('modal-title').innerText = p.name;
+                    document.getElementById('modal-text').innerHTML = `
+                        <div class="story-section">
+                            <h4>I. Origen & Génesis</h4>
+                            <p class="story-p">${p.history}</p>
+                        </div>
+                        <div class="story-section">
+                            <h4>II. Bitácora de Viaje</h4>
+                            <p class="story-p">${p.travesia}</p>
+                        </div>
+                        <div class="story-section">
+                            <h4>III. Perfil Imperial</h4>
+                            <p class="story-p">${p.tasting}</p>
+                        </div>
+                    `;
+                    document.getElementById('modal-overlay').style.display = 'flex';
+                };
+
+                window.showClientHistory = () => {
+                    document.getElementById('modal-title').innerText = "Vuelo de Persistencia";
+                    document.getElementById('modal-text').innerHTML = `
+                        <div class="story-section">
+                            <h4>I. Roots (Tierra)</h4>
+                            <p class="story-p">Hijo de migrantes mexicanos, José aprendió el valor del trabajo duro en los campos de California. Mientras otros veían tierra, él veía la plataforma de lanzamiento. Su infancia rotativa entre México y EE.UU. le enseñó a adaptarse a cualquier entorno, una habilidad crucial para la supervivencia en el espacio.</p>
+                        </div>
+                        <div class="story-section">
+                            <h4>II. Orbit (Espacio)</h4>
+                            <p class="story-p">El camino no fue directo. Rechazado 11 veces por el programa espacial de la NASA. Cada rechazo fue combustible, no fallo. En el intento número 12, se ganó su asiento en el Discovery (STS-128). 14 días orbitando la Tierra, a 28,000 km/h, realizando experimentos que beneficiarían a toda la humanidad.</p>
+                        </div>
+                        <div class="story-section">
+                            <h4>III. Legacy (Retorno)</h4>
+                            <p class="story-p">El regreso no es el final, es el comienzo de una nueva misión. Tierra Luna Cellars es la manifestación física de ese viaje. Vinos que cuentan la historia de que la tenacidad es la fuerza más poderosa del universo. José sigue inspirando a la próxima generación de exploradores a través de su fundación.</p>
+                        </div>
+                    `;
+                    document.getElementById('modal-overlay').style.display = 'flex';
+                };
+
+                window.closeModal = () => document.getElementById('modal-overlay').style.display = 'none';
+
+                const animate = () => {
+                    requestAnimationFrame(animate);
+                    if (bottleGroup.visible) bottleGroup.rotation.y += 0.005;
+                    controls.update();
+                    // composer.render(); // DISABLE BLOOM TEMPORARILY
+                    renderer.render(scene, camera); // USE STANDARD RENDERER FOR ALPHA
+                };
+                animate();
+
+                // Hide loader after 2s
+                setTimeout(() => document.getElementById('loader').style.display = 'none', 2500);
+
+            } catch (e) {
+                console.error("IGNITION FAIL:", e);
+            }
+        }
+
+        init();
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+
+</html>
