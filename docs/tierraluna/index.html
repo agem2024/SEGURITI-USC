@@ -423,6 +423,76 @@
         .ui-container>* {
             pointer-events: auto;
         }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 768px) {
+            .neon-title {
+                font-size: 2.5rem;
+            }
+
+            #main-sub {
+                font-size: 1rem;
+                letter-spacing: 5px;
+            }
+
+            .price {
+                font-size: 2rem;
+                margin: 0.5rem 0;
+            }
+
+            .panel {
+                padding: 1.5rem;
+                border-left-width: 4px;
+                max-width: 100%;
+            }
+
+            .panel p {
+                font-size: 0.9rem;
+                line-height: 1.6;
+            }
+
+            #top-nav {
+                top: 1rem;
+                width: 100%;
+                padding: 0 1rem;
+            }
+
+            .nav-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.7rem;
+            }
+
+            #product-selector {
+                bottom: 1.5rem;
+                gap: 1rem;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .prod-btn {
+                font-size: 0.8rem;
+            }
+
+            /* Hide non-essential videos on mobile to save perspective */
+            #galaxy-video-wrap {
+                display: none !important;
+            }
+
+            .legend-video-wrap {
+                width: 80%;
+                right: auto;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                opacity: 0.3;
+                z-index: -1;
+            }
+
+            #legend-content {
+                width: 90%;
+                left: 5%;
+                text-align: center;
+            }
+        }
     </style>
     <script>
         window.onerror = function (msg, url, line, col, error) {
@@ -448,7 +518,7 @@
     <!-- CLIP 1: START/IGNITION ("3 BOTELLAS") - GROK VIDEO -->
     <div id="loader">
         <video id="loader-video" autoplay muted loop playsinline>
-            <source src="grok-video-4df01651-595d-409b-be4b-dbe2f8bf95d2.mp4" type="video/mp4">
+            <source src="grok.mp4?v=99" type="video/mp4">
         </video>
         <div class="loader-content">
             <div class="orbit-loader"></div>
@@ -460,16 +530,16 @@
 
     <!-- CLIP 3: GLOBAL BACKGROUND (Encoded Path) -->
     <video id="global-bg-video" autoplay muted loop playsinline>
-        <source src="FONDO%20DE%20PANTALLA.mp4" type="video/mp4">
+        <source src="fondo.mp4?v=99" type="video/mp4">
     </video>
 
-    <!-- MODAL WITH CLIP 2 (TRAVEL LOG) -->
+    <!-- MODAL WITH CLIP 2 (TRAVEL LOG) - Default Source, Dynamic JS updates this -->
     <div id="modal-overlay">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <div class="modal-media">
                 <video id="modal-video" autoplay muted loop playsinline>
-                    <source src="client_travel_log_vintage_jet_1769634000000_png_1769633470103.mp4" type="video/mp4">
+                    <source src="wine1.mp4?v=99" type="video/mp4">
                 </video>
             </div>
             <div class="modal-body">
@@ -523,14 +593,14 @@
         <!-- CLIP: BOTELLAS (HOME RIGHT) -->
         <div id="galaxy-video-wrap">
             <video id="bottles-video" autoplay muted loop playsinline>
-                <source src="BOTELLAS.mp4" type="video/mp4">
+                <source src="botellas.mp4?v=99" type="video/mp4">
             </video>
         </div>
 
         <!-- CLIP 5: PORTRAIT VIDEO (Encoded Path) -->
         <div class="legend-video-wrap" id="legend-img" style="display: none;">
             <video id="jose-video" autoplay muted loop playsinline>
-                <source src="JOSE%20HERNANDEZ%202.mp4" type="video/mp4">
+                <source src="jose.mp4?v=99" type="video/mp4">
             </video>
         </div>
 
@@ -565,21 +635,21 @@
                 history: 'Nova Stella representa el principio de todo. Inspirada en la primera luz captada por el telescopio espacial, este vino es un tributo a la claridad absoluta. Nacido en la frialdad del acero, sin la interferencia del roble, para capturar la esencia pura de la uva tal como la naturaleza la diseñó en el vacío del espacio.',
                 travesia: 'Desde los viñedos de gran altitud que miran al cosmos, hasta su fermentación a baja temperatura controlada. Cada botella es una cápsula del tiempo que preserva la frescura de una noche estrellada en el hemisferio sur.',
                 tasting: 'Explosión de cítricos de alta definición, notas de lima kaffir y flor de pera blanca. En boca es eléctrico, vibrante, con una mineralidad que recuerda al polvo de estrellas y un final limpio que desafía la gravedad.',
-                video: 'client_travel_log_vintage_jet_1769634000000_png_1769633470103.mp4'
+                video: 'wine1.mp4?v=99'
             },
             {
                 name: 'Stella Z', sub: 'Old Vine Zinfandel', price: '$28.99', wine: '#ff2a2a', labelColor: '#c5a059',
                 history: 'El ancla terrestre. Mientras miramos al cielo, nuestros pies siguen en la tierra. Stella Z rinde honor a las vides centenarias de Lodi, supervivientes de generaciones. Plantadas por manos trabajadoras, estas cepas viejas son las antenas biológicas que conectan el suelo californiano con el universo.',
                 travesia: 'Un viaje a través del tiempo en el Valle Central. Cosecha seleccionada a mano bajo el sol implacable que concentra el azúcar y el carácter. Envejecido en roble americano para desarrollar una estructura robusta capaz de soportar el lanzamiento más exigente.',
                 tasting: 'Profundidad abismal de frambuesa negra y mermelada de higo. Notas de pimienta blanca, chocolate oscuro y un toque de vainilla tostada que evoca los paneles de control de una nave clásica. Final largo y persistente.',
-                video: 'cinematic_space_env_map_1769625387018.mp4'
+                video: 'wine2.mp4?v=99'
             },
             {
                 name: 'Cuatro Stellas', sub: 'North Coast Blend', price: '$69.99', wine: '#e60049', labelColor: '#ff1493',
                 history: 'La Convergencia. Nacido de una cena visionaria en París, bajo la luz de la Torre Eiffel, donde se trazó el plan para alcanzar las estrellas. Cuatro variedades, cuatro destinos, una sola misión. Es la culminación de todas las lecciones aprendidas en la Tierra y en el Espacio.',
                 travesia: 'Una mezcla maestra que desafía fronteras. Cabernet para la estructura, Merlot para la elegancia, Petit Verdot para el color y Cabernet Franc para el aroma. Ensamblado con la precisión de una maniobra de acoplamiento orbital.',
                 tasting: 'Complejidad multidimensional. Capas de cereza negra, cassis y caja de puros. Taninos pulidos como lentes de telescopio y una elegancia estructural que permite guarda por décadas. Un vino para celebrar el regreso a casa.',
-                video: 'space_background_panorama_1769629094049.mp4'
+                video: 'wine3.mp4?v=99'
             }
         ];
 
@@ -672,11 +742,24 @@
                     document.getElementById('legend-img').style.display = gal ? 'none' : 'block';
                     document.getElementById('master-info').style.display = gal ? 'block' : 'none';
                     document.getElementById('product-selector').style.display = gal ? 'flex' : 'none';
-                    // Fix Opacity to 0.98 as requested (was overriding CSS)
+
+                    // Fix Opacity to 0.98 as requested
                     document.getElementById('global-bg-video').style.opacity = gal ? '0.98' : '0.3';
+
                     // Show BOTELLAS video (Right Side)
                     const galVideo = document.getElementById('galaxy-video-wrap');
                     if (galVideo) galVideo.style.display = gal ? 'block' : 'none';
+
+                    // AUDIO CONTROL: Unmute Jose Video only when in Legend view
+                    const joseVideo = document.getElementById('jose-video');
+                    if (!gal) {
+                        joseVideo.muted = false;
+                        joseVideo.currentTime = 0;
+                        joseVideo.play().catch(e => console.log("Audio play blocked", e));
+                    } else {
+                        joseVideo.muted = true;
+                        joseVideo.pause();
+                    }
 
                     document.querySelectorAll('.nav-btn').forEach(b => b.classList.toggle('active', b.innerText.toLowerCase().includes(view.slice(0, 3))));
                 };
@@ -688,6 +771,10 @@
                     const source = modalVideo.querySelector('source');
                     source.src = p.video;
                     modalVideo.load();
+
+                    // AUDIO CONTROL: Unmute Modal Video
+                    modalVideo.muted = false;
+                    modalVideo.play().catch(e => console.log("Audio play blocked", e));
 
                     document.getElementById('modal-title').innerText = p.name;
                     document.getElementById('modal-text').innerHTML = `
@@ -726,7 +813,12 @@
                     document.getElementById('modal-overlay').style.display = 'flex';
                 };
 
-                window.closeModal = () => document.getElementById('modal-overlay').style.display = 'none';
+                window.closeModal = () => {
+                    const mv = document.getElementById('modal-video');
+                    mv.muted = true;
+                    mv.pause();
+                    document.getElementById('modal-overlay').style.display = 'none';
+                };
 
                 const animate = () => {
                     requestAnimationFrame(animate);
@@ -740,16 +832,46 @@
                 // Hide loader after 2s
                 setTimeout(() => document.getElementById('loader').style.display = 'none', 2500);
 
+                // --- AUDIO UNLOCK OVERLAY LOGIC ---
+                const startBtn = document.createElement('button');
+                startBtn.id = 'enter-exp-btn';
+                startBtn.innerText = 'ENTER EXPERIENCE / ENTRAR';
+                Object.assign(startBtn.style, {
+                    position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
+                    zIndex: '10000', padding: '1rem 3rem', background: 'rgba(0,0,0,0.8)',
+                    color: '#00f2ff', border: '1px solid #00f2ff', fontSize: '1.5rem',
+                    cursor: 'pointer', letterSpacing: '5px', textTransform: 'uppercase'
+                });
+                document.body.appendChild(startBtn);
+
+                startBtn.onclick = () => {
+                    // Unlock Audio Context
+                    const joseVideo = document.getElementById('jose-video');
+                    joseVideo.muted = false;
+                    joseVideo.volume = 1.0;
+                    // Try to play briefly then pause safely to unlock
+                    joseVideo.play().then(() => joseVideo.pause()).catch(e => console.log("Audio unlock", e));
+
+                    // Start Background
+                    const bg = document.getElementById('global-bg-video');
+                    bg.play();
+
+                    startBtn.style.display = 'none';
+                };
+
+                // Remove the old resize listener to avoid duplication if any
+                window.removeEventListener('resize', null);
+                window.addEventListener('resize', () => {
+                    camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                });
+
             } catch (e) {
                 console.error("IGNITION FAIL:", e);
             }
         }
 
         init();
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
     </script>
 </body>
 
