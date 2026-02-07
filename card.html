@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Espinosa | Digital Card</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #000;
+            color: #fff;
+            font-family: 'Outfit', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .card-container {
+            width: 100%;
+            max-width: 400px;
+            background: #111;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(0, 243, 255, 0.2);
+            position: relative;
+        }
+
+        /* LANGUAGE SELECTOR */
+        .lang-selector {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 100;
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            max-width: 180px;
+            justify-content: flex-end;
+        }
+
+        .lang-btn {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #888;
+            padding: 5px 8px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            transition: 0.3s;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .lang-btn:hover,
+        .lang-btn.active {
+            background: #00f3ff;
+            color: #000;
+            border-color: #00f3ff;
+        }
+
+        .header-video {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+            mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+        }
+
+        .content {
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            top: -50px;
+        }
+
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid #00f3ff;
+            background: #222;
+            margin: 0 auto 20px;
+            object-fit: cover;
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.5);
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+
+        .title {
+            color: #888;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.2s;
+            text-transform: uppercase;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #00f3ff, #bc13fe);
+            color: #000;
+            border: none;
+            box-shadow: 0 5px 20px rgba(188, 19, 254, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-portfolio {
+            border-color: #00f3ff;
+            color: #00f3ff;
+        }
+
+        .btn-orion {
+            background: linear-gradient(135deg, #bc13fe, #00f3ff);
+            color: #fff;
+            border: none;
+            box-shadow: 0 5px 25px rgba(188, 19, 254, 0.5);
+            font-size: 0.9rem;
+            animation: pulse-glow 2s infinite;
+        }
+
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                box-shadow: 0 5px 25px rgba(188, 19, 254, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 5px 35px rgba(0, 243, 255, 0.7);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="orion-responsive.css">
+</head>
+
+<body>
+
+    <div class="card-container">
+        <!-- Language Selector -->
+        <div class="lang-selector">
+            <button class="lang-btn active" onclick="setLang('en')">🇺🇸</button>
+            <button class="lang-btn" onclick="setLang('es')">🇲🇽</button>
+            <button class="lang-btn" onclick="setLang('zh')">🇨🇳</button>
+            <button class="lang-btn" onclick="setLang('tl')">🇵🇭</button>
+            <button class="lang-btn" onclick="setLang('vi')">🇻🇳</button>
+        </div>
+
+        <video class="header-video" autoplay muted loop playsinline poster="images/cv_contact_card_1765352290135.png">
+            <source src="images/cv_contact_card_1765352290135.mp4" type="video/mp4">
+        </video>
+
+        <div class="content">
+            <video src="images/cv_architect_holo_1765352204492.mp4" autoplay muted loop playsinline
+                class="profile-pic"></video>
+
+            <h1>Alex G. Espinosa</h1>
+            <p class="title" data-i18n="title">CEO & FOUNDER</p>
+
+            <a href="#" class="btn btn-primary" data-i18n="save_contact" onclick="downloadVCard()">SAVE CONTACT
+                (vCard)</a>
+            <a href="https://wa.me/16692342444" class="btn btn-secondary"
+                style="background: rgba(37,211,102,0.1); border-color: #25D366; color: #25D366;">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                    <video src="images/alex_ceo.mp4" autoplay muted loop playsinline
+                        style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;"></video>
+                    <div style="text-align: left;">
+                        <div style="font-weight: 700; font-size: 0.9rem;">ALEX ESPINOSA</div>
+                        <div style="font-size: 0.7rem; opacity: 0.8;">CEO & Founder</div>
+                    </div>
+                </div>
+            </a>
+            <a href="tel:+18312221072" class="btn btn-secondary"
+                style="background: rgba(0,243,255,0.1); border-color: #00f3ff; color: #00f3ff;">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                    <video src="images/xona_bot.mp4" autoplay muted loop playsinline
+                        style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;"></video>
+                    <div style="text-align: left;">
+                        <div style="font-weight: 700; font-size: 0.9rem;">XONA</div>
+                        <div style="font-size: 0.7rem; opacity: 0.8;">Voice AI Assistant</div>
+                    </div>
+                </div>
+            </a>
+            <a href="https://t.me/oriontechbot" class="btn btn-secondary"
+                style="background: rgba(0,136,204,0.1); border-color: #0088cc; color: #0088cc;">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                    <video src="images/orion_bot.mp4" autoplay muted loop playsinline
+                        style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;"></video>
+                    <div style="text-align: left;">
+                        <div style="font-weight: 700; font-size: 0.9rem;">ORION BOT</div>
+                        <div style="font-size: 0.7rem; opacity: 0.8;">Chat Manager</div>
+                    </div>
+                </div>
+            </a>
+            <!-- JARVIS Email -->
+            <a href="mailto:jarvis@acwater-ai.com" class="btn btn-secondary"
+                style="background: rgba(188,19,254,0.1); border-color: #bc13fe; color: #bc13fe;">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                    <video src="images/jarvis_email.mp4" autoplay muted loop playsinline
+                        style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;"></video>
+                    <div style="text-align: left;">
+                        <div style="font-weight: 700; font-size: 0.9rem;">JARVIS</div>
+                        <div style="font-size: 0.7rem; opacity: 0.8;">Email Assistant</div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- JARVIS Email -->
+            <a href="mailto:jarvis@acwater-ai.com" class="btn btn-secondary"
+                style="background: rgba(188,19,254,0.1); border-color: #bc13fe; color: #bc13fe;">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                    <video src="images/jarvis_email.mp4" autoplay muted loop playsinline
+                        style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;"></video>
+                    <div style="font-weight: 700; font-size: 0.9rem;">JARVIS</div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Alex CEO Floating Badge (left side) -->
+    <a href="cv_pro.html"
+        style="position: fixed; bottom: 30px; left: 30px; width: 60px; height: 60px; background: linear-gradient(135deg, #25D366, #00f3ff); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 0 25px rgba(37,211,102,0.6); z-index: 1000; transition: transform 0.3s, box-shadow 0.3s; animation: float 3s ease-in-out infinite;"
+        onmouseover="this.style.transform='scale(1.15)'; this.style.boxShadow='0 0 40px rgba(37,211,102,0.8)';"
+        onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 0 25px rgba(37,211,102,0.6)';"
+        title="View Full CV">
+        <video src="images/alex_ceo.mp4" autoplay muted loop playsinline
+            style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;"></video>
+    </a>
+
+    <script>
+        const translations = {
+            en: {
+                title: "ENVIRONMENTAL ENGINEER // PLUMBER PRO // TECH LEAD",
+                save_contact: "SAVE CONTACT (vCard)",
+                call: "CALL: (669) 234-2444",
+                portfolio: "VIEW FULL PORTFOLIO"
+            },
+            es: {
+                title: "INGENIERO AMBIENTAL // PLOMERO PRO // TECH LEAD",
+                save_contact: "GUARDAR CONTACTO (vCard)",
+                call: "LLAMAR: (669) 234-2444",
+                portfolio: "VER PORTAFOLIO COMPLETO"
+            },
+            zh: {
+                title: "环境工程师 // 专业水管工 // 技术主管",
+                save_contact: "保存联系人",
+                call: "拨打: (669) 234-2444",
+                portfolio: "查看完整作品集"
+            },
+            tl: {
+                title: "ENVIRONMENTAL ENGINEER // PLUMBER PRO // TECH LEAD",
+                save_contact: "I-SAVE ANG CONTACT (vCard)",
+                call: "TUMAWAG: (669) 234-2444",
+                portfolio: "TINGNAN ANG BUONG PORTFOLIO"
+            },
+            vi: {
+                title: "KỸ SƯ MÔI TRƯỜNG // THỢ SỬA ỐNG NƯỚC // TRƯỞNG NHÓM CÔNG NGHỆ",
+                save_contact: "LƯU LIÊN HỆ (vCard)",
+                call: "GỌI: (669) 234-2444",
+                portfolio: "XEM HỒ SƠ ĐẦY ĐỦ"
+            }
+        };
+
+        let currentLang = 'en';
+
+        function setLang(lang) {
+            currentLang = lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`[onclick="setLang('${lang}')"]`).classList.add('active');
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+
+            document.documentElement.lang = lang;
+            localStorage.setItem('card_lang', lang);
+        }
+
+        function downloadVCard() {
+            const vcard = `BEGIN:VCARD
+VERSION:3.0
+FN:Alex G. Espinosa
+TEL:+16692342444
+EMAIL:agem2013@gmail.com
+URL:https://agem2024.github.io/SEGURITI-USC/cv_pro.html
+NOTE:Environmental Engineer | Plumber Pro California | Tech Lead
+END:VCARD`;
+
+            const blob = new Blob([vcard], { type: 'text/vcard' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Alex_Espinosa.vcf';
+            a.click();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('card_lang') || 'en';
+            setLang(savedLang);
+        });
+    </script>
+
+    <!-- Alex CEO Floating Badge (left side) -->
+    <a href="cv_pro.html"
+        style="position: fixed; bottom: 30px; left: 30px; width: 60px; height: 60px; background: linear-gradient(135deg, #25D366, #00f3ff); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 0 25px rgba(37,211,102,0.6); z-index: 1000; transition: transform 0.3s, box-shadow 0.3s; animation: float 3s ease-in-out infinite;"
+        onmouseover="this.style.transform='scale(1.15)'; this.style.boxShadow='0 0 40px rgba(37,211,102,0.8)';"
+        onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 0 25px rgba(37,211,102,0.6)';"
+        title="View Full CV">
+        <video src="images/alex_ceo.mp4" autoplay muted loop playsinline
+            style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;"></video>
+    </a>
+
+    <!-- ORION Tech Floating Badge (right side) -->
+    <a href="orion-bots.html"
+        style="position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: linear-gradient(135deg, #bc13fe, #00f3ff); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 0 25px rgba(188,19,254,0.6); z-index: 1000; transition: transform 0.3s, box-shadow 0.3s; animation: float 3s ease-in-out infinite;"
+        onmouseover="this.style.transform='scale(1.15)'; this.style.boxShadow='0 0 40px rgba(0,243,255,0.8)';"
+        onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 0 25px rgba(188,19,254,0.6)';"
+        title="ORION TECH - Agente en tu Bolsillo">
+        <video src="images/orion_logo_2090.mp4" autoplay muted loop playsinline
+            style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;"></video>
+    </a>
+
+</body>
+
+</html>
