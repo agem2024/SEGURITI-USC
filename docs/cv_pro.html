@@ -293,7 +293,8 @@
             }
         }
     </style>
-<link rel="stylesheet" href="orion-responsive.css"></head>
+    <link rel="stylesheet" href="orion-responsive.css">
+</head>
 
 <body>
 
@@ -327,21 +328,21 @@
         <h2 class="section-title" data-i18n="video_title">MEET ALEX</h2>
         <div style="position: relative; max-width: 900px; margin: 0 auto;">
             <video id="presentationVideo"
-                style="width: 100%; border-radius: 20px; box-shadow: 0 0 50px rgba(0, 243, 255, 0.3);" autoplay
-                playsinline poster="images/cv_intro_eye_1765352245536.png">
+                style="width: 100%; border-radius: 20px; box-shadow: 0 0 50px rgba(0, 243, 255, 0.3);" autoplay muted
+                loop playsinline poster="images/cv_intro_eye_1765352245536.png">
                 <source src="images/presentacion.mp4" type="video/mp4">
             </video>
             <!-- Audio/Play Controls -->
-            <div style="position: absolute; bottom: 20px; right: 20px; display: flex; gap: 10px;">
+            <div style="position: absolute; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 10;">
                 <button id="playPauseBtn" onclick="togglePlay()" style="background: rgba(0,0,0,0.8); border: 1px solid var(--neon-blue); color: var(--neon-blue); 
                                padding: 12px 20px; border-radius: 30px; cursor: pointer; font-size: 1rem;
                                backdrop-filter: blur(10px);">
-                    ▶️ Play
+                    ⏸️ Pause
                 </button>
                 <button id="muteBtn" onclick="toggleMute()" style="background: rgba(0,0,0,0.8); border: 1px solid var(--neon-purple); color: var(--neon-purple); 
                                padding: 12px 20px; border-radius: 30px; cursor: pointer; font-size: 1rem;
-                               backdrop-filter: blur(10px);">
-                    🔊 Audio
+                               backdrop-filter: blur(10px); animation: pulse-glow 2s infinite;">
+                    🔇 TAP FOR AUDIO
                 </button>
             </div>
         </div>
@@ -674,6 +675,7 @@
             const btn = document.getElementById('muteBtn');
             if (video.muted) {
                 video.muted = false;
+                video.play().catch(e => console.log('iOS Autoplay prevented:', e));
                 btn.textContent = '🔊 Audio ON';
                 btn.style.borderColor = '#00f3ff';
                 btn.style.color = '#00f3ff';
