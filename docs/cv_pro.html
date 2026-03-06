@@ -657,34 +657,51 @@
             setLang(savedLang);
         });
 
-        // Video Controls
+        // Video Controls - Definir referencias
+        const video = document.getElementById('presentationVideo');
+        const playBtn = document.getElementById('playPauseBtn');
+        const muteBtn = document.getElementById('muteBtn');
+
         function togglePlay() {
-            const video = document.getElementById('presentationVideo');
-            const btn = document.getElementById('playPauseBtn');
             if (video.paused) {
                 video.play();
-                btn.textContent = '⏸️ Pause';
+                playBtn.textContent = '⏸️ Pause';
             } else {
                 video.pause();
-                btn.textContent = '▶️ Play';
+                playBtn.textContent = '▶️ Play';
             }
         }
 
-        function toggleMute() {
-            const video = document.getElementById('presentationVideo');
-            const btn = document.getElementById('muteBtn');
+        function forceUnmute(e) {
+            if (e) e.preventDefault();
+
             if (video.muted) {
                 video.muted = false;
-                video.play().catch(e => console.log('iOS Autoplay prevented:', e));
-                btn.textContent = '🔊 Audio ON';
-                btn.style.borderColor = '#00f3ff';
-                btn.style.color = '#00f3ff';
+                video.volume = 1.0;
+                let playPromise = video.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        console.log("Audio play prevented:", error);
+                        alert("Please make sure your phone is not in Silent Mode, or tap play again.");
+                    });
+                }
+                muteBtn.textContent = '🔊 Audio ON';
+                muteBtn.style.borderColor = '#00f3ff';
+                muteBtn.style.color = '#00f3ff';
             } else {
                 video.muted = true;
-                btn.textContent = '🔇 Audio OFF';
-                btn.style.borderColor = '#bc13fe';
-                btn.style.color = '#bc13fe';
+                muteBtn.textContent = '🔇 Audio OFF';
+                muteBtn.style.borderColor = '#bc13fe';
+                muteBtn.style.color = '#bc13fe';
             }
+        }
+
+        // Attach listeners directly to bypass iOS strict passive restrictions
+        if (muteBtn) {
+            muteBtn.addEventListener('click', forceUnmute);
+            muteBtn.addEventListener('touchstart', forceUnmute, { passive: false });
+            // Remove pure onclick attribute logic
+            muteBtn.removeAttribute('onclick');
         }
 
         // Auto-update button states
