@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bay Area Housing Investment Memorandum | Strategic Capital</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #0A192F;
+            /* Navy Blue */
+            --secondary: #C5A059;
+            /* Muted Gold */
+            --bg-light: #F4F6F8;
+            --text-dark: #1E293B;
+            --text-light: #64748B;
+            --white: #FFFFFF;
+            --success: #166534;
+            --border: #E2E8F0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+        }
+
+        /* Executive Nav */
+        nav {
+            background: var(--primary);
+            color: var(--white);
+            padding: 1.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .brand {
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            font-weight: 600;
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 4px;
+        }
+
+        .nav-items {
+            display: flex;
+            gap: 3rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-items a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-items a:hover {
+            color: var(--secondary);
+        }
+
+        /* Language Toggle - Professional */
+        .lang-switch {
+            display: flex;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .lang-btn.active {
+            background: var(--secondary);
+            color: var(--primary);
+        }
+
+        .lang-en {
+            display: none;
+        }
+
+        body.english-mode .lang-en {
+            display: block;
+        }
+
+        body.english-mode .lang-es {
+            display: none;
+        }
+
+        /* Hero: Investment Summary */
+        .hero {
+            background: linear-gradient(rgba(10, 25, 47, 0.9), rgba(10, 25, 47, 0.8)), url('https://images.unsplash.com/photo-1506146332389-18140dc7b2fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 8rem 4rem;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: #CBD5E1;
+            font-weight: 300;
+            margin-bottom: 3rem;
+            border-left: 3px solid var(--secondary);
+            padding-left: 1.5rem;
+            text-align: left;
+            display: inline-block;
+        }
+
+        .btn-exec {
+            background: var(--secondary);
+            color: var(--primary);
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 2px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-exec:hover {
+            background: #D4AF37;
+            transform: translateY(-2px);
+        }
+
+        /* Executive Summary Section */
+        section {
+            padding: 6rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .kpi-card {
+            background: var(--white);
+            padding: 2rem;
+            border-top: 4px solid var(--secondary);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .kpi-value {
+            font-size: 2.5rem;
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .kpi-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+        }
+
+        /* Investment Vehicles (Business Models) */
+        .investment-models {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+
+        .model-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .model-card:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            transform: translateY(-5px);
+            border-color: var(--secondary);
+        }
+
+        .model-header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .model-header h3 {
+            color: var(--white);
+            font-size: 1.4rem;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .yield-badge {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 4px 12px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            border: 1px solid rgba(197, 160, 89, 0.5);
+            color: var(--secondary);
+        }
+
+        .model-body {
+            padding: 2rem;
+        }
+
+        .financial-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        .financial-table td {
+            padding: 8px 0;
+            border-bottom: 1px solid #F1F5F9;
+        }
+
+        .financial-table tr:last-child td {
+            border-bottom: none;
+            font-weight: 700;
+            color: var(--primary);
+            border-top: 2px solid var(--secondary);
+            padding-top: 12px;
+        }
+
+        .col-right {
+            text-align: right;
+            font-family: 'Lato', monospace;
+        }
+
+        .strategy-note {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            font-style: italic;
+            border-left: 2px solid var(--secondary);
+            padding-left: 1rem;
+            margin-top: 1rem;
+        }
+
+        /* Proforma Calculator */
+        .calculator-container {
+            background: var(--white);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+        }
+
+        .calc-panel {
+            padding: 3rem;
+        }
+
+        .calc-inputs {
+            border-right: 1px solid var(--border);
+            background: #FAFAFA;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #CBD5E1;
+            color: var(--primary);
+            font-family: 'Lato', sans-serif;
+        }
+
+        .calc-output {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .metric-title {
+            font-size: 1rem;
+            color: var(--text-light);
+        }
+
+        .metric-value {
+            font-size: 1.8rem;
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .metric-value.highlight {
+            color: var(--success);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: rgba(255, 255, 255, 0.4);
+            padding: 4rem;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 900px) {
+
+            .investment-models,
+            .kpi-grid,
+            .calculator-container,
+            nav {
+                grid-template-columns: 1fr;
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .calc-inputs {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+        }
+    </style>
+</head>
+
+<body class="spanish-mode">
+
+    <!-- Navigation -->
+    <nav>
+        <div class="brand">Strategic Capital | Real Estate</div>
+        <div style="display: flex; gap: 2rem; align-items: center;">
+            <div class="nav-items">
+                <!-- Updated Navigation to Deep Dive Pages -->
+                <a href="lgb-autowork.html" style="color: var(--secondary); font-weight: 700;">← <span
+                        class="lang-es">Propuesta</span><span class="lang-en">Proposal</span></a>
+                <a href="room-rental-landing.html" style="color: var(--secondary);"><span
+                        class="lang-es">Inicio</span><span class="lang-en">Home</span></a>
+                <a href="market-analysis.html"><span class="lang-es">Mercado</span><span
+                        class="lang-en">Market</span></a>
+                <a href="legal-framework.html"><span class="lang-es">Legal</span><span class="lang-en">Legal</span></a>
+                <a href="risk-compliance.html"><span class="lang-es">Riesgos</span><span
+                        class="lang-en">Risks</span></a>
+                <a href="#vehicles"><span class="lang-es">Modelos</span><span class="lang-en">Models</span></a>
+                <a href="#proforma"><span class="lang-es">Proforma</span><span class="lang-en">Calculator</span></a>
+            </div>
+            <div class="lang-switch">
+                <button class="lang-btn active" onclick="setLang('es')">ES</button>
+                <button class="lang-btn" onclick="setLang('en')">EN</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="lang-es">Optimización de Activos Residenciales en Mercados de Alta Demanda</h1>
+            <h1 class="lang-en">Optimizing Residential Assets in High-Demand Markets</h1>
+
+            <div class="subtitle lang-es">
+                Memorándum de Inversión: Estrategias de Capitalización en el Sector de Vivienda Compartida del Área de
+                la Bahía (2024-2026).
+            </div>
+            <div class="subtitle lang-en">
+                Investment Memorandum: Capitalization Strategies in the Bay Area Shared Housing Sector (2024-2026).
+            </div>
+
+            <br>
+            <a href="#vehicles" class="btn-exec">
+                <span class="lang-es">Ver Tesis de Inversión</span>
+                <span class="lang-en">View Investment Thesis</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Executive Summary / KPIs -->
+    <section id="analysis">
+        <div class="section-header">
+            <h2 class="lang-es">Resumen Ejecutivo: Arbitraje de Submercados</h2>
+            <h2 class="lang-en">Executive Summary: Submarket Arbitrage</h2>
+            <p class="lang-es">Análisis comparativo de oportunidades en el núcleo tecnológico (San José) vs. corredor de
+                expansión (Gilroy).</p>
+            <p class="lang-en">Comparative analysis of opportunities in the tech core (San José) vs. expansion corridor
+                (Gilroy).</p>
+        </div>
+
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-value">High</div>
+                <div class="kpi-label lang-es">Demanda Tech (San José)</div>
+                <div class="kpi-label lang-en">Tech Demand (San José)</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value">&gt;6.5%</div>
+                <div class="kpi-label lang-es">Yield Potencial (Gilroy)</div>
+                <div class="kpi-label lang-en">Potential Yield (Gilroy)</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value">$2,636</div>
+                <div class="kpi-label lang-es">Renta Media 1BR (SJ)</div>
+                <div class="kpi-label lang-en">Median 1BR Rent (SJ)</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value">AB 1482</div>
+                <div class="kpi-label lang-es">Marco Legal (Gilroy)</div>
+                <div class="kpi-label lang-en">Legal Framework (Gilroy)</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investment Vehicles -->
+    <section id="vehicles" style="background: #fff;">
+        <div class="section-header">
+            <h2 class="lang-es">Tesis de Inversión Localizada</h2>
+            <h2 class="lang-en">Localized Investment Thesis</h2>
+            <p class="lang-es">Estructuración de activos basada en las realidades regulatorias y demográficas de South
+                Bay.</p>
+            <p class="lang-en">Asset structuring based on South Bay regulatory and demographic realities.</p>
+        </div>
+
+        <div class="investment-models">
+
+            <!-- Vehicle 1: San Jose House Hacking -->
+            <div class="model-card">
+                <div class="model-header">
+                    <h3 class="lang-es">1. The "Tech Core" Play</h3>
+                    <h3 class="lang-en">1. The "Tech Core" Play</h3>
+                    <span class="yield-badge">Target: San José</span>
+                </div>
+                <div class="model-body">
+                    <p class="lang-es" style="margin-bottom: 1rem;"><strong>Estrategia:</strong> Propietario-Ocupante en
+                        zona de alta demanda (Downtown/North SJ). Mitigación de hipoteca mediante alquiler a perfiles
+                        tech.</p>
+                    <p class="lang-en" style="margin-bottom: 1rem;"><strong>Strategy:</strong> Owner-Occupant in high
+                        demand zone. Mortgage mitigation via rentals to tech profiles.</p>
+
+                    <table class="financial-table">
+                        <tr>
+                            <td>Mortgage (3BR House)</td>
+                            <td class="col-right text-red">($5,200)</td>
+                        </tr>
+                        <tr>
+                            <td>Unit A (Tech Worker)</td>
+                            <td class="col-right">$1,600</td>
+                        </tr>
+                        <tr>
+                            <td>Unit B (Grad Student)</td>
+                            <td class="col-right">$1,500</td>
+                        </tr>
+                        <tr>
+                            <td>NET OCCUPANCY COST</td>
+                            <td class="col-right highlight">($2,100)</td>
+                        </tr>
+                    </table>
+
+                    <div class="strategy-note lang-es">
+                        <strong>Factor Regulatorio:</strong> Navegación cuidadosa de ARO (Apartment Rent Ordinance) si
+                        la propiedad es pre-1979. Cumplimiento estricto de TPO para desalojos.
+                    </div>
+                    <div class="strategy-note lang-en">
+                        <strong>Regulatory Factor:</strong> Careful navigation of ARO if pre-1979. Strict compliance
+                        with TPO (Tenant Protection Ordinance) for evictions.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vehicle 2: Gilroy Workforce Housing -->
+            <div class="model-card">
+                <div class="model-header" style="background: #166534;">
+                    <h3 class="lang-es" style="color:#fff">2. Workforce Housing Yield</h3>
+                    <h3 class="lang-en" style="color:#fff">2. Workforce Housing Yield</h3>
+                    <span class="yield-badge" style="color:#fff; border-color:#fff;">Target: Gilroy</span>
+                </div>
+                <div class="model-body">
+                    <p class="lang-es" style="margin-bottom: 1rem;"><strong>Estrategia:</strong> Master Lease o
+                        Propiedad en corredor de commuters. Enfoque en volumen y precio accesible.</p>
+                    <p class="lang-en" style="margin-bottom: 1rem;"><strong>Strategy:</strong> Master Lease or Property
+                        in commuter corridor. Focus on volume and accessible pricing.</p>
+
+                    <table class="financial-table">
+                        <tr>
+                            <td>Master Lease (4BR House)</td>
+                            <td class="col-right text-red">($3,800)</td>
+                        </tr>
+                        <tr>
+                            <td>Revenue (4 Rooms x $1,050)</td>
+                            <td class="col-right">$4,200</td>
+                        </tr>
+                        <tr>
+                            <td>Parking/Storage Fees</td>
+                            <td class="col-right">$200</td>
+                        </tr>
+                        <tr>
+                            <td>NET OPERATING INCOME</td>
+                            <td class="col-right" style="color: #166534;">$600/mo</td>
+                        </tr>
+                    </table>
+
+                    <div class="strategy-note lang-es">
+                        <strong>Ventaja Regulatoria:</strong> Gilroy no tiene Control de Renta local (solo Mobile
+                        Homes). Rige AB 1482 (más flexible). Menor riesgo de "Holdover".
+                    </div>
+                    <div class="strategy-note lang-en">
+                        <strong>Regulatory Advantage:</strong> Gilroy has no local Rent Control (Mobile Homes only).
+                        Governed by State AB 1482 (flexible). Lower "Holdover" risk.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vehicle 3: Privacy & Security (Scam Protection) -->
+            <div class="model-card">
+                <div class="model-header" style="background: #0F172A;">
+                    <h3 class="lang-es" style="color:#C5A059">3. Secure Co-Living Operator</h3>
+                    <h3 class="lang-en" style="color:#C5A059">3. Secure Co-Living Operator</h3>
+                    <span class="yield-badge">Trend: Market Integrity</span>
+                </div>
+                <div class="model-body">
+                    <p class="lang-es" style="margin-bottom: 1rem;"><strong>Estrategia:</strong> Operador Institucional
+                        con verificación de identidad robusta. Antídoto contra la plaga de estafas en South Bay.</p>
+                    <p class="lang-en" style="margin-bottom: 1rem;"><strong>Strategy:</strong> Institutional Operator
+                        with robust ID verification. Antidote to the South Bay scam plague.</p>
+
+                    <table class="financial-table">
+                        <tr>
+                            <td>Premium Market Rent</td>
+                            <td class="col-right text-green">Market + 15%</td>
+                        </tr>
+                        <tr>
+                            <td>Value Prop</td>
+                            <td class="col-right">Trust/Safety</td>
+                        </tr>
+                        <tr>
+                            <td>Target Demographic</td>
+                            <td class="col-right">Corporate/Travel Nurse</td>
+                        </tr>
+                    </table>
+
+                    <div class="strategy-note lang-es">
+                        <strong>Contexto:</strong> Ante el aumento de "Impostor Landlords" y fraudes de crédito (FTC
+                        Stats), la marca verificada cobra un premium por seguridad.
+                    </div>
+                    <div class="strategy-note lang-en">
+                        <strong>Context:</strong> With rising "Impostor Landlords" and credit fraud (FTC Stats), a
+                        verified brand commands a safety premium.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Regulatory Arbitrage Table -->
+    <section id="regulatory" style="padding-top: 0;">
+        <h2 class="lang-es" style="text-align:center; margin-bottom: 2rem;">Matriz de Estrategia Regulatoria</h2>
+        <h2 class="lang-en" style="text-align:center; margin-bottom: 2rem;">Regulatory Strategy Matrix</h2>
+
+        <div style="overflow-x: auto;">
+            <table class="financial-table"
+                style="background: #fff; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <thead style="background: var(--primary); color: #fff;">
+                    <tr>
+                        <th style="padding: 1rem; text-align: left;">Jurisdiction</th>
+                        <th style="padding: 1rem; text-align: left;">Rent Control Stability</th>
+                        <th style="padding: 1rem; text-align: left;">Eviction Risk (Master Tenant)</th>
+                        <th style="padding: 1rem;">Strategic Profile</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 1rem; font-weight: 700;">San José</td>
+                        <td style="padding: 1rem;">High (ARO for pre-1979)</td>
+                        <td style="padding: 1rem; color: #DC2626;">High (TPO strictness)</td>
+                        <td style="padding: 1rem; color: var(--primary);"><strong>Asset Appreciation & High
+                                ARPU</strong></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 1rem; font-weight: 700;">Gilroy</td>
+                        <td style="padding: 1rem;">Moderate (AB 1482 State Cap)</td>
+                        <td style="padding: 1rem; color: #166534;">Moderate (State "Just Cause")</td>
+                        <td style="padding: 1rem; color: var(--secondary);"><strong>Cash Flow Yield &
+                                Flexibility</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Proforma Calculator -->
+    <section id="proforma">
+        <div class="section-header">
+            <h2 class="lang-es">Proyección Financiera (Proforma)</h2>
+            <h2 class="lang-en">Financial Proforma</h2>
+        </div>
+
+        <div class="calculator-container">
+            <div class="calc-panel calc-inputs">
+                <h4 style="margin-bottom: 1.5rem; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">
+                    Scenario Config</h4>
+
+                <div class="input-group">
+                    <label class="lang-es">Seleccionar Mercado</label>
+                    <label class="lang-en">Select Market</label>
+                    <select id="marketSelect" onchange="updateMarketDefaults()"
+                        style="width: 100%; padding: 10px; border: 1px solid #CBD5E1; color: var(--primary);">
+                        <option value="sj">San José (High Cost / High Rent)</option>
+                        <option value="gilroy">Gilroy (Med Cost / Med Rent)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label class="lang-es">Costo Base del Activo (Mensual)</label>
+                    <label class="lang-en">Base Asset Cost (Monthly)</label>
+                    <input type="number" id="baseCost" value="5200">
+                </div>
+
+                <div class="input-group">
+                    <label class="lang-es">Unidades Generadoras de Ingreso</label>
+                    <label class="lang-en">Revenue Generating Units</label>
+                    <input type="number" id="rooms" value="2">
+                </div>
+
+                <div class="input-group">
+                    <label class="lang-es">Ingreso Promedio por Unidad (ARPU)</label>
+                    <label class="lang-en">Average Revenue Per Unit (ARPU)</label>
+                    <input type="number" id="price" value="1600">
+                </div>
+
+                <button class="btn-exec" onclick="calculateProforma()"
+                    style="width: 100%; text-align: center; border:none; cursor: pointer;">
+                    <span class="lang-es">Calcular Escenario</span>
+                    <span class="lang-en">Calculate Scenario</span>
+                </button>
+            </div>
+
+            <div class="calc-panel calc-output">
+                <div class="metric-row">
+                    <span class="metric-title lang-es">Ingreso Bruto Operativo (GRI)</span>
+                    <span class="metric-title lang-en">Gross Rental Income (GRI)</span>
+                    <span class="metric-value" id="gri">$3,200</span>
+                </div>
+
+                <div class="metric-row">
+                    <span class="metric-title lang-es">Posición Financiera Neta</span>
+                    <span class="metric-title lang-en">Net Financial Position</span>
+                    <span class="metric-value highlight" id="noc">($2,000)</span>
+                </div>
+
+                <div class="metric-row">
+                    <span class="metric-title lang-es">Cobertura del Activo</span>
+                    <span class="metric-title lang-en">Asset Coverage Ratio</span>
+                    <span class="metric-value" id="coverage">61.5%</span>
+                </div>
+
+                <p class="strategy-note lang-es" style="margin-top: 1rem;" id="marketNote">
+                    *San José: Alta apreciación, cobertura parcial de hipoteca.
+                </p>
+                <p class="strategy-note lang-en" style="margin-top: 1rem; display:none;" id="marketNoteEn">
+                    *San José: High appreciation play, partial mortgage coverage.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;">
+            <div>
+                <h4 style="color: #fff; margin-bottom: 1rem;">STRATEGIC CAPITAL</h4>
+                <p>Asset Optimization: San José | Gilroy</p>
+                <p>Based on 2024-2026 Market Analysis Data</p>
+            </div>
+            <div style="text-align: right;">
+                <p class="lang-es">Este documento es para fines informativos y analíticos.</p>
+                <p class="lang-en">This document is for informational and analytical purposes only.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function setLang(lang) {
+            document.body.className = (lang === 'en') ? 'english-mode' : '';
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+            updateMarketDefaults(); // Update notes language
+        }
+
+        function updateMarketDefaults() {
+            const market = document.getElementById('marketSelect').value;
+            const isEn = document.body.classList.contains('english-mode');
+
+            if (market === 'sj') {
+                document.getElementById('baseCost').value = 5200;
+                document.getElementById('price').value = 1600;
+                document.getElementById('marketNote').innerText = "*San José: Alta apreciación, cobertura parcial de hipoteca.";
+                document.getElementById('marketNoteEn').innerText = "*San José: High appreciation play, partial mortgage coverage.";
+            } else {
+                document.getElementById('baseCost').value = 3800;
+                document.getElementById('price').value = 1050; // Lower price per room but maybe more volume? Left at 2 rooms for now.
+                document.getElementById('marketNote').innerText = "*Gilroy: Mayor Yield (rendimiento), menor costo de entrada. Ideal flujo de caja.";
+                document.getElementById('marketNoteEn').innerText = "*Gilroy: Higher Yield, lower entry cost. Ideal for cash flow.";
+            }
+
+            calculateProforma();
+
+            // Toggle note visibility based on lang
+            if (isEn) {
+                document.getElementById('marketNote').style.display = 'none';
+                document.getElementById('marketNoteEn').style.display = 'block';
+            } else {
+                document.getElementById('marketNote').style.display = 'block';
+                document.getElementById('marketNoteEn').style.display = 'none';
+            }
+        }
+
+        function calculateProforma() {
+            const base = parseFloat(document.getElementById('baseCost').value);
+            const rooms = parseFloat(document.getElementById('rooms').value);
+            const price = parseFloat(document.getElementById('price').value);
+            // Simple calculation without Opex input for cleaner UI in this iteration
+            const opexPercent = 0.05;
+
+            const grossIncome = rooms * price;
+            const opex = grossIncome * opexPercent;
+            const netIncome = grossIncome - opex;
+
+            const netCost = base - netIncome;
+            const coverage = (netIncome / base) * 100;
+
+            const fmt = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+
+            document.getElementById('gri').textContent = fmt.format(grossIncome);
+
+            if (netCost > 0) {
+                document.getElementById('noc').textContent = "(" + fmt.format(netCost) + ")";
+                document.getElementById('noc').style.color = "#C5A059";
+            } else {
+                document.getElementById('noc').textContent = "+" + fmt.format(Math.abs(netCost));
+                document.getElementById('noc').style.color = "#166534";
+            }
+
+            document.getElementById('coverage').textContent = coverage.toFixed(1) + "%";
+        }
+
+        // Init
+        setLang('es');
+    </script>
+</body>
+
+</html>-

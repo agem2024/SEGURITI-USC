@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Framework | Strategic Capital</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0A192F;
+            --secondary: #C5A059;
+            --bg-light: #F4F6F8;
+            --white: #FFFFFF;
+            --border: #CBD5E1;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Lato', sans-serif;
+            background: var(--bg-light);
+            color: var(--primary);
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Lang Toggle */
+        .lang-en {
+            display: none;
+        }
+
+        .english-mode .lang-es {
+            display: none;
+        }
+
+        .english-mode .lang-en {
+            display: inline;
+        }
+
+        /* Nav */
+        nav {
+            background: var(--primary);
+            padding: 1rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            margin-left: 2rem;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--secondary);
+        }
+
+        .nav-links a.back-btn {
+            border: 1px solid var(--secondary);
+            padding: 5px 15px;
+            border-radius: 2px;
+        }
+
+        .lang-switch button {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            margin-left: 5px;
+        }
+
+        .lang-switch button.active {
+            background: var(--secondary);
+            border-color: var(--secondary);
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Hero */
+        .page-hero {
+            background: linear-gradient(rgba(10, 25, 47, 0.95), rgba(10, 25, 47, 0.9)), url('https://images.unsplash.com/photo-1589829085413-56de8ae18c73?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            color: white;
+            padding: 5rem 4rem;
+            text-align: center;
+        }
+
+        /* Tabs System */
+        .tabs-container {
+            max-width: 1100px;
+            margin: -3rem auto 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .tabs-header {
+            display: flex;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background: #0f2342;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 1.5rem;
+            background: #0f2342;
+            /* Darker nav */
+            border: none;
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            color: #94A3B8;
+            transition: all 0.3s;
+            border-bottom: 4px solid transparent;
+            text-transform: uppercase;
+        }
+
+        .tab-btn:hover {
+            background: #1a3c6e;
+            color: white;
+        }
+
+        .tab-btn.active {
+            color: var(--secondary);
+            border-bottom: 4px solid var(--secondary);
+            background: white;
+        }
+
+        .tab-content {
+            background: white;
+            padding: 4rem;
+            min-height: 600px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Content Styling */
+        .law-block {
+            margin-bottom: 3rem;
+            border-left: 4px solid var(--secondary);
+            padding-left: 2rem;
+        }
+
+        .law-block h3 {
+            margin-top: 0;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .regulatory-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        /* Updates 2025 Box */
+        .new-law-box {
+            background: #F0F9FF;
+            border: 1px solid #BAE6FD;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border-radius: 4px;
+        }
+
+        .new-law-box h3 {
+            color: #0369A1;
+            margin-top: 0;
+        }
+
+        .new-law-list li {
+            margin-bottom: 0.8rem;
+        }
+
+        .law-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .law-table th {
+            text-align: left;
+            border-bottom: 2px solid var(--primary);
+            padding: 10px;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .law-table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .law-table tr:hover {
+            background: #f8fafc;
+        }
+
+        footer {
+            background: var(--primary);
+            color: rgba(255, 255, 255, 0.4);
+            padding: 3rem;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+
+        details {
+            margin-bottom: 1rem;
+            border: 1px solid var(--border);
+            padding: 1rem;
+            border-radius: 4px;
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        details[open] summary {
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div style="font-weight: 700; letter-spacing: 1px;">STRATEGIC CAPITAL | LEGAL</div>
+        <div class="nav-links">
+            <a href="lgb-autowork.html" class="back-btn"
+                style="border-color: var(--secondary); color: var(--secondary);">← <span class="lang-es">Volver a
+                    Propuesta</span><span class="lang-en">Back to Proposal</span></a>
+            <a href="room-rental-landing.html"><span class="lang-es">Inicio</span><span class="lang-en">Home</span></a>
+            <a href="market-analysis.html"><span class="lang-es">Mercado</span><span class="lang-en">Market</span></a>
+            <a href="legal-framework.html" class="active"><span class="lang-es">Legal</span><span
+                    class="lang-en">Legal</span></a>
+            <a href="risk-compliance.html"><span class="lang-es">Riesgos</span><span class="lang-en">Risk</span></a>
+        </div>
+        <div class="lang-switch">
+            <button class="lang-btn active" onclick="setLang('es')">ES</button>
+            <button class="lang-btn" onclick="setLang('en')">EN</button>
+        </div>
+    </nav>
+
+    <header class="page-hero">
+        <h1><span class="lang-es">Inteligencia Jurisdiccional</span><span class="lang-en">Jurisdictional
+                Intelligence</span></h1>
+        <p>
+            <span class="lang-es">Compendio Legal Completo: Ordenanzas Locales, Leyes Estatales (AB 1482) y Nuevas
+                Regulaciones 2025.</span>
+            <span class="lang-en">Full Legal Compendium: Local Ordinances, State Laws (AB 1482) & New 2025
+                Regulations.</span>
+        </p>
+    </header>
+
+    <div class="tabs-container">
+        <div class="tabs-header">
+            <button class="tab-btn active" onclick="openTab('state')">State Law (CA)</button>
+            <button class="tab-btn" onclick="openTab('sj')">San José (ARO/TPO)</button>
+            <button class="tab-btn" onclick="openTab('sf')">San Francisco</button>
+            <button class="tab-btn" onclick="openTab('gilroy')">Gilroy / Berkeley</button>
+        </div>
+
+        <!-- STATE LAW TAB -->
+        <div id="state" class="tab-content active">
+            <div class="new-law-box">
+                <h3><span class="lang-es">Nuevas Leyes 2024-2025 (Crítico)</span><span class="lang-en">New Laws
+                        2024-2025 (Critical)</span></h3>
+                <ul class="new-law-list">
+                    <li><strong>AB 12 (Jul 2024):</strong> <span class="lang-es">Depósito de seguridad limitado a máx. 1
+                            mes de renta.</span><span class="lang-en">Security deposit limited to max 1 month
+                            rent.</span></li>
+                    <li><strong>AB 2533 (Ene 2025):</strong> <span class="lang-es">Simplifica legalización de ADUs
+                            pre-2020 (Amnistía).</span><span class="lang-en">Simplifies legalization of pre-2020 ADUs
+                            (Amnesty).</span></li>
+                    <li><strong>Short-Term Rental Tax (Ene 2025):</strong> <span class="lang-es">Nuevo impuesto estatal
+                            del 15%.</span><span class="lang-en">New 15% state tax.</span></li>
+                    <li><strong>AB 976:</strong> <span class="lang-es">Elimina requisito de ocupación del dueño para
+                            ADUs.</span><span class="lang-en">Eliminates owner-occupancy requirement for ADUs.</span>
+                    </li>
+                    <li><strong>Junk Fees Ban:</strong> <span class="lang-es">Prohibido cobrar tarifas por pago con
+                            cheque o transfer.</span><span class="lang-en">Banned fees for payment via check or
+                            transfer.</span></li>
+                </ul>
+            </div>
+
+            <div class="law-block">
+                <h3>AB 1482: Tenant Protection Act (2020-2030)</h3>
+                <p>
+                    <span class="lang-es">La ley base para propiedades no cubiertas por reglas locales más
+                        estrictas.</span>
+                    <span class="lang-en">The baseline law for properties not covered by stricter local rules.</span>
+                </p>
+                <table class="law-table">
+                    <tr>
+                        <td><strong>Rent Cap</strong></td>
+                        <td><span class="lang-es">5% + CPI local (Max 10%) anual.</span><span class="lang-en">5% + local
+                                CPI (Max 10%) annually.</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Just Cause</strong></td>
+                        <td><span class="lang-es">Requerida para desalojo después de 12 meses de ocupación.</span><span
+                                class="lang-en">Required for eviction after 12 months of occupancy.</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong><span class="lang-es">Exenciones</span><span
+                                    class="lang-en">Exemptions</span></strong></td>
+                        <td>
+                            <span class="lang-es">Casas unifamiliares (no corporativas), Construcción <15 años, Duplex
+                                    ocupado por dueño.</span>
+                                    <span class="lang-en">Single-family homes (non-corp), Construction <15 years,
+                                            Owner-occupied duplex.</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="law-block">
+                <h3><span class="lang-es">Subarriendo General en CA</span><span class="lang-en">General Subletting in
+                        CA</span></h3>
+                <p>
+                    <span class="lang-es">Sin permiso escrito del dueño, subarrendar es generalmente <strong>violación
+                            de contrato</strong> y causal de desalojo (3-Day Notice to Cure or Quit).</span>
+                    <span class="lang-en">Without written owner permission, subletting is generally a <strong>breach of
+                            contract</strong> and grounds for eviction (3-Day Notice to Cure or Quit).</span>
+                </p>
+            </div>
+
+            <div class="law-block" style="border-left-color: #2563EB;">
+                <h3><span class="lang-es">Privacidad y Entrada (Cód. Civil 1954)</span><span class="lang-en">Privacy &
+                        Entry (Civil Code 1954)</span></h3>
+                <p>
+                    <span class="lang-es">Reglas estrictas para propietarios y "Master Tenants" al entrar a cuartos
+                        rentados:</span>
+                    <span class="lang-en">Strict rules for landlords and "Master Tenants" entering rented rooms:</span>
+                </p>
+                <ul style="margin-top: 1rem;">
+                    <li><span class="lang-es"><strong>Aviso previo:</strong> 24 horas por escrito
+                            (razonable).</span><span class="lang-en"><strong>Notice:</strong> 24 hours written notice
+                            (reasonable).</span></li>
+                    <li><span class="lang-es"><strong>Emergencias:</strong> No requiere aviso.</span><span
+                            class="lang-en"><strong>Emergencies:</strong> No notice required.</span></li>
+                    <li><span class="lang-es"><strong>Prohibido:</strong> "Lockouts" (cambiar cerraduras) o cortar
+                            servicios para forzar salida. Es ILEGAL.</span><span
+                            class="lang-en"><strong>Prohibited:</strong> "Lockouts" (changing locks) or cutting
+                            utilities to force exit. It is ILLEGAL.</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SAN JOSE TAB -->
+        <div id="sj" class="tab-content">
+            <h2>San José: ARO & TPO</h2>
+            <p><span class="lang-es">El estatus legal depende de la fecha de construcción: <strong>Sept 7,
+                        1979</strong>.</span><span class="lang-en">Legal status depends on build date: <strong>Sept 7,
+                        1979</strong>.</span></p>
+
+            <details open>
+                <summary>Apartment Rent Ordinance (ARO)</summary>
+                <p><strong><span class="lang-es">Cobertura:</span><span class="lang-en">Coverage:</span></strong> <span
+                        class="lang-es">Edificios de 3+ unidades construidos antes de 1979.</span><span
+                        class="lang-en">Buildings w/ 3+ units built pre-1979.</span></p>
+                <p><strong><span class="lang-es">Regla de Aumento:</span><span class="lang-en">Increase
+                            Rule:</span></strong> <span class="lang-es">Máximo 5% cada 12 meses.</span><span
+                        class="lang-en">Max 5% every 12 months.</span></p>
+                <p><strong><span class="lang-es">Proceso:</span><span class="lang-en">Process:</span></strong> <span
+                        class="lang-es">Cualquier aumento mayor requiere "Petición" formal ante la Ciudad.</span><span
+                        class="lang-en">Any higher increase requires formal "Petition" to the City.</span></p>
+            </details>
+
+            <details open>
+                <summary>Tenant Protection Ordinance (TPO) - Just Cause</summary>
+                <p><strong>Code:</strong> Municipal Code Chapter 17.23.</p>
+                <p><strong><span class="lang-es">Regla Crítica:</span><span class="lang-en">Critical
+                            Rule:</span></strong> <span class="lang-es">Inquilinos en unidades cubiertas (la mayoría
+                        multifamiliares) NO pueden ser desalojados sin una de las 13 causas enumeradas.</span><span
+                        class="lang-en">Tenants in covered units (most multifamily) CANNOT be evicted without one of 13
+                        enumerated causes.</span></p>
+                <p style="color: #DC2626; font-weight: bold;">
+                    <span class="lang-es">⚠️ ALERTA: Un "Master Tenant" en SJ NO puede usar la Ley Ellis para desalojar
+                        subinquilinos.</span>
+                    <span class="lang-en">⚠️ ALERT: A "Master Tenant" in SJ CANNOT use the Ellis Act to evict
+                        subtenants.</span>
+                </p>
+            </details>
+
+            <h3><span class="lang-es">Tabla de Estrategia: SJ</span><span class="lang-en">Strategy Table: SJ</span></h3>
+            <table class="law-table">
+                <tr>
+                    <th><span class="lang-es">Escenario</span><span class="lang-en">Scenario</span></th>
+                    <th><span class="lang-es">Acción Recomendada</span><span class="lang-en">Recommended Action</span>
+                    </th>
+                </tr>
+                <tr>
+                    <td><span class="lang-es">Disputa de Aumento</span><span class="lang-en">Rent Dispute</span></td>
+                    <td><span class="lang-es">Contactar SJ Housing Dept (Sistema Peticiones).</span><span
+                            class="lang-en">Contact SJ Housing Dept (Petition System).</span></td>
+                </tr>
+                <tr>
+                    <td><span class="lang-es">Subarriendo Ilegal</span><span class="lang-en">Illegal Sublet</span></td>
+                    <td><span class="lang-es">Es "Just Cause" válida para terminación si viola contrato.</span><span
+                            class="lang-en">Valid "Just Cause" for termination if violating lease.</span></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- SF TAB -->
+        <div id="sf" class="tab-content">
+            <h2>San Francisco: <span class="lang-es">El Régimen Más Estricto</span><span class="lang-en">The Strictest
+                    Regime</span></h2>
+
+            <div class="law-block">
+                <h3>1. <span class="lang-es">Regla de Proporcionalidad (Master Tenant)</span><span
+                        class="lang-en">Proportionality Rule (Master Tenant)</span></h3>
+                <p><strong>Reg. 6.15C (Rent Board):</strong> <span class="lang-es">Un Master Tenant NO puede cobrar más
+                        que la parte proporcional de la renta total.</span><span class="lang-en">A Master Tenant CANNOT
+                        charge more than the proportional share of total rent.</span></p>
+                <ul>
+                    <li><span class="lang-es"><strong>Cálculo:</strong> (Renta Total ÷ Pies Cuadrados) o división
+                            equitativa.</span><span class="lang-en"><strong>Calc:</strong> (Total Rent ÷ Sq Ft) or equal
+                            division.</span></li>
+                    <li><span class="lang-es"><strong>Violación:</strong> Subinquilino puede demandar para reembolso
+                            RETROACTIVO de todo el exceso.</span><span class="lang-en"><strong>Violation:</strong>
+                            Subtenant can sue for RETROACTIVE refund of all excess.</span></li>
+                </ul>
+            </div>
+
+            <div class="law-block">
+                <h3>2. <span class="lang-es">Divulgación Obligatoria</span><span class="lang-en">Mandatory
+                        Disclosure</span></h3>
+                <p><span class="lang-es">Antes de subarrendar, DEBES entregar copia del contrato principal y revelar la
+                        renta total por escrito.</span><span class="lang-en">Before subletting, you MUST provide a copy
+                        of the master lease and disclose total rent in writing.</span></p>
+            </div>
+
+            <div class="law-block">
+                <h3>3. Short-Term Rental Bans</h3>
+                <p><strong><span class="lang-es">Oficina de Alquiler Corto Plazo:</span><span class="lang-en">Office of
+                            Short-Term Rentals:</span></strong></p>
+                <ul>
+                    <li><span class="lang-es">Registro OBLIGATORIO para estancias <30 días.</span><span
+                                    class="lang-en">MANDATORY registration for stays <30 days.</span>
+                    </li>
+                    <li><span class="lang-es">Anfitrión debe ser residente permanente (estar presente 275+
+                            días/año).</span><span class="lang-en">Host must be permanent resident (present 275+
+                            days/yr).</span></li>
+                    <li><span class="lang-es"><strong>Prohibido en:</strong> Unidades de Renta Controlada, SROs y
+                            Vivienda Asequible.</span><span class="lang-en"><strong>Banned in:</strong> Rent Controlled
+                            units, SROs, and Affordable Housing.</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- GILROY & BERKELEY TAB -->
+        <div id="gilroy" class="tab-content">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;">
+
+                <!-- GILROY -->
+                <div>
+                    <h2 style="color: var(--secondary);">Gilroy</h2>
+                    <p><strong><span class="lang-es">Estatus: Isla de Libre Mercado.</span><span class="lang-en">Status:
+                                Free Market Island.</span></strong></p>
+                    <p><span class="lang-es">NO tiene control de renta local para apartamentos estándar. Rige AB 1482 o
+                            mercado libre.</span><span class="lang-en">NO local rent control for standard apartments. AB
+                            1482 or free market applies.</span></p>
+
+                    <h4 style="margin-top:1rem;">Mobile Home Stabilization (Chap 14A)</h4>
+                    <p><span class="lang-es">Única regulación local fuerte. Aplica solo a la renta del espacio de tierra
+                            en parques de mobile homes.</span><span class="lang-en">Only strong local regulation.
+                            Applies only to land space rent in mobile home parks.</span></p>
+
+                    <h4 style="margin-top:1rem;">Project Sentinel</h4>
+                    <p><span class="lang-es">La ciudad externaliza disputas a esta ONG.</span><span class="lang-en">City
+                            outsources disputes to this NGO.</span></p>
+                    <p>Address: 8339 Church St #104, Gilroy.</p>
+                </div>
+
+                <!-- BERKELEY -->
+                <div style="border-left: 1px solid #ddd; padding-left: 2rem;">
+                    <h2 style="color: var(--secondary);">Berkeley</h2>
+                    <p><strong><span class="lang-es">Estatus: Protección Estudiantil/Académica.</span><span
+                                class="lang-en">Status: Student/Academic Protection.</span></strong></p>
+
+                    <h4><span class="lang-es">Derecho de Reemplazo</span><span class="lang-en">Right to Replace</span>
+                    </h4>
+                    <p><span class="lang-es">Si un roommate original se va, el landlord DEBE permitir reemplazo 1-a-1
+                            salvo "objeción razonable".</span><span class="lang-en">If original roommate leaves,
+                            landlord MUST allow 1-for-1 replacement unless "reasonable objection".</span></p>
+
+                    <h4><span class="lang-es">Protección Just Cause Rápida</span><span class="lang-en">Rapid Just Cause
+                            Protection</span></h4>
+                    <p><span class="lang-es">Roommates de reemplazo obtienen protección de desalojo tras solo <strong>14
+                                DÍAS</strong>.</span><span class="lang-en">Replacement roommates get eviction protection
+                            after just <strong>14 DAYS</strong>.</span></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        STRATEGIC CAPITAL | Legal Compliance Division | Disclaimer: Not Legal Advice | Sources: AB 1482, SF Rent Board,
+        San Jose Housing Dept.
+    </footer>
+
+    <script>
+        // Language Logic with Persistence
+        function setLang(lang) {
+            if (lang === 'en') {
+                document.body.classList.add('english-mode');
+            } else {
+                document.body.classList.remove('english-mode');
+            }
+
+            // Updates buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`);
+            if (activeBtn) activeBtn.classList.add('active');
+
+            // Save preference
+            localStorage.setItem('sc_lang', lang);
+        }
+
+        // Init language from storage
+        const savedLang = localStorage.getItem('sc_lang') || 'es';
+        setLang(savedLang);
+
+        function openTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+
+            const btn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick').includes(tabId));
+            if (btn) btn.classList.add('active');
+        }
+    </script>
+</body>
+
+</html>

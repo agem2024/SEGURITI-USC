@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Analysis | Strategic Capital</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #0A192F;
+            --secondary: #C5A059;
+            --bg-light: #F4F6F8;
+            --white: #FFFFFF;
+            --border: #E2E8F0;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Lato', sans-serif;
+            background: var(--bg-light);
+            color: var(--primary);
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Lang Toggle */
+        .lang-en {
+            display: none;
+        }
+
+        .english-mode .lang-es {
+            display: none;
+        }
+
+        .english-mode .lang-en {
+            display: inline;
+        }
+
+        /* Navigation (Condensed) */
+        nav {
+            background: var(--primary);
+            padding: 1rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            margin-left: 2rem;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--secondary);
+        }
+
+        .nav-links a.back-btn {
+            border: 1px solid var(--secondary);
+            padding: 5px 15px;
+            border-radius: 2px;
+        }
+
+        .lang-switch button {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            margin-left: 5px;
+        }
+
+        .lang-switch button.active {
+            background: var(--secondary);
+            border-color: var(--secondary);
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Hero */
+        .page-hero {
+            background: linear-gradient(rgba(10, 25, 47, 0.9), rgba(10, 25, 47, 0.8)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 6rem 4rem;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-hero p {
+            max-width: 800px;
+            margin: 0 auto;
+            color: #CBD5E1;
+            font-size: 1.2rem;
+        }
+
+        /* Analysis Sections */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .analysis-block {
+            background: white;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border-top: 4px solid var(--secondary);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .analysis-full {
+            grid-template-columns: 1fr;
+        }
+
+        .analysis-text h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .analysis-text h3 {
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+            color: var(--secondary);
+        }
+
+        .analysis-text p {
+            margin-bottom: 1rem;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .highlight-stat {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin: 1rem 0;
+            display: block;
+            background: rgba(197, 160, 89, 0.1);
+            padding: 1rem;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .chart-container {
+            position: relative;
+            height: 350px;
+            width: 100%;
+        }
+
+        /* Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        .data-table th {
+            background: var(--primary);
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .data-table td {
+            border-bottom: 1px solid var(--border);
+            padding: 12px;
+        }
+
+        .data-table tr:hover {
+            background: #f8fafc;
+        }
+
+        /* Price Grid */
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .price-card {
+            background: #F8FAFC;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: transform 0.3s;
+        }
+
+        .price-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--secondary);
+        }
+
+        .price-val {
+            font-size: 2.5rem;
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+            font-weight: 700;
+            margin: 1rem 0;
+        }
+
+        .price-lbl {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+            color: #64748B;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: rgba(255, 255, 255, 0.4);
+            padding: 3rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div style="font-weight: 700; letter-spacing: 1px;">STRATEGIC CAPITAL | INTELLIGENCE</div>
+        <div class="nav-links">
+            <a href="lgb-autowork.html" class="back-btn"
+                style="border-color: var(--secondary); color: var(--secondary);">← <span class="lang-es">Volver a
+                    Propuesta</span><span class="lang-en">Back to Proposal</span></a>
+            <a href="room-rental-landing.html"><span class="lang-es">Inicio</span><span class="lang-en">Home</span></a>
+            <a href="market-analysis.html" class="active"><span class="lang-es">Mercado</span><span
+                    class="lang-en">Market</span></a>
+            <a href="legal-framework.html"><span class="lang-es">Legal</span><span class="lang-en">Legal</span></a>
+            <a href="risk-compliance.html"><span class="lang-es">Riesgos</span><span class="lang-en">Risk</span></a>
+        </div>
+        <div class="lang-switch">
+            <button class="lang-btn active" onclick="setLang('es')">ES</button>
+            <button class="lang-btn" onclick="setLang('en')">EN</button>
+        </div>
+    </nav>
+
+    <header class="page-hero">
+        <h1><span class="lang-es">Análisis Integral de Mercado</span><span class="lang-en">Comprehensive Market
+                Analysis</span></h1>
+        <p>
+            <span class="lang-es">Datos 2024-2026: La Paradoja Inmobiliaria, el "Efecto IA" y la Industrialización del
+                Subarriendo.</span>
+            <span class="lang-en">2024-2026 Data: The Real Estate Paradox, "AI Effect", and Subletting
+                Industrialization.</span>
+        </p>
+    </header>
+
+    <div class="container">
+
+        <!-- EXECUTIVE SUMMARY -->
+        <div class="analysis-block">
+            <div class="analysis-text">
+                <h2><span class="lang-es">Resumen Ejecutivo: La Crisis Perpetua</span><span class="lang-en">Executive
+                        Summary: The Perpetual Crisis</span></h2>
+                <p class="highlight-stat"
+                    style="background: rgba(220, 38, 38, 0.05); border-left-color: var(--danger); font-style: italic;">
+                    <span class="lang-es">"La escasez de vivienda en California es como conducir un automóvil
+                        <strong>sin líquido de frenos</strong> — la oferta es peligrosamente baja."</span>
+                    <span class="lang-en">"California's housing shortage is like driving a car <strong>without brake
+                            fluid</strong> — supply is dangerously low."</span>
+                </p>
+                <p>
+                    <span class="lang-es">El Área de la Bahía presenta una de las paradojas más agudas del mundo:
+                        riqueza tecnológica sin precedentes vs. infraestructura habitacional en crisis crónica.</span>
+                    <span class="lang-en">The Bay Area presents one of the world's sharpest paradoxes: unprecedented
+                        tech wealth vs. chronic housing infrastructure crisis.</span>
+                </p>
+                <p>
+                    <span class="lang-es">Existen dos realidades paralelas:</span>
+                    <span class="lang-en">Two parallel realities exist:</span>
+                </p>
+                <ul>
+                    <li><span class="lang-es"><strong>Legal:</strong> Muy regulada, con leyes estatales y ordenanzas
+                            municipales.</span><span class="lang-en"><strong>Legal:</strong> Highly regulated, with
+                            state laws and municipal ordinances.</span></li>
+                    <li><span class="lang-es"><strong>Semi-clandestina:</strong> Un mercado negro de in-law units,
+                            garages y sótanos.</span><span class="lang-en"><strong>Semi-clandestine:</strong> A black
+                            market of in-law units, garages, and basements.</span></li>
+                </ul>
+                <span class="highlight-stat">
+                    <span class="lang-es">"San Francisco ha vuelto" — Jensen Huang (Nvidia), impulsado por la
+                        capitalización de $4T del sector IA.</span>
+                    <span class="lang-en">"San Francisco is back" — Jensen Huang (Nvidia), driven by the AI sector's $4T
+                        market cap.</span>
+                </span>
+            </div>
+            <div class="chart-container">
+                <canvas id="demandChart"></canvas>
+            </div>
+        </div>
+
+        <!-- PRICE DATA -->
+        <div style="margin-bottom: 4rem;">
+            <h2 style="text-align: center; margin-bottom: 2rem;">
+                <span class="lang-es">Estructura de Precios (Ene 2026)</span>
+                <span class="lang-en">Price Structure (Jan 2026)</span>
+            </h2>
+            <div class="price-grid">
+                <div class="price-card">
+                    <div class="price-lbl"><span class="lang-es">Renta Promedio SF</span><span class="lang-en">SF Avg
+                            Rent</span></div>
+                    <div class="price-val">$3,582</div>
+                    <small><span class="lang-es">+6.69% Anual (Dic 2025)</span><span class="lang-en">+6.69% YoY (Dec
+                            2025)</span></small>
+                </div>
+                <div class="price-card"
+                    style="background: white; border-color: var(--secondary); transform: scale(1.05);">
+                    <div class="price-lbl"><span class="lang-es">Renta Promedio San José</span><span class="lang-en">SJ
+                            Avg Rent</span></div>
+                    <div class="price-val">$2,636</div>
+                    <small><span class="lang-es">62% Sobre Promedio Nacional</span><span class="lang-en">62% Above Nat'l
+                            Avg</span></small>
+                </div>
+                <div class="price-card">
+                    <div class="price-lbl"><span class="lang-es">Pérdidas por Estafas</span><span class="lang-en">Scam
+                            Losses</span></div>
+                    <div class="price-val">$65M</div>
+                    <small style="color: #DC2626;"><span class="lang-es">Reportado por FTC (2025)</span><span
+                            class="lang-en">Reported by FTC (2025)</span></small>
+                </div>
+            </div>
+
+            <!-- Detailed Price Table -->
+            <div style="margin-top: 2rem; background: white; padding: 2rem; border: 1px solid var(--border);">
+                <h3><span class="lang-es">Desglose por Tipo de Unidad</span><span class="lang-en">Breakdown by Unit
+                        Type</span></h3>
+                <table class="data-table">
+                    <tr>
+                        <th><span class="lang-es">Tipo</span><span class="lang-en">Type</span></th>
+                        <th>San Francisco</th>
+                        <th>San José</th>
+                        <th><span class="lang-es">Mercado Negro</span><span class="lang-en">Black Market</span></th>
+                    </tr>
+                    <tr>
+                        <td>Studio</td>
+                        <td>$2,548</td>
+                        <td>$2,307</td>
+                        <td>$800 - $1,200</td>
+                    </tr>
+                    <tr>
+                        <td>1-Bedroom</td>
+                        <td>$3,161</td>
+                        <td>$2,636</td>
+                        <td>$1,000 - $1,400</td>
+                    </tr>
+                    <tr>
+                        <td>2-Bedroom</td>
+                        <td>$4,307</td>
+                        <td>$3,269</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td><span class="lang-es">Cuarto Individual</span><span class="lang-en">Single Room</span></td>
+                        <td>$1,200 - $2,000</td>
+                        <td>$1,000 - $1,600</td>
+                        <td>$600 - $1,000</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- COMMERCIAL ANALYSIS -->
+        <div class="analysis-block analysis-full">
+            <div class="analysis-text">
+                <h2><span class="lang-es">Industrialización: Hacker Houses vs Tradicional</span><span
+                        class="lang-en">Industrialization: Hacker Houses vs Traditional</span></h2>
+                <p>
+                    <span class="lang-es">El mercado ha evolucionado de acuerdos informales a operaciones corporativas
+                        ("Hacker Houses", Co-Living). Inversión institucional ha legitimado esta clase de activo.</span>
+                    <span class="lang-en">The market has evolved from informal agreements to corporate operations
+                        ("Hacker Houses", Co-Living). Institutional investment has legitimized this asset class.</span>
+                </p>
+
+                <table class="data-table">
+                    <tr>
+                        <th><span class="lang-es">Característica</span><span class="lang-en">Feature</span></th>
+                        <th><span class="lang-es">Subarriendo Tradicional</span><span class="lang-en">Traditional
+                                Sublet</span></th>
+                        <th><span class="lang-es">Co-Living / Hacker House</span><span class="lang-en">Co-Living /
+                                Hacker House</span></th>
+                    </tr>
+                    <tr>
+                        <td><strong><span class="lang-es">Gestor</span><span class="lang-en">Manager</span></strong>
+                        </td>
+                        <td><span class="lang-es">Inquilino Maestro</span><span class="lang-en">Master Tenant</span>
+                        </td>
+                        <td><span class="lang-es">Empresa (Urbanest, PadSplit)</span><span class="lang-en">Company
+                                (Urbanest, PadSplit)</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong><span class="lang-es">Contrato</span><span class="lang-en">Contract</span></strong>
+                        </td>
+                        <td><span class="lang-es">Subarriendo (a veces verbal)</span><span class="lang-en">Sublet (often
+                                verbal)</span></td>
+                        <td><span class="lang-es">Licencia / Membresía</span><span class="lang-en">License /
+                                Membership</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong><span class="lang-es">Precio</span><span class="lang-en">Price</span></strong></td>
+                        <td><span class="lang-es">Variable, regulado (SF)</span><span class="lang-en">Variable,
+                                regulated (SF)</span></td>
+                        <td><span class="lang-es">Fijo + Prima Servicios</span><span class="lang-en">Fixed + Service
+                                Premium</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong><span class="lang-es">Target</span><span class="lang-en">Target</span></strong></td>
+                        <td><span class="lang-es">Diverso</span><span class="lang-en">Diverse</span></td>
+                        <td><span class="lang-es">Tech Founders, Profesionales</span><span class="lang-en">Tech
+                                Founders, Professionals</span></td>
+                    </tr>
+                </table>
+
+                <!-- QUICK MAP INSERT -->
+                <h3 style="margin-top: 3rem; color: var(--primary);"><span class="lang-es">Mapa Rápido: ¿Qué tipo de
+                        renta es?</span><span class="lang-en">Quick Map: What type of rental is it?</span></h3>
+                <table class="data-table">
+                    <tr>
+                        <th><span class="lang-es">Figura</span><span class="lang-en">Figure</span></th>
+                        <th><span class="lang-es">Descripción</span><span class="lang-en">Description</span></th>
+                        <th><span class="lang-es">Implicaciones</span><span class="lang-en">Implications</span></th>
+                    </tr>
+                    <tr>
+                        <td><strong>Roommate / Co-tenant</strong></td>
+                        <td><span class="lang-es">Varias personas en el contrato directo con dueño.</span><span
+                                class="lang-en">Multiple people on direct lease with owner.</span></td>
+                        <td><span class="lang-es">Responsabilidad directa ante el propietario.</span><span
+                                class="lang-en">Direct liability to owner.</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Master Tenant + Subtenant</strong></td>
+                        <td><span class="lang-es">Una persona en contrato "sub-renta" a otros.</span><span
+                                class="lang-en">One person on lease "sub-rents" to others.</span></td>
+                        <td><span class="lang-es">Master Tenant responsable ante dueño.</span><span
+                                class="lang-en">Master Tenant liable to owner.</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong><span class="lang-es">Unidad Informal</span><span class="lang-en">Informal
+                                    Unit</span></strong></td>
+                        <td><span class="lang-es">Garage, In-law sin permisos, Sala dividida.</span><span
+                                class="lang-en">Garage, Unpermitted In-law, Divided Living Room.</span></td>
+                        <td><span class="lang-es">Riesgos de código y habitabilidad.</span><span class="lang-en">Code
+                                and habitability risks.</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong><span class="lang-es">Airbnb Disfrazado</span><span class="lang-en">Disguised
+                                    Airbnb</span></strong></td>
+                        <td><span class="lang-es">Estancia corta fingiendo ser roommate.</span><span
+                                class="lang-en">Short stay pretending to be roommate.</span></td>
+                        <td><span class="lang-es">Viola reglas Short-Term + Riesgo multas.</span><span
+                                class="lang-en">Violates Short-Term rules + Fine risk.</span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- ROI & MODELS -->
+        <div class="analysis-block">
+            <div class="analysis-text">
+                <h2><span class="lang-es">Análisis de ROI (Retorno de Inversión)</span><span class="lang-en">ROI
+                        Analysis</span></h2>
+
+                <h3>1. Propietario-Ocupante (San José)</h3>
+                <p><span class="lang-es">Renta 2 cuartos en casa 3BR. Costo hipoteca ~$4,500.</span><span
+                        class="lang-en">Rent 2 rooms in 3BR house. Mortgage ~$4,500.</span></p>
+                <ul>
+                    <li><span class="lang-es">Ingreso Neto: <strong>$2,286/mes</strong></span><span class="lang-en">Net
+                            Income: <strong>$2,286/mo</strong></span></li>
+                    <li><span class="lang-es">Cobertura Hipoteca: <strong>~51%</strong></span><span
+                            class="lang-en">Mortgage Coverage: <strong>~51%</strong></span></li>
+                </ul>
+
+                <h3>2. Master Tenant (SF)</h3>
+                <p><span class="lang-es">Renta total $4,200. Subarrienda 2 cuartos.</span><span class="lang-en">Total
+                        rent $4,200. Sublets 2 rooms.</span></p>
+                <ul>
+                    <li><span class="lang-es">Costo Neto Personal: <strong>$1,400/mes</strong></span><span
+                            class="lang-en">Personal Net Cost: <strong>$1,400/mo</strong></span></li>
+                    <li><span class="lang-es">Ahorro vs Studio: <strong>$1,148/mes</strong></span><span
+                            class="lang-en">Savings vs Studio: <strong>$1,148/mo</strong></span></li>
+                    <li><span class="lang-es"><strong>Nota:</strong> Lucro prohibido en SF.</span><span
+                            class="lang-en"><strong>Note:</strong> Profit prohibited in SF.</span></li>
+                </ul>
+
+                <h3>3. Co-Living Operator</h3>
+                <p><span class="lang-es">Casa 5BR alquilada a $6,500. Renta por cuarto $1,600.</span><span
+                        class="lang-en">5BR house rented at $6,500. Room rent $1,600.</span></p>
+                <ul>
+                    <li><span class="lang-es">Flujo Neto: <strong>$700/mes</strong></span><span class="lang-en">Net
+                            Flow: <strong>$700/mo</strong></span></li>
+                    <li><span class="lang-es">ROI Anual: <strong>~13%</strong></span><span class="lang-en">Annual ROI:
+                            <strong>~13%</strong></span></li>
+                </ul>
+            </div>
+
+            <div class="analysis-text" style="background: #F8FAFC; padding: 2rem; border-radius: 8px;">
+                <h2><span class="lang-es">Embudo de Ventas (Acquisition Funnel)</span><span class="lang-en">Acquisition
+                        Funnel</span></h2>
+
+                <h4 style="margin-bottom:0.5rem; color:var(--primary);">1. Awareness</h4>
+                <p style="font-size:0.9rem;"><span class="lang-es">Canales: Facebook Marketplace (Alta efectividad),
+                        Craigslist (Alto spam), SpareRoom, LinkedIn Tech Groups.</span><span class="lang-en">Channels:
+                        Facebook Marketplace (High efficacy), Craigslist (High spam), SpareRoom, LinkedIn Tech
+                        Groups.</span></p>
+
+                <h4 style="margin-bottom:0.5rem; color:var(--primary);">2. Interest</h4>
+                <p style="font-size:0.9rem;"><span class="lang-es">Clave: Fotos profesionales, precio transparente,
+                        respuesta <2 hrs.</span><span class="lang-en">Key: Professional photos, transparent price, <2 hr
+                                    response.</span>
+                </p>
+
+                <h4 style="margin-bottom:0.5rem; color:var(--primary);">3. Decision</h4>
+                <p style="font-size:0.9rem;"><span class="lang-es">Verificación: Empleo (3x renta), Referencias, Tour en
+                        persona.</span><span class="lang-en">Verification: Employment (3x rent), References, In-person
+                        tour.</span></p>
+
+                <h4 style="margin-bottom:0.5rem; color:var(--primary);">4. Action</h4>
+                <p style="font-size:0.9rem;"><span class="lang-es">Contrato escrito completo, Depósito (Max 1 mes - AB
+                        12), Reglas de casa.</span><span class="lang-en">Full written contract, Deposit (Max 1 mo - AB
+                        12), House rules.</span></p>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        STRATEGIC CAPITAL | Market Intelligence Unit | Sources: Bureau of Labor Statistics, Zillow Research, FTC, SF
+        Rent Board.
+    </footer>
+
+    <script>
+        // Language Logic with Persistence
+        function setLang(lang) {
+            if (lang === 'en') {
+                document.body.classList.add('english-mode');
+            } else {
+                document.body.classList.remove('english-mode');
+            }
+
+            // Updates buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`);
+            if (activeBtn) activeBtn.classList.add('active');
+
+            // Save preference
+            localStorage.setItem('sc_lang', lang);
+
+            // Update charts
+            updateCharts(lang);
+        }
+
+        // Init language from storage
+        const savedLang = localStorage.getItem('sc_lang') || 'es';
+        setLang(savedLang);
+
+        // Chart 1: Supply vs Demand Gap
+        const ctxDemand = document.getElementById('demandChart').getContext('2d');
+        let demandChart = new Chart(ctxDemand, {
+            type: 'line',
+            data: {
+                labels: ['2022', '2023', '2024', '2025', '2026 (Proj)'],
+                datasets: [{
+                    label: 'Tech Job Growth (AI Sector)',
+                    data: [100, 115, 140, 180, 210],
+                    borderColor: '#0A192F',
+                    borderWidth: 2,
+                    tension: 0.4
+                }, {
+                    label: 'New Housing Units Permitted',
+                    data: [100, 95, 88, 85, 82],
+                    borderColor: '#C5A059',
+                    borderWidth: 2,
+                    borderDash: [5, 5],
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' },
+                    title: { display: true, text: 'The Divergence: Jobs vs Housing Supply (Index 100)' }
+                }
+            }
+        });
+
+        function updateCharts(lang) {
+            demandChart.options.plugins.title.text = (lang === 'es')
+                ? 'La Divergencia: Empleos vs Oferta de Vivienda (Índice 100)'
+                : 'The Divergence: Jobs vs Housing Supply (Index 100)';
+            demandChart.data.datasets[0].label = (lang === 'es') ? 'Crecimiento Empleo Tech' : 'Tech Job Growth';
+            demandChart.data.datasets[1].label = (lang === 'es') ? 'Nuevos Permisos Vivienda' : 'New Housing Units Permitted';
+            demandChart.update();
+        }
+    </script>
+</body>
+
+</html>

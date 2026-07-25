@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk & Compliance | Strategic Capital</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0A192F;
+            --secondary: #C5A059;
+            --danger: #DC2626;
+            --warning: #F59E0B;
+            --bg-light: #F4F6F8;
+            --white: #FFFFFF;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Lato', sans-serif;
+            background: var(--bg-light);
+            color: var(--primary);
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Lang Toggle */
+        .lang-en {
+            display: none;
+        }
+
+        .english-mode .lang-es {
+            display: none;
+        }
+
+        .english-mode .lang-en {
+            display: inline;
+        }
+
+        /* Nav */
+        nav {
+            background: var(--primary);
+            padding: 1rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            margin-left: 2rem;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--secondary);
+        }
+
+        .nav-links a.back-btn {
+            border: 1px solid var(--secondary);
+            padding: 5px 15px;
+            border-radius: 2px;
+        }
+
+        .lang-switch button {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            margin-left: 5px;
+        }
+
+        .lang-switch button.active {
+            background: var(--secondary);
+            border-color: var(--secondary);
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Hero */
+        .page-hero {
+            background: linear-gradient(rgba(220, 38, 38, 0.9), rgba(10, 25, 47, 0.95)), url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            color: white;
+            padding: 5rem 4rem;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* Sections */
+        .section-box {
+            background: white;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .danger-box {
+            border-left: 5px solid var(--danger);
+        }
+
+        .warning-box {
+            border-left: 5px solid var(--warning);
+        }
+
+        .info-box {
+            border-left: 5px solid var(--primary);
+        }
+
+        /* Grid */
+        .risk-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        /* Lists */
+        .risk-list ul {
+            padding-left: 1.2rem;
+        }
+
+        .risk-list li {
+            margin-bottom: 0.8rem;
+            color: #334155;
+        }
+
+        /* Tables */
+        .fiscal-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .fiscal-table th {
+            background: #f1f5f9;
+            padding: 10px;
+            text-align: left;
+            border-bottom: 2px solid #cbd5e1;
+        }
+
+        .fiscal-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        /* Checklists */
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 1rem;
+            border-bottom: 1px solid #EEE;
+            transition: background 0.2s;
+        }
+
+        .checklist-item:hover {
+            background: #FAFAFA;
+        }
+
+        .kb-checkbox {
+            width: 20px;
+            height: 20px;
+            margin-right: 15px;
+            accent-color: var(--secondary);
+            margin-top: 3px;
+        }
+
+        footer {
+            background: var(--primary);
+            color: rgba(255, 255, 255, 0.4);
+            padding: 3rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div style="font-weight: 700; letter-spacing: 1px;">STRATEGIC CAPITAL | RISK</div>
+        <div class="nav-links">
+            <a href="lgb-autowork.html" class="back-btn"
+                style="border-color: var(--secondary); color: var(--secondary);">← <span class="lang-es">Volver a
+                    Propuesta</span><span class="lang-en">Back to Proposal</span></a>
+            <a href="room-rental-landing.html"><span class="lang-es">Inicio</span><span class="lang-en">Home</span></a>
+            <a href="market-analysis.html"><span class="lang-es">Mercado</span><span class="lang-en">Market</span></a>
+            <a href="legal-framework.html"><span class="lang-es">Legal</span><span class="lang-en">Legal</span></a>
+            <a href="risk-compliance.html" class="active"><span class="lang-es">Riesgos</span><span
+                    class="lang-en">Risk</span></a>
+        </div>
+        <div class="lang-switch">
+            <button class="lang-btn active" onclick="setLang('es')">ES</button>
+            <button class="lang-btn" onclick="setLang('en')">EN</button>
+        </div>
+    </nav>
+
+    <header class="page-hero">
+        <h1><span class="lang-es">Riesgo, Fraude & Cumplimiento</span><span class="lang-en">Risk, Fraud &
+                Compliance</span></h1>
+        <p>
+            <span class="lang-es">Datos Forenses: Mercado Negro, Archivos Policiales y Obligaciones Fiscales
+                (IRS/FTB).</span>
+            <span class="lang-en">Forensic Data: Black Market, Police Files & Fiscal Obligations (IRS/FTB).</span>
+        </p>
+    </header>
+
+    <div class="container">
+
+        <!-- FRAUD & CRIME -->
+        <div class="section-box danger-box">
+            <h2 style="color: var(--danger);">🚨 <span class="lang-es">Estadísticas de Fraude (FTC
+                    2024-2025)</span><span class="lang-en">Fraud Statistics (FTC 2024-2025)</span></h2>
+            <div class="risk-grid">
+                <div>
+                    <p style="font-size: 1.2rem; font-weight: bold;">
+                        <span class="lang-es">Pérdidas Reportadas: $65 Millones</span>
+                        <span class="lang-en">Reported Losses: $65 Million</span>
+                    </p>
+                    <p><span class="lang-es">El Bay Area es el "epicentro" de estafas de alquiler debido a la alta
+                            demanda y costos extremos.</span><span class="lang-en">Bay Area is the "epicenter" of rental
+                            scams due to high demand and extreme costs.</span></p>
+
+                    <h4><span class="lang-es">Tipologías Comunes:</span><span class="lang-en">Common Typologies:</span>
+                    </h4>
+                    <ul class="risk-list">
+                        <li><strong>Hijacked Ads:</strong> <span class="lang-es">Copian fotos legítimas de
+                                Zillow/Redfin, publican en FB Marketplace con precio 40% abajo.</span><span
+                                class="lang-en">Copy legit photos from Zillow/Redfin, post on FB Marketplace at 40%
+                                discount.</span></li>
+                        <li><strong>Phantom Rentals:</strong> <span class="lang-es">Propiedades que no existen o no
+                                están en renta.</span><span class="lang-en">Properties that don't exist or aren't for
+                                rent.</span></li>
+                        <li><strong>Credit Check Scam:</strong> <span class="lang-es">Link falso para robar datos o
+                                cobrar suscripción.</span><span class="lang-en">Fake link to steal data or charge
+                                subscription.</span></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="margin-top:0;"><span class="lang-es">Casos Policiales (Police Files)</span><span
+                            class="lang-en">Police Files</span></h4>
+                    <ul class="risk-list">
+                        <li><strong>Cannabis Ops (Alameda 2025):</strong> <span class="lang-es">Casas rentadas para
+                                cultivos industriales. Daños masivos, riesgo de incendio. $57M incautados.</span><span
+                                class="lang-en">Houses rented for industrial grows. Massive damage, fire risk. $57M
+                                seized.</span></li>
+                        <li><strong>Slumlords (Oakland):</strong> <span class="lang-es">Caso Darrick Chavis. Acoso
+                                sistemático a inquilinos en unidades Rent Controlled.</span><span
+                                class="lang-en">Darrick Chavis case. Systematic harassment of tenants in Rent Controlled
+                                units.</span></li>
+                        <li><strong>Red-Tag Tragedies:</strong> <span class="lang-es">Incendio en Misión (SF 2025).
+                                Salidas bloqueadas en unidad ilegal.</span><span class="lang-en">Mission Fire (SF 2025).
+                                Blocked exits in illegal unit.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- BLACK MARKET -->
+        <div class="section-box warning-box">
+            <h2 style="color: var(--warning);">🏚️ <span class="lang-es">Mercado Negro & Unidades Ilegales</span><span
+                    class="lang-en">Black Market & Illegal Units</span></h2>
+            <p>
+                <span class="lang-es">Decenas de miles de unidades en el Bay Area son "no autorizadas". Costo promedio
+                    para legalizar: $60,000.</span>
+                <span class="lang-en">Tens of thousands of units in Bay Area are "unauthorized". Avg cost to legalize:
+                    $60,000.</span>
+            </p>
+
+            <table class="fiscal-table">
+                <tr>
+                    <th><span class="lang-es">Tipo Ilegal</span><span class="lang-en">Illegal Type</span></th>
+                    <th><span class="lang-es">Riesgo / Multa</span><span class="lang-en">Risk / Fine</span></th>
+                </tr>
+                <tr>
+                    <td><strong>In-law / Outlaw Units</strong></td>
+                    <td><span class="lang-es">Desalojo inmediato si es inseguro ("Red Tag").</span><span
+                            class="lang-en">Immediate eviction if unsafe ("Red Tag").</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Converted Garages/Basements</strong></td>
+                    <td><span class="lang-es">Fines hasta $1,000/día por violación de código.</span><span
+                            class="lang-en">Fines up to $1,000/day for code violation.</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Boats/Commercial Space</strong></td>
+                    <td><span class="lang-es">Sin protecciones residenciales estándar.</span><span class="lang-en">No
+                            standard residential protections.</span></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- CHECKLISTS -->
+        <h2 style="margin-bottom: 2rem;"><span class="lang-es">Listas de Verificación (Due Diligence)</span><span
+                class="lang-en">Checklists (Due Diligence)</span></h2>
+
+        <div class="risk-grid">
+            <!-- Tenant Checklist -->
+            <div class="section-box info-box" style="margin-bottom:0;">
+                <h3 style="color: var(--primary);">🛡️ SUBTENANT / INQUILINO</h3>
+                <div class="checklist-item">
+                    <input type="checkbox" class="kb-checkbox">
+                    <span><span class="lang-es">Verificar que "Dueño" controla el lugar (lease/título).</span><span
+                            class="lang-en">Verify "Owner" controls place (lease/title).</span></span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" class="kb-checkbox">
+                    <span><span class="lang-es">NUNCA depositar efectivo/wire sin ver el lugar.</span><span
+                            class="lang-en">NEVER deposit cash/wire without seeing place.</span></span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" class="kb-checkbox">
+                    <span><span class="lang-es">Contrato escrito (Renta, Depósito, Reglas).</span><span
+                            class="lang-en">Written contract (Rent, Deposit, Rules).</span></span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" class="kb-checkbox">
+                    <span><span class="lang-es">SF: Verificar si sobrepasa 50% de renta (Overcharge).</span><span
+                            class="lang-en">SF: Check if exceeds 50% of rent (Overcharge).</span></span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" class="kb-checkbox">
+                    <span><span class="lang-es">Verificar permisos (especialmente garajes/sótanos).</span><span
+                            class="lang-en">Verify permits (esp. garages/basements).</span></span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" class="kb-checkbox">
+                    <span><span class="lang-es">Identificar salidas de emergencia.</span><span class="lang-en">Identify
+                            emergency exits.</span></span>
+                </div>
+            </div>
+
+            <!-- Master Tenant Checklist -->
+            <div class="section-box info-box" style="margin-bottom:0;">
+                <h3 style="color: var(--primary);">🏢 MASTER TENANT</h3>
+                <div class="checklist-item">
+                    <input type="checkbox" class="kb-checkbox">
+                    <span><span class="lang-es">Leer Lease: ¿Prohíbe sublet? ¿Requiere permiso?</span><span
+                            class="lang-en">Read Lease: Prohibits sublet? Requires permit?</span></span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" class="kb-checkbox">
+                    <span><span class="lang-es">SF: Cumplir Regla 6.15C (Proporcionalidad + Disclosure).</span><span
+                            class="lang-en">SF: Comply Rule 6.15C (Proportionality + Disclosure).</span></span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" class="kb-checkbox">
+                    <span><span class="lang-es">Oakland: Solicitud escrita para reemplazo 1-a-1.</span><span
+                            class="lang-en">Oakland: Written request for 1-to-1 replacement.</span></span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" class="kb-checkbox">
+                    <span><span class="lang-es">NO usar Airbnb encubierto (Multas masivas).</span><span
+                            class="lang-en">NO covert Airbnb (Massive fines).</span></span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" class="kb-checkbox">
+                    <span><span class="lang-es">Mantener contrato escrito con subarrendatario.</span><span
+                            class="lang-en">Keep written contract with subtenant.</span></span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" class="kb-checkbox">
+                    <span><span class="lang-es">Reportar ingresos al IRS y FTB.</span><span class="lang-en">Report
+                            income to IRS and FTB.</span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- FISCAL -->
+        <h2 style="margin-top: 3rem; margin-bottom: 2rem;"><span class="lang-es">Obligaciones Fiscales</span><span
+                class="lang-en">Fiscal Obligations</span></h2>
+        <div class="section-box info-box">
+            <div class="risk-grid">
+                <div>
+                    <h3>IRS (Federal)</h3>
+                    <p><strong>Form:</strong> Schedule E (Form 1040)</p>
+                    <ul class="risk-list">
+                        <li><span class="lang-es">Reportar TODA renta (incl. depósitos no devueltos).</span><span
+                                class="lang-en">Report ALL rent (incl. unreturned deposits).</span></li>
+                        <li><span class="lang-es">Regla 14 Días: Exento si renta <14 días/año.</span><span
+                                        class="lang-en">14-Day Rule: Exempt if rent <14 days/yr.</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>California FTB</h3>
+                    <p><strong>Form:</strong> CA Form 540</p>
+                    <ul class="risk-list">
+                        <li><span class="lang-es">Tasa hasta 12.3% (High Income).</span><span class="lang-en">Rate up to
+                                12.3% (High Income).</span></li>
+                        <li><span class="lang-es"><strong>NUEVO 2025:</strong> 15% Impuesto a Short-Term
+                                Rentals.</span><span class="lang-en"><strong>NEW 2025:</strong> 15% Tax on Short-Term
+                                Rentals.</span></li>
+                    </ul>
+                </div>
+            </div>
+            <h4 style="margin-top: 1.5rem;"><span class="lang-es">Deducciones Permitidas (Proporcionales):</span><span
+                    class="lang-en">Allowed Deductions (Proportional):</span></h4>
+            <p style="color: #475569; font-size: 0.9rem;">
+                <span class="lang-es">Hipoteca, Impuestos Propiedad, Reparaciones, Utilities, Seguros, Depreciación,
+                    Publicidad.</span>
+                <span class="lang-en">Mortgage, Property Tax, Repairs, Utilities, Insurance, Depreciation, Ads.</span>
+            </p>
+        </div>
+
+        <!-- RECOMMENDATIONS STRATEGIC -->
+        <h2 style="margin-top: 3rem; margin-bottom: 2rem;"><span class="lang-es">Recomendaciones Estratégicas
+                (Pro-Tips)</span><span class="lang-en">Strategic Recommendations (Pro-Tips)</span></h2>
+        <div class="section-box info-box" style="border-left-color: var(--secondary);">
+            <div class="risk-grid">
+                <div>
+                    <h3 style="color: var(--secondary);">Propietarios / Landlords</h3>
+                    <ul class="risk-list">
+                        <li><span class="lang-es"><strong>Fotos Obligatorias:</strong> Documentar estado al inicio y fin
+                                (Nueva Ley 2025).</span><span class="lang-en"><strong>Photos Mandatory:</strong>
+                                Document condition at start/end (New Law 2025).</span></li>
+                        <li><span class="lang-es"><strong>Amnistía ADU:</strong> Aprovechar AB 2533 para legalizar
+                                unidades pre-2020.</span><span class="lang-en"><strong>ADU Amnesty:</strong> Use AB 2533
+                                to legalize pre-2020 units.</span></li>
+                        <li><span class="lang-es"><strong>Escrito:</strong> NUNCA subarrendar sin consentimiento
+                                escrito.</span><span class="lang-en"><strong>Written:</strong> NEVER sublet without
+                                written consent.</span></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="color: var(--secondary);">Inquilinos / Tenants</h3>
+                    <ul class="risk-list">
+                        <li><span class="lang-es"><strong>Due Diligence:</strong> Verificar que quien renta controla la
+                                propiedad (Lease/Título).</span><span class="lang-en"><strong>Due Diligence:</strong>
+                                Verify renter controls property (Lease/Title).</span></li>
+                        <li><span class="lang-es"><strong>Seguridad:</strong> Ubicar salidas de emergencia en la primera
+                                visita.</span><span class="lang-en"><strong>Safety:</strong> Locate emergency exits on
+                                first visit.</span></li>
+                        <li><span class="lang-es"><strong>Seguro:</strong> Obtener seguro de inquilino (Renters
+                                Insurance) inmediatamente.</span><span class="lang-en"><strong>Insurance:</strong> Get
+                                Renters Insurance immediately.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        STRATEGIC CAPITAL | Risk & Compliance | Sources: IRS Pub 527, FTC, CA Dept of Justice.
+    </footer>
+
+    <script>
+        // Language Logic with Persistence
+        function setLang(lang) {
+            if (lang === 'en') {
+                document.body.classList.add('english-mode');
+            } else {
+                document.body.classList.remove('english-mode');
+            }
+
+            // Updates buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`);
+            if (activeBtn) activeBtn.classList.add('active');
+
+            // Save preference
+            localStorage.setItem('sc_lang', lang);
+        }
+
+        // Init language from storage
+        const savedLang = localStorage.getItem('sc_lang') || 'es';
+        setLang(savedLang);
+    </script>
+
+</body>
+
+</html>
