@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lavy Installation Proposal - Morales Plumbing</title>
+    <style>
+        :root {
+            --primary-blue: #0A192F;
+            --accent-gold: #D4AF37;
+            --alert-red: #D32F2F;
+            --text-dark: #202124;
+            --bg-light: #F8F9FA;
+            --border-color: #E0E0E0;
+            --danger: #e74c3c;
+            --warning: #f1c40f;
+            --success: #27ae60;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            color: var(--text-dark);
+            line-height: 1.4;
+        }
+
+        .lang-toggle-container {
+            text-align: right;
+            padding: 10px 20px;
+            background: #e0e0e0;
+        }
+
+        .lang-btn {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            margin-left: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .lang-btn.active {
+            background: var(--accent-gold);
+            color: var(--primary-blue);
+        }
+
+        [data-lang="es"] { display: none; }
+        [data-lang="en"] { display: block; }
+        span[data-lang="en"], strong[data-lang="en"], em[data-lang="en"], li[data-lang="en"] { display: inline; }
+        span[data-lang="es"], strong[data-lang="es"], em[data-lang="es"], li[data-lang="es"] { display: none; }
+        li[data-lang="en"] { display: list-item; }
+
+        .container {
+            max-width: 950px;
+            margin: 20px auto;
+            background: #ffffff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 0;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #112240 100%);
+            border-bottom: 4px solid var(--accent-gold);
+            color: white;
+            padding: 25px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .company-info h1 { margin: 0 0 5px 0; font-size: 1.8rem; color: var(--accent-gold); letter-spacing: 1px; }
+        .company-info p { margin: 3px 0; font-size: 0.9rem; color: #ccd6f6; }
+        .client-info { background: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 4px; text-align: right; border: 1px solid rgba(212, 175, 55, 0.3); min-width: 250px; }
+        .client-info h3 { margin: 0 0 8px 0; color: var(--accent-gold); text-transform: uppercase; font-size: 0.95rem; letter-spacing: 1px; }
+        .client-info p { margin: 3px 0; font-size: 0.85rem; color: white; }
+
+        .doc-body { padding: 25px 35px; }
+
+        h2.section-title {
+            color: var(--primary-blue);
+            border-bottom: 2px solid var(--accent-gold);
+            padding-bottom: 4px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h3.subsection { color: #112240; margin-top: 15px; font-size: 1.05rem; }
+        p, li { font-size: 0.9rem; margin-top: 4px; margin-bottom: 6px; }
+        ul { padding-left: 20px; margin-bottom: 10px; }
+
+        .condition-box { background: var(--bg-light); border-left: 4px solid var(--accent-gold); padding: 10px 15px; margin: 15px 0; font-size: 0.85rem; }
+        .executive-summary { border-left-color: var(--primary-blue); background-color: #e6f0fa; padding: 15px; }
+
+        .flex-row { display: flex; align-items: flex-start; gap: 20px; margin: 15px 0; }
+        .flex-text { flex: 1; }
+        .flex-image { width: 35%; max-width: 300px; text-align: center; }
+        .flex-image img { width: 100%; height: auto; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .flex-image .img-caption { font-size: 0.75rem; color: #666; margin-top: 5px; font-style: italic; }
+
+        .violation { margin-bottom: 10px; padding-left: 10px; border-left: 4px solid var(--danger); margin-top: 10px; }
+        .violation h4 { margin: 0 0 3px 0; color: #c0392b; font-size: 0.95rem; }
+        .violation p { margin: 0; font-size: 0.85rem; }
+
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.85rem; table-layout: fixed; }
+        th, td { padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--border-color); word-wrap: break-word; }
+        th { background-color: var(--bg-light); color: var(--primary-blue); font-weight: 700; width: 75%; }
+        th:last-child { width: 25%; text-align: right; }
+        td:last-child { text-align: right; }
+        .total-row { font-weight: 800; font-size: 1rem; background-color: rgba(212, 175, 55, 0.1); color: var(--primary-blue); }
+
+        .legal-clause { font-size: 0.8rem; color: #666; margin-top: 5px; line-height: 1.3; }
+
+        .signature-section { margin-top: 30px; display: flex; justify-content: space-between; gap: 20px; page-break-inside: avoid; }
+        .signature-block { flex: 1; }
+        .signature-line { border-top: 1px solid var(--primary-blue); padding-top: 5px; margin-top: 30px; font-weight: bold; font-size: 0.85rem; color: var(--primary-blue); }
+        .page-footer { text-align: center; padding: 10px; font-size: 0.75rem; color: #666; border-top: 1px solid var(--border-color); margin-top: 20px; }
+
+        .mat-table { table-layout: auto; }
+        .mat-table th:first-child { width: auto; }
+        .mat-table th:nth-child(2) { width: 50px; text-align: center; }
+        .mat-table td:nth-child(2) { text-align: center; }
+
+        @media print {
+            .lang-toggle-container { display: none !important; }
+            
+            @page { size: letter; margin: 0.4in; }
+
+            body { 
+                background: white; -webkit-print-color-adjust: exact; print-color-adjust: exact; 
+                margin: 0; padding: 0; width: 100%; font-size: 9pt !important;
+            }
+            
+            .container { box-shadow: none; margin: 0; padding: 0; width: 100% !important; max-width: 100% !important; border: none; }
+            .header { padding: 15px; border-bottom: 3px solid #D4AF37 !important; }
+            .doc-body { padding: 0; }
+            
+            .flex-row { display: flex !important; flex-direction: row !important; align-items: flex-start !important; page-break-inside: avoid; break-inside: avoid; }
+            .flex-text { flex: 1 !important; }
+            .flex-image { width: 30% !important; flex-shrink: 0; page-break-inside: avoid; break-inside: avoid; }
+            .flex-image img { max-height: 180px; object-fit: contain; } 
+            
+            table { width: 100% !important; table-layout: fixed; }
+            td, th { word-wrap: break-word; overflow-wrap: break-word; }
+
+            .condition-box, .violation, tr { page-break-inside: avoid; break-inside: avoid; }
+            .signature-section { page-break-inside: avoid; break-inside: avoid; }
+            h2, h3 { page-break-after: avoid; }
+            
+            * { text-shadow: none !important; box-sizing: border-box; }
+            
+            #print-footer { display: block !important; position: static; text-align: center; font-size: 7.5pt; border-top: 1px solid #0A192F !important; padding-top: 5px; margin-top: 15px;}
+            .page-break { page-break-before: always; }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="lang-toggle-container">
+        <span style="margin-right: 15px; font-weight: bold; color: var(--primary-blue);">Language / Idioma:</span>
+        <button class="lang-btn active" id="btn-en" onclick="setLang('en')">English</button>
+        <button class="lang-btn" id="btn-es" onclick="setLang('es')">Español</button>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="company-info">
+                <img src="logo_portada.png" alt="Morales Plumbing" style="height:55px; background:white; padding:4px; border-radius:4px; margin-bottom:8px; display:block;" onerror="this.style.display='none'">
+                <h1>MORALES PLUMBING</h1>
+                <p style="font-size:0.8rem; letter-spacing: 2px;">AI-INTEGRATED HYDRONIC SERVICES</p>
+                <p><strong><span data-lang="en">CSLB License</span><span data-lang="es">Licencia CSLB</span> C-36 #1156542</strong> | Bonded &amp; Insured</p>
+                <p>San Jose, CA</p>
+                <p>📞 (669) 234-2444</p>
+                <p>✉️ moralesplumbing026@gmail.com</p>
+                <p>🌐 agem2024.github.io/morales-plumbing-web</p>
+            </div>
+            <div class="client-info">
+                <h3 data-lang="en">Plumbing Installation Proposal</h3>
+                <h3 data-lang="es">Propuesta de Instalación de Plomería</h3>
+                <p><strong data-lang="en">Proposal Nº:</strong><strong data-lang="es">Nº Propuesta:</strong> MP-2024-07-LV</p>
+                <p><strong data-lang="en">Date:</strong><strong data-lang="es">Fecha:</strong> <span data-lang="en">July</span><span data-lang="es">Julio</span> 2024</p>
+                <div style="margin: 8px 0; border-top: 1px solid rgba(212,175,55,0.3);"></div>
+                <p><strong data-lang="en">Client:</strong><strong data-lang="es">Cliente:</strong> Joan Wrabetz</p>
+                <p><strong data-lang="en">Phone:</strong><strong data-lang="es">Teléfono:</strong> (612) 207-8517</p>
+                <p>2125 Denise Dr</p>
+                <p>Santa Clara, CA 95050</p>
+            </div>
+        </div>
+
+        <div class="doc-body">
+            
+            <div class="condition-box executive-summary">
+                <strong data-lang="en">Executive Summary</strong>
+                <strong data-lang="es">Resumen Ejecutivo</strong><br>
+                <span data-lang="en">Dear Joan Wrabetz, Morales Plumbing has prepared this engineering proposal for the <strong>conversion of your existing single lavatory vanity to a double lavatory (Double Lavy)</strong> configuration, including the complete modification of the drainage/ventilation rough-in, extension of hot and cold water supply lines, finish plumbing with faucet installation, and the <strong>removal, servicing, and reinstallation of the toilet</strong> with new angle stop and supply line. This proposal covers all plumbing materials, labor stages, and code-compliant connections.</span>
+                <span data-lang="es">Estimada Joan Wrabetz, Morales Plumbing ha preparado esta propuesta de ingeniería para la <strong>conversión de su vanidad individual existente a un lavabo doble (Double Lavy)</strong>, incluyendo la modificación completa del rough-in de drenaje/ventilación, extensión de líneas de suministro de agua fría y caliente, plomería de acabado con instalación de grifería, y la <strong>remoción, servicio y reinstalación del toilet</strong> con nuevo angle stop y manguera de suministro. Esta propuesta cubre todos los materiales de plomería, etapas de labor y conexiones conforme a código.</span>
+            </div>
+
+            <!-- SECTION I: CURRENT CONDITION ANALYSIS -->
+            <h2 class="section-title">I. <span data-lang="en">Current Configuration Analysis</span><span data-lang="es">Análisis de la Configuración Actual</span></h2>
+            
+            <div class="flex-row">
+                <div class="flex-text">
+                    <div class="condition-box" style="border-left-color: #007bff; background-color: #f0f7ff; margin-top:0;">
+                        <strong style="color: #007bff;" data-lang="en">🔍 SITE ASSESSMENT (CPC / UPC Compliance Review)</strong>
+                        <strong style="color: #007bff;" data-lang="es">🔍 EVALUACIÓN DEL SITIO (Revisión de Cumplimiento CPC / UPC)</strong>
+                    </div>
+
+                    <div class="violation" style="border-left-color: #007bff;">
+                        <h4 data-lang="en" style="color: #007bff;">🔵 1. Existing Drainage Configuration</h4>
+                        <h4 data-lang="es" style="color: #007bff;">🔵 1. Configuración de Drenaje Existente</h4>
+                        <p data-lang="en"><strong>Condition:</strong> Single ABS 1½" or 2" outlet from wall with an ABS P-trap. <strong>Requirement:</strong> CPC/UPC mandates each bowl of a double lavy must have its own P-trap or an approved continuous waste configuration with proper venting.</p>
+                        <p data-lang="es"><strong>Condición:</strong> Salida única de ABS de 1½" o 2" de la pared con trampa P de ABS. <strong>Requisito:</strong> CPC/UPC exige que cada tazón del doble lavy tenga su propia trampa P o una configuración de desagüe continuo aprobada con ventilación adecuada.</p>
+                    </div>
+
+                    <div class="violation" style="border-left-color: #007bff;">
+                        <h4 data-lang="en" style="color: #007bff;">🔵 2. Water Supply Infrastructure</h4>
+                        <h4 data-lang="es" style="color: #007bff;">🔵 2. Infraestructura de Suministro de Agua</h4>
+                        <p data-lang="en"><strong>Condition:</strong> Single set of hot/cold angle stops with braided flex lines serving one faucet. <strong>Requirement:</strong> Extension of both hot and cold lines via tees to serve two faucet positions with 4 new quarter-turn angle stops.</p>
+                        <p data-lang="es"><strong>Condición:</strong> Un solo juego de angle stops de agua fría/caliente con líneas flexibles para un grifo. <strong>Requisito:</strong> Extensión de ambas líneas mediante tees para servir dos posiciones de grifería con 4 nuevos angle stops de ¼ de vuelta.</p>
+                    </div>
+
+                    <div class="violation" style="border-left-color: var(--warning);">
+                        <h4 data-lang="en" style="color: #b7950b;">🟡 3. Toilet Angle Stop Condition</h4>
+                        <h4 data-lang="es" style="color: #b7950b;">🟡 3. Condición del Angle Stop del Toilet</h4>
+                        <p data-lang="en"><strong>Condition:</strong> Existing toilet angle stop shows wear and age. <strong>Action:</strong> Toilet will be removed, angle stop replaced with new ¼-turn valve, new braided SS supply line installed, and toilet reinstalled with fresh wax ring and hardware.</p>
+                        <p data-lang="es"><strong>Condición:</strong> Angle stop del toilet muestra desgaste y antigüedad. <strong>Acción:</strong> Se removerá el toilet, se reemplazará el angle stop con válvula nueva de ¼ de vuelta, nueva manguera SS trenzada, y se reinstalará el toilet con sello de cera y herraje nuevo.</p>
+                    </div>
+                </div>
+                <div class="flex-image">
+                    <img src="old vanity.jpeg" alt="Current Single Vanity">
+                    <div class="img-caption" data-lang="en">Fig 1: Existing single vanity configuration.</div>
+                    <div class="img-caption" data-lang="es">Fig 1: Configuración actual de vanidad individual.</div>
+                    <img src="coneccion foucet lavy debajo.jpeg" alt="Current Plumbing Under Vanity" style="margin-top: 10px;">
+                    <div class="img-caption" data-lang="en">Fig 2: Current plumbing connections under vanity.</div>
+                    <div class="img-caption" data-lang="es">Fig 2: Conexiones de plomería actuales bajo vanidad.</div>
+                </div>
+            </div>
+
+            <div class="page-break"></div>
+
+            <!-- SECTION II: SCOPE OF WORK -->
+            <h2 class="section-title">II. <span data-lang="en">Scope of Work &amp; Technical Implementation</span><span data-lang="es">Alcance de Trabajo e Implementación Técnica</span></h2>
+
+            <div class="condition-box" style="border-left-color: #D32F2F; background-color: #FFF3F3; margin-bottom: 15px;">
+                <strong style="color: #D32F2F;" data-lang="en">⚠️ CLIENT RESPONSIBILITY DISCLOSURE</strong>
+                <strong style="color: #D32F2F;" data-lang="es">⚠️ DIVULGACIÓN DE RESPONSABILIDAD DEL CLIENTE</strong><br>
+                <span data-lang="en"><strong>Demolition:</strong> Removal of existing vanity cabinet and countertop is the <strong>client's responsibility</strong>. <strong>Drywall:</strong> Morales Plumbing will perform necessary drywall cuts for rough-in access; however, <strong>drywall patching and finishing is NOT covered</strong> under this scope.</span>
+                <span data-lang="es"><strong>Demolición:</strong> La remoción del gabinete y encimera existente es <strong>responsabilidad del cliente</strong>. <strong>Drywall:</strong> Morales Plumbing realizará los cortes de drywall necesarios para acceso al rough-in; sin embargo, <strong>el parcheo y acabado del drywall NO están cubiertos</strong> en este alcance.</span>
+            </div>
+
+            <h3 class="subsection" data-lang="en" style="margin-top:10px;">Stage 1: Rough-In — Drainage &amp; Water Supply Modification</h3>
+            <h3 class="subsection" data-lang="es" style="margin-top:10px;">Etapa 1: Rough-In — Modificación de Drenaje y Suministro de Agua</h3>
+            
+            <div data-lang="en">
+                <p>Opening of wall/cabinet cavity to modify and extend the drainage and water supply networks for dual lavatory positions.</p>
+                <ul>
+                    <li><strong>Drainage Rough-In:</strong> Installation of ABS sanitary tees, extension of 1½" ABS piping to both lavatory drain positions, proper venting configuration per CPC/UPC code.</li>
+                    <li><strong>Water Supply Extension:</strong> Installation of ½" tees on existing hot and cold lines, extension of PEX/Copper piping to both lavatory positions.</li>
+                    <li><strong>Hot Water Insulation:</strong> R-value foam insulation on all exposed hot water lines to maintain thermal efficiency and meet energy code requirements.</li>
+                    <li><strong>Drywall Cutting:</strong> Precision cuts to access in-wall plumbing for rough-in (patching NOT included).</li>
+                </ul>
+            </div>
+            <div data-lang="es">
+                <p>Apertura de la cavidad de pared/gabinete para modificar y extender las redes de drenaje y suministro de agua para posiciones de lavabo doble.</p>
+                <ul>
+                    <li><strong>Rough-In de Drenaje:</strong> Instalación de tees sanitarias ABS, extensión de tubería ABS de 1½" a ambas posiciones de drenaje, configuración de ventilación conforme a código CPC/UPC.</li>
+                    <li><strong>Extensión de Suministro:</strong> Instalación de tees de ½" en líneas existentes de agua fría y caliente, extensión de tubería PEX/Cobre a ambas posiciones.</li>
+                    <li><strong>Aislamiento de Agua Caliente:</strong> Aislamiento de espuma valor-R en todas las líneas de agua caliente expuestas para mantener eficiencia térmica y cumplir con código energético.</li>
+                    <li><strong>Corte de Drywall:</strong> Cortes de precisión para acceso a plomería en pared para rough-in (parcheo NO incluido).</li>
+                </ul>
+            </div>
+
+            <h3 class="subsection" data-lang="en">Stage 2: Finish Plumbing — Faucets, Traps &amp; Connections</h3>
+            <h3 class="subsection" data-lang="es">Etapa 2: Plomería de Acabado — Grifería, Trampas y Conexiones</h3>
+            
+            <div data-lang="en">
+                <p>Final assembly of all visible plumbing components after vanity cabinet installation.</p>
+                <ul>
+                    <li><strong>Angle Stops (4x):</strong> Installation of four new ½" PEX/Copper × ⅜" Comp quarter-turn angle stop valves (2 hot, 2 cold).</li>
+                    <li><strong>P-Traps (2x):</strong> Assembly and installation of two 1½" ABS/Polypropylene P-trap kits with trap adapters (Desanko connectors).</li>
+                    <li><strong>Supply Lines (4x):</strong> Connection of four stainless steel braided flexible supply lines (⅜" Comp × ½" FIP, 18"–24").</li>
+                    <li><strong>Pop-Up Drains (2x):</strong> Installation and sealing of pop-up drain assemblies with plumber's putty/silicone on both lavatory bowls.</li>
+                    <li><strong>Faucet Installation (2x):</strong> Mounting and connection of both faucets to supply lines and drain assemblies.</li>
+                    <li><strong>Escutcheons (4x):</strong> Installation of ½" chrome escutcheon plates on all wall penetrations.</li>
+                </ul>
+            </div>
+            <div data-lang="es">
+                <p>Ensamblaje final de todos los componentes de plomería visibles después de la instalación del gabinete.</p>
+                <ul>
+                    <li><strong>Angle Stops (4x):</strong> Instalación de cuatro nuevas válvulas de ¼ de vuelta ½" PEX/Cobre × ⅜" Comp (2 caliente, 2 fría).</li>
+                    <li><strong>Trampas P (2x):</strong> Armado e instalación de dos kits de trampa P de 1½" ABS/Polipropileno con adaptadores (conectores Desanko).</li>
+                    <li><strong>Líneas Flexibles (4x):</strong> Conexión de cuatro líneas flexibles de acero inoxidable trenzado (⅜" Comp × ½" FIP, 18"–24").</li>
+                    <li><strong>Desagües Pop-Up (2x):</strong> Instalación y sellado de desagües emergentes con masilla/silicona en ambos tazones.</li>
+                    <li><strong>Instalación de Grifería (2x):</strong> Montaje y conexión de ambos grifos a líneas de suministro y ensambles de drenaje.</li>
+                    <li><strong>Embellecedores (4x):</strong> Instalación de placas cromadas de ½" en todas las penetraciones de pared.</li>
+                </ul>
+            </div>
+
+            <div class="flex-row">
+                <div class="flex-text">
+                    <h3 class="subsection" data-lang="en" style="margin-top:0;">Stage 3: Toilet Service — Removal, Valve Replacement &amp; Reinstallation</h3>
+                    <h3 class="subsection" data-lang="es" style="margin-top:0;">Etapa 3: Servicio de Toilet — Remoción, Reemplazo de Válvula y Reinstalación</h3>
+                    
+                    <div data-lang="en">
+                        <ul>
+                            <li><strong>Toilet Removal:</strong> Careful disconnection and removal of toilet to allow vanity/floor work.</li>
+                            <li><strong>Angle Stop Replacement:</strong> Removal of old toilet angle stop; installation of new ½" × ⅜" quarter-turn valve.</li>
+                            <li><strong>Supply Line:</strong> New stainless steel braided toilet supply line.</li>
+                            <li><strong>Reinstallation:</strong> Toilet reset with new wax ring (with flange), new closet bolts, and leak verification.</li>
+                        </ul>
+                    </div>
+                    <div data-lang="es">
+                        <ul>
+                            <li><strong>Remoción del Toilet:</strong> Desconexión cuidadosa y remoción para permitir el trabajo de vanidad/piso.</li>
+                            <li><strong>Reemplazo de Angle Stop:</strong> Remoción del angle stop viejo; instalación de nueva válvula de ¼ de vuelta ½" × ⅜".</li>
+                            <li><strong>Manguera de Suministro:</strong> Nueva línea de suministro de acero inoxidable trenzado para toilet.</li>
+                            <li><strong>Reinstalación:</strong> Re-colocación del toilet con sello de cera nuevo (con brida), pernos de closet nuevos y verificación de fugas.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="flex-image">
+                    <img src="angle stop toilet.jpeg" alt="Toilet Angle Stop">
+                    <div class="img-caption" data-lang="en">Fig 3: Toilet angle stop to be replaced.</div>
+                    <div class="img-caption" data-lang="es">Fig 3: Angle stop del toilet a reemplazar.</div>
+                </div>
+            </div>
+
+            <div class="page-break"></div>
+
+            <!-- SECTION III: FINANCIAL BREAKDOWN -->
+            <h2 class="section-title">III. <span data-lang="en">Financial Breakdown</span><span data-lang="es">Resumen Financiero</span></h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th data-lang="en">Work Stage &amp; Description</th>
+                        <th data-lang="es">Etapa de Trabajo y Descripción</th>
+                        <th data-lang="en" style="width:25%; text-align:right;">Est. Time / Cost</th>
+                        <th data-lang="es" style="width:25%; text-align:right;">Tiempo Est. / Costo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="2" style="background-color: #e6f0fa; color: #0A192F; font-weight: bold;">
+                            <span data-lang="en">STAGE 1: ROUGH-IN (Drainage &amp; Water Supply Modification)</span>
+                            <span data-lang="es">ETAPA 1: ROUGH-IN (Modificación de Drenaje y Suministro)</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-lang="en"><strong>Materials &amp; Labor:</strong> In-wall ABS drainage modification, PEX/Copper water supply extensions, R-value hot water insulation, hardware, and installation labor.</td>
+                        <td data-lang="es"><strong>Materiales y Labor:</strong> Modificación de drenaje ABS en pared, extensiones de suministro PEX/Cobre, aislamiento térmico valor-R, hardware y mano de obra de instalación.</td>
+                        <td style="text-align:right; font-weight:bold;">5 – 7 hrs</td>
+                    </tr>
+                    
+                    <tr><td colspan="2" style="border: none; padding: 4px;"></td></tr>
+
+                    <tr>
+                        <td colspan="2" style="background-color: #e6f0fa; color: #0A192F; font-weight: bold;">
+                            <span data-lang="en">STAGE 2: FINISH PLUMBING (Faucets, Traps &amp; Connections)</span>
+                            <span data-lang="es">ETAPA 2: PLOMERÍA DE ACABADO (Grifería, Trampas y Conexiones)</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-lang="en"><strong>Materials &amp; Labor:</strong> Installation of 4 quarter-turn angle stops, flex supply lines, 2 P-traps, pop-up drains, faucet mounting, escutcheons, and final connection labor.</td>
+                        <td data-lang="es"><strong>Materiales y Labor:</strong> Instalación de 4 válvulas angle stop de ¼ de vuelta, mangueras flexibles, 2 trampas P, desagües pop-up, montaje de grifería, embellecedores y mano de obra de conexión final.</td>
+                        <td style="text-align:right; font-weight:bold;">3 – 4.5 hrs</td>
+                    </tr>
+
+                    <tr><td colspan="2" style="border: none; padding: 4px;"></td></tr>
+
+                    <tr>
+                        <td colspan="2" style="background-color: #e6f0fa; color: #0A192F; font-weight: bold;">
+                            <span data-lang="en">STAGE 3: TOILET SERVICE</span>
+                            <span data-lang="es">ETAPA 3: SERVICIO DE TOILET</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-lang="en"><strong>Materials &amp; Labor:</strong> Removal of toilet, replacement of angle stop and supply line, reinstallation with new wax ring and closet bolts, leak testing, and labor.</td>
+                        <td data-lang="es"><strong>Materiales y Labor:</strong> Remoción de toilet, reemplazo de angle stop y manguera de suministro, reinstalación con sello de cera y pernos nuevos, prueba de fugas y mano de obra.</td>
+                        <td style="text-align:right; font-weight:bold;">1 – 1.5 hrs</td>
+                    </tr>
+                    
+                    <tr><td colspan="2" style="border: none; padding: 6px;"></td></tr>
+
+                    <tr class="total-row" style="background-color: rgba(10, 25, 47, 0.1); font-size: 1.1rem;">
+                        <td data-lang="en">GRAND TOTAL PROJECT:</td>
+                        <td data-lang="es">TOTAL GENERAL DEL PROYECTO:</td>
+                        <td style="font-weight:bold;">$ 1,782.00</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="condition-box" style="margin-top: 15px;">
+                <strong data-lang="en">Payment Schedule:</strong>
+                <strong data-lang="es">Calendario de Pagos:</strong>
+                <ul style="margin-top: 5px; margin-bottom: 0;">
+                    <li data-lang="en"><strong>Initial Deposit:</strong> Due upon contract execution (Strictly limited to 10% of total or $1,000, whichever is less, per CA law).</li>
+                    <li data-lang="es"><strong>Depósito Inicial:</strong> A la firma del contrato (Limitado al 10% del total o $1,000, lo que sea menor, según ley de CA).</li>
+                    <li data-lang="en"><strong>Progress Disbursement:</strong> Due upon completion of Stage 1 (Rough-In) and delivery of materials on site.</li>
+                    <li data-lang="es"><strong>Desembolso de Progreso:</strong> Exigible al completar Etapa 1 (Rough-In) y entrega de materiales en sitio.</li>
+                    <li data-lang="en"><strong>Final Payment:</strong> Due upon successful completion of Stage 2 &amp; 3, leak testing, and final client approval.</li>
+                    <li data-lang="es"><strong>Pago Final:</strong> Exigible tras la finalización exitosa de Etapas 2 y 3, prueba de fugas y aprobación del cliente.</li>
+                </ul>
+            </div>
+
+            <!-- SECTION V: LEGAL -->
+            <h2 class="section-title">V. <span data-lang="en">Legal Disclosures &amp; Warranties</span><span data-lang="es">Divulgaciones Legales y Garantías</span></h2>
+            
+            <p data-lang="en" class="legal-clause"><strong>1. Labor Warranty:</strong> Morales Plumbing guarantees workmanship for <strong>1 year</strong> from commissioning. Hardware is governed by manufacturer's warranty.</p>
+            <p data-lang="es" class="legal-clause"><strong>1. Garantía de Mano de Obra:</strong> Morales Plumbing garantiza el trabajo por <strong>1 año</strong> desde la puesta en marcha. Hardware regido por garantía del fabricante.</p>
+            <p data-lang="en" class="legal-clause"><strong>2. Proposal Validity:</strong> Technical specifications and figures are valid for <strong>7 days</strong> due to supply chain volatility.</p>
+            <p data-lang="es" class="legal-clause"><strong>2. Validez de la Propuesta:</strong> Especificaciones y cifras son válidas por <strong>7 días</strong> debido a volatilidad de suministros.</p>
+            <p data-lang="en" class="legal-clause"><strong>3. Exclusions:</strong> This scope does <strong>NOT</strong> include: vanity cabinet demolition (client responsibility), drywall patching/finishing, painting, or faucet/hardware procurement (unless contracted separately).</p>
+            <p data-lang="es" class="legal-clause"><strong>3. Exclusiones:</strong> Este alcance <strong>NO</strong> incluye: demolición del gabinete (responsabilidad del cliente), parcheo/acabado de drywall, pintura, ni adquisición de grifería/hardware (a menos que se contrate por separado).</p>
+            <p data-lang="en" class="legal-clause"><strong>4. Permits &amp; Inspections:</strong> The scope of this proposal is exclusively limited to the execution of the described labor and materials. Municipal permits, inspections, or city procedures are not included and are the direct responsibility of the client/owner.</p>
+            <p data-lang="es" class="legal-clause"><strong>4. Permisos e Inspecciones:</strong> El alcance de esta propuesta se limita exclusivamente a la ejecución de la mano de obra y materiales descritos. Los permisos municipales, inspecciones o trámites ante la ciudad no están incluidos y son responsabilidad directa del cliente/propietario.</p>
+            
+            <div class="signature-section">
+                <div class="signature-block">
+                    <p data-lang="en" style="font-size: 0.8rem; color: #555; min-height: 40px;">This signature is non-binding. It serves only as the preliminary acceptance of this proposal for the drafting of contracts.</p>
+                    <p data-lang="es" style="font-size: 0.8rem; color: #555; min-height: 40px;">Esta firma no es vinculante. Solo representa la aceptación de esta propuesta para la elaboración de los contratos.</p>
+                    
+                    <div class="signature-line"><span data-lang="en">Client Signature</span><span data-lang="es">Firma del Cliente</span> (Joan Wrabetz)</div>
+                    <p style="margin-top: 5px;"><span data-lang="en">Date:</span><span data-lang="es">Fecha:</span> _____________________</p>
+                </div>
+                
+                <div class="signature-block">
+                    <p data-lang="en" style="font-size: 0.8rem; color: #555; min-height: 40px;">Document prepared, reviewed for code compliance, and authorized by the representative.</p>
+                    <p data-lang="es" style="font-size: 0.8rem; color: #555; min-height: 40px;">Documento preparado, revisado para cumplimiento de código y autorizado por el representante.</p>
+                    
+                    <div class="signature-line"><span data-lang="en">Morales Plumbing Representative</span><span data-lang="es">Representante Morales Plumbing</span></div>
+                    <p style="margin-top: 5px;"><span data-lang="en">Date:</span><span data-lang="es">Fecha:</span> _____________________</p>
+                </div>
+            </div>
+
+            <div class="page-break"></div>
+            <div style="text-align: center; margin-top: 30px; page-break-inside: avoid;">
+                <h3 style="color: var(--primary-blue); border-bottom: 2px solid var(--accent-gold); padding-bottom: 5px; margin-bottom: 20px; text-transform: uppercase;">
+                    <span data-lang="en">System Architecture &amp; Technical Reference</span>
+                    <span data-lang="es">Arquitectura del Sistema y Referencia Técnica</span>
+                </h3>
+                <img src="infografia pro lavy.png" alt="Double Lavatory Architecture Infographic" style="max-width: 100%; max-height: 800px; height: auto; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            </div>
+
+        </div>
+        <div class="page-footer" id="print-footer">
+            <span data-lang="en">Lavy Installation Proposal - Morales Plumbing | CSLB License C-36 #1156542 | Proposal MP-2024-07-LV</span>
+            <span data-lang="es">Propuesta Instalación Lavy - Morales Plumbing | Licencia CSLB C-36 #1156542 | Propuesta MP-2024-07-LV</span>
+        </div>
+    </div>
+
+    <script>
+        function setLang(lang) {
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                if (el.getAttribute('data-lang') === lang) {
+                    if (el.tagName.toLowerCase() === 'span' || el.tagName.toLowerCase() === 'strong' || el.tagName.toLowerCase() === 'em') {
+                        el.style.display = 'inline';
+                    } else if (el.tagName.toLowerCase() === 'li') {
+                        el.style.display = 'list-item';
+                    } else {
+                        el.style.display = 'block';
+                    }
+                } else {
+                    el.style.display = 'none';
+                }
+            });
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+            document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+        }
+    </script>
+</body>
+</html>
