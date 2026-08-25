@@ -2612,46 +2612,20 @@
       <div class="esign-step" id="step-2-indicator"><div class="esign-step-num" id="step-2-num">2</div><span><span class="lang-es">Aceptación</span><span class="lang-en">Proposal Acceptance</span></span></div>
     </div>
 
-    <!-- PASO 1: RECEIPT -->
+    <!-- PASO 1: RECEIPT STATUS (COMPLETED AT GATE) -->
     <div class="esign-section" id="receipt-section">
-      <div class="esign-section-title"><span class="badge-step"><span class="lang-es">Paso 1</span><span class="lang-en">Step 1</span></span><span class="lang-es">ACUSO DE RECIBO DE LA PROPUESTA</span><span class="lang-en">ACKNOWLEDGMENT OF PROPOSAL RECEIPT</span></div>
-      <div class="esign-legal-text">
-        <span class="lang-es">"Reconozco que he recibido y revisado esta propuesta de Morales Plumbing (Lic. CSLB C-36 #1156542). Esta acción NO constituye autorización para comenzar ningún trabajo ni vincula contractualmente a ninguna de las partes."</span>
-        <span class="lang-en">"I acknowledge that I have received and reviewed this proposal from Morales Plumbing (CSLB C-36 #1156542). This acknowledgment does NOT constitute acceptance or authorization to proceed with any work."</span>
-      </div>
-      <form id="receipt-form">
-        <div class="esign-field-grid">
-          <div class="esign-field"><label><span class="lang-es">Nombre Completo *</span><span class="lang-en">Full Name *</span></label><input type="text" id="receipt-name" placeholder="Manjinder S. Sandhu" required></div>
-          <div class="esign-field"><label><span class="lang-es">Correo Electrónico *</span><span class="lang-en">Email Address *</span></label><input type="email" id="receipt-email" placeholder="cliente@email.com" required></div>
-        </div>
-        <div class="esign-canvas-label">
-          <span><span class="lang-es">Firma Electrónica *</span><span class="lang-en">Electronic Signature *</span></span>
-          <button type="button" class="esign-clear-btn" onclick="clearCanvas('receipt-canvas')">&#10005; <span class="lang-es">Borrar</span><span class="lang-en">Clear</span></button>
-        </div>
-        <div class="esign-canvas-wrap"><canvas id="receipt-canvas" height="130"></canvas></div>
-        <div class="esign-canvas-hint">&#9997;&#65039; <span class="lang-es">Firme con su dedo (móvil) o con el mouse</span><span class="lang-en">Sign with finger (mobile) or mouse</span></div>
-        <div class="esign-checkbox-row">
-          <input type="checkbox" id="receipt-consent" required>
-          <label for="receipt-consent"><span class="lang-es">Confirmo que he leído y revisado esta propuesta completa de Morales Plumbing. Entiendo que este acuso de recibo NO es autorización para comenzar trabajos.</span><span class="lang-en">I confirm I have read and reviewed this complete proposal from Morales Plumbing. This acknowledgment is NOT authorization to begin work.</span></label>
-        </div>
-        <div class="esign-date-row">&#128197; <span class="lang-es">Fecha:</span><span class="lang-en">Date:</span> <strong id="receipt-date-display"></strong></div>
-        <button type="submit" class="esign-submit-btn" id="receipt-submit-btn">&#9997;&#65039; <span class="lang-es">FIRMAR ACUSO DE RECIBO</span><span class="lang-en">SIGN &amp; ACKNOWLEDGE RECEIPT</span></button>
-      </form>
-      <div class="esign-success-card" id="receipt-success">
-        <h3>&#9989; <span class="lang-es">Acuso de Recibo Registrado</span><span class="lang-en">Receipt Acknowledgment Recorded</span></h3>
-        <p><span class="lang-es">Su firma ha sido registrada y Morales Plumbing ha sido notificado.</span><br><span class="lang-en">Receipt acknowledgment recorded. Morales Plumbing has been notified.</span></p>
+      <div class="esign-section-title"><span class="badge-step"><span class="lang-es">Paso 1</span><span class="lang-en">Step 1</span></span><span class="lang-es">ACUSO DE RECIBO DE PROPUESTA</span><span class="lang-en">ACKNOWLEDGMENT OF PROPOSAL RECEIPT</span></div>
+      <div class="esign-success-card visible" id="receipt-success" style="display:block; margin-top:10px;">
+        <h3><span class="lang-es">&#10003; Acuso de Recibo Registrado</span><span class="lang-en">&#10003; Receipt Acknowledgment Recorded</span></h3>
+        <p><span class="lang-es">El acuso de recibo fue validado. A continuación puede revisar y autorizar la propuesta.</span><br><span class="lang-en">Receipt acknowledgment recorded. Below you may review and authorize the proposal.</span></p>
         <div class="esign-audit-row" id="receipt-audit-row"></div>
       </div>
     </div>
 
     <!-- PASO 2: ACCEPTANCE -->
-    <div class="esign-section esign-acceptance-section" id="acceptance-section">
+    <div class="esign-section esign-acceptance-section visible" id="acceptance-section" style="display:block;">
       <div class="esign-section-title"><span class="badge-step" style="background:#15803D;"><span class="lang-es">Paso 2</span><span class="lang-en">Step 2</span></span><span class="lang-es">ACEPTACIÓN Y AUTORIZACIÓN DE PROPUESTA</span><span class="lang-en">ACCEPTANCE / AUTHORIZATION TO PROCEED</span></div>
-      <div class="esign-locked-overlay" id="acceptance-locked">
-        <span class="lock-icon">&#128274;</span>
-        <span class="lang-es">Complete el Paso 1 para desbloquear la Aceptación.</span><span class="lang-en">Complete Step 1 to unlock Acceptance.</span>
-      </div>
-      <div id="acceptance-form-wrapper" style="display:none;">
+      <div id="acceptance-form-wrapper" style="display:block;">
         <div class="esign-legal-text" style="border-color:#86EFAC;background:#F0FDF4;color:#166534;border-left-color:#15803D;">
           <span class="lang-es">"Acepto el alcance de obra, precios ($21,500.00 USD), términos y condiciones de esta propuesta comercial (MP-PROP-4423V-SANDHU) y autorizo a Morales Plumbing (Lic. CSLB C-36 #1156542) a proceder con los trabajos descritos."</span>
           <span class="lang-en">"I accept the scope of work, pricing ($21,500.00 USD), terms and conditions contained in this proposal (MP-PROP-4423V-SANDHU) and authorize Morales Plumbing (CSLB C-36 #1156542) to proceed with the work described herein."</span>
