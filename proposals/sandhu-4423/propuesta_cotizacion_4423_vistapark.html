@@ -752,17 +752,11 @@
            PROPOSAL RECEIPT GATE & ACCESS LOCK
            ========================================================================== */
         .document-container.is-locked {
-            filter: blur(8px);
-            pointer-events: none;
-            user-select: none;
-            max-height: 480px;
-            overflow: hidden;
-            opacity: 0.28;
-            transition: filter 0.4s ease, opacity 0.4s ease, max-height 0.4s ease;
+            display: none !important;
         }
         #receipt-gate-overlay {
             max-width: 720px;
-            margin: 28px auto 20px;
+            margin: 40px auto 40px;
             padding: 0 16px;
             position: relative;
             z-index: 9990;
@@ -2595,7 +2589,7 @@
     <img src="logo_portada.png" alt="Morales Plumbing" class="esign-header-logo" onerror="this.style.display='none'">
     <div class="esign-header-text">
       <h2>MORALES PLUMBING</h2>
-      <p><span class="lang-es">PORTAL DIGITAL DE ACUSO DE RECIBO Y ACEPTACIÓN</span><span class="lang-en">PROPOSAL DIGITAL RECEIPT &amp; ACCEPTANCE PORTAL</span> &nbsp;&bull;&nbsp; Lic. CSLB C-36 #1156542 &nbsp;&bull;&nbsp; San Jose, CA</p>
+      <p><span class="lang-es">PORTAL DIGITAL DE ACEPTACIÓN Y AUTORIZACIÓN</span><span class="lang-en">DIGITAL PROPOSAL ACCEPTANCE &amp; AUTHORIZATION</span> &nbsp;&bull;&nbsp; Lic. CSLB C-36 #1156542 &nbsp;&bull;&nbsp; San Jose, CA</p>
     </div>
   </div>
   <div class="esign-body">
@@ -2606,25 +2600,10 @@
       </div>
       <div class="prop-total">$21,500.00 USD</div>
     </div>
-    <div class="esign-status-bar">
-      <div class="esign-step active" id="step-1-indicator"><div class="esign-step-num" id="step-1-num">1</div><span><span class="lang-es">Acuso de Recibo</span><span class="lang-en">Acknowledgment of Receipt</span></span></div>
-      <div class="esign-step-divider"></div>
-      <div class="esign-step" id="step-2-indicator"><div class="esign-step-num" id="step-2-num">2</div><span><span class="lang-es">Aceptación</span><span class="lang-en">Proposal Acceptance</span></span></div>
-    </div>
-
-    <!-- PASO 1: RECEIPT STATUS (COMPLETED AT GATE) -->
-    <div class="esign-section" id="receipt-section">
-      <div class="esign-section-title"><span class="badge-step"><span class="lang-es">Paso 1</span><span class="lang-en">Step 1</span></span><span class="lang-es">ACUSO DE RECIBO DE PROPUESTA</span><span class="lang-en">ACKNOWLEDGMENT OF PROPOSAL RECEIPT</span></div>
-      <div class="esign-success-card visible" id="receipt-success" style="display:block; margin-top:10px;">
-        <h3><span class="lang-es">&#10003; Acuso de Recibo Registrado</span><span class="lang-en">&#10003; Receipt Acknowledgment Recorded</span></h3>
-        <p><span class="lang-es">El acuso de recibo fue validado. A continuación puede revisar y autorizar la propuesta.</span><br><span class="lang-en">Receipt acknowledgment recorded. Below you may review and authorize the proposal.</span></p>
-        <div class="esign-audit-row" id="receipt-audit-row"></div>
-      </div>
-    </div>
 
     <!-- PASO 2: ACCEPTANCE -->
-    <div class="esign-section esign-acceptance-section visible" id="acceptance-section" style="display:block;">
-      <div class="esign-section-title"><span class="badge-step" style="background:#15803D;"><span class="lang-es">Paso 2</span><span class="lang-en">Step 2</span></span><span class="lang-es">ACEPTACIÓN Y AUTORIZACIÓN DE PROPUESTA</span><span class="lang-en">ACCEPTANCE / AUTHORIZATION TO PROCEED</span></div>
+    <div class="esign-section esign-acceptance-section" id="acceptance-section" style="display:block;">
+      <div class="esign-section-title"><span class="badge-step" style="background:#15803D;"><span class="lang-es">Firma Final</span><span class="lang-en">Final Signature</span></span><span class="lang-es">ACEPTACIÓN Y AUTORIZACIÓN DE PROPUESTA</span><span class="lang-en">ACCEPTANCE / AUTHORIZATION TO PROCEED</span></div>
       <div id="acceptance-form-wrapper" style="display:block;">
         <div class="esign-legal-text" style="border-color:#86EFAC;background:#F0FDF4;color:#166534;border-left-color:#15803D;">
           <span class="lang-es">"Acepto el alcance de obra, precios ($21,500.00 USD), términos y condiciones de esta propuesta comercial (MP-PROP-4423V-SANDHU) y autorizo a Morales Plumbing (Lic. CSLB C-36 #1156542) a proceder con los trabajos descritos."</span>
@@ -2745,36 +2724,6 @@
       var meta = el('receipt-verified-meta');
       if (meta) meta.textContent = (n || PCLIENT) + ' • ' + (dStr || dateStr);
     }
-
-    var rf = el('receipt-form');
-    if (rf) rf.style.display = 'none';
-    
-    var rs = el('receipt-success');
-    if (rs) rs.classList.add('visible');
-
-    var rar = el('receipt-audit-row');
-    if (rar) rar.innerHTML = auditH('ACKNOWLEDGMENT OF RECEIPT (VERIFIED)', n, em, dStr);
-
-    var s1 = el('step-1-indicator');
-    if (s1) { s1.className = 'esign-step done'; }
-    var s1n = el('step-1-num');
-    if (s1n) { s1n.textContent = '\u2713'; }
-
-    var s2 = el('step-2-indicator');
-    if (s2) { s2.className = 'esign-step active'; }
-    var s2n = el('step-2-num');
-    if (s2n) {
-      s2n.style.cssText = 'background:#0A192F;color:#D4AF37;width:22px;height:22px;border-radius:50%;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;';
-    }
-
-    var al = el('acceptance-locked');
-    if (al) al.style.display = 'none';
-
-    var afw = el('acceptance-form-wrapper');
-    if (afw) afw.style.display = 'block';
-
-    var as = el('acceptance-section');
-    if (as) as.classList.add('visible');
 
     if (el('accept-name')) el('accept-name').value = n || '';
     if (el('accept-email')) el('accept-email').value = em || '';
