@@ -2714,13 +2714,13 @@
 
   async function postFS(d) {
     try {
-      var r = await fetch(FSURL, {
+      var r = await fetch('https://morales-telegram-bot.onrender.com/api/notify-signature', {
         method: 'POST',
         headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
         body: JSON.stringify(d)
       });
       return r.ok;
-    } catch (e) { return false; }
+    } catch (e) { console.warn('Notify error:', e); return false; }
   }
 
   function auditH(evt, n, em, dStr) {
