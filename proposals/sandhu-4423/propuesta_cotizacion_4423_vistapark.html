@@ -747,9 +747,90 @@
                 padding-top: 3px !important;
             }
         }
-    </style>
+    
+        /* LOCK SCREEN (SIGN-WALL) CSS */
+        .blurred-locked {
+            filter: blur(8px);
+            pointer-events: none;
+            user-select: none;
+            overflow: hidden;
+            height: 100vh;
+        }
+        #signwall-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10, 25, 47, 0.85);
+            backdrop-filter: blur(4px);
+            z-index: 999999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .signwall-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            border-top: 6px solid #D4AF37;
+        }
+        .signwall-card h2 { color: #0A192F; margin-bottom: 10px; font-size: 22px; }
+        .signwall-card p { color: #334155; font-size: 14px; margin-bottom: 20px; }
+        .signwall-canvas-container {
+            border: 2px dashed #CBD5E1;
+            background: #F8FAFC;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            touch-action: none;
+        }
+        .signwall-canvas { cursor: crosshair; }
+        .signwall-btn {
+            background: linear-gradient(135deg, #0A192F 0%, #112240 100%);
+            color: #D4AF37;
+            border: none;
+            padding: 12px 20px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 6px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+        .signwall-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+        .signwall-input {
+            width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #CBD5E1; border-radius: 4px; font-family: 'Inter', sans-serif;
+        }
+
+</style>
 </head>
 <body>
+
+
+<div id="signwall-overlay">
+    <div class="signwall-card">
+        <h2>🔒 Documento Bloqueado</h2>
+        <p>Para desbloquear y visualizar los detalles y precios de su propuesta, por favor firme confirmando que la ha recibido.</p>
+        
+        <form id="signwall-form">
+            <input type="text" id="sw-name" class="signwall-input" placeholder="Nombre completo" required>
+            <input type="email" id="sw-email" class="signwall-input" placeholder="Correo electrónico" required>
+            <div class="signwall-canvas-container">
+                <canvas id="sw-canvas" class="signwall-canvas"></canvas>
+            </div>
+            <div style="text-align: right; margin-bottom: 10px;">
+                <button type="button" onclick="clearSWCanvas()" style="background:none;border:none;color:#B91C1C;cursor:pointer;font-size:12px;text-decoration:underline;">&#8634; Borrar firma</button>
+            </div>
+            <button type="submit" id="sw-submit-btn" class="signwall-btn">Firmar Acuso de Recibo y Desbloquear</button>
+        </form>
+    </div>
+</div>
+
+<div id="proposal-content-wrapper" class="blurred-locked">
+
 
     <!-- REPEATING WATERMARK -->
     <img alt="Morales Plumbing Watermark" class="watermark-overlay" src="logo_tran marca agua.png"/>
@@ -2436,8 +2517,67 @@ v>
 .esign-audit-row { background: #F1F5F9; border: 1px solid #E2E8F0; border-radius: 6px; padding: 10px 14px; font-size: 10px; color: #64748B; margin-top: 12px; display: flex; flex-wrap: wrap; gap: 12px; }
 .esign-audit-row span strong { color: #334155; }
 .esign-footer-note { text-align: center; font-size: 9.5px; color: #94A3B8; margin-top: 20px; line-height: 1.5; }
+
+        /* LOCK SCREEN (SIGN-WALL) CSS */
+        .blurred-locked {
+            filter: blur(8px);
+            pointer-events: none;
+            user-select: none;
+            overflow: hidden;
+            height: 100vh;
+        }
+        #signwall-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10, 25, 47, 0.85);
+            backdrop-filter: blur(4px);
+            z-index: 999999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .signwall-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            border-top: 6px solid #D4AF37;
+        }
+        .signwall-card h2 { color: #0A192F; margin-bottom: 10px; font-size: 22px; }
+        .signwall-card p { color: #334155; font-size: 14px; margin-bottom: 20px; }
+        .signwall-canvas-container {
+            border: 2px dashed #CBD5E1;
+            background: #F8FAFC;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            touch-action: none;
+        }
+        .signwall-canvas { cursor: crosshair; }
+        .signwall-btn {
+            background: linear-gradient(135deg, #0A192F 0%, #112240 100%);
+            color: #D4AF37;
+            border: none;
+            padding: 12px 20px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 6px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+        .signwall-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+        .signwall-input {
+            width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #CBD5E1; border-radius: 4px; font-family: 'Inter', sans-serif;
+        }
+
 </style>
 
+</div>
 <div id="esign-portal">
 <div class="esign-wrapper">
   <div class="esign-header">
@@ -2456,13 +2596,13 @@ v>
       <div class="prop-total">$19,671.18 USD</div>
     </div>
     <div class="esign-status-bar">
-      <div class="esign-step active" id="step-1-indicator"><div class="esign-step-num" id="step-1-num">1</div><span>Acuso de Recibo</span></div>
+      <div class="esign-step done" id="step-1-indicator" style="display:none;"><div class="esign-step-num" id="step-1-num">1</div><span>Acuso de Recibo</span></div>
       <div class="esign-step-divider"></div>
-      <div class="esign-step" id="step-2-indicator"><div class="esign-step-num" id="step-2-num">2</div><span>Aceptaci&#243;n</span></div>
+      <div class="esign-step active" id="step-2-indicator"><div class="esign-step-num" id="step-2-num">2</div><span>Aceptaci&#243;n</span></div>
     </div>
 
     <!-- PASO 1: RECEIPT -->
-    <div class="esign-section" id="receipt-section">
+    <div class="esign-section" id="receipt-section" style="display:none;">
       <div class="esign-section-title"><span class="badge-step">Paso 1</span>ACKNOWLEDGMENT OF RECEIPT &mdash; Acuso de Recibo</div>
       <div class="esign-legal-text">
         "I acknowledge that I have received and reviewed this proposal from Morales Plumbing (CSLB C-36 #1156542). This acknowledgment does NOT constitute acceptance or authorization to proceed with any work."<br><br>
@@ -2496,11 +2636,11 @@ v>
     <!-- PASO 2: ACCEPTANCE -->
     <div class="esign-section esign-acceptance-section" id="acceptance-section">
       <div class="esign-section-title"><span class="badge-step" style="background:#15803D;">Paso 2</span>ACCEPTANCE / AUTHORIZATION TO PROCEED &mdash; Aceptaci&#243;n</div>
-      <div class="esign-locked-overlay" id="acceptance-locked">
+      <div class="esign-locked-overlay" id="acceptance-locked" style="display:none;">
         <span class="lock-icon">&#128274;</span>
         Complete el Paso 1 para desbloquear la Aceptaci&#243;n.<br><em>Complete Step 1 to unlock Acceptance.</em>
       </div>
-      <div id="acceptance-form-wrapper" style="display:none;">
+      <div id="acceptance-form-wrapper" style="display:block;">
         <div class="esign-legal-text" style="border-color:#86EFAC;background:#F0FDF4;color:#166534;border-left-color:#15803D;">
           "I accept the scope of work, pricing, terms and conditions contained in this proposal (MP-PROP-4423V-SANDHU, Total: $19,671.18 USD) and authorize Morales Plumbing (CSLB C-36 #1156542) to proceed with the work described herein."<br><br>
           "Acepto el alcance, precios, t&#233;rminos y condiciones de esta propuesta y autorizo a Morales Plumbing a proceder con los trabajos descritos."
@@ -2612,6 +2752,88 @@ v>
     el('acceptance-audit-row').innerHTML=auditH('ACCEPTANCE / AUTHORIZATION TO PROCEED',n,em);
     el('step-2-indicator').className='esign-step done';el('step-2-num').textContent='\u2713';
   });}
+})();
+</script>
+
+
+<script>
+(function(){
+  'use strict';
+  function el(id){return document.getElementById(id);}
+  var swC = el('sw-canvas');
+  if(!swC) return;
+  var swCtx = swC.getContext('2d');
+  var dpr = window.devicePixelRatio || 1;
+  swC.width = (swC.parentElement.offsetWidth - 4) * dpr;
+  swC.height = 150 * dpr;
+  swC.style.width = '100%';
+  swC.style.height = '150px';
+  swCtx.scale(dpr, dpr);
+  swCtx.strokeStyle = '#0A192F'; swCtx.lineWidth = 2.5; swCtx.lineCap = 'round'; swCtx.lineJoin = 'round';
+  
+  var swDrawing = false;
+  var swSigned = false;
+  
+  function getPos(e){
+      var r = swC.getBoundingClientRect();
+      var t = e.touches ? e.touches[0] : e;
+      return { x: (t.clientX - r.left) * (swC.offsetWidth / r.width), y: (t.clientY - r.top) * (swC.offsetHeight / r.height) };
+  }
+  
+  swC.addEventListener('mousedown', function(e){ swDrawing = true; var p = getPos(e); swCtx.beginPath(); swCtx.moveTo(p.x, p.y); });
+  swC.addEventListener('mousemove', function(e){ if(!swDrawing) return; var p = getPos(e); swCtx.lineTo(p.x, p.y); swCtx.stroke(); swSigned = true; });
+  swC.addEventListener('mouseup', function(){ swDrawing = false; });
+  swC.addEventListener('mouseleave', function(){ swDrawing = false; });
+  
+  swC.addEventListener('touchstart', function(e){ e.preventDefault(); swDrawing = true; var p = getPos(e); swCtx.beginPath(); swCtx.moveTo(p.x, p.y); }, {passive: false});
+  swC.addEventListener('touchmove', function(e){ e.preventDefault(); if(!swDrawing) return; var p = getPos(e); swCtx.lineTo(p.x, p.y); swCtx.stroke(); swSigned = true; }, {passive: false});
+  swC.addEventListener('touchend', function(){ swDrawing = false; });
+  
+  window.clearSWCanvas = function(){ swCtx.clearRect(0,0,swC.width,swC.height); swSigned = false; };
+  
+  el('signwall-form').addEventListener('submit', async function(e){
+      e.preventDefault();
+      var n = el('sw-name').value.trim();
+      var em = el('sw-email').value.trim();
+      if(!n || !em){ alert('Complete su nombre y correo.'); return; }
+      if(!swSigned){ alert('Por favor firme en el recuadro con su dedo o mouse.'); return; }
+      
+      var btn = el('sw-submit-btn');
+      btn.disabled = true;
+      btn.textContent = 'Desbloqueando...';
+      
+      var d = {
+          _subject: '[MORALES PLUMBING] RECEIPT SIGNED - MP-PROP-4423V-SANDHU',
+          event: 'ACKNOWLEDGMENT_OF_RECEIPT_SIGNWALL',
+          proposal_id: 'MP-PROP-4423V-SANDHU',
+          client: 'Manjinder S. Sandhu & Gurmeet K. Sandhu',
+          signer_name: n,
+          signer_email: em,
+          signed_at: new Date().toISOString()
+      };
+      
+      try {
+          await fetch('https://formspree.io/f/xanyzgll', {
+              method: 'POST',
+              headers: {'Accept':'application/json','Content-Type':'application/json'},
+              body: JSON.stringify(d)
+          });
+      } catch(ex){}
+      
+      // Unlock
+      el('signwall-overlay').style.display = 'none';
+      var wrapper = el('proposal-content-wrapper');
+      wrapper.classList.remove('blurred-locked');
+      wrapper.style.height = 'auto';
+      wrapper.style.overflow = 'visible';
+      
+      // Also pre-fill the acceptance form at the bottom
+      if(el('accept-name')) el('accept-name').value = n;
+      if(el('accept-email')) el('accept-email').value = em;
+      
+      // Auto scroll to top
+      window.scrollTo(0,0);
+  });
 })();
 </script>
 
