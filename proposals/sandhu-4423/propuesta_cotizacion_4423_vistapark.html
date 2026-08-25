@@ -747,6 +747,86 @@
                 padding-top: 3px !important;
             }
         }
+
+        /* ==========================================================================
+           PROPOSAL RECEIPT GATE & ACCESS LOCK
+           ========================================================================== */
+        .document-container.is-locked {
+            filter: blur(8px);
+            pointer-events: none;
+            user-select: none;
+            max-height: 480px;
+            overflow: hidden;
+            opacity: 0.28;
+            transition: filter 0.4s ease, opacity 0.4s ease, max-height 0.4s ease;
+        }
+        #receipt-gate-overlay {
+            max-width: 720px;
+            margin: 28px auto 20px;
+            padding: 0 16px;
+            position: relative;
+            z-index: 9990;
+        }
+        .gate-card {
+            background: #FFFFFF;
+            border: 2px solid #0A192F;
+            border-radius: 8px;
+            box-shadow: 0 16px 40px rgba(10,25,47,0.18);
+            overflow: hidden;
+        }
+        .gate-header {
+            background: linear-gradient(135deg, #0A192F 0%, #112240 100%);
+            border-bottom: 4px solid #D4AF37;
+            padding: 18px 22px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .gate-header-logo { width: 50px; height: 50px; object-fit: contain; flex-shrink: 0; }
+        .gate-header-text h2 { color: #FFFFFF; font-size: 15px; font-weight: 800; margin: 0 0 2px; }
+        .gate-header-text p { color: #D4AF37; font-size: 10.5px; font-weight: 600; margin: 0; }
+        .gate-body { padding: 22px 24px; }
+        .gate-badge {
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            border-left: 4px solid #0A192F;
+            padding: 12px 16px;
+            border-radius: 4px;
+            margin-bottom: 16px;
+        }
+        .gate-badge .badge-title { font-size: 11px; font-weight: 800; color: #0A192F; text-transform: uppercase; margin-bottom: 4px; }
+        .gate-badge .badge-meta { font-size: 10px; color: #64748B; line-height: 1.4; }
+        .gate-instruction {
+            background: #FFFDF5;
+            border: 1px solid #E8D384;
+            border-left: 4px solid #D4AF37;
+            padding: 12px 16px;
+            border-radius: 4px;
+            color: #78350F;
+            font-size: 11px;
+            line-height: 1.45;
+            margin-bottom: 18px;
+        }
+        .receipt-verified-banner {
+            background: #F0FDF4;
+            border: 1.5px solid #86EFAC;
+            border-left: 4px solid #15803D;
+            color: #166534;
+            padding: 10px 18px;
+            border-radius: 4px;
+            margin-bottom: 14px;
+            font-size: 8.5pt;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        @media print {
+            #receipt-gate-overlay { display: none !important; }
+            .document-container.is-locked { filter: none !important; opacity: 1 !important; max-height: none !important; }
+        }
     </style>
 </head>
 <body>
@@ -763,8 +843,78 @@
         </div>
     </div>
 
-    <div class="document-container">
+    <!-- RECEIPT ACCESS GATE (BLOCKS CONTENT UNTIL SIGNED) -->
+    <div id="receipt-gate-overlay">
+        <div class="gate-card">
+            <div class="gate-header">
+                <img src="logo_portada.png" alt="Morales Plumbing" class="gate-header-logo" onerror="this.style.display='none'">
+                <div class="gate-header-text">
+                    <h2>MORALES PLUMBING</h2>
+                    <p><span class="lang-es">PORTAL DIGITAL DE ACUSO DE RECIBO DE PROPUESTA</span><span class="lang-en">DIGITAL PROPOSAL RECEIPT &amp; ACCESS PORTAL</span> &bull; Lic. C-36 #1156542</p>
+                </div>
+            </div>
+            <div class="gate-body">
+                <div class="gate-badge">
+                    <div class="badge-title"><span class="lang-es">Propuesta Comercial Oficial:</span><span class="lang-en">Official Commercial Proposal:</span> MP-PROP-4423V-SANDHU</div>
+                    <div class="badge-meta">
+                        <strong><span class="lang-es">Cliente:</span><span class="lang-en">Client:</span></strong> Manjinder S. Sandhu &amp; Gurmeet K. Sandhu<br>
+                        <strong><span class="lang-es">Dirección:</span><span class="lang-en">Address:</span></strong> 4423 Vistapark Dr, San Jose, CA 95136
+                    </div>
+                </div>
+
+                <div class="gate-instruction">
+                    <span class="lang-es">Para acceder a la propuesta técnica completa, diagnóstico forense y cotización desglosada, por favor confirme sus datos y firme el Acuso de Recibo digital. Este acuso <strong>NO</strong> constituye autorización de obra ni obligación de pago.</span>
+                    <span class="lang-en">To access the full technical proposal, forensic diagnosis, and itemized quotation, please verify your details and sign the digital Acknowledgment of Receipt. This acknowledgment does <strong>NOT</strong> constitute work authorization or payment commitment.</span>
+                </div>
+
+                <form id="gate-receipt-form">
+                    <div class="esign-field-grid">
+                        <div class="esign-field">
+                            <label><span class="lang-es">Nombre Completo *</span><span class="lang-en">Full Name *</span></label>
+                            <input type="text" id="gate-receipt-name" value="Manjinder S. Sandhu" placeholder="Manjinder S. Sandhu" required>
+                        </div>
+                        <div class="esign-field">
+                            <label><span class="lang-es">Correo Electrónico *</span><span class="lang-en">Email Address *</span></label>
+                            <input type="email" id="gate-receipt-email" placeholder="cliente@email.com" required>
+                        </div>
+                    </div>
+
+                    <div class="esign-canvas-label">
+                        <span><span class="lang-es">Firma Electrónica de Acuso de Recibo *</span><span class="lang-en">Electronic Signature (Acknowledgment of Receipt) *</span></span>
+                        <button type="button" class="esign-clear-btn" onclick="clearCanvas('gate-canvas')"><span class="lang-es">Borrar</span><span class="lang-en">Clear</span></button>
+                    </div>
+                    <div class="esign-canvas-wrap"><canvas id="gate-canvas" height="130"></canvas></div>
+                    <div class="esign-canvas-hint"><span class="lang-es">Firme con su dedo (móvil) o con el mouse</span><span class="lang-en">Sign with finger (mobile) or mouse</span></div>
+
+                    <div class="esign-checkbox-row">
+                        <input type="checkbox" id="gate-receipt-consent" required>
+                        <label for="gate-receipt-consent">
+                            <span class="lang-es">Confirmo que he recibido este enlace y deseo acceder a la propuesta comercial oficial de Morales Plumbing. Entiendo que este acuso de recibo NO autoriza el inicio de obras.</span>
+                            <span class="lang-en">I confirm I have received this link and request access to Morales Plumbing's official proposal. I understand this receipt does NOT authorize commencement of work.</span>
+                        </label>
+                    </div>
+
+                    <div class="esign-date-row"><span class="lang-es">Fecha:</span><span class="lang-en">Date:</span> <strong id="gate-date-display"></strong></div>
+                    <button type="submit" class="esign-submit-btn" id="gate-submit-btn">
+                        <span class="lang-es">FIRMAR ACUSO DE RECIBO Y DESBLOQUEAR PROPUESTA</span>
+                        <span class="lang-en">SIGN RECEIPT &amp; UNLOCK PROPOSAL</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="document-container is-locked" id="main-document-container">
         <img alt="Morales Plumbing Cover Banner" class="cover-banner" src="logo_portada.png"/>
+        
+        <!-- VERIFIED UNLOCKED BANNER (SHOWN AFTER RECEIPT IS SIGNED) -->
+        <div id="receipt-verified-banner" class="receipt-verified-banner" style="display:none; margin: 12px 28px 0 28px;">
+            <div>
+                <span class="lang-es">&#10003; ACUSO DE RECIBO REGISTRADO &bull; PROPUESTA DESBLOQUEADA</span>
+                <span class="lang-en">&#10003; PROPOSAL RECEIPT ACKNOWLEDGED &bull; DOCUMENT UNLOCKED</span>
+            </div>
+            <div style="font-size:7.5pt; color:#15803D;" id="receipt-verified-meta"></div>
+        </div>
         
         <!-- HEADER -->
         <header class="report-header">
@@ -2543,77 +2693,237 @@
 <script>
 (function(){
   'use strict';
-  var PID='MP-PROP-4423V-SANDHU';
-  var PTOTAL='$21,500.00 USD';
-  var PCLIENT='Manjinder S. Sandhu & Gurmeet K. Sandhu';
-  var FSURL='https://formspree.io/f/xanyzgll';
-  var now=new Date();
-  var dateStr=now.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit',timeZoneName:'short'});
-  function el(id){return document.getElementById(id);}
-  if(el('receipt-date-display')) el('receipt-date-display').textContent=dateStr;
-  if(el('accept-date-display'))  el('accept-date-display').textContent=dateStr;
-  var CVS={};
-  function initC(id){
-    var c=el(id);if(!c)return;
-    var dpr=window.devicePixelRatio||1;
-    var pw=c.parentElement.offsetWidth-12||600;
-    c.width=pw*dpr;c.height=130*dpr;
-    c.style.width=pw+'px';c.style.height='130px';
-    var ctx=c.getContext('2d');
-    ctx.scale(dpr,dpr);
-    ctx.strokeStyle='#0A192F';ctx.lineWidth=2.2;ctx.lineCap='round';ctx.lineJoin='round';
-    CVS[id]={ctx:ctx,dr:false,signed:false};
-    function pos(e){var r=c.getBoundingClientRect();var t=e.touches?e.touches[0]:e;return{x:(t.clientX-r.left)*(pw/r.width),y:(t.clientY-r.top)*(130/r.height)};}
-    c.addEventListener('mousedown',function(e){CVS[id].dr=true;var p=pos(e);ctx.beginPath();ctx.moveTo(p.x,p.y);});
-    c.addEventListener('mousemove',function(e){if(!CVS[id].dr)return;var p=pos(e);ctx.lineTo(p.x,p.y);ctx.stroke();CVS[id].signed=true;});
-    c.addEventListener('mouseup',function(){CVS[id].dr=false;});
-    c.addEventListener('mouseleave',function(){CVS[id].dr=false;});
-    c.addEventListener('touchstart',function(e){e.preventDefault();CVS[id].dr=true;var p=pos(e);ctx.beginPath();ctx.moveTo(p.x,p.y);},{passive:false});
-    c.addEventListener('touchmove',function(e){e.preventDefault();if(!CVS[id].dr)return;var p=pos(e);ctx.lineTo(p.x,p.y);ctx.stroke();CVS[id].signed=true;},{passive:false});
-    c.addEventListener('touchend',function(){CVS[id].dr=false;});
+  var PID = 'MP-PROP-4423V-SANDHU';
+  var PTOTAL = '$21,500.00 USD';
+  var PCLIENT = 'Manjinder S. Sandhu & Gurmeet K. Sandhu';
+  var FSURL = 'https://formspree.io/f/xanyzgll';
+  var STORAGE_KEY = 'sandhu_prop_unlocked_v1';
+  var now = new Date();
+  var dateStr = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZoneName: 'short' });
+  
+  function el(id) { return document.getElementById(id); }
+  
+  if (el('gate-date-display')) el('gate-date-display').textContent = dateStr;
+  if (el('receipt-date-display')) el('receipt-date-display').textContent = dateStr;
+  if (el('accept-date-display')) el('accept-date-display').textContent = dateStr;
+  
+  var CVS = {};
+  function initC(id) {
+    var c = el(id); if (!c) return;
+    var dpr = window.devicePixelRatio || 1;
+    var pw = c.parentElement.offsetWidth - 12 || 600;
+    c.width = pw * dpr; c.height = 130 * dpr;
+    c.style.width = pw + 'px'; c.style.height = '130px';
+    var ctx = c.getContext('2d');
+    ctx.scale(dpr, dpr);
+    ctx.strokeStyle = '#0A192F'; ctx.lineWidth = 2.2; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    CVS[id] = { ctx: ctx, dr: false, signed: false };
+    function pos(e) {
+      var r = c.getBoundingClientRect();
+      var t = e.touches ? e.touches[0] : e;
+      return { x: (t.clientX - r.left) * (pw / r.width), y: (t.clientY - r.top) * (130 / r.height) };
+    }
+    c.addEventListener('mousedown', function(e) { CVS[id].dr = true; var p = pos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); });
+    c.addEventListener('mousemove', function(e) { if (!CVS[id].dr) return; var p = pos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); CVS[id].signed = true; });
+    c.addEventListener('mouseup', function() { CVS[id].dr = false; });
+    c.addEventListener('mouseleave', function() { CVS[id].dr = false; });
+    c.addEventListener('touchstart', function(e) { e.preventDefault(); CVS[id].dr = true; var p = pos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); }, { passive: false });
+    c.addEventListener('touchmove', function(e) { e.preventDefault(); if (!CVS[id].dr) return; var p = pos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); CVS[id].signed = true; }, { passive: false });
+    c.addEventListener('touchend', function() { CVS[id].dr = false; });
   }
-  window.clearCanvas=function(id){var c=el(id);if(!c)return;c.getContext('2d').clearRect(0,0,c.width,c.height);if(CVS[id])CVS[id].signed=false;};
-  setTimeout(function(){initC('receipt-canvas');},400);
-  async function postFS(d){try{var r=await fetch(FSURL,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(d)});return r.ok;}catch(e){return false;}}
-  function auditH(evt,n,e){return '<span><strong>Evento:</strong> '+evt+'</span><span><strong>Firmante:</strong> '+n+'</span><span><strong>Email:</strong> '+e+'</span><span><strong>Propuesta:</strong> '+PID+'</span><span><strong>Monto:</strong> '+PTOTAL+'</span><span><strong>Fecha:</strong> '+dateStr+'</span>';}
-  var rf=el('receipt-form');
-  if(rf){rf.addEventListener('submit',async function(e){
-    e.preventDefault();
-    var n=el('receipt-name').value.trim();
-    var em=el('receipt-email').value.trim();
-    if(!n||!em){alert('Complete todos los campos / Fill all fields.');return;}
-    if(!el('receipt-consent').checked){alert('Debe marcar el checkbox de conformidad.');return;}
-    if(!CVS['receipt-canvas']||!CVS['receipt-canvas'].signed){alert('Por favor firme en el recuadro de firma.');return;}
-    var btn=el('receipt-submit-btn');btn.disabled=true;btn.textContent='Registrando...';
-    await postFS({_subject:'[MORALES PLUMBING] RECEIPT SIGNED - '+PID,event:'ACKNOWLEDGMENT_OF_RECEIPT',proposal_id:PID,total:PTOTAL,client:PCLIENT,signer_name:n,signer_email:em,signed_at:new Date().toISOString(),date_display:dateStr});
-    rf.style.display='none';
-    el('receipt-success').classList.add('visible');
-    el('receipt-audit-row').innerHTML=auditH('ACKNOWLEDGMENT OF RECEIPT',n,em);
-    el('step-1-indicator').className='esign-step done';el('step-1-num').textContent='\u2713';
-    el('step-2-indicator').className='esign-step active';
-    el('step-2-num').style.cssText='background:#0A192F;color:#D4AF37;width:22px;height:22px;border-radius:50%;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;';
-    el('acceptance-locked').style.display='none';
-    el('acceptance-form-wrapper').style.display='block';
-    el('acceptance-section').classList.add('visible');
-    if(el('accept-name')) el('accept-name').value=n;
-    if(el('accept-email')) el('accept-email').value=em;
-    setTimeout(function(){el('acceptance-section').scrollIntoView({behavior:'smooth',block:'start'});initC('accept-canvas');},600);
-  });}
-  var af=el('acceptance-form');
-  if(af){af.addEventListener('submit',async function(e){
-    e.preventDefault();
-    var n=el('accept-name').value.trim();
-    var em=el('accept-email').value.trim();
-    if(!n||!em){alert('Complete todos los campos / Fill all fields.');return;}
-    if(!el('accept-terms').checked){alert('Debe aceptar los Terminos y Condiciones para continuar.');return;}
-    if(!CVS['accept-canvas']||!CVS['accept-canvas'].signed){alert('Por favor firme en el recuadro de aceptacion.');return;}
-    var btn=el('accept-submit-btn');btn.disabled=true;btn.textContent='Procesando aceptacion...';
-    await postFS({_subject:'[MORALES PLUMBING] PROPOSAL ACCEPTED - '+PID,event:'ACCEPTANCE_SIGNED',proposal_id:PID,total:PTOTAL,client:PCLIENT,signer_name:n,signer_email:em,signed_at:new Date().toISOString(),date_display:dateStr,message:'MORALES PLUMBING AUTORIZADO A PROCEDER CON LOS TRABAJOS.'});
-    af.style.display='none';
-    el('acceptance-success').classList.add('visible');
-    el('acceptance-audit-row').innerHTML=auditH('ACCEPTANCE / AUTHORIZATION TO PROCEED',n,em);
-    el('step-2-indicator').className='esign-step done';el('step-2-num').textContent='\u2713';
-  });}
+
+  window.clearCanvas = function(id) {
+    var c = el(id); if (!c) return;
+    c.getContext('2d').clearRect(0, 0, c.width, c.height);
+    if (CVS[id]) CVS[id].signed = false;
+  };
+
+  async function postFS(d) {
+    try {
+      var r = await fetch(FSURL, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(d)
+      });
+      return r.ok;
+    } catch (e) { return false; }
+  }
+
+  function auditH(evt, n, em, dStr) {
+    return '<span><strong>Evento:</strong> ' + evt + '</span>' +
+           '<span><strong>Firmante:</strong> ' + n + '</span>' +
+           '<span><strong>Email:</strong> ' + em + '</span>' +
+           '<span><strong>Propuesta:</strong> ' + PID + '</span>' +
+           '<span><strong>Monto:</strong> ' + PTOTAL + '</span>' +
+           '<span><strong>Fecha:</strong> ' + (dStr || dateStr) + '</span>';
+  }
+
+  function applyUnlockedState(n, em, dStr) {
+    var doc = el('main-document-container');
+    if (doc) doc.classList.remove('is-locked');
+    
+    var gate = el('receipt-gate-overlay');
+    if (gate) gate.style.display = 'none';
+
+    var banner = el('receipt-verified-banner');
+    if (banner) {
+      banner.style.display = 'flex';
+      var meta = el('receipt-verified-meta');
+      if (meta) meta.textContent = (n || PCLIENT) + ' • ' + (dStr || dateStr);
+    }
+
+    var rf = el('receipt-form');
+    if (rf) rf.style.display = 'none';
+    
+    var rs = el('receipt-success');
+    if (rs) rs.classList.add('visible');
+
+    var rar = el('receipt-audit-row');
+    if (rar) rar.innerHTML = auditH('ACKNOWLEDGMENT OF RECEIPT (VERIFIED)', n, em, dStr);
+
+    var s1 = el('step-1-indicator');
+    if (s1) { s1.className = 'esign-step done'; }
+    var s1n = el('step-1-num');
+    if (s1n) { s1n.textContent = '\u2713'; }
+
+    var s2 = el('step-2-indicator');
+    if (s2) { s2.className = 'esign-step active'; }
+    var s2n = el('step-2-num');
+    if (s2n) {
+      s2n.style.cssText = 'background:#0A192F;color:#D4AF37;width:22px;height:22px;border-radius:50%;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;';
+    }
+
+    var al = el('acceptance-locked');
+    if (al) al.style.display = 'none';
+
+    var afw = el('acceptance-form-wrapper');
+    if (afw) afw.style.display = 'block';
+
+    var as = el('acceptance-section');
+    if (as) as.classList.add('visible');
+
+    if (el('accept-name')) el('accept-name').value = n || '';
+    if (el('accept-email')) el('accept-email').value = em || '';
+
+    setTimeout(function(){ initC('accept-canvas'); }, 400);
+  }
+
+  // CHECK LOCAL STORAGE ON LOAD
+  var isUnlocked = localStorage.getItem(STORAGE_KEY);
+  if (isUnlocked === 'true') {
+    var storedName = localStorage.getItem('sandhu_signer_name') || 'Manjinder S. Sandhu';
+    var storedEmail = localStorage.getItem('sandhu_signer_email') || '';
+    var storedDate = localStorage.getItem('sandhu_signer_date') || dateStr;
+    applyUnlockedState(storedName, storedEmail, storedDate);
+  } else {
+    setTimeout(function(){ initC('gate-canvas'); }, 300);
+  }
+
+  // GATE RECEIPT FORM SUBMISSION
+  var gf = el('gate-receipt-form');
+  if (gf) {
+    gf.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      var n = el('gate-receipt-name').value.trim();
+      var em = el('gate-receipt-email').value.trim();
+      if (!n || !em) { alert('Por favor complete su nombre y correo / Please enter name and email.'); return; }
+      if (!el('gate-receipt-consent').checked) { alert('Debe marcar la casilla de conformidad.'); return; }
+      if (!CVS['gate-canvas'] || !CVS['gate-canvas'].signed) { alert('Por favor firme en el recuadro de acuso de recibo / Please sign in the box.'); return; }
+
+      var btn = el('gate-submit-btn');
+      btn.disabled = true;
+      btn.textContent = 'Verificando y Desbloqueando Propuesta...';
+
+      await postFS({
+        _subject: '[MORALES PLUMBING] RECEIPT SIGNED & PROPOSAL UNLOCKED - ' + PID,
+        event: 'ACKNOWLEDGMENT_OF_RECEIPT_GATE',
+        proposal_id: PID,
+        total: PTOTAL,
+        client: PCLIENT,
+        signer_name: n,
+        signer_email: em,
+        signed_at: new Date().toISOString(),
+        date_display: dateStr
+      });
+
+      localStorage.setItem(STORAGE_KEY, 'true');
+      localStorage.setItem('sandhu_signer_name', n);
+      localStorage.setItem('sandhu_signer_email', em);
+      localStorage.setItem('sandhu_signer_date', dateStr);
+
+      applyUnlockedState(n, em, dateStr);
+
+      var doc = el('main-document-container');
+      if (doc) {
+        doc.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  }
+
+  // STEP 1 BOTTOM FORM SUBMISSION (FALLBACK)
+  var rf = el('receipt-form');
+  if (rf) {
+    rf.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      var n = el('receipt-name').value.trim();
+      var em = el('receipt-email').value.trim();
+      if (!n || !em) { alert('Complete todos los campos / Fill all fields.'); return; }
+      if (!el('receipt-consent').checked) { alert('Debe marcar el checkbox de conformidad.'); return; }
+      if (!CVS['receipt-canvas'] || !CVS['receipt-canvas'].signed) { alert('Por favor firme en el recuadro de firma.'); return; }
+      
+      var btn = el('receipt-submit-btn'); btn.disabled = true; btn.textContent = 'Registrando...';
+      await postFS({
+        _subject: '[MORALES PLUMBING] RECEIPT SIGNED - ' + PID,
+        event: 'ACKNOWLEDGMENT_OF_RECEIPT',
+        proposal_id: PID,
+        total: PTOTAL,
+        client: PCLIENT,
+        signer_name: n,
+        signer_email: em,
+        signed_at: new Date().toISOString(),
+        date_display: dateStr
+      });
+
+      localStorage.setItem(STORAGE_KEY, 'true');
+      localStorage.setItem('sandhu_signer_name', n);
+      localStorage.setItem('sandhu_signer_email', em);
+      localStorage.setItem('sandhu_signer_date', dateStr);
+
+      applyUnlockedState(n, em, dateStr);
+    });
+  }
+
+  // STEP 2: PROPOSAL ACCEPTANCE SUBMISSION
+  var af = el('acceptance-form');
+  if (af) {
+    af.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      var n = el('accept-name').value.trim();
+      var em = el('accept-email').value.trim();
+      if (!n || !em) { alert('Complete todos los campos / Fill all fields.'); return; }
+      if (!el('accept-terms').checked) { alert('Debe aceptar los Términos y Condiciones para continuar.'); return; }
+      if (!CVS['accept-canvas'] || !CVS['accept-canvas'].signed) { alert('Por favor firme en el recuadro de aceptación / Please sign to accept.'); return; }
+      
+      var btn = el('accept-submit-btn'); btn.disabled = true; btn.textContent = 'Procesando aceptación...';
+      await postFS({
+        _subject: '[MORALES PLUMBING] PROPOSAL ACCEPTED - ' + PID,
+        event: 'ACCEPTANCE_SIGNED',
+        proposal_id: PID,
+        total: PTOTAL,
+        client: PCLIENT,
+        signer_name: n,
+        signer_email: em,
+        signed_at: new Date().toISOString(),
+        date_display: dateStr,
+        message: 'MORALES PLUMBING AUTORIZADO A PROCEDER CON LOS TRABAJOS ($21,500.00 USD).'
+      });
+      af.style.display = 'none';
+      el('acceptance-success').classList.add('visible');
+      el('acceptance-audit-row').innerHTML = auditH('ACCEPTANCE / AUTHORIZATION TO PROCEED', n, em, dateStr);
+      el('step-2-indicator').className = 'esign-step done';
+      el('step-2-num').textContent = '\u2713';
+    });
+  }
 })();
 </script>
 
