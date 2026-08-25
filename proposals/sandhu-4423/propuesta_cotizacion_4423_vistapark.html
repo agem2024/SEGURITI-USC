@@ -2539,6 +2539,24 @@ v>
 </div>
 
 <script>
+function switchLanguage(lang) {
+  if (lang === 'en') {
+    document.body.classList.add('en-active');
+    var ben = document.getElementById('btn-en');
+    var bes = document.getElementById('btn-es');
+    if (ben) ben.classList.add('active');
+    if (bes) bes.classList.remove('active');
+  } else {
+    document.body.classList.remove('en-active');
+    var ben = document.getElementById('btn-en');
+    var bes = document.getElementById('btn-es');
+    if (bes) bes.classList.add('active');
+    if (ben) ben.classList.remove('active');
+  }
+}
+window.switchLanguage = switchLanguage;
+window.setLang = switchLanguage;
+
 (function(){
   'use strict';
   var PID='MP-PROP-4423V-SANDHU';
