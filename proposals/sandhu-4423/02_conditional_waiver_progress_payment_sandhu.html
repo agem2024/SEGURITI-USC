@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Finiquito Condicional de Pago Parcial (California Civil Code § 8132) - Morales Plumbing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ==========================================================================
+           CALIFORNIA CONDITIONAL WAIVER AND RELEASE ON PROGRESS PAYMENT
+           Civil Code § 8132 | Morales Plumbing | Lic. C-36 #1156542 | San Jose, CA
+           ========================================================================== */
+        :root {
+            --navy-primary: #0A192F;
+            --navy-secondary: #112240;
+            --gold-accent: #D4AF37;
+            --text-dark: #0F172A;
+            --text-body: #334155;
+            --text-muted: #64748B;
+            --bg-page: #F8FAFC;
+            --bg-card: #FFFFFF;
+            --border-table: #CBD5E1;
+            --alert-red: #B91C1C;
+            --alert-red-bg: #FEF2F2;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-dark);
+            line-height: 1.5;
+            font-size: 9pt;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .lang-en { display: none !important; }
+        .lang-es { display: inline; }
+        div.lang-es, p.lang-es, h1.lang-es, h2.lang-es, h3.lang-es, table.lang-es, ul.lang-es, li.lang-es { display: block !important; }
+        body.en-active .lang-es { display: none !important; }
+        body.en-active .lang-en { display: inline !important; }
+        body.en-active div.lang-en, body.en-active p.lang-en, body.en-active h1.lang-en, 
+        body.en-active h2.lang-en, body.en-active h3.lang-en, body.en-active table.lang-en, 
+        body.en-active ul.lang-en, body.en-active li.lang-en { display: block !important; }
+
+        .lang-switch-container {
+            position: fixed;
+            top: 16px;
+            right: 20px;
+            z-index: 99999;
+            background: #FFFFFF;
+            border: 2px solid var(--navy-primary);
+            padding: 6px 14px;
+            box-shadow: 0 4px 15px rgba(10,25,47,0.15);
+            border-radius: 6px;
+        }
+        .lang-toggle-wrapper { display: flex; gap: 10px; font-size: 8.5pt; font-weight: 800; }
+        .lang-btn { cursor: pointer; padding: 3px 8px; color: var(--text-muted); border-radius: 4px; }
+        .lang-btn.active { color: #FFFFFF; background: var(--navy-primary); }
+
+        .doc-container {
+            max-width: 880px;
+            margin: 24px auto 40px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-table);
+            box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .doc-header {
+            background: linear-gradient(135deg, #0A192F 0%, #112240 100%);
+            border-bottom: 4px solid var(--gold-accent);
+            padding: 22px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header-brand { display: flex; align-items: center; gap: 16px; }
+        .header-logo { max-width: 120px; max-height: 60px; object-fit: contain; }
+        .header-title h1 { color: #FFFFFF; font-size: 15pt; font-weight: 900; }
+        .header-title .subtitle { color: var(--gold-accent); font-size: 8pt; font-weight: 700; text-transform: uppercase; }
+        .header-contact { text-align: right; color: #E2E8F0; font-size: 7.8pt; line-height: 1.35; }
+        .header-contact .lic { color: var(--gold-accent); font-weight: 800; }
+
+        .doc-body { padding: 26px 30px; }
+
+        .statutory-banner {
+            border: 3px solid var(--navy-primary);
+            background: #FFFDF5;
+            padding: 16px 20px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+        .statutory-banner h2 {
+            font-size: 10.5pt;
+            font-weight: 900;
+            color: var(--navy-primary);
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 8px;
+            border-bottom: 1.5px solid var(--gold-accent);
+            padding-bottom: 4px;
+        }
+        .statutory-banner p {
+            font-size: 8.5pt;
+            color: var(--text-dark);
+            line-height: 1.45;
+            font-weight: 600;
+        }
+
+        .form-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 8.8pt;
+            margin: 14px 0 20px 0;
+        }
+        .form-table td {
+            padding: 10px 12px;
+            border: 1px solid var(--border-table);
+            vertical-align: top;
+        }
+        .form-table .label {
+            background: #F8FAFC;
+            font-weight: 700;
+            color: var(--navy-primary);
+            width: 32%;
+            text-transform: uppercase;
+            font-size: 8pt;
+        }
+
+        .signature-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: 28px;
+            padding-top: 16px;
+            border-top: 1.5px solid var(--navy-primary);
+        }
+        .sig-line {
+            width: 45%;
+            text-align: center;
+            font-size: 8pt;
+            font-weight: 700;
+        }
+
+        .doc-footer {
+            text-align: center;
+            font-size: 7.5pt;
+            color: var(--text-muted);
+            padding: 16px 30px;
+            background: #F1F5F9;
+            border-top: 1px solid #E2E8F0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="lang-switch-container">
+        <div class="lang-toggle-wrapper">
+            <span class="lang-btn active" id="btn-es" onclick="setLang('es')">ESPAÑOL</span>
+            <span>|</span>
+            <span class="lang-btn" id="btn-en" onclick="setLang('en')">ENGLISH</span>
+        </div>
+    </div>
+
+    <div class="doc-container">
+        
+        <header class="doc-header">
+            <div class="header-brand">
+                <img src="logo_portada.png" alt="Morales Plumbing Logo" class="header-logo" onerror="this.style.display='none'">
+                <div class="header-title">
+                    <h1>MORALES PLUMBING</h1>
+                    <div class="subtitle">AI-INTEGRATED SERVICES &bull; CSLB C-36 #1156542</div>
+                </div>
+            </div>
+            <div class="header-contact">
+                <p class="lic">Lic. C-36 #1156542 | San Jose, CA</p>
+                <p>Tel: (669) 213-4422</p>
+                <p>moralesplumbing026@gmail.com</p>
+                <p>www.morales-plumbing.com</p>
+            </div>
+        </header>
+
+        <div class="doc-body">
+
+            <!-- STATUTORY MANDATORY NOTICE (CIVIL CODE § 8132) -->
+            <div class="statutory-banner">
+                <h2>
+                    <span class="lang-es">RENUNCIA Y LIBERACIÓN CONDICIONAL DE PAGO PARCIAL (CALIFORNIA CIVIL CODE § 8132)</span>
+                    <span class="lang-en">CONDITIONAL WAIVER AND RELEASE ON PROGRESS PAYMENT (CALIFORNIA CIVIL CODE § 8132)</span>
+                </h2>
+                <p class="lang-es">
+                    <strong>AVISO LEGAL OBLIGATORIO:</strong> ESTE DOCUMENTO RENUNCIA A LOS DERECHOS DE GRAVAMEN DEL RECLAMANTE (MECHANICS' LIEN), AVISO DE RETENCIÓN DE PAGO Y FIANZA DE PAGO, CON EFECTO ÚNICAMENTE AL MOMENTO EN QUE SE RECIBA Y HAGA EFECTIVO EL PAGO. NINGUNA PERSONA DEBE CONFIAR EN ESTE DOCUMENTO A MENOS QUE ESTÉ SEGURA DE QUE EL RECLAMANTE HA RECIBIDO EL PAGO EN FONDOS DISPONIBLES.
+                </p>
+                <p class="lang-en">
+                    <strong>NOTICE:</strong> THIS DOCUMENT WAIVES THE CLAIMANT'S LIEN, STOP PAYMENT NOTICE, AND PAYMENT BOND RIGHTS EFFECTIVE ON RECEIPT OF PAYMENT. A PERSON SHOULD NOT RELY ON THIS DOCUMENT UNLESS SATISFIED THAT THE CLAIMANT HAS RECEIVED PAYMENT.
+                </p>
+            </div>
+
+            <table class="form-table">
+                <tr>
+                    <td class="label"><span class="lang-es">Nombre del Reclamante</span><span class="lang-en">Name of Claimant</span></td>
+                    <td><strong>MORALES PLUMBING</strong> (Alex G. Espinosa &bull; CSLB C-36 #1156542)</td>
+                </tr>
+                <tr>
+                    <td class="label"><span class="lang-es">Nombre del Cliente</span><span class="lang-en">Name of Customer</span></td>
+                    <td><strong>Manjinder S. Sandhu & Gurmeet K. Sandhu</strong></td>
+                </tr>
+                <tr>
+                    <td class="label"><span class="lang-es">Ubicación de la Obra</span><span class="lang-en">Job Location</span></td>
+                    <td><strong>4423 Vistapark Dr, San Jose, CA 95136</strong> (Santa Clara County)</td>
+                </tr>
+                <tr>
+                    <td class="label"><span class="lang-es">Propietario Registral</span><span class="lang-en">Owner</span></td>
+                    <td><strong>Manjinder S. Sandhu & Gurmeet K. Sandhu</strong></td>
+                </tr>
+                <tr>
+                    <td class="label"><span class="lang-es">Fecha de Corte (Through Date)</span><span class="lang-en">Through Date</span></td>
+                    <td><strong id="through-date">Fecha de Finalización del Hito</strong></td>
+                </tr>
+                <tr>
+                    <td class="label"><span class="lang-es">Emisor del Cheque / Transferencia</span><span class="lang-en">Maker of Check</span></td>
+                    <td><strong>Manjinder S. Sandhu</strong></td>
+                </tr>
+                <tr>
+                    <td class="label"><span class="lang-es">Monto del Pago (USD)</span><span class="lang-en">Amount of Check</span></td>
+                    <td><strong style="color:var(--navy-primary); font-size:10.5pt;">$5,500.00 USD</strong> <em>(Ajustable por Hito)</em></td>
+                </tr>
+                <tr>
+                    <td class="label"><span class="lang-es">Beneficiario del Pago</span><span class="lang-en">Check Payable To</span></td>
+                    <td><strong>MORALES PLUMBING</strong></td>
+                </tr>
+            </table>
+
+            <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:12px 14px; border-radius:6px; font-size:8.5pt;">
+                <p><strong><span class="lang-es">Excepciones Estatutarias:</span><span class="lang-en">Exceptions:</span></strong></p>
+                <p class="lang-es">
+                    Este documento no afecta ninguno de los siguientes conceptos: (1) Retenciones convenidas; (2) Reclamos por trabajos extras autorizados mediante órdenes de cambio pendientes de facturar; (3) Trabajos o materiales suministrados con posterioridad a la Fecha de Corte indicada.
+                </p>
+                <p class="lang-en">
+                    This document does not affect any of the following: (1) Retentions; (2) Extras for which the claimant has not received payment; (3) Contract rights, including assertions for design or furnished materials after the Through Date.
+                </p>
+            </div>
+
+            <div class="signature-row">
+                <div class="sig-line">
+                    <span style="font-family:'Brush Script MT', cursive; font-size:18pt; color:#0A192F;">Alex G. Espinosa</span><br>
+                    <strong>MORALES PLUMBING</strong><br>
+                    <span class="lang-es">Firma del Reclamante / Contratista</span>
+                    <span class="lang-en">Claimant's Signature</span>
+                </div>
+                <div class="sig-line">
+                    <strong>Master Plumber / Officer</strong><br>
+                    <span>Title: Licensed Contractor #1156542</span><br>
+                    <span>Date: August 25, 2026</span>
+                </div>
+            </div>
+
+        </div>
+
+        <footer class="doc-footer">
+            MORALES PLUMBING &bull; AI-INTEGRATED SERVICES &bull; CSLB LIC. C-36 #1156542 &bull; SAN JOSE, CA<br>
+            Tel: (669) 213-4422 &bull; Email: moralesplumbing026@gmail.com &bull; Web: www.morales-plumbing.com
+        </footer>
+
+    </div>
+
+    <script>
+        function setLang(lang) {
+            if (lang === 'en') {
+                document.body.classList.add('en-active');
+                document.getElementById('btn-en').classList.add('active');
+                document.getElementById('btn-es').classList.remove('active');
+            } else {
+                document.body.classList.remove('en-active');
+                document.getElementById('btn-es').classList.add('active');
+                document.getElementById('btn-en').classList.remove('active');
+            }
+        }
+    </script>
+</body>
+</html>

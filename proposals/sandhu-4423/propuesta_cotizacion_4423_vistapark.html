@@ -747,90 +747,9 @@
                 padding-top: 3px !important;
             }
         }
-    
-        /* LOCK SCREEN (SIGN-WALL) CSS */
-        .blurred-locked {
-            filter: blur(8px);
-            pointer-events: none;
-            user-select: none;
-            overflow: hidden;
-            height: 100vh;
-        }
-        #signwall-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(10, 25, 47, 0.85);
-            backdrop-filter: blur(4px);
-            z-index: 999999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        .signwall-card {
-            background: #fff;
-            border-radius: 12px;
-            padding: 30px;
-            max-width: 500px;
-            width: 100%;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            border-top: 6px solid #D4AF37;
-        }
-        .signwall-card h2 { color: #0A192F; margin-bottom: 10px; font-size: 22px; }
-        .signwall-card p { color: #334155; font-size: 14px; margin-bottom: 20px; }
-        .signwall-canvas-container {
-            border: 2px dashed #CBD5E1;
-            background: #F8FAFC;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            touch-action: none;
-        }
-        .signwall-canvas { cursor: crosshair; }
-        .signwall-btn {
-            background: linear-gradient(135deg, #0A192F 0%, #112240 100%);
-            color: #D4AF37;
-            border: none;
-            padding: 12px 20px;
-            width: 100%;
-            font-size: 16px;
-            font-weight: 700;
-            border-radius: 6px;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: all 0.2s;
-        }
-        .signwall-btn:disabled { opacity: 0.6; cursor: not-allowed; }
-        .signwall-input {
-            width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #CBD5E1; border-radius: 4px; font-family: 'Inter', sans-serif;
-        }
-
-</style>
+    </style>
 </head>
 <body>
-
-
-<div id="signwall-overlay">
-    <div class="signwall-card">
-        <h2>🔒 Documento Bloqueado</h2>
-        <p>Para desbloquear y visualizar los detalles y precios de su propuesta, por favor firme confirmando que la ha recibido.</p>
-        
-        <form id="signwall-form">
-            <input type="text" id="sw-name" class="signwall-input" placeholder="Nombre completo" required>
-            <input type="email" id="sw-email" class="signwall-input" placeholder="Correo electrónico" required>
-            <div class="signwall-canvas-container">
-                <canvas id="sw-canvas" class="signwall-canvas"></canvas>
-            </div>
-            <div style="text-align: right; margin-bottom: 10px;">
-                <button type="button" onclick="clearSWCanvas()" style="background:none;border:none;color:#B91C1C;cursor:pointer;font-size:12px;text-decoration:underline;">&#8634; Borrar firma</button>
-            </div>
-            <button type="submit" id="sw-submit-btn" class="signwall-btn">Firmar Acuso de Recibo y Desbloquear</button>
-        </form>
-    </div>
-</div>
-
-<div id="proposal-content-wrapper" class="blurred-locked">
-
 
     <!-- REPEATING WATERMARK -->
     <img alt="Morales Plumbing Watermark" class="watermark-overlay" src="logo_tran marca agua.png"/>
@@ -1222,21 +1141,21 @@
                             <td><strong><span class="lang-es">PAQUETE 1</span><span class="lang-en">PACKAGE 1</span></strong></td>
                             <td>
                                 <strong><span class="lang-es">Desconexión, Drenado, Taponado Seguro y Protocolo EPA RRP en Subpiso</span><span class="lang-en">Demolition, Draining, Safe Capping &amp; EPA Subfloor Mitigation</span></strong><br>
-                                <span class="lang-es">Incluye retiro de tuberías viejas galvanizadas, desacople y taponado de tomas ilegales en crawlspace, contención plástica 6-mil, respiradores 3M P100, trajes Tyvek, extractor de aire forzado 12" con ducto e iluminación LED.</span>
+                                <span class="lang-es">Incluye retiro de tuberías viejas galvanizadas, desacople y taponado de tomas no autorizadas en crawlspace, contención plástica 6-mil, respiradores 3M P100, trajes Tyvek, extractor de aire forzado 12" con ducto e iluminación LED.</span>
                                 <span class="lang-en">Includes removal of old galvanized lines, isolation/capping of unpermitted lines in crawlspace, 6-mil containment, 3M P100 masks, Tyvek suits, 12" blower fan with ducting, and subfloor work lighting.</span>
                             </td>
                             <td><span class="lang-es">Llave en Mano</span><span class="lang-en">Turnkey</span></td>
-                            <td><strong>$2,580.00</strong></td>
+                            <td><strong>$2,850.00</strong></td>
                         </tr>
                         <tr>
                             <td><strong><span class="lang-es">PAQUETE 2</span><span class="lang-en">PACKAGE 2</span></strong></td>
                             <td>
                                 <strong><span class="lang-es">Red Troncal y Ramales en Cobre Rígido Tipo L con Viega ProPress (Zero Lead)</span><span class="lang-en">Type L Copper Trunk &amp; Branch Distribution with Viega ProPress</span></strong><br>
-                                <span class="lang-es">Incluye 280 ft de tubería de cobre Tipo L rígido Mueller Streamline (120' de 3/4" y 160' de 1/2"), fittings y conectores de cobre/bronce Viega ProPress Smart Connect, calibración de máquina Ridgid RP-340 y mano de obra de prensado en frío.</span>
-                                <span class="lang-en">Includes 280 ft of Mueller Streamline Type L hard copper (120' 3/4" &amp; 160' 1/2"), Viega ProPress Zero-Lead fittings with Smart Connect, Ridgid RP-340 pressing tooling, and licensed assembly labor.</span>
+                                <span class="lang-es">Incluye 540 ft de tubería de cobre Tipo L rígido Mueller Streamline (1" acometida/manifold, 3/4" troncales y 1/2" ramales), fittings y conectores de cobre/bronce Viega ProPress Smart Connect, 4 cuerpos de ducha Moen Posi-Temp, calibración Ridgid RP-340 y mano de obra de prensado.</span>
+                                <span class="lang-en">Includes 540 ft of Mueller Streamline Type L hard copper (1" entry, 3/4" trunks &amp; 1/2" branches), Viega ProPress Zero-Lead fittings with Smart Connect, 4 Moen Posi-Temp rough valves, Ridgid RP-340 pressing tooling, and licensed assembly labor.</span>
                             </td>
                             <td><span class="lang-es">Llave en Mano</span><span class="lang-en">Turnkey</span></td>
-                            <td><strong>$7,580.00</strong></td>
+                            <td><strong>$8,450.00</strong></td>
                         </tr>
                         <tr>
                             <td><strong><span class="lang-es">PAQUETE 3</span><span class="lang-en">PACKAGE 3</span></strong></td>
@@ -1246,17 +1165,17 @@
                                 <span class="lang-en">Includes 1" Watts LF25AUB-Z3 pressure reducing valve set to 55 PSI, 4 Woodford Model 17 frost-proof anti-siphon hose bibbs, Apollo/Legend lead-free full-port ball valves, and Winters test gauge.</span>
                             </td>
                             <td><span class="lang-es">Llave en Mano</span><span class="lang-en">Turnkey</span></td>
-                            <td><strong>$3,850.00</strong></td>
+                            <td><strong>$4,150.00</strong></td>
                         </tr>
                         <tr>
                             <td><strong><span class="lang-es">PAQUETE 4</span><span class="lang-en">PACKAGE 4</span></strong></td>
                             <td>
                                 <strong><span class="lang-es">Aislamiento Térmico Title 24, Soportería Sismorresistente y Puesta a Tierra</span><span class="lang-en">Title 24 Insulation, Seismic Hanger Bracing &amp; Electrical Grounding</span></strong><br>
-                                <span class="lang-es">Incluye 140 ft de aislamiento elastomérico Armacell Tubolit R-4, abrazaderas HoldRite/B-Line fijadas con tornillos estructurales Spax/Simpson (elevadas del suelo) y kit de puesta a tierra #4 AWG cobre desnudo con conectores Burndy.</span>
-                                <span class="lang-en">Includes 140 ft of Armacell Tubolit R-4 elastomeric pipe insulation, HoldRite/B-Line cushion hangers with Spax/Simpson structural screws (elevated from damp soil), and #4 AWG grounding kit with Burndy bronze clamps.</span>
+                                <span class="lang-es">Incluye aislamiento elastomérico Armacell Tubolit R-4, abrazaderas HoldRite Silencer fijadas con tornillos estructurales Spax/Simpson (elevadas del suelo) y kit de puesta a tierra #4 AWG cobre desnudo con conectores Burndy.</span>
+                                <span class="lang-en">Includes Armacell Tubolit R-4 elastomeric pipe insulation, HoldRite Silencer acoustic cushion hangers with Spax/Simpson structural screws (elevated from damp soil), and #4 AWG grounding kit with Burndy bronze clamps.</span>
                             </td>
                             <td><span class="lang-es">Llave en Mano</span><span class="lang-en">Turnkey</span></td>
-                            <td><strong>$2,750.00</strong></td>
+                            <td><strong>$2,980.00</strong></td>
                         </tr>
                         <tr>
                             <td><strong><span class="lang-es">PAQUETE 5</span><span class="lang-en">PACKAGE 5</span></strong></td>
@@ -1266,14 +1185,14 @@
                                 <span class="lang-en">Includes City of San Jose Express Permit fees on SJPermits.org, jobsite portable restroom with handwash station (2 weeks serviced), 100 PSI hydrostatic test walkthrough with City Inspector, and project commissioning.</span>
                             </td>
                             <td><span class="lang-es">Llave en Mano</span><span class="lang-en">Turnkey</span></td>
-                            <td><strong>$2,220.00</strong></td>
+                            <td><strong>$2,340.00</strong></td>
                         </tr>
                         <tr style="font-weight:700; background:#F1F5F9;">
                             <td colspan="3" style="text-align:right;">
                                 <span class="lang-es">SUBTOTAL PROYECTO (5 PAQUETES DE ACTIVIDAD):</span>
                                 <span class="lang-en">PROJECT SUBTOTAL (5 ACTIVITY PACKAGES):</span>
                             </td>
-                            <td style="color:var(--navy-primary);">$18,980.00</td>
+                            <td style="color:var(--navy-primary);">$20,770.00</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1282,15 +1201,15 @@
             <div class="totals-summary">
                 <div class="totals-row">
                     <span><strong><span class="lang-es">Subtotal del Proyecto (5 Paquetes de Actividad Llave en Mano):</span><span class="lang-en">Project Subtotal (5 Turnkey Activity Packages):</span></strong></span>
-                    <span>$18,980.00</span>
+                    <span>$20,770.00</span>
                 </div>
                 <div class="totals-row">
-                    <span><span class="lang-es">Impuesto sobre Materiales Físicos (Santa Clara Sales Tax 9.375% de $4,909.60 base física):</span><span class="lang-en">Sales Tax on Physical Materials (Santa Clara 9.375% on $4,909.60 base):</span></span>
-                    <span>$691.18</span>
+                    <span><span class="lang-es">Impuesto sobre Materiales Físicos (Santa Clara Sales Tax 9.375% de $7,786.67 base física):</span><span class="lang-en">Sales Tax on Physical Materials (Santa Clara 9.375% on $7,786.67 base):</span></span>
+                    <span>$730.00</span>
                 </div>
                 <div class="totals-row grand-total">
                     <span><span class="lang-es">PRECIO TOTAL DE LA PROPUESTA (TOTAL PROPOSAL PRICE):</span><span class="lang-en">TOTAL PROPOSAL CONTRACT PRICE:</span></span>
-                    <span class="gold-price">$19,671.18 USD</span>
+                    <span class="gold-price">$21,500.00 USD</span>
                 </div>
             </div>
 
@@ -1329,8 +1248,8 @@
             <!-- ESTRATEGIA DE DESACOPLE Y SUSPENSIÓN ADMINISTRATIVA -->
             <div class="callout-box callout-info" style="border-left: 4px solid var(--navy-primary); background: #F8FAFC; margin-bottom: 8px;">
                 <h3 style="color:var(--navy-primary); margin-top:0;">
-                    <span class="lang-es">Estrategia Operacional de Morales Plumbing: Solución Profesional Llave en Mano ($19,671.18 USD)</span>
-                    <span class="lang-en">Morales Plumbing Operational Strategy: Professional Turnkey Solution ($19,671.18 USD)</span>
+                    <span class="lang-es">Estrategia Operacional de Morales Plumbing: Solución Profesional Llave en Mano ($21,500.00 USD)</span>
+                    <span class="lang-en">Morales Plumbing Operational Strategy: Professional Turnkey Solution ($21,500.00 USD)</span>
                 </h3>
                 <p>
                     <span class="lang-es">
@@ -1410,10 +1329,10 @@
             <div class="callout-box callout-success" style="border-left: 4px solid var(--success-green); background: var(--success-green-bg); margin-top: 6px;">
                 <p style="margin:0; font-size:8pt; line-height:1.35;">
                     <span class="lang-es">
-                        <strong>Solución Integral Incluida en esta Propuesta Comercial ($19,671.18 USD):</strong> Cubre el 100% de la mano de obra calificada CSLB C-36, materiales de marcas líderes cotizados con Pace Supply (Cobre Mueller Tipo L, Viega ProPress, Watts PRV 1", Woodford), permisos municipales express, facilidades de obra con baño portátil y certificación final de la Ciudad de San José. <em>(Cualquier modificación o ampliación constructiva opcional que el propietario decida emprender a futuro sobre el garaje o patio exterior se detalla en el Anexo B como variable complementaria de proyecto).</em>
+                        <strong>Solución Integral Incluida en esta Propuesta Comercial ($21,500.00 USD):</strong> Cubre el 100% de la mano de obra calificada CSLB C-36, materiales de marcas líderes cotizados con Pace Supply (Cobre Mueller Tipo L de 1", 3/4" y 1/2", Viega ProPress, Watts PRV 1", 4 válvulas Moen, Woodford), permisos municipales express, facilidades de obra con baño portátil y certificación final de la Ciudad de San José. <em>(Cualquier modificación o ampliación constructiva opcional que el propietario decida emprender a futuro sobre el garaje o patio exterior se detalla en el Anexo B como variable complementaria de proyecto).</em>
                     </span>
                     <span class="lang-en">
-                        <strong>Comprehensive Turnkey Solution Included in this Proposal ($19,671.18 USD):</strong> Covers 100% licensed CSLB C-36 labor, premium Pace Supply materials (Mueller Type L copper, Viega ProPress, Watts 1" PRV, Woodford), City express permits, jobsite restroom facilities, and City of San Jose final sign-off. <em>(Any optional future architectural expansions for the garage or rear yard are detailed in Appendix B as supplementary project variables).</em>
+                        <strong>Comprehensive Turnkey Solution Included in this Proposal ($21,500.00 USD):</strong> Covers 100% licensed CSLB C-36 labor, premium Pace Supply materials (Mueller Type L 1", 3/4" &amp; 1/2" copper, Viega ProPress, Watts 1" PRV, 4 Moen valves, Woodford), City express permits, jobsite restroom facilities, and City of San Jose final sign-off. <em>(Any optional future architectural expansions for the garage or rear yard are detailed in Appendix B as supplementary project variables).</em>
                     </span>
                 </p>
             </div>
@@ -1512,7 +1431,7 @@
                                 <span class="lang-es">Firma del contrato, reserva de cuadrilla técnica y radicación del trámite en SJPermits.org (Límite legal CSLB).</span>
                                 <span class="lang-en">Contract execution, technical crew scheduling, and permit filing on SJPermits.org (CSLB statutory limit).</span>
                             </td>
-                            <td>5.08%</td>
+                            <td>4.65%</td>
                             <td>$1,000.00</td>
                         </tr>
                         <tr>
@@ -1520,22 +1439,22 @@
                                 <strong><span class="lang-es">2. Semana 1 / Fase 1</span><span class="lang-en">2. Week 1 / Demo &amp; Trunk</span></strong>
                             </td>
                             <td>
-                                <span class="lang-es">Instalación de baño químico en sitio, entrega de cobre Tipo L, fittings ProPress y PRV + tendido de troncal 3/4".</span>
-                                <span class="lang-en">Jobsite restroom setup, copper and Viega fittings delivery, demolition, and 3/4" main trunk rough-in.</span>
+                                <span class="lang-es">Instalación de baño químico en sitio, entrega de cobre Tipo L, fittings ProPress y PRV + tendido de troncal 3/4" y acometida 1".</span>
+                                <span class="lang-en">Jobsite restroom setup, copper and Viega fittings delivery, demolition, and 3/4" main trunk / 1" entry rough-in.</span>
                             </td>
-                            <td>35.0%</td>
-                            <td>$6,884.91</td>
+                            <td>34.88%</td>
+                            <td>$7,500.00</td>
                         </tr>
                         <tr>
                             <td>
                                 <strong><span class="lang-es">3. Semana 2 / Fase 2</span><span class="lang-en">3. Week 2 / Press &amp; PRV</span></strong>
                             </td>
                             <td>
-                                <span class="lang-es">Prensado Viega ProPress de ramales de 1/2", instalación de PRV Watts 1", aislamiento R-4 y puente de tierra (#4 AWG).</span>
-                                <span class="lang-en">Viega ProPress 1/2" branch jointing, 1" Watts PRV installation, R-4 insulation, and #4 AWG electrical grounding.</span>
+                                <span class="lang-es">Prensado Viega ProPress de ramales de 1/2", 4 válvulas Moen, instalación de PRV Watts 1", aislamiento R-4 y puente de tierra (#4 AWG).</span>
+                                <span class="lang-en">Viega ProPress 1/2" branch jointing, 4 Moen valves, 1" Watts PRV installation, R-4 insulation, and #4 AWG electrical grounding.</span>
                             </td>
-                            <td>35.0%</td>
-                            <td>$6,884.91</td>
+                            <td>34.88%</td>
+                            <td>$7,500.00</td>
                         </tr>
                         <tr>
                             <td>
@@ -1545,8 +1464,8 @@
                                 <span class="lang-es">Conexión final a todos los muebles, presurización hidrostática a 100 PSI con manómetro en sitio, purgado y limpieza total.</span>
                                 <span class="lang-en">Final fixture hookups, 100 PSI onsite hydrostatic pressure test holding with gauge, air purging, and site clean-up.</span>
                             </td>
-                            <td>21.92%</td>
-                            <td>$4,311.22</td>
+                            <td>22.58%</td>
+                            <td>$4,855.00</td>
                         </tr>
                         <tr>
                             <td>
@@ -1556,15 +1475,15 @@
                                 <span class="lang-es">Aprobación formal de inspección municipal de San José (Final Sign-Off) y firma de satisfacción del cliente.</span>
                                 <span class="lang-en">Final City of San José building inspection sign-off and signed customer satisfaction certificate.</span>
                             </td>
-                            <td><strong>3.0%</strong></td>
-                            <td><strong>$590.14</strong></td>
+                            <td><strong>3.00%</strong></td>
+                            <td><strong>$645.00</strong></td>
                         </tr>
                         <tr style="font-weight:700; background:#F1F5F9;">
                             <td colspan="3" style="text-align:right;">
                                 <span class="lang-es">TOTAL A PAGAR (100.0%):</span>
                                 <span class="lang-en">TOTAL PROPOSAL CONTRACT (100.0%):</span>
                             </td>
-                            <td style="color:var(--navy-primary);">$19,671.18</td>
+                            <td style="color:var(--navy-primary);">$21,500.00</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1582,10 +1501,10 @@
                 </div>
                 <p style="font-size:7.2pt; line-height:1.28; margin-bottom:6px;">
                     <span class="lang-es">
-                        Al firmar o acusar recibo de esta propuesta comercial, el Cliente/Propietario confirma la recepción, revisión y conformidad preliminar con los alcances técnicos, especificaciones de materiales empaquetados por actividad, la cotización estimada de <strong>$19,671.18 USD</strong>, los términos de garantía y el esquema de pagos sugerido. <em>Esta propuesta tiene carácter informativo, técnico y de cotización estimativa preliminar (válida por 30 días), no constituyendo por sí misma un contrato vinculante de mejoras en el hogar (Home Improvement Contract) hasta la suscripción formal y mutua del contrato definitivo de obra y sus anexos estatutarios obligatorios bajo la normativa CSLB de California.</em>
+                        Al firmar o acusar recibo de esta propuesta comercial, el Cliente/Propietario confirma la recepción, revisión y conformidad preliminar con los alcances técnicos, especificaciones de materiales empaquetados por actividad, la cotización estimada de <strong>$21,500.00 USD</strong>, los términos de garantía y el esquema de pagos sugerido. <em>Esta propuesta tiene carácter informativo, técnico y de cotización estimativa preliminar (válida por 30 días), no constituyendo por sí misma un contrato vinculante de mejoras en el hogar (Home Improvement Contract) hasta la suscripción formal y mutua del contrato definitivo de obra y sus anexos estatutarios obligatorios bajo la normativa CSLB de California.</em>
                     </span>
                     <span class="lang-en">
-                        By signing or acknowledging receipt of this commercial proposal, the Client/Owner confirms receipt, review, and preliminary concurrence with the technical scope, activity-packaged material specifications, estimated price of <strong>$19,671.18 USD</strong>, warranty terms, and suggested milestone payment schedule. <em>This proposal serves as an informative technical estimate (valid for 30 days) and does not by itself constitute a binding Home Improvement Contract until the mutual execution of the definitive construction contract agreement and mandatory statutory disclosures under California CSLB law.</em>
+                        By signing or acknowledging receipt of this commercial proposal, the Client/Owner confirms receipt, review, and preliminary concurrence with the technical scope, activity-packaged material specifications, estimated price of <strong>$21,500.00 USD</strong>, warranty terms, and suggested milestone payment schedule. <em>This proposal serves as an informative technical estimate (valid for 30 days) and does not by itself constitute a binding Home Improvement Contract until the mutual execution of the definitive construction contract agreement and mandatory statutory disclosures under California CSLB law.</em>
                     </span>
                 </p>
 
@@ -1835,10 +1754,10 @@
                         <span class="lang-en">Morales Plumbing operates in full compliance with IRS and California FTB regulations. A W-9 is available upon request for 1099-NEC reporting.</span>
                     </p>
                     <div style="display: flex; justify-content: space-between; font-weight: 700; border-top: 1px solid var(--border-table); padding-top: 4px; color: var(--navy-primary);">
-                        <span><span class="lang-es">Precio Base:</span><span class="lang-en">Base Price:</span> $18,980.00</span>
-                        <span><span class="lang-es">Impuestos (9.375%):</span><span class="lang-en">Sales Tax (9.375%):</span> $691.18</span>
+                        <span><span class="lang-es">Precio Base:</span><span class="lang-en">Base Price:</span> $20,770.00</span>
+                        <span><span class="lang-es">Impuestos (9.375%):</span><span class="lang-en">Sales Tax (9.375%):</span> $730.00</span>
                         <span><span class="lang-es">Depósito Inicial CSLB:</span><span class="lang-en">Down Payment:</span> $1,000.00</span>
-                        <span style="color: var(--gold-dark);"><span class="lang-es">TOTAL CONTRATO:</span><span class="lang-en">TOTAL CONTRACT:</span> $19,671.18 USD</span>
+                        <span style="color: var(--gold-dark);"><span class="lang-es">TOTAL CONTRATO:</span><span class="lang-en">TOTAL CONTRACT:</span> $21,500.00 USD</span>
                     </div>
                 </div>
 
@@ -2517,67 +2436,8 @@ v>
 .esign-audit-row { background: #F1F5F9; border: 1px solid #E2E8F0; border-radius: 6px; padding: 10px 14px; font-size: 10px; color: #64748B; margin-top: 12px; display: flex; flex-wrap: wrap; gap: 12px; }
 .esign-audit-row span strong { color: #334155; }
 .esign-footer-note { text-align: center; font-size: 9.5px; color: #94A3B8; margin-top: 20px; line-height: 1.5; }
-
-        /* LOCK SCREEN (SIGN-WALL) CSS */
-        .blurred-locked {
-            filter: blur(8px);
-            pointer-events: none;
-            user-select: none;
-            overflow: hidden;
-            height: 100vh;
-        }
-        #signwall-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(10, 25, 47, 0.85);
-            backdrop-filter: blur(4px);
-            z-index: 999999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        .signwall-card {
-            background: #fff;
-            border-radius: 12px;
-            padding: 30px;
-            max-width: 500px;
-            width: 100%;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            border-top: 6px solid #D4AF37;
-        }
-        .signwall-card h2 { color: #0A192F; margin-bottom: 10px; font-size: 22px; }
-        .signwall-card p { color: #334155; font-size: 14px; margin-bottom: 20px; }
-        .signwall-canvas-container {
-            border: 2px dashed #CBD5E1;
-            background: #F8FAFC;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            touch-action: none;
-        }
-        .signwall-canvas { cursor: crosshair; }
-        .signwall-btn {
-            background: linear-gradient(135deg, #0A192F 0%, #112240 100%);
-            color: #D4AF37;
-            border: none;
-            padding: 12px 20px;
-            width: 100%;
-            font-size: 16px;
-            font-weight: 700;
-            border-radius: 6px;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: all 0.2s;
-        }
-        .signwall-btn:disabled { opacity: 0.6; cursor: not-allowed; }
-        .signwall-input {
-            width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #CBD5E1; border-radius: 4px; font-family: 'Inter', sans-serif;
-        }
-
 </style>
 
-</div>
 <div id="esign-portal">
 <div class="esign-wrapper">
   <div class="esign-header">
@@ -2593,16 +2453,16 @@ v>
         <div class="prop-num">&#128203; Propuesta: MP-PROP-4423V-SANDHU</div>
         <div style="font-size:10px;color:#64748B;margin-top:2px;">Cliente: Manjinder S. Sandhu &amp; Gurmeet K. Sandhu &nbsp;&bull;&nbsp; 4423 Vistapark Dr, San Jose, CA 95136</div>
       </div>
-      <div class="prop-total">$19,671.18 USD</div>
+      <div class="prop-total">$21,500.00 USD</div>
     </div>
     <div class="esign-status-bar">
-      <div class="esign-step done" id="step-1-indicator" style="display:none;"><div class="esign-step-num" id="step-1-num">1</div><span>Acuso de Recibo</span></div>
+      <div class="esign-step active" id="step-1-indicator"><div class="esign-step-num" id="step-1-num">1</div><span>Acuso de Recibo</span></div>
       <div class="esign-step-divider"></div>
-      <div class="esign-step active" id="step-2-indicator"><div class="esign-step-num" id="step-2-num">2</div><span>Aceptaci&#243;n</span></div>
+      <div class="esign-step" id="step-2-indicator"><div class="esign-step-num" id="step-2-num">2</div><span>Aceptaci&#243;n</span></div>
     </div>
 
     <!-- PASO 1: RECEIPT -->
-    <div class="esign-section" id="receipt-section" style="display:none;">
+    <div class="esign-section" id="receipt-section">
       <div class="esign-section-title"><span class="badge-step">Paso 1</span>ACKNOWLEDGMENT OF RECEIPT &mdash; Acuso de Recibo</div>
       <div class="esign-legal-text">
         "I acknowledge that I have received and reviewed this proposal from Morales Plumbing (CSLB C-36 #1156542). This acknowledgment does NOT constitute acceptance or authorization to proceed with any work."<br><br>
@@ -2636,13 +2496,13 @@ v>
     <!-- PASO 2: ACCEPTANCE -->
     <div class="esign-section esign-acceptance-section" id="acceptance-section">
       <div class="esign-section-title"><span class="badge-step" style="background:#15803D;">Paso 2</span>ACCEPTANCE / AUTHORIZATION TO PROCEED &mdash; Aceptaci&#243;n</div>
-      <div class="esign-locked-overlay" id="acceptance-locked" style="display:none;">
+      <div class="esign-locked-overlay" id="acceptance-locked">
         <span class="lock-icon">&#128274;</span>
         Complete el Paso 1 para desbloquear la Aceptaci&#243;n.<br><em>Complete Step 1 to unlock Acceptance.</em>
       </div>
-      <div id="acceptance-form-wrapper" style="display:block;">
+      <div id="acceptance-form-wrapper" style="display:none;">
         <div class="esign-legal-text" style="border-color:#86EFAC;background:#F0FDF4;color:#166534;border-left-color:#15803D;">
-          "I accept the scope of work, pricing, terms and conditions contained in this proposal (MP-PROP-4423V-SANDHU, Total: $19,671.18 USD) and authorize Morales Plumbing (CSLB C-36 #1156542) to proceed with the work described herein."<br><br>
+          "I accept the scope of work, pricing, terms and conditions contained in this proposal (MP-PROP-4423V-SANDHU, Total: $21,500.00 USD) and authorize Morales Plumbing (CSLB C-36 #1156542) to proceed with the work described herein."<br><br>
           "Acepto el alcance, precios, t&#233;rminos y condiciones de esta propuesta y autorizo a Morales Plumbing a proceder con los trabajos descritos."
         </div>
         <form id="acceptance-form">
@@ -2682,9 +2542,9 @@ v>
 (function(){
   'use strict';
   var PID='MP-PROP-4423V-SANDHU';
-  var PTOTAL='$19,671.18 USD';
+  var PTOTAL='$21,500.00 USD';
   var PCLIENT='Manjinder S. Sandhu & Gurmeet K. Sandhu';
-  var FSURL='https://formsubmit.co/ajax/moralesplumbing026@gmail.com';
+  var FSURL='https://formspree.io/f/xanyzgll';
   var now=new Date();
   var dateStr=now.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit',timeZoneName:'short'});
   function el(id){return document.getElementById(id);}
@@ -2752,88 +2612,6 @@ v>
     el('acceptance-audit-row').innerHTML=auditH('ACCEPTANCE / AUTHORIZATION TO PROCEED',n,em);
     el('step-2-indicator').className='esign-step done';el('step-2-num').textContent='\u2713';
   });}
-})();
-</script>
-
-
-<script>
-(function(){
-  'use strict';
-  function el(id){return document.getElementById(id);}
-  var swC = el('sw-canvas');
-  if(!swC) return;
-  var swCtx = swC.getContext('2d');
-  var dpr = window.devicePixelRatio || 1;
-  swC.width = (swC.parentElement.offsetWidth - 4) * dpr;
-  swC.height = 150 * dpr;
-  swC.style.width = '100%';
-  swC.style.height = '150px';
-  swCtx.scale(dpr, dpr);
-  swCtx.strokeStyle = '#0A192F'; swCtx.lineWidth = 2.5; swCtx.lineCap = 'round'; swCtx.lineJoin = 'round';
-  
-  var swDrawing = false;
-  var swSigned = false;
-  
-  function getPos(e){
-      var r = swC.getBoundingClientRect();
-      var t = e.touches ? e.touches[0] : e;
-      return { x: (t.clientX - r.left) * (swC.offsetWidth / r.width), y: (t.clientY - r.top) * (swC.offsetHeight / r.height) };
-  }
-  
-  swC.addEventListener('mousedown', function(e){ swDrawing = true; var p = getPos(e); swCtx.beginPath(); swCtx.moveTo(p.x, p.y); });
-  swC.addEventListener('mousemove', function(e){ if(!swDrawing) return; var p = getPos(e); swCtx.lineTo(p.x, p.y); swCtx.stroke(); swSigned = true; });
-  swC.addEventListener('mouseup', function(){ swDrawing = false; });
-  swC.addEventListener('mouseleave', function(){ swDrawing = false; });
-  
-  swC.addEventListener('touchstart', function(e){ e.preventDefault(); swDrawing = true; var p = getPos(e); swCtx.beginPath(); swCtx.moveTo(p.x, p.y); }, {passive: false});
-  swC.addEventListener('touchmove', function(e){ e.preventDefault(); if(!swDrawing) return; var p = getPos(e); swCtx.lineTo(p.x, p.y); swCtx.stroke(); swSigned = true; }, {passive: false});
-  swC.addEventListener('touchend', function(){ swDrawing = false; });
-  
-  window.clearSWCanvas = function(){ swCtx.clearRect(0,0,swC.width,swC.height); swSigned = false; };
-  
-  el('signwall-form').addEventListener('submit', async function(e){
-      e.preventDefault();
-      var n = el('sw-name').value.trim();
-      var em = el('sw-email').value.trim();
-      if(!n || !em){ alert('Complete su nombre y correo.'); return; }
-      if(!swSigned){ alert('Por favor firme en el recuadro con su dedo o mouse.'); return; }
-      
-      var btn = el('sw-submit-btn');
-      btn.disabled = true;
-      btn.textContent = 'Desbloqueando...';
-      
-      var d = {
-          _subject: '[MORALES PLUMBING] RECEIPT SIGNED - MP-PROP-4423V-SANDHU',
-          event: 'ACKNOWLEDGMENT_OF_RECEIPT_SIGNWALL',
-          proposal_id: 'MP-PROP-4423V-SANDHU',
-          client: 'Manjinder S. Sandhu & Gurmeet K. Sandhu',
-          signer_name: n,
-          signer_email: em,
-          signed_at: new Date().toISOString()
-      };
-      
-      try {
-          await fetch('https://formsubmit.co/ajax/moralesplumbing026@gmail.com', {
-              method: 'POST',
-              headers: {'Accept':'application/json','Content-Type':'application/json'},
-              body: JSON.stringify(d)
-          });
-      } catch(ex){}
-      
-      // Unlock
-      el('signwall-overlay').style.display = 'none';
-      var wrapper = el('proposal-content-wrapper');
-      wrapper.classList.remove('blurred-locked');
-      wrapper.style.height = 'auto';
-      wrapper.style.overflow = 'visible';
-      
-      // Also pre-fill the acceptance form at the bottom
-      if(el('accept-name')) el('accept-name').value = n;
-      if(el('accept-email')) el('accept-email').value = em;
-      
-      // Auto scroll to top
-      window.scrollTo(0,0);
-  });
 })();
 </script>
 

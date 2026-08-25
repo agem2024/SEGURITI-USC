@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Reclamación de Gravamen Hipotecario (Claim of Mechanics' Lien) - Santa Clara County - Morales Plumbing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ==========================================================================
+           CALIFORNIA CLAIM OF MECHANICS LIEN (CIVIL CODE § 8416)
+           COUNTY OF SANTA CLARA RECORDER SPECIFICATIONS
+           ========================================================================== */
+        :root {
+            --navy-primary: #0A192F;
+            --navy-secondary: #112240;
+            --gold-accent: #D4AF37;
+            --text-dark: #0F172A;
+            --text-body: #334155;
+            --text-muted: #64748B;
+            --bg-page: #F8FAFC;
+            --bg-card: #FFFFFF;
+            --border-table: #CBD5E1;
+            --alert-red: #B91C1C;
+            --alert-red-bg: #FEF2F2;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-dark);
+            line-height: 1.45;
+            font-size: 8.8pt;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .lang-en { display: none !important; }
+        .lang-es { display: inline; }
+        div.lang-es, p.lang-es, h1.lang-es, h2.lang-es, h3.lang-es, table.lang-es, ul.lang-es, li.lang-es { display: block !important; }
+        body.en-active .lang-es { display: none !important; }
+        body.en-active .lang-en { display: inline !important; }
+        body.en-active div.lang-en, body.en-active p.lang-en, body.en-active h1.lang-en, 
+        body.en-active h2.lang-en, body.en-active h3.lang-en, body.en-active table.lang-en, 
+        body.en-active ul.lang-en, body.en-active li.lang-en { display: block !important; }
+
+        .lang-switch-container {
+            position: fixed;
+            top: 16px;
+            right: 20px;
+            z-index: 99999;
+            background: #FFFFFF;
+            border: 2px solid var(--navy-primary);
+            padding: 6px 14px;
+            box-shadow: 0 4px 15px rgba(10,25,47,0.15);
+            border-radius: 6px;
+        }
+        .lang-toggle-wrapper { display: flex; gap: 10px; font-size: 8.5pt; font-weight: 800; }
+        .lang-btn { cursor: pointer; padding: 3px 8px; color: var(--text-muted); border-radius: 4px; }
+        .lang-btn.active { color: #FFFFFF; background: var(--navy-primary); }
+
+        .doc-container {
+            max-width: 900px;
+            margin: 24px auto 40px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-table);
+            box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* RECORDER TOP MARGIN (OFFICIAL 2 INCH SPACE) */
+        .recorder-header-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            border-bottom: 2px solid var(--navy-primary);
+            min-height: 140px;
+        }
+        .recorder-return-box {
+            padding: 14px 18px;
+            border-right: 2px solid var(--navy-primary);
+            font-size: 8pt;
+            line-height: 1.35;
+        }
+        .recorder-official-space {
+            padding: 14px 18px;
+            background: #FAFAFA;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 8pt;
+            color: var(--text-muted);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .doc-body { padding: 26px 30px; }
+
+        .doc-main-title {
+            text-align: center;
+            font-size: 13pt;
+            font-weight: 900;
+            color: var(--navy-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+            border-bottom: 2px solid var(--gold-accent);
+            padding-bottom: 6px;
+        }
+
+        .statutory-banner {
+            border: 3px solid var(--alert-red);
+            background: var(--alert-red-bg);
+            padding: 16px 18px;
+            border-radius: 6px;
+            margin-bottom: 18px;
+        }
+        .statutory-banner h2 {
+            font-size: 10.5pt;
+            font-weight: 900;
+            color: var(--alert-red);
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        .statutory-banner p {
+            font-size: 8.3pt;
+            color: #7F1D1D;
+            line-height: 1.4;
+            font-weight: 600;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin: 14px 0;
+            font-size: 8.8pt;
+        }
+        .form-row {
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            padding: 10px 14px;
+            border-radius: 4px;
+        }
+        .form-row strong { color: var(--navy-primary); }
+
+        .jurat-box {
+            background: #FFFDF5;
+            border: 1.5px solid var(--gold-dark);
+            padding: 14px 16px;
+            border-radius: 6px;
+            margin-top: 20px;
+            font-size: 8.3pt;
+        }
+
+        .signature-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: 24px;
+            padding-top: 14px;
+            border-top: 1.5px solid var(--navy-primary);
+        }
+        .sig-line {
+            width: 45%;
+            text-align: center;
+            font-size: 8pt;
+            font-weight: 700;
+        }
+
+        .doc-footer {
+            text-align: center;
+            font-size: 7.5pt;
+            color: var(--text-muted);
+            padding: 14px 30px;
+            background: #F1F5F9;
+            border-top: 1px solid #E2E8F0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="lang-switch-container">
+        <div class="lang-toggle-wrapper">
+            <span class="lang-btn active" id="btn-es" onclick="setLang('es')">ESPAÑOL</span>
+            <span>|</span>
+            <span class="lang-btn" id="btn-en" onclick="setLang('en')">ENGLISH</span>
+        </div>
+    </div>
+
+    <div class="doc-container">
+        
+        <!-- TOP RECORDING HEADER (SANTA CLARA COUNTY FORMAT) -->
+        <div class="recorder-header-grid">
+            <div class="recorder-return-box">
+                <p><strong>RECORDING REQUESTED BY / GRABACIÓN SOLICITADA POR:</strong><br>
+                MORALES PLUMBING (Lic. C-36 #1156542)</p>
+                <p style="margin-top:6px;"><strong>WHEN RECORDED MAIL TO / ENVIAR COPIA A:</strong><br>
+                MORALES PLUMBING<br>
+                Alex G. Espinosa<br>
+                San Jose, CA<br>
+                Tel: (669) 213-4422<br>
+                Email: moralesplumbing026@gmail.com</p>
+            </div>
+            <div class="recorder-official-space">
+                SPACE ABOVE THIS LINE FOR RECORDER'S USE ONLY<br>
+                (ESPACIO EXCLUSIVO PARA EL SELLO DEL REGISTRO DEL CONDADO DE SANTA CLARA)
+            </div>
+        </div>
+
+        <div class="doc-body">
+
+            <div class="doc-main-title">
+                <span class="lang-es">RECLAMACIÓN DE GRAVAMEN DE MECÁNICOS (CALIFORNIA CIVIL CODE § 8416)</span>
+                <span class="lang-en">CLAIM OF MECHANICS' LIEN (CALIFORNIA CIVIL CODE § 8416)</span>
+            </div>
+
+            <!-- STATUTORY MANDATORY NOTICE TO PROPERTY OWNER (§ 8416(a)(7)) -->
+            <div class="statutory-banner">
+                <h2>
+                    <span class="lang-es">AVISO AL PROPIETARIO DEL INMUEBLE (NOTICE OF MECHANICS' LIEN)</span>
+                    <span class="lang-en">NOTICE OF MECHANICS' LIEN (CALIFORNIA CIVIL CODE § 8416)</span>
+                </h2>
+                <p class="lang-es">
+                    <strong>ATENCIÓN:</strong> AL SER REGISTRADO ESTE DOCUMENTO EN EL CONDADO DE SANTA CLARA, SU PROPIEDAD QUEDA GRAVADA CON UN EMBARGO HIPOTECARIO (MECHANICS' LIEN). LA LEY DE CALIFORNIA EXIGE QUE DENTRO DE LOS 90 DÍAS POSTERIORES AL REGISTRO, SE INICIE UNA DEMANDA DE EJECUCIÓN HIPOTECARIA EN LA CORTE SUPERIOR PARA FORZAR LA VENTA JUDICIAL DE SU VIVIENDA A FIN DE PAGAR ESTA DEUDA.
+                </p>
+                <p class="lang-en">
+                    <strong>ATTENTION:</strong> UPON THE RECORDING OF THIS MECHANICS' LIEN AGAINST YOUR PROPERTY AT THE COUNTY RECORDER'S OFFICE, A LEGAL LIEN IS PLACED ON YOUR HOME. CALIFORNIA LAW PERMITS THE CLAIMANT TO ENFORCE THIS LIEN BY FILING A FORECLOSURE LAWSUIT IN SANTA CLARA COUNTY SUPERIOR COURT WITHIN 90 DAYS TO COMPEL THE SALE OF YOUR PROPERTY.
+                </p>
+            </div>
+
+            <div class="form-grid">
+                <div class="form-row">
+                    <strong>1. <span class="lang-es">Reclamante / Contratista Directo:</span><span class="lang-en">Claimant / Direct Contractor:</span></strong><br>
+                    MORALES PLUMBING (Alex G. Espinosa &bull; Lic. CSLB C-36 #1156542), San Jose, CA. Tel: (669) 213-4422.
+                </div>
+
+                <div class="form-row">
+                    <strong>2. <span class="lang-es">Propietario o Presunto Propietario:</span><span class="lang-en">Owner or Reputed Owner:</span></strong><br>
+                    Manjinder S. Sandhu & Gurmeet K. Sandhu.
+                </div>
+
+                <div class="form-row">
+                    <strong>3. <span class="lang-es">Descripción Legal y Ubicación del Inmueble Gravado:</span><span class="lang-en">Legal Property Description & Location:</span></strong><br>
+                    4423 Vistapark Dr, San Jose, CA 95136 (County of Santa Clara, State of California).
+                </div>
+
+                <div class="form-row">
+                    <strong>4. <span class="lang-es">Descripción de la Mano de Obra, Equipos y Materiales Suministrados:</span><span class="lang-en">Labor, Services & Materials Furnished:</span></strong><br>
+                    <span class="lang-es">Repipe integral con Cobre Tipo L ASTM B88, accesorios Viega ProPress, manifold maestro, circuito de retorno DRL con bomba recirculadora, calentador de agua tankless eléctrico de alta eficiencia, válvula reguladora de presión PRV Watts 1", pruebas hidrostáticas a 100 PSI e inspecciones de plomería autorizadas por la Ciudad de San Jose.</span>
+                    <span class="lang-en">Full potable water repiping using ASTM B88 Type L copper, Viega ProPress fittings, master copper manifold, dedicated recirculation return loop, high-capacity electric tankless water heater, master PRV valve, 100 PSI pressure testing, and City of San Jose approved plumbing inspections.</span>
+                </div>
+
+                <div class="form-row">
+                    <strong>5. <span class="lang-es">Estado de Cuenta y Monto Total Reclamado:</span><span class="lang-en">Statement of Demand & Amount Due:</span></strong><br>
+                    <p style="margin:4px 0;"><span class="lang-es">Monto Total del Contrato:</span><span class="lang-en">Total Contract Price:</span> <strong>$19,671.18 USD</strong></p>
+                    <p style="margin:4px 0;"><span class="lang-es">Créditos / Pagos Parciales Recibidos:</span><span class="lang-en">Credits / Payments Received:</span> <strong>$ [Insertar Pagos]</strong></p>
+                    <p style="margin:4px 0;"><span class="lang-es">SALDO PRINCIPAL PENDIENTE DE PAGO:</span><span class="lang-en">TOTAL UNPAID PRINCIPAL DEMAND:</span> <strong style="color:var(--alert-red); font-size:10.5pt;">$ [Insertar Saldo Adeudado] USD</strong></p>
+                    <p style="font-size:7.5pt; color:var(--text-muted);"><span class="lang-es">Más interés legal del 1.5% mensual (18% anual) desde la fecha de mora y honorarios de abogados.</span><span class="lang-en">Plus statutory interest at 18% per annum and reasonable attorney fees.</span></p>
+                </div>
+            </div>
+
+            <!-- VERIFICATION & NOTARY JURAT -->
+            <div class="jurat-box">
+                <p><strong><span class="lang-es">DECLARACIÓN JURADA DE VERIFICACIÓN (CALIFORNIA CODE OF CIVIL PROCEDURE):</span><span class="lang-en">VERIFICATION DECLARATION UNDER PENALTY OF PERJURY:</span></strong></p>
+                <p class="lang-es">
+                    Yo, <strong>Alex G. Espinosa</strong>, declaro bajo pena de perjurio bajo las leyes del Estado de California que soy el titular y representante de Morales Plumbing; que he leído la Reclamación de Gravamen anterior, conozco su contenido y que los hechos y montos expuestos son verdaderos según mi conocimiento personal.
+                </p>
+                <p class="lang-en">
+                    I, <strong>Alex G. Espinosa</strong>, declare under penalty of perjury under the laws of the State of California that I am the owner/officer of Morales Plumbing, that I have read the foregoing Claim of Mechanics' Lien and know the contents thereof, and that the facts stated therein are true of my own personal knowledge.
+                </p>
+
+                <div class="signature-row">
+                    <div class="sig-line">
+                        <span style="font-family:'Brush Script MT', cursive; font-size:18pt; color:#0A192F;">Alex G. Espinosa</span><br>
+                        <strong>MORALES PLUMBING</strong><br>
+                        <span class="lang-es">Firma del Reclamante</span>
+                        <span class="lang-en">Claimant Signature</span>
+                    </div>
+                    <div class="sig-line">
+                        <strong>Date: August 25, 2026</strong><br>
+                        <span>San Jose, Santa Clara County, CA</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <footer class="doc-footer">
+            MORALES PLUMBING &bull; AI-INTEGRATED SERVICES &bull; CSLB LIC. C-36 #1156542 &bull; SAN JOSE, CA<br>
+            Tel: (669) 213-4422 &bull; Email: moralesplumbing026@gmail.com &bull; Web: www.morales-plumbing.com
+        </footer>
+
+    </div>
+
+    <script>
+        function setLang(lang) {
+            if (lang === 'en') {
+                document.body.classList.add('en-active');
+                document.getElementById('btn-en').classList.add('active');
+                document.getElementById('btn-es').classList.remove('active');
+            } else {
+                document.body.classList.remove('en-active');
+                document.getElementById('btn-es').classList.add('active');
+                document.getElementById('btn-en').classList.remove('active');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Auditoría Comparativa, Verificación Forense y Análisis Financiero L.A.M. - Pace Supply Quote #2934810 - Morales Plumbing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;800&display=swap" rel="stylesheet">
+    <style>
+        /* ==========================================================================
+           MORALES PLUMBING - PACE SUPPLY QUOTE #2934810 FORENSIC & FINANCIAL AUDIT
+           CSLB C-36 #1156542 | San Jose, CA | Project: Sandhu Repipe (4423 Vistapark)
+           ========================================================================== */
+        :root {
+            --navy-primary: #0A192F;
+            --navy-secondary: #112240;
+            --navy-dark: #020C1B;
+            --gold-accent: #D4AF37;
+            --gold-dark: #B8860B;
+            --gold-light: #FFFDF5;
+            --gold-border: #E8D384;
+            --text-dark: #0F172A;
+            --text-body: #334155;
+            --text-muted: #64748B;
+            --bg-page: #F1F5F9;
+            --bg-card: #FFFFFF;
+            --border-navy: #0A192F;
+            --border-table: #CBD5E1;
+            
+            --diff-saving: #15803D;
+            --diff-saving-bg: #F0FDF4;
+            --diff-saving-border: #86EFAC;
+            
+            --diff-excess: #B91C1C;
+            --diff-excess-bg: #FEF2F2;
+            --diff-excess-border: #FCA5A5;
+            
+            --diff-warning: #B45309;
+            --diff-warning-bg: #FFFBEB;
+            --diff-warning-border: #FCD34D;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-dark);
+            line-height: 1.35;
+            font-size: 7.5pt;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .mono { font-family: 'JetBrains Mono', monospace; }
+
+        /* 100% INTEGRAL BILINGUAL DISPLAY SYSTEM */
+        .lang-en { display: none !important; }
+        .lang-es { display: inline; }
+        div.lang-es, p.lang-es, h1.lang-es, h2.lang-es, h3.lang-es, table.lang-es, ul.lang-es, ol.lang-es, li.lang-es, span.lang-es-block { 
+            display: block !important; 
+        }
+        body.en-active .lang-es { display: none !important; }
+        body.en-active .lang-en { display: inline !important; }
+        body.en-active div.lang-en, body.en-active p.lang-en, body.en-active h1.lang-en, 
+        body.en-active h2.lang-en, body.en-active h3.lang-en, body.en-active table.lang-en, 
+        body.en-active ul.lang-en, body.en-active ol.lang-en, body.en-active li.lang-en, body.en-active span.lang-en-block { 
+            display: block !important; 
+        }
+
+        /* TOP CONTROLS */
+        .top-controls-bar {
+            position: sticky;
+            top: 0;
+            z-index: 9999;
+            background: #FFFFFF;
+            border-bottom: 2px solid var(--navy-primary);
+            padding: 8px 24px;
+            box-shadow: 0 4px 12px rgba(10,25,47,0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .lang-toggle-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 8pt;
+            font-weight: 700;
+            background: #F8FAFC;
+            padding: 4px 10px;
+            border: 1px solid var(--border-table);
+            border-radius: 4px;
+        }
+        .lang-btn { cursor: pointer; color: var(--text-muted); user-select: none; }
+        .lang-btn.active { color: var(--navy-primary); border-bottom: 2px solid var(--gold-accent); }
+
+        .watermark-overlay {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 48%;
+            max-width: 420px;
+            opacity: 0.038;
+            pointer-events: none;
+            z-index: 999;
+            user-select: none;
+        }
+
+        .document-container {
+            max-width: 1060px;
+            margin: 20px auto 40px auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border-table);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        .content-padding { padding: 20px 24px; }
+
+        .report-header {
+            background: #FFFFFF;
+            border-bottom: 3px solid var(--navy-primary);
+            padding: 18px 24px 14px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 20px;
+        }
+        .header-left { display: flex; align-items: center; gap: 16px; }
+        .header-logo { height: 65px; width: auto; object-fit: contain; }
+
+        .company-branding h1 {
+            font-size: 16pt;
+            color: var(--navy-primary);
+            letter-spacing: 0.5px;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 2px;
+        }
+        .company-subtitle {
+            font-size: 8.2pt;
+            color: var(--gold-dark);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+        .company-credentials p {
+            margin: 2px 0;
+            font-size: 7.8pt;
+            color: var(--text-body);
+            font-weight: 500;
+        }
+        .lic-highlight { color: var(--navy-primary); font-weight: 700; }
+
+        .report-meta-block {
+            text-align: right;
+            border-left: 2px solid var(--border-table);
+            padding-left: 16px;
+            min-width: 320px;
+        }
+        .report-meta-block h2 {
+            font-size: 9.5pt;
+            color: var(--navy-primary);
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            font-weight: 800;
+            border-bottom: 1.5px solid var(--gold-accent);
+            padding-bottom: 3px;
+        }
+        .report-meta-block p { margin: 2px 0; font-size: 7.5pt; color: var(--text-body); }
+
+        .section-header {
+            background: var(--navy-primary);
+            color: #FFFFFF;
+            font-size: 8.2pt;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 6px 10px;
+            margin: 16px 0 8px 0;
+            border-left: 4px solid var(--gold-accent);
+            page-break-after: avoid;
+        }
+
+        .summary-dashboard {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 12px 0;
+        }
+        .summary-card {
+            background: #F8FAFC;
+            border: 1px solid var(--border-table);
+            padding: 10px;
+            border-radius: 4px;
+            border-top: 3px solid var(--navy-primary);
+        }
+        .summary-card.alert { border-top-color: var(--diff-excess); background: var(--diff-excess-bg); }
+        .summary-card.success { border-top-color: var(--diff-saving); background: var(--diff-saving-bg); }
+        .summary-card.warning { border-top-color: var(--diff-warning); background: var(--diff-warning-bg); }
+        
+        .card-label { font-size: 6.8pt; color: var(--text-muted); font-weight: 700; text-transform: uppercase; }
+        .card-val { font-size: 13pt; font-weight: 800; color: var(--navy-primary); margin: 2px 0; font-family:'JetBrains Mono', monospace; }
+        .card-sub { font-size: 6.6pt; color: var(--text-body); font-weight: 600; }
+
+        .audit-alert-box {
+            background: #FFFDF5;
+            border: 1.5px solid var(--gold-dark);
+            border-left: 5px solid var(--diff-excess);
+            padding: 10px 14px;
+            margin: 12px 0;
+            font-size: 7.5pt;
+            line-height: 1.4;
+        }
+
+        .table-container { margin: 8px 0 12px 0; overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; font-size: 6.8pt; line-height: 1.25; }
+        th { background: var(--navy-primary); color: #FFFFFF; text-align: left; padding: 5px 6px; font-weight: 700; font-size: 6.8pt; border: 1px solid var(--border-navy); text-transform: uppercase; }
+        td { padding: 4px 6px; border: 1px solid var(--border-table); vertical-align: middle; color: var(--text-dark); }
+        tr:nth-child(even) td { background-color: #F8FAFC; }
+
+        .badge-verified { background: var(--diff-saving-bg); color: var(--diff-saving); border: 1px solid var(--diff-saving-border); padding: 1px 4px; font-weight: 700; border-radius: 2px; }
+        .badge-segment { background: var(--gold-light); color: var(--navy-primary); border: 1px solid var(--gold-border); padding: 1px 4px; font-weight: 800; border-radius: 2px; }
+        .badge-alert { background: #FEF3C7; color: #92400E; border: 1px solid #FCD34D; padding: 1px 4px; font-weight: 800; border-radius: 2px; }
+        .badge-excess { background: var(--diff-excess-bg); color: var(--diff-excess); border: 1px solid var(--diff-excess-border); padding: 1px 4px; font-weight: 700; border-radius: 2px; }
+
+        .document-footer { margin-top: 20px; padding-top: 10px; border-top: 2px solid var(--navy-primary); font-size: 7pt; color: var(--text-muted); }
+        .footer-grid { display: flex; justify-content: space-between; align-items: center; }
+
+        @media print {
+            .top-controls-bar { display: none !important; }
+            .document-container { margin: 0 !important; border: none !important; box-shadow: none !important; max-width: 100% !important; }
+            .content-padding { padding: 0 !important; }
+            body { font-size: 6.5pt !important; background: #FFFFFF !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <img alt="Morales Plumbing Watermark" class="watermark-overlay" src="logo_tran marca agua.png"/>
+
+    <div class="top-controls-bar">
+        <div style="font-weight:800; color:var(--navy-primary); font-size:8pt;">
+            <span class="lang-es">AUDITORÍA FORENSE, COMPARATIVO DE PRECIOS &amp; ANÁLISIS FINANCIERO L.A.M. &bull; PACE SUPPLY (#2934810)</span>
+            <span class="lang-en">FORENSIC AUDIT, PRICE RECONCILIATION &amp; L.A.M. FINANCIAL ANALYSIS &bull; PACE SUPPLY (#2934810)</span>
+        </div>
+        <div class="lang-toggle-wrapper">
+            <span class="lang-btn active" id="btn-es" onclick="switchLanguage('es')">ESPAÑOL</span>
+            <span class="lang-divider">|</span>
+            <span class="lang-btn" id="btn-en" onclick="switchLanguage('en')">ENGLISH</span>
+        </div>
+    </div>
+
+    <div class="document-container">
+        <header class="report-header">
+            <div class="header-left">
+                <img src="logo_portada.png" alt="Morales Plumbing Logo" class="header-logo">
+                <div class="company-branding">
+                    <h1>MORALES PLUMBING</h1>
+                    <div class="company-subtitle">AI-INTEGRATED SERVICES</div>
+                    <div class="company-credentials">
+                        <p class="lic-highlight">
+                            <span class="lang-es">Licencia CSLB C-36 #1156542 | San Jose, CA</span>
+                            <span class="lang-en">CSLB C-36 License #1156542 | San Jose, CA</span>
+                        </p>
+                        <p>📞 (669) 213-4422 &bull; ✉️ moralesplumbing026@gmail.com &bull; 🌐 www.morales-plumbing.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="report-meta-block">
+                <h2>
+                    <span class="lang-es">Auditoría de Cotización y Conciliación Financiera</span>
+                    <span class="lang-en">Vendor Quote Audit &amp; Financial Reconciliation</span>
+                </h2>
+                <p>
+                    <strong><span class="lang-es">Distribuidor Cotizado:</span><span class="lang-en">Quoted Vendor:</span></strong> 
+                    PACE SUPPLY CORP (630 Quinn Ave, San Jose, CA 95112 &bull; Tel: 408-861-4100)
+                </p>
+                <p>
+                    <strong><span class="lang-es">Nº Cotización Pace:</span><span class="lang-en">Pace Quote #:</span></strong> 
+                    <strong>2934810</strong> &bull; <strong><span class="lang-es">Cuenta:</span><span class="lang-en">Account:</span></strong> 218301-00 (Morales Plumbing)
+                </p>
+                <p>
+                    <strong><span class="lang-es">Vendedora Pace:</span><span class="lang-en">Salesperson:</span></strong> Felicia Colbert (fcolbert@pacesupply.com)
+                </p>
+                <p>
+                    <strong><span class="lang-es">Fecha de Emisión:</span><span class="lang-en">Quote Date:</span></strong> 
+                    August 24, 2026 &bull; <strong><span class="lang-es">Job Name:</span></strong> <code>sandhu repipe</code>
+                </p>
+                <p>
+                    <strong><span class="lang-es">Proyecto Destino / Contrato:</span><span class="lang-en">Target Project / Contract:</span></strong> 
+                    Manjinder S. Sandhu &amp; Gurmeet K. Sandhu &bull; <strong>$21,500.00 USD</strong> &bull; 4423 Vistapark Dr, San Jose, CA
+                </p>
+            </div>
+        </header>
+
+        <div class="content-padding">
+
+            <!-- SUMMARY DASHBOARD -->
+            <div class="summary-dashboard">
+                <div class="summary-card alert">
+                    <div class="card-label"><span class="lang-es">Cotización Pace Bruta</span><span class="lang-en">Raw Pace Quote</span></div>
+                    <div class="card-val" style="color:var(--diff-excess);">$15,752.51</div>
+                    <div class="card-sub"><span class="lang-es">Precios Mostrador sin Descuento</span><span class="lang-en">Counter Rates without Discount</span></div>
+                </div>
+
+                <div class="summary-card warning">
+                    <div class="card-label"><span class="lang-es">Sobreprecio de Lista Detectado</span><span class="lang-en">Identified List Overcharge</span></div>
+                    <div class="card-val" style="color:var(--diff-warning);">+$1,973.47</div>
+                    <div class="card-sub"><span class="lang-es">Precios de Mostrador sin Descuento</span><span class="lang-en">Counter Rates without Trade Discount</span></div>
+                </div>
+
+                <div class="summary-card success">
+                    <div class="card-label"><span class="lang-es">Target de Compra Mayorista</span><span class="lang-en">Target Wholesale Budget</span></div>
+                    <div class="card-val" style="color:var(--diff-saving);">$7,150.00</div>
+                    <div class="card-sub"><span class="lang-es">33.25% del Contrato (Con Tax)</span><span class="lang-en">33.25% of Contract (Tax Incl.)</span></div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="card-label"><span class="lang-es">Utilidad Neta Protegida (Caso 3)</span><span class="lang-en">Protected Net Profit (Case 3)</span></div>
+                    <div class="card-val" style="color:var(--gold-dark);">$5,527.64</div>
+                    <div class="card-sub"><span class="lang-es">Margen Neto Limpio (25.71%)</span><span class="lang-en">Clean Net Margin (25.71%)</span></div>
+                </div>
+            </div>
+
+            <!-- ==========================================================================
+                 SECCIÓN 1: IMPACTO FINANCIERO EN EL CONTRATO AJUSTADO ($21,500.00 USD) Y ANÁLISIS L.A.M.
+                 ========================================================================== -->
+            <div class="section-header">
+                <span class="lang-es">1. Impacto Financiero en el Contrato Ajustado ($21,500.00 USD) y Estructura L.A.M. (Caso 3)</span>
+                <span class="lang-en">1. Financial Impact on Adjusted Contract Price ($21,500.00 USD) &amp; L.A.M. Structure (Case 3)</span>
+            </div>
+
+            <div class="audit-alert-box">
+                <p><strong><span class="lang-es">ALERTA FINANCIERA GERENCIAL: COMPARATIVA DE ESCENARIOS DE COMPRA</span><span class="lang-en">EXECUTIVE FINANCIAL ALERT: PROCUREMENT SCENARIO COMPARISON</span></strong></p>
+                <p class="lang-es">
+                    Bajo el <strong>Caso 3 (Ajuste de Seguridad a $21,500.00 USD)</strong>, se absorben los 60 FT de cobre de 1" omitidos y el metraje completo para los 4 baños y 2 cocinas. Si se adquiere la cotización de Pace Supply a mostrador ($15,752.51), el proyecto quedaría en empate técnico ($947.99 margen mínimo). Con la compra mayorista corregida a <strong>$7,150.00 USD</strong>, Morales Plumbing asegura una <strong>Utilidad Neta Real de $5,527.64 USD (25.71% de margen neto limpio)</strong>.
+                </p>
+                <p class="lang-en">
+                    Under <strong>Case 3 (Security Adjusted Price of $21,500.00 USD)</strong>, the omitted 60 FT of 1" copper and full branch footage for 4 baths and 2 kitchens are fully absorbed. While buying raw Pace ($15,752.51) leaves razor-thin break-even ($947.99), enforcing contractor wholesale procurement at <strong>$7,150.00 USD</strong> secures a robust <strong>Clean Net Profit of $5,527.64 USD (25.71% net margin)</strong>.
+                </p>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 32%;"><span class="lang-es">Componente Financiero / Matriz L.A.M.</span><span class="lang-en">Financial Component / L.A.M. Matrix</span></th>
+                            <th style="width: 17%; text-align:right;"><span class="lang-es">Escenario A: Pace Bruto</span><span class="lang-en">Scenario A: Raw Pace</span></th>
+                            <th style="width: 17%; text-align:right;"><span class="lang-es">Escenario B: Presupuesto Meta</span><span class="lang-en">Scenario B: Target Budget</span></th>
+                            <th style="width: 12%; text-align:center;"><span class="lang-es">% del Contrato</span><span class="lang-en">% of Contract</span></th>
+                            <th style="width: 22%;"><span class="lang-es">Fundamento Técnico y Criterio</span><span class="lang-en">Technical Basis &amp; Rationale</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background:#FAFCFF; font-weight:800;">
+                            <td><strong><span class="lang-es">VALOR TOTAL CONTRATADO AL CLIENTE</span><span class="lang-en">TOTAL BILLED CONTRACT REVENUE</span></strong></td>
+                            <td style="text-align:right;">$21,500.00</td>
+                            <td style="text-align:right; color:var(--navy-primary); font-size:8pt;">$21,500.00</td>
+                            <td style="text-align:center; font-weight:800;">100.00%</td>
+                            <td><span class="lang-es">Monto ajustado según Caso 3 de máxima seguridad</span><span class="lang-en">Adjusted price per Case 3 security plan</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>[M] <span class="lang-es">Materiales Directos + Sales Tax (10%)</span><span class="lang-en">Direct Materials + 10% Sales Tax</span></strong></td>
+                            <td style="text-align:right; color:var(--diff-excess); font-weight:700;">-$15,752.51</td>
+                            <td style="text-align:right; color:var(--diff-saving); font-weight:700;">-$7,150.00</td>
+                            <td style="text-align:center; font-weight:700;">33.26%</td>
+                            <td><span class="lang-es">540 FT Cobre Tipo L (1", 3/4", 1/2") + ProPress + PRV + Moen</span><span class="lang-en">540 FT Type L Copper (1", 3/4", 1/2") + ProPress + PRV + Moen</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>[L] <span class="lang-es">Mano de Obra Real (Labor Burden 28%)</span><span class="lang-en">Direct Labor (28% Loaded Burden)</span></strong></td>
+                            <td style="text-align:right; color:var(--diff-excess);">-$3,594.24</td>
+                            <td style="text-align:right; color:var(--navy-primary);">-$4,200.00</td>
+                            <td style="text-align:center; font-weight:700;">19.53%</td>
+                            <td><span class="lang-es">70–80 hrs cuadrilla (Workers' Comp 9.8%, FICA 7.65%)</span><span class="lang-en">70–80 crew hrs (Workers' Comp 9.8%, FICA 7.65%)</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>[P] <span class="lang-es">Permiso Ciudad de San José + Facilidades</span><span class="lang-en">City of San Jose Permit + Jobsite Facilities</span></strong></td>
+                            <td style="text-align:right; color:var(--diff-excess);">-$1,205.24</td>
+                            <td style="text-align:right; color:var(--navy-primary);">-$1,205.24</td>
+                            <td style="text-align:center; font-weight:700;">5.61%</td>
+                            <td><span class="lang-es">Permiso Express $665 + Baño Químico $340 + Extractor $200</span><span class="lang-en">SJ Permit $665 + Restroom $340 + Blower $200</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>[E] <span class="lang-es">Porcentaje de Error, Merma e Imprevistos (8.5%)</span><span class="lang-en">Contingency, Scrap &amp; Error Margin (8.5%)</span></strong></td>
+                            <td style="text-align:right; color:var(--text-muted);">$0.00</td>
+                            <td style="text-align:right; color:var(--diff-warning);">-$1,450.00</td>
+                            <td style="text-align:center; font-weight:700;">6.74%</td>
+                            <td><span class="lang-es">Fondo de reserva para imprevistos en subsuelo y merma</span><span class="lang-en">Subfloor contingency and copper cut scrap</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>[A] <span class="lang-es">Gastos de Administración y Overhead (9.15%)</span><span class="lang-en">General Administration &amp; Overhead (9.15%)</span></strong></td>
+                            <td style="text-align:right; color:var(--text-muted);">$0.00</td>
+                            <td style="text-align:right; color:var(--navy-primary);">-$1,967.12</td>
+                            <td style="text-align:center; font-weight:700;">9.15%</td>
+                            <td><span class="lang-es">Seguros comerciales, transporte, software y gestión</span><span class="lang-en">Commercial insurance, transport, software &amp; PM</span></td>
+                        </tr>
+                        <tr style="background:#FFFDF5; font-weight:900; border-top:2px solid var(--navy-primary);">
+                            <td><strong>[U] <span class="lang-es">UTILIDAD NETA LIMPIA (NET PROFIT)</span><span class="lang-en">FINAL CLEAN NET PROFIT</span></strong></td>
+                            <td style="text-align:right; color:var(--diff-saving); font-size:8.5pt;">+$947.99 USD</td>
+                            <td style="text-align:right; color:var(--diff-saving); font-size:9.5pt;">+$5,527.64 USD</td>
+                            <td style="text-align:center; color:var(--diff-saving); font-weight:900; font-size:8.5pt;">25.71%</td>
+                            <td><span class="lang-es" style="color:var(--diff-saving); font-weight:800;">GANANCIA NETA BLINDADA</span><span class="lang-en" style="color:var(--diff-saving); font-weight:800;">SECURED NET PROFIT</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- ==========================================================================
+                 SECCIÓN 2: AUDITORÍA FORENSE DE SOBREPRECIOS Y OMISIONES DE PACE SUPPLY
+                 ========================================================================== -->
+            <div class="section-header">
+                <span class="lang-es">2. Auditoría Forense de Sobreprecios y Omisiones de Pace Supply (#2934810)</span>
+                <span class="lang-en">2. Forensic Audit of Pace Supply Overcharges &amp; Missing Items (#2934810)</span>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 5%;">Ln#</th>
+                            <th style="width: 14%;">Part Number</th>
+                            <th style="width: 29%;"><span class="lang-es">Descripción del Ítem</span><span class="lang-en">Item Description</span></th>
+                            <th style="width: 7%; text-align:center;"><span class="lang-es">Cant.</span><span class="lang-en">Qty</span></th>
+                            <th style="width: 11%; text-align:right;"><span class="lang-es">Precio Pace</span><span class="lang-en">Pace Price</span></th>
+                            <th style="width: 11%; text-align:right;"><span class="lang-es">Precio Mercado</span><span class="lang-en">Market Price</span></th>
+                            <th style="width: 11%; text-align:right;"><span class="lang-es">Sobreprecio</span><span class="lang-en">Overcharge</span></th>
+                            <th style="width: 12%; text-align:center;"><span class="lang-es">Dictamen</span><span class="lang-en">Ruling</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>17</td>
+                            <td><code>WTTLF25AUB1</code></td>
+                            <td><strong>Válvula Reguladora PRV Watts 1" LF25AUB</strong></td>
+                            <td style="text-align:center; font-weight:700;">1 EA</td>
+                            <td style="text-align:right; color:var(--diff-excess); font-weight:700;">$933.33</td>
+                            <td style="text-align:right; color:var(--diff-saving); font-weight:700;">$250.00</td>
+                            <td style="text-align:right; color:var(--diff-excess); font-weight:800;">+$683.33</td>
+                            <td style="text-align:center;"><span class="badge-excess">Sobreprecio +273%</span></td>
+                        </tr>
+                        <tr>
+                            <td>28</td>
+                            <td><code>BRCKTCR1901DVR</code></td>
+                            <td><strong>Llave Doble BrassCraft 5/8x3/8x3/8 1/4 Turn</strong></td>
+                            <td style="text-align:center; font-weight:700;">2 EA</td>
+                            <td style="text-align:right; color:var(--diff-excess); font-weight:700;">$97.54 ea</td>
+                            <td style="text-align:right; color:var(--diff-saving); font-weight:700;">$30.00 ea</td>
+                            <td style="text-align:right; color:var(--diff-excess); font-weight:800;">+$135.08</td>
+                            <td style="text-align:center;"><span class="badge-excess">Sobreprecio +225%</span></td>
+                        </tr>
+                        <tr>
+                            <td>27</td>
+                            <td><code>BRCKTCR19X</code></td>
+                            <td><strong>Llave Angular BrassCraft 5/8x3/8 1/4 Turn</strong></td>
+                            <td style="text-align:center; font-weight:700;">16 EA</td>
+                            <td style="text-align:right; color:var(--diff-excess); font-weight:700;">$27.00 ea</td>
+                            <td style="text-align:right; color:var(--diff-saving); font-weight:700;">$11.90 ea</td>
+                            <td style="text-align:right; color:var(--diff-excess); font-weight:800;">+$241.60</td>
+                            <td style="text-align:center;"><span class="badge-excess">Sobreprecio +127%</span></td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td><code>MPRDEF912</code></td>
+                            <td><strong>Codo Drop Ear 90° 1/2" Mueller Press Copper</strong></td>
+                            <td style="text-align:center; font-weight:700;">24 EA</td>
+                            <td style="text-align:right; color:var(--diff-excess); font-weight:700;">$33.52 ea</td>
+                            <td style="text-align:right; color:var(--diff-saving); font-weight:700;">$15.00 ea</td>
+                            <td style="text-align:right; color:var(--diff-excess); font-weight:800;">+$444.48</td>
+                            <td style="text-align:center;"><span class="badge-excess">Sobreprecio +123%</span></td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td><code>MPRT112</code></td>
+                            <td><strong>Tee 1" x 1/2" Mueller Press Copper</strong></td>
+                            <td style="text-align:center; font-weight:700;">3 EA</td>
+                            <td style="text-align:right; color:var(--diff-excess); font-weight:700;">$104.58 ea</td>
+                            <td style="text-align:right; color:var(--diff-saving); font-weight:700;">$35.00 ea</td>
+                            <td style="text-align:right; color:var(--diff-excess); font-weight:800;">+$208.74</td>
+                            <td style="text-align:center;"><span class="badge-excess">Sobreprecio +198%</span></td>
+                        </tr>
+                        <tr>
+                            <td>21</td>
+                            <td><code>WTTLLL100XL34</code></td>
+                            <td><strong>Válvula T&amp;P Watts 3/4" 150 PSI Extended Shank</strong></td>
+                            <td style="text-align:center; font-weight:700;">1 EA</td>
+                            <td style="text-align:right; color:var(--diff-excess); font-weight:700;">$108.48</td>
+                            <td style="text-align:right; color:var(--diff-saving); font-weight:700;">$40.00</td>
+                            <td style="text-align:right; color:var(--diff-excess); font-weight:800;">+$68.48</td>
+                            <td style="text-align:center;"><span class="badge-excess">Sobreprecio +171%</span></td>
+                        </tr>
+                        <tr>
+                            <td>11-12</td>
+                            <td><code>MPRCAP34/12</code></td>
+                            <td><strong>Tapones ProPress 3/4" y 1/2" Mueller Press</strong></td>
+                            <td style="text-align:center; font-weight:700;">16 EA</td>
+                            <td style="text-align:right; color:var(--diff-excess); font-weight:700;">$281.76 tot</td>
+                            <td style="text-align:right; color:var(--diff-saving); font-weight:700;">$90.00 tot</td>
+                            <td style="text-align:right; color:var(--diff-excess); font-weight:800;">+$191.76</td>
+                            <td style="text-align:center;"><span class="badge-excess">Sobreprecio +213%</span></td>
+                        </tr>
+                        <tr style="background:#FEF2F2; font-weight:800;">
+                            <td colspan="6" style="text-align:right; color:var(--diff-excess);">
+                                <span class="lang-es">TOTAL DE SOBREPRECIO INFLADO A RECLAMAR / DESCONTAR:</span>
+                                <span class="lang-en">TOTAL INFLATED OVERCHARGE TO CLAIM / DEDUCT:</span>
+                            </td>
+                            <td style="text-align:right; color:var(--diff-excess); font-size:8.5pt;">+$1,973.47 USD</td>
+                            <td style="text-align:center;"><span class="badge-excess">Margen Recuperable</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- ==========================================================================
+                 SECCIÓN 3: ANÁLISIS DE METRAJES Y OMISIONES DE TUBERÍA DE COBRE
+                 ========================================================================== -->
+            <div class="section-header">
+                <span class="lang-es">3. Análisis de Metrajes de Tubería de Cobre vs Dimensiones de la Propiedad</span>
+                <span class="lang-en">3. Copper Pipe Footage Analysis vs Property Physical Dimensions</span>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 20%;"><span class="lang-es">Diámetro y Tipo</span><span class="lang-en">Diameter &amp; Type</span></th>
+                            <th style="width: 14%; text-align:center;"><span class="lang-es">Cant. Cotizada Pace</span><span class="lang-en">Pace Quoted Qty</span></th>
+                            <th style="width: 14%; text-align:center;"><span class="lang-es">Requerimiento Real</span><span class="lang-en">True Project Need</span></th>
+                            <th style="width: 14%; text-align:center;"><span class="lang-es">Diferencia</span><span class="lang-en">Variance</span></th>
+                            <th style="width: 38%;"><span class="lang-es">Análisis y Justificación Técnica</span><span class="lang-en">Technical Justification &amp; Analysis</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1" Cobre Rígido Tipo L</strong></td>
+                            <td style="text-align:center; color:var(--diff-excess); font-weight:700;">0 FT</td>
+                            <td style="text-align:center; color:var(--diff-saving); font-weight:700;">40 – 60 FT (3 vrs)</td>
+                            <td style="text-align:center; color:var(--diff-excess); font-weight:800;">-60 FT (Omitido)</td>
+                            <td><span class="lang-es">Pace cotizó la PRV, válvula y tees de 1" pero <strong>olvidó cotizar la tubería de 1"</strong> para acometida y manifold.</span><span class="lang-en">Pace quoted 1" PRV and tees but <strong>omitted the 1" copper pipe</strong> for main entry and header.</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>3/4" Cobre Rígido Tipo L</strong></td>
+                            <td style="text-align:center; font-weight:700;">240 FT (12 vrs)</td>
+                            <td style="text-align:center; font-weight:700;">220 – 240 FT</td>
+                            <td style="text-align:center; color:var(--diff-saving); font-weight:800;">0 FT (Correcto)</td>
+                            <td><span class="lang-es">Metraje exacto para troncales de agua fría (~60'), agua caliente (~60'), retorno DRL (~60') y 3 hose bibbs (~40').</span><span class="lang-en">Exact footage for cold trunk (~60'), hot trunk (~60'), DRL loop (~60'), and 3 hose bibbs (~40').</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>1/2" Cobre Rígido Tipo L</strong></td>
+                            <td style="text-align:center; color:var(--diff-warning); font-weight:700;">260 FT (13 vrs)</td>
+                            <td style="text-align:center; color:var(--diff-saving); font-weight:700;">300 – 320 FT (16 vrs)</td>
+                            <td style="text-align:center; color:var(--diff-excess); font-weight:800;">-50 FT (Corto)</td>
+                            <td><span class="lang-es">La casa tiene 4 baños completos y 2 cocinas. Las subidas de pared suman 312 FT netos. Quedan faltando 2 a 3 varillas.</span><span class="lang-en">4 full baths and 2 kitchens require 312 FT net with wall drops. Needs 2–3 additional sticks.</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- ==========================================================================
+                 SECCIÓN 4: DESGLOSE ÍTEM POR ÍTEM DE LA COTIZACIÓN PACE SUPPLY (48 LÍNEAS)
+                 ========================================================================== -->
+            <div class="section-header">
+                <span class="lang-es">4. Desglose Forense Ítem por Ítem de la Cotización Pace Supply (Quote #2934810)</span>
+                <span class="lang-en">4. Item-by-Item Forensic Breakdown of Pace Supply Quote #2934810</span>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 4%;">Ln#</th>
+                            <th style="width: 14%;">Part Number</th>
+                            <th style="width: 34%;"><span class="lang-es">Descripción del Material / Fabricante</span><span class="lang-en">Material Description / Brand</span></th>
+                            <th style="width: 8%; text-align:center;"><span class="lang-es">Cant.</span><span class="lang-en">Qty</span></th>
+                            <th style="width: 6%; text-align:center;"><span class="lang-es">Unid.</span><span class="lang-en">Unit</span></th>
+                            <th style="width: 11%; text-align:right;"><span class="lang-es">Precio Unit.</span><span class="lang-en">Unit Price</span></th>
+                            <th style="width: 11%; text-align:right;"><span class="lang-es">Total Pace</span><span class="lang-en">Ext. Price</span></th>
+                            <th style="width: 12%; text-align:center;"><span class="lang-es">Estado Auditoría</span><span class="lang-en">Audit Status</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <!-- >>> SEGMENT 1: COPPER <<< -->
+                        <tr style="background:#FFFDF5; font-weight:800; border-top:2px solid var(--navy-primary);">
+                            <td colspan="6" style="color:var(--navy-primary);">
+                                <span class="badge-segment">SEGMENT 1</span> 
+                                <span class="lang-es">TUBERÍA DE COBRE RÍGIDO TIPO L (ASTM B88 SEAMLESS COPPER)</span>
+                                <span class="lang-en">TYPE L HARD COPPER PIPE (ASTM B88 SEAMLESS)</span>
+                            </td>
+                            <td style="text-align:right; color:var(--navy-primary); font-size:7.5pt;">$5,328.00</td>
+                            <td style="text-align:center;"><span class="badge-verified">100% OK</span></td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td><code>COPLHARD34</code></td>
+                            <td>3/4"*20' TYPE L HARD COPPER PIPE (ASTM B88)</td>
+                            <td style="text-align:center; font-weight:700;">240</td>
+                            <td style="text-align:center;">CF</td>
+                            <td style="text-align:right;">$1,336.00 / C</td>
+                            <td style="text-align:right; font-weight:700;">$3,206.40</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><code>COPLHARD12</code></td>
+                            <td>1/2"*20' TYPE L HARD COPPER PIPE (ASTM B88)</td>
+                            <td style="text-align:center; font-weight:700;">260</td>
+                            <td style="text-align:center;">CF</td>
+                            <td style="text-align:right;">$816.00 / C</td>
+                            <td style="text-align:right; font-weight:700;">$2,121.60</td>
+                            <td style="text-align:center;"><span class="badge-alert">Pedir +50 FT</span></td>
+                        </tr>
+
+                        <!-- >>> SEGMENT 2: MUELLER PRESS <<< -->
+                        <tr style="background:#FFFDF5; font-weight:800; border-top:2px solid var(--navy-primary);">
+                            <td colspan="6" style="color:var(--navy-primary);">
+                                <span class="badge-segment">SEGMENT 2</span> 
+                                <span class="lang-es">ACCESORIOS DE PRENSADO MUELLER PRESS COPPER (IAPMO PS 117)</span>
+                                <span class="lang-en">MUELLER PRESS COPPER FITTINGS (IAPMO PS 117)</span>
+                            </td>
+                            <td style="text-align:right; color:var(--navy-primary); font-size:7.5pt;">$3,838.96</td>
+                            <td style="text-align:center;"><span class="badge-verified">100% OK</span></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><code>MPRT3412</code></td>
+                            <td>PF 04033 3/4" X 1/2" TEE MUELLER PRESS COPPER</td>
+                            <td style="text-align:center; font-weight:700;">32</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right;">$14.54</td>
+                            <td style="text-align:right; font-weight:700;">$465.28</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><code>MPRT34</code></td>
+                            <td>PF 04031 3/4" TEE MUELLER PRESS COPPER</td>
+                            <td style="text-align:center; font-weight:700;">12</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right;">$18.10</td>
+                            <td style="text-align:right; font-weight:700;">$217.20</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td><code>MPR934</code></td>
+                            <td>PF 01634 3/4" 90° ELL MUELLER PRESS COPPER</td>
+                            <td style="text-align:center; font-weight:700;">30</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right;">$10.95</td>
+                            <td style="text-align:right; font-weight:700;">$328.50</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td><code>MPR912</code></td>
+                            <td>PF 02722 1/2" 90° ELL MUELLER PRESS COPPER</td>
+                            <td style="text-align:center; font-weight:700;">45</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right;">$6.79</td>
+                            <td style="text-align:right; font-weight:700;">$305.55</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td><code>MPR434</code></td>
+                            <td>PF 03034 3/4" 45° ELL MUELLER PRESS COPPER</td>
+                            <td style="text-align:center; font-weight:700;">14</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right;">$9.64</td>
+                            <td style="text-align:right; font-weight:700;">$134.96</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td><code>MPRC34</code></td>
+                            <td>PF 10146 3/4" COUPLING MUELLER PRESS COPPER</td>
+                            <td style="text-align:center; font-weight:700;">25</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right;">$9.26</td>
+                            <td style="text-align:right; font-weight:700;">$231.50</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td><code>MPRC12</code></td>
+                            <td>PF 10145 1/2" COUPLING MUELLER PRESS COPPER</td>
+                            <td style="text-align:center; font-weight:700;">25</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right;">$6.12</td>
+                            <td style="text-align:right; font-weight:700;">$153.00</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td><code>MPRDEF912</code></td>
+                            <td>PF 01508 1/2" COP X FIP DROP EAR 90° ELL MUELLER PRESS</td>
+                            <td style="text-align:center; font-weight:700;">24</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right; color:var(--diff-excess);">$33.52</td>
+                            <td style="text-align:right; font-weight:700; color:var(--diff-excess);">$804.48</td>
+                            <td style="text-align:center;"><span class="badge-excess">Sobreprecio</span></td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td><code>MPRCAP34</code></td>
+                            <td>PF 07009 3/4" CAP MUELLER PRESS COPPER</td>
+                            <td style="text-align:center; font-weight:700;">8</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right; color:var(--diff-excess);">$22.25</td>
+                            <td style="text-align:right; font-weight:700; color:var(--diff-excess);">$178.00</td>
+                            <td style="text-align:center;"><span class="badge-excess">Sobreprecio</span></td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td><code>MPRCAP12</code></td>
+                            <td>PF 07007 1/2" CAP MUELLER PRESS COPPER</td>
+                            <td style="text-align:center; font-weight:700;">8</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right; color:var(--diff-excess);">$12.97</td>
+                            <td style="text-align:right; font-weight:700; color:var(--diff-excess);">$103.76</td>
+                            <td style="text-align:center;"><span class="badge-excess">Sobreprecio</span></td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td><code>MPRT112</code></td>
+                            <td>PF 04084 1" X 1/2" TEE MUELLER PRESS COPPER</td>
+                            <td style="text-align:center; font-weight:700;">3</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right; color:var(--diff-excess);">$104.58</td>
+                            <td style="text-align:right; font-weight:700; color:var(--diff-excess);">$313.74</td>
+                            <td style="text-align:center;"><span class="badge-excess">Sobreprecio</span></td>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td><code>MPRR134</code></td>
+                            <td>PF 01049 1" X 3/4" REDUCER MUELLER PRESS COPPER</td>
+                            <td style="text-align:center; font-weight:700;">1</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right;">$32.67</td>
+                            <td style="text-align:right; font-weight:700;">$32.67</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+                        <tr>
+                            <td>15</td>
+                            <td><code>MPRMA12</code></td>
+                            <td>PF 01131 1/2" COP X MIP ADAPTER MUELLER PRESS</td>
+                            <td style="text-align:center; font-weight:700;">16</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right;">$7.85</td>
+                            <td style="text-align:right; font-weight:700;">$125.60</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+                        <tr>
+                            <td>16</td>
+                            <td><code>RED5520AB34</code></td>
+                            <td>3/4" PRESS LEAD-FREE FULL PORT 2-PIECE BRASS BALL VALVE (R&amp;W)</td>
+                            <td style="text-align:center; font-weight:700;">6</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right;">$74.12</td>
+                            <td style="text-align:right; font-weight:700;">$444.72</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+
+                        <!-- >>> SEGMENT 3: MAIN VALVE <<< -->
+                        <tr style="background:#FFFDF5; font-weight:800; border-top:2px solid var(--navy-primary);">
+                            <td colspan="6" style="color:var(--navy-primary);">
+                                <span class="badge-segment">SEGMENT 3</span> 
+                                <span class="lang-es">VÁLVULA REGULADORA PRV MAESTRA, MANÓMETRO &amp; SEGURIDADES</span>
+                                <span class="lang-en">MASTER PRV VALVE, GAUGE &amp; SAFETY ASSEMBLIES</span>
+                            </td>
+                            <td style="text-align:right; color:var(--navy-primary); font-size:7.5pt;">$1,325.30</td>
+                            <td style="text-align:center;"><span class="badge-verified">100% OK</span></td>
+                        </tr>
+                        <tr>
+                            <td>17</td>
+                            <td><code>WTTLF25AUB1</code></td>
+                            <td>1" LF 25AUB IPS*IPS UNION PRV (WATTS) - VÁLVULA MAESTRA</td>
+                            <td style="text-align:center; font-weight:700;">1</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right; color:var(--diff-excess); font-weight:800;">$933.33</td>
+                            <td style="text-align:right; font-weight:700; color:var(--diff-excess);">$933.33</td>
+                            <td style="text-align:center;"><span class="badge-excess">Sobreprecio Crítico</span></td>
+                        </tr>
+                        <tr>
+                            <td>18</td>
+                            <td><code>RED5020AB1</code></td>
+                            <td>1" PRESS LF FULL PORT 2PC BRZ BALL VALVE (R&amp;W)</td>
+                            <td style="text-align:center; font-weight:700;">1</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right;">$117.83</td>
+                            <td style="text-align:right; font-weight:700;">$117.83</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+                        <tr>
+                            <td>19</td>
+                            <td><code>BOSPG25160GNL</code></td>
+                            <td>LIQUID FILLED 2.5" 0-160 PSI STAINLESS STEEL GAUGE 1/4" NPT</td>
+                            <td style="text-align:center; font-weight:700;">1</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right;">$25.49</td>
+                            <td style="text-align:right; font-weight:700;">$25.49</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+                        <tr>
+                            <td>20</td>
+                            <td><code>WTTLF3011</code></td>
+                            <td>1" LF 301 C*FIP DIELECTRIC UNION (WATTS)</td>
+                            <td style="text-align:center; font-weight:700;">1</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right;">$49.34</td>
+                            <td style="text-align:right; font-weight:700;">$49.34</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+                        <tr>
+                            <td>21</td>
+                            <td><code>WTTLLL100XL34</code></td>
+                            <td>3/4" LLL100XL MPT*FPT T&amp;P RELIEF VALVE 150 PSI (WATTS)</td>
+                            <td style="text-align:center; font-weight:700;">1</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right; color:var(--diff-excess);">$108.48</td>
+                            <td style="text-align:right; font-weight:700; color:var(--diff-excess);">$108.48</td>
+                            <td style="text-align:center;"><span class="badge-excess">Sobreprecio</span></td>
+                        </tr>
+                        <tr>
+                            <td>22</td>
+                            <td><code>RED5020AB34</code></td>
+                            <td>3/4" PRESS LF FULL PORT 2PC BRONZE BALL VALVE (R&amp;W)</td>
+                            <td style="text-align:center; font-weight:700;">1</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right;">$90.83</td>
+                            <td style="text-align:right; font-weight:700;">$90.83</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+
+                        <!-- >>> SEGMENT 4: MOEN <<< -->
+                        <tr style="background:#FFFDF5; font-weight:800; border-top:2px solid var(--navy-primary);">
+                            <td colspan="6" style="color:var(--navy-primary);">
+                                <span class="badge-segment">SEGMENT 4</span> 
+                                <span class="lang-es">VÁLVULAS MOEN, MOLDURAS, LLAVES DE PASO &amp; CONECTORES FLEXIBLES</span>
+                                <span class="lang-en">MOEN ROUGH VALVES, TRIMS, ANGLE STOPS &amp; STAINLESS CONNECTORS</span>
+                            </td>
+                            <td style="text-align:right; color:var(--navy-primary); font-size:7.5pt;">$2,549.28</td>
+                            <td style="text-align:center;"><span class="badge-verified">100% OK</span></td>
+                        </tr>
+                        <tr>
+                            <td>23</td>
+                            <td><code>STMFP62370</code></td>
+                            <td>MOEN PRES BAL T/S RGH VLV 1/2" SWEAT W/ STOPS (INCL CARTRIDGE)</td>
+                            <td style="text-align:center; font-weight:700;">4</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right;">$180.00</td>
+                            <td style="text-align:right; font-weight:700;">$720.00</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado (4 Baños)</span></td>
+                        </tr>
+                        <tr>
+                            <td>24</td>
+                            <td><code>STM10154</code></td>
+                            <td>6" SHOWER ARM 1/2" IPS CHROME (MOEN)</td>
+                            <td style="text-align:center; font-weight:700;">4</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right;">$27.85</td>
+                            <td style="text-align:right; font-weight:700;">$111.40</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+                        <tr>
+                            <td>25</td>
+                            <td><code>STM3808</code></td>
+                            <td>5" DIVERTER TUB SPOUT CHROME (MOEN) - <em>DESCONTINUADO</em></td>
+                            <td style="text-align:center; font-weight:700;">1</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right; color:var(--diff-warning);">$78.70</td>
+                            <td style="text-align:right; font-weight:700; color:var(--diff-warning);">$78.70</td>
+                            <td style="text-align:center;"><span class="badge-alert">No Retornable</span></td>
+                        </tr>
+                        <tr>
+                            <td>26</td>
+                            <td><code>STMT2151</code></td>
+                            <td>PBV TRIM ONLY CP LVR ADA BRANTFORD (MOEN)</td>
+                            <td style="text-align:center; font-weight:700;">3</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right;">$74.75</td>
+                            <td style="text-align:right; font-weight:700;">$224.25</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+                        <tr>
+                            <td>27</td>
+                            <td><code>BRCKTCR19X</code></td>
+                            <td>5/8" OD X 3/8" OD CP 1/4 TURN ANGLE STOP (BRASSCRAFT)</td>
+                            <td style="text-align:center; font-weight:700;">16</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right; color:var(--diff-excess);">$27.00</td>
+                            <td style="text-align:right; font-weight:700; color:var(--diff-excess);">$432.00</td>
+                            <td style="text-align:center;"><span class="badge-excess">Sobreprecio</span></td>
+                        </tr>
+                        <tr>
+                            <td>28</td>
+                            <td><code>BRCKTCR1901DVR</code></td>
+                            <td>5/8" X 3/8" X 3/8" DUAL HANDLE ANGLE STOP (BRASSCRAFT)</td>
+                            <td style="text-align:center; font-weight:700;">2</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right; color:var(--diff-excess);">$97.54</td>
+                            <td style="text-align:right; font-weight:700; color:var(--diff-excess);">$195.08</td>
+                            <td style="text-align:center;"><span class="badge-excess">Sobreprecio</span></td>
+                        </tr>
+                        <tr>
+                            <td>29</td>
+                            <td><code>FLUB1F20</code></td>
+                            <td>3/8" COMP X 1/2" FIP X 20" SS FAUCET CONNECTOR (FLUIDMASTER)</td>
+                            <td style="text-align:center; font-weight:700;">10</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right;">$10.48</td>
+                            <td style="text-align:right; font-weight:700;">$104.80</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+                        <tr>
+                            <td>30</td>
+                            <td><code>FLUB1F30</code></td>
+                            <td>3/8" COMP X 1/2" FIP X 30" SS FAUCET CONNECTOR (FLUIDMASTER)</td>
+                            <td style="text-align:center; font-weight:700;">4</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right;">$12.53</td>
+                            <td style="text-align:right; font-weight:700;">$50.12</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+                        <tr>
+                            <td>31</td>
+                            <td><code>FLUB1T12</code></td>
+                            <td>3/8" COMP X 7/8" BC X 12" SS TOILET CONNECTOR (FLUIDMASTER)</td>
+                            <td style="text-align:center; font-weight:700;">4</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right;">$8.43</td>
+                            <td style="text-align:right; font-weight:700;">$33.72</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+                        <tr>
+                            <td>32</td>
+                            <td><code>WAX1</code></td>
+                            <td>3" OR 4" WAX RING W/ HORN, BRASS BOLTS &amp; NUTS</td>
+                            <td style="text-align:center; font-weight:700;">4</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right;">$8.56</td>
+                            <td style="text-align:right; font-weight:700;">$34.24</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+                        <tr>
+                            <td>33</td>
+                            <td><code>FLUB6W60</code></td>
+                            <td>3/8" COMP X 60" SS DISHWASHER CONNECTOR (FLUIDMASTER)</td>
+                            <td style="text-align:center; font-weight:700;">2</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right;">$28.36</td>
+                            <td style="text-align:right; font-weight:700;">$56.72</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+                        <tr>
+                            <td>34</td>
+                            <td><code>FCFM938</code></td>
+                            <td>3/8" COMP * MIP 90° BRASS ELBOW</td>
+                            <td style="text-align:center; font-weight:700;">2</td>
+                            <td style="text-align:center;">C</td>
+                            <td style="text-align:right;">$2,046.43 / C</td>
+                            <td style="text-align:right; font-weight:700;">$40.93</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+                        <tr>
+                            <td>35</td>
+                            <td><code>PAS50710</code></td>
+                            <td>DISHWASHER AIR GAP CHROME PLASTIC (PASCO)</td>
+                            <td style="text-align:center; font-weight:700;">2</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right;">$4.89</td>
+                            <td style="text-align:right; font-weight:700;">$9.78</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+                        <tr>
+                            <td>36</td>
+                            <td><code>OAT39152</code></td>
+                            <td>ICE MAKER OUTLET BOX W/ HAMMER ARRESTOR 1/4 TURN (OATEY)</td>
+                            <td style="text-align:center; font-weight:700;">2</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right;">$99.70</td>
+                            <td style="text-align:right; font-weight:700;">$199.40</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+                        <tr>
+                            <td>37</td>
+                            <td><code>OAT38540</code></td>
+                            <td>WASHING MACHINE OUTLET BOX W/ ARRESTOR TOP MOUNT (OATEY)</td>
+                            <td style="text-align:center; font-weight:700;">1</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right;">$154.94</td>
+                            <td style="text-align:right; font-weight:700;">$154.94</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+                        <tr>
+                            <td>38</td>
+                            <td><code>SIO660SB</code></td>
+                            <td>1/2" MALE SWEAT RESIDENTIAL WATER HAMMER ARRESTOR (SIOUX CHIEF)</td>
+                            <td style="text-align:center; font-weight:700;">6</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right;">$17.20</td>
+                            <td style="text-align:right; font-weight:700;">$103.20</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+
+                        <!-- >>> SEGMENT 5: PIPE SUPPORTS <<< -->
+                        <tr style="background:#FFFDF5; font-weight:800; border-top:2px solid var(--navy-primary);">
+                            <td colspan="6" style="color:var(--navy-primary);">
+                                <span class="badge-segment">SEGMENT 5</span> 
+                                <span class="lang-es">SOPORTERÍA HOLDRITE SILENCER, PLACAS CLAVO, MANÓMETRO &amp; SELLADORES</span>
+                                <span class="lang-en">HOLDRITE ACOUSTIC SUPPORTS, NAIL PLATES, TEST GAUGE &amp; SEALANTS</span>
+                            </td>
+                            <td style="text-align:right; color:var(--navy-primary); font-size:7.5pt;">$1,278.92</td>
+                            <td style="text-align:center;"><span class="badge-verified">100% OK</span></td>
+                        </tr>
+                        <tr>
+                            <td>39</td>
+                            <td><code>HUBSB3</code></td>
+                            <td>10.25"-17.5" WIDE STOUT BRACKET (HOLDRITE)</td>
+                            <td style="text-align:center; font-weight:700;">1</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right;">$3.54</td>
+                            <td style="text-align:right; font-weight:700;">$3.54</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+                        <tr>
+                            <td>40</td>
+                            <td><code>HUB10318</code></td>
+                            <td>1/2", 3/4" &amp; 1" * 20" GALVANIZED BRACKET (HOLDRITE)</td>
+                            <td style="text-align:center; font-weight:700;">11</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right;">$3.04</td>
+                            <td style="text-align:right; font-weight:700;">$33.44</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+                        <tr>
+                            <td>41</td>
+                            <td><code>FAPNP1125</code></td>
+                            <td>1-1/2" X 5" 16GA SELF-NAIL SAFETY PROTECTION PLATE</td>
+                            <td style="text-align:center; font-weight:700;">14</td>
+                            <td style="text-align:center;">C</td>
+                            <td style="text-align:right;">$45.16 / C</td>
+                            <td style="text-align:right; font-weight:700;">$6.32</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+                        <tr>
+                            <td>42</td>
+                            <td><code>HUB257P</code></td>
+                            <td>3/8" - 1" SILENCER ISOLATION CLAMP FOR STRUT (HOLDRITE)</td>
+                            <td style="text-align:center; font-weight:700;">140</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right;">$4.03</td>
+                            <td style="text-align:right; font-weight:700;">$564.20</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+                        <tr>
+                            <td>43</td>
+                            <td><code>HUB280</code></td>
+                            <td>1" - 2" SILENCER CLAMP FOR STOUT BRACKET (HOLDRITE)</td>
+                            <td style="text-align:center; font-weight:700;">100</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right;">$4.60</td>
+                            <td style="text-align:right; font-weight:700;">$460.00</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+                        <tr>
+                            <td>44</td>
+                            <td><code>BOSPG200NL</code></td>
+                            <td>NO LEAD PRESSURE GAUGE 2" 0-200 PSI DRY (INSPECTION TEST)</td>
+                            <td style="text-align:center; font-weight:700;">1</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right;">$9.43</td>
+                            <td style="text-align:right; font-weight:700;">$9.43</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+                        <tr>
+                            <td>45</td>
+                            <td><code>MIR70885</code></td>
+                            <td>BLUE MONSTER THREAD SEAL TAPE 1/2" X 1429" (4 ROLLS)</td>
+                            <td style="text-align:center; font-weight:700;">4</td>
+                            <td style="text-align:center;">RL</td>
+                            <td style="text-align:right;">$7.18</td>
+                            <td style="text-align:right; font-weight:700;">$28.72</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+                        <tr>
+                            <td>46</td>
+                            <td><code>IPSXPANDO</code></td>
+                            <td>XPANDO PIPE JOINT COMPOUND 14 OZ CAN</td>
+                            <td style="text-align:center; font-weight:700;">1</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right;">$32.43</td>
+                            <td style="text-align:right; font-weight:700;">$32.43</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+                        <tr>
+                            <td>47</td>
+                            <td><code>PAS1710</code></td>
+                            <td>2.80 OZ CLEAR SILICONE SEALANT (PASCO)</td>
+                            <td style="text-align:center; font-weight:700;">4</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right;">$10.63</td>
+                            <td style="text-align:right; font-weight:700;">$42.52</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+                        <tr>
+                            <td>48</td>
+                            <td><code>PSP862800</code></td>
+                            <td>PROTECH FOAM INSULATION TAPE (4 ROLLS)</td>
+                            <td style="text-align:center; font-weight:700;">4</td>
+                            <td style="text-align:center;">EA</td>
+                            <td style="text-align:right;">$24.58</td>
+                            <td style="text-align:right; font-weight:700;">$98.32</td>
+                            <td style="text-align:center;"><span class="badge-verified">Verificado</span></td>
+                        </tr>
+
+                        <!-- TOTALS ROW -->
+                        <tr style="background:#F1F5F9; font-weight:800; font-size:7.8pt;">
+                            <td colspan="6" style="text-align:right; text-transform:uppercase;">
+                                <span class="lang-es">SUBTOTAL NETO MATERIALES PACE (48 LÍNEAS):</span>
+                                <span class="lang-en">NET MATERIALS SUBTOTAL (48 LINES):</span>
+                            </td>
+                            <td style="text-align:right; color:var(--navy-primary); font-size:8.5pt;">$14,320.46</td>
+                            <td style="text-align:center;"><span class="badge-verified">Subtotal OK</span></td>
+                        </tr>
+                        <tr style="background:#F1F5F9; font-weight:800;">
+                            <td colspan="6" style="text-align:right; text-transform:uppercase; color:var(--diff-warning);">
+                                <span class="lang-es">ESTIMATED SALES TAX (SAN JOSE 10%):</span>
+                                <span class="lang-en">ESTIMATED SALES TAX (SAN JOSE 10%):</span>
+                            </td>
+                            <td style="text-align:right; color:var(--diff-warning); font-size:8pt;">$1,432.05</td>
+                            <td style="text-align:center;">10.00% Tax</td>
+                        </tr>
+                        <tr style="background:#FFFDF5; font-weight:900; border-top:2px solid var(--gold-accent); border-bottom:3px solid var(--navy-primary);">
+                            <td colspan="6" style="color:var(--diff-excess); text-align:right; text-transform:uppercase; font-size:8.5pt;">
+                                <span class="lang-es">TOTAL FACTURABLE BRUTO PACE SUPPLY (USD):</span>
+                                <span class="lang-en">GRAND TOTAL RAW PACE SUPPLY QUOTE (USD):</span>
+                            </td>
+                            <td style="text-align:right; color:var(--diff-excess); font-size:10pt;">$15,752.51</td>
+                            <td style="text-align:center; color:var(--diff-excess);"><span class="badge-excess">Requiere Negociación</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- FOOTER -->
+            <div class="document-footer">
+                <div class="footer-grid">
+                    <div>
+                        <strong>MORALES PLUMBING</strong> &bull; AI-INTEGRATED SERVICES &bull; CSLB LIC. C-36 #1156542<br>
+                        Tel: (669) 213-4422 &bull; Email: moralesplumbing026@gmail.com &bull; Web: www.morales-plumbing.com
+                    </div>
+                    <div style="text-align:right;">
+                        <span class="lang-es">Documento de Auditoría Forense y Control Financiero &bull; Proyecto Sandhu</span>
+                        <span class="lang-en">Forensic Procurement Audit &amp; Financial Reconciliation &bull; Sandhu Project</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function switchLanguage(lang) {
+            if (lang === 'en') {
+                document.body.classList.add('en-active');
+                document.getElementById('btn-en').classList.add('active');
+                document.getElementById('btn-es').classList.remove('active');
+            } else {
+                document.body.classList.remove('en-active');
+                document.getElementById('btn-es').classList.add('active');
+                document.getElementById('btn-en').classList.remove('active');
+            }
+        }
+    </script>
+</body>
+</html>
