@@ -819,8 +819,62 @@
         }
         @media print {
             #receipt-gate-overlay { display: none !important; }
-            .document-container.is-locked { filter: none !important; opacity: 1 !important; max-height: none !important; }
+            #esign-portal { display: none !important; }
+            .document-container.is-locked { display: block !important; }
         }
+
+        /* SECTION H: ACCEPTANCE PORTAL */
+        #esign-portal {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #F1F5F9 0%, #E8EEF7 100%);
+            padding: 32px 16px 48px;
+            border-top: 3px solid #0A192F;
+        }
+        .esign-wrapper { max-width: 680px; margin: 0 auto; }
+        .esign-header {
+            background: linear-gradient(135deg, #0A192F 0%, #112240 100%);
+            border-bottom: 4px solid #D4AF37;
+            padding: 20px 24px; border-radius: 8px 8px 0 0;
+            display: flex; align-items: center; gap: 16px;
+        }
+        .esign-header-logo { width: 52px; height: 52px; object-fit: contain; flex-shrink: 0; }
+        .esign-header-text h2 { color: #FFFFFF; font-size: 15px; font-weight: 800; margin: 0 0 2px; }
+        .esign-header-text p  { color: #D4AF37; font-size: 10.5px; font-weight: 600; margin: 0; }
+        .esign-body { background: #FFFFFF; border: 1px solid #CBD5E1; border-top: none; border-radius: 0 0 8px 8px; overflow: hidden; }
+        .esign-proposal-badge { background: #F8FAFC; border-bottom: 1px solid #E2E8F0; padding: 14px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+        .esign-proposal-badge .prop-num { font-size: 11px; font-weight: 800; color: #0A192F; text-transform: uppercase; letter-spacing: 0.6px; }
+        .esign-proposal-badge .prop-total { font-size: 13px; font-weight: 800; color: #15803D; background: #F0FDF4; border: 1px solid #86EFAC; padding: 3px 12px; border-radius: 20px; }
+        .esign-section { padding: 24px; border-bottom: 1px solid #E2E8F0; }
+        .esign-section:last-child { border-bottom: none; }
+        .esign-section-title { font-size: 13px; font-weight: 800; color: #0A192F; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+        .esign-section-title .badge-step { background: #0A192F; color: #D4AF37; font-size: 9px; font-weight: 800; padding: 2px 8px; border-radius: 10px; letter-spacing: 0.5px; text-transform: uppercase; }
+        .esign-legal-text { background: #F0F9FF; border: 1px solid #7DD3FC; border-left: 4px solid #0369A1; padding: 12px 16px; border-radius: 4px; font-size: 11.5px; color: #0C4A6E; line-height: 1.5; margin: 12px 0 16px; font-style: italic; }
+        .esign-field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+        @media (max-width: 500px) { .esign-field-grid { grid-template-columns: 1fr; } }
+        .esign-field label { display: block; font-size: 10px; font-weight: 700; color: #475569; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+        .esign-field input[type="text"], .esign-field input[type="email"] { width: 100%; padding: 10px 12px; border: 1.5px solid #CBD5E1; border-radius: 6px; font-size: 13px; font-family: 'Inter', sans-serif; color: #0F172A; box-sizing: border-box; -webkit-appearance: none; }
+        .esign-field input:focus { outline: none; border-color: #0A192F; box-shadow: 0 0 0 3px rgba(10,25,47,0.08); }
+        .esign-canvas-label { font-size: 10px; font-weight: 700; color: #475569; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center; }
+        .esign-canvas-wrap { border: 2px dashed #CBD5E1; border-radius: 8px; background: #FAFAFA; padding: 4px; touch-action: none; }
+        .esign-canvas-wrap canvas { width: 100%; display: block; border-radius: 6px; cursor: crosshair; touch-action: none; }
+        .esign-clear-btn { font-size: 10px; font-weight: 700; color: #64748B; cursor: pointer; background: none; border: 1px solid #CBD5E1; padding: 2px 8px; border-radius: 4px; font-family: 'Inter', sans-serif; }
+        .esign-canvas-hint { text-align: center; font-size: 9.5px; color: #94A3B8; margin-top: 5px; }
+        .esign-checkbox-row { display: flex; align-items: flex-start; gap: 10px; margin: 14px 0; background: #FFFDF5; border: 1px solid #E8D384; padding: 12px; border-radius: 6px; }
+        .esign-checkbox-row input[type="checkbox"] { width: 18px; height: 18px; flex-shrink: 0; margin-top: 1px; cursor: pointer; accent-color: #0A192F; }
+        .esign-checkbox-row label { font-size: 11px; color: #334155; line-height: 1.45; cursor: pointer; }
+        .esign-date-row { font-size: 11px; color: #64748B; margin-bottom: 16px; }
+        .esign-date-row strong { color: #0A192F; }
+        .esign-submit-btn { width: 100%; padding: 15px; background: linear-gradient(135deg,#0A192F 0%,#112240 100%); color: #D4AF37; border: none; border-radius: 8px; font-size: 13px; font-weight: 800; letter-spacing: 0.5px; cursor: pointer; font-family: 'Inter', sans-serif; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .esign-submit-btn:hover { opacity: 0.92; }
+        .esign-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .esign-acceptance-section { border-top: 3px solid #D4AF37; }
+        .esign-success-card { display: none; background: #F0FDF4; border: 2px solid #86EFAC; border-radius: 8px; padding: 20px 24px; text-align: center; margin-top: 16px; }
+        .esign-success-card.visible { display: block; }
+        .esign-success-card h3 { color: #15803D; font-size: 15px; margin-bottom: 6px; }
+        .esign-success-card p  { color: #166534; font-size: 11.5px; line-height: 1.5; }
+        .esign-audit-row { background: #F1F5F9; border: 1px solid #E2E8F0; border-radius: 6px; padding: 10px 14px; font-size: 10px; color: #64748B; margin-top: 12px; display: flex; flex-wrap: wrap; gap: 12px; }
+        .esign-audit-row span strong { color: #334155; }
+        .esign-footer-note { text-align: center; font-size: 9.5px; color: #94A3B8; margin-top: 20px; line-height: 1.5; }
     </style>
 </head>
 <body>
@@ -2486,7 +2540,67 @@
                             📞 (669) 213-4422 &bull; ✉️ moralesplumbing026@gmail.com &bull; 🌐 www.morales-plumbing.com
                         </div>
                     </div>
-                </footer>
+                <!-- SECCIÓN H: PORTAL DIGITAL DE ACEPTACIÓN (DENTRO DEL DOCUMENTO) -->
+                <div id="esign-portal">
+                <div class="esign-wrapper">
+                  <div class="esign-header">
+                    <img src="logo_portada.png" alt="Morales Plumbing" class="esign-header-logo" onerror="this.style.display='none'">
+                    <div class="esign-header-text">
+                      <h2>MORALES PLUMBING</h2>
+                      <p><span class="lang-es">PORTAL DIGITAL DE ACEPTACIÓN Y AUTORIZACIÓN</span><span class="lang-en">DIGITAL PROPOSAL ACCEPTANCE &amp; AUTHORIZATION</span> &nbsp;&bull;&nbsp; Lic. CSLB C-36 #1156542 &nbsp;&bull;&nbsp; San Jose, CA</p>
+                    </div>
+                  </div>
+                  <div class="esign-body">
+                    <div class="esign-proposal-badge">
+                      <div>
+                        <div class="prop-num">&#128203; <span class="lang-es">Propuesta:</span><span class="lang-en">Proposal:</span> MP-PROP-4423V-SANDHU</div>
+                        <div style="font-size:10px;color:#64748B;margin-top:2px;"><span class="lang-es">Cliente:</span><span class="lang-en">Client:</span> Manjinder S. Sandhu &amp; Gurmeet K. Sandhu &nbsp;&bull;&nbsp; 4423 Vistapark Dr, San Jose, CA 95136</div>
+                      </div>
+                      <div class="prop-total">$21,500.00 USD</div>
+                    </div>
+
+                    <!-- PASO 2: ACCEPTANCE -->
+                    <div class="esign-section esign-acceptance-section" id="acceptance-section" style="display:block;">
+                      <div class="esign-section-title"><span class="badge-step" style="background:#15803D;"><span class="lang-es">Firma Final</span><span class="lang-en">Final Signature</span></span><span class="lang-es">ACEPTACIÓN Y AUTORIZACIÓN DE PROPUESTA</span><span class="lang-en">ACCEPTANCE / AUTHORIZATION TO PROCEED</span></div>
+                      <div id="acceptance-form-wrapper" style="display:block;">
+                        <div class="esign-legal-text" style="border-color:#86EFAC;background:#F0FDF4;color:#166534;border-left-color:#15803D;">
+                          <span class="lang-es">"Acepto el alcance de obra, precios ($21,500.00 USD), términos y condiciones de esta propuesta comercial (MP-PROP-4423V-SANDHU) y autorizo a Morales Plumbing (Lic. CSLB C-36 #1156542) a proceder con los trabajos descritos."</span>
+                          <span class="lang-en">"I accept the scope of work, pricing ($21,500.00 USD), terms and conditions contained in this proposal (MP-PROP-4423V-SANDHU) and authorize Morales Plumbing (CSLB C-36 #1156542) to proceed with the work described herein."</span>
+                        </div>
+                        <form id="acceptance-form">
+                          <div class="esign-field-grid">
+                            <div class="esign-field"><label><span class="lang-es">Nombre Completo *</span><span class="lang-en">Full Name *</span></label><input type="text" id="accept-name" placeholder="Manjinder S. Sandhu" required></div>
+                            <div class="esign-field"><label><span class="lang-es">Correo Electrónico *</span><span class="lang-en">Email Address *</span></label><input type="email" id="accept-email" placeholder="cliente@email.com" required></div>
+                          </div>
+                          <div class="esign-canvas-label">
+                            <span><span class="lang-es">Firma Electrónica *</span><span class="lang-en">Electronic Signature *</span></span>
+                            <button type="button" class="esign-clear-btn" onclick="clearCanvas('accept-canvas')">&#10005; <span class="lang-es">Borrar</span><span class="lang-en">Clear</span></button>
+                          </div>
+                          <div class="esign-canvas-wrap"><canvas id="accept-canvas" height="130"></canvas></div>
+                          <div class="esign-canvas-hint">&#9997;&#65039; <span class="lang-es">Firme con su dedo (móvil) o con el mouse</span><span class="lang-en">Sign with finger (mobile) or mouse</span></div>
+                          <div class="esign-checkbox-row" style="border-color:#86EFAC;background:#F0FDF4;">
+                            <input type="checkbox" id="accept-terms" required>
+                            <label for="accept-terms"><span class="lang-es">He leído y acepto los Términos y Condiciones de esta Propuesta Comercial y autorizo a Morales Plumbing a proceder con los trabajos.</span><span class="lang-en">I have read and agree to the Proposal Terms &amp; Conditions and authorize Morales Plumbing to proceed.</span></label>
+                          </div>
+                          <div class="esign-date-row">&#128197; <span class="lang-es">Fecha:</span><span class="lang-en">Date:</span> <strong id="accept-date-display"></strong></div>
+                          <button type="submit" class="esign-submit-btn" id="accept-submit-btn" style="background:linear-gradient(135deg,#15803D 0%,#166534 100%);color:#FFFFFF;">&#9989; <span class="lang-es">FIRMAR ACEPTACIÓN Y AUTORIZAR</span><span class="lang-en">SIGN &amp; ACCEPT PROPOSAL</span></button>
+                        </form>
+                        <div class="esign-success-card" id="acceptance-success">
+                          <h3>&#127881; <span class="lang-es">Propuesta Aceptada con Éxito</span><span class="lang-en">Proposal Accepted Successfully</span></h3>
+                          <p><span class="lang-es">Su aceptación ha sido registrada. Morales Plumbing le contactará para programar el inicio de obra.</span><br><span class="lang-en">Your acceptance is on record. Morales Plumbing will contact you to schedule the work.</span></p>
+                          <div class="esign-audit-row" id="acceptance-audit-row"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="esign-footer-note">
+                    <span class="lang-es">Este portal es informativo y de acuse de recibo. La validez jurídica completa está sujeta al contrato formal CSLB que se firmará por separado.</span>
+                    <span class="lang-en">This portal is for informational receipt and acceptance. Full statutory legal binding is subject to the formal CSLB contract signed separately.</span><br>
+                    &#128222; (669) 213-4422 &nbsp;&bull;&nbsp; moralesplumbing026@gmail.com &nbsp;&bull;&nbsp; www.morales-plumbing.com
+                  </div>
+                </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -2513,135 +2627,6 @@
         window.switchLanguage = switchLanguage;
         window.setLang = switchLanguage;
     </script>
-
-<!-- ============================================================
-     SECCIÓN H — PORTAL DIGITAL DE FIRMA Y ACUSO DE RECIBO
-     MORALES PLUMBING | MP-PROP-4423V-SANDHU
-     ============================================================ -->
-<style>
-@media print { #esign-portal { display: none !important; } }
-#esign-portal {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: linear-gradient(135deg, #F1F5F9 0%, #E8EEF7 100%);
-    padding: 32px 16px 48px;
-}
-.esign-wrapper { max-width: 680px; margin: 0 auto; }
-.esign-header {
-    background: linear-gradient(135deg, #0A192F 0%, #112240 100%);
-    border-bottom: 4px solid #D4AF37;
-    padding: 20px 24px; border-radius: 8px 8px 0 0;
-    display: flex; align-items: center; gap: 16px;
-}
-.esign-header-logo { width: 52px; height: 52px; object-fit: contain; flex-shrink: 0; }
-.esign-header-text h2 { color: #FFFFFF; font-size: 15px; font-weight: 800; margin: 0 0 2px; }
-.esign-header-text p  { color: #D4AF37; font-size: 10.5px; font-weight: 600; margin: 0; }
-.esign-body { background: #FFFFFF; border: 1px solid #CBD5E1; border-top: none; border-radius: 0 0 8px 8px; overflow: hidden; }
-.esign-proposal-badge { background: #F8FAFC; border-bottom: 1px solid #E2E8F0; padding: 14px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
-.esign-proposal-badge .prop-num { font-size: 11px; font-weight: 800; color: #0A192F; text-transform: uppercase; letter-spacing: 0.6px; }
-.esign-proposal-badge .prop-total { font-size: 13px; font-weight: 800; color: #15803D; background: #F0FDF4; border: 1px solid #86EFAC; padding: 3px 12px; border-radius: 20px; }
-.esign-status-bar { display: flex; align-items: center; padding: 0 24px; background: #FAFAFA; border-bottom: 1px solid #E2E8F0; }
-.esign-step { display: flex; align-items: center; gap: 8px; padding: 12px 0; flex: 1; font-size: 10.5px; font-weight: 700; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.5px; }
-.esign-step.active { color: #0A192F; }
-.esign-step.done   { color: #15803D; }
-.esign-step-num { width: 22px; height: 22px; border-radius: 50%; background: #E2E8F0; color: #64748B; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.esign-step.active .esign-step-num { background: #0A192F; color: #D4AF37; }
-.esign-step.done   .esign-step-num { background: #15803D; color: #FFFFFF; }
-.esign-step-divider { width: 24px; height: 1px; background: #CBD5E1; flex-shrink: 0; }
-.esign-section { padding: 24px; border-bottom: 1px solid #E2E8F0; }
-.esign-section:last-child { border-bottom: none; }
-.esign-section-title { font-size: 13px; font-weight: 800; color: #0A192F; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
-.esign-section-title .badge-step { background: #0A192F; color: #D4AF37; font-size: 9px; font-weight: 800; padding: 2px 8px; border-radius: 10px; letter-spacing: 0.5px; text-transform: uppercase; }
-.esign-legal-text { background: #F0F9FF; border: 1px solid #7DD3FC; border-left: 4px solid #0369A1; padding: 12px 16px; border-radius: 4px; font-size: 11.5px; color: #0C4A6E; line-height: 1.5; margin: 12px 0 16px; font-style: italic; }
-.esign-field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
-@media (max-width: 500px) { .esign-field-grid { grid-template-columns: 1fr; } }
-.esign-field label { display: block; font-size: 10px; font-weight: 700; color: #475569; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
-.esign-field input[type="text"], .esign-field input[type="email"] { width: 100%; padding: 10px 12px; border: 1.5px solid #CBD5E1; border-radius: 6px; font-size: 13px; font-family: 'Inter', sans-serif; color: #0F172A; box-sizing: border-box; -webkit-appearance: none; }
-.esign-field input:focus { outline: none; border-color: #0A192F; box-shadow: 0 0 0 3px rgba(10,25,47,0.08); }
-.esign-canvas-label { font-size: 10px; font-weight: 700; color: #475569; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center; }
-.esign-canvas-wrap { border: 2px dashed #CBD5E1; border-radius: 8px; background: #FAFAFA; padding: 4px; touch-action: none; }
-.esign-canvas-wrap canvas { width: 100%; display: block; border-radius: 6px; cursor: crosshair; touch-action: none; }
-.esign-clear-btn { font-size: 10px; font-weight: 700; color: #64748B; cursor: pointer; background: none; border: 1px solid #CBD5E1; padding: 2px 8px; border-radius: 4px; font-family: 'Inter', sans-serif; }
-.esign-canvas-hint { text-align: center; font-size: 9.5px; color: #94A3B8; margin-top: 5px; }
-.esign-checkbox-row { display: flex; align-items: flex-start; gap: 10px; margin: 14px 0; background: #FFFDF5; border: 1px solid #E8D384; padding: 12px; border-radius: 6px; }
-.esign-checkbox-row input[type="checkbox"] { width: 18px; height: 18px; flex-shrink: 0; margin-top: 1px; cursor: pointer; accent-color: #0A192F; }
-.esign-checkbox-row label { font-size: 11px; color: #334155; line-height: 1.45; cursor: pointer; }
-.esign-date-row { font-size: 11px; color: #64748B; margin-bottom: 16px; }
-.esign-date-row strong { color: #0A192F; }
-.esign-submit-btn { width: 100%; padding: 15px; background: linear-gradient(135deg,#0A192F 0%,#112240 100%); color: #D4AF37; border: none; border-radius: 8px; font-size: 13px; font-weight: 800; letter-spacing: 0.5px; cursor: pointer; font-family: 'Inter', sans-serif; display: flex; align-items: center; justify-content: center; gap: 8px; }
-.esign-submit-btn:hover { opacity: 0.92; }
-.esign-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-.esign-acceptance-section { display: none; border-top: 3px solid #D4AF37; }
-.esign-acceptance-section.visible { display: block; }
-.esign-locked-overlay { background: #F8FAFC; border: 2px dashed #CBD5E1; border-radius: 8px; padding: 24px; text-align: center; color: #94A3B8; font-size: 12px; font-weight: 600; margin: 16px 0; }
-.esign-locked-overlay .lock-icon { font-size: 28px; display: block; margin-bottom: 8px; }
-.esign-success-card { display: none; background: #F0FDF4; border: 2px solid #86EFAC; border-radius: 8px; padding: 20px 24px; text-align: center; margin-top: 16px; }
-.esign-success-card.visible { display: block; }
-.esign-success-card h3 { color: #15803D; font-size: 15px; margin-bottom: 6px; }
-.esign-success-card p  { color: #166534; font-size: 11.5px; line-height: 1.5; }
-.esign-audit-row { background: #F1F5F9; border: 1px solid #E2E8F0; border-radius: 6px; padding: 10px 14px; font-size: 10px; color: #64748B; margin-top: 12px; display: flex; flex-wrap: wrap; gap: 12px; }
-.esign-audit-row span strong { color: #334155; }
-.esign-footer-note { text-align: center; font-size: 9.5px; color: #94A3B8; margin-top: 20px; line-height: 1.5; }
-</style>
-
-<div id="esign-portal">
-<div class="esign-wrapper">
-  <div class="esign-header">
-    <img src="logo_portada.png" alt="Morales Plumbing" class="esign-header-logo" onerror="this.style.display='none'">
-    <div class="esign-header-text">
-      <h2>MORALES PLUMBING</h2>
-      <p><span class="lang-es">PORTAL DIGITAL DE ACEPTACIÓN Y AUTORIZACIÓN</span><span class="lang-en">DIGITAL PROPOSAL ACCEPTANCE &amp; AUTHORIZATION</span> &nbsp;&bull;&nbsp; Lic. CSLB C-36 #1156542 &nbsp;&bull;&nbsp; San Jose, CA</p>
-    </div>
-  </div>
-  <div class="esign-body">
-    <div class="esign-proposal-badge">
-      <div>
-        <div class="prop-num">&#128203; <span class="lang-es">Propuesta:</span><span class="lang-en">Proposal:</span> MP-PROP-4423V-SANDHU</div>
-        <div style="font-size:10px;color:#64748B;margin-top:2px;"><span class="lang-es">Cliente:</span><span class="lang-en">Client:</span> Manjinder S. Sandhu &amp; Gurmeet K. Sandhu &nbsp;&bull;&nbsp; 4423 Vistapark Dr, San Jose, CA 95136</div>
-      </div>
-      <div class="prop-total">$21,500.00 USD</div>
-    </div>
-
-    <!-- PASO 2: ACCEPTANCE -->
-    <div class="esign-section esign-acceptance-section" id="acceptance-section" style="display:block;">
-      <div class="esign-section-title"><span class="badge-step" style="background:#15803D;"><span class="lang-es">Firma Final</span><span class="lang-en">Final Signature</span></span><span class="lang-es">ACEPTACIÓN Y AUTORIZACIÓN DE PROPUESTA</span><span class="lang-en">ACCEPTANCE / AUTHORIZATION TO PROCEED</span></div>
-      <div id="acceptance-form-wrapper" style="display:block;">
-        <div class="esign-legal-text" style="border-color:#86EFAC;background:#F0FDF4;color:#166534;border-left-color:#15803D;">
-          <span class="lang-es">"Acepto el alcance de obra, precios ($21,500.00 USD), términos y condiciones de esta propuesta comercial (MP-PROP-4423V-SANDHU) y autorizo a Morales Plumbing (Lic. CSLB C-36 #1156542) a proceder con los trabajos descritos."</span>
-          <span class="lang-en">"I accept the scope of work, pricing ($21,500.00 USD), terms and conditions contained in this proposal (MP-PROP-4423V-SANDHU) and authorize Morales Plumbing (CSLB C-36 #1156542) to proceed with the work described herein."</span>
-        </div>
-        <form id="acceptance-form">
-          <div class="esign-field-grid">
-            <div class="esign-field"><label><span class="lang-es">Nombre Completo *</span><span class="lang-en">Full Name *</span></label><input type="text" id="accept-name" placeholder="Manjinder S. Sandhu" required></div>
-            <div class="esign-field"><label><span class="lang-es">Correo Electrónico *</span><span class="lang-en">Email Address *</span></label><input type="email" id="accept-email" placeholder="cliente@email.com" required></div>
-          </div>
-          <div class="esign-canvas-label">
-            <span><span class="lang-es">Firma Electrónica *</span><span class="lang-en">Electronic Signature *</span></span>
-            <button type="button" class="esign-clear-btn" onclick="clearCanvas('accept-canvas')">&#10005; <span class="lang-es">Borrar</span><span class="lang-en">Clear</span></button>
-          </div>
-          <div class="esign-canvas-wrap"><canvas id="accept-canvas" height="130"></canvas></div>
-          <div class="esign-canvas-hint">&#9997;&#65039; <span class="lang-es">Firme con su dedo (móvil) o con el mouse</span><span class="lang-en">Sign with finger (mobile) or mouse</span></div>
-          <div class="esign-checkbox-row" style="border-color:#86EFAC;background:#F0FDF4;">
-            <input type="checkbox" id="accept-terms" required>
-            <label for="accept-terms"><span class="lang-es">He leído y acepto los Términos y Condiciones de esta Propuesta Comercial y autorizo a Morales Plumbing a proceder con los trabajos.</span><span class="lang-en">I have read and agree to the Proposal Terms &amp; Conditions and authorize Morales Plumbing to proceed.</span></label>
-          </div>
-          <div class="esign-date-row">&#128197; <span class="lang-es">Fecha:</span><span class="lang-en">Date:</span> <strong id="accept-date-display"></strong></div>
-          <button type="submit" class="esign-submit-btn" id="accept-submit-btn" style="background:linear-gradient(135deg,#15803D 0%,#166534 100%);color:#FFFFFF;">&#9989; <span class="lang-es">FIRMAR ACEPTACIÓN Y AUTORIZAR</span><span class="lang-en">SIGN &amp; ACCEPT PROPOSAL</span></button>
-        </form>
-        <div class="esign-success-card" id="acceptance-success">
-          <h3>&#127881; <span class="lang-es">Propuesta Aceptada con Éxito</span><span class="lang-en">Proposal Accepted Successfully</span></h3>
-          <p><span class="lang-es">Su aceptación ha sido registrada. Morales Plumbing le contactará para programar el inicio de obra.</span><br><span class="lang-en">Your acceptance is on record. Morales Plumbing will contact you to schedule the work.</span></p>
-          <div class="esign-audit-row" id="acceptance-audit-row"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="esign-footer-note">
-    <span class="lang-es">Este portal es informativo y de acuse de recibo. La validez jurídica completa está sujeta al contrato formal CSLB que se firmará por separado.</span>
-    <span class="lang-en">This portal is for informational receipt and acceptance. Full statutory legal binding is subject to the formal CSLB contract signed separately.</span><br>
-    &#128222; (669) 213-4422 &nbsp;&bull;&nbsp; moralesplumbing026@gmail.com &nbsp;&bull;&nbsp; www.morales-plumbing.com
-  </div>
-</div>
-</div>
 
 <script>
 (function(){
