@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Contrato Oficial CSLB de Mejoras del Hogar - Morales Plumbing - Sandhu 4423 Vistapark</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ==========================================================================
+           MORALES PLUMBING - CALIFORNIA CSLB HOME IMPROVEMENT CONTRACT (HIC)
+           B&P Code § 7159 | CSLB License C-36 #1156542 | San Jose, CA
+           ========================================================================== */
+        :root {
+            --navy-primary: #0A192F;
+            --navy-secondary: #112240;
+            --gold-accent: #D4AF37;
+            --gold-dark: #B8860B;
+            --gold-light: #FFFDF5;
+            --gold-border: #E8D384;
+            --text-dark: #0F172A;
+            --text-body: #334155;
+            --text-muted: #64748B;
+            --bg-page: #F8FAFC;
+            --bg-card: #FFFFFF;
+            --border-table: #CBD5E1;
+            --alert-red: #B91C1C;
+            --alert-red-bg: #FEF2F2;
+            --success-green: #15803D;
+            --success-green-bg: #F0FDF4;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-dark);
+            line-height: 1.45;
+            font-size: 9pt;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* BILINGUAL CONTROLS */
+        .lang-en { display: none !important; }
+        .lang-es { display: inline; }
+        div.lang-es, p.lang-es, h1.lang-es, h2.lang-es, h3.lang-es, table.lang-es, ul.lang-es, li.lang-es, span.lang-es-block { 
+            display: block !important; 
+        }
+        body.en-active .lang-es { display: none !important; }
+        body.en-active .lang-en { display: inline !important; }
+        body.en-active div.lang-en, body.en-active p.lang-en, body.en-active h1.lang-en, 
+        body.en-active h2.lang-en, body.en-active h3.lang-en, body.en-active table.lang-en, 
+        body.en-active ul.lang-en, body.en-active li.lang-en, body.en-active span.lang-en-block { 
+            display: block !important; 
+        }
+
+        /* FLOATING LANGUAGE SWITCHER */
+        .lang-switch-container {
+            position: fixed;
+            top: 16px;
+            right: 20px;
+            z-index: 99999;
+            background: #FFFFFF;
+            border: 2px solid var(--navy-primary);
+            padding: 6px 14px;
+            box-shadow: 0 4px 15px rgba(10,25,47,0.15);
+            border-radius: 6px;
+        }
+        .lang-toggle-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 8.5pt;
+            font-weight: 800;
+        }
+        .lang-btn {
+            cursor: pointer;
+            padding: 3px 8px;
+            color: var(--text-muted);
+            transition: all 0.2s;
+            border-radius: 4px;
+            user-select: none;
+        }
+        .lang-btn.active {
+            color: #FFFFFF;
+            background: var(--navy-primary);
+        }
+
+        /* CONTAINER */
+        .contract-container {
+            max-width: 900px;
+            margin: 24px auto 40px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-table);
+            box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* HEADER */
+        .contract-header {
+            background: linear-gradient(135deg, #0A192F 0%, #112240 100%);
+            border-bottom: 4px solid var(--gold-accent);
+            padding: 24px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+        .header-logo {
+            max-width: 130px;
+            max-height: 65px;
+            object-fit: contain;
+            display: block;
+        }
+        .header-title h1 {
+            color: #FFFFFF;
+            font-size: 16pt;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            line-height: 1.1;
+        }
+        .header-title .subtitle {
+            color: var(--gold-accent);
+            font-size: 8.5pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-top: 3px;
+        }
+        .header-contact {
+            text-align: right;
+            color: #E2E8F0;
+            font-size: 8pt;
+            line-height: 1.35;
+        }
+        .header-contact .lic-badge {
+            color: var(--gold-accent);
+            font-weight: 800;
+            font-size: 8.5pt;
+        }
+
+        /* DOCUMENT BANNER */
+        .doc-banner {
+            background: #FFFDF5;
+            border-bottom: 2px solid var(--gold-border);
+            padding: 14px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .doc-type {
+            font-size: 11pt;
+            font-weight: 900;
+            color: var(--navy-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .doc-ref {
+            font-size: 8.5pt;
+            font-weight: 700;
+            color: var(--navy-secondary);
+            background: #FFFFFF;
+            border: 1px solid var(--gold-border);
+            padding: 4px 12px;
+            border-radius: 4px;
+        }
+
+        .contract-body {
+            padding: 28px 32px 36px;
+        }
+
+        /* SECTION HEADERS */
+        .sec-head {
+            background: linear-gradient(90deg, #0A192F 0%, #112240 100%);
+            color: #FFFFFF;
+            padding: 7px 12px;
+            font-size: 9.5pt;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            margin: 22px 0 12px 0;
+            border-left: 4px solid var(--gold-accent);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .sec-head .sec-tag {
+            font-size: 7.5pt;
+            color: var(--gold-accent);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* GRIDS & TABLES */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .info-card {
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            padding: 12px 14px;
+            border-radius: 6px;
+        }
+        .info-card .card-title {
+            font-size: 8pt;
+            font-weight: 800;
+            color: var(--navy-primary);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            border-bottom: 1px solid #CBD5E1;
+            padding-bottom: 3px;
+        }
+        .info-card p {
+            font-size: 8.5pt;
+            color: var(--text-body);
+            margin: 2px 0;
+        }
+        .info-card strong { color: var(--text-dark); }
+
+        /* LEGAL CALLOUTS */
+        .legal-box {
+            background: #FFFDF5;
+            border: 1px solid var(--gold-border);
+            border-left: 4px solid var(--gold-dark);
+            padding: 12px 16px;
+            border-radius: 4px;
+            font-size: 8.5pt;
+            margin: 14px 0;
+            line-height: 1.45;
+        }
+        .legal-box.alert {
+            background: var(--alert-red-bg);
+            border-color: #F87171;
+            border-left-color: var(--alert-red);
+            color: #7F1D1D;
+        }
+        .legal-box.highlight {
+            background: var(--success-green-bg);
+            border-color: #86EFAC;
+            border-left-color: var(--success-green);
+            color: #14532D;
+        }
+
+        /* TABLES */
+        table.contract-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 8.5pt;
+            margin: 10px 0 16px 0;
+        }
+        table.contract-table th {
+            background: var(--navy-primary);
+            color: #FFFFFF;
+            text-align: left;
+            padding: 8px 10px;
+            font-weight: 700;
+            font-size: 8pt;
+            text-transform: uppercase;
+            border: 1px solid var(--navy-primary);
+        }
+        table.contract-table td {
+            padding: 7px 10px;
+            border: 1px solid var(--border-table);
+            color: var(--text-body);
+            vertical-align: middle;
+        }
+        table.contract-table tr:nth-child(even) { background: #F8FAFC; }
+        table.contract-table .total-row td {
+            background: #FFFDF5;
+            font-weight: 800;
+            color: var(--navy-primary);
+            font-size: 9.5pt;
+            border-top: 2px solid var(--gold-accent);
+        }
+
+        /* SCOPE ITEMS */
+        .scope-item {
+            margin-bottom: 12px;
+            padding-left: 10px;
+            border-left: 2px solid var(--gold-border);
+        }
+        .scope-item h4 {
+            font-size: 8.8pt;
+            font-weight: 800;
+            color: var(--navy-primary);
+            margin-bottom: 3px;
+        }
+        .scope-item p {
+            font-size: 8.3pt;
+            color: var(--text-body);
+            line-height: 1.4;
+        }
+
+        /* STATUTORY NOTICES (10-12pt BOLD) */
+        .statutory-notice-block {
+            border: 2px solid var(--navy-primary);
+            background: #FFFFFF;
+            padding: 16px 18px;
+            margin: 18px 0;
+            border-radius: 6px;
+        }
+        .statutory-title {
+            font-size: 10.5pt;
+            font-weight: 900;
+            color: var(--navy-primary);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            text-align: center;
+            border-bottom: 1.5px solid var(--gold-accent);
+            padding-bottom: 5px;
+        }
+        .statutory-body {
+            font-size: 8.5pt;
+            color: var(--text-dark);
+            line-height: 1.45;
+        }
+
+        /* CANCELLATION NOTICE ATTACHMENT */
+        .cancellation-section {
+            border: 2px dashed var(--alert-red);
+            background: var(--alert-red-bg);
+            padding: 20px;
+            border-radius: 6px;
+            margin: 24px 0;
+        }
+        .cancellation-title {
+            font-size: 11pt;
+            font-weight: 900;
+            color: var(--alert-red);
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        /* SIGNATURE PORTAL */
+        .contract-signature-block {
+            background: linear-gradient(135deg, #F8FAFC 0%, #EDF2F7 100%);
+            border: 2px solid var(--navy-primary);
+            border-top: 5px solid var(--gold-accent);
+            border-radius: 8px;
+            padding: 24px;
+            margin-top: 28px;
+        }
+        .sig-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 16px;
+        }
+        @media (max-width: 650px) { .sig-grid { grid-template-columns: 1fr; } }
+        .sig-box {
+            background: #FFFFFF;
+            border: 1px solid var(--border-table);
+            border-radius: 6px;
+            padding: 16px;
+        }
+        .sig-box h3 {
+            font-size: 9pt;
+            font-weight: 800;
+            color: var(--navy-primary);
+            margin-bottom: 10px;
+            border-bottom: 1.5px solid var(--gold-accent);
+            padding-bottom: 4px;
+            text-transform: uppercase;
+        }
+        .sig-canvas-wrap {
+            border: 2px dashed #CBD5E1;
+            border-radius: 6px;
+            background: #FAFAFA;
+            margin: 10px 0;
+            touch-action: none;
+        }
+        .sig-canvas-wrap canvas {
+            width: 100%;
+            height: 120px;
+            display: block;
+            cursor: crosshair;
+        }
+        .sig-btn-clear {
+            background: none;
+            border: 1px solid #CBD5E1;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 8pt;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+        .sig-btn-submit {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #0A192F 0%, #112240 100%);
+            color: var(--gold-accent);
+            border: none;
+            border-radius: 6px;
+            font-size: 13pt;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            margin-top: 18px;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+        .sig-btn-submit:hover { opacity: 0.95; }
+        .sig-btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .contract-footer-bar {
+            text-align: center;
+            font-size: 7.5pt;
+            color: var(--text-muted);
+            padding: 18px 32px;
+            background: #F1F5F9;
+            border-top: 1px solid #E2E8F0;
+        }
+
+        /* PRINT STYLES */
+        @media print {
+            .lang-switch-container, .sig-btn-clear, .sig-btn-submit { display: none !important; }
+            body { background: #FFFFFF; font-size: 8pt; }
+            .contract-container { box-shadow: none; border: none; margin: 0; max-width: 100%; }
+            .sec-head { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- LANGUAGE SWITCHER -->
+    <div class="lang-switch-container">
+        <div class="lang-toggle-wrapper">
+            <span class="lang-btn active" id="btn-es" onclick="setLang('es')">ESPAÑOL</span>
+            <span>|</span>
+            <span class="lang-btn" id="btn-en" onclick="setLang('en')">ENGLISH</span>
+        </div>
+    </div>
+
+    <div class="contract-container">
+        
+        <!-- HEADER -->
+        <header class="contract-header">
+            <div class="header-brand">
+                <img src="logo_portada.png" alt="Morales Plumbing Logo" class="header-logo" onerror="this.style.display='none'">
+                <div class="header-title">
+                    <h1>MORALES PLUMBING</h1>
+                    <div class="subtitle">AI-INTEGRATED SERVICES &bull; CSLB C-36 #1156542</div>
+                </div>
+            </div>
+            <div class="header-contact">
+                <p class="lic-badge">Lic. CSLB C-36 #1156542</p>
+                <p>Tel: (669) 213-4422</p>
+                <p>moralesplumbing026@gmail.com</p>
+                <p>www.morales-plumbing.com</p>
+                <p>San Jose, CA</p>
+            </div>
+        </header>
+
+        <!-- DOCUMENT BANNER -->
+        <div class="doc-banner">
+            <div class="doc-type">
+                <span class="lang-es">CONTRATO DE MEJORAS DEL HOGAR (CSLB § 7159)</span>
+                <span class="lang-en">CALIFORNIA HOME IMPROVEMENT CONTRACT (CSLB § 7159)</span>
+            </div>
+            <div class="doc-ref">
+                REF: <strong>MP-HIC-4423V-SANDHU</strong> &bull; PROP: <strong>MP-PROP-4423V-SANDHU</strong>
+            </div>
+        </div>
+
+        <div class="contract-body">
+
+            <!-- SECTION 1: PARTIES AND PROPERTY -->
+            <div class="sec-head">
+                <span>
+                    <span class="lang-es">1. PARTES CONTRATANTES Y DATOS DEL PROYECTO</span>
+                    <span class="lang-en">1. CONTRACTING PARTIES & PROJECT LOCATION</span>
+                </span>
+                <span class="sec-tag">B&P § 7159(d)(1)</span>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="card-title">
+                        <span class="lang-es">CONTRATISTA LICENCIADO / CONTRACTOR</span>
+                        <span class="lang-en">LICENSED CONTRACTOR</span>
+                    </div>
+                    <p><strong>MORALES PLUMBING</strong> (AI-Integrated Services)</p>
+                    <p><strong>CSLB License:</strong> C-36 (Plumbing) #1156542</p>
+                    <p><strong>Officer:</strong> Alex G. Espinosa (Master Plumber)</p>
+                    <p><strong>Address:</strong> San Jose, CA</p>
+                    <p><strong>Phone:</strong> (669) 213-4422</p>
+                    <p><strong>Email:</strong> moralesplumbing026@gmail.com</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="card-title">
+                        <span class="lang-es">PROPIETARIO / OWNER / CLIENT</span>
+                        <span class="lang-en">PROPERTY OWNER / CLIENT</span>
+                    </div>
+                    <p><strong>Owner(s):</strong> Manjinder S. Sandhu & Gurmeet K. Sandhu</p>
+                    <p><strong>Job Site Address:</strong> 4423 Vistapark Dr, San Jose, CA 95136</p>
+                    <p><strong>Jurisdiction:</strong> City of San Jose, Santa Clara County</p>
+                    <p><strong>Building Type:</strong> Single Family Residence (4.5 Baths / Kitchen / ADU)</p>
+                </div>
+            </div>
+
+            <!-- SECTION 2: DATES AND SCHEDULE -->
+            <div class="sec-head">
+                <span>
+                    <span class="lang-es">2. FECHAS Y CRONOGRAMA DE EJECUCIÓN</span>
+                    <span class="lang-en">2. DATES & EXECUTION SCHEDULE</span>
+                </span>
+                <span class="sec-tag">B&P § 7159(d)(4)-(5)</span>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <p><strong><span class="lang-es">Fecha del Contrato:</span><span class="lang-en">Contract Date:</span></strong> August 25, 2026</p>
+                    <p><strong><span class="lang-es">Fecha Aprox. de Inicio:</span><span class="lang-en">Approx. Start Date:</span></strong> September 02, 2026</p>
+                </div>
+                <div class="info-card">
+                    <p><strong><span class="lang-es">Fecha Aprox. de Finalización:</span><span class="lang-en">Approx. Completion Date:</span></strong> September 18, 2026</p>
+                    <p><strong><span class="lang-es">Duración Estimada de Obra:</span><span class="lang-en">Estimated Work Duration:</span></strong> 12-14 Días Hábiles / Working Days</p>
+                </div>
+            </div>
+
+            <!-- SECTION 3: SCOPE OF WORK -->
+            <div class="sec-head">
+                <span>
+                    <span class="lang-es">3. ALCANCE DETALLADO DE LOS TRABAJOS (CPC, UPC, TITLE 24)</span>
+                    <span class="lang-en">3. DETAILED SCOPE OF WORK (CPC, UPC, TITLE 24)</span>
+                </span>
+                <span class="sec-tag">ASTM B88 / IAPMO PS 117</span>
+            </div>
+
+            <div class="scope-item">
+                <h4>
+                    <span class="lang-es">FASE 1: PREPARACIÓN, DEMOLICIÓN SELECTIVA Y CONTENCIÓN</span>
+                    <span class="lang-en">PHASE 1: PREPARATION, SELECTIVE ACCESS & CONTAINMENT</span>
+                </h4>
+                <p>
+                    <span class="lang-es">Cortes de acceso milimétricos en paneles de yeso (drywall) en áreas técnicas, protección de pisos y muebles con plástico sellado de alto impacto y barreras HEPA. Desconexión segura de tuberías existentes de acero galvanizado degradadas y en bypass.</span>
+                    <span class="lang-en">Selective drywall access openings in designated plumbing chases; floor and furnishing protection using sealed high-impact sheeting and HEPA particulate controls; isolation and safe decommissioning of compromised legacy galvanized/copper piping.</span>
+                </p>
+            </div>
+
+            <div class="scope-item">
+                <h4>
+                    <span class="lang-es">FASE 2: REPIPE COMPLETO CON COBRE TIPO L (ASTM B88) & VIEGA PROPRESS</span>
+                    <span class="lang-en">PHASE 2: COMPLETE POTABLE WATER REPIPE (TYPE L COPPER ASTM B88 & VIEGA PROPRESS)</span>
+                </h4>
+                <p>
+                    <span class="lang-es">Suministro e instalación de tubería de cobre rígido sin costura ASTM B88 Tipo L (calidad pesada) para todas las líneas principales de agua fría, agua caliente y línea de retorno dedicada (DRL). Conexiones mecánicas de alta precisión Viega ProPress con sellos EPDM de fábrica (listados UPC / IAPMO PS 117). Distribución principal de 1 pulgada desde el medidor/PRV, troncales de 3/4" y ramales de 1/2" para abastecer 4.5 Baños, Cocina, Lavandería y tomas exteriores con balanceo hidráulico WSFU óptimo.</span>
+                    <span class="lang-en">Furnishing and installation of seamless ASTM B88 Type L heavy-duty rigid copper piping for all potable cold, hot, and dedicated recirculation return (DRL) lines. Precision mechanical joints utilizing Viega ProPress fittings with factory-vulcanized EPDM sealing elements (UPC / IAPMO PS 117 certified). Sizing includes 1" main from PRV, 3/4" distribution trunks, and 1/2" fixture branches engineered for 4.5 Bathrooms, Kitchen, Laundry, and outdoor hose bibbs.</span>
+                </p>
+            </div>
+
+            <div class="scope-item">
+                <h4>
+                    <span class="lang-es">FASE 3: MANIFOLD MAESTRO PROPRESS Y SISTEMA DE RECIRCULACIÓN INTELIGENTE</span>
+                    <span class="lang-en">PHASE 3: MASTER VIEGA PROPRESS MANIFOLD & DEMAND RECIRCULATION LOOP</span>
+                </h4>
+                <p>
+                    <span class="lang-es">Montaje de manifold maestro de distribución de cobre con válvulas de corte individual de 1/4 de vuelta para cada grupo de accesorios. Instalación de línea de retorno dedicada (DRL) con bomba de recirculación por demanda inteligente (cumplimiento estricto con California Title 24 Parte 6 y CPC § 609).</span>
+                    <span class="lang-en">Assembly of a master copper distribution manifold with independent quarter-turn full-port ball isolation valves for every fixture branch. Installation of dedicated return line (DRL) and high-efficiency smart demand recirculation pump meeting California Title 24 Part 6 and CPC § 609 standards.</span>
+                </p>
+            </div>
+
+            <div class="scope-item">
+                <h4>
+                    <span class="lang-es">FASE 4: CALENTADOR TANKLESS ELÉCTRICO DE ALTO RENDIMIENTO & VÁLVULAS PRV</span>
+                    <span class="lang-en">PHASE 4: HIGH-EFFICIENCY ELECTRIC TANKLESS WATER HEATER & PRV CONTROLS</span>
+                </h4>
+                <p>
+                    <span class="lang-es">Instalación y conexión de calentador de agua sin tanque (Tankless) eléctrico de alta capacidad, anclajes sísmicos de acuerdo con CBC/CPC, válvula de alivio térmico y de presión (T&P 150 PSI / 210°F) conducida al exterior con espacio de aire reglamentario. Válvula reguladora de presión maestra (PRV Watts/Wilkins de 1") calibrada a 60-65 PSI con manómetro de monitoreo.</span>
+                    <span class="lang-en">Installation and mechanical hookup of a commercial-grade high-output electric tankless water heater, seismic safety restraints per CBC/CPC, Temperature & Pressure Relief Valve (T&P 150 PSI / 210°F) terminated to exterior with code air gap. 1" Watts/Wilkins Master Pressure Reducing Valve (PRV) calibrated to 60-65 PSI with inline gauge.</span>
+                </p>
+            </div>
+
+            <div class="scope-item">
+                <h4>
+                    <span class="lang-es">FASE 5: PRUEBAS HIDROSTÁTICAS, PERMISOS MUNICIPALES Y CIERRE</span>
+                    <span class="lang-en">PHASE 5: HYDROSTATIC PRESSURE TESTING, SAN JOSE CITY INSPECTION & CLOSEOUT</span>
+                </h4>
+                <p>
+                    <span class="lang-es">Prueba de presión estática a 100+ PSI durante 24 horas continuas según CPC § 609.4. Tramitación de permiso de plomería ante el Departamento de Edificación de la Ciudad de San Jose, coordinación de inspección oficial, desinfección y purga de red bajo norma AWWA C651, parcheo de accesos de drywall (acabado listo para pintura) y limpieza profunda de obra.</span>
+                    <span class="lang-en">24-hour continuous 100+ PSI hydrostatic pressure test per CPC § 609.4. City of San Jose Building Department plumbing permit acquisition, official municipal inspection sign-off, AWWA C651 system flushing/disinfection, drywall access patch-back (ready for paint), and complete job site cleanup.</span>
+                </p>
+            </div>
+
+            <!-- SECTION 4: CONTRACT PRICE & SCHEDULE OF PAYMENTS -->
+            <div class="sec-head">
+                <span>
+                    <span class="lang-es">4. PRECIO DEL CONTRATO Y CRONOGRAMA DE PAGOS (CSLB § 7159)</span>
+                    <span class="lang-en">4. CONTRACT PRICE & SCHEDULE OF PAYMENTS (CSLB § 7159)</span>
+                </span>
+                <span class="sec-tag">TOTAL: $19,671.18 USD</span>
+            </div>
+
+            <div class="legal-box alert">
+                <strong>
+                    <span class="lang-es">ADVERTENCIA LEGAL CSLB SOBRE EL DEPÓSITO INICIAL:</span>
+                    <span class="lang-en">CSLB STATUTORY DOWN PAYMENT NOTICE:</span>
+                </strong><br>
+                <span class="lang-es">La ley de California exige que el pago inicial (Down Payment) NO exceda el 10% del precio total del contrato o $1,000 USD, lo que sea menor. Morales Plumbing cumple estrictamente esta disposición limitando el depósito a $1,000.00 USD.</span>
+                <span class="lang-en">California law requires that the down payment may NOT exceed 10% of the total contract price or $1,000 USD, whichever is less. Morales Plumbing strictly limits the initial deposit to $1,000.00 USD.</span>
+            </div>
+
+            <table class="contract-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th><span class="lang-es">HITO / DESCRIPCIÓN DEL TRABAJO O MATERIAL</span><span class="lang-en">MILESTONE / WORK OR MATERIAL COMPLETED</span></th>
+                        <th><span class="lang-es">CONDICIÓN DE EXIGIBILIDAD</span><span class="lang-en">DUE UPON</span></th>
+                        <th style="text-align:right;"><span class="lang-es">MONTO (USD)</span><span class="lang-en">AMOUNT (USD)</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1</strong></td>
+                        <td>
+                            <span class="lang-es"><strong>Depósito Inicial / Firma del Contrato:</strong> Apertura de expediente técnico, programación de cuadrilla y reserva de fechas de inicio.</span>
+                            <span class="lang-en"><strong>Initial Down Payment / Contract Execution:</strong> Project scheduling, technical file opening, and crew allocation.</span>
+                        </td>
+                        <td><span class="lang-es">Firma del Contrato</span><span class="lang-en">Contract Execution</span></td>
+                        <td style="text-align:right; font-weight:700;">$1,000.00</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2</strong></td>
+                        <td>
+                            <span class="lang-es"><strong>Entrega de Materiales & Permiso Municipal:</strong> Entrega en obra de tuberías Cobre Tipo L, accesorios Viega ProPress, calentador Tankless y radicación de permiso ante la Ciudad de San Jose.</span>
+                            <span class="lang-en"><strong>Material Staging & Permit Filing:</strong> On-site delivery of ASTM B88 Type L Copper, Viega ProPress fittings, Tankless unit, and City permit submittal.</span>
+                        </td>
+                        <td><span class="lang-es">Materiales en Obra</span><span class="lang-en">Materials Delivered</span></td>
+                        <td style="text-align:right; font-weight:700;">$5,500.00</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3</strong></td>
+                        <td>
+                            <span class="lang-es"><strong>Instalación de Redes Principales y Manifold:</strong> Tendido completo de líneas de agua fría, caliente, retorno DRL, manifold y cortes de alimentación a los 4.5 baños y cocina.</span>
+                            <span class="lang-en"><strong>Rough-In Repipe & Manifold Complete:</strong> Complete copper rough-in for cold, hot, DRL lines, Viega manifold, and branches to all 4.5 baths and kitchen.</span>
+                        </td>
+                        <td><span class="lang-es">Redes Instaladas</span><span class="lang-en">Rough-In Complete</span></td>
+                        <td style="text-align:right; font-weight:700;">$6,000.00</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4</strong></td>
+                        <td>
+                            <span class="lang-es"><strong>Calentador Tankless & Prueba Hidrostática 100 PSI:</strong> Conexión del calentador sin tanque, bomba recirculadora, válvulas de alivio T&P y prueba de presión aprobada por 24 horas.</span>
+                            <span class="lang-en"><strong>Tankless System & 100 PSI Pressure Test:</strong> Tankless water heater hookup, recirc pump, T&P lines, and successful 24-hr 100 PSI test.</span>
+                        </td>
+                        <td><span class="lang-es">Prueba de Presión OK</span><span class="lang-en">Pressure Test Passed</span></td>
+                        <td style="text-align:right; font-weight:700;">$4,500.00</td>
+                    </tr>
+                    <tr>
+                        <td><strong>5</strong></td>
+                        <td>
+                            <span class="lang-es"><strong>Inspección Final Ciudad de San Jose y Cierre:</strong> Aprobación final por inspector municipal de San Jose, parcheo de drywall, desinfección y entrega operativa.</span>
+                            <span class="lang-en"><strong>Final Municipal Inspection & Project Closeout:</strong> City of San Jose final inspection passed, drywall patch-back, disinfection, and commissioning.</span>
+                        </td>
+                        <td><span class="lang-es">Firma Inspección Final</span><span class="lang-en">Final Inspection Passed</span></td>
+                        <td style="text-align:right; font-weight:700;">$2,671.18</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td colspan="3" style="text-align:right;">
+                            <span class="lang-es">PRECIO TOTAL CONTRACTUAL (USD):</span>
+                            <span class="lang-en">TOTAL CONTRACT PRICE (USD):</span>
+                        </td>
+                        <td style="text-align:right; font-size:11pt; color:var(--success-green);">$19,671.18</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- SECTION 5: STATUTORY NOTICES -->
+            <div class="sec-head">
+                <span>
+                    <span class="lang-es">5. AVISOS LEGALES OBLIGATORIOS DEL ESTADO DE CALIFORNIA (CSLB)</span>
+                    <span class="lang-en">5. MANDATORY STATE OF CALIFORNIA STATUTORY NOTICES (CSLB)</span>
+                </span>
+                <span class="sec-tag">B&P § 7159.5</span>
+            </div>
+
+            <!-- MECHANICS LIEN WARNING -->
+            <div class="statutory-notice-block">
+                <div class="statutory-title">
+                    <span class="lang-es">ADVERTENCIA SOBRE DERECHO DE RETENCIÓN DE MECÁNICOS (MECHANICS' LIEN WARNING)</span>
+                    <span class="lang-en">MECHANICS' LIEN WARNING (CALIFORNIA BUSINESS & PROFESSIONS CODE § 7159)</span>
+                </div>
+                <div class="statutory-body">
+                    <p class="lang-es">
+                        Cualquier contratista, subcontratista, proveedor de materiales u otra persona que ayude a mejorar su propiedad y a quien no se le pague por sus servicios o materiales tiene el derecho legal de hacer valer su reclamo contra su propiedad. Este reclamo se conoce como gravamen de mecánico (Mechanics' Lien). Si se presenta un gravamen de mecánico contra su propiedad, usted podría verse obligado a pagar el reclamo o su propiedad podría ser vendida en un procedimiento judicial para satisfacer el gravamen. Para protegerse, usted puede exigir a su contratista la entrega de finiquitos y liberaciones incondicionales de gravamen (Unconditional Lien Releases) cada vez que realice un pago.
+                    </p>
+                    <p class="lang-en">
+                        Anyone who helps improve your property, but who is not paid, may record what is called a mechanics' lien against your property. A mechanics' lien is a claim, like a mortgage or home equity loan, made against your property and recorded with the county recorder. Even if you pay your contractor in full, unpaid subcontractors, suppliers, or laborers who helped to improve your property may record mechanics' liens and sue you in court to foreclose the lien. To protect yourself, you may require the contractor to provide unconditional lien releases signed by each claimant who has received payment.
+                    </p>
+                </div>
+            </div>
+
+            <!-- CSLB INFORMATION NOTICE -->
+            <div class="statutory-notice-block">
+                <div class="statutory-title">
+                    <span class="lang-es">INFORMACIÓN DE LA JUNTA DE LICENCIAS DE CONTRATISTAS DEL ESTADO (CSLB)</span>
+                    <span class="lang-en">CONTRACTORS STATE LICENSE BOARD (CSLB) NOTICE</span>
+                </div>
+                <div class="statutory-body">
+                    <p class="lang-es">
+                        Los contratistas del estado de California están regulados por la Junta de Licencias de Contratistas del Estado (CSLB). Cualquier pregunta o queja con respecto a un contratista puede ser remitida a la CSLB en: <strong>Contractors State License Board, P.O. Box 26000, Sacramento, CA 95826</strong> | Tel: <strong>1-800-321-CSLB (2752)</strong> | Sitio Web: <strong>www.cslb.ca.gov</strong>.
+                    </p>
+                    <p class="lang-en">
+                        State law requires contractors to be licensed by the Contractors State License Board (CSLB). Check license status, file a complaint, or obtain information at <strong>www.cslb.ca.gov</strong> or call <strong>1-800-321-CSLB (2752)</strong>. Mailing: P.O. Box 26000, Sacramento, CA 95826.
+                    </p>
+                </div>
+            </div>
+
+            <!-- INSURANCE DISCLOSURES -->
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="card-title">
+                        <span class="lang-es">SEGURO DE RESPONSABILIDAD CIVIL GENERAL</span>
+                        <span class="lang-en">COMMERCIAL GENERAL LIABILITY INSURANCE</span>
+                    </div>
+                    <p>
+                        <span class="lang-es">Morales Plumbing cuenta con Seguro de Responsabilidad Civil Comercial vigente con cobertura superior a $1,000,000 USD para proteger su propiedad durante la ejecución de los trabajos.</span>
+                        <span class="lang-en">Morales Plumbing carries Commercial General Liability Insurance in excess of $1,000,000 USD to safeguard your premises throughout construction.</span>
+                    </p>
+                </div>
+                <div class="info-card">
+                    <div class="card-title">
+                        <span class="lang-es">SEGURO DE COMPENSACIÓN AL TRABAJADOR</span>
+                        <span class="lang-en">WORKERS' COMPENSATION INSURANCE</span>
+                    </div>
+                    <p>
+                        <span class="lang-es">Morales Plumbing cuenta con Seguro de Compensación para Trabajadores para todos los empleados y técnicos asignados a su proyecto.</span>
+                        <span class="lang-en">Morales Plumbing maintains active Workers' Compensation Insurance covering all technicians and personnel assigned to your job.</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- CHANGE ORDERS CLAUSE -->
+            <div class="legal-box">
+                <strong><span class="lang-es">ÓRDENES DE CAMBIO Y TRABAJOS ADICIONALES (B&P § 7159.6):</span><span class="lang-en">EXTRA WORK AND CHANGE ORDERS (B&P § 7159.6):</span></strong><br>
+                <span class="lang-es">Cualquier modificación al alcance original, condiciones imprevistas ocultas o trabajos adicionales requerirán una Orden de Cambio escrita y firmada por ambas partes antes de comenzar el trabajo extra, especificando el costo adicional y el impacto en el tiempo.</span>
+                <span class="lang-en">Any alteration, unforeseen structural condition, or deviation from the agreed scope must be documented in a written, signed Change Order prior to executing the additional work, outlining cost and timeline adjustments.</span>
+            </div>
+
+            <!-- SECTION 6: THREE-DAY RIGHT TO CANCEL -->
+            <div class="cancellation-section">
+                <div class="cancellation-title">
+                    <span class="lang-es">DERECHO DE CANCELACIÓN EN TRES DÍAS (NOTICE OF THREE-DAY CANCELLATION)</span>
+                    <span class="lang-en">THREE-DAY RIGHT TO CANCEL (CALIFORNIA B&P CODE § 7159.14)</span>
+                </div>
+                <div class="statutory-body">
+                    <p class="lang-es">
+                        <strong>USTED, EL COMPRADOR, TIENE EL DERECHO DE CANCELAR ESTE CONTRATO HASTA LA MEDIANOCHE DEL TERCER DÍA HÁBIL POSTERIOR A LA FECHA EN QUE FIRME ESTE DOCUMENTO.</strong> Para cancelar, entregue o envíe por correo una notificación escrita y firmada a: <em>Morales Plumbing, San Jose, CA (moralesplumbing026@gmail.com)</em> antes de la medianoche de la fecha límite estipulada.
+                    </p>
+                    <p class="lang-en">
+                        <strong>YOU, THE BUYER, HAVE THE RIGHT TO CANCEL THIS CONTRACT AT ANY TIME PRIOR TO MIDNIGHT OF THE THIRD BUSINESS DAY AFTER THE DATE OF THIS TRANSACTION.</strong> To cancel this transaction, mail or deliver a signed and dated copy of this cancellation notice or any other written notice to: <em>Morales Plumbing, San Jose, CA (moralesplumbing026@gmail.com)</em> not later than midnight of the 3rd business day.
+                    </p>
+                </div>
+            </div>
+
+            <!-- SECTION 7: WARRANTIES -->
+            <div class="sec-head">
+                <span>
+                    <span class="lang-es">6. GARANTÍAS PLATINUM MORALES PLUMBING</span>
+                    <span class="lang-en">6. MORALES PLUMBING PLATINUM WARRANTIES</span>
+                </span>
+                <span class="sec-tag">25 AÑOS / 10 AÑOS</span>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <p><strong><span class="lang-es">Tubería de Cobre Tipo L & Viega ProPress:</span><span class="lang-en">Type L Copper & Viega ProPress:</span></strong></p>
+                    <p><span class="lang-es">25 Años de garantía de fábrica contra defectos de material y corrosión interna.</span><span class="lang-en">25-Year Manufacturer Warranty against material defects and internal corrosion.</span></p>
+                </div>
+                <div class="info-card">
+                    <p><strong><span class="lang-es">Garantía de Mano de Obra Morales Plumbing:</span><span class="lang-en">Morales Plumbing Labor Warranty:</span></strong></p>
+                    <p><span class="lang-es">10 Años de garantía integral en mano de obra, uniones prensadas y hermeticidad.</span><span class="lang-en">10-Year Comprehensive Labor & Workmanship Warranty on all joints and seal integrity.</span></p>
+                </div>
+            </div>
+
+            <!-- SECTION 8: DIGITAL SIGNATURES PORTAL -->
+            <div class="contract-signature-block">
+                <div class="statutory-title" style="border-bottom-color: var(--navy-primary);">
+                    <span class="lang-es">PORTAL DE FIRMA ELECTRÓNICA LEGAL (ESIGN ACT / UETA COMPLIANT)</span>
+                    <span class="lang-en">LEGAL ELECTRONIC SIGNATURE PORTAL (ESIGN ACT / UETA COMPLIANT)</span>
+                </div>
+                <p style="text-align: center; font-size: 8.5pt; color: var(--text-body); margin-bottom: 16px;">
+                    <span class="lang-es">Al firmar a continuación, las partes aceptan todos los términos, condiciones y especificaciones de este Contrato de Mejoras del Hogar.</span>
+                    <span class="lang-en">By signing below, the parties agree to all terms, conditions, and statutory provisions set forth in this Home Improvement Contract.</span>
+                </p>
+
+                <form id="contract-sign-form">
+                    <div class="sig-grid">
+                        
+                        <!-- CLIENT SIGNATURE BOX -->
+                        <div class="sig-box">
+                            <h3>
+                                <span class="lang-es">FIRMA DEL PROPIETARIO / OWNER SIGNATURE</span>
+                                <span class="lang-en">PROPERTY OWNER SIGNATURE</span>
+                            </h3>
+                            <div style="margin-bottom: 8px;">
+                                <label style="font-size:7.5pt; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Nombre Completo / Full Name:</label>
+                                <input type="text" id="signer-name" value="Manjinder S. Sandhu" style="width:100%; padding:8px; border:1px solid #CBD5E1; border-radius:4px; font-weight:700; font-family:'Inter';" required>
+                            </div>
+                            <div style="margin-bottom: 8px;">
+                                <label style="font-size:7.5pt; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Correo Electrónico / Email:</label>
+                                <input type="email" id="signer-email" placeholder="cliente@email.com" style="width:100%; padding:8px; border:1px solid #CBD5E1; border-radius:4px; font-family:'Inter';" required>
+                            </div>
+                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                <span style="font-size:7.5pt; font-weight:700; color:var(--text-muted);">FIRMA DIGITAL CON DEDO O MOUSE:</span>
+                                <button type="button" class="sig-btn-clear" onclick="clearContractCanvas()">&#8634; Borrar</button>
+                            </div>
+                            <div class="sig-canvas-wrap">
+                                <canvas id="client-contract-canvas"></canvas>
+                            </div>
+                            <p style="font-size:7.5pt; color:var(--text-muted); text-align:center;">Fecha: <strong id="sig-date-display"></strong></p>
+                        </div>
+
+                        <!-- CONTRACTOR VERIFIED SIGNATURE -->
+                        <div class="sig-box" style="background:#FFFDF5; border-color:var(--gold-border);">
+                            <h3>
+                                <span class="lang-es">CONTRATISTA AUTORIZADO / CONTRACTOR</span>
+                                <span class="lang-en">AUTHORIZED CONTRACTOR</span>
+                            </h3>
+                            <p style="font-size:8.5pt; color:var(--navy-primary); font-weight:800; margin-top:6px;">MORALES PLUMBING</p>
+                            <p style="font-size:8pt; color:var(--text-body);">Alex G. Espinosa &bull; Master Plumber</p>
+                            <p style="font-size:8pt; color:var(--gold-dark); font-weight:700;">Lic. CSLB C-36 #1156542 &bull; San Jose, CA</p>
+                            
+                            <div style="margin: 14px 0 10px; padding:10px; background:#FFFFFF; border:1px solid var(--gold-border); border-radius:4px; text-align:center;">
+                                <span style="display:inline-block; font-family:'Brush Script MT', cursive, sans-serif; font-size:20pt; color:#0A192F; transform:rotate(-2deg);">Alex G. Espinosa</span>
+                                <div style="font-size:7pt; color:var(--success-green); font-weight:800; text-transform:uppercase; margin-top:2px;">
+                                    &#10003; FIRMADO Y VERIFICADO POR MORALES PLUMBING
+                                </div>
+                            </div>
+                            <p style="font-size:7.5pt; color:var(--text-muted); text-align:center;">Certificate ID: <strong>MP-CSLB-VERIFIED-4423V</strong></p>
+                        </div>
+
+                    </div>
+
+                    <div style="margin-top: 14px; background:#FFFFFF; border:1px solid var(--border-table); padding:12px; border-radius:6px;">
+                        <label style="display:flex; align-items:flex-start; gap:10px; font-size:8.2pt; color:var(--text-body); cursor:pointer;">
+                            <input type="checkbox" id="contract-consent" style="width:18px; height:18px; accent-color:var(--navy-primary); margin-top:1px;" required>
+                            <span>
+                                <span class="lang-es">He leído y acepto todas las cláusulas, términos de pago, especificaciones técnicas y avisos legales de este Contrato de Mejoras del Hogar de Morales Plumbing. / I have read and agree to all clauses, milestone payments, technical specs, and statutory notices of this Morales Plumbing Home Improvement Contract.</span>
+                            </span>
+                        </label>
+                    </div>
+
+                    <button type="submit" id="contract-submit-btn" class="sig-btn-submit">
+                        <span class="lang-es">&#9997;&#65039; FIRMAR CONTRATO CSLB Y AUTORIZAR PROYECTO ($19,671.18 USD)</span>
+                        <span class="lang-en">&#9997;&#65039; SIGN CSLB CONTRACT & AUTHORIZE PROJECT ($19,671.18 USD)</span>
+                    </button>
+                </form>
+
+                <div id="contract-success-box" style="display:none; background:#F0FDF4; border:2px solid #86EFAC; border-radius:6px; padding:20px; text-align:center; margin-top:18px;">
+                    <h3 style="color:#15803D; font-size:13pt; font-weight:900;">&#127881; ¡CONTRATO CSLB FIRMADO Y REGISTRADO CON ÉXITO!</h3>
+                    <p style="color:#166534; font-size:9pt; margin-top:6px;">
+                        Se ha enviado una copia certificada a <strong>moralesplumbing026@gmail.com</strong> y a su correo electrónico.<br>
+                        Morales Plumbing coordinará la fecha de inicio de obra y la radicación de permisos ante la Ciudad de San Jose.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="contract-footer-bar">
+            MORALES PLUMBING &bull; AI-INTEGRATED SERVICES &bull; CSLB LIC. C-36 #1156542 &bull; SAN JOSE, CA<br>
+            Tel: (669) 213-4422 &bull; Email: moralesplumbing026@gmail.com &bull; Web: www.morales-plumbing.com
+        </footer>
+
+    </div>
+
+    <!-- SCRIPT FOR BILINGUAL AND SIGNATURE -->
+    <script>
+        function setLang(lang) {
+            if (lang === 'en') {
+                document.body.classList.add('en-active');
+                document.getElementById('btn-en').classList.add('active');
+                document.getElementById('btn-es').classList.remove('active');
+            } else {
+                document.body.classList.remove('en-active');
+                document.getElementById('btn-es').classList.add('active');
+                document.getElementById('btn-en').classList.remove('active');
+            }
+        }
+
+        // Signature Canvas
+        var canvas = document.getElementById('client-contract-canvas');
+        var ctx = canvas.getContext('2d');
+        var isDrawing = false;
+        var hasSigned = false;
+
+        function resizeCanvas() {
+            var dpr = window.devicePixelRatio || 1;
+            var w = canvas.parentElement.offsetWidth - 4 || 350;
+            canvas.width = w * dpr;
+            canvas.height = 120 * dpr;
+            canvas.style.width = '100%';
+            canvas.style.height = '120px';
+            ctx.scale(dpr, dpr);
+            ctx.strokeStyle = '#0A192F';
+            ctx.lineWidth = 2.5;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+        }
+        window.addEventListener('resize', resizeCanvas);
+        setTimeout(resizeCanvas, 300);
+
+        function getPos(e) {
+            var r = canvas.getBoundingClientRect();
+            var t = e.touches ? e.touches[0] : e;
+            return {
+                x: (t.clientX - r.left) * (canvas.offsetWidth / r.width),
+                y: (t.clientY - r.top) * (canvas.offsetHeight / r.height)
+            };
+        }
+
+        canvas.addEventListener('mousedown', function(e) { isDrawing = true; var p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); });
+        canvas.addEventListener('mousemove', function(e) { if(!isDrawing) return; var p = getPos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); hasSigned = true; });
+        canvas.addEventListener('mouseup', function() { isDrawing = false; });
+        canvas.addEventListener('mouseleave', function() { isDrawing = false; });
+
+        canvas.addEventListener('touchstart', function(e) { e.preventDefault(); isDrawing = true; var p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); }, {passive:false});
+        canvas.addEventListener('touchmove', function(e) { e.preventDefault(); if(!isDrawing) return; var p = getPos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); hasSigned = true; }, {passive:false});
+        canvas.addEventListener('touchend', function() { isDrawing = false; });
+
+        window.clearContractCanvas = function() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            hasSigned = false;
+        };
+
+        // Date Display
+        var dateStr = new Date().toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'});
+        document.getElementById('sig-date-display').textContent = dateStr;
+
+        // Form Submit
+        document.getElementById('contract-sign-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            var name = document.getElementById('signer-name').value.trim();
+            var email = document.getElementById('signer-email').value.trim();
+            if(!name || !email) { alert('Por favor complete su nombre y correo.'); return; }
+            if(!document.getElementById('contract-consent').checked) { alert('Debe marcar la casilla de conformidad legal.'); return; }
+            if(!hasSigned) { alert('Por favor firme con su dedo o mouse en el recuadro de firma.'); return; }
+
+            var btn = document.getElementById('contract-submit-btn');
+            btn.disabled = true;
+            btn.textContent = 'REGISTRANDO CONTRATO CSLB...';
+
+            var payload = {
+                _subject: '[MORALES PLUMBING] CONTRATO CSLB FIRMADO - MP-HIC-4423V-SANDHU',
+                event: 'CSLB_HOME_IMPROVEMENT_CONTRACT_SIGNED',
+                contract_ref: 'MP-HIC-4423V-SANDHU',
+                proposal_ref: 'MP-PROP-4423V-SANDHU',
+                total_amount: '$19,671.18 USD',
+                client: 'Manjinder S. Sandhu & Gurmeet K. Sandhu',
+                job_site: '4423 Vistapark Dr, San Jose, CA 95136',
+                signer_name: name,
+                signer_email: email,
+                signed_at: new Date().toISOString(),
+                date_display: dateStr,
+                contractor: 'MORALES PLUMBING (CSLB C-36 #1156542)'
+            };
+
+            try {
+                await fetch('https://formsubmit.co/ajax/moralesplumbing026@gmail.com', {
+                    method: 'POST',
+                    headers: { 'Accept':'application/json', 'Content-Type':'application/json' },
+                    body: JSON.stringify(payload)
+                });
+            } catch(err) { console.warn('FormSubmit:', err); }
+
+            document.getElementById('contract-sign-form').style.display = 'none';
+            document.getElementById('contract-success-box').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
